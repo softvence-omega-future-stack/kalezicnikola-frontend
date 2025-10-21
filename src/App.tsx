@@ -1,13 +1,13 @@
-import Navbar from "./layout/Navbar";
-import Footer from "./layout/Footer";
-import Layout from "./layout/Layout";
+
+import { Outlet } from "react-router-dom";
+// import DashboardLayout from "./layout/DashboardLayout";
 
 const App = () => {
   return (
     <div>
-      <Navbar />
-      <Layout />
-      <Footer />
+      
+      <Outlet/>
+    
     </div>
   );
 };
