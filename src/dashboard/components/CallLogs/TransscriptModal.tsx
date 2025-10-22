@@ -1,4 +1,4 @@
-// src/pages/PatientTranscriptPage.tsx
+
 
 import React, { useState,  useEffect } from 'react';
 
@@ -21,6 +21,7 @@ const PATIENT_INFO = {
   insuranceID: '#PT0025',
   reason: 'AI-powered tools help radiologists analyze images (like X-rays, CT scans, and MRIs) to identify conditions such as tumors, fractures, and infections with remarkable accuracy.',
 };
+
 
 const TRANSCRIPT_MESSAGES = [
   { id: 't1', sender: 'Floyd Miles', avatar: '/path/to/floyd-avatar.jpg', time: '00032', text: 'Hello this is Floyd from USA. How are you doing?', type: 'incoming' },
@@ -87,7 +88,7 @@ const PatientTranscriptPage: React.FC = () => {
               <FiCopy className="h-5 w-5" />
             </button>
           </div>
-          <p className="text-gray-900 text-sm md:text-base leading-relaxed mb-3">
+          <p className="text-gray-600 text-sm md:text-base leading-relaxed mb-3">
             {showFullSummary ? AI_SUMMARY_TEXT : `${AI_SUMMARY_TEXT.substring(0, 300)}...`}
           </p>
           <button
@@ -106,23 +107,11 @@ const PatientTranscriptPage: React.FC = () => {
               <FiCopy className="h-5 w-5" />
             </button>
           </div>
-          <div className="text-gray-600 text-[13px] md:text-sm space-y-1">
-  <div className="flex">
-    <span className="min-w-[140px] font-medium text-gray-700">Name:</span>
-    <span className="text-black font-semibold">{PATIENT_INFO.name}</span>
-  </div>
-
-  <div className="flex">
-    <span className="min-w-[140px] font-medium text-gray-700">Insurance ID:</span>
-    <span className="text-black font-semibold">{PATIENT_INFO.insuranceID}</span>
-  </div>
-
-  <div className="flex">
-    <span className="min-w-[140px] font-medium text-gray-700">Reason for calling:</span>
-    <span className="text-black font-semibold">{PATIENT_INFO.reason}</span>
-  </div>
-</div>
-
+          <div className="space-y-2 text-gray-600 text-sm md:text-base">
+            <p className='text-black font-bold'><span className="font-semibold text-gray-700">Name:</span> {PATIENT_INFO.name}</p>
+            <p className='text-black font-bold'><span className="font-semibold text-gray-700">Insurance ID:</span> {PATIENT_INFO.insuranceID}</p>
+            <p className='text-black  font-semibold'><span className="font-semibold text-gray-700">Reason for calling:</span> {PATIENT_INFO.reason}</p>
+          </div>
         </div>
 
         {/* Patients Transcript (Audio Player) Section */}
@@ -189,7 +178,7 @@ const PatientTranscriptPage: React.FC = () => {
               <h4 className="text-sm font-semibold text-gray-800">
                 {msg.sender}
               </h4>
-              <p className="text-xs text-gray-500">{msg.userId}</p>
+              {/* <p className="text-xs text-gray-500">{msg.userId}</p> */}
             </div>
             <button className="text-gray-400 hover:text-gray-600">
               <FiCopy size={16} />
