@@ -46,7 +46,7 @@ const NavItem: React.FC<NavItemProps> = ({ to, icon: Icon, label, badgeContent }
 
 const Sidebar: React.FC = () => {
   return (
-    <div className="flex flex-col h-screen w-64 bg-white shadow-lg border-r border-gray-200">
+    <div className="flex flex-col h-screen w-[280px] bg-white shadow-lg border-r border-gray-200">
       <Logo />
 
       <nav className="flex-grow mt-2">
@@ -63,10 +63,10 @@ const Sidebar: React.FC = () => {
       <div className="p-4 space-y-4">
         <div className="bg-gray-50 p-4 rounded-lg">
           <div className="flex justify-between items-center mb-1">
-            <span className="text-gray-700 font-medium">Upgrade to Basic</span>
+            <span className="text-gray-900 font-bold text-xl">Upgrade to <br /> <span className='text-3xl'>Basic</span></span>
             <span className="text-xs font-bold px-2 py-0.5 rounded bg-indigo-100 text-indigo-600">PRO</span>
           </div>
-          <p className="text-sm text-gray-500 mb-2">1035 Minutes Uses</p>
+          <p className="text-md font-bold text-gray-800 mb-2">1035 Minutes Uses</p>
           <div className="w-full bg-gray-200 rounded-full h-2 mb-3">
             <div className="bg-indigo-600 h-2 rounded-full" style={{ width: '67%' }} />
           </div>

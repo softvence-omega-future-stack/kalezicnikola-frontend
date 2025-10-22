@@ -1,8 +1,11 @@
+import CallLogsPage from "@/dashboard/components/CallLogs/CallLogspage"
 
 
 const CallLogs = () => {
   return (
-    <div>CallLogs</div>
+    <div>
+      <CallLogsPage/>
+    </div>
   )
 }
 

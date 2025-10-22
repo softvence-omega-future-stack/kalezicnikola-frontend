@@ -1,8 +1,11 @@
+import CalendarView from "@/dashboard/components/Calendar/CalendarView"
 
 
 const Calendar = () => {
   return (
-    <div>Calendar</div>
+    <div>
+      <CalendarView/>
+    </div>
   )
 }
 

@@ -1,0 +1,297 @@
+import React, { useState } from "react";
+import { X, Calendar } from "lucide-react";
+
+interface NewAppointmentModalProps {
+  onClose: () => void;
+}
+
+const NewAppointmentModal: React.FC<NewAppointmentModalProps> = ({ onClose }) => {
+  const [showMenu, setShowMenu] = useState(false);
+  const [formData, setFormData] = useState({
+    insuranceId: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneNumber: "",
+    dateOfBirth: "",
+    gender: "",
+    bloodGroup: "",
+    schedule: "",
+    appointmentDetails: "",
+    address: "",
+  });
+
+  const handleSubmit = () => {
+    console.log("Form submitted:", formData);
+    onClose();
+  };
+
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  return (
+    <div className="fixed inset-0 bg-black/50 bg-opacity-50 flex items-center justify-center z-[9999] p-4">
+      <div className="bg-gray-100 rounded-2xl w-[672px]  max-w-lg shadow-xl animate-fadeIn">
+        {/* Header */}
+        <div className="p-6  pb-4 border-b border-gray-300">
+          <div className="flex h-[72px] justify-between items-start mb-1">
+            <div>
+              <h2 className="text-xl  font-bold text-gray-900">
+                Add New Appointment
+              </h2>
+              <p className="text-xs tracking-wide pt-2 text-gray-500 mt-0.5">
+                Complete all information
+              </p>
+            </div>
+            <button
+              onClick={onClose}
+              className="text-gray-600 hover:text-gray-800"
+            >
+              <X size={20} />
+            </button>
+          </div>
+        </div>
+
+        {/* Form */}
+        <div className="px-6 pb-6 max-h-[80vh] overflow-y-auto">
+          {/* Insurance ID */}
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-900 mb-2">
+              Insurance ID
+            </label>
+            <input
+              type="text"
+              name="insuranceId"
+              value={formData.insuranceId}
+              onChange={handleChange}
+              placeholder="Insurance ID..."
+              className="w-full px-4 py-3 bg-white rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          {/* First Name and Last Name */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-900 mb-2">
+                First name
+              </label>
+              <input
+                type="text"
+                name="firstName"
+                value={formData.firstName}
+                onChange={handleChange}
+                placeholder="Enter first name..."
+                className="w-full px-4 py-3 bg-white rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-900 mb-2">
+                Last Name
+              </label>
+              <input
+                type="text"
+                name="lastName"
+                value={formData.lastName}
+                onChange={handleChange}
+                placeholder="Enter last name..."
+                className="w-full px-4 py-3 bg-white rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+          </div>
+
+          {/* Email and Phone */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-900 mb-2">
+                Email
+              </label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Enter your email..."
+                className="w-full px-4 py-3 bg-white rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-900 mb-2">
+                Phone Number
+              </label>
+              <input
+                type="tel"
+                name="phoneNumber"
+                value={formData.phoneNumber}
+                onChange={handleChange}
+                placeholder="Enter your phone number..."
+                className="w-full px-4 py-3 bg-white rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+          </div>
+
+          {/* DOB & Gender */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-900 mb-2">
+                Date of Birth
+              </label>
+              <div className="relative">
+                <input
+                  type="date"
+                  name="dateOfBirth"
+                  value={formData.dateOfBirth}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 bg-white rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                <Calendar
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"
+                  size={18}
+                />
+              </div>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-900 mb-2">
+                Gender
+              </label>
+              <input
+                type="text"
+                name="gender"
+                value={formData.gender}
+                onChange={handleChange}
+                placeholder="Enter gender..."
+                className="w-full px-4 py-3 bg-white rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+          </div>
+
+          {/* Blood & Schedule */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-900 mb-2">
+                Blood Group
+              </label>
+              <select
+                name="bloodGroup"
+                value={formData.bloodGroup}
+                onChange={handleChange}
+                className="w-full px-4 py-3 bg-white rounded-lg text-sm text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none"
+              >
+                <option value="">Select blood group</option>
+                {["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"].map(
+                  (group) => (
+                    <option key={group} value={group}>
+                      {group}
+                    </option>
+                  )
+                )}
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-900 mb-2">
+                Schedule
+              </label>
+              <div className="relative">
+                <input
+                  type="datetime-local"
+                  name="schedule"
+                  value={formData.schedule}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 bg-white rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                <Calendar
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"
+                  size={18}
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Appointment Details */}
+          <div className="mb-4 relative">
+            <label className="block text-sm font-medium text-gray-900 mb-2">
+              Appointment details
+            </label>
+            <textarea
+              name="appointmentDetails"
+              value={formData.appointmentDetails}
+              onChange={handleChange}
+              placeholder="Details..."
+              rows={3}
+              className="w-full px-4 py-3 bg-white rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+            />
+            <button
+              type="button"
+              onClick={() => setShowMenu(!showMenu)}
+              className="absolute left-4 bottom-4 text-gray-600 hover:text-gray-800"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <circle cx="12" cy="12" r="1" />
+                <circle cx="12" cy="5" r="1" />
+                <circle cx="12" cy="19" r="1" />
+              </svg>
+            </button>
+
+            {showMenu && (
+              <div className="absolute left-4 bottom-16 bg-white rounded-lg shadow-lg py-2 w-40 z-10">
+                <button
+                  type="button"
+                  className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  onClick={() => setShowMenu(false)}
+                >
+                  Profile settings
+                </button>
+                <button
+                  type="button"
+                  className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  onClick={() => setShowMenu(false)}
+                >
+                  Chat
+                </button>
+              </div>
+            )}
+          </div>
+
+          {/* Address */}
+          <div className="mb-6">
+            <label className="block text-sm font-medium text-gray-900 mb-2">
+              Address
+            </label>
+            <input
+              type="text"
+              name="address"
+              value={formData.address}
+              onChange={handleChange}
+              placeholder="Address"
+              className="w-full px-4 py-3 bg-white rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          {/* Submit */}
+          <button
+            onClick={handleSubmit}
+            className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 rounded-lg transition-colors"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default NewAppointmentModal;

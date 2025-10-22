@@ -12,8 +12,6 @@ const mockDashboardData = {
   averageCallDuration: '02hr 30min',
 };
 
-// ----------------------------------------------------------------------
-
 interface MetricCardProps {
   label: string;
   value: string | number;
@@ -40,7 +38,7 @@ const MetricCard: React.FC<MetricCardProps> = ({ label, value }) => (
   </div>
 );
 
-// ----------------------------------------------------------------------
+
 
 const DashboardTopSection: React.FC = () => {
   const { firstName, lastName, date, todayIncomingCalls, successfulCalls, averageCallDuration } = mockDashboardData;

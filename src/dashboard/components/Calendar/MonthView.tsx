@@ -1,10 +1,13 @@
-import React, { useState } from "react";
-import { ChevronLeft, ChevronRight, Plus, ChevronDown } from "lucide-react";
-import NewAppointmentModal from "./NewAppointmentModal";
+import React from 'react';
 
-const CalendarView: React.FC = () => {
-  const [currentMonth, ] = useState("September 2025");
-  const [isModalOpen, setIsModalOpen] = useState(false);
+
+
+
+const CalendarMonthView: React.FC = () => {
+
+  
+
+
 
   // Event color mapping (3 types)
   const eventColors = [ "bg-purple-50", "bg-green-50", "bg-orange-50" ];
@@ -46,32 +49,16 @@ const CalendarView: React.FC = () => {
     { date: 1, month: "next" },
   ];
 
+
   return (
-    <div className="bg-white rounded-2xl p-6">
-      {/* Header Section */}
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-xl font-medium text-gray-900">Calendar</h2>
-        <button  onClick={() => setIsModalOpen(true)} className="flex items-center gap-2 px-4 py-2 border border-gray-200 rounded-lg text-sm hover:bg-gray-50">
-          <Plus className="w-4 h-4" />
-          Appointment
-        </button>
-      </div>
+    <div className="min-h-screen bg-gray-50">
+    
 
-      {/* Month + View Selector */}
-      <div className="flex items-center justify-start mb-6">
-        <div className="flex items-center gap-4">
-          <button className="p-1 hover:bg-gray-100 rounded">
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-          <h3 className="text-lg font-medium">{currentMonth}</h3>
-          <button className="p-1 hover:bg-gray-100 rounded">
-            <ChevronRight className="w-5 h-5" />
-          </button>
-        </div>
-        <span className="flex items-center">  Week <ChevronDown className="w-4 h-4" /></span>
-      </div>
+      {/* Main Content */}
+      <div className="p-6">
+       
 
-      {/* Calendar Grid */}
+         {/* Calendar Grid */}
       <div className="grid grid-cols-7 gap-px bg-gray-200 border border-gray-200 rounded-lg overflow-hidden">
         {["MON", "TUE", "WED", "THUR", "FRI", "SAT", "SUN"].map((day) => (
           <div
@@ -111,12 +98,9 @@ const CalendarView: React.FC = () => {
           );
         })}
       </div>
-        {/* Modal show conditionally */}
-      {isModalOpen && (
-        <NewAppointmentModal onClose={() => setIsModalOpen(false)} />
-      )}
+      </div>
     </div>
   );
 };
 
-export default CalendarView;
+export default CalendarMonthView;

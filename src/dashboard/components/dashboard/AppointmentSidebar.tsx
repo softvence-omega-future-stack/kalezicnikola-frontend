@@ -80,12 +80,12 @@ const ActiveAppointmentCard: React.FC<ActiveAppointmentProps> = ({ data }) => (
     {/* Bottom Row: Diagnosis and Time */}
     <div className="grid grid-cols-2 gap-2">
       <div>
-        <p className="text-xs font-light text-gray-500 uppercase tracking-wider mb-1">Diagnosis</p>
+        <p className="text-xs font-semibold text-black tracking-wider mb-1">Diagnosis</p>
         <p className="text-base font-semibold text-gray-900">{data.diagnosis}</p>
       </div>
       <div className="text-right">
-        <p className="text-xs font-light text-gray-500 uppercase tracking-wider mb-1">Time</p>
-        <p className="text-base font-semibold text-indigo-600">{data.time}</p>
+        <p className="text-xs font-semibold text-black tracking-wider mb-1">Time</p>
+        <p className="text-base font-semibold text-black">{data.time}</p>
       </div>
     </div>
   </div>
