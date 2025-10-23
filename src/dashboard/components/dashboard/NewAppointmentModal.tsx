@@ -6,7 +6,7 @@ interface NewAppointmentModalProps {
 }
 
 const NewAppointmentModal: React.FC<NewAppointmentModalProps> = ({ onClose }) => {
-  const [showMenu, setShowMenu] = useState(false);
+
   const [formData, setFormData] = useState({
     insuranceId: "",
     firstName: "",
@@ -227,43 +227,7 @@ const NewAppointmentModal: React.FC<NewAppointmentModalProps> = ({ onClose }) =>
               rows={3}
               className="w-full px-4 py-3 bg-white rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
             />
-            <button
-              type="button"
-              onClick={() => setShowMenu(!showMenu)}
-              className="absolute left-4 bottom-4 text-gray-600 hover:text-gray-800"
-            >
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <circle cx="12" cy="12" r="1" />
-                <circle cx="12" cy="5" r="1" />
-                <circle cx="12" cy="19" r="1" />
-              </svg>
-            </button>
-
-            {showMenu && (
-              <div className="absolute left-4 bottom-16 bg-white rounded-lg shadow-lg py-2 w-40 z-10">
-                <button
-                  type="button"
-                  className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                  onClick={() => setShowMenu(false)}
-                >
-                  Profile settings
-                </button>
-                <button
-                  type="button"
-                  className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                  onClick={() => setShowMenu(false)}
-                >
-                  Chat
-                </button>
-              </div>
-            )}
+            
           </div>
 
           {/* Address */}

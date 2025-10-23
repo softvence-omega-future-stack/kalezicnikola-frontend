@@ -1,8 +1,11 @@
+import TaskList from "@/dashboard/components/Tasks/TasksManagement"
 
 
 const Tasks = () => {
   return (
-    <div>Tasks</div>
+    <div>
+      <TaskList/>
+    </div>
   )
 }
 

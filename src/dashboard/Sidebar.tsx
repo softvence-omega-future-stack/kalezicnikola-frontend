@@ -9,12 +9,12 @@ import {
   Headset,
   Settings,
   LogOut,
-  AppWindow,
+
 } from 'lucide-react';
 
 const Logo: React.FC = () => (
-  <div className="flex items-center p-4">
-    <AppWindow className="text-indigo-600 h-6 w-6 mr-2" />
+  <div className="flex items-center gap-2 p-4">
+    <img src="https://i.ibb.co.com/XZY1zr7J/Screenshot-2025-10-23-154422.png" className='h-6 w-6' alt="" />
     <span className="text-xl font-semibold text-gray-900">Docline</span>
   </div>
 );

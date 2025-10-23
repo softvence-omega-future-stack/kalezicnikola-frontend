@@ -1,21 +1,22 @@
-import React from 'react';
-import { Search, Bell, ChevronDown } from 'lucide-react'; // Using lucide-react for icons
+import React, { useState } from 'react';
+import { Search, Bell, ChevronDown } from 'lucide-react'; 
+import NotificationsDrawer from './Notifications';
 
-// ----------------------------------------------------------------------
-// Mock data for the user and flags
+
 const userData = {
   name: 'Keren nix',
   role: 'Anaesthesia',
-  // In a real app, this would be a dynamic path or import
-  avatarUrl: 'https://via.placeholder.com/150/9CA3AF/FFFFFF?text=KN', 
+
+  avatarUrl: 'https://i.ibb.co.com/qwJ83Rb/Screenshot-2025-10-23-153749.png', 
 };
 
-// ----------------------------------------------------------------------
+
 
 const MainHeader: React.FC = () => {
+    const [showNotification, setShowNotification] = useState(false);
   return (
-    // Outer container: Full width, fixed height, white background, shadow/border at bottom
-    // The height needs to accommodate the content and padding (looks about h-20 or h-24)
+    
+ 
     <header className="w-full h-20 mb-2 bg-white border-b border-gray-200 flex items-center justify-between px-6 md:px-8 lg:px-10 sticky top-0 z-30">
 
       {/* 1. Search Bar (Left/Center) */}
@@ -28,14 +29,14 @@ const MainHeader: React.FC = () => {
         />
       </div>
 
-      {/* 2. Right Side Icons and User Profile */}
+   
       <div className="flex items-center space-x-4 sm:space-x-6">
         
-        {/* Language Selector (Visible on MD screens and up) */}
+ 
         <div className="hidden md:flex items-center text-gray-700 cursor-pointer hover:text-indigo-600 transition-colors">
-          {/* Mock Flag Image - Replace with actual image component */}
+         
           <div className="w-6 h-6 mr-1">
-            {/* Using a simple div to represent the flag image's size/position */}
+
             <img 
               src="https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg" 
               alt="UK Flag" 
@@ -50,10 +51,10 @@ const MainHeader: React.FC = () => {
         <div className="h-8 w-px bg-gray-200 hidden md:block" />
 
         {/* Notification Icon */}
-        <button className="relative p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-full transition-colors focus:outline-none">
+        <button onClick={() => setShowNotification(true)} 
+         className="relative p-2 text-indigo-500 hover:text-gray-700 hover:bg-gray-100 rounded-full transition-colors focus:outline-none">
           <Bell className="w-6 h-6" />
-          {/* Optional: Add a red dot for new notifications */}
-          {/* <span className="absolute top-2 right-2 block h-2 w-2 rounded-full ring-2 ring-white bg-red-500" /> */}
+      
         </button>
 
         {/* User Profile */}
@@ -72,6 +73,10 @@ const MainHeader: React.FC = () => {
             </div>
           </div>
         </div>
+         {/* ✅ Notification Modal */}
+      {showNotification && (
+        <NotificationsDrawer onClose={() => setShowNotification(false)} />
+      )}
       </div>
     </header>
   );
