@@ -152,3 +152,11 @@ export default function AddTaskModal({ onClose, onAddTask }: AddTaskModalProps) 
     </div>
   );
 }
+
+
+  // Hello there, 
+  // I hope you are doing well. 
+  // Today I'm giving you the update for the web. Currently, I am fully focused on the front-end work of the web. I have completed the full structure and worked on some tasks. The work is running smoothly, and I am hopeful that the front-end will be completed soon so Don't worry.
+  // Live link: https://coruscating-sunflower-7e3cb2.netlify.app/ 
+  // It's just a progress update.
+  // Thank you.

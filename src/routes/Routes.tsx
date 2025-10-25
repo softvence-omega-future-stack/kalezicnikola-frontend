@@ -9,6 +9,8 @@ import Patients from "@/pages/Patients";
 import Tasks from "@/pages/Tasks";
 import Supports from "@/pages/Supports";
 import Settings from "@/pages/Settings";
+import AddNewStaff from "@/dashboard/components/Settings/Sidebar/MyStaf/AddNewStaf";
+import StaffProfile from "@/dashboard/components/Settings/Sidebar/MyStaf/ViewProfile";
 
 const routes = createBrowserRouter([
   {
@@ -29,6 +31,8 @@ const routes = createBrowserRouter([
       { path: "tasks", element: <Tasks /> },
       { path: "supports", element: <Supports/> },
       { path: "settings", element: <Settings /> },
+      { path: "settings/staff/add", element: <AddNewStaff /> },
+      { path: "settings/staff/profile/:id", element: <StaffProfile /> },
    //  { path: "*", element: <NotFound /> },
     ],
 
