@@ -1,10 +1,13 @@
-import PatientProfilePage from "@/dashboard/components/Patients/PatientProfilePage"
+// import PatientProfilePage from "@/dashboard/components/Patients/PatientProfilePage"
+
+import PatientsView from "@/dashboard/components/Patients/PatientView"
 
 
 const Patients = () => {
   return (
     <div>
-      <PatientProfilePage/>
+      {/* <PatientProfilePage/> */}
+      <PatientsView/>
     </div>
   )
 }

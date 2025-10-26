@@ -29,7 +29,7 @@ const mockAppointments: Appointment[] = [
       phone: '+123456789',
       diagnosis: 'Headache',
       time: '9:30 - 09:45 AM',
-      avatarUrl: 'https://via.placeholder.com/150/9CA3AF/FFFFFF?text=WB',
+      avatarUrl: 'https://i.ibb.co.com/Kx5m5knh/Screenshot-2025-10-26-095351.png',
     },
   },
   { id: 2, name: 'Leslie Alexander', timeRange: '08:00 - 09:00 AM', isNew: true },
@@ -48,7 +48,7 @@ const AppointmentItem: React.FC<AppointmentItemProps> = ({ name, timeRange, isNe
       <p className="text-gray-900 font-medium text-base leading-snug">{name}</p>
       {isNew && (
         <span className="text-xs font-semibold px-3 py-1 rounded-full bg-indigo-100 text-indigo-600">
-          New
+          New 
         </span>
       )}
     </div>
@@ -62,7 +62,7 @@ interface ActiveAppointmentProps {
 }
 
 const ActiveAppointmentCard: React.FC<ActiveAppointmentProps> = ({ data }) => (
-  <div className="p-4 mx-2 mb-4 bg-purple-50 shadow-lg rounded-xl border border-gray-100">
+  <div className="p-4 mx-2 mb-4 bg-indigo-50 shadow-lg rounded-xl border border-gray-100">
     
     {/* Top Row: Avatar and Name/Phone */}
     <div className="flex items-start mb-4">
@@ -101,8 +101,8 @@ const AppointmentsList: React.FC = () => {
       
       {/* List Header */}
       <div className="px-2 mb-4">
-        <h2 className="text-sm font-medium text-gray-500">Sunday, 11th</h2>
-        <p className="text- font-semibold  text-gray-900">{mockAppointments.length} patients</p>
+        <h2 className="text-base font-medium text-gray-800">Sunday, 11th</h2>
+        <p className="text-lg font-bold  text-gray-900">{mockAppointments.length} patients</p>
       </div>
       
       {/* Appointment List Items */}

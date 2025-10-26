@@ -5,15 +5,16 @@ const SummeryCards: React.FC = () => {
   return (
     <div className="flex flex-wrap gap-4">
       {/* 1st Card - slightly wider */}
-      <div className="flex-1 basis-[36%] bg-purple-100 rounded-2xl p-5 flex items-center justify-between min-w-[220px]">
+      <div className="flex-1 min-w-[220px] sm:basis-[36%] bg-purple-100 rounded-2xl p-5 flex items-center justify-between">
         <div>
           <div className="text-sm text-purple-900 mb-1">Unreviewed calls</div>
           <div className="flex -space-x-2 mb-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-purple-400 rounded-full border-2 border-white"></div>
-            <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-blue-400 rounded-full border-2 border-white"></div>
-            <div className="w-8 h-8 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-full border-2 border-white"></div>
-            <div className="w-8 h-8 bg-gray-800 rounded-full border-2 border-white flex items-center justify-center text-white text-xs">
-              9+
+            <img className="h-10 w-10 rounded-full" src="https://i.ibb.co.com/Kx5m5knh/Screenshot-2025-10-26-095351.png" alt="" />
+            <img className="h-10 w-10 rounded-full" src="https://i.ibb.co.com/Kx5m5knh/Screenshot-2025-10-26-095351.png" alt="" />
+            <img className="h-10 w-10 rounded-full" src="https://i.ibb.co.com/Kx5m5knh/Screenshot-2025-10-26-095351.png" alt="" />
+            <img className="h-10 w-10 rounded-full" src="https://i.ibb.co.com/Kx5m5knh/Screenshot-2025-10-26-095351.png" alt="" />
+            <div className="h-10 w-10 bg-gray-800 rounded-full border-2 border-white flex items-center justify-center text-white text-xs">
+              6+
             </div>
           </div>
           <div className="text-xs text-purple-700">
@@ -26,7 +27,7 @@ const SummeryCards: React.FC = () => {
       </div>
 
       {/* 2nd Card */}
-      <div className="flex-1 basis-[30%] bg-blue-100 rounded-2xl p-5 flex items-center justify-between min-w-[200px]">
+      <div className="flex-1 min-w-[200px] sm:basis-[30%] bg-blue-100 rounded-2xl p-5 flex items-center justify-between">
         <div>
           <div className="text-sm text-blue-900 mb-1">Task</div>
           <div className="text-4xl font-light text-blue-900">12</div>
@@ -37,7 +38,7 @@ const SummeryCards: React.FC = () => {
       </div>
 
       {/* 3rd Card */}
-      <div className="flex-1 basis-[30%] bg-red-100 rounded-2xl p-5 flex items-center justify-between min-w-[200px]">
+      <div className="flex-1 min-w-[200px] sm:basis-[30%] bg-red-100 rounded-2xl p-5 flex items-center justify-between">
         <div>
           <div className="text-sm text-red-900 mb-1">Requires a call back</div>
           <div className="text-4xl font-light text-red-900">7</div>

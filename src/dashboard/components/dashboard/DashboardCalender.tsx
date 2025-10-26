@@ -76,7 +76,7 @@ const CalendarView: React.FC = () => {
         {["MON", "TUE", "WED", "THUR", "FRI", "SAT", "SUN"].map((day) => (
           <div
             key={day}
-            className="bg-white p-3 text-center text-xs font-medium text-gray-500"
+            className="bg-white pt-4 pl-4 pr-16 pb-17 text-center text-xs font-medium text-gray-500"
           >
             {day}
           </div>
@@ -94,15 +94,23 @@ const CalendarView: React.FC = () => {
                 day.month ? "text-gray-300" : "text-gray-900"
               }`}
             >
-              <div className="text-sm font-medium">{day.date}</div>
+              <div className="text-lg font-medium">{day.date}</div>
 
               {day.event && (
                 <div className="mt-2">
-                  <div className="text-xs font-medium">{day.event.name}</div>
-                  <div className="text-xs text-red-500 flex items-center gap-1">
+                  <div className="text-sm font-medium">{day.event.name}</div>
+                  <div className="text-xs text-gray-900 flex items-center gap-1 ">
                     {day.event.time}
-                    <span className="w-4 h-4 bg-green-400 rounded flex items-center justify-center text-[10px]">
-                      📹
+                    <span className="  rounded flex items-center justify-center text-[10px] ml-4">
+                  
+                         <img
+      src="https://i.ibb.co.com/MkbGVLPg/logo-meet-2020q4-color-2x-web-96dp.png"
+  alt="Google Meet Icon"
+  className="w-6 h-6"
+/>
+
+
+
                     </span>
                   </div>
                 </div>

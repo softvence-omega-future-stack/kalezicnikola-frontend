@@ -24,11 +24,11 @@ const PATIENT_INFO = {
 
 
 const TRANSCRIPT_MESSAGES = [
-  { id: 't1', sender: 'Floyd Miles', avatar: '/path/to/floyd-avatar.jpg', time: '00032', text: 'Hello this is Floyd from USA. How are you doing?', type: 'incoming' },
-  { id: 't2', sender: 'User', avatar: '/path/to/user-avatar.jpg', time: '00032', text: 'I am good. How can I help you?', type: 'outgoing' },
-  { id: 't3', sender: 'Floyd Miles', avatar: '/path/to/floyd-avatar.jpg', time: '00032', text: 'Hello this is Floyd from USA. How are you doing?', type: 'incoming' },
-  { id: 't4', sender: 'Floyd Miles', avatar: '/path/to/floyd-avatar.jpg', time: '00032', text: 'Hello this is Floyd from USA. How are you doing?', type: 'incoming' },
-  { id: 't5', sender: 'User', avatar: '/path/to/user-avatar.jpg', time: '00032', text: 'I am good. How can I help you?', type: 'outgoing' },
+  { id: 't1', sender: 'Floyd Miles', avatar: 'https://i.ibb.co.com/wh1X6vJn/Screenshot-2025-10-26-144913.png', time: '00032', text: 'Hello this is Floyd from USA. How are you doing?', type: 'incoming' },
+  { id: 't2', sender: 'User', avatar: 'https://i.ibb.co.com/wh1X6vJn/Screenshot-2025-10-26-144913.png', time: '00032', text: 'I am good. How can I help you?', type: 'outgoing' },
+  { id: 't3', sender: 'Floyd Miles', avatar: 'https://i.ibb.co.com/wh1X6vJn/Screenshot-2025-10-26-144913.png', time: '00032', text: 'Hello this is Floyd from USA. How are you doing?', type: 'incoming' },
+  { id: 't4', sender: 'Floyd Miles', avatar: 'https://i.ibb.co.com/wh1X6vJn/Screenshot-2025-10-26-144913.png', time: '00032', text: 'Hello this is Floyd from USA. How are you doing?', type: 'incoming' },
+  { id: 't5', sender: 'User', avatar: 'https://i.ibb.co.com/wh1X6vJn/Screenshot-2025-10-26-144913.png', time: '00032', text: 'I am good. How can I help you?', type: 'outgoing' },
 ];
 
 const AUDIO_SEGMENTS = [
@@ -165,7 +165,7 @@ const PatientTranscriptPage: React.FC = () => {
     msg.type === "incoming" ? (
       <div
         key={msg.id}
-        className="flex items-start gap-3 bg-gray-50 rounded-2xl p-4 shadow-sm border border-gray-200"
+        className="flex items-start gap-3 bg-white rounded-2xl p-4 shadow-sm border border-gray-200"
       >
         <img
           src={msg.avatar}

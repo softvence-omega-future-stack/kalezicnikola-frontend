@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Search, Bell, ChevronDown } from 'lucide-react'; 
 import NotificationsDrawer from './Notifications';
+import UserDropdown from './DoctorProfile/DoctorProfileDropdown';
 
 
 const userData = {
@@ -14,6 +15,8 @@ const userData = {
 
 const MainHeader: React.FC = () => {
     const [showNotification, setShowNotification] = useState(false);
+    const [showUserDropdown, setShowUserDropdown] = useState(false);
+
   return (
     
  
@@ -57,22 +60,33 @@ const MainHeader: React.FC = () => {
       
         </button>
 
-        {/* User Profile */}
-        <div className="flex items-center p-1 cursor-pointer hover:bg-gray-100 rounded-full transition-colors">
-          <div className="flex items-center">
-            {/* Avatar */}
-            <img 
-              src={userData.avatarUrl} 
-              alt={userData.name} 
-              className="h-10 w-10 rounded-full object-cover mr-3 border border-gray-200"
-            />
-            {/* Text details (Hidden on XS screens for space) */}
-            <div className="hidden sm:block">
-              <p className="text-sm font-semibold text-gray-800 leading-none">{userData.name}</p>
-              <p className="text-xs text-gray-500 leading-none mt-1">{userData.role}</p>
-            </div>
-          </div>
-        </div>
+       {/* User Profile */}
+<div className="relative">
+  <div
+    className="flex items-center p-1 cursor-pointer hover:bg-gray-100 rounded-full transition-colors"
+    onClick={() => setShowUserDropdown(!showUserDropdown)}
+  >
+    <div className="flex items-center">
+      <img
+        src={userData.avatarUrl}
+        alt={userData.name}
+        className="h-10 w-10 rounded-full object-cover mr-3 border border-gray-200"
+      />
+      <div className="hidden sm:block">
+        <p className="text-sm font-semibold text-gray-800 leading-none">
+          {userData.name}
+        </p>
+        <p className="text-xs text-gray-500 leading-none mt-1">{userData.role}</p>
+      </div>
+    </div>
+  </div>
+
+  {/* ✅ User Dropdown */}
+  {showUserDropdown && (
+    <UserDropdown onClose={() => setShowUserDropdown(false)} />
+  )}
+</div>
+
          {/* ✅ Notification Modal */}
       {showNotification && (
         <NotificationsDrawer onClose={() => setShowNotification(false)} />

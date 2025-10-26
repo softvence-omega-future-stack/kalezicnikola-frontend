@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Home, SlidersHorizontal, Play, ExternalLink, ChevronRight } from 'lucide-react';
+import { Home,  Play, ExternalLink, ChevronRight } from 'lucide-react';
 import PatientTranscriptPage from './TransscriptModal';
 import { FiX } from 'react-icons/fi';
+import { IoFilterSharp } from "react-icons/io5";
 
 interface CallLog {
   id: number;
@@ -102,8 +103,8 @@ const CallLogsPage: React.FC = () => {
           {/* Table Header with Filters */}
           <div className="flex items-center justify-between p-4 border-b border-gray-200">
             <h2 className="text-base font-semibold text-gray-900">Call Logs</h2>
-            <button className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded border border-gray-300">
-              <SlidersHorizontal size={16} />
+            <button className="flex items-center gap-2 px-4 py-2 text-sm font-bold text-gray-900 hover:bg-gray-50 rounded border border-gray-300">
+              <IoFilterSharp size={16}/>
               Filters
             </button>
           </div>
@@ -121,13 +122,13 @@ const CallLogsPage: React.FC = () => {
                       className="w-4 h-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                     />
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-600">Patient Name</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-600">Timestamp</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-600">Phone Number</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-600">Status</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-600">Duration</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-600">Transcript</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-600">Profile</th>
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Patient Name</th>
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Timestamp</th>
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Phone Number</th>
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Status</th>
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Duration</th>
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Transcript</th>
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Profile</th>
                 </tr>
               </thead>
               <tbody>
@@ -141,25 +142,25 @@ const CallLogsPage: React.FC = () => {
                         className="w-4 h-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                       />
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-900">{log.patientName}</td>
-                    <td className="px-6 py-4 text-sm text-gray-900">{log.timestamp}</td>
-                    <td className="px-6 py-4 text-sm text-gray-900">{log.phoneNumber}</td>
+                    <td className="px-6 py-4 text-sm font-semibold text-gray-900">{log.patientName}</td>
+                    <td className="px-6 py-4 text-sm font-semibold text-gray-900">{log.timestamp}</td>
+                    <td className="px-6 py-4 text-sm font-semibold text-gray-900">{log.phoneNumber}</td>
                     <td className="px-6 py-4">
-                      <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium ${getStatusStyle(log.status)}`}>
+                      <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-semibold ${getStatusStyle(log.status)}`}>
                         <span className={`w-1.5 h-1.5 rounded-full ${getStatusDot(log.status)}`}></span>
                         {log.status}
                       </span>
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-900">{log.duration}</td>
+                    <td className="px-6 py-4 text-sm font-semibold text-gray-900">{log.duration}</td>
                     <td className="px-6 py-4">
                       <button      onClick={() => setCurrentCall(log)}
-                       className="flex items-center gap-2 px-4 py-1.5 text-sm text-gray-700 hover:bg-gray-100 rounded border border-gray-300">
+                       className="flex items-center gap-2 px-4 py-1.5 text-sm font-semibold text-gray-900 hover:bg-gray-100 rounded border border-gray-300">
                         Play
                         <Play size={14} fill="currentColor" />
                       </button>
                     </td>
                     <td className="px-6 py-4">
-                      <button className="flex items-center gap-2 text-sm text-indigo-600 hover:text-indigo-700">
+                      <button className="flex items-center gap-2 text-sm font-semibold text-indigo-600 hover:text-indigo-700">
                         View Profile
                         <ExternalLink size={14} />
                       </button>

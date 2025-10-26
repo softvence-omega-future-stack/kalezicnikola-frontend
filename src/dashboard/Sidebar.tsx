@@ -9,18 +9,21 @@ import {
   Headset,
   Settings,
   LogOut,
-
 } from 'lucide-react';
 
 const Logo: React.FC = () => (
   <div className="flex items-center gap-2 p-4">
-    <img src="https://i.ibb.co.com/XZY1zr7J/Screenshot-2025-10-23-154422.png" className='h-6 w-6' alt="" />
-    <span className="text-xl font-semibold text-gray-900">Docline</span>
+    <img
+      src="https://i.ibb.co.com/XZY1zr7J/Screenshot-2025-10-23-154422.png"
+      className="h-7 w-7"
+      alt="logo"
+    />
+    <span className="hidden md:inline text-xl font-semibold text-gray-900">Docline</span>
   </div>
 );
 
 interface NavItemProps {
-  to: string; // updated
+  to: string;
   icon: React.ElementType;
   label: string;
   badgeContent?: number;
@@ -30,14 +33,14 @@ const NavItem: React.FC<NavItemProps> = ({ to, icon: Icon, label, badgeContent }
   <NavLink
     to={to}
     className={({ isActive }) =>
-      `flex items-center py-3 px-4 mb-1 mx-2 rounded-lg transition-colors
+      `flex items-center py-3 px-4 mb-1 rounded-lg transition-colors
       ${isActive ? 'bg-gray-100 text-gray-900 font-medium' : 'text-gray-600 hover:bg-gray-50'}`
     }
   >
-    <Icon className="h-5 w-5 mr-3" />
-    <span className="flex-grow">{label}</span>
+    <Icon className="h-5 w-5" />
+    <span className="ml-3 hidden md:inline">{label}</span>
     {badgeContent !== undefined && (
-      <span className="bg-indigo-600 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+      <span className="hidden md:flex bg-indigo-600 text-white text-xs font-bold w-5 h-5 items-center justify-center rounded-full ml-auto">
         {badgeContent}
       </span>
     )}
@@ -46,10 +49,10 @@ const NavItem: React.FC<NavItemProps> = ({ to, icon: Icon, label, badgeContent }
 
 const Sidebar: React.FC = () => {
   return (
-    <div className="flex flex-col h-screen w-[280px] bg-white shadow-lg border-r border-gray-200">
+    <div className="flex flex-col h-screen  bg-white shadow-lg border-r border-gray-200 w-20 md:w-72 transition-all duration-300">
       <Logo />
 
-      <nav className="flex-grow mt-2">
+      <nav className="flex-grow mt-2 gap-4">
         <NavItem to="/dashboard" icon={LayoutDashboard} label="Dashboard" />
         <NavItem to="/dashboard/call_logs" icon={Phone} label="Call Logs" badgeContent={5} />
         <NavItem to="/dashboard/calendar" icon={Calendar} label="Calendar" />
@@ -58,13 +61,16 @@ const Sidebar: React.FC = () => {
         <NavItem to="/dashboard/supports" icon={Headset} label="Supports" />
       </nav>
 
-      <div className="my-4 mx-4 border-t border-dashed border-gray-300" />
-
-      <div className="p-4 space-y-4">
+      {/* Upgrade Section */}
+      <div className="hidden md:block p-4 space-y-4">
         <div className="bg-gray-50 p-4 rounded-lg">
           <div className="flex justify-between items-center mb-1">
-            <span className="text-gray-900 font-bold text-xl">Upgrade to <br /> <span className='text-3xl'>Basic</span></span>
-            <span className="text-xs font-bold px-2 py-0.5 rounded bg-indigo-100 text-indigo-600">PRO</span>
+            <span className="text-gray-900 font-bold text-xl">
+              Upgrade to <br /> <span className="text-3xl">Basic</span>
+            </span>
+            <span className="text-xs font-bold px-2 py-0.5 rounded bg-indigo-100 text-indigo-600">
+              PRO
+            </span>
           </div>
           <p className="text-md font-bold text-gray-800 mb-2">1035 Minutes Uses</p>
           <div className="w-full bg-gray-200 rounded-full h-2 mb-3">
