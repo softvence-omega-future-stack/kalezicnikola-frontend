@@ -1,7 +1,17 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
+:root {
+  --color-primary: #526FFF;
+  --color-secondary: #111A2D;
+  --color-title: #171C35;
+  --color-accent: #E5E7EB;
+  --color-success: #10B981;
+  --color-danger: #EF4444;
+}
+
+
+/* @custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -111,10 +121,10 @@
 }
 
 @layer base {
-  * {
+ {
     @apply border-border outline-ring/50;
   }
   body {
     @apply bg-background text-foreground;
   }
-}
+}    

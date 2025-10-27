@@ -45,14 +45,14 @@ const mockAppointments: Appointment[] = [
 const AppointmentItem: React.FC<AppointmentItemProps> = ({ name, timeRange, isNew }) => (
   <div className={`p-4 mx-2 rounded-xl transition-colors ${isNew ? 'bg-gray-100 hover:bg-gray-200' : 'bg-gray-50 hover:bg-gray-100'}`}>
     <div className="flex justify-between items-center">
-      <p className="text-gray-900 font-medium text-base leading-snug">{name}</p>
+      <p className="text-[#171C35] font-semibold text-base leading-snug">{name}</p>
       {isNew && (
         <span className="text-xs font-semibold px-3 py-1 rounded-full bg-indigo-100 text-indigo-600">
           New 
         </span>
       )}
     </div>
-    <p className="text-sm text-gray-500">{timeRange}</p>
+    <p className="text-sm text-[#111A2D]">{timeRange}</p>
   </div>
 );
 
@@ -62,7 +62,7 @@ interface ActiveAppointmentProps {
 }
 
 const ActiveAppointmentCard: React.FC<ActiveAppointmentProps> = ({ data }) => (
-  <div className="p-4 mx-2 mb-4 bg-indigo-50 shadow-lg rounded-xl border border-gray-100">
+  <div className="p-4 mx-2 mb-4 bg-[#F5F6FF]  rounded-xl border border-gray-100">
     
     {/* Top Row: Avatar and Name/Phone */}
     <div className="flex items-start mb-4">
@@ -72,20 +72,20 @@ const ActiveAppointmentCard: React.FC<ActiveAppointmentProps> = ({ data }) => (
         className="h-14 w-14 rounded-full object-cover mr-4"
       />
       <div>
-        <p className="text-lg font-bold text-gray-900 leading-snug">{data.name}</p>
-        <p className="text-sm text-gray-500">{data.phone}</p>
+        <p className="text-lg font-semibold text-[#171C35] leading-snug">{data.name}</p>
+        <p className="text-sm text-[#111A2D]">{data.phone}</p>
       </div>
     </div>
     
     {/* Bottom Row: Diagnosis and Time */}
     <div className="grid grid-cols-2 gap-2">
       <div>
-        <p className="text-xs font-semibold text-black tracking-wider mb-1">Diagnosis</p>
-        <p className="text-base font-semibold text-gray-900">{data.diagnosis}</p>
+        <p className="text-sm  text-[#111A2D] tracking-wider mb-1">Diagnosis</p>
+        <p className="text-base font-semibold text-[#111A2D]">{data.diagnosis}</p>
       </div>
       <div className="text-right">
-        <p className="text-xs font-semibold text-black tracking-wider mb-1">Time</p>
-        <p className="text-base font-semibold text-black">{data.time}</p>
+        <p className="text-sm text-[#111A2D] tracking-wider mb-1">Time</p>
+        <p className="text-base font-semibold text-[#171C35]">{data.time}</p>
       </div>
     </div>
   </div>
@@ -97,12 +97,12 @@ const AppointmentsList: React.FC = () => {
 
   return (
     // Outer container with a slight background color for contrast
-    <div className="bg-white p-4 w-full max-w-sm mx-auto sm:max-w-md md:max-w-lg shadow-xl md:rounded-xl">
+    <div className="bg-white p-4 w-full max-w-sm mx-auto sm:max-w-md md:max-w-lg  md:rounded-xl">
       
       {/* List Header */}
       <div className="px-2 mb-4">
-        <h2 className="text-base font-medium text-gray-800">Sunday, 11th</h2>
-        <p className="text-lg font-bold  text-gray-900">{mockAppointments.length} patients</p>
+        <h2 className="text-sm  text-[#111A2D]">Sunday, 11th</h2>
+        <p className="text-lg font-semibold  text-[#171C35]">{mockAppointments.length} patients</p>
       </div>
       
       {/* Appointment List Items */}

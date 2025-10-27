@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { X, Calendar } from "lucide-react";
+import { X, } from "lucide-react";
 
 interface NewAppointmentModalProps {
   onClose: () => void;
@@ -44,10 +44,10 @@ const NewAppointmentModal: React.FC<NewAppointmentModalProps> = ({ onClose }) =>
         <div className="p-6  pb-4 border-b border-gray-300">
           <div className="flex h-[72px] justify-between items-start mb-1">
             <div>
-              <h2 className="text-xl  font-bold text-gray-900">
+              <h2 className="text-2xl  font-semibold text-[#171C35]">
                 Add New Appointment
               </h2>
-              <p className="text-xs tracking-wide pt-2 text-gray-500 mt-0.5">
+              <p className="text-xs tracking-wide pt-2 text-[#667085] mt-0.5">
                 Complete all information
               </p>
             </div>
@@ -64,7 +64,7 @@ const NewAppointmentModal: React.FC<NewAppointmentModalProps> = ({ onClose }) =>
         <div className="px-6 pb-6 max-h-[80vh] overflow-y-auto">
           {/* Insurance ID */}
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-900 mb-2">
+            <label className="block text-sm font-medium text-[#171C35] mb-2">
               Insurance ID
             </label>
             <input
@@ -80,7 +80,7 @@ const NewAppointmentModal: React.FC<NewAppointmentModalProps> = ({ onClose }) =>
           {/* First Name and Last Name */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
             <div>
-              <label className="block text-sm font-medium text-gray-900 mb-2">
+              <label className="block text-sm font-medium text-[#171C35] mb-2">
                 First name
               </label>
               <input
@@ -89,11 +89,11 @@ const NewAppointmentModal: React.FC<NewAppointmentModalProps> = ({ onClose }) =>
                 value={formData.firstName}
                 onChange={handleChange}
                 placeholder="Enter first name..."
-                className="w-full px-4 py-3 bg-white rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-3 bg-white rounded-lg text-sm text-[#526FFF]  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-900 mb-2">
+              <label className="block text-sm font-medium text-[#171C35] mb-2">
                 Last Name
               </label>
               <input
@@ -102,7 +102,7 @@ const NewAppointmentModal: React.FC<NewAppointmentModalProps> = ({ onClose }) =>
                 value={formData.lastName}
                 onChange={handleChange}
                 placeholder="Enter last name..."
-                className="w-full px-4 py-3 bg-white rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-3 bg-white rounded-lg text-sm text-[#526FFF]  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
           </div>
@@ -110,7 +110,7 @@ const NewAppointmentModal: React.FC<NewAppointmentModalProps> = ({ onClose }) =>
           {/* Email and Phone */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
             <div>
-              <label className="block text-sm font-medium text-gray-900 mb-2">
+              <label className="block text-sm font-medium text-[#171C35] mb-2">
                 Email
               </label>
               <input
@@ -119,11 +119,11 @@ const NewAppointmentModal: React.FC<NewAppointmentModalProps> = ({ onClose }) =>
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="Enter your email..."
-                className="w-full px-4 py-3 bg-white rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-3 bg-white rounded-lg text-sm text-[#526FFF]  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-900 mb-2">
+              <label className="block text-sm font-medium text-[#171C35]mb-2">
                 Phone Number
               </label>
               <input
@@ -132,7 +132,7 @@ const NewAppointmentModal: React.FC<NewAppointmentModalProps> = ({ onClose }) =>
                 value={formData.phoneNumber}
                 onChange={handleChange}
                 placeholder="Enter your phone number..."
-                className="w-full px-4 py-3 bg-white rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-3 bg-white rounded-lg text-sm text-[#526FFF]  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
           </div>
@@ -140,7 +140,7 @@ const NewAppointmentModal: React.FC<NewAppointmentModalProps> = ({ onClose }) =>
           {/* DOB & Gender */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
             <div>
-              <label className="block text-sm font-medium text-gray-900 mb-2">
+              <label className="block text-sm font-medium text-[#171C35] mb-2">
                 Date of Birth
               </label>
               <div className="relative">
@@ -149,16 +149,17 @@ const NewAppointmentModal: React.FC<NewAppointmentModalProps> = ({ onClose }) =>
                   name="dateOfBirth"
                   value={formData.dateOfBirth}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-white rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-3 bg-white rounded-lg text-sm text-[#526FFF]  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#526FFF] appearance-none"
                 />
-                <Calendar
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"
-                  size={18}
-                />
+                 <img
+    src="https://i.ibb.co.com/gbYTtKHC/Date-Birth-Icon.png"
+    alt="icon"
+    className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 pointer-events-none"
+  />
               </div>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-900 mb-2">
+              <label className="block text-sm font-medium text-[#171C35] mb-2">
                 Gender
               </label>
               <input
@@ -167,7 +168,7 @@ const NewAppointmentModal: React.FC<NewAppointmentModalProps> = ({ onClose }) =>
                 value={formData.gender}
                 onChange={handleChange}
                 placeholder="Enter gender..."
-                className="w-full px-4 py-3 bg-white rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-3 bg-white rounded-lg text-sm text-[#526FFF]  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
           </div>
@@ -175,7 +176,7 @@ const NewAppointmentModal: React.FC<NewAppointmentModalProps> = ({ onClose }) =>
           {/* Blood & Schedule */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
             <div>
-              <label className="block text-sm font-medium text-gray-900 mb-2">
+              <label className="block text-sm font-medium text-[#171C35]mb-2">
                 Blood Group
               </label>
               <select
@@ -195,7 +196,7 @@ const NewAppointmentModal: React.FC<NewAppointmentModalProps> = ({ onClose }) =>
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-900 mb-2">
+              <label className="block text-sm font-medium text-[#171C35]mb-2">
                 Schedule
               </label>
               <div className="relative">
@@ -206,17 +207,18 @@ const NewAppointmentModal: React.FC<NewAppointmentModalProps> = ({ onClose }) =>
                   onChange={handleChange}
                   className="w-full px-4 py-3 bg-white rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-                <Calendar
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"
-                  size={18}
-                />
+              <img
+    src="https://i.ibb.co.com/gbYTtKHC/Date-Birth-Icon.png"
+    alt="icon"
+    className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 pointer-events-none"
+  />
               </div>
             </div>
           </div>
 
           {/* Appointment Details */}
           <div className="mb-4 relative">
-            <label className="block text-sm font-medium text-gray-900 mb-2">
+            <label className="block text-sm font-medium text-[#171C35]mb-2">
               Appointment details
             </label>
             <textarea
@@ -232,7 +234,7 @@ const NewAppointmentModal: React.FC<NewAppointmentModalProps> = ({ onClose }) =>
 
           {/* Address */}
           <div className="mb-6">
-            <label className="block text-sm font-medium text-gray-900 mb-2">
+            <label className="block text-sm font-medium text-[#171C35]mb-2">
               Address
             </label>
             <input
@@ -248,7 +250,7 @@ const NewAppointmentModal: React.FC<NewAppointmentModalProps> = ({ onClose }) =>
           {/* Submit */}
           <button
             onClick={handleSubmit}
-            className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 rounded-lg transition-colors"
+            className="w-full bg-[#526FFF]  text-white font-medium py-3 rounded-lg transition-colors"
           >
             Submit
           </button>

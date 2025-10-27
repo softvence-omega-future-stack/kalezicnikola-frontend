@@ -50,8 +50,8 @@ const CalendarView: React.FC = () => {
     <div className="bg-white rounded-2xl p-6">
       {/* Header Section */}
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-xl font-medium text-gray-900">Calendar</h2>
-        <button  onClick={() => setIsModalOpen(true)} className="flex items-center gap-2 px-4 py-2 border border-gray-200 rounded-lg text-sm hover:bg-gray-50">
+        <h2 className="text-xl font-semibold text-[#171C35">Calendar</h2>
+        <button  onClick={() => setIsModalOpen(true)} className="flex items-center gap-2 px-4 py-2 border border-gray-200 rounded-lg text-sm text-[#111A2D] hover:bg-gray-50">
           <Plus className="w-4 h-4" />
           Appointment
         </button>
@@ -63,12 +63,12 @@ const CalendarView: React.FC = () => {
           <button className="p-1 hover:bg-gray-100 rounded">
             <ChevronLeft className="w-5 h-5" />
           </button>
-          <h3 className="text-lg font-medium">{currentMonth}</h3>
+          <h3 className="text-lg font-medium text-[#171C35]">{currentMonth}</h3>
           <button className="p-1 hover:bg-gray-100 rounded">
             <ChevronRight className="w-5 h-5" />
           </button>
         </div>
-        <span className="flex items-center">  Week <ChevronDown className="w-4 h-4" /></span>
+        <span className="flex text-[#111A2D] text-sm items-center">  Week <ChevronDown className="w-4 h-4" /></span>
       </div>
 
       {/* Calendar Grid */}

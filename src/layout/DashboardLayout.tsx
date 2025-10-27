@@ -7,7 +7,7 @@ const DashboardLayout = () => {
   return (
     <div className="flex h-screen">
       {/* Sidebar - fixed width 280px */}
-      <div className="w-[280px] bg-white shadow-md">
+      <div className="w-[280px] border-r border-gray-100">
         <Sidebar />
       </div>
 
@@ -17,7 +17,7 @@ const DashboardLayout = () => {
         <MainHeader />
 
         {/* Outlet for nested routes */}
-        <main className="flex-1 p-6 bg-gray-100 overflow-auto">
+        <main className="flex-1 p-6  overflow-auto">
         
           <Outlet />
         </main>

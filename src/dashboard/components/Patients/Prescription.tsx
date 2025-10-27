@@ -18,8 +18,8 @@ export default function PrescriptionsPage() {
     { id: 4, date: "06-Sep-2025" },
   ];
 
-  const [selectedId, setSelectedId] = useState<number | null>(null); // ✅ কোন প্রেসক্রিপশন দেখা হবে
-  const [isOpen, setIsOpen] = useState(false); // ✅ Modal খোলা/বন্ধ
+  const [selectedId, setSelectedId] = useState<number | null>(null); 
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleAddPrescription = () => {
     alert("Add Prescription button clicked!");
@@ -27,7 +27,7 @@ export default function PrescriptionsPage() {
 
   const handleView = (id: number) => {
     setSelectedId(id);
-    setIsOpen(true); // ✅ modal খুলবে
+    setIsOpen(true); 
   };
 
   const closeModal = () => setIsOpen(false);
@@ -36,7 +36,7 @@ export default function PrescriptionsPage() {
     <div className="bg-white p-6 sm:p-8 lg:p-10">
       {/* Header */}
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-2xl font-semibold text-gray-900">Prescriptions</h1>
+        <h1 className="text-2xl font-semibold text-[#171C35]">Prescriptions</h1>
         <button
           onClick={handleAddPrescription}
           className="flex items-center gap-2 px-5 py-2 text-sm font-medium hover:bg-gray-100"

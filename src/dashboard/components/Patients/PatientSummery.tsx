@@ -1,4 +1,4 @@
-import { Calendar, Clock, ArrowRight } from 'lucide-react';
+import {  ArrowRight } from 'lucide-react';
 
 export default function PatientSummary() {
   const summaryCards = [
@@ -37,8 +37,8 @@ export default function PatientSummary() {
       <div>
         {/* Header */}
         <div className="mb-6">
-          <h1 className="text-2xl font-bold text-gray-900 mb-1">Patient Summary</h1>
-          <p className="text-xl font-medium text-gray-900">Overview of patient's health status and recent activities.</p>
+          <h1 className="text-2xl font-semibold text-[#171C35] mb-1">Patient Summary</h1>
+          <p className="text-base font-medium text-[#111A2D]">Overview of patient's health status and recent activities.</p>
         </div>
 
         {/* Summary Cards */}
@@ -46,16 +46,16 @@ export default function PatientSummary() {
           {summaryCards.map((card, index) => (
             <div key={index} className="bg-blue-50 rounded-2xl border border-gray-100 p-5 hover:shadow-md ">
               <div className="flex items-start justify-between mb-3">
-                <h3 className="text-2xl font-bold text-gray-900 mb-7">{card.title}</h3>
+                <h3 className="text-xl font-semibold text-[#171C35] mb-7">{card.title}</h3>
                 <button className="w-7 h-7 rounded-full bg-gray-900 flex items-center justify-center hover:bg-gray-800 transition-colors">
                   <ArrowRight className="w-4 h-4 text-white" />
                 </button>
               </div>
               <div className="space-y-1">
-                <p className="text-sm text-gray-500 font-medium">
+                <p className="text-sm text-[#131831] font-medium">
                   {card.date || card.count || card.type}
                 </p>
-                <p className="text-sm font-bold text-gray-900">{card.detail}</p>
+                <p className="text-sm font-semibold text-[#171C35]">{card.detail}</p>
               </div>
             </div>
           ))}
@@ -63,20 +63,22 @@ export default function PatientSummary() {
 
         {/* Appointments Section */}
         <div className="gap- rounded-lg p-6">
-          <h2 className="text-2xl font-bold text-black mb-4">Appointments</h2>
+          <h2 className="text-2xl font-semibold text-[#171C35] mb-4">Appointments</h2>
           <div className="space-y-3">
             {appointments.map((apt, index) => (
               <div key={index} className="py-3 bg-gray-50 border-b px-2 border-gray-100 last:border-0 flex items-center justify-between">
                 <div className="flex flex-col">
-                  <span className="text-sm font-semibold text-gray-900">{apt.type}</span>
+                  <span className="text-base font-semibold text-[#171C35]">{apt.type}</span>
                   <div className="flex items-center gap-3 mt-1 text-sm text-gray-600">
-                    <div className="flex items-center gap-1.5 font-bold text-black">
-                      <Calendar className="w-3.5 h-3.5 " />
-                      <span>{apt.date}</span>
+                    <div className="flex items-center gap-1.5 font-semibold text-[#111A2D]">
+                 
+g
+                      <img src="https://i.ibb.co.com/gbYTtKHC/Date-Birth-Icon.pn" alt="" />
+                      <span className='text-sm font-normal'>{apt.date}</span>
                     </div>
                     <div className="flex items-center gap-1.5 font-bold text-black">
-                      <Clock className="w-3.5 h-3.5" />
-                      <span>{apt.time}</span>
+                        <img src=" https://i.ibb.co.com/TxG7Rk1Q/clock.png" alt="" />
+                      <span  className='text-sm font-normal'>{apt.time}</span>
                     </div>
                   </div>
                 </div>

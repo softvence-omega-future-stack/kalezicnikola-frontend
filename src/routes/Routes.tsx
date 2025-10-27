@@ -15,14 +15,48 @@ import DoctorProfile from "@/dashboard/components/dashboard/DoctorProfile/Doctor
 
 import PatientProfilePage from "@/dashboard/components/Patients/PatientProfilePage";
 import Patients from "@/pages/Patients";
+import LoginPage from "@/auth/Login";
+import SignupPage from "@/auth/SignUpPage";
+import ForgotPasswordPage from "@/auth/ForgetPassword";
+import OtpPage from "@/auth/OtpPage";
+import CreateNewPassword from "@/auth/CreateMewPass";
+import SuccessfullNewPassword from "@/auth/SuccessfullnewPass";
 
 const routes = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    // children: [
-   
-    // ],
+    children: [
+     {
+        index: true,
+        element: <LoginPage />
+      },
+     {
+        path:'/login',
+        element: <LoginPage />
+      },
+     {
+        path:'/signup',
+        element: <SignupPage />
+      },
+      {
+        path:'/forget_password',
+        element:<ForgotPasswordPage/>
+      },
+      {
+        path:'/otp',
+        element:<OtpPage/>
+      },
+      {
+        path:'/createnew_pass',
+        element:<CreateNewPassword/>
+      },
+      {
+        path:'/successfull_pass',
+        element:<SuccessfullNewPassword/>
+      },
+    
+    ],
   },
     {
     path: "/dashboard",

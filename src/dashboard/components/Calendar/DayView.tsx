@@ -34,7 +34,7 @@ const DayView = () => {
                 <span className="text-sm text-gray-500">GTM+06</span>
               </div>
               <div className="flex-1 px-2 py-1 border-l border-b border-gray-200">
-                <div className="bg-indigo-500 text-white rounded px-3 py-1.5 text-sm font-medium h-full flex items-center">
+                <div className="bg-[#526FFF] text-white rounded px-3 py-1.5 text-sm font-medium h-full flex items-center">
                   William Brooks
                 </div>
               </div>

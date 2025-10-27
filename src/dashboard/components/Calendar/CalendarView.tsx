@@ -21,13 +21,13 @@ const CalendarView: React.FC = () => {
           <ChevronRight size={12} />
           <span>Dashboard</span>
           <ChevronRight size={12} />
-          <span className="text-gray-900 font-medium">Calendar</span>
+          <span className="text-[#171C35] font-medium">Calendar</span>
         </div>
       </div>
 
       {/* Main Content */}
       <div className="p-4 sm:p-6">
-        <h1 className="text-2xl font-semibold text-gray-900 mb-4 sm:mb-6">Calendar</h1>
+        <h1 className="text-2xl font-semibold text-[#171C35] mb-4 sm:mb-6">Calendar</h1>
 
         {/* Top Controls */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 sm:p-5 mb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
@@ -36,7 +36,7 @@ const CalendarView: React.FC = () => {
             <button className="p-1 hover:bg-gray-100 rounded">
               <ChevronLeft size={20} className="text-gray-600" />
             </button>
-            <h2 className="text-base sm:text-lg font-medium text-gray-900 min-w-[140px]">{monthYear}</h2>
+            <h2 className="text-base sm:text-lg font-medium text-[#171C35] min-w-[140px]">{monthYear}</h2>
             <button className="p-1 hover:bg-gray-100 rounded">
               <ChevronRight size={20} className="text-gray-600" />
             </button>

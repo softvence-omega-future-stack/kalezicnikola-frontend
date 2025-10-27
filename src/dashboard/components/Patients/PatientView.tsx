@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Plus, Upload, List, Grid3x3, ChevronDown, Check } from 'lucide-react';
+import { Plus, Upload, List, Grid3x3, ChevronDown, Check, ChevronRight } from 'lucide-react';
 import ListView from './ListView';
 import GridView from './GridView';
 
@@ -18,24 +18,24 @@ export default function PatientsView() {
     <div className="min-h-screen bg-gray-50 p-4 sm:p-6">
       {/* Breadcrumb */}
       <div className="flex items-center gap-2 text-sm text-gray-600 mb-6">
-        <span>🏠</span>
+      <img src="https://i.ibb.co.com/wNx4k4sR/HomeIcon.png" alt="" />
         <span>Dashboard</span>
-        <span>/</span>
-        <span className="font-semibold text-gray-900">Patients</span>
+        <ChevronRight size={12}/>
+        <span className="font-semibold text-[#171C35]">Patients</span>
       </div>
 
       {/* Header */}
       <div className="bg-white rounded-2xl shadow-sm p-6 mb-6">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <h1 className="text-2xl font-bold text-gray-900">Total 60 Patients</h1>
+          <h1 className="text-2xl font-bold text-[#171C35]">Total 60 Patients</h1>
 
           <div className="flex flex-wrap items-center gap-3">
-            <button className="flex items-center gap-2 px-4 py-2.5 bg-indigo-50 text-indigo-600 rounded-lg font-medium hover:bg-indigo-100 transition-colors">
+            <button className="flex items-center gap-2 px-4 py-2.5 bg-indigo-50 text-[#171C35] rounded-lg font-medium hover:bg-indigo-100 transition-colors">
               <Plus className="w-5 h-5" />
               <span>Add Patient</span>
             </button>
 
-            <button className="flex items-center gap-2 px-4 py-2.5 bg-white border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors">
+            <button className="flex items-center gap-2 px-4 py-2.5 bg-white border border-gray-300 text-[#171C35] rounded-lg font-medium hover:bg-gray-50 transition-colors">
               <Upload className="w-5 h-5" />
               <span>Import Patient</span>
             </button>
@@ -46,7 +46,7 @@ export default function PatientsView() {
                 onClick={() => setDropdownOpen(!dropdownOpen)}
                 className="flex items-center gap-2 px-4 py-2.5 bg-white border border-gray-300 rounded-lg text-gray-700 font-medium hover:bg-gray-50 transition-colors"
               >
-                {viewMode === 'list' ? <List className="w-5 h-5" /> : <Grid3x3 className="w-5 h-5" />}
+                {viewMode === 'list' ? <img src="https://i.ibb.co.com/LzLB2TvX/listIcon.png" alt="" /> : <img src="https://i.ibb.co.com/Vc6fTzxd/gridIcon.png" alt="" /> }
                 <span>{viewMode === 'list' ? 'List' : 'Grid'}</span>
                 <ChevronDown className="w-4 h-4" />
               </button>

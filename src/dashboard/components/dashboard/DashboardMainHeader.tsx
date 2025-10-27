@@ -8,7 +8,7 @@ const userData = {
   name: 'Keren nix',
   role: 'Anaesthesia',
 
-  avatarUrl: 'https://i.ibb.co.com/qwJ83Rb/Screenshot-2025-10-23-153749.png', 
+  avatarUrl: 'https://i.ibb.co.com/tM6Sb5kF/KarenNix.png', 
 };
 
 
@@ -23,12 +23,12 @@ const MainHeader: React.FC = () => {
     <header className="w-full h-20 mb-2 bg-white border-b border-gray-200 flex items-center justify-between px-6 md:px-8 lg:px-10 sticky top-0 z-30">
 
       {/* 1. Search Bar (Left/Center) */}
-      <div className="flex items-center w-full max-w-lg bg-gray-50 rounded-lg py-3 px-4 border border-transparent focus-within:border-indigo-300 transition-colors">
-        <Search className="w-5 h-5 text-gray-400 mr-3 flex-shrink-0" />
+      <div className="flex items-center w-full max-w-lg rounded-lg py-3 px-4 border border-transparent focus-within:border-indigo-300 transition-colors">
+        <Search className="w-5 h-5 text-[#111A2D] mr-3 flex-shrink-0" />
         <input
           type="text"
           placeholder="Search something."
-          className="w-full bg-gray-50 text-gray-700 placeholder-gray-400 focus:outline-none text-base"
+          className="w-full  text-gray-700 placeholder-[#111A2D] focus:outline-none text-base"
         />
       </div>
 
@@ -63,20 +63,20 @@ const MainHeader: React.FC = () => {
        {/* User Profile */}
 <div className="relative">
   <div
-    className="flex items-center p-1 cursor-pointer hover:bg-gray-100 rounded-full transition-colors"
+    className="flex items-center p-1 cursor-pointer  rounded-full transition-colors"
     onClick={() => setShowUserDropdown(!showUserDropdown)}
   >
     <div className="flex items-center">
       <img
         src={userData.avatarUrl}
         alt={userData.name}
-        className="h-10 w-10 rounded-full object-cover mr-3 border border-gray-200"
+        className="h-10 w-10 rounded-xl object-cover mr-3 border border-gray-200"
       />
       <div className="hidden sm:block">
-        <p className="text-sm font-semibold text-gray-800 leading-none">
+        <p className="text-lg font-semibold text-[#171C35] leading-none">
           {userData.name}
         </p>
-        <p className="text-xs text-gray-500 leading-none mt-1">{userData.role}</p>
+        <p className="text-sm text-[#171C35] leading-none mt-1">{userData.role}</p>
       </div>
     </div>
   </div>

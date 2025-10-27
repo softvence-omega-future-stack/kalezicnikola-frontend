@@ -81,14 +81,14 @@ const handleProfileSettings = () => {
       <div className="flex items-center space-x-4 mb-6">
         <div className="w-16 h-16 rounded-full bg-gray-200 overflow-hidden flex-shrink-0">
           <img
-            src="https://i.ibb.co/qwJ83Rb/Screenshot-2025-10-23-153749.png"
+            src="https://i.ibb.co.com/tM6Sb5kF/KarenNix.png"
             alt="Keren Nix"
             className="w-full h-full object-cover"
           />
         </div>
         <div>
-          <h2 className="text-xl font-semibold text-gray-800">Keren nix</h2>
-          <p className="text-md text-gray-500">Anaesthesia</p>
+          <h2 className="text-lg font-semibold text-[#171C35]">Keren nix</h2>
+          <p className="text-md text-[#171C35]">Anaesthesia</p>
         </div>
       </div>
 

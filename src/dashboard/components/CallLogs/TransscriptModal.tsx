@@ -3,7 +3,7 @@
 import React, { useState,  useEffect } from 'react';
 
 import {
-  FiCopy, 
+
   FiPlay, 
   FiPause, 
   FiSkipBack, 
@@ -12,6 +12,7 @@ import {
   FiVolume2, 
  
 } from 'react-icons/fi';
+import TranscriptChat from './TranscriptChat';
 
 // --- DUMMY DATA ---
 const AI_SUMMARY_TEXT = `AI-powered tools help radiologists analyze images (like X-rays, CT scans, and MRIs) to identify conditions such as tumors, fractures, and infections with remarkable accuracy. AI systems can detect early signs of cancers like breast or lung cancer. AI-powered tools help radiologists analyze images (like X-rays, CT scans, and MRIs) to identify conditions such as tumors, fractures, and infections with remarkable accuracy. For example, AI systems can detect early signs of cancers like breast or lung cancer.`;
@@ -23,13 +24,7 @@ const PATIENT_INFO = {
 };
 
 
-const TRANSCRIPT_MESSAGES = [
-  { id: 't1', sender: 'Floyd Miles', avatar: 'https://i.ibb.co.com/wh1X6vJn/Screenshot-2025-10-26-144913.png', time: '00032', text: 'Hello this is Floyd from USA. How are you doing?', type: 'incoming' },
-  { id: 't2', sender: 'User', avatar: 'https://i.ibb.co.com/wh1X6vJn/Screenshot-2025-10-26-144913.png', time: '00032', text: 'I am good. How can I help you?', type: 'outgoing' },
-  { id: 't3', sender: 'Floyd Miles', avatar: 'https://i.ibb.co.com/wh1X6vJn/Screenshot-2025-10-26-144913.png', time: '00032', text: 'Hello this is Floyd from USA. How are you doing?', type: 'incoming' },
-  { id: 't4', sender: 'Floyd Miles', avatar: 'https://i.ibb.co.com/wh1X6vJn/Screenshot-2025-10-26-144913.png', time: '00032', text: 'Hello this is Floyd from USA. How are you doing?', type: 'incoming' },
-  { id: 't5', sender: 'User', avatar: 'https://i.ibb.co.com/wh1X6vJn/Screenshot-2025-10-26-144913.png', time: '00032', text: 'I am good. How can I help you?', type: 'outgoing' },
-];
+
 
 const AUDIO_SEGMENTS = [
   { start: 0, end: 5, color: 'bg-blue-200' },
@@ -78,14 +73,14 @@ const PatientTranscriptPage: React.FC = () => {
       <div className="bg-gray-100 w-[980px] mx-auto rounded-xl p-6 md:p-8 lg:p-10 relative">
       
 
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6">Patient Transcript</h2>
+        <h2 className="text-2xl md:text-2xl font-semibold text-[#171C35] mb-6">Patient Transcript</h2>
 
         {/* AI Summary Section */}
         <div className="mb-8 p-5 md:p-6 bg-white rounded-lg border border-gray-200 ">
           <div className="flex justify-between items-center mb-3">
-            <h3 className="text-lg md:text-xl font-semibold text-gray-700">AI Summary</h3>
+            <h3 className="text-lg md:text-xl font-semibold text-[#171C35]">AI Summary</h3>
             <button className="text-gray-400 hover:text-gray-600">
-              <FiCopy className="h-5 w-5" />
+              <img src="https://i.ibb.co.com/C5fw58ZT/Copyicon.png" alt="" />
             </button>
           </div>
           <p className="text-gray-600 text-sm md:text-base leading-relaxed mb-3">
@@ -102,9 +97,9 @@ const PatientTranscriptPage: React.FC = () => {
         {/* Summarized Information Section */}
         <div className="mb-8 p-5 md:p-6 bg-white rounded-lg border border-gray-200 shadow-sm">
           <div className="flex justify-between items-center mb-3">
-            <h3 className="text-lg md:text-xl font-semibold text-gray-900">Information's are Summarized</h3>
+            <h3 className="text-lg md:text-xl font-semibold text-[#171C35]">Information's are Summarized</h3>
             <button className="text-gray-400 hover:text-gray-600">
-              <FiCopy className="h-5 w-5" />
+                <img src="https://i.ibb.co.com/C5fw58ZT/Copyicon.png" alt="" />
             </button>
           </div>
           <div className="space-y-2 text-gray-600 text-sm md:text-base">
@@ -116,7 +111,7 @@ const PatientTranscriptPage: React.FC = () => {
 
         {/* Patients Transcript (Audio Player) Section */}
         <div className="mb-8 p-5 md:p-6 bg-white rounded-lg border border-gray-200 shadow-sm">
-          <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-4">Patients Transcript</h3>
+          <h3 className="text-lg md:text-xl font-semibold text-[#171C35] mb-4">Patients Transcript</h3>
 
           {/* Audio Waveform / Progress Bar */}
           <div className="relative w-full h-12 bg-gray-100 rounded-lg overflow-hidden flex items-center justify-between px-2">
@@ -153,54 +148,7 @@ const PatientTranscriptPage: React.FC = () => {
         </div>
 
         {/* Transcript Chat Section */}
-    <div className="p-5 md:p-6 bg-white rounded-lg border border-gray-200 shadow-sm">
-  <div className="flex justify-between items-center mb-4">
-    <h3 className="text-lg md:text-xl font-semibold text-black">Transcript</h3>
-    <button className="text-gray-400 hover:text-gray-600">
-      <FiCopy className="h-5 w-5" />
-    </button>
-  </div>
-<div className="space-y-5">
-  {TRANSCRIPT_MESSAGES.map((msg) =>
-    msg.type === "incoming" ? (
-      <div
-        key={msg.id}
-        className="flex items-start gap-3 bg-white rounded-2xl p-4 shadow-sm border border-gray-200"
-      >
-        <img
-          src={msg.avatar}
-          alt={msg.sender}
-          className="w-12 h-12 rounded-full object-cover"
-        />
-        <div className="flex flex-col flex-1">
-          <div className="flex justify-between">
-            <div>
-              <h4 className="text-sm font-semibold text-gray-800">
-                {msg.sender}
-              </h4>
-              {/* <p className="text-xs text-gray-500">{msg.userId}</p> */}
-            </div>
-            <button className="text-gray-400 hover:text-gray-600">
-              <FiCopy size={16} />
-            </button>
-          </div>
-          <p className="text-sm text-gray-700 mt-2">{msg.text}</p>
-        </div>
-      </div>
-    ) : (
-      <div
-        key={msg.id}
-        className="flex justify-end bg-gray-50 rounded-2xl p-4 shadow-sm border border-gray-200"
-      >
-        <p className="text-sm text-gray-800 max-w-[70%] text-right">
-          {msg.text}
-        </p>
-      </div>
-    )
-  )}
-</div>
-
-</div>
+  <TranscriptChat/>
 
       </div>
     </div>

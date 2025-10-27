@@ -80,9 +80,9 @@ const CallLogsPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-indigo-50">
+    <div className="min-h-screen ">
       {/* Header Navigation */}
-      <div className="bg-white border-b border-gray-200 px-6 py-3">
+      <div className="  px-6 py-3">
         <div className="flex items-center gap-4 text-sm">
           <button className="text-gray-400 hover:text-gray-600">
             <Home size={18} />
@@ -95,15 +95,15 @@ const CallLogsPage: React.FC = () => {
       </div>
 
       {/* Main Content */}
-      <div className="p-6">
+      <div className="p-6  ">
         <h1 className="text-2xl font-bold text-black mb-6">Call Logs</h1>
 
         {/* Table Container */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200">
+        <div className=" rounded-lg shadow-sm ">
           {/* Table Header with Filters */}
-          <div className="flex items-center justify-between p-4 border-b border-gray-200">
-            <h2 className="text-base font-semibold text-gray-900">Call Logs</h2>
-            <button className="flex items-center gap-2 px-4 py-2 text-sm font-bold text-gray-900 hover:bg-gray-50 rounded border border-gray-300">
+          <div className="flex items-center justify-between p-4 bg-white rounded-xl ">
+            <h2 className="text-base font-semibold text-[#171C35]">Call Logs</h2>
+            <button className="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-[#111A2D] hover:bg-gray-50 rounded border border-gray-300">
               <IoFilterSharp size={16}/>
               Filters
             </button>
@@ -122,13 +122,13 @@ const CallLogsPage: React.FC = () => {
                       className="w-4 h-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                     />
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Patient Name</th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Timestamp</th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Phone Number</th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Status</th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Duration</th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Transcript</th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Profile</th>
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-[#171C35]">Patient Name</th>
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-[#171C35]">Timestamp</th>
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-[#171C35]">Phone Number</th>
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-[#171C35]">Status</th>
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-[#171C35]">Duration</th>
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-[#171C35]">Transcript</th>
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-[#171C35]">Profile</th>
                 </tr>
               </thead>
               <tbody>
@@ -142,25 +142,25 @@ const CallLogsPage: React.FC = () => {
                         className="w-4 h-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                       />
                     </td>
-                    <td className="px-6 py-4 text-sm font-semibold text-gray-900">{log.patientName}</td>
-                    <td className="px-6 py-4 text-sm font-semibold text-gray-900">{log.timestamp}</td>
-                    <td className="px-6 py-4 text-sm font-semibold text-gray-900">{log.phoneNumber}</td>
+                    <td className="px-6 py-4 text-sm font-semibold text-[#111A2D">{log.patientName}</td>
+                    <td className="px-6 py-4 text-sm font-semibold text-[#111A2D]">{log.timestamp}</td>
+                    <td className="px-6 py-4 text-sm font-semibold text-[#111A2D]">{log.phoneNumber}</td>
                     <td className="px-6 py-4">
-                      <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-semibold ${getStatusStyle(log.status)}`}>
+                      <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm text-[#111A2D] font-semibold ${getStatusStyle(log.status)}`}>
                         <span className={`w-1.5 h-1.5 rounded-full ${getStatusDot(log.status)}`}></span>
                         {log.status}
                       </span>
                     </td>
-                    <td className="px-6 py-4 text-sm font-semibold text-gray-900">{log.duration}</td>
+                    <td className="px-6 py-4 text-sm font-semibold text-[#111A2D]">{log.duration}</td>
                     <td className="px-6 py-4">
                       <button      onClick={() => setCurrentCall(log)}
-                       className="flex items-center gap-2 px-4 py-1.5 text-sm font-semibold text-gray-900 hover:bg-gray-100 rounded border border-gray-300">
+                       className="flex items-center gap-2 px-4 py-1.5 text-sm font-semibold text-[#171C35]hover:bg-gray-100 rounded border border-gray-300">
                         Play
                         <Play size={14} fill="currentColor" />
                       </button>
                     </td>
                     <td className="px-6 py-4">
-                      <button className="flex items-center gap-2 text-sm font-semibold text-indigo-600 hover:text-indigo-700">
+                      <button className="flex items-center gap-2 text-sm font-medium text-[#526FFF] ">
                         View Profile
                         <ExternalLink size={14} />
                       </button>

@@ -21,70 +21,75 @@ export default function WeeklyCalendar() {
   ];
 
   const appointments = [
-    { day: 0, time: 1, name: 'Floyd Miles', hour: '9:00 AM', color: 'bg-teal-100', border: 'border-l-4 border-teal-500' },
-    { day: 0, time: 1.5, name: 'Floyd Miles', hour: '9:30 AM', color: 'bg-purple-100', border: 'border-l-4 border-purple-500' },
-    { day: 0, time: 3, name: 'Floyd Miles', hour: '11:30 AM', color: 'bg-red-100', border: 'border-l-4 border-red-400' },
-    { day: 1, time: 2, name: 'Floyd Miles', hour: '9:30 AM', color: 'bg-purple-100', border: 'border-l-4 border-purple-500' },
-    { day: 2, time: 1.2, name: 'Floyd Miles', hour: '9:30 AM', color: 'bg-red-100', border: 'border-l-4 border-red-400' },
-    { day: 2, time: 4, name: 'Floyd Miles', hour: '12:00 PM', color: 'bg-purple-100', border: 'border-l-4 border-purple-500' },
-    { day: 3, time: 2.8, name: 'Floyd Miles', hour: '9:30 AM', color: 'bg-teal-100', border: 'border-l-4 border-teal-500' },
-    { day: 4, time: 3.5, name: 'Floyd Miles', hour: '12:00 PM', color: 'bg-red-100', border: 'border-l-4 border-red-400' },
-    { day: 1, time: 5, name: 'Floyd Miles', hour: '1:00 PM', color: 'bg-teal-100', border: 'border-l-4 border-teal-500' },
-    { day: 6, time: 2, name: 'Floyd Miles', hour: '10:00 AM', color: 'bg-purple-100', border: 'border-l-4 border-purple-500' }
+    { day: 0, time: 1, name: 'Floyd Miles', hour: '9:00 AM', color: 'bg-[#EDF9F5]', borderColor: 'border-teal-500' },
+    { day: 0, time: 1.5, name: 'Floyd Miles', hour: '9:30 AM', color: 'bg-[#F1ECFF]', borderColor: 'border-purple-500' },
+    { day: 0, time: 3, name: 'Floyd Miles', hour: '11:30 AM', color: 'bg-red-100', borderColor: 'border-red-400' },
+    { day: 1, time: 2, name: 'Floyd Miles', hour: '9:30 AM', color: 'bg-purple-100', borderColor: 'border-purple-500' },
+    { day: 2, time: 1.2, name: 'Floyd Miles', hour: '9:30 AM', color: 'bg-red-100', borderColor: 'border-red-400' },
+    { day: 2, time: 4, name: 'Floyd Miles', hour: '12:00 PM', color: 'bg-purple-100', borderColor: 'border-purple-500' },
+    { day: 3, time: 2.8, name: 'Floyd Miles', hour: '9:30 AM', color: 'bg-teal-100', borderColor: 'border-teal-500' },
+    { day: 4, time: 3.5, name: 'Floyd Miles', hour: '12:00 PM', color: 'bg-red-100', borderColor: 'border-red-400' },
+    { day: 1, time: 5, name: 'Floyd Miles', hour: '1:00 PM', color: 'bg-teal-100', borderColor: 'border-teal-500' },
+    { day: 6, time: 2, name: 'Floyd Miles', hour: '10:00 AM', color: 'bg-purple-100', borderColor: 'border-purple-500' }
   ];
 
   return (
-    <div className="min-h-screen  bg-white p-4 sm:p-6">
-      <div className="w-[1112px] overflow-x-auto">
-        <div className="min-w-[800px]">
-          {/* Header */}
-          <div className="grid grid-cols-8 border-b border-gray-200">
-            <div className="p-4"></div>
-            {days.map((day, index) => (
-              <div key={index} className="p-4 text-center border-l border-gray-200">
-                <div className="text-xs font-medium text-gray-500 mb-1">{day.day}</div>
-                <div className="text-2xl font-normal text-gray-900">{day.date}</div>
+    <div className="min-h-screen bg-white p-4 sm:p-6">
+      <div className="overflow-x-auto">
+        {/* Header */}
+        <div className="grid grid-cols-8 border-b border-gray-200">
+          <div className="p-4"></div>
+          {days.map((day, index) => (
+            <div key={index} className="p-4 text-center border-l border-gray-200">
+              <div className="text-xs font-medium text-gray-500 mb-1">{day.day}</div>
+              <div className="text-2xl font-normal text-gray-900">{day.date}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Time Grid */}
+        <div className="relative">
+          {timeSlots.map((time, timeIndex) => (
+            <div
+              key={timeIndex}
+              className="grid grid-cols-8 border-b border-gray-200 relative"
+              style={{ height: '100px' }}
+            >
+              {/* Time Label */}
+              <div className="p-4 text-sm text-gray-600 border-r border-gray-200">
+                {time}
               </div>
-            ))}
-          </div>
 
-          {/* Time Grid */}
-          <div className="relative">
-            {timeSlots.map((time, timeIndex) => (
-              <div key={timeIndex} className="grid grid-cols-8 border-b border-gray-200 relative" style={{ height: '100px' }}>
-                {/* Time Label */}
-                <div className="p-4 text-sm text-gray-600 border-r border-gray-200">
-                  {time}
-                </div>
-
-                {/* Day Columns */}
-                {days.map((_, dayIndex) => (
-                  <div key={dayIndex} className="border-l border-gray-200 relative">
-                    {/* Appointments */}
-                    {appointments
-                      .filter(apt => apt.day === dayIndex && Math.floor(apt.time) === timeIndex)
-                      .map((apt, aptIndex) => (
+              {/* Day Columns */}
+              {days.map((_, dayIndex) => (
+                <div key={dayIndex} className="border-l border-gray-200 relative">
+                  {appointments
+                    .filter(apt => apt.day === dayIndex && Math.floor(apt.time) === timeIndex)
+                    .map((apt, aptIndex) => {
+                      const topOffset = (apt.time - timeIndex) * 100;
+                      return (
                         <div
                           key={aptIndex}
-                          className={`absolute ${apt.color} ${apt.border} rounded-lg`}
+                          className={`${apt.color} border-l-4 ${apt.borderColor} absolute`}
                           style={{
-                            top: `${(apt.time - timeIndex) * 100}px`,
+                            top: `${topOffset}px`,
                             left: '4px',
                             right: '4px',
-                            height: '70px'
+                            height: '50px', 
+                            padding: '6px',
+                            borderTopLeftRadius: '8px',
+                            borderBottomLeftRadius: '8px'
                           }}
                         >
-                          <div className="p-4">
-                            <div className="text-sm font-medium text-gray-900">{apt.name}</div>
-                            <div className="text-xs text-gray-600 mt-1">{apt.hour}</div>
-                          </div>
+                          <div className="text-sm font-medium text-gray-900">{apt.name}</div>
+                          <div className="text-xs text-gray-600 mt-1">{apt.hour}</div>
                         </div>
-                      ))}
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
+                      );
+                    })}
+                </div>
+              ))}
+            </div>
+          ))}
         </div>
       </div>
     </div>
