@@ -85,7 +85,7 @@ const DashboardTopSection: React.FC = () => {
           ))}
 
           <button
-            className="flex items-center justify-center h-12 w-12 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg shadow-lg transition-colors"
+            className="flex items-center justify-center h-12 w-12 bg-[#526FFF]  text-white rounded-[10px] shadow-lg transition-colors"
             aria-label="View Details"
           >
             <ArrowUpRight className="w-6 h-6" />

@@ -55,7 +55,7 @@ const MainHeader: React.FC = () => {
 
         {/* Notification Icon */}
         <button onClick={() => setShowNotification(true)} 
-         className="relative p-2 text-indigo-500 hover:text-gray-700 hover:bg-gray-100 rounded-full transition-colors focus:outline-none">
+         className="relative p-2 text-[#111A2D]   transition-colors focus:outline-none">
           <Bell className="w-6 h-6" />
       
         </button>

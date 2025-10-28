@@ -1,4 +1,4 @@
-import { X, Printer, Download } from 'lucide-react';
+import { X,  } from 'lucide-react';
 
 interface LabReportProps {
   reportId: number | null;
@@ -34,7 +34,7 @@ export const LabReport: React.FC<LabReportProps> = ({ reportId, onClose }) => {
       <div className="bg-gray-100 w-full max-w-3xl rounded-2xl shadow-2xl flex flex-col max-h-[90vh]">
         {/* Header */}
         <div className="bg-gray-100 px-6 py-4 flex items-center justify-between flex-shrink-0">
-          <h1 className="text-xl font-bold text-gray-900">Lab Results</h1>
+          <h1 className="text-2xl font-bold text-[#171C35]">Lab Results</h1>
           <button
             onClick={onClose}
             className="w-8 h-8 flex items-center justify-center hover:bg-gray-200 rounded-lg transition-colors cursor-pointer"
@@ -54,29 +54,29 @@ export const LabReport: React.FC<LabReportProps> = ({ reportId, onClose }) => {
           <div className="p-6 pb-4 grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm border-b border-gray-200">
             <div className="flex gap-8">
               <span className="font-semibold text-gray-700">Name</span>
-              <span className="text-gray-900 font-extrabold">Ana Betz</span>
+              <span className="text-[#171C35] font-extrabold">Ana Betz</span>
             </div>
             <div className="flex gap-8 sm:justify-end">
-              <span className="font-semibold text-gray-900">Patient ID</span>
-              <span className="text-gray-900 font-semibold">PAC001</span>
+              <span className="font-semibold text-[#171C35]">Patient ID</span>
+              <span className="text-[#171C35] font-semibold">PAC001</span>
             </div>
             <div className="flex gap-8">
-              <span className="font-semibold text-gray-900">Date</span>
-              <span className="text-gray-900 font-semibold">2011-08-25 08:32</span>
+              <span className="font-semibold text-[#171C35]">Date</span>
+              <span className="text-[#171C35] font-semibold">2011-08-25 08:32</span>
             </div>
             <div className="flex gap-4 sm:justify-end">
-              <span className="font-semibold text-gray-900">Age</span>
-              <span className="text-gray-900 font-semibold">25y 10m 26d</span>
-              <span className="font-semibold text-gray-900 ml-4">Sex</span>
-              <span className="text-gray-900 font-semibold">Female</span>
+              <span className="font-semibold text-[#171C35]">Age</span>
+              <span className="text-[#171C35] font-semibold">25y 10m 26d</span>
+              <span className="font-semibold text-[#171C35] ml-4">Sex</span>
+              <span className="text-[#171C35] font-semibold">Female</span>
             </div>
             <div className="flex gap-8">
-              <span className="font-semibold text-gray-900">Doctor</span>
-              <span className="text-gray-900 font-semibold">Cameron Cordara</span>
+              <span className="font-semibold text-[#171C35]">Doctor</span>
+              <span className="text-[#171C35] font-semibold">Cameron Cordara</span>
             </div>
             <div className="flex gap-8 sm:justify-end">
-              <span className="font-semibold text-gray-900">Test id</span>
-              <span className="text-gray-900 font-semibold">B165AAF4</span>
+              <span className="font-semibold text-[#171C35]">Test id</span>
+              <span className="text-[#171C35] font-semibold">B165AAF4</span>
             </div>
           </div>
 
@@ -98,10 +98,10 @@ export const LabReport: React.FC<LabReportProps> = ({ reportId, onClose }) => {
                 <tbody>
   {bloodCountResults.map((test, index) => (
     <tr key={index} className="border-b border-gray-200 hover:bg-gray-50">
-      <td className={`py-2 px-2 ${test.isAbnormal ? 'text-red-600 font-semibold' : 'text-gray-900'}`}>
+      <td className={`py-2 px-2 ${test.isAbnormal ? 'text-red-600 font-semibold' : 'text-[#171C35]'}`}>
         {test.name}
       </td>
-      <td className={`py-2 px-2 text-center font-semibold ${test.isAbnormal ? 'text-red-600' : 'text-gray-900'}`}>
+      <td className={`py-2 px-2 text-center font-semibold ${test.isAbnormal ? 'text-red-600' : 'text-[#171C35]'}`}>
         {test.result}
       </td>
       <td className={`py-2 px-2 text-center ${test.isAbnormal ? 'text-red-600' : 'text-gray-700'}`}>
@@ -125,13 +125,13 @@ export const LabReport: React.FC<LabReportProps> = ({ reportId, onClose }) => {
         </div>
 
         {/* Footer Buttons */}
-        <div className="px-4 pb-4 flex gap-3 flex-shrink-0">
-          <button className="flex-1 py-3 px-4 bg-white border-2 border-blue-600 text-blue-600 rounded-lg font-medium text-sm flex items-center justify-center gap-2 hover:bg-blue-50 transition-colors">
-            <Printer className="w-4 h-4" />
+         <div className="px-4 pb-4 flex gap-3">
+          <button className="flex-1 py-3 px-4 bg-white border-2 border-[#526FFF] text-[#526FFF] rounded-[8px] font-medium text-sm flex items-center justify-center gap-2 transition-colors">
+            <img src="https://i.ibb.co.com/CKBMjd3X/printicon.png" alt="" />
             Print
           </button>
-          <button className="flex-1 py-3 px-4 bg-blue-600 text-white rounded-lg font-medium text-sm flex items-center justify-center gap-2 hover:bg-blue-700 transition-colors">
-            <Download className="w-4 h-4" />
+          <button className="flex-1 py-3 px-4 bg-[#526FFF] text-white rounded-[8px] font-medium text-sm flex items-center justify-center gap-2  transition-colors">
+          <img src="https://i.ibb.co.com/C5b0GkRy/download-Icon.png" alt="" />
             Download
           </button>
         </div>

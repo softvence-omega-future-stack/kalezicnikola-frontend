@@ -83,7 +83,7 @@ const PatientTranscriptPage: React.FC = () => {
               <img src="https://i.ibb.co.com/C5fw58ZT/Copyicon.png" alt="" />
             </button>
           </div>
-          <p className="text-gray-600 text-sm md:text-base leading-relaxed mb-3">
+          <p className="text-[#171C35] text-base font-medium md:text-base leading-relaxed mb-3">
             {showFullSummary ? AI_SUMMARY_TEXT : `${AI_SUMMARY_TEXT.substring(0, 300)}...`}
           </p>
           <button
@@ -102,10 +102,10 @@ const PatientTranscriptPage: React.FC = () => {
                 <img src="https://i.ibb.co.com/C5fw58ZT/Copyicon.png" alt="" />
             </button>
           </div>
-          <div className="space-y-2 text-gray-600 text-sm md:text-base">
-            <p className='text-black font-bold'><span className="font-semibold text-gray-700">Name:</span> {PATIENT_INFO.name}</p>
-            <p className='text-black font-bold'><span className="font-semibold text-gray-700">Insurance ID:</span> {PATIENT_INFO.insuranceID}</p>
-            <p className='text-black  font-semibold'><span className="font-semibold text-gray-700">Reason for calling:</span> {PATIENT_INFO.reason}</p>
+          <div className="space-y-2text-[#171C35] text-base font-medium  md:text-base">
+            <p className='text-[#111A2D] '><span className="font-normal text-[#111A2D]">Name:</span > {PATIENT_INFO.name}</p>
+            <p className='text-[#111A2D] '><span className=" font-normal text-[#171C35]">Insurance ID:</span> {PATIENT_INFO.insuranceID}</p>
+            <p className='text-[#111A2D]  '><span className="font-normal text-[#171C35]">Reason for calling:</span> {PATIENT_INFO.reason}</p>
           </div>
         </div>
 

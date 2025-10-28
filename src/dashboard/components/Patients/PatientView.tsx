@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Plus, Upload, List, Grid3x3, ChevronDown, Check, ChevronRight } from 'lucide-react';
+import {  List, Grid3x3, ChevronDown, Check, ChevronRight } from 'lucide-react';
 import ListView from './ListView';
 import GridView from './GridView';
 
@@ -30,13 +30,13 @@ export default function PatientsView() {
           <h1 className="text-2xl font-bold text-[#171C35]">Total 60 Patients</h1>
 
           <div className="flex flex-wrap items-center gap-3">
-            <button className="flex items-center gap-2 px-4 py-2.5 bg-indigo-50 text-[#171C35] rounded-lg font-medium hover:bg-indigo-100 transition-colors">
-              <Plus className="w-5 h-5" />
+            <button className="flex items-center gap-2 px-4 py-2.5 bg-[#DCE2FF] text-[#171C35] rounded-[8px] font-medium  transition-colors">
+             <img src="https://i.ibb.co.com/WNWLMm0k/plusIcon.png" alt="" />
               <span>Add Patient</span>
             </button>
 
-            <button className="flex items-center gap-2 px-4 py-2.5 bg-white border border-gray-300 text-[#171C35] rounded-lg font-medium hover:bg-gray-50 transition-colors">
-              <Upload className="w-5 h-5" />
+            <button className="flex items-center gap-2 px-4 py-2.5 bg-white border border-[#D0D5DD] text-[#171C35] rounded-[8px] font-medium transition-colors">
+            <img src="https://i.ibb.co.com/m5VnxjwT/importpatient-Icon.png" alt="" />
               <span>Import Patient</span>
             </button>
 
@@ -44,7 +44,7 @@ export default function PatientsView() {
             <div className="relative">
               <button
                 onClick={() => setDropdownOpen(!dropdownOpen)}
-                className="flex items-center gap-2 px-4 py-2.5 bg-white border border-gray-300 rounded-lg text-gray-700 font-medium hover:bg-gray-50 transition-colors"
+                className="flex items-center gap-2 px-4 py-2.5 bg-white border border-[#D0D5DD] rounded-[8px] text-gray-700 font-medium hover:bg-gray-50 transition-colors"
               >
                 {viewMode === 'list' ? <img src="https://i.ibb.co.com/LzLB2TvX/listIcon.png" alt="" /> : <img src="https://i.ibb.co.com/Vc6fTzxd/gridIcon.png" alt="" /> }
                 <span>{viewMode === 'list' ? 'List' : 'Grid'}</span>

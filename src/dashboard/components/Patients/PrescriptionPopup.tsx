@@ -1,4 +1,4 @@
-import { X, Printer, Download,  PhoneCall, Mail } from "lucide-react";
+import { X,  PhoneCall, Mail } from "lucide-react";
 
 interface PrescriptionPopupProps {
   prescriptionId: number | null; 
@@ -14,7 +14,7 @@ export default function PrescriptionPopup({
       <div className="w-full max-w-2xl bg-gray-100 rounded-2xl shadow-2xl overflow-hidden">
         {/* Header */}
         <div className="bg-gray-100 px-6 py-4 flex items-center justify-between border-b border-gray-300">
-          <h1 className="text-lg font-bold text-gray-900">Patients Transcript</h1>
+          <h1 className="text-lg font-bold text-[#171C35]">Patients Transcript</h1>
           <button
             onClick={onClose}
             className="w-8 h-8 flex items-center justify-center hover:bg-gray-200 rounded-lg transition-colors cursor-pointer"
@@ -30,14 +30,14 @@ export default function PrescriptionPopup({
             <div className="flex items-start gap-3">
               <div className="w-12 h-12 bg-gray-800 rounded"></div>
               <div>
-                <h2 className="text-xl font-extrabold text-gray-900">Dental Lounge ™</h2>
+                <h2 className="text-xl font-extrabold text-[#171C35]">Dental Lounge ™</h2>
                 <p className="text-xs font-semibold text-black mt-0.5">C-306</p>
                 <p className="text-xs font-semibold text-black">New Delhi, Delhi - 110020</p>
                 <p className="text-xs font-semibold text-black">Phone: +91 9810098100</p>
               </div>
             </div>
             <div className="text-right">
-              <h3 className="text-lg font-extrabold text-gray-900">Dr. Rakesh Mehta</h3>
+              <h3 className="text-lg font-extrabold text-[#171C35]">Dr. Rakesh Mehta</h3>
               <p className="text-xs text-black mt-1">Registration number: 1234/M</p>
               <p className="text-xs text-black">www.lybrate.com/dentallounge</p>
             </div>
@@ -45,17 +45,17 @@ export default function PrescriptionPopup({
 
           {/* Patient Details */}
           <div className="mb-6">
-            <h3 className="text-xl font-bold text-gray-900 mb-2">Patient Details</h3>
-            <p className="text-xl text-gray-900 font-semibold">
+            <h3 className="text-xl font-bold text-[#171C35] mb-2">Patient Details</h3>
+            <p className="text-xl text-[#171C35] font-semibold">
               Aditya Sudhakar{" "}
               <span className="font-normal text-sm">
                 30 years 9 months Male (ID: {prescriptionId || 16})
               </span>
             </p>
-            <p className="text-sm text-gray-900 mt-1">
+            <p className="text-sm text-[#171C35] mt-1">
               <span className="font-semibold">Address:</span> Lajpat Nagar, Delhi, Delhi - 110016
             </p>
-            <div className="flex items-center gap-3 mt-1 text-sm font-semibold text-gray-900">
+            <div className="flex items-center gap-3 mt-1 text-sm font-semibold text-[#171C35]">
               <span className="flex items-center gap-1">
                 <span><PhoneCall size={14}/></span> +91 9823403493
               </span>
@@ -70,16 +70,16 @@ export default function PrescriptionPopup({
 
           {/* Prescription */}
           <div>
-            <h3 className="text-3xl font-extrabold text-gray-900 mb-4">R<span className="text-xl">x</span></h3>
+            <h3 className="text-3xl font-extrabold text-[#171C35] mb-4">R<span className="text-xl">x</span></h3>
 
             {/* Medicines Table */}
             <div className="border-t-2 border-b-2 border-gray-900">
               <div className="py-2 border-b border-gray-900">
-                <h4 className="text-sm font-extrabold text-gray-900">Medicines</h4>
+                <h4 className="text-sm font-extrabold text-[#171C35]">Medicines</h4>
               </div>
 
               {/* Table Header */}
-              <div className="grid grid-cols-12 gap-4 py-2 border-b border-gray-900 text-xs font-extrabold text-gray-900">
+              <div className="grid grid-cols-12 gap-4 py-2 border-b border-gray-900 text-xs font-extrabold text-[#171C35]">
                 <div className="col-span-3">Name</div>
                 <div className="col-span-6">Instructions</div>
                 <div className="col-span-3">Frequency</div>
@@ -88,22 +88,22 @@ export default function PrescriptionPopup({
               {/* Medicine 1 */}
               <div className="grid grid-cols-12 gap-4 py-4 border-b border-gray-300 text-xs">
                 <div className="col-span-3">
-                  <p className="text-gray-900 font-medium">HydenLK Paste -</p>
+                  <p className="text-[#171C35] font-medium">HydenLK Paste -</p>
                 </div>
                 <div className="col-span-6">
-                  <p className="text-gray-900 leading-relaxed">
+                  <p className="text-[#171C35] leading-relaxed">
                     3 months Apply on all the teeth surfaces, wait for 3 minutes and brush twice daily for 3 months.
                   </p>
                 </div>
                 <div className="col-span-3">
-                  <div className="flex items-center justify-between text-gray-900">
+                  <div className="flex items-center justify-between text-[#171C35]">
                     <span>0</span>
                     <span>-</span>
                     <span>0</span>
                     <span>-</span>
                     <span>0</span>
                   </div>
-                  <div className="flex items-center justify-between text-gray-900 text-xs mt-1">
+                  <div className="flex items-center justify-between text-[#171C35] text-xs mt-1">
                     <span>Morning</span>
                     <span>-</span>
                     <span>Afternoon</span>
@@ -116,20 +116,20 @@ export default function PrescriptionPopup({
               {/* Medicine 2 */}
               <div className="grid grid-cols-12 gap-4 py-4 text-xs">
                 <div className="col-span-3">
-                  <p className="text-gray-900 font-medium">Tab. Zerodol SP -</p>
+                  <p className="text-[#171C35] font-medium">Tab. Zerodol SP -</p>
                 </div>
                 <div className="col-span-6">
-                  <p className="text-gray-900">4 days - after meal</p>
+                  <p className="text-[#171C35]">4 days - after meal</p>
                 </div>
                 <div className="col-span-3">
-                  <div className="flex items-center justify-between text-gray-900">
+                  <div className="flex items-center justify-between text-[#171C35]">
                     <span>1</span>
                     <span>-</span>
                     <span>1</span>
                     <span>-</span>
                     <span>1</span>
                   </div>
-                  <div className="flex items-center justify-between text-gray-900 text-xs mt-1">
+                  <div className="flex items-center justify-between text-[#171C35] text-xs mt-1">
                     <span>Morning</span>
                     <span>-</span>
                     <span>Afternoon</span>
@@ -144,12 +144,12 @@ export default function PrescriptionPopup({
 
         {/* Footer Buttons */}
         <div className="px-4 pb-4 flex gap-3">
-          <button className="flex-1 py-3 px-4 bg-white border-2 border-blue-600 text-blue-600 rounded-lg font-medium text-sm flex items-center justify-center gap-2 hover:bg-blue-50 transition-colors">
-            <Printer className="w-4 h-4" />
+          <button className="flex-1 py-3 px-4 bg-white border-2 border-[#526FFF] text-[#526FFF] rounded-[8px] font-medium text-sm flex items-center justify-center gap-2 transition-colors">
+            <img src="https://i.ibb.co.com/CKBMjd3X/printicon.png" alt="" />
             Print
           </button>
-          <button className="flex-1 py-3 px-4 bg-blue-600 text-white rounded-lg font-medium text-sm flex items-center justify-center gap-2 hover:bg-blue-700 transition-colors">
-            <Download className="w-4 h-4" />
+          <button className="flex-1 py-3 px-4 bg-[#526FFF] text-white rounded-[8px] font-medium text-sm flex items-center justify-center gap-2  transition-colors">
+          <img src="https://i.ibb.co.com/C5b0GkRy/download-Icon.png" alt="" />
             Download
           </button>
         </div>

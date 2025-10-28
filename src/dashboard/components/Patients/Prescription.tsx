@@ -39,7 +39,7 @@ export default function PrescriptionsPage() {
         <h1 className="text-2xl font-semibold text-[#171C35]">Prescriptions</h1>
         <button
           onClick={handleAddPrescription}
-          className="flex items-center gap-2 px-5 py-2 text-sm font-medium hover:bg-gray-100"
+          className="flex items-center gap-2 px-5 py-2 text-sm text-[#111A2D] font-semibold border border-[#D0D5DD] rounded-[8px] "
         >
           <Plus className="w-4 h-4" />
           Add Prescription
@@ -53,10 +53,10 @@ export default function PrescriptionsPage() {
             key={item.id}
             className="flex justify-between items-center p-4 bg-gray-50 transition"
           >
-            <p className="font-medium text-gray-800">{item.date}</p>
+            <p className="font-medium text-base text[#171C35]">{item.date}</p>
             <button
               onClick={() => handleView(item.id)}
-              className="text-sm px-4 py-1.5 border cursor-pointer rounded-md hover:bg-gray-100"
+              className="text-sm text-[#111A2D] font-medium px-4 py-1.5 border border-[#D0D5DD] cursor-pointer rounded-[20px] " 
             >
               View Prescription
             </button>
