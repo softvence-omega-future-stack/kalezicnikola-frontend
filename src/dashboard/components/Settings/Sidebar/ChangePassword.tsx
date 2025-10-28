@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Eye, EyeOff } from "lucide-react";
+
 
 // --- Reusable Password Input ---
 interface PasswordInputProps {
@@ -14,7 +14,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ label, name, value, onCha
 
   return (
     <div className="flex flex-col w-full mb-4">
-      <label className="text-sm font-medium text-gray-700 mb-1">{label}</label>
+      <label className="text-base font-medium text-[#171C35] mb-1">{label} <span className="">*</span> </label>
       <div className="relative w-full">
         <input
           type={visible ? "text" : "password"}
@@ -22,14 +22,15 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ label, name, value, onCha
           value={value}
           onChange={onChange}
           placeholder={`Enter ${label.toLowerCase()}`}
-          className="w-full p-3 pr-10 bg-gray-50 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none placeholder-gray-400 placeholder-medium font-medium text-base"
+          className="w-full p-3 pr-10 bg-gray-50 rounded-lg border border-gray-300 focus:ring-2 focus:[#526FFF] focus:outline-none placeholder-[#667085] text-sm placeholder-medium font-medium "
         />
         <button
           type="button"
           onClick={() => setVisible(!visible)}
           className="absolute inset-y-0 right-0 flex items-center px-3 text-gray-500 hover:text-gray-700"
         >
-          {visible ? <Eye /> : <EyeOff />}
+          {visible ? <img src="https://i.ibb.co.com/cS0kDyjW/EyeIcon.png" alt="" /> :  <img src="https://i.ibb.co.com/YB31Nrbd/Eye-Of-ICon.png" alt="" /> }  
+
         </button>
       </div>
     </div>
@@ -50,8 +51,8 @@ const ChangePasswordForm: React.FC = () => {
   };
 
   return (
-    <div className="p-6 bg-white rounded-xl shadow-lg">
-      <h2 className="text-2xl font-bold mb-6 border-b pb-4">Change Password</h2>
+    <div className="p-6 bg-white rounded-xl ">
+      <h2 className="text-xl font-semibold text-[#171C35] mb-6 pb-4">Change Password</h2>
 
       <form onSubmit={handleSubmit}>
         <PasswordInput
@@ -76,13 +77,13 @@ const ChangePasswordForm: React.FC = () => {
         <div className="flex space-x-4 mt-6">
           <button
             type="button"
-            className="flex-1 py-3 text-gray-700 border border-gray-200 rounded-lg hover:bg-gray-100 cursor-pointer"
+            className="flex-1 py-3 text-[#171C35] border border-gray-200 rounded-[8px] cursor-pointer"
           >
             Cancel
           </button>
           <button
             type="submit"
-            className="flex-1 py-3 text-white bg-blue-600 rounded-lg hover:bg-blue-700 cursor-pointer"
+            className="flex-1 py-3 text-white bg-[#526FFF] rounded-[8px] cursor-pointer"
           >
             Save Changes
           </button>

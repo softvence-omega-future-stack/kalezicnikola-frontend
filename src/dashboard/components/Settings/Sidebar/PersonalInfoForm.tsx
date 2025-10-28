@@ -21,7 +21,7 @@ const InputField: React.FC<InputFieldProps> = ({
   onChange,
 }) => (
   <div className="flex flex-col space-y-1">
-    <label htmlFor={name} className="text-sm font-medium text-gray-700">
+    <label htmlFor={name} className="text-sm font-medium text-[#171C35]">
       {label}
     </label>
     <input
@@ -32,7 +32,7 @@ const InputField: React.FC<InputFieldProps> = ({
       placeholder={placeholder}
       readOnly={readOnly}
       onChange={onChange}
-      className={`p-3 border border-gray-300 rounded-lg transition outline-none bg-white focus:border-blue-500`}
+      className={`p-3 text-[#171C35] border border-gray-300 rounded-lg transition outline-none bg-white focus:border-[#526FFF]`}
     />
   </div>
 );
@@ -49,7 +49,7 @@ const PersonalInfoForm: React.FC = () => {
     address: "",
     dob: "",
     gender: "",
-    profilePic: "https://i.ibb.co.com/qwJ83Rb/Screenshot-2025-10-23-153749.png",
+    profilePic: "https://i.ibb.co.com/tM6Sb5kF/KarenNix.png",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -76,14 +76,14 @@ const PersonalInfoForm: React.FC = () => {
   return (
     <section className="space-y-8">
       {/* Header */}
-      <header className="flex justify-between items-center border-b pb-4">
-        <h2 className="text-xl font-semibold text-gray-800">Personal Info</h2>
+      <header className="flex justify-between items-center  pb-4">
+        <h2 className="text-xl font-semibold text-[#171C35]">Personal Info</h2>
         <button
           onClick={handleEdit}
-          className="flex items-center gap-2 text-sm text-gray-900 border border-gray-300 py-1 px-3 rounded-lg"
+          className="flex items-center gap-2 text-sm text-[#111a2D] border border-gray-300 py-1 px-3 rounded-[8px]"
         >
           Edit
-          <Edit size={14} />
+            <img src="https://i.ibb.co.com/HD1hfW1s/editIcon.png" alt="" />
         </button>
       </header>
 
@@ -102,10 +102,10 @@ const PersonalInfoForm: React.FC = () => {
     <div className="absolute top-2/3 left-20 -translate-x-1/2">
       <label
         htmlFor="profileUpload"
-        className="p-2 bg-white rounded-full border shadow-md cursor-pointer hover:bg-gray-100 flex items-center justify-center"
+        className="p-2 bg-white rounded-full border border-gray-50  flex items-center justify-center"
         title="Edit profile picture"
       >
-        <Edit size={16} className="text-gray-600" />
+        <Edit size={12} className="text-gray-600" />
       </label>
       <input
         id="profileUpload"
@@ -118,10 +118,10 @@ const PersonalInfoForm: React.FC = () => {
   )}
 
   <div>
-    <p className="text-lg font-bold text-gray-900">
+    <p className="text-base font-semibold text-[#111a2D]">
       {formData.firstName || "Enter your name"}
     </p>
-    <p className="text-sm text-gray-900">
+    <p className="text-sm text-[#111a2d]">
      Anaesthesia
     </p>
   </div>
@@ -129,7 +129,7 @@ const PersonalInfoForm: React.FC = () => {
 
 
       {/* Form Fields */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 ">
         <InputField
           label="First name"
           name="firstName"
@@ -207,20 +207,22 @@ const PersonalInfoForm: React.FC = () => {
       </div>
 
       {/* Buttons */}
-      <footer className="flex justify-end gap-4 border-t pt-4">
-        <button
-          onClick={handleCancel}
-          className="py-3 px-6 text-sm font-semibold text-gray-700 bg-white border rounded-lg hover:bg-gray-50 cursor-pointer"
-        >
-          Cancel
-        </button>
-        <button
-          onClick={handleSave}
-          className="py-3 px-6 text-sm font-semibold text-white bg-blue-600 rounded-lg shadow-md hover:bg-blue-700 cursor-pointer transition"
-        >
-          Save Changes
-        </button>
-      </footer>
+     <div className="flex gap-3 pt-2">
+            <button
+              type="button"
+             onClick={handleCancel}
+              className="flex-1 px-4 py-2.5 bg-white border border-gray-300 text-[#111a2d] rounded-[8px] text-sm font-medium hover:bg-gray-50 transition-color cursor-pointer"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+            onClick={handleSave}
+              className="flex-1 px-4 py-2.5 bg-[#526FFF] text-white rounded-[8px] text-sm font-medium transition-colors cursor-pointer"
+            >
+              Save Change
+            </button>
+          </div>
     </section>
   );
 };

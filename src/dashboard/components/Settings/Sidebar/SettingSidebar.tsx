@@ -18,7 +18,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem }) =
   ];
 
   return (
-    <div className="min-h-screen bg-white rounded-xl shadow-lg p-3 flex flex-col justify-between">
+    <div className="min-h-screen bg-white rounded-xl p-3 flex flex-col justify-between">
+   
       {/* Navigation Items */}
       <div className="space-y-1">
         {navItems.map((name) => (
@@ -27,8 +28,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem }) =
             onClick={() => setActiveItem(name)}
             className={`block w-full p-3 text-sm font-medium rounded-lg text-left transition cursor-pointer
               ${activeItem === name
-                ? "bg-gray-200 text-blue-700"
-                : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"}
+                ? "bg-[#DFE2E2] text-[#171C35]"
+                : "text-[#111A2D] hover:bg-gray-100"}
             `}
           >
             {name}
@@ -37,7 +38,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem }) =
       </div>
 
       {/* Delete Account */}
-      <button className="text-sm font-medium text-red-500 hover:text-red-700 p-3 w-full text-left border-t border-gray-100 mt-2 cursor-pointer">
+      <button className="text-sm font-medium text-[#FF1C33]  p-3 w-full text-left border-t border-gray-100 mt-2 cursor-pointer">
         Delete Account
       </button>
     </div>

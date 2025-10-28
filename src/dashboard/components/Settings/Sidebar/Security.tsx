@@ -27,18 +27,18 @@ export default function SecuritySettings() {
       <div className=" bg-white  p-6 md:p-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-2xl font-semibold text-gray-900 mb-1">Security Settings</h1>
-          <p className="text-sm text-gray-900">Configure security and privacy settings for your clinic</p>
+          <h1 className="text-xl font-semibold text-[#171C35] mb-1">Security Settings</h1>
+          <p className="text-sm font-medium text-[#111A2D]">Configure security and privacy settings for your clinic</p>
         </div>
 
         {/* Password Policy Section */}
         <div className="mb-8">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-semibold text-gray-900">Password Policy</h2>
+            <h2 className="text-lg font-semibold text-[#171C35]">Password Policy</h2>
             <button
               onClick={() => handleToggle('passwordPolicy')}
               className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                settings.passwordPolicy ? 'bg-blue-600' : 'bg-gray-300'
+                settings.passwordPolicy ? 'bg-[#526FFF]' : 'bg-gray-300'
               }`}
             >
               <span
@@ -52,10 +52,10 @@ export default function SecuritySettings() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             {/* Password Expiry */}
             <div>
-              <label className="block text-lg font-normal text-gray-900 mb-2">Password Expiry</label>
+              <label className="block text-base font-medium  text-[#171c35] mb-2">Password Expiry</label>
               <div className="relative">
                 <select 
-                  className="w-full px-4 py-2.5 text-sm text-gray-500 bg-white border border-gray-300 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2.5 text-sm text-gray-500 bg-white border border-gray-300 rounded-[8px] appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   value={settings.passwordExpiry}
                   onChange={(e) => setSettings({...settings, passwordExpiry: e.target.value})}
                 >
@@ -70,10 +70,10 @@ export default function SecuritySettings() {
 
             {/* Minimum Password Length */}
             <div>
-              <label className="block text-lg font-semibold text-gray-900 mb-2">Minimum Password Length</label>
+              <label className="block text-base font-medium text-[#171c35] mb-2">Minimum Password Length</label>
               <div className="relative">
                 <select 
-                  className="w-full px-4 py-2.5 text-sm text-gray-500 bg-white border border-gray-300 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2.5 text-sm text-gray-500 bg-white border border-gray-300 rounded-[8px] appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   value={settings.minPasswordLength}
                   onChange={(e) => setSettings({...settings, minPasswordLength: e.target.value})}
                 >
@@ -90,16 +90,16 @@ export default function SecuritySettings() {
           {/* Password Requirements Checkboxes */}
           <div className="space-y-3">
             <div className="flex items-center">
-              <CheckCircle2 className="w-5 h-5 text-gray-900 mr-2.5" />
-              <span className="text-md font-semibold text-gray-900">Require uppercase & lowercase letters (Default)</span>
+              <CheckCircle2 className="w-5 h-5 text-[#171c35]mr-2.5" />
+              <span className="text-sm font-semibold text-[#111A2D]">Require uppercase & lowercase letters (Default)</span>
             </div>
             <div className="flex items-center">
-              <CheckCircle2 className="w-5 h-5 text-gray-900 mr-2.5" />
-              <span className="text-md font-semibold text-gray-900">Require numbers (Default)</span>
+              <CheckCircle2 className="w-5 h-5 text-[#171c35]mr-2.5" />
+              <span className="text-sm font-semibold text-[#111A2D]">Require numbers (Default)</span>
             </div>
             <div className="flex items-center">
-              <CheckCircle2 className="w-5 h-5 text-gray-900 mr-2.5" />
-              <span className="text-md font-semibold text-gray-900">Require special characters (Default)</span>
+              <CheckCircle2 className="w-5 h-5 text-[#171c35]mr-2.5" />
+              <span className="text-sm font-semibold text-[#111A2D]">Require special characters (Default)</span>
             </div>
           </div>
         </div>
@@ -107,7 +107,7 @@ export default function SecuritySettings() {
         {/* Login Security Section */}
         <div className="mb-8">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-lg font-semibold text-gray-900">Login Security</h2>
+            <h2 className="text-lg font-semibold text-[#171c35]">Login Security</h2>
             <button
               onClick={() => handleToggle('loginSecurity')}
               className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
@@ -123,17 +123,17 @@ export default function SecuritySettings() {
           </div>
 
           <div className="flex items-center mb-6">
-            <CheckCircle2 className="w-5 h-5 text-gray-900 mr-2.5" />
-            <span className="text-md font-semibold text-gray-900">Enforce two-factor authentication (Default)</span>
+            <CheckCircle2 className="w-5 h-5 text-[#171c35]mr-2.5" />
+            <span className="text-sm font-semibold text-[#111A2D]">Enforce two-factor authentication (Default)</span>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Session Timeout */}
             <div>
-              <label className="block text-lg font-semibold text-gray-900 mb-2">Session Timeout</label>
+              <label className="block text-base font-medium text-[#171C35] mb-2">Session Timeout</label>
               <div className="relative">
                 <select 
-                  className="w-full px-4 py-2.5 text-sm text-gray-500 bg-white border border-gray-300 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2.5 text-sm text-gray-500 bg-white border border-gray-300 rounded-[8px] appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   value={settings.sessionTimeout}
                   onChange={(e) => setSettings({...settings, sessionTimeout: e.target.value})}
                 >
@@ -148,10 +148,10 @@ export default function SecuritySettings() {
 
             {/* Maximum Login Attempts */}
             <div>
-              <label className="block text-lg font-semibold text-gray-900 mb-2">Maximum Login Attempts</label>
+              <label className="block text-base font-medium text-[#171c35] mb-2">Maximum Login Attempts</label>
               <div className="relative">
                 <select 
-                  className="w-full px-4 py-2.5 text-sm text-gray-500 bg-white border border-gray-300 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2.5 text-sm text-gray-500 bg-white border border-gray-300 rounded-[8px] appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   value={settings.maxLoginAttempts}
                   onChange={(e) => setSettings({...settings, maxLoginAttempts: e.target.value})}
                 >
@@ -169,11 +169,11 @@ export default function SecuritySettings() {
         {/* Data Protection Section */}
         <div className="mb-8">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-lg font-semibold text-gray-900">Data Protection</h2>
+            <h2 className="text-lg font-semibold text-[#171c35]">Data Protection</h2>
             <button
               onClick={() => handleToggle('dataProtection')}
               className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                settings.dataProtection ? 'bg-blue-600' : 'bg-gray-300'
+                settings.dataProtection ? 'bg-[#526FFF]' : 'bg-gray-300'
               }`}
             >
               <span
@@ -185,23 +185,23 @@ export default function SecuritySettings() {
           </div>
 
           <div className="space-y-3">
-            <div className="flex items-center">
-              <CheckCircle2 className="w-5 h-5 text-gray-900 mr-2.5" />
-              <span className="text-md font-semibold text-gray-900">Encrypt sensitive data (Default)</span>
+            <div className="flex items-center gap-1">
+             <img src="https://i.ibb.co.com/1JY9b7Vs/check-Circle-Icon.png" alt="" />
+              <span className="text-sm font-semibold text-[#111A2D]">Encrypt sensitive data (Default)</span>
             </div>
-            <div className="flex items-center">
-              <CheckCircle2 className="w-5 h-5 text-gray-900 mr-2.5" />
-              <span className="text-md font-semibold text-gray-900">Enable audit logs (Default)</span>
+            <div className="flex items-center gap-1">
+             <img src="https://i.ibb.co.com/1JY9b7Vs/check-Circle-Icon.png" alt="" />
+              <span className="text-sm font-semibold text-[#111A2D]">Enable audit logs (Default)</span>
             </div>
           </div>
         </div>
 
         {/* Action Buttons */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <button className="w-full px-6 py-2.5 text-sm font-medium text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">
+          <button className="w-full px-6 py-2.5 text-sm font-medium text-[#171c35]bg-white border border-gray-300 rounded-[8px] hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#526FFF] transition-colors">
             Cancel
           </button>
-          <button className="w-full px-6 py-2.5 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">
+          <button className="w-full px-6 py-2.5 text-sm font-medium text-white bg-[#526FFF] rounded-[8px]  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#526FFF] transition-colors">
             Save Changes
           </button>
         </div>

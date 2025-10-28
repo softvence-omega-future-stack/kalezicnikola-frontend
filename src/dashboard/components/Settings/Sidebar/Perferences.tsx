@@ -22,21 +22,21 @@ export default function RegionalSettings() {
 
   return (
     <div className="min-h-screen  p-4 md:p-8">
-      <div className=" bg-white rounded-lg p-6 md:p-8">
+      <div className=" bg-white rounded-[24px] p-6 md:p-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-2xl font-semibold text-gray-900 mb-1">Regional Settings</h1>
-          <p className="text-sm text-gray-900">Configure time, date, and regional preferences</p>
+          <h1 className="text-xl font-semibold text-[#171C35] mb-1">Regional Settings</h1>
+          <p className="text-sm font-medium text-[#111A2D]">Configure time, date, and regional preferences</p>
         </div>
 
         {/* Regional Settings Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           {/* Timezone */}
           <div>
-            <label className="block text-xl font-semibold text-gray-700 mb-2">Timezone</label>
+            <label className="block text-base font-medium text-[#111A2D] mb-2">Timezone</label>
             <div className="relative">
               <select 
-                className="w-full px-4 py-2.5 text-sm text-gray-500 bg-white border border-gray-300 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-2.5 text-sm text-[#667085] bg-white border border-gray-300 rounded-[8px] appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 value={settings.timezone}
                 onChange={(e) => setSettings({...settings, timezone: e.target.value})}
               >
@@ -50,10 +50,10 @@ export default function RegionalSettings() {
 
           {/* Date Format */}
           <div>
-            <label className="block text-xl font-semibold text-gray-700  mb-2">Date Format</label>
+            <label className="block  text-base font-medium text-[#111A2D]  mb-2">Date Format</label>
             <div className="relative">
               <select 
-                className="w-full px-4 py-2.5 text-sm text-gray-500 bg-white border border-gray-300 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-2.5 text-sm text-gray-500 bg-white border border-gray-300 rounded-[8px] appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 value={settings.dateFormat}
                 onChange={(e) => setSettings({...settings, dateFormat: e.target.value})}
               >
@@ -67,10 +67,10 @@ export default function RegionalSettings() {
 
           {/* Time Format */}
           <div>
-            <label className="block text-xl font-semibold text-gray-700  mb-2">Time Format</label>
+            <label className="block  text-base font-medium text-[#111A2D]  mb-2">Time Format</label>
             <div className="relative">
               <select 
-                className="w-full px-4 py-2.5 text-sm text-gray-500 bg-white border border-gray-300 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-2.5 text-sm text-gray-500 bg-white border border-gray-300 rounded-[8px] appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 value={settings.timeFormat}
                 onChange={(e) => setSettings({...settings, timeFormat: e.target.value})}
               >
@@ -84,10 +84,10 @@ export default function RegionalSettings() {
 
           {/* Language */}
           <div>
-            <label className="block text-xl font-semibold text-gray-700  mb-2">Language</label>
+            <label className="block  text-base font-medium text-[#111A2D] mb-2">Language</label>
             <div className="relative">
               <select 
-                className="w-full px-4 py-2.5 text-sm text-gray-500 bg-white border border-gray-300 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-2.5 text-sm text-gray-500 bg-white border border-gray-300 rounded-[8px] appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 value={settings.language}
                 onChange={(e) => setSettings({...settings, language: e.target.value})}
               >
@@ -102,14 +102,14 @@ export default function RegionalSettings() {
 
         {/* Calendar Section */}
         <div className="mb-8">
-          <h2 className="text-xl font-semibold text-gray-700  mb-6">Calendar</h2>
+          <h2 className="text-lg font-semibold text-[#171C35]  mb-6">Calendar</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Default Calendar View */}
             <div>
-              <label className="block text-sm font-normal text-gray-900 mb-2">Default Calendar View</label>
+              <label className="block text-base font-medium text-[#171C35] mb-2">Default Calendar View</label>
               <div className="relative">
                 <select 
-                  className="w-full px-4 py-2.5 text-sm text-gray-900 bg-white border border-gray-300 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2.5 text-sm text-[#111a2d] bg-white border border-gray-300 rounded-[8px] appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   value={settings.calendarView}
                   onChange={(e) => setSettings({...settings, calendarView: e.target.value})}
                 >
@@ -123,10 +123,10 @@ export default function RegionalSettings() {
 
             {/* Default Appointment Duration */}
             <div>
-              <label className="block text-sm font-normal text-gray-900 mb-2">Default Appointment Duration</label>
+              <label className="block text-base font-medium text-[#171C35] mb-2">Default Appointment Duration</label>
               <div className="relative">
                 <select 
-                  className="w-full px-4 py-2.5 text-sm text-gray-900 bg-white border border-gray-300 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2.5 text-sm text-[#111a2d] bg-white border border-gray-300 rounded-[8px] appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   value={settings.appointmentDuration}
                   onChange={(e) => setSettings({...settings, appointmentDuration: e.target.value})}
                 >
@@ -143,7 +143,7 @@ export default function RegionalSettings() {
 
         {/* Appointment Settings */}
         <div className="mb-8">
-          <h2 className="text-base font-semibold text-gray-900 mb-6">Appointment Settings</h2>
+          <h2 className="text-lg font-semibold text-[#171C35] mb-6">Appointment Settings</h2>
           
           {/* Toggle Switches */}
           <div className="space-y-4 mb-6">
@@ -151,7 +151,7 @@ export default function RegionalSettings() {
               <button
                 onClick={() => handleToggle('allowOnlineBooking')}
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  settings.allowOnlineBooking ? 'bg-blue-600' : 'bg-gray-300'
+                  settings.allowOnlineBooking ? 'bg-[#526FFF]' : 'bg-gray-300'
                 }`}
               >
                 <span
@@ -160,7 +160,7 @@ export default function RegionalSettings() {
                   }`}
                 />
               </button>
-              <span className="ml-3 text-sm text-gray-900">Allow online appointment booking</span>
+              <span className="ml-3 text-sm font-semibold text-[#111a2d]">Allow online appointment booking</span>
             </div>
 
             <div className="flex items-center">
@@ -176,14 +176,14 @@ export default function RegionalSettings() {
                   }`}
                 />
               </button>
-              <span className="ml-3 text-sm text-gray-900">Require approval for online bookings</span>
+              <span className="ml-3 text-sm font-semibold text-[#111A2D]">Require approval for online bookings</span>
             </div>
 
             <div className="flex items-center">
               <button
                 onClick={() => handleToggle('sendReminders')}
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  settings.sendReminders ? 'bg-blue-600' : 'bg-gray-300'
+                  settings.sendReminders ? 'bg-[#526FFF]' : 'bg-gray-300'
                 }`}
               >
                 <span
@@ -192,7 +192,7 @@ export default function RegionalSettings() {
                   }`}
                 />
               </button>
-              <span className="ml-3 text-sm text-gray-900">Send appointment reminders</span>
+              <span className="ml-3 text-sm font-semibold text-[#111a2d]">Send appointment reminders</span>
             </div>
           </div>
 
@@ -200,10 +200,10 @@ export default function RegionalSettings() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Reminder Time */}
             <div>
-              <label className="block text-sm font-normal text-gray-900 mb-2">Reminder Time</label>
+              <label className="block text-sm font-normal text-[#111a2d] mb-2">Reminder Time</label>
               <div className="relative">
                 <select 
-                  className="w-full px-4 py-2.5 text-sm text-gray-900 bg-white border border-gray-300 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2.5 text-sm text-[#111a2d] bg-white border border-gray-300 rounded-[8px] appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   value={settings.reminderTime}
                   onChange={(e) => setSettings({...settings, reminderTime: e.target.value})}
                 >
@@ -217,10 +217,10 @@ export default function RegionalSettings() {
 
             {/* Buffer Time */}
             <div>
-              <label className="block text-sm font-normal text-gray-900 mb-2">Buffer Time Between Appointments</label>
+              <label className="block text-sm font-normal text-[#111a2d] mb-2">Buffer Time Between Appointments</label>
               <div className="relative">
                 <select 
-                  className="w-full px-4 py-2.5 text-sm text-gray-900 bg-white border border-gray-300 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2.5 text-sm text-[#111a2d] bg-white border border-gray-300 rounded-[8px] appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   value={settings.bufferTime}
                   onChange={(e) => setSettings({...settings, bufferTime: e.target.value})}
                 >
@@ -236,10 +236,10 @@ export default function RegionalSettings() {
 
         {/* Action Buttons */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <button className="w-full px-6 py-2.5 text-sm font-medium text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none  transition-colors">
+          <button className="w-full px-6 py-2.5 text-sm font-medium text-[#111a2d] bg-white border border-gray-300 rounded-[8px] focus:outline-none  transition-colors">
             Cancel
           </button>
-          <button className="w-full px-6 py-2.5 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none  transition-colors cursor-pointer">
+          <button className="w-full px-6 py-2.5 text-sm font-medium text-white bg-[#526FFF] rounded-[8px] focus:outline-none  transition-colors cursor-pointer">
             Save Changes
           </button>
         </div>

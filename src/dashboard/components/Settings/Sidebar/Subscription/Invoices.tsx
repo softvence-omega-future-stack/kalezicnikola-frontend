@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SlidersHorizontal } from 'lucide-react';
+
 import { InvoiceModal } from './InvoiceViewModal';
 
 
@@ -23,9 +23,9 @@ export default function Invoices() {
       <div className="">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
-          <h1 className="text-xl font-semibold text-gray-900">Transaction Overview</h1>
-          <button className="flex items-center gap-2 px-4 py-2 text-sm text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-            <SlidersHorizontal className="w-4 h-4" />
+          <h1 className="text-xl font-semibold text-[#171c35]">Transaction Overview</h1>
+          <button className="flex items-center gap-2 px-4 py-2 text-sm text-[#111A2D] font-semibold bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+            <img src="https://i.ibb.co.com/Mx7kdF0D/filter.png" alt="" />
             Filters
           </button>
         </div>
@@ -35,33 +35,33 @@ export default function Invoices() {
           <table className="w-full">
             <thead>
               <tr className="border-b border-gray-200">
-                <th className="text-left py-4 px-4 text-md font-semibold text-gray-900">Date</th>
-                <th className="text-left py-4 px-4 text-md font-semibold text-gray-900">Name</th>
-                <th className="text-left py-4 px-4 text-md font-semibold text-gray-900">Transaction ID</th>
-                <th className="text-left py-4 px-4 text-md font-semibold text-gray-900">Status</th>
-                <th className="text-left py-4 px-4 text-md font-semibold text-gray-900">Pay Amount</th>
-                <th className="text-left py-4 px-4 text-md font-semibold text-gray-900">Action</th>
+                <th className="text-left py-4 px-4 text-base font-medium text-[#171C35]">Date</th>
+                <th className="text-left py-4 px-4 text-base font-medium text-[#171c35]">Name</th>
+                <th className="text-left py-4 px-4 text-base font-medium text-[#171c35]">Transaction ID</th>
+                <th className="text-left py-4 px-4 text-base font-medium text-[#171c35]">Status</th>
+                <th className="text-left py-4 px-4 text-base font-medium text-[#171c35]">Pay Amount</th>
+                <th className="text-left py-4 px-4 text-base font-medium text-[#171c35]">Action</th>
               </tr>
             </thead>
             <tbody>
               {transactions.map((transaction) => (
                 <tr key={transaction.id} className="border-b border-gray-100">
-                  <td className="py-5 px-4 text-sm font-medium text-gray-900">{transaction.date}</td>
-                  <td className="py-5 px-4 text-sm font-medium text-gray-900">{transaction.name}</td>
-                  <td className="py-5 px-4 text-sm font-medium text-gray-900">{transaction.transactionId}</td>
+                  <td className="py-5 px-4 text-sm font-medium text-[#111A2D]">{transaction.date}</td>
+                  <td className="py-5 px-4 text-sm font-medium text-[#111A2D]">{transaction.name}</td>
+                  <td className="py-5 px-4 text-sm font-medium text-[#111A2D]">{transaction.transactionId}</td>
                   <td className="py-5 px-4">
                     <span className={`inline-flex items-center px-6 py-1.5 rounded-full text-sm font-normal ${
                       transaction.status === 'Paid' 
-                        ? 'bg-green-100 text-green-700' 
-                        : 'bg-yellow-100 text-yellow-700'
+                        ? 'bg-[#0089331A] text-[#008933]' 
+                        : 'bg-[#DD8F001A] text-[#DD8F00]'
                     }`}>
                       {transaction.status}
                     </span>
                   </td>
-                  <td className="py-5 px-4 text-sm font-medium text-gray-900">{transaction.amount}</td>
+                  <td className="py-5 px-4 text-sm font-medium text-[#111A2D]">{transaction.amount}</td>
                   <td className="py-5 px-4">
                     <button    onClick={() => setIsOpen(true)}
-         className="px-6 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-300 rounded-full hover:bg-gray-50 transition-colors">
+         className="px-6 py-2 text-sm font-medium text-[#171c35] bg-white border border-gray-300 rounded-full hover:bg-gray-50 transition-colors">
                       View
                     </button>
                   </td>
@@ -77,7 +77,7 @@ export default function Invoices() {
             <div key={transaction.id} className="bg-white border border-gray-200 rounded-lg p-4">
               <div className="flex items-start justify-between mb-3">
                 <div>
-                  <p className="text-sm font-medium text-gray-900 mb-1">{transaction.name}</p>
+                  <p className="text-sm font-medium text-[#171c35] mb-1">{transaction.name}</p>
                   <p className="text-xs text-gray-600">{transaction.date}</p>
                 </div>
                 <span className={`inline-flex items-center px-4 py-1 rounded-full text-xs font-normal ${
@@ -91,16 +91,16 @@ export default function Invoices() {
               
               <div className="space-y-2 mb-3">
                 <div className="flex justify-between">
-                  <span className="text-xs text-gray-600">Transaction ID</span>
-                  <span className="text-xs text-gray-900">{transaction.transactionId}</span>
+                  <span className="text-xs text-[#171C35]">Transaction ID</span>
+                  <span className="text-xs  text-[#171c35]">{transaction.transactionId}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-xs text-gray-600">Pay Amount</span>
-                  <span className="text-xs text-gray-900 font-medium">{transaction.amount}</span>
+                  <span className="text-base font-medium text-[#111A2D]">Pay Amount</span>
+                  <span className="text-xs text-[#171c35] font-medium">{transaction.amount}</span>
                 </div>
               </div>
               
-              <button className="w-full px-4 py-2 text-sm text-gray-900 bg-white border border-gray-300 rounded-full hover:bg-gray-50 transition-colors">
+              <button className="w-full px-4 py-2 text-sm text-[#111A2D] font-medium bg-white border border-gray-300 rounded-full hover:bg-gray-50 transition-colors">
                 View
               </button>
             </div>

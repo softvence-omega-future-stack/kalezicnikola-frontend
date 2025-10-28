@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import {  List, Grid3x3, ChevronDown, Check, ChevronRight } from 'lucide-react';
 import ListView from './ListView';
 import GridView from './GridView';
+import { useNavigate } from 'react-router-dom';
 
 type ViewMode = 'list' | 'grid';
 
 export default function PatientsView() {
   const [viewMode, setViewMode] = useState<ViewMode>('list'); // 'list' বা 'grid'
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const navigate = useNavigate()
 
   const views: { type: ViewMode; label: string; icon: React.ReactNode }[] = [
     { type: 'list', label: 'List', icon: <List className="w-5 h-5" /> },
@@ -30,10 +32,14 @@ export default function PatientsView() {
           <h1 className="text-2xl font-bold text-[#171C35]">Total 60 Patients</h1>
 
           <div className="flex flex-wrap items-center gap-3">
-            <button className="flex items-center gap-2 px-4 py-2.5 bg-[#DCE2FF] text-[#171C35] rounded-[8px] font-medium  transition-colors">
-             <img src="https://i.ibb.co.com/WNWLMm0k/plusIcon.png" alt="" />
-              <span>Add Patient</span>
-            </button>
+           <button
+  onClick={() => navigate('/dashboard/add-patient')}
+  className="flex items-center gap-2 px-4 py-2.5 bg-[#DCE2FF] text-[#171C35] rounded-[8px] font-medium transition-colors"
+>
+  <img src="https://i.ibb.co.com/WNWLMm0k/plusIcon.png" alt="" />
+  <span>Add Patient</span>
+</button>
+
 
             <button className="flex items-center gap-2 px-4 py-2.5 bg-white border border-[#D0D5DD] text-[#171C35] rounded-[8px] font-medium transition-colors">
             <img src="https://i.ibb.co.com/m5VnxjwT/importpatient-Icon.png" alt="" />

@@ -21,6 +21,7 @@ import ForgotPasswordPage from "@/auth/ForgetPassword";
 import OtpPage from "@/auth/OtpPage";
 import CreateNewPassword from "@/auth/CreateMewPass";
 import SuccessfullNewPassword from "@/auth/SuccessfullnewPass";
+import AddPatientForm from "@/dashboard/components/Patients/Addpatient";
 
 const routes = createBrowserRouter([
   {
@@ -66,6 +67,7 @@ const routes = createBrowserRouter([
       { path: "call_logs", element: <CallLogs /> },
       {path:"calendar", element:<Calendar />},
       { path: "patients", element: <Patients/> },
+      { path: "add-patient", element: <AddPatientForm/> },
       { path: "patients/:id", element: <PatientProfilePage /> },
       { path: "tasks", element: <Tasks /> },
       { path: "supports", element: <Supports/> },

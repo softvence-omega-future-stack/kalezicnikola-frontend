@@ -38,23 +38,23 @@ export const NotificationSettings: React.FC = () => {
   ];
 
   return (
-    <div className="p-6 bg-white rounded-xl ">
-      <h2 className="text-2xl font-semibold">Notification</h2>
-      <p className="text-md text-gray-800 mb-6 border-b  pb-3">
+    <div className="p-6 bg-white rounded-[24px] ">
+      <h2 className="text-xl font-semibold text-[#171C35">Notification</h2>
+      <p className="text-sm text-[#111A2D] mb-6  pb-3">
         We may still send you important notifications about your account outside of your notification settings.
       </p>
 
       <div className="space-y-4">
         {items.map(({ key, label, desc }) => (
-          <div key={key} className="flex items-center justify-between py-3 border-b last:border-b-0">
+          <div key={key} className="flex items-center justify-between py-3 border-b border-[#EAECF0] last:border-b-0">
             <div className="flex-1 pr-4">
-              <h3 className="text-base font-medium text-gray-900">{label}</h3>
-              <p className="text-md text-gray-900 w-80">{desc}</p>
+              <h3 className="text-sm font-semibold text-[#171C35]">{label}</h3>
+              <p className="text-sm text-[#111a2D] font-medium w-80">{desc}</p>
             </div>
             <button
               onClick={() => handleToggle(key)}
               className={`w-12 h-6 rounded-full transition-colors duration-200 ${
-                settings[key] ? 'bg-blue-600' : 'bg-gray-200'
+                settings[key] ? 'bg-[#2A71FF]' : 'bg-gray-200'
               } relative`}
             >
               <span
@@ -69,13 +69,13 @@ export const NotificationSettings: React.FC = () => {
  <div className="flex space-x-4 mt-6">
           <button
             type="button"
-            className="flex-1 py-3 text-gray-700 border border-gray-200 rounded-lg hover:bg-gray-100 cursor-pointer"
+            className="flex-1 py-3 text-[#111A2D] border border-gray-200 rounded-[8px] cursor-pointer"
           >
             Cancel
           </button>
           <button
             type="submit"
-            className="flex-1 py-3 text-white bg-blue-600 rounded-lg hover:bg-blue-700 cursor-pointer"
+            className="flex-1 py-3 text-white bg-[#526FFF] rounded-[8px]  cursor-pointer"
           >
             Save Changes
           </button>

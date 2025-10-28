@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { Home, ChevronDown, Plus, Clock, Calendar, Trash2, Edit2 } from 'lucide-react';
+import { Home, ChevronDown, Plus,  ChevronRight } from 'lucide-react';
 import AddTaskModal from './AddToTskModal';
 
-// ✅ Task interface
 interface Task {
   id: number;
   title: string;
@@ -13,7 +12,7 @@ interface Task {
   completed: boolean;
 }
 
-// ✅ Column interface
+
 interface Column {
   id: string;
   title: string;
@@ -62,15 +61,15 @@ export default function TaskList() {
     },
   ]);
 
-  // ✅ Priority color helper
+
   const getPriorityColor = (priority: Task['priority']) => {
     switch (priority) {
       case 'High':
-        return 'bg-red-500 text-white';
+        return 'bg-[#FF3D3D] text-white';
       case 'Medium':
-        return 'bg-orange-500 text-white';
+        return 'bg-[#FF883D] text-white';
       case 'Low':
-        return 'bg-blue-400 text-white';
+        return 'bg-[#88BFFF] text-white';
       default:
         return 'bg-gray-400 text-white';
     }
@@ -91,7 +90,7 @@ export default function TaskList() {
       dueDate: task.dueDate,
     };
 
-    // Column অনুযায়ী add করা
+
     setColumns(prevColumns =>
       prevColumns.map(col =>
         col.id === task.status.toLowerCase().replace(' ', '')
@@ -109,30 +108,30 @@ export default function TaskList() {
         <div className="flex items-center gap-2 text-sm text-gray-600 mb-4">
           <Home className="w-4 h-4" />
           <span className="text-gray-600 font-medium">Dashboard</span>
-          <span>›</span>
-          <span className="text-black font-bold">Task</span>
+            <ChevronRight size={12}/>
+          <span className="text-[#042435]  text-xs font-semibold">Task</span>
         </div>
 
         {/* Title and Actions */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-semibold text-gray-900">Task</h1>
-            <p className="text-sm text-gray-600 mt-1">
+            <h1 className="text-2xl font-semibold text-[#171c35]">Task</h1>
+            <p className="text-base font-medium text-[#111A2D] mt-1">
               {columns.reduce((acc, col) => acc + col.tasks.length, 0)} Total task
             </p>
           </div>
           <div className="flex items-center gap-3">
-            <button className="px-4 py-2 bg-white border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 flex items-center gap-2">
+            <button className="px-4 py-2 bg-[#F3F6F6] border border-gray-300 rounded-[8px] text-sm font-semibold text-[#111a2d]  flex items-center gap-2">
               All Status
               <ChevronDown className="w-4 h-4" />
             </button>
-            <button className="px-4 py-2 bg-white border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 flex items-center gap-2">
+            <button className="px-4 py-2 bg-[#F3F6F6] border border-gray-300 rounded-[8px] text-sm font-semibold text-[#111a2d] hover:bg-gray-50 flex items-center gap-2">
               All Priorities
               <ChevronDown className="w-4 h-4" />
             </button>
             <button
               onClick={() => setShowAddModal(true)}
-              className="px-4 py-2 bg-indigo-100 text-black rounded-lg text-sm font-medium cursor-pointer flex items-center gap-2"
+              className="px-4 py-2 bg-[#DCE2FF] text-black rounded-[8px] text-sm font-medium cursor-pointer flex items-center gap-2"
             >
               <Plus className="w-4 h-4" />
               Add Task
@@ -149,18 +148,20 @@ export default function TaskList() {
               {/* Column Header */}
               <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200">
                 <div className="flex items-center gap-2">
-                  <h2 className="text-base font-semibold text-gray-900">{column.title}</h2>
+                  <h2 className="text-xl font-semibold text-[#171c35]">{column.title}</h2>
                   <span className="text-sm text-gray-500">({column.count})</span>
                 </div>
                 <div className="flex items-center gap-1">
                   <button className="p-1 hover:bg-gray-100 rounded">
-                    <Plus className="w-4 h-4 text-gray-600" />
+             
+
+                 <img src="https://i.ibb.co.com/WNWLMm0k/plusIcon.png" alt="" />
                   </button>
                   <button className="p-1 hover:bg-gray-100 rounded">
-                    <Edit2 className="w-4 h-4 text-gray-600" />
+                   <img src="https://i.ibb.co.com/HD1hfW1s/editIcon.png" alt="" />
                   </button>
                   <button className="p-1 hover:bg-gray-100 rounded">
-                    <Trash2 className="w-4 h-4 text-gray-600" />
+                   <img src="       https://i.ibb.co.com/DfLzMBzg/delete-Icon.png" alt="" />
                   </button>
                 </div>
               </div>
@@ -170,35 +171,36 @@ export default function TaskList() {
                 {column.tasks.map((task) => (
                   <div
                     key={task.id}
-                    className="bg-white border border-gray-200 rounded-lg p-3 hover:shadow-md transition-shadow"
+                    className="bg-white border border-gray-200 rounded-lg p-3  "
                   >
-                    <div className="flex items-start gap-3">
-                      {/* Checkbox */}
-                      <input
-                        type="checkbox"
-                        className="w-4 h-4 mt-0.5 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 cursor-pointer flex-shrink-0"
-                      />
+                    <div className="flex items-center gap-3">
+          
+                     
 
                       {/* Content */}
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-start gap-2 mb-1.5">
-                          <h3 className="text-sm font-semibold text-gray-900 flex-1">{task.title}</h3>
+                        <div className="flex items-center gap-3">
+                         <input
+                        type="checkbox"
+                        className="w-4 h-4  rounded border-gray-300 text-indigo-600 focus:ring-[#526fff] cursor-pointer flex-shrink-0"
+                      />
+                          <h3 className="text-xl font-semibold text-[#171c35] flex-1">{task.title}</h3>
                           <span
-                            className={`px-2 py-0.5 rounded-full text-xs font-medium whitespace-nowrap ${getPriorityColor(
+                            className={`px-2 py-0.5 rounded-full text-sm font-medium whitespace-nowrap ${getPriorityColor(
                               task.priority
                             )}`}
                           >
                             {task.priority}
                           </span>
                         </div>
-                        <p className="text-xs text-gray-600 mb-2 leading-relaxed">{task.description}</p>
-                        <div className="flex items-center gap-4 text-xs text-gray-600">
-                          <div className="flex items-center gap-1">
-                            <Clock className="w-3.5 h-3.5" />
+                        <p className="text-base text-[#111A2D] mb-2 leading-relaxed pl-6">{task.description}</p>
+                        <div className="flex items-center gap-4 text-sm font-medium text-[#171C35]">
+                          <div className="flex items-center gap-1 pl-6">
+                                <img src="https://i.ibb.co.com/TxG7Rk1Q/clock.png" className='h-3 w-3' alt="" />
                             <span>{task.time}</span>
                           </div>
                           <div className="flex items-center gap-1">
-                            <Calendar className="w-3.5 h-3.5" />
+                           <img src="https://i.ibb.co.com/gbYTtKHC/Date-Birth-Icon.png" className='h-3 w-3' alt="" />
                             <span>Due: {task.dueDate}</span>
                           </div>
                         </div>

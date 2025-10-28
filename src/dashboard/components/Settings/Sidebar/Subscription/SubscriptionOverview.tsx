@@ -11,36 +11,36 @@ export default function SubscriptionOverview() {
   return (
     <div className="min-h-screen p-4 md:p-8">
       {/* Header */}
-      <h1 className="text-2xl font-semibold text-gray-900 mb-6">Subscription Overview</h1>
+      <h1 className="text-lg font-semibold text-[#171c35] mb-6">Subscription Overview</h1>
 
       {/* Tabs */}
       <div className="flex flex-wrap gap-2 mb-8">
         <button
           onClick={() => setActiveTab('current-plan')}
-          className={`px-6 py-3 text-md font-normal rounded-full transition-colors cursor-pointer ${
+          className={`px-6 py-3 text-md font-normal rounded-[12px] transition-colors cursor-pointer ${
             activeTab === 'current-plan'
-              ? 'bg-blue-100 text-gray-900'
-              : 'bg-white text-gray-600 hover:bg-gray-50'
+              ? 'bg-[#DCE2FF] text-[#171c35]'
+              : 'bg-white text-[#111A2D] '
           }`}
         >
           Current Plan
         </button>
         <button
           onClick={() => setActiveTab('manage')}
-          className={`px-6 py-3 text-md font-normal rounded-full transition-colors  cursor-pointer ${
+          className={`px-6 py-3 text-md font-normal rounded-[12px] transition-colors  cursor-pointer ${
             activeTab === 'manage'
-              ? 'bg-blue-100 text-gray-900'
-              : 'bg-white text-gray-600 hover:bg-gray-50'
+              ? 'bg-[#DCE2FF] text-[#171c35]'
+              : 'bg-white text-[#111A2D] hover:bg-gray-50'
           }`}
         >
           Manage Subscription
         </button>
         <button
           onClick={() => setActiveTab('invoices')}
-          className={`px-6 py-3 text-md cursor-pointer font-normal rounded-full transition-colors  ${
+          className={`px-6 py-3 text-md cursor-pointer font-normal rounded-[12px] transition-colors  ${
             activeTab === 'invoices'
-              ? 'bg-blue-100 text-gray-900'
-              : 'bg-white text-gray-600 hover:bg-gray-50'
+              ? 'bg-[#DCE2FF] text-[#171c35]'
+              : 'bg-white text-[#111A2D] hover:bg-gray-50'
           }`}
         >
           Invoices

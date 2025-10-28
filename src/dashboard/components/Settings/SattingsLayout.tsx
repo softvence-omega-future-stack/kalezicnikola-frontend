@@ -26,11 +26,12 @@ export const SettingsLayout: React.FC = () => {
         <span className="font-semibold text-gray-700">{activeItem}</span>
       </div>
 
-      <h1 className="text-2xl font-semibold text-gray-800 mb-6">Settings</h1>
+      <h1 className="text-2xl font-semibold text-[#171C35] mb-6">Settings</h1>
 
       <div className="flex flex-col lg:flex-row lg:space-x-8">
         {/* Sidebar */}
-        <div className="w-full lg:w-[240px] mb-6 lg:mb-0">
+        <div className="w-full lg:w-[240px] mb-6 lg:mb-0  bg-white rounded-xl p-2 ">
+             <h2 className="text-[#171C35] font-semibold text-xl pl-5">Setting</h2>
           <Sidebar activeItem={activeItem} setActiveItem={setActiveItem} />
         </div>
     
