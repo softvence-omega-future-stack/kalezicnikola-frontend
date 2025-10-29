@@ -22,6 +22,8 @@ import OtpPage from "@/auth/OtpPage";
 import CreateNewPassword from "@/auth/CreateMewPass";
 import SuccessfullNewPassword from "@/auth/SuccessfullnewPass";
 import AddPatientForm from "@/dashboard/components/Patients/Addpatient";
+import AdminDashboardLayout from "@/layout/AdminDashboardLayout";
+import DashboardHome from "@/pages/Admin/DashboardHome/DashboardHome";
 
 const routes = createBrowserRouter([
   {
@@ -81,5 +83,17 @@ const routes = createBrowserRouter([
     ],
 
   },
+
+    // ✅ Admin Dashboard (new)
+  {
+    path: "/admin",
+    element: <AdminDashboardLayout />,
+    children: [
+      { index: true, element: <DashboardHome /> },
+      // { path: "users", element: <ManageUsers /> },
+      // { path: "products", element: <ManageProducts /> },
+      // { path: "settings", element: <AdminSettings /> },
+    ],
+  }
 ]);
 export default routes;

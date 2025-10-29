@@ -1,8 +1,13 @@
 /* index.css বা App.css */
 body {
-  background: #BDC2C0; 
+  /* background: ;  */
   backdrop-filter: blur(5px); 
   color: #000;
   transition: background-color 0.3s ease;
   overflow-x: hidden;
+}
+
+/* globals.css বা component scoped CSS */
+.recharts-rectangle:focus {
+  outline: none;
 }

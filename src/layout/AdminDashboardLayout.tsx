@@ -1,18 +1,19 @@
 // layout/DashboardLayout.jsx
+import AdminSidebar from "@/AdminDashboard/AdminSidebar";
 import MainHeader from "@/dashboard/components/dashboard/DashboardMainHeader";
-import Sidebar from "@/dashboard/Sidebar";
+
 import { Outlet } from "react-router-dom";
 
-const DashboardLayout = () => {
+const AdminDashboardLayout = () => {
   return (
-    <div className="flex h-screen bg-[#F3F6F6]">
+    <div className="flex h-screen bg-[#F3F6F6] ">
       {/* Sidebar - fixed width 280px */}
-      <div className="w-[280px] border-r border-gray-100">
-        <Sidebar />
+      <div className="w-[280px] border-r border-gray-300">
+        <AdminSidebar/>
       </div>
 
       {/* Main content */}
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col ">
         {/* Topbar */}
         <MainHeader />
 
@@ -26,4 +27,4 @@ const DashboardLayout = () => {
   );
 };
 
-export default DashboardLayout;
+export default AdminDashboardLayout;

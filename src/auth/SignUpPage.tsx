@@ -33,13 +33,13 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col lg:flex-row">
+    <div className="min-h-screen flex flex-col bg-[#F3F6F6] lg:flex-row">
       {/* Left Side - Image with Header */}
-      <div className="hidden lg:block lg:w-1/2 relative">
+      <div className="hidden lg:block lg:w-1/2 rounded-[16px] p-10px] relative">
         <img
           src="https://i.ibb.co.com/v6CxNtR7/loginImg.png"
           alt="Person smiling"
-          className="w-full h-[930px] object-cover"
+          className="w-full h-[930px] rounded-[16px] p-[10px]  object-cover"
         />
 
         {/* Fixed Border Box (DocLine + Login Btn) */}
@@ -73,7 +73,7 @@ export default function SignupPage() {
                     placeholder="eg. John"
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+                    className="w-full px-4 py-3 rounded-[8px] border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
                   />
                 </div>
                 <div>
@@ -83,7 +83,7 @@ export default function SignupPage() {
                     placeholder="eg. Doe"
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+                    className="w-full px-4 py-3 rounded-[8px] border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
                   />
                 </div>
               </div>
@@ -96,7 +96,7 @@ export default function SignupPage() {
                   placeholder="Enter your email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+                  className="w-full px-4 py-3 rounded-[8px] border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
                 />
               </div>
 
@@ -109,7 +109,7 @@ export default function SignupPage() {
                     placeholder="••••••••••••"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm pr-12"
+                    className="w-full px-4 py-3 rounded-[8px] border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm pr-12"
                   />
                   <button
                     type="button"
@@ -138,7 +138,7 @@ export default function SignupPage() {
                     placeholder="••••••••••••"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm pr-12"
+                    className="w-full px-4 py-3 rounded-[8px] border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm pr-12"
                   />
                   <button
                     type="button"
@@ -176,7 +176,7 @@ export default function SignupPage() {
               {/* Button */}
               <button
                 onClick={handleSubmit}
-                className="w-full py-3 bg-[#526FFF] text-white rounded-lg font-medium transition-colors shadow-sm hover:bg-blue-700 cursor-pointer"
+                className="w-full py-3 bg-[#526FFF] text-white rounded-[8px] font-medium transition-colors shadow-sm hover:bg-blue-700 cursor-pointer"
               >
                 Sign Up
               </button>

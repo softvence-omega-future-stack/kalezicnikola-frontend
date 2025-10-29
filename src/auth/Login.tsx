@@ -19,19 +19,19 @@ export default function LoginPage() {
   };
 
   return (
-    <div className=" flex relative ">
+    <div className=" flex relative bg-[#F3F6F6]">
       {/* Left Side - Image */}
-      <div className="hidden lg:block lg:w-1/2 relative">
+      <div className="hidden lg:block lg:w-1/2 p-[10px] rounded-[16px] relative">
         <img
           src="https://i.ibb.co.com/v6CxNtR7/loginImg.png"
           alt="Person smiling"
-          className="w-full h-[930px] object-cover"
+          className="w-full h-[930px] rounded-[16px] object-cover"
         />
 
-        {/* Fixed Border Box (DocLine + Login Btn) */}
-        <div className="fixed top-8 left-0 right-0 z-20 w-[95%] border border-gray-100 bg-white/10 rounded-full px-9 py-4 flex items-center justify-between mx-auto  ">
+          {/* Fixed Border Box (DocLine + Login Btn) */}
+        <div className="fixed top-8 left-0 right-0 z-20 w-[95%] border border-gray-100 bg-white/10 backdrop-blur-sm rounded-full px-9 py-4 flex items-center justify-between mx-auto">
           <div className="flex items-center gap-2">
-           <img src="https://i.ibb.co.com/0yzBCxRm/logo.png" alt="" />
+            <img src="https://i.ibb.co.com/0yzBCxRm/logo.png" alt="" />
             <span className="text-2xl font-semibold text-[#171C35]">Docline</span>
           </div>
           <button className="px-5 py-2 bg-gray-900 text-white rounded-full text-sm font-medium hover:bg-gray-800 transition">
@@ -47,7 +47,7 @@ export default function LoginPage() {
 
           {/* Login Button Top Right (for mobile) */}
           <div className="absolute top-8 right-8 lg:hidden">
-            <button className="px-6 py-2 bg-gray-900 text-white rounded-full text-sm font-medium">
+            <button className="px-6 py-2 bg-[#171c35] text-white rounded-full text-sm font-medium">
               Login
             </button>
           </div>
@@ -71,7 +71,7 @@ export default function LoginPage() {
                   placeholder="Enter your email or phone"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-3 rounded-lg text-[#111A2D] border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                  className="w-full px-4 py-3 rounded-[8px] text-[#111A2D] border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
                 />
               </div>
 
@@ -86,7 +86,7 @@ export default function LoginPage() {
                     placeholder="············"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full px-4 py-3 text-[#111A2D] rounded-lg border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm pr-12"
+                    className="w-full px-4 py-3 text-[#111A2D] rounded-[8px] border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm pr-12"
                   />
                   <button
                     type="button"
@@ -128,7 +128,7 @@ export default function LoginPage() {
               {/* Sign In Button */}
               <button
                 onClick={handleSubmit}
-                className="w-full py-3 bg-[#526FFF] text-white rounded-lg font-medium  transition-colors cursor-pointer"
+                className="w-full py-3 bg-[#526FFF] text-white rounded-[8px] font-medium  transition-colors cursor-pointer"
               >
                 Sign In
               </button>

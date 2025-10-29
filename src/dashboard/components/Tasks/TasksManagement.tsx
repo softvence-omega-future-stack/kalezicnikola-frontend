@@ -101,7 +101,7 @@ export default function TaskList() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen ">
       {/* Header */}
       <div className="px-4 sm:px-6 lg:px-8 py-4">
         {/* Breadcrumb */}
@@ -144,7 +144,7 @@ export default function TaskList() {
       <div className="p-4 sm:p-6 lg:p-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {columns.map((column) => (
-            <div key={column.id} className="bg-white rounded-lg">
+            <div key={column.id} className="bg-white rounded-2xl">
               {/* Column Header */}
               <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200">
                 <div className="flex items-center gap-2">

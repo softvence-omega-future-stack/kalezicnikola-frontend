@@ -47,7 +47,7 @@ const NavItem: React.FC<NavItemProps> = ({ to, label, iconSrc }) => {
 
 const Sidebar: React.FC = () => {
   return (
-   <div className="flex flex-col justify-between h-screen  w-20 md:w-72 transition-all duration-300">
+   <div className="flex flex-col justify-between h-screen border-r border-gray-200  w-20 md:w-72 transition-all duration-300">
       {/* Top: Logo + Navigation */}
       <div>
         <Logo />

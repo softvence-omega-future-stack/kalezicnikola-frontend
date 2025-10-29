@@ -13,9 +13,9 @@ const CalendarView: React.FC = () => {
   const handleViewChange = (type: 'day' | 'week' | 'month') => setViewType(type);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen ">
       {/* Breadcrumb */}
-      <div className="bg-white border-b border-gray-200 px-4 sm:px-6 py-3">
+      <div className="px-4 sm:px-6 py-3">
         <div className="flex items-center gap-2 text-sm text-gray-500 flex-wrap">
           <Home size={18} />
           <ChevronRight size={12} />
@@ -30,7 +30,7 @@ const CalendarView: React.FC = () => {
         <h1 className="text-2xl font-semibold text-[#171C35] mb-4 sm:mb-6">Calendar</h1>
 
         {/* Top Controls */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 sm:p-5 mb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div className=" rounded-lg p-4 sm:p-5 mb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           {/* Left Controls */}
           <div className="flex items-center gap-3 w-full sm:w-auto">
             <button className="p-1 hover:bg-gray-100 rounded">

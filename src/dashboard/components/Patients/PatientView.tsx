@@ -17,7 +17,7 @@ export default function PatientsView() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4 sm:p-6">
+    <div className="min-h-screenp-4 sm:p-6">
       {/* Breadcrumb */}
       <div className="flex items-center gap-2 text-sm text-gray-600 mb-6">
       <img src="https://i.ibb.co.com/wNx4k4sR/HomeIcon.png" alt="" />
@@ -26,8 +26,9 @@ export default function PatientsView() {
         <span className="font-semibold text-[#171C35]">Patients</span>
       </div>
 
+<div className='bg-white rounded-2xl'>
       {/* Header */}
-      <div className="bg-white rounded-2xl shadow-sm p-6 mb-6">
+      <div className=" p-6 mb-6">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <h1 className="text-2xl font-bold text-[#171C35]">Total 60 Patients</h1>
 
@@ -88,6 +89,7 @@ export default function PatientsView() {
       <div>
         {viewMode === 'list' ? <ListView /> : <GridView />}
       </div>
+    </div>
     </div>
   );
 }
