@@ -1,7 +1,7 @@
 import  { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 
-export default function RegionalSettings() {
+export default function Performances() {
   const [settings, setSettings] = useState({
     timezone: '',
     dateFormat: '',

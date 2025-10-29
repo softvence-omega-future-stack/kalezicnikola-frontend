@@ -1,4 +1,4 @@
-import { Calendar, Clock } from "lucide-react"
+
 
 
 const AllApointment = () => {
@@ -12,29 +12,32 @@ const AllApointment = () => {
   return (
     <div className="">
         <div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Appointment History</h3>
+                <h3 className="text-2xl font-semibold text-[#171C35] mb-4">Appointment History</h3>
                 <div className="space-y-3">
                   {appointments.map((apt) => (
                     <div
                       key={apt.id}
-                      className="bg-gray-100 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"
+                      className="bg-[#FAFAFA] rounded-xl p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"
                     >
                       <div className="flex items-center gap-3">
                        
                         <div>
-                          <p className="text-lg font-medium text-gray-900">{apt.type}</p>
+                          <p className="text-base font-semibold text-[#171c35]">{apt.type}</p>
                           <div className="flex items-center gap-2 mt-2 ">
-                             <Calendar size={6} className="w-5 h-5 text-gray-700 font-semibold" />
-                            <span className=" text-gray-800">{apt.date}</span>
-                            <span className=" text-gray-800 flex items-center gap-2"><Clock className="font-bold text-sm" size={14}/>{apt.time}</span>
+                               <img src="https://i.ibb.co.com/gbYTtKHC/Date-Birth-Icon.png" className='h-3 w-3' alt="" />
+                            <span className=" text-[#111A2D] text-sm">{apt.date}</span>
+                            <span className=" text-[#111A2D] text-sm flex items-center gap-2">
+                                 <img src="https://i.ibb.co.com/TxG7Rk1Q/clock.png" alt="" />
+                              {apt.time}
+                              </span>
                           </div>
                         </div>
                       </div>
                       <span
-                        className={`inline-flex items-center px-3 py-1 rounded-full text-lg font-medium ${
+                        className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold ${
                           apt.status === 'Upcoming'
-                            ? 'bg-blue-50 text-blue-700'
-                            : 'bg-teal-50 text-teal-700'
+                            ? 'bg-[#0040FF1A] text-[#0040FF]'
+                            : 'bg-[#0080801A] text-[#008080]'
                         }`}
                       >
                         {apt.status}

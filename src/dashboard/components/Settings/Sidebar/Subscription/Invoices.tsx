@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import InvoiceModal from './InvoiceViewModal';
 
-import { InvoiceModal } from './InvoiceViewModal';
+
 
 
 

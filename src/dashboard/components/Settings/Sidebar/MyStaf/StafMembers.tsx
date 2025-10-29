@@ -18,8 +18,8 @@ export default function StaffManagement() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4 md:p-8">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-[#F3F6F6] p-4 md:p-8">
+      <div className="">
         {/* Breadcrumb & Stats */}
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 mb-6">
           {/* Left side - Breadcrumb & Title */}
@@ -30,26 +30,26 @@ export default function StaffManagement() {
             <ChevronRight size={12}/>
               <span>Settings</span>
             <ChevronRight size={12}/>
-              <span className="text-gray-900 font-medium">My Staff</span>
+              <span className="text-[#1a1c21] font-medium">My Staff</span>
             </div>
-            <h1 className="text-2xl font-semibold text-gray-900">Settings</h1>
+            <h1 className="text-2xl font-semibold text-[#1a1c21]">Settings</h1>
           </div>
 
           {/* Right side - Stats */}
           <div className="flex flex-wrap gap-4">
-            <div className="bg-white rounded-lg px-6 py-3 min-w-[120px]">
-              <p className="text-sm text-gray-900 font-semibold mb-1">Total Staff</p>
-              <p className="text-3xl font-semibold text-gray-900">63</p>
+            <div className=" px-6 py-3 min-w-[120px]">
+              <p className="text-sm text-[#111A2D] font-semibold mb-1">Total Staff</p>
+              <p className="text-[32px] font-medium text-[#171C35]">63</p>
             </div>
-            <div className="bg-white rounded-lg px-6 py-3 min-w-[120px]">
-              <p className="text-sm text-gray-900 font-semibold mb-1">Active Staff</p>
-              <p className="text-3xl font-semibold text-gray-900">54</p>
+            <div className=" px-6 py-3 min-w-[120px]">
+              <p className="text-sm text-[#111A2D] font-semibold mb-1">Active Staff</p>
+              <p className="text-[32px] font-medium text-#171C35]">54</p>
             </div>
-            <div className="bg-white rounded-lg px-6 py-3 min-w-[120px]">
-              <p className="text-sm text-gray-900 font-semibold mb-1">On Leave</p>
-              <p className="text-3xl font-semibold text-gray-900">8</p>
+            <div className=" px-6 py-3 min-w-[120px]">
+              <p className="text-sm text-[#111A2D] font-semibold mb-1">On Leave</p>
+              <p className="text-[32px] font-medium text-[#171C35]">8</p>
             </div>
-            <button className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center hover:bg-blue-700 transition-colors">
+            <button className="w-12 h-12 bg-[#526FFF] rounded-lg flex items-center justify-center transition-colors">
               <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
@@ -58,11 +58,11 @@ export default function StaffManagement() {
         </div>
 
         {/* Staff Management Card */}
-        <div className="bg-white rounded-xl shadow-sm">
+        <div className="bg-white rounded-2xl ">
           {/* Header */}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-6 border-b border-gray-200">
-            <h2 className="text-xl font-semibold text-gray-900">Staff Management</h2>
-            <button   onClick={() => navigate('staff/add')} className="flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+            <h2 className="text-xl font-semibold text-[#1a1c21]">Staff Management</h2>
+            <button   onClick={() => navigate('staff/add')} className="flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold text-[#111A2D] bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
               <Plus className="w-4 h-4" />
               Add New Staff
             </button>
@@ -76,12 +76,12 @@ export default function StaffManagement() {
                   <th className="text-left py-4 px-6">
                     <input type="checkbox" className="w-4 h-4 rounded border-gray-300" />
                   </th>
-                  <th className="text-left py-4 px-6 text-sm font-medium text-gray-900">Patient Name</th>
-                  <th className="text-left py-4 px-6 text-sm font-medium text-gray-900">Joined</th>
-                  <th className="text-left py-4 px-6 text-sm font-medium text-gray-900">Role</th>
-                  <th className="text-left py-4 px-6 text-sm font-medium text-gray-900">Contact</th>
-                  <th className="text-left py-4 px-6 text-sm font-medium text-gray-900">Status</th>
-                  <th className="text-left py-4 px-6 text-sm font-medium text-gray-900">Profile</th>
+                  <th className="text-left py-4 px-6 text-base font-semibold text-[#171C35]">Patient Name</th>
+                  <th className="text-left py-4 px-6 text-base font-semibold text-[#171C35]">Joined</th>
+                  <th className="text-left py-4 px-6 text-base font-semibold text-[#171C35]">Role</th>
+                  <th className="text-left py-4 px-6 text-base font-semibold text-[#171C35]">Contact</th>
+                  <th className="text-left py-4 px-6 text-base font-semibold text-[#171C35]">Status</th>
+                  <th className="text-left py-4 px-6 text-base font-semibold text-[#171C35]">Profile</th>
                 </tr>
               </thead>
               <tbody>
@@ -93,33 +93,33 @@ export default function StaffManagement() {
                     <td className="py-4 px-6">
                       <div className="flex items-center gap-3">
                         <img 
-                          src={`https://i.pravatar.cc/150?img=${staff.id}`}
+                          src={`https://i.ibb.co/XZV3J9Gd/tabler-list.png?img=${staff.id}`}
                           alt={staff.name}
                           className="w-10 h-10 rounded-full object-cover flex-shrink-0"
                         />
                         <div>
-                          <p className="text-sm font-medium text-gray-900">{staff.name}</p>
-                          <p className="text-xs text-gray-600">{staff.srn}</p>
+                          <p className="text-sm font-medium text-[#111A2D]">{staff.name}</p>
+                          <p className="text-sm font-medium text-[#111A2D]">{staff.srn}</p>
                         </div>
                       </div>
                     </td>
-                    <td className="py-4 px-6 text-sm text-gray-900">{staff.joined}</td>
-                    <td className="py-4 px-6 text-sm text-gray-900">{staff.role}</td>
-                    <td className="py-4 px-6 text-sm text-gray-900">{staff.email}</td>
+                    <td className="py-4 px-6 text-sm font-medium text-[#1a1c21]">{staff.joined}</td>
+                    <td className="py-4 px-6 text-sm font-medium text-[#111A2D]">{staff.role}</td>
+                    <td className="py-4 px-6 text-sm font-medium text-[#111A2D]">{staff.email}</td>
                     <td className="py-4 px-6">
-                      <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium ${
+                      <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-medium ${
                         staff.status === 'Active' 
-                          ? 'bg-green-50 text-green-700' 
-                          : 'bg-red-50 text-red-700'
+                          ? 'bg-[#0080801A] text-[#008080]' 
+                          : 'bg-[#FF1C331A] text-[#FF1C33]'
                       }`}>
                         <span className={`w-1.5 h-1.5 rounded-full ${
-                          staff.status === 'Active' ? 'bg-green-600' : 'bg-red-600'
+                          staff.status === 'Active' ? 'bg-[#008080]' : 'bg-[#FF1C33]'
                         }`}></span>
                         {staff.status}
                       </span>
                     </td>
                     <td className="py-4 px-6">
-                      <button className="flex items-center gap-1 text-sm text-blue-600 hover:text-blue-700 font-medium">
+                      <button className="flex items-center gap-1 text-sm text-[#526FFF]  font-medium">
                         View Profile
                         <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -144,7 +144,7 @@ export default function StaffManagement() {
                     className="w-10 h-10 rounded-full object-cover flex-shrink-0"
                   />
                   <div className="flex-1">
-                    <p className="text-sm font-medium text-gray-900">{staff.name}</p>
+                    <p className="text-sm font-medium text-[#1a1c21]">{staff.name}</p>
                     <p className="text-xs text-gray-600">{staff.srn}</p>
                   </div>
                   <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium ${
@@ -161,19 +161,19 @@ export default function StaffManagement() {
                 <div className="ml-14 space-y-2 mb-3">
                   <div className="flex justify-between text-xs">
                     <span className="text-gray-600">Joined:</span>
-                    <span className="text-gray-900">{staff.joined}</span>
+                    <span className="text-[#1a1c21]">{staff.joined}</span>
                   </div>
                   <div className="flex justify-between text-xs">
                     <span className="text-gray-600">Role:</span>
-                    <span className="text-gray-900">{staff.role}</span>
+                    <span className="text-[#1a1c21]">{staff.role}</span>
                   </div>
                   <div className="flex justify-between text-xs">
                     <span className="text-gray-600">Contact:</span>
-                    <span className="text-gray-900">{staff.email}</span>
+                    <span className="text-[#1a1c21]">{staff.email}</span>
                   </div>
                 </div>
                 <div className="ml-14">
-                  <button    onClick={() => navigate(`/staff/profile/${staff.id}`)}
+                  <button    onClick={() => navigate(`staff/profile/${staff.id}`)}
                    className="flex items-center gap-1 text-sm text-blue-600 hover:text-blue-700 font-medium">
                     View Profile
                     <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -191,14 +191,14 @@ export default function StaffManagement() {
             <div className="flex gap-2">
               <button 
                 onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-                className="px-4 py-2 text-md font-semibold text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50"
+                className="px-4 py-2 text-md font-semibold text-[#1a1c21] bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50"
                 disabled={currentPage === 1}
               >
                 Previous
               </button>
               <button 
                 onClick={() => setCurrentPage(currentPage + 1)}
-                className="px-4 py-2 text-md font-semibold text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                className="px-4 py-2 text-md font-semibold text-[#1a1c21] bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
               >
                 Next
               </button>

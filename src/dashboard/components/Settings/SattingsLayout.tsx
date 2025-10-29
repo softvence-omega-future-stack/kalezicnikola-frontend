@@ -12,11 +12,12 @@ import StaffManagement from "./Sidebar/MyStaf/StafMembers";
 import { Outlet } from "react-router-dom";
 
 
+
 export const SettingsLayout: React.FC = () => {
   const [activeItem, setActiveItem] = useState("Personal Info");
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8">
+    <div className="min-h-screen bg-[#F3F6F6] p-4 sm:p-6 lg:p-8">
       {/* Breadcrumbs */}
       <div className="text-sm text-gray-500 mb-4 flex items-center">
         <a href="#" className="hover:underline">Dashboard</a>
@@ -37,7 +38,7 @@ export const SettingsLayout: React.FC = () => {
     
 
         {/* Main content */}
-        <div className="flex-1 min-w-0 w-full lg:w-[856px] bg-white shadow-2xl rounded-xl p-4 sm:p-6 lg:p-8 cursor-pointer">
+        <div className="flex-1 min-w-0 w-full lg:w-[856px] bg-[#F3F6F6] rounded-xl p-4 sm:p-6 lg:p-8 cursor-pointer">
           {activeItem === "Personal Info" && <PersonalInfoForm />}
           {activeItem === "My Staff" && <StaffManagement/>}
           {activeItem === "Change Password" && <ChangePassword />}

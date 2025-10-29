@@ -1,214 +1,236 @@
 import React from 'react';
 import { Download, Printer, X } from 'lucide-react';
 
+interface InvoiceItem {
+  name: string;
+  description: string;
+  quantity: number;
+  rate: number;
+  amount: number;
+}
+
 interface InvoiceModalProps {
   onClose: () => void;
 }
 
-export const InvoiceModal: React.FC<InvoiceModalProps> = ({ onClose }) => {
+interface InvoiceData {
+  companyName: string;
+  companyWebsite: string;
+  companyEmail: string;
+  companyPhone: string;
+  companyAddress: string;
+  companyCity: string;
+  companyTaxId: string;
+  billedTo: string;
+  billedToAddress: string;
+  billedToCity: string;
+  billedToPhone: string;
+  invoiceNumber: string;
+  reference: string;
+  subject: string;
+  invoiceDate: string;
+  dueDate: string;
+  items: InvoiceItem[];
+  taxRate: number;
+}
+
+const InvoiceModal: React.FC<InvoiceModalProps> = ({onClose}) => {
+  // const [isOpen, setIsOpen] = useState(true);
+
+  const invoiceData: InvoiceData = {
+    companyName: "Panda, Inc",
+    companyWebsite: "www.website.com",
+    companyEmail: "hello@email.com",
+    companyPhone: "+91 00000 00000",
+    companyAddress: "Business address",
+    companyCity: "City, State, IN - 000 000",
+    companyTaxId: "TAX ID 00XXXXX1234XXXX",
+    billedTo: "Company Name",
+    billedToAddress: "Company address",
+    billedToCity: "City, Country - 00000",
+    billedToPhone: "+0 (000) 123-4567",
+    invoiceNumber: "#AB2324-01",
+    reference: "INV-057",
+    subject: "Design System",
+    invoiceDate: "01 Aug, 2023",
+    dueDate: "15 Aug, 2023",
+    items: [
+      {
+        name: "Item Name",
+        description: "Item description",
+        quantity: 1,
+        rate: 3000.00,
+        amount: 3000.00
+      },
+      {
+        name: "Item Name",
+        description: "Item description",
+        quantity: 1,
+        rate: 1500.00,
+        amount: 1500.00
+      }
+    ],
+    taxRate: 10
+  };
+
+  const subtotal = invoiceData.items.reduce((sum, item) => sum + item.amount, 0);
+  const tax = subtotal * (invoiceData.taxRate / 100);
+  const total = subtotal + tax;
+
+  // if (!isOpen) return null;
+
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 overflow-auto">
-      <div className="bg-gray-100 w-full max-w-3xl rounded-2xl shadow-2xl flex flex-col max-h-[90vh]">
-        {/* Modal Header */}
-        <div className="flex items-center justify-between mb-6 p-4 ">
-          <h1 className="text-xl font-semibold text-gray-900">Account statement</h1>
-          <button onClick={onClose} className="p-2 hover:bg-gray-300 rounded-lg transition-colors cursor-pointer">
-            <X className="w-5 h-5 text-gray-900" />
+    <div className="fixed inset-0 bg-black/40 bg-opacity-50 flex items-center justify-center p-4 z-50">
+      <div className="bg-[#F3F6F6D9]  rounded-[32px] w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col">
+        {/* Header */}
+        <div className="flex items-center justify-between p-6 ">
+          <h2 className="text-2xl font-semibold text-[#171C35]">Account statement</h2>
+          <button
+            onClick={onClose}
+            className="text-gray-400 hover:text-[#5e6470] transition-colors"
+          >
+            <X size={24} />
           </button>
         </div>
 
-        {/* Invoice Card */}
-        <div className="bg-white rounded-2xl shadow-lg p-6 md:p-10 mb-6">
-          {/* Company Header */}
-          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6 mb-8 pb-6 border-b border-gray-200">
-            <div className="flex items-start gap-3">
-              <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0">
-                <svg className="w-8 h-8 text-orange-500" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="12" cy="8" r="2" stroke="currentColor" strokeWidth="2"/>
-                  <circle cx="8" cy="14" r="1.5" fill="currentColor"/>
-                  <circle cx="16" cy="14" r="1.5" fill="currentColor"/>
-                  <path d="M12 10C9 10 7 12 7 14M12 10C15 10 17 12 17 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                </svg>
-              </div>
-              <div>
-                <h2 className="text-base font-semibold text-orange-500 mb-1">Panda, Inc</h2>
-                <p className="text-xs text-gray-600">www.website.com</p>
-                <p className="text-xs text-gray-600">hello@email.com</p>
-                <p className="text-xs text-gray-600">+91 00000 00000</p>
-              </div>
-            </div>
-            <div className="text-left sm:text-right">
-              <p className="text-xs text-gray-600 mb-1">Business address</p>
-              <p className="text-xs text-gray-600">City, State, IN - 000 000</p>
-              <p className="text-xs text-gray-600">TAX ID: 000XXX0123XXXX</p>
-            </div>
-          </div>
-
-          {/* Invoice Details Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6 mb-8">
-            {/* Left Column */}
-            <div className="space-y-5">
-              <div>
-                <p className="text-xs text-gray-500 mb-1">Billed to</p>
-                <p className="text-sm font-semibold text-gray-900 mb-1">Company Name</p>
-                <p className="text-xs text-gray-600">Company address</p>
-                <p className="text-xs text-gray-600">City, Country - 000000</p>
-                <p className="text-xs text-gray-600">+0 (000) 123-4567</p>
-              </div>
-              <div>
-                <p className="text-xs text-gray-500 mb-1">Subject</p>
-                <p className="text-sm font-semibold text-gray-900">Design System</p>
-              </div>
-            </div>
-
-            {/* Right Column */}
-            <div className="space-y-5">
-              <div>
-                <p className="text-xs text-gray-500 mb-1">Invoice number</p>
-                <p className="text-sm font-semibold text-gray-900">#AB2324-01</p>
-              </div>
-              <div>
-                <p className="text-xs text-gray-500 mb-1">Reference</p>
-                <p className="text-sm font-semibold text-gray-900">INV-057</p>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <p className="text-xs text-gray-500 mb-1">Invoice date</p>
-                  <p className="text-sm font-semibold text-gray-900">01 Aug, 2023</p>
+        {/* Content */}
+        <div className="flex-1 overflow-y-auto p-6 bg-white mx-7 rounded-2xl">
+          <div className="bg-[#F3F5F9] border border-[#D7DAE0] rounded-xl p-6 md:p-8">
+            {/* Company Header */}
+            <div className="flex flex-col md:flex-row justify-between items-start gap-6 mb-8 ">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12  flex-shrink-0">
+                  <img src="https://i.ibb.co.com/JFSd7bHf/Invoice-Modal-Icon.png" alt="" />
                 </div>
                 <div>
-                  <p className="text-xs text-gray-500 mb-1">Due date</p>
-                  <p className="text-sm font-semibold text-gray-900">15 Aug, 2023</p>
+                  <h3 className="text-lg font-semibold text-[#E87117]">{invoiceData.companyName}</h3>
+                  <p className="text-[10px] text-[#5e6470]">{invoiceData.companyWebsite}</p>
+                  <p className="text-[10px] text-[#5e6470]">{invoiceData.companyEmail}</p>
+                  <p className="text-[10px] text-[#5e6470]">{invoiceData.companyPhone}</p>
                 </div>
               </div>
-              <div className="sm:text-right">
-                <p className="text-xs text-gray-500 mb-1">Invoice id (USD)</p>
-                <p className="text-3xl font-bold text-orange-500">$4,950.00</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Items Table */}
-          <div className="mb-8">
-            {/* Table Header */}
-            <div className="hidden sm:grid sm:grid-cols-12 gap-4 bg-gray-50 px-4 py-3 rounded-t-lg border-b border-gray-200">
-              <div className="col-span-5">
-                <p className="text-xs font-semibold text-gray-700 uppercase">Item Detail</p>
-              </div>
-              <div className="col-span-2 text-center">
-                <p className="text-xs font-semibold text-gray-700 uppercase">Qty</p>
-              </div>
-              <div className="col-span-2 text-right">
-                <p className="text-xs font-semibold text-gray-700 uppercase">Rate</p>
-              </div>
-              <div className="col-span-3 text-right">
-                <p className="text-xs font-semibold text-gray-700 uppercase">Amount</p>
+              <div className="text-left md:text-right">
+                <p className="text-[10px] text-[#5e6470]">{invoiceData.companyAddress}</p>
+                <p className="text-[10px] text-[#5e6470]">{invoiceData.companyCity}</p>
+                <p className="text-[10px] text-[#5e6470]">{invoiceData.companyTaxId}</p>
               </div>
             </div>
 
-            {/* Table Items - Desktop */}
-            <div className="hidden sm:block">
-              <div className="grid grid-cols-12 gap-4 px-4 py-4 border-b border-gray-100">
-                <div className="col-span-5">
-                  <p className="text-sm font-medium text-gray-900">Item Name</p>
-                  <p className="text-xs text-gray-500">Item description</p>
-                </div>
-                <div className="col-span-2 text-center">
-                  <p className="text-sm text-gray-900">1</p>
-                </div>
-                <div className="col-span-2 text-right">
-                  <p className="text-sm text-gray-900">$3,000.00</p>
-                </div>
-                <div className="col-span-3 text-right">
-                  <p className="text-sm font-medium text-gray-900">$3,000.00</p>
-                </div>
+           <div className='bg-white rounded-2xl p-4'>
+             {/* Invoice Details */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+              <div>
+                <p className="text-[10px] text-[#5e6470] mb-1">Billed to</p>
+                <p className="font-semibold text-[#1a1c21]">{invoiceData.billedTo}</p>
+                <p className="text-[10px] text-[#5e6470]">{invoiceData.billedToAddress}</p>
+                <p className="text-[10px] text-[#5e6470]">{invoiceData.billedToCity}</p>
+                <p className="text-[10px] text-[#5e6470]">{invoiceData.billedToPhone}</p>
               </div>
-              <div className="grid grid-cols-12 gap-4 px-4 py-4 border-b border-gray-100">
-                <div className="col-span-5">
-                  <p className="text-sm font-medium text-gray-900">Item Name</p>
-                  <p className="text-xs text-gray-500">Item description</p>
-                </div>
-                <div className="col-span-2 text-center">
-                  <p className="text-sm text-gray-900">1</p>
-                </div>
-                <div className="col-span-2 text-right">
-                  <p className="text-sm text-gray-900">$1,500.00</p>
-                </div>
-                <div className="col-span-3 text-right">
-                  <p className="text-sm font-medium text-gray-900">$1,500.00</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Table Items - Mobile */}
-            <div className="sm:hidden space-y-4 mt-4">
-              <div className="border-b border-gray-100 pb-4">
-                <div className="flex justify-between mb-2">
+              <div className="space-y-4">
+                <div className="flex justify-between">
                   <div>
-                    <p className="text-sm font-medium text-gray-900">Item Name</p>
-                    <p className="text-xs text-gray-500">Item description</p>
+                    <p className="text-[10px] text-[#5e6470] mb-1">Invoice number</p>
+                    <p className="font-semibold text-[#1a1c21]">{invoiceData.invoiceNumber}</p>
                   </div>
-                  <p className="text-sm font-medium text-gray-900">$3,000.00</p>
+                  <div className="text-right">
+                    <p className="text-[10px] text-[#5e6470] mb-1">Invoice of (USD)</p>
+                    <p className="text-2xl font-bold text-orange-500">${total.toFixed(2)}</p>
+                  </div>
                 </div>
-                <div className="flex justify-between text-xs text-gray-600">
-                  <span>Qty: 1</span>
-                  <span>Rate: $3,000.00</span>
+                <div>
+                  <p className="text-[10px] text-[#5e6470] mb-1">Reference</p>
+                  <p className="font-semibold text-[#1a1c21]">{invoiceData.reference}</p>
                 </div>
               </div>
-              <div className="border-b border-gray-100 pb-4">
-                <div className="flex justify-between mb-2">
-                  <div>
-                    <p className="text-sm font-medium text-gray-900">Item Name</p>
-                    <p className="text-xs text-gray-500">Item description</p>
-                  </div>
-                  <p className="text-sm font-medium text-gray-900">$1,500.00</p>
-                </div>
-                <div className="flex justify-between text-xs text-gray-600">
-                  <span>Qty: 1</span>
-                  <span>Rate: $1,500.00</span>
-                </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+              <div>
+                <p className="text-[10px] text-[#5e6470] mb-1">Subject</p>
+                <p className="font-semibold text-[#1a1c21]">{invoiceData.subject}</p>
               </div>
+              <div>
+                <p className="text-[10px] text-[#5e6470] mb-1">Invoice date</p>
+                <p className="font-semibold text-[#1a1c21]">{invoiceData.invoiceDate}</p>
+              </div>
+              <div>
+                <p className="text-[10px] text-[#5e6470] mb-1">Due date</p>
+                <p className="font-semibold text-[#1a1c21]">{invoiceData.dueDate}</p>
+              </div>
+            </div>
+
+            {/* Items Table */}
+            <div className="overflow-x-auto mb-6">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-gray-300">
+                    <th className="text-left text-[12px] text-[#5e6470]  pb-3">ITEM DETAIL</th>
+                    <th className="text-center text-[12px] text-[#5e6470]  pb-3 w-20">QTY</th>
+                    <th className="text-right text-[12px] text-[#5e6470]  pb-3 w-28">RATE</th>
+                    <th className="text-right text-[12px] text-[#5e6470]  pb-3 w-28">AMOUNT</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {invoiceData.items.map((item, index) => (
+                    <tr key={index} className="border-b border-gray-200">
+                      <td className="py-4">
+                        <p className="text-[12px] font-medium text-[#1a1c21]">{item.name}</p>
+                        <p className="text-[10px] text-[#5e6470]">{item.description}</p>
+                      </td>
+                      <td className="text-center text-[#1A1C21] py-4">{item.quantity}</td>
+                      <td className="text-right py-4">${item.rate.toFixed(2)}</td>
+                      <td className="text-right py-4">${item.amount.toFixed(2)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
 
             {/* Totals */}
-            <div className="mt-6 space-y-3 px-4">
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-900">Subtotal</span>
-                <span className="text-sm font-medium text-gray-900">$4,500.00</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-900">Tax (10%)</span>
-                <span className="text-sm font-medium text-gray-900">$450.00</span>
-              </div>
-              <div className="flex justify-between items-center pt-3 border-t border-gray-200">
-                <span className="text-base font-semibold text-gray-900">Total</span>
-                <span className="text-base font-bold text-gray-900">$4,950.00</span>
+            <div className="flex justify-end mb-8">
+              <div className="w-full md:w-80 space-y-2">
+                <div className="flex justify-between text-[10px]">
+                  <span className="text-[#1A1C21] textxs">Subtotal</span>
+                  <span className="font-semibold text-[#1a1c21]">${subtotal.toFixed(2)}</span>
+                </div>
+                <div className="flex justify-between text-[10px]">
+                  <span className="text-[#1A1C21]">Tax ({invoiceData.taxRate}%)</span>
+                  <span className="font-semibold text-[#1a1c21]">${tax.toFixed(2)}</span>
+                </div>
+                <div className="flex justify-between text-base font-bold border-t border-gray-300 pt-2">
+                  <span className="text-[#1a1c21]">Total</span>
+                  <span className="text-[#1a1c21]">${total.toFixed(2)}</span>
+                </div>
               </div>
             </div>
-          </div>
+          <p className="text-[10px] text-[#1a1c21]">Thanks for the business.</p>
+           </div>
 
-          {/* Footer */}
-          <div className="pt-6 space-y-4">
-            <p className="text-sm text-gray-900">Thanks for the business.</p>
-            <div className="bg-gray-50 rounded-lg p-4">
-              <p className="text-xs font-semibold text-gray-900 mb-1">Terms & Conditions</p>
-              <p className="text-xs text-gray-600">Please pay within 15 days of receiving this invoice.</p>
+            {/* Footer */}
+            <div className="">
+              
+              <div>
+                <p className="text-[10px] font-semibold text-[#5E6470] mb-1 mt-3">Terms & Conditions</p>
+                <p className="text-[10px] text-[#1A1C21]">Please pay within 15 days of receiving this invoice.</p>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Action Buttons */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <button className="flex items-center justify-center gap-2 px-6 py-3 text-sm font-medium text-blue-600 bg-white border-2 border-blue-600 rounded-lg hover:bg-blue-50 transition-colors">
-            <Printer className="w-4 h-4" />
+        {/* Footer Buttons */}
+        <div className="flex  [10px]:flex-row gap-3 p-6 ">
+          <button className="flex-1 flex items-center justify-center gap-2 px-6 py-3 border-2 border-[#526FFF] text-[#526FFF] rounded-[8px] font-medium  transition-colors">
+            <Printer size={20} />
             Print
           </button>
-          <button className="flex items-center justify-center gap-2 px-6 py-3 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors">
-            <Download className="w-4 h-4" />
+          <button className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-[#526FFF] text-white rounded-[8px] font-medium  transition-colors">
+            <Download size={20} />
             Download
           </button>
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default InvoiceModal;

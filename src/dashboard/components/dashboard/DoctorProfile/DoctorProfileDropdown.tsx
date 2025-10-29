@@ -47,8 +47,8 @@ const UserDropdown: React.FC<UserDropdownProps> = ({ onClose }) => {
   }, [onClose]);
 
 const handleProfileSettings = () => {
-  navigate('doctor-profile'); // এখানে Doctor Profile route
-  if (onClose) onClose(); // dropdown close
+  navigate('doctor-profile'); 
+  if (onClose) onClose(); 
 };
 
 

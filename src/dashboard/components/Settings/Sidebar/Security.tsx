@@ -89,15 +89,15 @@ export default function SecuritySettings() {
 
           {/* Password Requirements Checkboxes */}
           <div className="space-y-3">
-            <div className="flex items-center">
+            <div className="flex items-center gap-1">
               <CheckCircle2 className="w-5 h-5 text-[#171c35]mr-2.5" />
               <span className="text-sm font-semibold text-[#111A2D]">Require uppercase & lowercase letters (Default)</span>
             </div>
-            <div className="flex items-center">
+            <div className="flex items-center gap-1">
               <CheckCircle2 className="w-5 h-5 text-[#171c35]mr-2.5" />
               <span className="text-sm font-semibold text-[#111A2D]">Require numbers (Default)</span>
             </div>
-            <div className="flex items-center">
+            <div className="flex items-center gap-1">
               <CheckCircle2 className="w-5 h-5 text-[#171c35]mr-2.5" />
               <span className="text-sm font-semibold text-[#111A2D]">Require special characters (Default)</span>
             </div>
@@ -122,7 +122,7 @@ export default function SecuritySettings() {
             </button>
           </div>
 
-          <div className="flex items-center mb-6">
+          <div className="flex items-center mb-6 gap-1">
             <CheckCircle2 className="w-5 h-5 text-[#171c35]mr-2.5" />
             <span className="text-sm font-semibold text-[#111A2D]">Enforce two-factor authentication (Default)</span>
           </div>

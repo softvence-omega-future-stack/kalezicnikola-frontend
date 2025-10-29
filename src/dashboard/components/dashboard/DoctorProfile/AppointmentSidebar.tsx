@@ -32,10 +32,10 @@ export default function AppointmentList() {
       <div className="max-w-sm mx-auto bg-white rounded-xl">
         {/* Header */}
         <div className="px-5 py-4 border-b border-gray-100">
-          <h1 className="text-gray-900 text-lg font-medium mb-1">
+          <h1 className="text-[#171c35] text-sm font-medium mb-1">
             Today Appointment
           </h1>
-          <p className="text-blue-600 text-lg font-medium">
+          <p className="text-[#526FFF] text-base font-semibold">
             12 Patients
           </p>
         </div>
@@ -48,8 +48,8 @@ export default function AppointmentList() {
             return (
               <div
                 key={apt.id}
-                className={`px-5 py-4 transition-colors rounded-lg mb-2 ${
-                  isWilliam ? "bg-indigo-50 text-xl font-bold" : "bg-gray-50 hover:bg-gray-100"
+                className={`px-5 py-4 transition-colors rounded-2xl mb-2 ${
+                  isWilliam ? "bg-[#F5F6FF] text-xl font-bold" : "bg-[#EFF1F1E5] rounded-2xl "
                 }`}
               >
                 <div className="flex items-start gap-3">
@@ -72,18 +72,18 @@ export default function AppointmentList() {
                   {/* Content */}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between gap-2 mb-1">
-                      <h3 className={`truncate text-sm font-medium ${isWilliam ? "font-bold text-xl" : "text-xl font-bold"}`}>
+                      <h3 className={`truncate text-base text-[#171C35] font-medium ${isWilliam ? "font-semibold text-xl" : "text-base font-semibold"}`}>
                         {apt.name}
                       </h3>
                       {apt.isNew && !isWilliam && (
-                        <span className="flex-shrink-0 px-2 py-0.5 bg-blue-50 text-blue-600 text-xs font-medium rounded">
+                        <span className="flex-shrink-0 px-2 py-0.5 bg-[#E5E9FF] text-[#526FFF] text-sm font-semibold rounded">
                           New
                         </span>
                       )}
                     </div>
 
                     {apt.phone && (
-                      <p className="text-gray-700 text-xs mb-2">
+                      <p className="text-[#111A2D] text-sm mb-2">
                         {apt.phone}
                       </p>
                     )}
@@ -94,16 +94,16 @@ export default function AppointmentList() {
                           <div className="flex w-full justify-between mt-1">
   {/* Diagnosis */}
   <div>
-    <span className="text-gray-700 text-xs">Diagnosis</span>
-    <p className={`mt-0.5 ${isWilliam ? "font-semibold text-base text-gray-900" : "text-gray-900 font-medium"}`}>
+    <span className="text-[#111A2D] text-sm">Diagnosis</span>
+    <p className={`mt-0.5 ${isWilliam ? "font-semibold text-base text-[#171c35]" : "text-[#171c35] font-semibold"}`}>
       {apt.diagnosis}
     </p>
   </div>
 
   {/* Time */}
   <div className="text-right">
-    <span className="text-gray-700 text-xs">Time</span>
-    <p className={`${isWilliam ? "font-bold text-gray-900 text-lg" : "text-gray-700"}`}>
+    <span className="text-[#111A2D] text-sm">Time</span>
+    <p className={`${isWilliam ? "font-semibold text-[#171c35] text-base" : "text-[#171C35]"}`}>
       {apt.time}
     </p>
   </div>
@@ -111,7 +111,7 @@ export default function AppointmentList() {
 
                         </>
                       ) : (
-                        <p className={`text-base ${isWilliam ? "font-semibold text-gray-900" : "text-gray-600"}`}>
+                        <p className={`text-base ${isWilliam ? "font-semibold text-[#171c35]" : "text-gray-600"}`}>
                           {apt.time}
                         </p>
                       )}

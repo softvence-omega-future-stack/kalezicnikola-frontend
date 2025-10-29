@@ -72,6 +72,7 @@ const routes = createBrowserRouter([
       { path: "tasks", element: <Tasks /> },
       { path: "supports", element: <Supports/> },
       { path: "settings", element: <Settings /> },
+      
       { path: "settings/staff/add", element: <AddNewStaff /> },
       { path: "settings/staff/profile/:id", element: <StaffProfile /> },
       { path: "doctor-profile", element: <DoctorProfile /> },

@@ -11,19 +11,21 @@ export default function AddNewStaff() {
       <div className="">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-xl font-semibold text-gray-900 mb-1">Add New Staff</h1>
+          <h1 className="text-3xl font-semibold text-[#171c35] mb-1">Personal Information</h1>
         </div>
 
         {/* Card */}
         <div className="bg-white rounded-xl shadow-sm p-6 md:p-8">
+          <h2 className="text-[#171C35] font-medium text-lg ">Add New Staf</h2>
+          <p className="text-[#667085] text-sm font-medium mb-4 ">Create a new staff member profile</p>
           {/* Tabs */}
-          <div className="flex gap-2 mb-8">
+          <div className="flex gap-2 mb-8 bg-[#FAFAFA] py-2 px-5">
             <button
               onClick={() => setActiveTab("personal")}
-              className={`px-6 py-2.5 text-md font-semibold rounded-full transition-colors ${
+              className={`px-6 py-2.5 text-base font-medium rounded-full transition-colors ${
                 activeTab === "personal"
-                  ? "bg-blue-100 text-gray-900"
-                  : "bg-white text-gray-600 hover:bg-gray-50"
+                  ? "bg-[#DCE2FF] text-[#171c35]"
+                  : " text-[#667085] "
               }`}
             >
               Personal Info
@@ -32,8 +34,8 @@ export default function AddNewStaff() {
               onClick={() => setActiveTab("employment")}
               className={`px-6 py-2.5 text-md font-semibold rounded-full transition-colors ${
                 activeTab === "employment"
-                  ? "bg-blue-100 text-gray-900"
-                  : "bg-white text-gray-600 hover:bg-gray-50"
+                  ? "bg-[#DCE2FF]text-[#171c35]"
+                  : "e text[#667085]"
               }`}
             >
               Employment
@@ -48,10 +50,10 @@ export default function AddNewStaff() {
 
           {/* Action Buttons */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
-            <button className="w-full px-6 py-3 text-sm font-medium text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">
+            <button className="w-full px-6 py-3 text-sm font-medium text-[#171c35] bg-white border border-gray-300 rounded-[8px] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">
               Cancel
             </button>
-            <button className="w-full px-6 py-3 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">
+            <button className="w-full px-6 py-3 text-sm font-medium text-white bg-[#526FFF] rounded-[8px] focus:outline-none transition-colors">
               Next
             </button>
           </div>
