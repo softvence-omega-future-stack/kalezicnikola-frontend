@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
-import { Search, Bell, ChevronDown, ArrowLeft } from 'lucide-react';
+import {  ArrowLeft } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import NotificationsDrawer from './Notifications';
 import UserDropdown from './DoctorProfile/DoctorProfileDropdown';
+import karennix from '../../../assets/svgIcon/karenNix.svg'
+import search from '../../../assets/svgIcon/search.svg'
+import notification from '../../../assets/svgIcon/notification.svg'
+
+import LanguageSelector from './LanguageSelector';
 
 const userData = {
   name: 'Keren nix',
   role: 'Anaesthesia',
-  avatarUrl: 'https://i.ibb.co.com/tM6Sb5kF/KarenNix.png',
+  avatarUrl: karennix,
 };
 
 const MainHeader: React.FC = () => {
@@ -16,12 +21,14 @@ const MainHeader: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+
   // ✅ Check if current route is dashboard home
   const isDashboardHome =
     location.pathname === '/dashboard' || location.pathname === '/dashboard/';
 
   return (
-    <header className="w-full h-20 mb-2  border-b border-gray-200 flex items-center justify-between px-6 md:px-8 lg:px-10 sticky top-0 z-30">
+  <div className='flex flex-col w-full border-b border-gray-200'>
+      <header className="w-full h-20 mb-2   flex items-center justify-between px-6 md:px-8 lg:px-10 sticky top-0 z-30">
       
       {/* 🔙 Back Button + Search Bar */}
       <div className="flex items-center w-full max-w-lg rounded-lg py-3 px-4 border border-transparent focus-within:border-indigo-300 transition-colors">
@@ -39,39 +46,35 @@ const MainHeader: React.FC = () => {
   </div>
 )}
 
+<div className='flex items-center gap-3'>
+          <img src={search} alt="" />
 
-        <Search className="w-5 h-5 text-[#111A2D] mr-3 flex-shrink-0" />
         <input
           type="text"
           placeholder="Search something."
           className="w-full text-gray-700 placeholder-[#111A2D] focus:outline-none text-base"
         />
+</div>
       </div>
 
       {/* 🔔 Notification + User */}
       <div className="flex items-center space-x-4 sm:space-x-6">
-        {/* Language */}
-        <div className="hidden md:flex items-center text-gray-700 cursor-pointer hover:text-indigo-600 transition-colors">
-          <div className="w-6 h-6 mr-1">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg"
-              alt="UK Flag"
-              className="rounded-full w-full h-full object-cover border border-gray-200"
-            />
-          </div>
-          <span className="text-sm font-medium mr-1">EN</span>
-          <ChevronDown className="w-4 h-4" />
-        </div>
+     {/* Language */}
+  <div className="relative">
+   <LanguageSelector/>
 
-        <div className="h-8 w-px bg-gray-200 hidden md:block" />
+    </div>
 
-        {/* Notification */}
-        <button
-          onClick={() => setShowNotification(true)}
-          className="relative p-2 text-[#111A2D] transition-colors focus:outline-none border-r border-gray-200"
-        >
-          <Bell className="w-[14px] h-[16px]" />
-        </button>
+{/* Notification */}
+<div className="flex items-center border-r border-gray-200 pr-3 ml-3 h-10">
+  <button
+    onClick={() => setShowNotification(true)}
+    className="relative p-2 text-[#111A2D] transition-colors focus:outline-none"
+  >
+    <img src={notification} alt="" />
+  </button>
+</div>
+
 
         {/* User Profile */}
         <div className="relative">
@@ -83,7 +86,7 @@ const MainHeader: React.FC = () => {
               <img
                 src={userData.avatarUrl}
                 alt={userData.name}
-                className="h-10 w-10 rounded-xl object-cover mr-3 border border-gray-200"
+                className="h-10 w-10 rounded-xl object-cover mr-3 "
               />
               <div className="hidden sm:block">
                 <p className="text-lg font-semibold text-[#171C35] leading-none">
@@ -106,6 +109,7 @@ const MainHeader: React.FC = () => {
         )}
       </div>
     </header>
+  </div>
   );
 };
 

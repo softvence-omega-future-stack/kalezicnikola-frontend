@@ -47,11 +47,11 @@ export default function PrescriptionsPage() {
       </div>
 
       {/* Prescription List */}
-      <div className="bg-white rounded-lg shadow-sm space-y-4">
+      <div className="bg-white rounded-lg  space-y-4">
         {prescriptions.map((item) => (
           <div
             key={item.id}
-            className="flex justify-between items-center p-4 bg-gray-50 transition"
+            className="flex justify-between items-center p-4 bg-gray-50 rounded-2xl transition"
           >
             <p className="font-medium text-base text[#171C35]">{item.date}</p>
             <button

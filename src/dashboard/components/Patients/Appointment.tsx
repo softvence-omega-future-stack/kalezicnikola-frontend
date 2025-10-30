@@ -18,7 +18,7 @@ const Appointment = () => {
           <h2 className="text-2xl font-semibold text-[#171C35] mb-4">Appointments</h2>
           <div className="space-y-3">
             {appointments.map((apt, index) => (
-              <div key={index} className="py-3 bg-[#FAFAFA] border-b px-2 border-gray-100 last:border-0 flex items-center justify-between">
+              <div key={index} className="py-3 bg-[#FAFAFA] border-b px-2 border-gray-100 last:border-0 rounded-2xl flex items-center justify-between">
                 <div className="flex flex-col">
                   <span className="text-base font-semibold text-[#171C35]">{apt.type}</span>
                   <div className="flex items-center gap-3 mt-1 text-sm ">
@@ -33,7 +33,7 @@ const Appointment = () => {
                   </div>
                 </div>
                 <span
-                  className={`text-sm font-semibold px-3 py-1 rounded ${
+                  className={`text-sm font-semibold px-3 py-1 rounded-[8px] ${
                     apt.status === 'Upcoming' ? 'bg-[#0040FF1A] text-[#0040FF]' : 'bg-[#0080801A] text-[#008080]'
                   }`}
                 >

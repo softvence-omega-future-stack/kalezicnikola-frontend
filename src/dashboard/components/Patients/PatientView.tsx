@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import {  List, Grid3x3, ChevronDown, Check, ChevronRight } from 'lucide-react';
+import {  List, Grid3x3, ChevronDown, Check,  } from 'lucide-react';
 import ListView from './ListView';
 import GridView from './GridView';
 import { useNavigate } from 'react-router-dom';
+import homeIcon from '../../../assets/svgIcon/homeIcon.svg'
+import chevronIcon from '../../../assets/svgIcon/chevronnRight.svg'
 
 type ViewMode = 'list' | 'grid';
 
@@ -20,9 +22,9 @@ export default function PatientsView() {
     <div className="min-h-screenp-4 sm:p-6">
       {/* Breadcrumb */}
       <div className="flex items-center gap-2 text-sm text-gray-600 mb-6">
-      <img src="https://i.ibb.co.com/wNx4k4sR/HomeIcon.png" alt="" />
+      <img src={homeIcon} alt="" />
         <span>Dashboard</span>
-        <ChevronRight size={12}/>
+       <img src={chevronIcon} alt="" />
         <span className="font-semibold text-[#171C35]">Patients</span>
       </div>
 
@@ -59,7 +61,7 @@ export default function PatientsView() {
               </button>
 
               {dropdownOpen && (
-                <div className="absolute right-0 mt-1 w-28 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
+                <div className="absolute right-0 mt-1 w-28 bg-white border border-gray-200 rounded-2xl shadow-lg z-10">
                   {views.map((v) => (
                     <button
                       key={v.type}

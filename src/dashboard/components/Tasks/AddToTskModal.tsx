@@ -1,5 +1,6 @@
 import  { useState } from 'react';
 import { X, ChevronDown } from 'lucide-react';
+import calender from '../../../assets/svgIcon/calender.svg'
 
 interface AddTaskModalProps {
   onClose: () => void;
@@ -126,7 +127,7 @@ export default function AddTaskModal({ onClose, onAddTask }: AddTaskModalProps) 
                 onChange={(e) => setFormData({ ...formData, dueDate: e.target.value })}
                 className="w-full px-4 py-2.5 bg-white border border-gray-300 rounded-[8px] text-sm text-[#171c35]placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#526fff] focus:border-transparent"
               />
-                <img src="https://i.ibb.co.com/gbYTtKHC/Date-Birth-Icon.png" className='absolute right-4 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none' alt="" />
+                <img src={calender} className='absolute right-4 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none' alt="" />
             </div>
           </div>
 

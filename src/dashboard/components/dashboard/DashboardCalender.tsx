@@ -47,11 +47,11 @@ const CalendarView: React.FC = () => {
   ];
 
   return (
-    <div className="bg-white rounded-2xl p-6">
+    <div className="bg-white rounded-2xl p-5 ">
       {/* Header Section */}
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-xl font-semibold text-[#171C35">Calendar</h2>
-        <button  onClick={() => setIsModalOpen(true)} className="flex items-center gap-2 px-4 py-2 border border-gray-200 rounded-lg text-sm text-[#111A2D] hover:bg-gray-50">
+        <button  onClick={() => setIsModalOpen(true)} className="flex items-center gap-2 px-4 py-2 border border-gray-200 rounded-[8px] text-sm text-[#111A2D] hover:bg-gray-50">
           <Plus className="w-4 h-4" />
           Appointment
         </button>

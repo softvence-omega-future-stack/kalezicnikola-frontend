@@ -1,5 +1,15 @@
 import React, { useState } from 'react';
-import { Home, Video, Phone, } from 'lucide-react';
+
+import call from '../../../assets/svgIcon/callLogs.svg'
+import vediocal from '../../../assets/svgIcon/videoCall.svg'
+import karennix from '../../../assets/svgIcon/karenNix.svg'
+import kurmisadia from '../../../assets/svgIcon/kurmisadia.svg'
+import search from '../../../assets/svgIcon/search.svg'
+import home from '../../../assets/svgIcon/homeIcon.svg'
+import chevron from '../../../assets/svgIcon/chevronnRight.svg'
+import doc from '../../../assets/svgIcon/document.svg'
+import react from '../../../assets/svgIcon/react.svg'
+import send from '../../../assets/svgIcon/search.svg'
 
 interface Message {
   id: number;
@@ -41,7 +51,7 @@ const SupportChat: React.FC = () => {
     {
       id: 1,
       sender: 'Kurmisadia',
-      avatar: 'https://i.ibb.co.com/SwgjvKYG/kurmisiddha.png',
+      avatar: kurmisadia,
       timestamp: 'Jan 30, 2023, 5:11 AM',
       content: 'Hello Dr. Johnson, I need to consult with you about a patient with unusual',
       isDoctor: false
@@ -49,7 +59,7 @@ const SupportChat: React.FC = () => {
     {
       id: 2,
       sender: 'Dr. Keren nix',
-      avatar: 'https://i.ibb.co.com/tM6Sb5kF/KarenNix.png',
+      avatar: karennix,
       timestamp: 'Jan 30, 2023, 5:10 AM',
       content: 'Of course, Dr. Wilson. What are the symptoms you\'re seeing?',
       isDoctor: true
@@ -57,7 +67,7 @@ const SupportChat: React.FC = () => {
     {
       id: 3,
       sender: 'Kurmisadia',
-      avatar: 'https://i.ibb.co.com/SwgjvKYG/kurmisiddha.png',
+      avatar: kurmisadia,
       timestamp: 'Jan 30, 2023, 5:11 AM',
       content: 'Hello Dr. Johnson, I need to consult with you about a patient with unusual',
       isDoctor: false
@@ -65,7 +75,7 @@ const SupportChat: React.FC = () => {
     {
       id: 4,
       sender: 'Dr. Keren nix',
-      avatar: 'https://i.ibb.co.com/tM6Sb5kF/KarenNix.png',
+      avatar: karennix,
       timestamp: 'Jan 30, 2023, 5:10 AM',
       content: 'Of course, Dr. Wilson. What are the symptoms you\'re seeing?',
       isDoctor: true
@@ -84,10 +94,10 @@ const SupportChat: React.FC = () => {
       {/* Header */}
       <div className="  px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex items-center gap-2 text-sm text-gray-600 mb-4">
-          <Home size={18} className="text-gray-400" />
-          <span className="text-gray-400">&gt;</span>
+          <img src={home} alt="" />
+            <img src={chevron} alt="" />
           <span className="text-gray-600">Dashboard</span>
-          <span className="text-gray-400">&gt;</span>
+          <img src={chevron} alt="" />
           <span className="text-gray-900 font-medium">Supports</span>
         </div>
         <h1 className="text-2xl sm:text-3xl font-semibold text-[#171C35]">Supports</h1>
@@ -95,10 +105,10 @@ const SupportChat: React.FC = () => {
 
       {/* Main Content */}
       <div className=" px-4 sm:px-6 lg:px-8 py-6">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-[10px]">
           {/* Left Sidebar - Contacts */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-2xl  min-h-screen border border-gray-200 overflow-hidden">
+            <div className="bg-white rounded-2xl  min-h-screen  overflow-hidden">
               {/* Doctor Profile Header */} 
               <div className="p-5 border-b border-gray-200">
                 <div className="flex items-center justify-between mb-4">
@@ -117,17 +127,17 @@ const SupportChat: React.FC = () => {
                   </div>
                   <div className="flex items-center gap-2">
                     <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-                      <Video size={20} className="text-gray-600" />
+                     <img src={vediocal} alt="" />
                     </button>
                     <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-                      <Phone size={20} className="text-gray-600" />
+                      <img src={call} alt="" />
                     </button>
                   </div>
                 </div>
 
                {/* Search */}
 <div className="relative bg-[#F3F6F6] rounded-[12px] p-2 flex items-center">
-  <img src='https://i.ibb.co.com/XxdVjfHZ/search-Icon.png'  className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+  <img src={search} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
   <input
     type="text"
     placeholder="search..."
@@ -148,8 +158,8 @@ const SupportChat: React.FC = () => {
                   <button
                     key={contact.id}
                     onClick={() => setSelectedContact(contact.id)}
-                    className={`w-full p-4 flex items-start gap-3 hover:bg-gray-50 transition-colors text-left ${
-                      selectedContact === contact.id ? 'bg-blue-50' : ''
+                    className={`w-full p-4 flex items-start gap-3 transition-colors text-left ${
+                      selectedContact === contact.id ? '' : ''
                     }`}
                   >
                     <div className="relative flex-shrink-0">
@@ -182,13 +192,13 @@ const SupportChat: React.FC = () => {
 
           {/* Right Side - Chat */}
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col h-[calc(100vh-220px)] min-h-[500px]">
+            <div className="bg-white rounded-2xl  overflow-hidden flex flex-col h-[calc(100vh-220px)] min-h-[500px]">
               {/* Chat Header */}
               <div className="p-5 m-4 bg-[#F3F6F6] rounded-2xl flex items-center justify-between ">
                 <div className="flex items-center gap-3 ">
                   <div className="relative">
                     <img
-                      src="https://i.ibb.co.com/tM6Sb5kF/KarenNix.png"
+                      src={karennix}
                       alt="Dr. Keren nix"
                       className="w-12 h-12 rounded-full object-cover"
                     />
@@ -204,10 +214,10 @@ const SupportChat: React.FC = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-                    <Video size={20} className="text-gray-600" />
+                    <img src={vediocal} alt="" />
                   </button>
                   <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-                    <Phone size={20} className="text-gray-600" />
+                    <img src={call} alt="" />
                   </button>
                 </div>
               </div>
@@ -241,11 +251,11 @@ const SupportChat: React.FC = () => {
               {/* Message Input */}
               <div className="p-4  bg-[#F3F6F6] m-3 rounded-3xl">
                 <div className="flex items-center gap-3">
-                  <button className="p-2  rounded-lg transition-colors flex-shrink-0">
-                   <img src="https://i.ibb.co.com/4wJQ3mMQ/msgsender.png" alt="" />
+                  <button className="    transition-colors flex-shrink-0">
+                   <img src={doc} alt="" className='p-[10px] bg-white h-10 w-10 rounded-full' />
                   </button>
                   <button className="p-2  rounded-lg transition-colors flex-shrink-0">
-                    <img src="https://i.ibb.co.com/CpsyF4p4/msgreact-Icon.png" alt="" />
+                    <img src={react} alt="" className='p-[10px] bg-white h-10 w-10 rounded-full' />
                   </button>
                   <input
                     type="text"
@@ -260,7 +270,7 @@ const SupportChat: React.FC = () => {
                     className="px-5 py-2.5 bg-[#526FFF] text-white rounded-[25px] font-medium  transition-colors flex items-center gap-2 flex-shrink-0"
                   >
                     SEND
-                    <img src="https://i.ibb.co.com/ynjTB3Nm/sendicon.png" alt="" />
+                    <img src={send} alt="" />
                   </button>
                 </div>
               </div>

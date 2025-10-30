@@ -1,11 +1,23 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import logo from '../assets/svgIcon/logo.svg'
+import sidelogo from '../assets/svgIcon/rightside-logo.svg'
+
+import dashbord from '../assets/svgIcon/dashboard.svg'
+import callLogs from '../assets/svgIcon/callLogs.svg'
+import calendar from '../assets/svgIcon/calender.svg'
+import patients from '../assets/svgIcon/patients.svg'
+import tasks from '../assets/svgIcon/tasks.svg'
+import supports from '../assets/svgIcon/supports.svg'
+import settings from '../assets/svgIcon/settings.svg'
+import logout from '../assets/svgIcon/logout.svg'
+
 
 const Logo: React.FC = () => (
   <div className="flex items-center justify-between  md:justify-start gap-4 p-4">
   <div className='flex items-center gap-2'>
       <img
-      src="https://i.ibb.co.com/0yzBCxRm/logo.png"
+      src={logo}
       className="h-7 w-7"
       alt="logo"
     />
@@ -13,8 +25,8 @@ const Logo: React.FC = () => (
   </div>
     <div>
       <div className="relative w-8 h-8 flex items-center ml-20">
-      <img src="https://i.ibb.co.com/Kjmmzw43/Vector-3.png" alt="box" />
-      <img src="https://i.ibb.co.com/H8G449X/Vector-2.png" alt="inner icon" className="absolute" />
+      <img src={sidelogo} alt="box" />
+  
     </div>
     </div>
   </div>
@@ -35,8 +47,8 @@ const NavItem: React.FC<NavItemProps> = ({ to, label, iconSrc }) => {
       to={to}
       end={isDashboard}
       className={({ isActive }) =>
-        `flex items-center gap-3 py-3 mx-6 px-4 mb-1 rounded-lg transition-colors 
-         ${isActive ? 'bg-[#DFE2E2] ' : isGray ? 'text-[#667085]' : 'text-[#111A2D] font-semibold'} justify-center md:justify-start`
+        `flex items-center gap-3 py-3 mx-6 px-4 mb-1 rounded-[8px] transition-colors 
+         ${isActive ? 'bg-[#DFE2E2] font-semibold' : isGray ? 'text-[#667085]' : 'text-[#111A2D] font-semibold'} justify-center md:justify-start`
       }
     >
       <img src={iconSrc} alt={label} className="h-6 w-6 object-contain" />
@@ -53,12 +65,12 @@ const Sidebar: React.FC = () => {
         <Logo />
 
         <nav className="flex flex-col mt-2 gap-2">
-          <NavItem to="/dashboard" iconSrc="https://i.ibb.co.com/gbTtnvQX/dashboard-icon.png" label="Dashboard" />
-          <NavItem to="/dashboard/call_logs" iconSrc="https://i.ibb.co.com/LzJb92yd/callogs-Icon.png" label="Call Logs" />
-          <NavItem to="/dashboard/calendar" iconSrc="https://i.ibb.co.com/jvwLXHjj/calendar-Icon.png" label="Calendar" />
-          <NavItem to="/dashboard/patients" iconSrc="https://i.ibb.co.com/qLJhx3J8/patients-Icon.png" label="Patients" />
-          <NavItem to="/dashboard/tasks" iconSrc="https://i.ibb.co.com/0jF0Kf8M/Tasks-Icon.png" label="Tasks" />
-          <NavItem to="/dashboard/supports" iconSrc="https://i.ibb.co.com/gbSxWDz4/Support-Icon.png" label="Supports" />
+          <NavItem to="/dashboard" iconSrc={dashbord} label="Dashboard" />
+          <NavItem to="/dashboard/call_logs" iconSrc={callLogs} label="Call Logs" />
+          <NavItem to="/dashboard/calendar" iconSrc={calendar} label="Calendar" />
+          <NavItem to="/dashboard/patients" iconSrc={patients} label="Patients" />
+          <NavItem to="/dashboard/tasks" iconSrc={tasks} label="Tasks" />
+          <NavItem to="/dashboard/supports" iconSrc={supports} label="Supports" />
         </nav>
       </div>
 
@@ -81,8 +93,8 @@ const Sidebar: React.FC = () => {
           </button>
         </div>
 
-        <NavItem to="/dashboard/settings" iconSrc="https://i.ibb.co.com/prwFGM8n/Setting-Icon.png" label="Settings" />
-        <NavItem to="/" iconSrc="https://i.ibb.co.com/YBS1JYcY/logout-Icon.png" label="Logout" />
+        <NavItem to="/dashboard/settings" iconSrc={settings} label="Settings" />
+        <NavItem to="/" iconSrc={logout} label="Logout" />
       </div>
     </div>
   );

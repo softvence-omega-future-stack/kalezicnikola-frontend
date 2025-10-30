@@ -34,7 +34,7 @@ export default function WeeklyCalendar() {
   ];
 
   return (
-    <div className="min-h-screen bg-white p-4 sm:p-6">
+    <div className="min-h-screen bg-white rounded-2xl p-4 sm:p-6">
       <div className="overflow-x-auto">
         {/* Header */}
         <div className="grid grid-cols-8 border-b border-gray-200">

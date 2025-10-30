@@ -48,7 +48,7 @@ export default function PatientSummary() {
         {summaryCards.map((card, index) => (
           <div
             key={index}
-            className={`relative flex-1 min-w-[220px] max-w-[300px] h-[150px] p-6 rounded-[28px] overflow-hidden ${card.bgColor}`}
+            className={`relative flex-1  h-[150px] p-6 rounded-[28px] overflow-hidden ${card.bgColor}`}
           >
             <h3 className="text-xl font-semibold text-[#171C35] mb-3">{card.title}</h3>
             <p className="text-sm font-medium text-[#1318319C]">
@@ -81,7 +81,7 @@ export default function PatientSummary() {
           {appointments.map((apt, index) => (
             <div
               key={index}
-              className="py-3 bg-[#FAFAFA] border-b px-2 border-gray-100 last:border-0 flex items-center justify-between"
+              className="py-3 bg-[#FAFAFA] border-b px-2 border-gray-100 last:border-0 rounded-2xl flex items-center justify-between"
             >
               <div className="flex flex-col">
                 <span className="text-base font-semibold text-[#171C35]">{apt.type}</span>
@@ -97,7 +97,7 @@ export default function PatientSummary() {
                 </div>
               </div>
               <span
-                className={`text-sm font-semibold px-3 py-1 rounded ${
+                className={`text-sm font-semibold px-3 py-1 rounded-[8px] ${
                   apt.status === 'Upcoming' ? 'bg-[#0040FF1A] text-[#0040FF]' : 'bg-[#0080801A] text-[#008080]'
                 }`}
               >

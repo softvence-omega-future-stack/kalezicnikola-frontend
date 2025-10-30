@@ -12,12 +12,12 @@ const DashboardLayout = () => {
       </div>
 
       {/* Main content */}
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col pl-2">
         {/* Topbar */}
         <MainHeader />
 
         {/* Outlet for nested routes */}
-        <main className="flex-1 p-6  overflow-auto">
+        <main className="flex-1 -pl-6 overflow-auto">
         
           <Outlet />
         </main>

@@ -7,21 +7,21 @@ import DashboardCalender from "@/dashboard/components/dashboard/DashboardCalende
 
 const Dashboard: React.FC = () => {
   return (
-    <div className="min-h-screen  px-4 py-6 md:px-8 lg:px-10">
+    <div className="min-h-screen   1">
     
       <div className="mb-8">
         <DashboardTopSection />
       </div>
 
    
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-[10px]">
       
         <div className="lg:col-span-1">
           <AppointmentsList />
         </div>
 
     
-        <div className="lg:col-span-2 space-y-8">
+        <div className="lg:col-span-2 space-y-3">
           {/* Summary Cards */}
           <SummaryCards />
 

@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
-import { Home,  Play, ExternalLink, ChevronRight } from 'lucide-react';
+import {  Play,} from 'lucide-react';
 import PatientTranscriptPage from './TransscriptModal';
 import { FiX } from 'react-icons/fi';
-import { IoFilterSharp } from "react-icons/io5";
+
+import homeIcon from '../../../assets/svgIcon/homeIcon.svg'
+import chevronIcon from '../../../assets/svgIcon/chevronnRight.svg'
+import filter from '../../../assets/svgIcon/filter.svg'
+import viewIcon from '../../../assets/svgIcon/viewArrow.svg'
 
 interface CallLog {
   id: number;
@@ -80,17 +84,17 @@ const CallLogsPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen ">
+    <div className="min-h-screen -ml- ">
       {/* Header Navigation */}
-      <div className="  px-6 py-3">
-        <div className="flex items-center gap-4 text-sm">
-          <button className="text-gray-400 hover:text-gray-600">
-            <Home size={18} />
-          </button>
-          <span className="text-gray-400"><ChevronRight size={12}/> </span>
+      <div className="  px-2 py-3">
+        <div className="flex items-center gap-[10px] text-sm">
+        
+            <img src={homeIcon} alt="" />
+        
+          <span className="text-gray-400"><img src="" alt="" /> </span>
           <span className="text-gray-500 text-xs">Dashboard</span>
-          <span className="text-gray-400"><ChevronRight size={12}/></span>
-          <span className="text-balck text-xs font-bold">Call Logs</span>
+          <span className="text-gray-400"><img src={chevronIcon} alt="" /></span>
+          <span className="text-[#042435] text-sm font-semibold">Call Logs</span>
         </div>
       </div>
 
@@ -104,70 +108,71 @@ const CallLogsPage: React.FC = () => {
           <div className="flex items-center justify-between p-4  rounded-2xl ">
             <h2 className="text-base font-semibold text-[#171C35]">Call Logs</h2>
             <button className="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-[#111A2D] hover:bg-gray-50 rounded border border-gray-300">
-              <IoFilterSharp size={16}/>
+             <img src={filter} alt="" />
               Filters
             </button>
           </div>
 
           {/* Table */}
           <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b border-gray-200 ">
-                  <th className="px-6 py-3 text-left">
-                    <input
-                      type="checkbox"
-                      checked={selectedRows.length === callLogs.length}
-                      onChange={toggleAllRows}
-                      className="w-4 h-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                    />
-                  </th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-[#171C35]">Patient Name</th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-[#171C35]">Timestamp</th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-[#171C35]">Phone Number</th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-[#171C35]">Status</th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-[#171C35]">Duration</th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-[#171C35]">Transcript</th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-[#171C35]">Profile</th>
-                </tr>
-              </thead>
-              <tbody>
-                {callLogs.map((log) => (
-                  <tr key={log.id} className="border-b border-gray-100 hover:bg-gray-50">
-                    <td className="px-6 py-4">
-                      <input
-                        type="checkbox"
-                        checked={selectedRows.includes(log.id)}
-                        onChange={() => toggleRowSelection(log.id)}
-                        className="w-4 h-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                      />
-                    </td>
-                    <td className="px-6 py-4 text-sm font-semibold text-[#111A2D">{log.patientName}</td>
-                    <td className="px-6 py-4 text-sm font-semibold text-[#111A2D]">{log.timestamp}</td>
-                    <td className="px-6 py-4 text-sm font-semibold text-[#111A2D]">{log.phoneNumber}</td>
-                    <td className="px-6 py-4">
-                      <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm text-[#111A2D] font-semibold ${getStatusStyle(log.status)}`}>
-                        <span className={`w-1.5 h-1.5 rounded-full ${getStatusDot(log.status)}`}></span>
-                        {log.status}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 text-sm font-semibold text-[#111A2D]">{log.duration}</td>
-                    <td className="px-6 py-4">
-                      <button      onClick={() => setCurrentCall(log)}
-                       className="flex items-center gap-2 px-4 py-1.5 text-sm font-semibold text-[#171C35]hover:bg-gray-100 rounded border border-gray-300">
-                        Play
-                        <Play size={14} fill="currentColor" />
-                      </button>
-                    </td>
-                    <td className="px-6 py-4">
-                      <button className="flex items-center gap-2 text-sm font-medium text-[#526FFF] ">
-                        View Profile
-                        <ExternalLink size={14} />
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
+            <table className="w-full px-2">
+            <thead>
+  <tr className="">
+    <th className="  px-6 py-3 text-left text-sm font-semibold text-[#171C35]">
+      <div className="flex items-center gap-3">
+        <input
+          type="checkbox"
+          checked={selectedRows.length === callLogs.length}
+          onChange={toggleAllRows}
+          className="w-4 h-4 rounded-2xl border-gray-100 text-indigo-600 focus:ring-indigo-500"
+        />
+        Patient Name
+      </div>
+    </th>
+    <th className="px-6 py-3 text-left text-sm font-semibold text-[#171C35]">Timestamp</th>
+    <th className="px-6 py-3 text-left text-sm font-semibold text-[#171C35]">Phone Number</th>
+    <th className="px-6 py-3 text-left text-sm font-semibold text-[#171C35]">Status</th>
+    <th className="px-6 py-3 text-left text-sm font-semibold text-[#171C35]">Duration</th>
+    <th className="px-6 py-3 text-left text-sm font-semibold text-[#171C35]">Transcript</th>
+    <th className="px-6 py-3 text-left text-sm font-semibold text-[#171C35]">Profile</th>
+  </tr>
+</thead>
+
+<tbody>
+  {callLogs.map((log) => (
+    <tr key={log.id} className="border-b border-gray-100 hover:bg-gray-50">
+      <td className="px-6 py-4 flex items-center gap-2 text-sm font-semibold text-[#111A2D]">
+        <input
+          type="checkbox"
+          checked={selectedRows.includes(log.id)}
+          onChange={() => toggleRowSelection(log.id)}
+          className="w-4 h-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+        />
+        {log.patientName}
+      </td>
+      <td className="px-6 py-4 text-sm font-semibold text-[#111A2D]">{log.timestamp}</td>
+      <td className="px-6 py-4 text-sm font-semibold text-[#111A2D]">{log.phoneNumber}</td>
+      <td className="px-6 py-4">
+        <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-semibold ${getStatusStyle(log.status)}`}>
+          <span className={`w-1.5 h-1.5 rounded-full ${getStatusDot(log.status)}`}></span>
+          {log.status}
+        </span>
+      </td>
+      <td className="px-6 py-4 text-sm font-semibold text-[#111A2D]">{log.duration}</td>
+      <td className="px-6 py-4">
+        <button onClick={() => setCurrentCall(log)} className="flex items-center gap-2 px-4 py-1.5 text-sm font-semibold text-[#171C35] rounded-2xl border border-gray-300">
+          Play <Play size={14} fill="currentColor" />
+        </button>
+      </td>
+      <td className="px-6 py-4">
+        <button className="flex items-center gap-2 text-sm font-medium text-[#526FFF]">
+          View Profile <img src={viewIcon} alt="" />
+        </button>
+      </td>
+    </tr>
+  ))}
+</tbody>
+
             </table>
           </div>
         </div>
@@ -175,7 +180,7 @@ const CallLogsPage: React.FC = () => {
    {/* Transcript Section */}
       {currentCall && (
   <div className="fixed inset-0 bg-black/50 bg-opacity-30 flex justify-center items-start p-6 z-50">
-    <div className="bg-white rounded-lg shadow-lg w-[980px] h-[1138px] overflow-y-auto max-h-[90vh] relative mt-20">
+    <div className="bg-white rounded-[8px] shadow-lg w-[980px] h-[1138px] overflow-y-auto max-h-[90vh] relative mt-20">
       <button
         className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 cursor-pointer"
         onClick={() => setCurrentCall(null)}

@@ -45,7 +45,7 @@ const DashboardTopSection: React.FC = () => {
   const { firstName, lastName, date, todayIncomingCalls, successfulCalls, averageCallDuration } = mockDashboardData;
 
   return (
-    <div className=" p-4 sm:p-6 rounded-lg bg-[#F3F6F6]  mx-auto">
+    <div className=" px-[10px] rounded-lg bg-[#F3F6F6]  mx-auto">
       {/* Date Navigation */}
       <div className="flex items-center text-[#111A2D] text-sm font-medium mb-4">
         <button className="p-1 rounded-full transition-colors">

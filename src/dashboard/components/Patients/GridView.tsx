@@ -23,9 +23,9 @@ const GridView: React.FC = () => {
   ];
   return (
     <div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-5">
             {patients.map((patient, index) => (
-              <div key={index} className=" rounded-3xl  p-6  border border-[#E8E8E8]">
+              <div key={index} className=" rounded-[16px]  p-6 bg-[#E8E8E8]  ">
                 {/* Profile Section */}
                 <div className="flex items-start gap-4 mb-6">
                   <div className=""> <img className="h-14 w-14 rounded-full" src="https://i.ibb.co.com/wh1X6vJn/Screenshot-2025-10-26-144913.png" alt="" /></div>
@@ -65,10 +65,10 @@ const GridView: React.FC = () => {
 
                 {/* View Button */}
                 <button        onClick={() => navigate(`/dashboard/patients/${patient.id}`)}
-                  className={`w-full py-3 rounded-full font-medium transition-colors cursor-pointer ${
+                  className={`w-full py-3 rounded-full border border-gray-300 mt-4 font-medium transition-colors cursor-pointer ${
                     index === 1 
                       ? 'bg-[#526FFF] text-white ' 
-                      : 'bg-white text-[#171C35] border border-[#E8E8E8] '
+                      : ' border border-gray-300 text-[#171C35]'
                   }`}
                 >
                   View

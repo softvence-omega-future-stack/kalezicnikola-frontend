@@ -30,10 +30,10 @@ export const LabReport: React.FC<LabReportProps> = ({ reportId, onClose }) => {
   ];
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 overflow-auto">
-      <div className="bg-gray-100 w-full max-w-3xl rounded-2xl shadow-2xl flex flex-col max-h-[90vh]">
+    <div className="fixed inset-0 bg-black/50 flex items-center rounded-2xl justify-center z-50 p-4 overflow-auto">
+      <div className="bg-gray-200 w-full max-w-3xl rounded-2xl  flex flex-col max-h-[90vh] p-3">
         {/* Header */}
-        <div className="bg-gray-100 px-6 py-4 flex items-center justify-between flex-shrink-0">
+        <div className=" px-6 py-4 flex items-center justify-between flex-shrink-0">
           <h1 className="text-2xl font-bold text-[#171C35]">Lab Results</h1>
           <button
             onClick={onClose}
@@ -44,9 +44,9 @@ export const LabReport: React.FC<LabReportProps> = ({ reportId, onClose }) => {
         </div>
 
         {/* Scrollable Content */}
-        <div className="flex-1 overflow-y-auto">
+        <div className="flex-1 overflow-y-auto rounded-2xl bg-white py-2 px-4">
           {/* Laboratory Report Header */}
-          <div className="bg-teal-600 text-white text-center py-2">
+          <div className="bg-teal-600 text-white text-center rounded-[8px] py-2">
             <h2 className="text-sm font-bold tracking-wide">LABORATORY REPORT</h2>
           </div>
 

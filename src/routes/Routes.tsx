@@ -1,29 +1,54 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
-
-import Dashboard from "@/pages/Dashboard";
 import DashboardLayout from "@/layout/DashboardLayout";
+import Dashboard from "@/pages/Dashboard";
 import CallLogs from "@/pages/CallLogs";
 import Calendar from "@/pages/Calendar";
-
+import Patients from "@/pages/Patients";
+import AddPatientForm from "@/dashboard/components/Patients/Addpatient";
+import PatientProfilePage from "@/dashboard/components/Patients/PatientProfilePage";
 import Tasks from "@/pages/Tasks";
 import Supports from "@/pages/Supports";
 import Settings from "@/pages/Settings";
 import AddNewStaff from "@/dashboard/components/Settings/Sidebar/MyStaf/AddNewStaf";
 import StaffProfile from "@/dashboard/components/Settings/Sidebar/MyStaf/ViewProfile";
 import DoctorProfile from "@/dashboard/components/dashboard/DoctorProfile/DoctorProfile";
-
-import PatientProfilePage from "@/dashboard/components/Patients/PatientProfilePage";
-import Patients from "@/pages/Patients";
-import LoginPage from "@/auth/Login";
-import SignupPage from "@/auth/SignUpPage";
-import ForgotPasswordPage from "@/auth/ForgetPassword";
-import OtpPage from "@/auth/OtpPage";
-import CreateNewPassword from "@/auth/CreateMewPass";
-import SuccessfullNewPassword from "@/auth/SuccessfullnewPass";
-import AddPatientForm from "@/dashboard/components/Patients/Addpatient";
 import AdminDashboardLayout from "@/layout/AdminDashboardLayout";
 import DashboardHome from "@/pages/Admin/DashboardHome/DashboardHome";
+import LoginPage from "@/auth/Login";
+import SignupPage from "@/auth/SignUpPage";
+import ForgetPasswordPage from "@/auth/ForgetPassword";
+import OtpPage from "@/auth/OtpPage";
+import CreateNewPassword from "@/auth/CreateMewPass";
+import Service from "@/components/Service";
+import SuccessfullNewPassword from "@/auth/SuccessfullnewPass";
+
+
+
+// import DashboardLayout from "@/layout/DashboardLayout";
+// import CallLogs from "@/pages/CallLogs";
+// import Calendar from "@/pages/Calendar";
+
+// import Tasks from "@/pages/Tasks";
+// import Supports from "@/pages/Supports";
+// import Settings from "@/pages/Settings";
+// import AddNewStaff from "@/dashboard/components/Settings/Sidebar/MyStaf/AddNewStaf";
+// import StaffProfile from "@/dashboard/components/Settings/Sidebar/MyStaf/ViewProfile";
+// import DoctorProfile from "@/dashboard/components/dashboard/DoctorProfile/DoctorProfile";
+
+// import PatientProfilePage from "@/dashboard/components/Patients/PatientProfilePage";
+// import Patients from "@/pages/Patients";
+// import LoginPage from "@/auth/Login";
+// import SignupPage from "@/auth/SignUpPage";
+// import ForgotPasswordPage from "@/auth/ForgetPassword";
+// import OtpPage from "@/auth/OtpPage";
+// import CreateNewPassword from "@/auth/CreateMewPass";
+// import SuccessfullNewPassword from "@/auth/SuccessfullnewPass";
+// import AddPatientForm from "@/dashboard/components/Patients/Addpatient";
+// import AdminDashboardLayout from "@/layout/AdminDashboardLayout";
+// import DashboardHome from "@/pages/Admin/DashboardHome/DashboardHome";
+// import Service from "@/components/Service";
+// import Dashboard from "@/pages/Dashboard";
 
 const routes = createBrowserRouter([
   {
@@ -44,7 +69,7 @@ const routes = createBrowserRouter([
       },
       {
         path:'/forget_password',
-        element:<ForgotPasswordPage/>
+        element:<ForgetPasswordPage/>
       },
       {
         path:'/otp',
@@ -53,6 +78,10 @@ const routes = createBrowserRouter([
       {
         path:'/createnew_pass',
         element:<CreateNewPassword/>
+      },
+      {
+        path:'/test',
+        element:<Service/>
       },
       {
         path:'/successfull_pass',

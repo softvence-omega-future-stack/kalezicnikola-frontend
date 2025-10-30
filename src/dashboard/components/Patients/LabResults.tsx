@@ -36,7 +36,7 @@ const LabResultsPage: React.FC = () => {
         <h1 className="text-2xl font-semibold text-[#171C35]">Lab Results</h1>
         <button
           onClick={handleAddTest}
-          className="flex items-center gap-2 px-5 py-2 text-sm text-[#111A2D] font-semibold border rounded-lg hover:bg-gray-100"
+          className="flex items-center gap-2 px-5 py-2 text-sm text-[#111A2D] font-semibold border rounded-[8px] hover:bg-gray-100"
         >
           <Plus className="w-4 h-4 text-[#171C35]" />
           Add New Lab Test

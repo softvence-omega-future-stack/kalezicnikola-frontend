@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Home, ChevronLeft, ChevronRight, Plus } from 'lucide-react';
+import {  ChevronLeft, ChevronRight, Plus } from 'lucide-react';
 import DayView from './DayView';
 import CalendarWeekView from './WeekView';
 import CalendarMonthView from './MonthView';
+import homeIcon from '../../../assets/svgIcon/homeIcon.svg'
+import chevronIcon from '../../../assets/svgIcon/chevronnRight.svg'
 
 const CalendarView: React.FC = () => {
   const [viewType, setViewType] = useState<'day' | 'week' | 'month'>('day');
@@ -17,10 +19,10 @@ const CalendarView: React.FC = () => {
       {/* Breadcrumb */}
       <div className="px-4 sm:px-6 py-3">
         <div className="flex items-center gap-2 text-sm text-gray-500 flex-wrap">
-          <Home size={18} />
-          <ChevronRight size={12} />
+         <img src={homeIcon} alt="" />
+          <img src={chevronIcon} alt="" />
           <span>Dashboard</span>
-          <ChevronRight size={12} />
+         <img src={chevronIcon} alt="" />
           <span className="text-[#171C35] font-medium">Calendar</span>
         </div>
       </div>
@@ -47,14 +49,14 @@ const CalendarView: React.FC = () => {
             <select
               value={viewType}
               onChange={(e) => handleViewChange(e.target.value as 'day' | 'week' | 'month')}
-              className="border border-gray-300 rounded px-3 py-1 text-sm text-gray-700 cursor-pointer focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full sm:w-auto"
+              className="border border-gray-300 rounded-[8px] px-3 py-1 text-sm text-gray-700 cursor-pointer focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full sm:w-auto"
             >
               <option value="day">Day</option>
               <option value="week">Week</option>
               <option value="month">Month</option>
             </select>
 
-            <button className="flex items-center gap-2 px-3 sm:px-4 py-1.5 text-sm text-gray-600 hover:bg-gray-50 rounded border border-gray-300 cursor-pointer w-full sm:w-auto justify-center">
+            <button className="flex items-center gap-2 px-3 sm:px-4 py-1.5 text-sm text-gray-600 hover:bg-gray-50 rounded-[8px] border border-gray-300 cursor-pointer w-full sm:w-auto justify-center">
               <Plus size={16} />
               Appointment
             </button>
@@ -62,7 +64,7 @@ const CalendarView: React.FC = () => {
         </div>
 
         {/* Calendar View */}
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto -mt-2">
           {viewType === 'day' && <DayView />}
           {viewType === 'week' && <CalendarWeekView />}
           {viewType === 'month' && <CalendarMonthView />}

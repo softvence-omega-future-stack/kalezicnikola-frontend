@@ -1,6 +1,13 @@
 import { useState } from 'react';
-import { Home, ChevronDown, Plus,  ChevronRight } from 'lucide-react';
+import { ChevronDown, Plus,   } from 'lucide-react';
 import AddTaskModal from './AddToTskModal';
+import homeIcon from '../../../assets/svgIcon/homeIcon.svg'
+import chevronIcon from '../../../assets/svgIcon/chevronnRight.svg'
+import plus from '../../../assets/svgIcon/plusIcon.svg'
+import edit from '../../../assets/svgIcon/editIcon.svg'
+import deleteIcon from '../../../assets/svgIcon/deleteIcon.svg'
+
+
 
 interface Task {
   id: number;
@@ -101,14 +108,14 @@ export default function TaskList() {
   };
 
   return (
-    <div className="min-h-screen ">
+    <div className="">
       {/* Header */}
-      <div className="px-4 sm:px-6 lg:px-8 py-4">
+      <div className=" sm:px-6 lg:px- py-4">
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-sm text-gray-600 mb-4">
-          <Home className="w-4 h-4" />
+          <img src={homeIcon} alt="" />
           <span className="text-gray-600 font-medium">Dashboard</span>
-            <ChevronRight size={12}/>
+           <img src={chevronIcon} alt="" />
           <span className="text-[#042435]  text-xs font-semibold">Task</span>
         </div>
 
@@ -141,12 +148,12 @@ export default function TaskList() {
       </div>
 
       {/* Columns */}
-      <div className="p-4 sm:p-6 lg:p-8">
+      <div className="p-4 sm:p-6 ">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {columns.map((column) => (
             <div key={column.id} className="bg-white rounded-2xl">
               {/* Column Header */}
-              <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200">
+              <div className="flex items-center justify-between px-4 py-3 ">
                 <div className="flex items-center gap-2">
                   <h2 className="text-xl font-semibold text-[#171c35]">{column.title}</h2>
                   <span className="text-sm text-gray-500">({column.count})</span>
@@ -155,47 +162,49 @@ export default function TaskList() {
                   <button className="p-1 hover:bg-gray-100 rounded">
              
 
-                 <img src="https://i.ibb.co.com/WNWLMm0k/plusIcon.png" alt="" />
+                 <img src={plus} alt="" />
                   </button>
                   <button className="p-1 hover:bg-gray-100 rounded">
-                   <img src="https://i.ibb.co.com/HD1hfW1s/editIcon.png" alt="" />
+                   <img src={edit} alt="" />
                   </button>
                   <button className="p-1 hover:bg-gray-100 rounded">
-                   <img src="       https://i.ibb.co.com/DfLzMBzg/delete-Icon.png" alt="" />
+                   <img src={deleteIcon} alt="" />
                   </button>
                 </div>
               </div>
 
               {/* Tasks */}
-              <div className="p-3 space-y-3 max-h-[calc(100vh-200px)] overflow-y-auto">
+              <div className="p-3 space-y-3  overflow-y-auto">
                 {column.tasks.map((task) => (
                   <div
                     key={task.id}
-                    className="bg-white border border-gray-200 rounded-lg p-3  "
+                    className="bg-[#F3F6F6] rounded-2xl p-3  "
                   >
                     <div className="flex items-center gap-3">
           
                      
 
                       {/* Content */}
-                      <div className="flex-1 min-w-0">
+                      <div className="flex-1 items-center  min-w-0">
                         <div className="flex items-center gap-3">
                          <input
                         type="checkbox"
                         className="w-4 h-4  rounded border-gray-300 text-indigo-600 focus:ring-[#526fff] cursor-pointer flex-shrink-0"
                       />
                           <h3 className="text-xl font-semibold text-[#171c35] flex-1">{task.title}</h3>
-                          <span
+                         <div className='pr-6'>
+                           <span
                             className={`px-2 py-0.5 rounded-full text-sm font-medium whitespace-nowrap ${getPriorityColor(
                               task.priority
                             )}`}
                           >
                             {task.priority}
                           </span>
+                         </div>
                         </div>
-                        <p className="text-base text-[#111A2D] mb-2 leading-relaxed pl-6">{task.description}</p>
+                        <p className="text-base text-[#111A2D] mb-2 leading-relaxed pl-6 pr-7">{task.description}</p>
                         <div className="flex items-center gap-4 text-sm font-medium text-[#171C35]">
-                          <div className="flex items-center gap-1 pl-6">
+                          <div className="flex items-center gap-1 pl-6 mt-2">
                                 <img src="https://i.ibb.co.com/TxG7Rk1Q/clock.png" className='h-3 w-3' alt="" />
                             <span>{task.time}</span>
                           </div>

@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { ChevronRight, Home } from 'lucide-react';
+
 import ParsonalInfo from './ParsonalInfo';
 import PatientSummary from './PatientSummery';
 import Appointment from './Appointment';
 import PrescriptionsPage from './Prescription';
 import LabResultsPage from './LabResults';
+
+import homeIcon from '../../../assets/svgIcon/homeIcon.svg'
+import chevronIcon from '../../../assets/svgIcon/chevronnRight.svg'
 
 const PatientProfilePage: React.FC = () => {
   const [activeTab, setActiveTab] = useState('Personal Info');
@@ -17,13 +20,13 @@ const PatientProfilePage: React.FC = () => {
       <div className="  px-6 py-3">
         <div className="flex items-center gap-4 text-sm">
           <button className="text-gray-400 hover:text-gray-600">
-            <Home size={18} />
+            <img src={homeIcon} alt="" />
           </button>
-          <span className="text-gray-400"><ChevronRight size={12}/> </span>
+          <span className="text-gray-400"><img src={chevronIcon} alt="" /></span>
           <span className="text-gray-600">Dashboard</span>
-          <span className="text-gray-400"><ChevronRight size={12}/> </span>
+          <span className="text-gray-400"><img src={chevronIcon} alt="" /> </span>
           <span className="text-gray-600">Patients</span>
-          <span className="text-gray-400"><ChevronRight size={12}/> </span>
+          <span className="text-gray-400"><img src={chevronIcon} alt="" /></span>
           <span className="text-[#171C35] font-medium">Patient Profile</span>
         </div>
       </div>
@@ -34,9 +37,9 @@ const PatientProfilePage: React.FC = () => {
 
     
 {/* Profile Section */}
-<div className="grid grid-cols-1 xl:grid-cols-3 gap-6 mb-6">
+<div className="grid grid-cols-1 xl:grid-cols-3 gap-[10px] mb-6">
   {/* Left Card - Patient Info + Photo */}
-  <div className="xl:col-span-2 bg-[#E5E9FF] gap-[30px] rounded-2xl p-6 flex justify-between items-start">
+  <div className="xl:col-span-2 bg-[#E5E9FF] gap-[30px] rounded-[24px] p-6 flex justify-between items-start">
     {/* Patient Info */}
     <div className="flex-1 pr-6">
       <h2 className="text-2xl font-semibold text-[#171C35] mb-1">Jonathon Sanders</h2>
@@ -78,15 +81,15 @@ const PatientProfilePage: React.FC = () => {
     </div>
 
     {/* Patient Photo */}
-    <div className="h-[370px] w-[300px] rounded-2xl overflow-hidden  -mt-20 bg-white ">
+    <div className="h-[370px] w-[300px] rounded-[28px] overflow-hidden  -mt-16 bg-white ">
       <img src="https://i.ibb.co.com/d0ZCyRCP/patient-Profile-Icon.png" className="h-full w-full object-cover" alt="" />
     </div>
   </div>
 
   {/* Right Cards */}
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 xl:col-span-1">
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 xl:col-span-1">
     {/* ESR Card */}
-    <div className="bg-[#E5DFF5] rounded-2xl p-4">
+    <div className="bg-[#E5DFF5] rounded-3xl p-4">
       <div className="text-sm text-[#171C35] font-normal mb-1">
         ESR <span className="text-[#FF3D3D] ">(Critical)</span>
       </div>
@@ -97,7 +100,7 @@ const PatientProfilePage: React.FC = () => {
     </div>
 
     {/* Vitamin D Card */}
-    <div className="bg-[#D0E1F5] rounded-2xl p-4">
+    <div className="bg-[#D0E1F5] rounded-3xl p-4">
       <div className="text-sm text-[#171C35] font-normal mb-1">
         Vitamin D <span className="font-bold text-[#FF6200]">(Minor)</span>
       </div>
@@ -110,7 +113,7 @@ const PatientProfilePage: React.FC = () => {
     </div>
 
     {/* Overall Status */}
-    <div className="bg-[#FADACA] rounded-2xl p-4 md:col-span-2">
+    <div className="bg-[#FADACA] rounded-3xl p-4 md:col-span-2">
       <div className="text-sm text-[#171C35]  mb-2">Overall Status</div>
       <div className="text-xl font-semibold text-[#171C35] mb-1">All Markers Stable</div>
       <div className="text-sm text-[#111A2D]">No alerts generated at this time</div>
@@ -123,7 +126,7 @@ const PatientProfilePage: React.FC = () => {
 
 
         {/* History Section */}
-        <div className="bg-white rounded-lg ">
+        <div className="bg-white rounded-2xl ">
           <div className="p-6 ">
             <h2 className="text-2xl font-semibold text-[#171C35]">Jonathon Sanders, History</h2>
           </div>
@@ -135,9 +138,9 @@ const PatientProfilePage: React.FC = () => {
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`px-4 py-3 text-sm font-medium rounded-xl -mb-px   ${
+                  className={`px-4 py-3 text-sm font-medium rounded-2xl    ${
                     activeTab === tab
-                      ? 'bg-[#DCE2FF] text-[#171C35] rounded-xl'
+                      ? 'bg-[#DCE2FF] text-[#171C35] rounded-[8px]'
                       : 'border-transparent text-gray-600 '
                   }`}
                 >
