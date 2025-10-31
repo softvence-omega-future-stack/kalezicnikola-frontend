@@ -22,6 +22,10 @@ import OtpPage from "@/auth/OtpPage";
 import CreateNewPassword from "@/auth/CreateMewPass";
 import Service from "@/components/Service";
 import SuccessfullNewPassword from "@/auth/SuccessfullnewPass";
+import CoustomerPage from "@/pages/Admin/Customers/CoustomerPage";
+import BellingSubscription from "@/pages/Admin/Belling/BellingSubscription";
+import AIVoicePage from "@/pages/Admin/AIvoice/AIVoicePage";
+import SystemHelthpage from "@/pages/Admin/SystemHealth/SystemHelthpage";
 
 
 
@@ -119,9 +123,10 @@ const routes = createBrowserRouter([
     element: <AdminDashboardLayout />,
     children: [
       { index: true, element: <DashboardHome /> },
-      // { path: "users", element: <ManageUsers /> },
-      // { path: "products", element: <ManageProducts /> },
-      // { path: "settings", element: <AdminSettings /> },
+      { path: "coustomers", element: <CoustomerPage /> },
+      { path: "belling_subs", element: <BellingSubscription /> },
+      { path: "aivoice", element: <AIVoicePage /> },
+      { path: "system_health", element: <SystemHelthpage /> },
     ],
   }
 ]);

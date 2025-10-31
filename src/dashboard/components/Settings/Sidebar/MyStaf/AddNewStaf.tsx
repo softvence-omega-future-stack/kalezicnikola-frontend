@@ -2,7 +2,6 @@ import { useState } from "react";
 import PersonalInfo from "./PersonalInfo";  
 import EmployeeDetailsForm from "./EmployedForm";
 
-
 export default function AddNewStaff() {
   const [activeTab, setActiveTab] = useState("personal");
 
@@ -19,7 +18,7 @@ export default function AddNewStaff() {
           <h2 className="text-[#171C35] font-medium text-lg ">Add New Staf</h2>
           <p className="text-[#667085] text-sm font-medium mb-4 ">Create a new staff member profile</p>
           {/* Tabs */}
-          <div className="flex gap-2 mb-8 bg-[#FAFAFA] py-2 px-5">
+          <div className="flex gap-2 mb-8 bg-[#FAFAFA] rounded-[8px] py-2 px-5">
             <button
               onClick={() => setActiveTab("personal")}
               className={`px-6 py-2.5 text-base font-medium rounded-full transition-colors ${
@@ -34,8 +33,8 @@ export default function AddNewStaff() {
               onClick={() => setActiveTab("employment")}
               className={`px-6 py-2.5 text-md font-semibold rounded-full transition-colors ${
                 activeTab === "employment"
-                  ? "bg-[#DCE2FF]text-[#171c35]"
-                  : "e text[#667085]"
+                  ? "bg-[#DCE2FF] text-[#171c35]"
+                  : "e text-[#667085]"
               }`}
             >
               Employment

@@ -1,5 +1,6 @@
 import  { useState } from 'react';
-import { ChevronDown, CheckCircle2 } from 'lucide-react';
+import { ChevronDown,  } from 'lucide-react';
+import tricjcircle from '../../../../assets/svgIcon/checkcircle.svg'
 
 export default function SecuritySettings() {
   const [settings, setSettings] = useState({
@@ -90,15 +91,15 @@ export default function SecuritySettings() {
           {/* Password Requirements Checkboxes */}
           <div className="space-y-3">
             <div className="flex items-center gap-1">
-              <CheckCircle2 className="w-5 h-5 text-[#171c35]mr-2.5" />
+              <img src={tricjcircle} alt="" />
               <span className="text-sm font-semibold text-[#111A2D]">Require uppercase & lowercase letters (Default)</span>
             </div>
             <div className="flex items-center gap-1">
-              <CheckCircle2 className="w-5 h-5 text-[#171c35]mr-2.5" />
+             <img src={tricjcircle} alt="" />
               <span className="text-sm font-semibold text-[#111A2D]">Require numbers (Default)</span>
             </div>
             <div className="flex items-center gap-1">
-              <CheckCircle2 className="w-5 h-5 text-[#171c35]mr-2.5" />
+              <img src={tricjcircle} alt="" />
               <span className="text-sm font-semibold text-[#111A2D]">Require special characters (Default)</span>
             </div>
           </div>
@@ -123,7 +124,7 @@ export default function SecuritySettings() {
           </div>
 
           <div className="flex items-center mb-6 gap-1">
-            <CheckCircle2 className="w-5 h-5 text-[#171c35]mr-2.5" />
+            <img src={tricjcircle} alt="" />
             <span className="text-sm font-semibold text-[#111A2D]">Enforce two-factor authentication (Default)</span>
           </div>
 
@@ -186,11 +187,11 @@ export default function SecuritySettings() {
 
           <div className="space-y-3">
             <div className="flex items-center gap-1">
-             <img src="https://i.ibb.co.com/1JY9b7Vs/check-Circle-Icon.png" alt="" />
+             <img src={tricjcircle} alt="" />
               <span className="text-sm font-semibold text-[#111A2D]">Encrypt sensitive data (Default)</span>
             </div>
             <div className="flex items-center gap-1">
-             <img src="https://i.ibb.co.com/1JY9b7Vs/check-Circle-Icon.png" alt="" />
+            <img src={tricjcircle} alt="" />
               <span className="text-sm font-semibold text-[#111A2D]">Enable audit logs (Default)</span>
             </div>
           </div>

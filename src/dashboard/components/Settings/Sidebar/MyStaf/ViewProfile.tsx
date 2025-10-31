@@ -1,5 +1,9 @@
 
-import { Home,  } from 'lucide-react';
+
+import home from '../../../../../assets/svgIcon/homeIcon.svg'
+import chevron from '../../../../../assets/svgIcon/chevronnRight.svg'
+import profile from '../../../../../assets/svgIcon/staftProfile.svg'
+import edit from '../../../../../assets/svgIcon/edit2.svg'
 
 export default function StaffProfile() {
   return (
@@ -7,11 +11,11 @@ export default function StaffProfile() {
       <div className="">
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-base text-gray-600 mb-4">
-          <Home className="w-4 h-4" />
+          <img src={home} alt="" />
           <span>Dashboard</span>
-          <span>›</span>
+          <img src={chevron} alt="" />
           <span>Patients</span>
-          <span>›</span>
+          <img src={chevron} alt="" />
           <span className="text-[#171c35] font-medium">Patient Profile</span>
         </div>
 
@@ -24,7 +28,7 @@ export default function StaffProfile() {
             {/* Profile Image */}
             <div className="flex-shrink-0 -mt-20">
               <img
-                src="https://i.ibb.co.com/0VGmfP12/staftprofile-Pic.png"
+                src={profile}
                 alt="Jonathon Sanders"
                 className="w- h-[300px]   rounded-2xl object-cover"
               />
@@ -48,7 +52,7 @@ export default function StaffProfile() {
   {/* Right side */}
   <div className="self-start">
     <button className="flex items-center gap-2 px-4 py-2 text-base font-semibold text-[#111A2D] border border-gray-300 rounded-2xl transition-colors">
-      <img src="https://i.ibb.co/npcq8wc/Edit.png" alt="Edit" />
+      <img src={edit} alt="Edit" />
       Edit
     </button>
   </div>

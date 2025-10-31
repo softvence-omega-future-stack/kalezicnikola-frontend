@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import eye from '../../../../assets/svgIcon/Eye.svg'
+import eyeOf from '../../../../assets/svgIcon/EyeOff.svg'
 
 
 // --- Reusable Password Input ---
@@ -29,7 +31,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ label, name, value, onCha
           onClick={() => setVisible(!visible)}
           className="absolute inset-y-0 right-0 flex items-center px-3 text-gray-500 hover:text-gray-700"
         >
-          {visible ? <img src="https://i.ibb.co.com/cS0kDyjW/EyeIcon.png" alt="" /> :  <img src="https://i.ibb.co.com/YB31Nrbd/Eye-Of-ICon.png" alt="" /> }  
+          {visible ? <img src={eye} alt="" /> :  <img src={eyeOf} alt="" /> }  
 
         </button>
       </div>

@@ -1,5 +1,6 @@
-import { ChevronDown, Upload } from "lucide-react";
+import { ChevronDown,  } from "lucide-react";
 import { useState } from "react";
+import upload from '../../../../../assets/svgIcon/upload.svg'
 
 const PersonalInfo = () => {
   const [formData, setFormData] = useState({
@@ -28,7 +29,7 @@ const PersonalInfo = () => {
         {/* Upload Photo */}
         <div className="flex flex-col items-center justify-center py-8 border-2  border-gray-100 rounded-3xl  transition-colors cursor-pointer">
           <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-3">
-            <Upload className="w-5 h-5 text-gray-600" />
+           <img src={upload} alt="" />
           </div>
           <p className="text-xs text-[#667085] font-medium">Upload Photo</p>
         </div>

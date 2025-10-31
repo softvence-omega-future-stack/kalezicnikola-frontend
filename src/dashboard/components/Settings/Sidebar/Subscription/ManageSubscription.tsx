@@ -1,5 +1,7 @@
 import  { useState } from 'react';
-import { FaCheckCircle } from "react-icons/fa";
+
+import tricjcircle from '../../../../../assets/svgIcon/tickcircle.svg'
+import tricjcirclewhite from '../../../../../assets/svgIcon/tick-circle-white.svg'
 
 
 export default function ManageSubscription() {
@@ -41,7 +43,7 @@ export default function ManageSubscription() {
         {/* Pricing Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Basic Plan */}
-          <div className="bg-white rounded-2xl p-8 shadow-sm">
+          <div className="bg-[#F3F6F6] rounded-2xl p-8 ">
             <h2 className="text-xl font-semibold text-[#526FFF] mb-8">Basic Plan</h2>
             
             <div className="mb-8">
@@ -55,19 +57,19 @@ export default function ManageSubscription() {
 
             <div className="space-y-4 mb-8">
               <div className="flex items-start gap-3">
-                <FaCheckCircle className="w-5 h-5 text-[#171c35] mt-0.5 flex-shrink-0" />
+                <img src={tricjcircle} alt="" />
                 <span className="text-sm  text-[#171c35]">Average of 2-5 easy to follow trade alerts</span>
               </div>
               <div className="flex items-start gap-3">
-                <FaCheckCircle  className="w-5 h-5 text-[#171c35] mt-0.5 flex-shrink-0" />
+                <img src={tricjcircle} alt="" />
                 <span className="text-sm  text-[#171c35]">Average of 2-5 easy to follow trade alerts</span>
               </div>
               <div className="flex items-start gap-3">
-                <FaCheckCircle className="w-5 h-5 text-[#171c35] mt-0.5 flex-shrink-0" />
+                <img src={tricjcircle} alt="" />
                 <span className="text-sm  text-[#171c35]">Average of 2-5 easy to follow</span>
               </div>
               <div className="flex items-start gap-3">
-                <FaCheckCircle className="w-5 h-5 text-[#171c35] mt-0.5 flex-shrink-0" />
+                <img src={tricjcircle} alt="" />
                 <span className="text-sm  text-[#171c35]">Average of 2-5 easy to follow trade alerts</span>
               </div>
             </div>
@@ -92,19 +94,19 @@ export default function ManageSubscription() {
 
             <div className="space-y-4 mb-8">
               <div className="flex items-start gap-3">
-                <FaCheckCircle className="w-5 h-5 text-white mt-0.5 flex-shrink-0" />
+                <img src={tricjcirclewhite} alt="" />
                 <span className="text-sm text-white">Average of 2-5 easy to follow trade alerts</span>
               </div>
               <div className="flex items-start gap-3">
-                <FaCheckCircle className="w-5 h-5 text-white mt-0.5 flex-shrink-0" />
+                <img src={tricjcirclewhite} alt="" />
                 <span className="text-sm text-white">Average of 2-5 easy to follow trade</span>
               </div>
               <div className="flex items-start gap-3">
-                <FaCheckCircle className="w-5 h-5 text-white mt-0.5 flex-shrink-0" />
+                <img src={tricjcirclewhite} alt="" />
                 <span className="text-sm text-white">Average of 2-5 easy to follow trade alerts per week</span>
               </div>
               <div className="flex items-start gap-3">
-                <FaCheckCircle className="w-5 h-5 text-white mt-0.5 flex-shrink-0" />
+                <img src={tricjcirclewhite} alt="" />
                 <span className="text-sm text-white">Average of 2-5 easy to follow</span>
               </div>
             </div>
@@ -115,7 +117,7 @@ export default function ManageSubscription() {
           </div>
 
           {/* Enterprise Plan */}
-          <div className="bg-white rounded-2xl p-8 shadow-sm">
+          <div className="bg-[#F3F6F6] rounded-2xl p-8 ">
             <h2 className="text-xl font-semibold text-[#526FFF] mb-8">Enterprise</h2>
             
             <div className="mb-8">
@@ -129,19 +131,19 @@ export default function ManageSubscription() {
 
             <div className="space-y-4 mb-8">
               <div className="flex items-start gap-3">
-                <FaCheckCircle className="w-5 h-5 text-[#171c35] mt-0.5 flex-shrink-0" />
+                <img src={tricjcircle} alt="" />
                 <span className="text-sm text-[#171c35]">Average of 2-5 easy to follow trade alerts</span>
               </div>
               <div className="flex items-start gap-3">
-                <FaCheckCircle className="w-5 h-5 text-[#171c35] mt-0.5 flex-shrink-0" />
+                <img src={tricjcircle} alt="" />
                 <span className="text-sm text-[#171c35]">Average of 2-5 easy to follow trade alerts</span>
               </div>
               <div className="flex items-start gap-3">
-                <FaCheckCircle className="w-5 h-5 text-[#171c35] mt-0.5 flex-shrink-0" />
+                <img src={tricjcircle} alt="" />
                 <span className="text-sm text-[#171c35]">Average of 2-5 easy to follow</span>
               </div>
               <div className="flex items-start gap-3">
-                <FaCheckCircle className="w-5 h-5 text-[#171c35] mt-0.5 flex-shrink-0" />
+                <img src={tricjcircle} alt="" />
                 <span className="text-sm text-[#171c35]">Average of 2-5 easy to follow trade alerts</span>
               </div>
             </div>

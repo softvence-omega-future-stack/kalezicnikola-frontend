@@ -1,5 +1,8 @@
 import React from 'react';
-import { Download, Printer, X } from 'lucide-react';
+import {X } from 'lucide-react';
+import panda from '../../../../../assets/svgIcon/pandaInc.svg'
+import download from '../../../../../assets/svgIcon/download.svg'
+import print from '../../../../../assets/svgIcon/print.svg'
 
 interface InvoiceItem {
   name: string;
@@ -100,7 +103,7 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({onClose}) => {
             <div className="flex flex-col md:flex-row justify-between items-start gap-6 mb-8 ">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12  flex-shrink-0">
-                  <img src="https://i.ibb.co.com/JFSd7bHf/Invoice-Modal-Icon.png" alt="" />
+                  <img src={panda} alt="" />
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-[#E87117]">{invoiceData.companyName}</h3>
@@ -220,11 +223,11 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({onClose}) => {
         {/* Footer Buttons */}
         <div className="flex  [10px]:flex-row gap-3 p-6 ">
           <button className="flex-1 flex items-center justify-center gap-2 px-6 py-3 border-2 border-[#526FFF] text-[#526FFF] rounded-[8px] font-medium  transition-colors">
-            <Printer size={20} />
+            <img src={print} alt="" />
             Print
           </button>
           <button className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-[#526FFF] text-white rounded-[8px] font-medium  transition-colors">
-            <Download size={20} />
+            <img src={download} alt="" />
             Download
           </button>
         </div>

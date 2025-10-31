@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import InvoiceModal from './InvoiceViewModal';
-
+import filter from '../../../../../assets/svgIcon/filter.svg'
 
 
 
@@ -26,7 +26,7 @@ export default function Invoices() {
         <div className="flex items-center justify-between mb-8">
           <h1 className="text-xl font-semibold text-[#171c35]">Transaction Overview</h1>
           <button className="flex items-center gap-2 px-4 py-2 text-sm text-[#111A2D] font-semibold bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-            <img src="https://i.ibb.co.com/Mx7kdF0D/filter.png" alt="" />
+            <img src={filter} alt="" />
             Filters
           </button>
         </div>

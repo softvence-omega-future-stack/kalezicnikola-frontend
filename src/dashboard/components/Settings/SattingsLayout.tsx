@@ -43,7 +43,7 @@ export const SettingsLayout: React.FC = () => {
     
 
         {/* Main content */}
-        <div className="flex-1 min-w-0 w-full lg:w-[856px] bg-[#F3F6F6] rounded-xl -pl-4 cursor-pointer">
+        <div className="flex-1  w-full  bg-[#F3F6F6] rounded-2xl -pl-4 cursor-pointer">
           {activeItem === "Personal Info" && <PersonalInfoForm />}
           {activeItem === "My Staff" && <StaffManagement/>}
           {activeItem === "Change Password" && <ChangePassword />}

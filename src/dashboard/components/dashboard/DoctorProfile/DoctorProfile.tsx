@@ -1,8 +1,12 @@
 import  { useState } from 'react';
-import { ChevronRight, Home,  } from 'lucide-react';
+
 import AppointmentList from './AppointmentSidebar';
 import AllApointment from './AllApointment';
 import Patient from './Patient';
+import home from '../../../../assets/svgIcon/homeIcon.svg'
+import chevron from '../../../../assets/svgIcon/chevronnRight.svg'
+import edit from '../../../../assets/svgIcon/edit2.svg'
+import karen from '../../../../assets/svgIcon/karen.svg'
 
 export default function DoctorProfile() {
   const [activeTab, setActiveTab] = useState('All Appointment');
@@ -23,12 +27,12 @@ export default function DoctorProfile() {
       {/* Header */}
       <div className="  px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex items-center space-x-2 text-sm text-gray-600">
-          <Home className="w-4 h-4" />
-          <span><ChevronRight size={12}/></span>
+          <img src={home} alt="" />
+          <img src={chevron} alt="" />
           <span>Dashboard</span>
-          <span><ChevronRight size={12}/></span>
+          <img src={chevron} alt="" />
           <span>Doctor</span>
-         <span><ChevronRight size={12}/></span>
+        <img src={chevron} alt="" />
           <span className="text-[#111a2d] font-medium">Doctor Profile</span>
         </div>
       </div>
@@ -46,7 +50,7 @@ export default function DoctorProfile() {
     {/* Profile Image */}
     <div className="flex-shrink-0 -mt-20"> 
       <img
-        src="https://i.ibb.co.com/tM6Sb5kF/KarenNix.png"
+        src={karen}
         alt="Doctor"
         className="w-[222px] h-[270px] rounded-2xl object-cover bg-gray-200"
       />
@@ -60,7 +64,7 @@ export default function DoctorProfile() {
           <p className="text-sm font-medium text-[#171C35]">MBBS, M.D. Cardiology</p>
         </div>
         <button className="mt-2 sm:mt-0 flex items-center gap-2 px-4 py-2 text-2xl border border-gray-50 text-black font-semibold cursor-pointer rounded-2xl">
-        <img src="https://i.ibb.co.com/npcq8wc/Edit.png" alt="" />
+        <img src={edit} alt="" />
           <span>Edit</span>
         </button>
       </div>

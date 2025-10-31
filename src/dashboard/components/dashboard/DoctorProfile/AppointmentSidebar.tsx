@@ -1,4 +1,4 @@
-
+import profile from '../../../../assets/svgIcon/wiliumbroks.svg'
 
 export default function AppointmentList() {
   const appointments = [
@@ -28,7 +28,7 @@ export default function AppointmentList() {
   ];
 
   return (
-    <div className="min-h-screen bg-white px-4 sm:p-6 -mt-20 lg:p-8">
+    <div className="min-h-screen bg-white rounded-2xl px-4 sm:p-6 -mt-20 lg:p-8">
       <div className="max-w-sm mx-auto bg-white rounded-xl">
         {/* Header */}
         <div className="px-5 py-4 border-b border-gray-100">
@@ -57,7 +57,7 @@ export default function AppointmentList() {
 <div className="flex-shrink-0">
   {apt.hasAvatar ? (
     <img
-      src="https://i.ibb.co.com/Kx5m5knh/Screenshot-2025-10-26-095351.png"
+      src={profile}
       alt={apt.name}
       className="w-14 h-14 rounded-full object-cover"
     />

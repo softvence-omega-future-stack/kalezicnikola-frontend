@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-
+import edit from '../../../../assets/svgIcon/edit2.svg'
+// import calendar from '../../../../assets/svgIcon/calender.svg'
+import karen from '../../../../assets/svgIcon/karenNix.svg'
 import { Edit } from "lucide-react";
 
 interface InputFieldProps {
@@ -50,7 +52,7 @@ const PersonalInfoForm: React.FC = () => {
     address: "",
     dob: "",
     gender: "",
-    profilePic: "https://i.ibb.co.com/tM6Sb5kF/KarenNix.png",
+    profilePic: karen
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -75,22 +77,22 @@ const PersonalInfoForm: React.FC = () => {
   };
 
   return (
-    <section className="space-y-8 bg-white p-4 rounded-2xl">
+    <section className="space-y-8 bg-white p-[10px] rounded-2xl">
       {/* Header */}
-      <header className="flex justify-between items-center  pb-4">
+      <header className="flex justify-between items-center px-3 pt-3  pb-4">
         <h2 className="text-xl font-semibold text-[#171C35]">Personal Info</h2>
         <button
           onClick={handleEdit}
           className="flex items-center gap-2 text-sm text-[#111a2D] border border-gray-300 py-1 px-3 rounded-[8px]"
         >
           Edit
-            <img src="https://i.ibb.co.com/HD1hfW1s/editIcon.png" alt="" />
+            <img src={edit} alt="" />
         </button>
       </header>
 
      {/* Profile Info */}
 <div className="flex items-center gap-4 relative">
-  <div className="relative w-20 h-20 rounded-full overflow-hidden border-2 border-gray-200">
+  <div className="relative w-20 h-20 rounded-full overflow-hidden ">
     <img
       src={formData.profilePic}
       alt="Profile"
@@ -130,7 +132,7 @@ const PersonalInfoForm: React.FC = () => {
 
 
       {/* Form Fields */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 ">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-2 ">
         <InputField
           label="First name"
           name="firstName"
@@ -177,8 +179,8 @@ const PersonalInfoForm: React.FC = () => {
         </div>
 
         {/* Date of Birth */}
-        <div>
-          <label htmlFor="dob" className="text-sm font-medium text-gray-700">
+        <div className="relative">
+          <label htmlFor="dob" className="relative text-base font-semibold text-[#171C35]">
             Date of Birth
           </label>
       <input
@@ -194,7 +196,8 @@ const PersonalInfoForm: React.FC = () => {
     isEditing ? "bg-white focus:border-gray-400" : "bg-gray-100 cursor-not-allowed"
   }`}
 />
-
+{/* <img src={calendar} alt="" className="absolute top-9 right-3" /> */}
+  
         </div>
 
         <InputField

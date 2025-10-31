@@ -30,17 +30,7 @@
 // ];
 
 // // Recent doctors data
-// interface Doctor {
-//   id: string;
-//   name: string;
-//   specialist: string;
-//   joiningDate: string;
-// }
 
-// const recentDoctors: Doctor[] = [
-//   { id: 'CUST-001', name: 'William Brooks', specialist: 'Cardiologist', joiningDate: '20-Jun-2025' },
-//   { id: 'CUST-002', name: 'Sarah Johnson', specialist: 'Dermatologist', joiningDate: '22-Jun-2025' },
-// ];
 
 // // Custom tooltip
 // const CustomTooltip: React.FC<TooltipProps<ValueType, NameType>> = ({ active, payload }) => {
@@ -132,38 +122,7 @@
 //         </div>
 
 //         {/* Right Section - Recent Doctors */}
-//         <div className="bg-white p-4 rounded-3xl" style={{ width: '280px' }}>
-//           <div className="mb-4">
-//             <h2 className="text-xl font-bold text-[#171c35] mb-0">Recent Add Doctor</h2>
-//             <p className="text-xs text-gray-500">Last 7 days you have join 02 New Doctor.</p>
-//           </div>
-
-//           <div className="space-y-3">
-//             {recentDoctors.map((doctor, index) => (
-//               <div key={index} className="bg-gray-50 rounded-xl p-3">
-//                 <div className="flex gap-3">
-//                   <div className="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center flex-shrink-0">
-//                     <img src="https://i.ibb.co/h1tB12MV/recendoctor.png" alt="" />
-//                   </div>
-//                   <div className="flex-1 min-w-0">
-//                     <h3 className="font-semibold text-[#171c35] text-sm mb-0.5">{doctor.name}</h3>
-//                     <p className="text-xs text-gray-500 mb-2">Doctor ID: {doctor.id}</p>
-//                     <div className="space-y-1">
-//                       <div className="flex justify-between text-xs">
-//                         <span className="text-gray-500">Specialist</span>
-//                         <span className="text-gray-500">Joining Date</span>
-//                       </div>
-//                       <div className="flex justify-between text-xs">
-//                         <span className="font-medium text-[#171c35]">{doctor.specialist}</span>
-//                         <span className="font-medium text-[#171c35]">{doctor.joiningDate}</span>
-//                       </div>
-//                     </div>
-//                   </div>
-//                 </div>
-//               </div>
-//             ))}
-//           </div>
-//         </div>
+        
 //       </div>
 //     </div>
 //   );

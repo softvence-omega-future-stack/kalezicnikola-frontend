@@ -9,18 +9,18 @@ export default function SubscriptionOverview() {
 
 
   return (
-    <div className="min-h-screen p-4 md:p-8">
+    <div className="min-h-screen bg-white rounded-2xl p-4 ">
       {/* Header */}
       <h1 className="text-lg font-semibold text-[#171c35] mb-6">Subscription Overview</h1>
 
       {/* Tabs */}
-      <div className="flex flex-wrap gap-2 mb-8">
+      <div className="flex flex-wrap gap-2 mb-8 bg-[#FAFAFA] rounded-2xl py-3 px-4 ">
         <button
           onClick={() => setActiveTab('current-plan')}
           className={`px-6 py-3 text-md font-normal rounded-[12px] transition-colors cursor-pointer ${
             activeTab === 'current-plan'
               ? 'bg-[#DCE2FF] text-[#171c35]'
-              : 'bg-white text-[#111A2D] '
+              : ' '
           }`}
         >
           Current Plan
@@ -30,7 +30,7 @@ export default function SubscriptionOverview() {
           className={`px-6 py-3 text-md font-normal rounded-[12px] transition-colors  cursor-pointer ${
             activeTab === 'manage'
               ? 'bg-[#DCE2FF] text-[#171c35]'
-              : 'bg-white text-[#111A2D] hover:bg-gray-50'
+              : ''
           }`}
         >
           Manage Subscription
@@ -40,7 +40,7 @@ export default function SubscriptionOverview() {
           className={`px-6 py-3 text-md cursor-pointer font-normal rounded-[12px] transition-colors  ${
             activeTab === 'invoices'
               ? 'bg-[#DCE2FF] text-[#171c35]'
-              : 'bg-white text-[#111A2D] hover:bg-gray-50'
+              : ''
           }`}
         >
           Invoices
@@ -48,7 +48,7 @@ export default function SubscriptionOverview() {
       </div>
 
       {/* Tab Content */}
-      <div className="bg-white rounded-2xl shadow-sm p-6 md:p-8 cursor-pointer ">
+      <div className="bg-white rounded-2xl  p-6 md:p-8 cursor-pointer ">
         {activeTab === 'current-plan' && (
           <CurrentPaln/>
         )}

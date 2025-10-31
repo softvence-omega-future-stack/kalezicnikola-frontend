@@ -55,7 +55,7 @@ const AdminSidebar: React.FC = () => {
         <nav className="flex flex-col mt-2 gap-2">
           <NavItem to="/admin" iconSrc="https://i.ibb.co.com/gbTtnvQX/dashboard-icon.png" label="Dashboard" />
           <NavItem to="/admin/coustomers" iconSrc="https://i.ibb.co.com/jP0TkcFW/customer.png" label="Customers" />
-          <NavItem to="/admin/billing" iconSrc="https://i.ibb.co.com/CKRJgMCm/billing.png" label="Biling & Subscription" />
+          <NavItem to="/admin/belling_subs" iconSrc="https://i.ibb.co.com/CKRJgMCm/billing.png" label="Biling & Subscription" />
           <NavItem to="/admin/aivoice" iconSrc="https://i.ibb.co.com/0RjWqXVL/AiVoice.png" label="AI Voicebot" />
           <NavItem to="/admin/system_health" iconSrc="https://i.ibb.co.com/hRznXs4V/System-Health.png" label="System Health" />
           <NavItem to="admin/security" iconSrc="https://i.ibb.co.com/hRznXs4V/System-Health.png" label="Security & Audit" />

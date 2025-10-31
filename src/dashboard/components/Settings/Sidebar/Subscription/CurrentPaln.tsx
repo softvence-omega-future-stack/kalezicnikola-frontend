@@ -1,10 +1,10 @@
-import { CheckCircle2 } from 'lucide-react'
 
+import tricjcircle from '../../../../../assets/svgIcon/tickcircle.svg'
 
 const CurrentPaln = () => {
   return (
     <div>
-         <div className="bg-white rounded-2xl  p-6 md:p-8">
+         <div className="  p-6 md:p-8">
           {/* Header Section */}
           <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8 gap-4">
             <div className="flex items-center gap-3">
@@ -33,22 +33,22 @@ const CurrentPaln = () => {
 
           {/* Features List */}
           <div className="space-y-3 mb-8">
-            <div className="flex items-start gap-3">
-              <CheckCircle2 className="w-5 h-5 text-[#171c35] mt-0.5 flex-shrink-0" />
+            <div className="flex items-center gap-3">
+              <img src={tricjcircle} alt="" />
               <span className="text-base text-[#111A2D]">Average of 2-5 easy to follow trade alerts</span>
             </div>
-            <div className="flex items-start gap-3">
-              <CheckCircle2 className="w-5 h-5 text-[#171c35] mt-0.5 flex-shrink-0" />
+            <div className="flex items-center gap-3">
+              <img src={tricjcircle} alt="" />
               <span className="text-base text-[#171c35]">Average of 2-5 easy to follow trade</span>
             </div>
-            <div className="flex items-start gap-3">
-              <CheckCircle2 className="w-5 h-5 text-[#171c35] mt-0.5 flex-shrink-0" />
+            <div className="flex items-center gap-3">
+             <img src={tricjcircle} alt="" />
               <span className="text-base text-[#171c35]">Average of 2-5 easy to follow trade alerts per week</span>
             </div>
           </div>
 
           {/* Credits Card */}
- <div className="bg-gray-50 rounded-xl p-6 mb-6">
+ <div className="border border-[#E8E8E8] rounded-2xl p-6 mb-6">
   {/* Upper Line: Active + Subscription Date */}
   <div className="flex justify-between items-center mb-6">
     <span className="px-4 py-1.5 text-base text-[#008933] bg-[#0089331A] rounded-full font-medium">

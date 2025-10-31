@@ -47,7 +47,7 @@ const CalendarView: React.FC = () => {
   ];
 
   return (
-    <div className="bg-white rounded-2xl p-5 ">
+    <div className="bg-white rounded-2xl p-5 -mt-15 ml-1 ">
       {/* Header Section */}
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-xl font-semibold text-[#171C35">Calendar</h2>

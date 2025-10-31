@@ -1,16 +1,23 @@
 import React, { useEffect, useRef } from 'react';
-import { LogOut, User, MessageSquare, Headphones, Settings } from 'lucide-react';
+import { LogOut,  } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
+// 🧩 Local SVG Icons
+import profile from '../../../../assets/svgIcon/karen.svg';
+import chat from '../../../../assets/svgIcon/chatIcon.svg';
+import support from '../../../../assets/svgIcon/supports.svg';
+import setting from '../../../../assets/svgIcon/settings.svg';
+import user from '../../../../assets/svgIcon/user.svg';
+
 interface MenuItemProps {
-  icon: React.ComponentType<{ className?: string }>;
+  icon?: React.ComponentType<{ className?: string }> | string; // can be component or image
   text: string;
   onClick: () => void;
   isLogout?: boolean;
 }
 
-// Menu item component
-const MenuItem: React.FC<MenuItemProps> = ({ icon: Icon, text, onClick, isLogout = false }) => (
+// ✅ MenuItem Component (Handles both SVG components & Images)
+const MenuItem: React.FC<MenuItemProps> = ({ icon, text, onClick, isLogout = false }) => (
   <button
     onClick={onClick}
     className={`
@@ -18,7 +25,12 @@ const MenuItem: React.FC<MenuItemProps> = ({ icon: Icon, text, onClick, isLogout
       ${isLogout ? 'text-red-600 hover:bg-red-50' : 'text-gray-700 hover:bg-gray-100 focus:bg-gray-100'}
     `}
   >
-    <Icon className="w-6 h-6" />
+    {/* Icon handling */}
+    {typeof icon === 'string' ? (
+      <img src={icon} alt={text} className="w-6 h-6" />
+    ) : (
+      icon && React.createElement(icon, { className: 'w-6 h-6' })
+    )}
     <span className={`text-lg font-medium ${isLogout ? 'font-semibold' : ''}`}>{text}</span>
   </button>
 );
@@ -29,28 +41,24 @@ interface UserDropdownProps {
 
 const UserDropdown: React.FC<UserDropdownProps> = ({ onClose }) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  // Close dropdown if clicked outside
+  // 🔒 Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        if (onClose) {
-          onClose();
-        }
+        if (onClose) onClose();
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [onClose]);
 
-const handleProfileSettings = () => {
-  navigate('doctor-profile'); 
-  if (onClose) onClose(); 
-};
-
+  // 🧭 Menu handlers
+  const handleProfileSettings = () => {
+    navigate('doctor-profile');
+    if (onClose) onClose();
+  };
 
   const handleChat = () => {
     console.log('Go to Chat');
@@ -77,14 +85,10 @@ const handleProfileSettings = () => {
       ref={dropdownRef}
       className="absolute right-0 mt-2 w-80 bg-white shadow-xl rounded-xl p-4 font-sans border border-gray-100 z-50"
     >
-      {/* User Profile */}
+      {/* 🧍 User Info */}
       <div className="flex items-center space-x-4 mb-6">
         <div className="w-16 h-16 rounded-full bg-gray-200 overflow-hidden flex-shrink-0">
-          <img
-            src="https://i.ibb.co.com/tM6Sb5kF/KarenNix.png"
-            alt="Keren Nix"
-            className="w-full h-full object-cover"
-          />
+          <img src={profile} alt="Keren Nix" className="w-full h-full object-cover" />
         </div>
         <div>
           <h2 className="text-lg font-semibold text-[#171C35]">Keren nix</h2>
@@ -92,20 +96,19 @@ const handleProfileSettings = () => {
         </div>
       </div>
 
-      {/* Menu Items */}
+      {/* 📜 Menu Items */}
       <nav className="space-y-1">
         <div className="rounded-lg bg-gray-100">
-       <MenuItem icon={User} text="Profile settings" onClick={handleProfileSettings} />
-
+          <MenuItem icon={user} text="Profile settings" onClick={handleProfileSettings} />
         </div>
-        <MenuItem icon={MessageSquare} text="Chat" onClick={handleChat} />
-        <MenuItem icon={Headphones} text="Support" onClick={handleSupport} />
-        <MenuItem icon={Settings} text="Settings" onClick={handleSettings} />
+        <MenuItem icon={chat} text="Chat" onClick={handleChat} />
+        <MenuItem icon={support} text="Support" onClick={handleSupport} />
+        <MenuItem icon={setting} text="Settings" onClick={handleSettings} />
       </nav>
 
-      <hr className="my-4 border-1 border-gray-200" />
+      <hr className="my-4 border-gray-200" />
 
-      {/* Log Out */}
+      {/* 🚪 Logout */}
       <MenuItem icon={LogOut} text="Log Out" onClick={handleLogout} isLogout={true} />
     </div>
   );
