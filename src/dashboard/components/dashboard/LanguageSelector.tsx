@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import UkFlag from '../../../assets/svgIcon/Ellipse 2170.svg';
-import DeFlag from '../../../assets/svgIcon/deFlag.svg';
+import DeFlag from '../../../assets/svgIcon/DEFlag.svg';
 import arrow from '../../../assets/svgIcon/langselect.svg';
 
 const LanguageSelector = () => {
