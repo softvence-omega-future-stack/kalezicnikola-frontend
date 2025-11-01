@@ -9,7 +9,7 @@ import home from '../../../assets/svgIcon/homeIcon.svg'
 import chevron from '../../../assets/svgIcon/chevronnRight.svg'
 import doc from '../../../assets/svgIcon/document.svg'
 import react from '../../../assets/svgIcon/react.svg'
-import send from '../../../assets/svgIcon/search.svg'
+import send from '../../../assets/svgIcon/send.svg'
 
 interface Message {
   id: number;
@@ -192,7 +192,7 @@ const SupportChat: React.FC = () => {
 
           {/* Right Side - Chat */}
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-2xl  overflow-hidden flex flex-col h-[calc(100vh-220px)] min-h-[500px]">
+            <div className="bg-white rounded-2xl  overflow-hidden flex flex-col ">
               {/* Chat Header */}
               <div className="p-5 m-4 bg-[#F3F6F6] rounded-2xl flex items-center justify-between ">
                 <div className="flex items-center gap-3 ">

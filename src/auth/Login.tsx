@@ -1,4 +1,4 @@
-import { Eye, } from "lucide-react";
+import { Eye } from "lucide-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -7,31 +7,45 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
+  // Fixed admin credentials
+  const adminEmail = "admin@gmail.com";
+  const adminPassword = "admin123";
 
   const handleSubmit = () => {
-    console.log("Login submitted:", { email, password, rememberMe });
-        if (email && password) { 
-      navigate("/dashboard"); 
-    } else {
-      alert("Please enter valid credentials");
+    // Admin login
+    if (email === adminEmail && password === adminPassword) {
+      navigate("/admin"); // Admin dashboard
+      return;
     }
+
+    // Check user login (we can check localStorage or just simulate)
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      const user = JSON.parse(storedUser);
+      if (user.email === email && user.password === password) {
+        navigate("/user/dashboard"); // User dashboard
+        return;
+      }
+    }
+
+    alert("Invalid email or password");
   };
 
   return (
-    <div className=" flex relative bg-[#F3F6F6]">
+    <div className="flex relative bg-[#F3F6F6] min-h-screen">
       {/* Left Side - Image */}
       <div className="hidden lg:block lg:w-1/2 p-[10px] rounded-[16px] relative">
         <img
-          src="https://i.ibb.co.com/v6CxNtR7/loginImg.png"
+          src="https://i.ibb.co/v6CxNtR7/loginImg.png"
           alt="Person smiling"
           className="w-full h-[930px] rounded-[16px] object-cover"
         />
 
-          {/* Fixed Border Box (DocLine + Login Btn) */}
         <div className="fixed top-8 left-0 right-0 z-20 w-[95%] border border-gray-100 bg-white/10 backdrop-blur-sm rounded-full px-9 py-4 flex items-center justify-between mx-auto">
           <div className="flex items-center gap-2">
-            <img src="https://i.ibb.co.com/0yzBCxRm/logo.png" alt="" />
+            <img src="https://i.ibb.co/0yzBCxRm/logo.png" alt="Logo" />
             <span className="text-2xl font-semibold text-[#171C35]">Docline</span>
           </div>
           <button className="px-5 py-2 bg-gray-900 text-white rounded-full text-sm font-medium hover:bg-gray-800 transition">
@@ -43,9 +57,6 @@ export default function LoginPage() {
       {/* Right Side - Login Form */}
       <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-gray-50 relative">
         <div className="w-full max-w-md">
-         
-
-          {/* Login Button Top Right (for mobile) */}
           <div className="absolute top-8 right-8 lg:hidden">
             <button className="px-6 py-2 bg-[#171c35] text-white rounded-full text-sm font-medium">
               Login
@@ -56,13 +67,13 @@ export default function LoginPage() {
             <div>
               <h1 className="text-4xl font-bold text-[#171C35] mb-2">Log In</h1>
               <p className="text-[#111A2D] text-base">
-                Welcome! Login to access your files
+                Welcome! Login to access your dashboard
               </p>
             </div>
 
             <div className="space-y-5">
               {/* Email Input */}
-                 <div>
+              <div>
                 <label className="block text-sm font-medium text-[#171C35] mb-2">
                   Email
                 </label>
@@ -94,11 +105,10 @@ export default function LoginPage() {
                     className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
                   >
                     {showPassword ? (
-                        <Eye size={16} className="font-bold text-black"/>
-                     
+                      <Eye size={16} className="font-bold text-black" />
                     ) : (
                       <img
-                        src="https://i.ibb.co.com/mV6wgpY2/visible-Icon.png"
+                        src="https://i.ibb.co/mV6wgpY2/visible-Icon.png"
                         alt="visible"
                       />
                     )}
@@ -119,7 +129,7 @@ export default function LoginPage() {
                 </label>
                 <Link
                   to="/forget_password"
-                  className="text-sm text-[#526FFF]  font-medium"
+                  className="text-sm text-[#526FFF] font-medium"
                 >
                   Forgot Password?
                 </Link>
@@ -128,26 +138,22 @@ export default function LoginPage() {
               {/* Sign In Button */}
               <button
                 onClick={handleSubmit}
-                className="w-full py-3 bg-[#526FFF] text-white rounded-[8px] font-medium  transition-colors cursor-pointer"
+                className="w-full py-3 bg-[#526FFF] text-white rounded-[8px] font-medium transition-colors cursor-pointer"
               >
                 Sign In
               </button>
 
               {/* 2FA Notice */}
               <p className="text-center text-xs text-[#111A2D]">
-                Protected by 2-Factor Authentication (2FA) for your data
-                security
+                Protected by 2-Factor Authentication (2FA) for your data security
               </p>
 
               {/* Sign Up Link */}
               <p className="text-center text-sm text-[#111A2D]">
                 Don't have an account?{" "}
-                  <Link
-    to="/signup"
-    className="text-[#526FFF]  font-medium"
-  >
-    Sign Up!
-  </Link>
+                <Link to="/signup" className="text-[#526FFF] font-medium">
+                  Sign Up!
+                </Link>
               </p>
             </div>
           </div>

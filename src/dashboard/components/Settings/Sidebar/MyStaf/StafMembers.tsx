@@ -2,8 +2,7 @@ import { useState } from 'react';
 import {  Plus } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import propfilePic from '../../../../../assets/svgIcon/srahSosnan.svg'
-import home from '../../../../../assets/svgIcon/homeIcon.svg'
-import chevron from '../../../../../assets/svgIcon/chevronnRight.svg'
+
 
 export default function StaffManagement() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -23,42 +22,8 @@ export default function StaffManagement() {
   return (
     <div className="min-h-screen bg-[#F3F6F6] ">
       <div className="">
-        {/* Breadcrumb & Stats */}
-        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 mb-6">
-          {/* Left side - Breadcrumb & Title */}
-          <div>
-            <div className="flex items-center gap-2 text-sm text-gray-600 mb-4">
-              <img src={home} alt="" />
-              <span>Dashboard</span>
-            <img src={chevron} alt="" />
-              <span>Settings</span>
-            <img src={chevron} alt="" />
-              <span className="text-[#1a1c21] font-medium">My Staff</span>
-            </div>
-            <h1 className="text-2xl font-semibold text-[#1a1c21]">Settings</h1>
-          </div>
-
-          {/* Right side - Stats */}
-          <div className="flex flex-wrap gap-4">
-            <div className=" px-6 py-3 min-w-[120px]">
-              <p className="text-sm text-[#111A2D] font-semibold mb-1">Total Staff</p>
-              <p className="text-[32px] font-medium text-[#171C35]">63</p>
-            </div>
-            <div className=" px-6 py-3 min-w-[120px]">
-              <p className="text-sm text-[#111A2D] font-semibold mb-1">Active Staff</p>
-              <p className="text-[32px] font-medium text-#171C35]">54</p>
-            </div>
-            <div className=" px-6 py-3 min-w-[120px]">
-              <p className="text-sm text-[#111A2D] font-semibold mb-1">On Leave</p>
-              <p className="text-[32px] font-medium text-[#171C35]">8</p>
-            </div>
-            <button className="w-12 h-12 bg-[#526FFF] rounded-lg flex items-center justify-center transition-colors">
-              <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </button>
-          </div>
-        </div>
+     
+     
 
         {/* Staff Management Card */}
         <div className="bg-white rounded-2xl ">

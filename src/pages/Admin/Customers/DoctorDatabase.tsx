@@ -174,13 +174,13 @@ const DoctorDatabaseTable: React.FC = () => {
                       {doctor.plan}
                     </td>
                     <td className="px-4 py-4">
-                      <span className={`inline-flex items-center gap-1 px-[10px] py-1 rounded-[20px] text-sm font-medium ${getStatusColor(doctor.status)}`}>
+                      <span className={`inline-flex items-center gap-1 px-[10px] h-8 w-28 justify-center rounded-full py-1  text-sm font-medium ${getStatusColor(doctor.status)}`}>
                         <span className="text-current">{getStatusIcon(doctor.status)}</span>
                         {doctor.status}
                       </span>
                     </td>
                     <td className="px-4 py-4">
-                      <span className={`inline-flex items-center px-[10px] py-1 rounded-[20px] text-sm font-medium ${getPaymentColor(doctor.payment)}`}>
+                      <span className={`inline-flex items-center px-[10px] py-1 h-8 w-28 justify-center rounded-full text-sm font-medium ${getPaymentColor(doctor.payment)}`}>
                         {doctor.payment}
                       </span>
                     </td>
@@ -199,51 +199,7 @@ const DoctorDatabaseTable: React.FC = () => {
           </div>
         </div>
 
-        {/* Mobile View Alternative */}
-        <div className="md:hidden mt-4 space-y-3">
-          {doctorsData.map((doctor) => (
-            <div key={doctor.id} className="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
-              <div className="flex items-start gap-3 mb-3">
-                <input
-                  type="checkbox"
-                  checked={selectedRows.has(doctor.id)}
-                  onChange={() => toggleSelectRow(doctor.id)}
-                  className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 cursor-pointer mt-1"
-                />
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-orange-300 to-orange-400 flex-shrink-0"></div>
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-sm font-semibold text-gray-900 mb-1">{doctor.name}</h3>
-                  <p className="text-xs text-gray-500">{doctor.doctorId}</p>
-                </div>
-              </div>
-              
-              <div className="grid grid-cols-2 gap-3 mb-3">
-                <div>
-                  <p className="text-xs text-gray-500 mb-1">Plan</p>
-                  <p className="text-sm font-medium text-gray-900">{doctor.plan}</p>
-                </div>
-                <div>
-                  <p className="text-xs text-gray-500 mb-1">MRR</p>
-                  <p className="text-sm font-semibold text-gray-900">${doctor.mrr}</p>
-                </div>
-              </div>
-              
-              <div className="flex items-center gap-2 mb-3">
-                <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium ${getStatusColor(doctor.status)}`}>
-                  <span>{getStatusIcon(doctor.status)}</span>
-                  {doctor.status}
-                </span>
-                <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${getPaymentColor(doctor.payment)}`}>
-                  {doctor.payment}
-                </span>
-              </div>
-              
-              <button className="w-full px-4 py-2 text-sm font-medium text-[#171C35] bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-                View
-              </button>
-            </div>
-          ))}
-        </div>
+       
       </div>
     </div>
   );

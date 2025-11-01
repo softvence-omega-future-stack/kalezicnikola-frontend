@@ -55,7 +55,7 @@ const StatCard = ({ stat, maskId }: { stat: typeof statsCards[0]; maskId: string
 
 const CardHeader = () => {
   return (
-    <div className="p-4">
+    <div className="py-4">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
         {statsCards.map((stat, index) => (
           <StatCard key={index} stat={stat} maskId={`statCardMask${index}`} />

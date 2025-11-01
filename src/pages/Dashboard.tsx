@@ -7,14 +7,14 @@ import DashboardCalender from "@/dashboard/components/dashboard/DashboardCalende
 
 const Dashboard: React.FC = () => {
   return (
-    <div className="min-h-screen   1">
+    <div className="min-h-screen   ">
     
-      <div className="mb-8">
+      <div className="mb-8 ">
         <DashboardTopSection />
       </div>
 
    
-      <div className="grid grid-cols-1 lg:grid-cols-3 px-5 gap-[10px]">
+      <div className="grid grid-cols-1 lg:grid-cols-3  gap-[10px]">
       
         <div className="lg:col-span-1">
           <AppointmentsList />

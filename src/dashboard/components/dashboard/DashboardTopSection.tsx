@@ -45,20 +45,20 @@ const DashboardTopSection: React.FC = () => {
   const { firstName, lastName, date, todayIncomingCalls, successfulCalls, averageCallDuration } = mockDashboardData;
 
   return (
-    <div className=" px-[10px] rounded-lg bg-[#F3F6F6]  mx-auto">
+    <div className=" p-5 rounded-lg bg-[#F3F6F6] ">
       {/* Date Navigation */}
-      <div className="flex items-center text-[#111A2D] text-sm font-medium mb-4">
+      <div className="flex items-center text-[#111A2D] text-sm font-medium mb-3 ">
         <button className="p-1 rounded-full transition-colors">
           <ChevronLeft className="w-5 h-5" />
         </button>
-        <span className="mx-2 text-xs sm:text-sm">{date}</span>
+        <span className="mx-2 text-sm font-medium">{date}</span>
         <button className="p-1 rounded-full transition-colors">
           <ChevronRight className="w-5 h-5" />
         </button>
       </div>
 
       {/* Welcome + Metrics */}
-      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-6">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-6 px-2">
         {/* Welcome */}
         <div>
           <h1 className="text-xl sm:text-2xl md:text-3xl font-semibold text-[#111A2D] leading-snug">

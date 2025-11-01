@@ -2,7 +2,7 @@ const Customer = () => {
   return (
     <div>
       {/* Customer Acquisition vs Churn */}
-      <div className="bg-white rounded-3xl p-6 w-[388px] py-4 pb-14 ">
+      <div className="bg-white rounded-3xl p-6 w-[388px] py-4 pb-14  ">
         <h3 className="text-xl font-semibold text-[#171C35] mb-6">
           Customer Acquisition vs Churn
         </h3>

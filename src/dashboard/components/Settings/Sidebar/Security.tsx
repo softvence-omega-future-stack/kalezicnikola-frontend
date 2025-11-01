@@ -24,8 +24,8 @@ export default function SecuritySettings() {
   };
 
   return (
-    <div className="min-h-screen p-4 md:p-8">
-      <div className=" bg-white  p-6 md:p-8">
+    <div className="min-h-screen ">
+      <div className=" bg-white rounded-2xl  p-6 md:p-8">
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-xl font-semibold text-[#171C35] mb-1">Security Settings</h1>

@@ -8,13 +8,13 @@ interface CallData {
 }
 
 const callVolumeData: CallData[] = [
-  { day: 'SUN', calls: 60 },
-  { day: 'MON', calls: 75 },
-  { day: 'TUE', calls: 80, date: '12-Jan-2025 • Friday', highlighted: true },
-  { day: 'WED', calls: 40 },
-  { day: 'THU', calls: 45 },
-  { day: 'FRI', calls: 50 },
-  { day: 'SAT', calls: 65 },
+  { day: 'SUN', calls: 70 },
+  { day: 'MON', calls: 80 },
+  { day: 'TUE', calls: 75, date: '12-Jan-2025 • Friday', highlighted: true },
+  { day: 'WED', calls: 45 },
+  { day: 'THU', calls: 58  },
+  { day: 'FRI', calls: 65 },
+  { day: 'SAT', calls: 78 },
 ];
 
 const CallvolumeChart = () => {
@@ -68,7 +68,7 @@ const CallvolumeChart = () => {
               formatter={(value) => `${value}%`}
             />
 
-            {/* এখানে dataKey পরিবর্তন হলো 'calls' */}
+            
             <Area
               type="monotone"
               dataKey="calls"
