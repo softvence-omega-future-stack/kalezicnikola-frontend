@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
+import logiImg from '../assets/svgIcon/authImg.svg'
 
 export default function SuccessfullNewPassword() {
  
@@ -10,7 +11,7 @@ const navigate = useNavigate()
       {/* Left Side - Image */}
       <div className="hidden lg:block lg:w-1/2 relative">
         <img
-          src="https://i.ibb.co.com/v6CxNtR7/loginImg.png"
+          src={logiImg}
           alt="Person smiling"
           className="w-full h-[930px] rounded-[16px] p-[10px] object-cover"
         />

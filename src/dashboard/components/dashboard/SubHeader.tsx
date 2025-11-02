@@ -55,36 +55,37 @@ const Card = ({ category, maskId }: { category: (typeof categories)[0]; maskId: 
           <h3 className="text-base font-medium mb-4 text-[#171C35]">{category.title}</h3>
 
           {category.avatars ? (
-            <div className="flex items-center gap-4">
-              <div className="flex -space-x-3 items-center flex-shrink-0">
-                {category.avatars.map((avatar, idx) => (
-                  <img
-                    key={idx}
-                    className="h-10 w-10 rounded-full border-2 border-white object-cover"
-                    src={avatar}
-                    alt=""
-                  />
-                ))}
-                {category.extraCount && (
-                  <div className="h-10 w-10 bg-gray-900 text-white rounded-full border-2 border-white flex items-center justify-center text-sm font-medium">
-                    {category.extraCount}
-                  </div>
-                )}
-              </div>
+  <div className="flex flex-col md:flex-row md:items-center gap-4">
+    <div className="flex -space-x-3 items-center flex-shrink-0">
+      {category.avatars.map((avatar, idx) => (
+        <img
+          key={idx}
+          className="h-10 w-10 rounded-full border-2 border-white object-cover"
+          src={avatar}
+          alt=""
+        />
+      ))}
+      {category.extraCount && (
+        <div className="h-10 w-10 bg-gray-900 text-white rounded-full border-2 border-white flex items-center justify-center text-sm font-medium">
+          {category.extraCount}
+        </div>
+      )}
+    </div>
 
-              <p className="text-[#171C35] text-sm font-medium leading-snug">
-                {category.description}
-              </p>
-            </div>
-          ) : (
-            <div className="mt-2">
-              {category.mainNumber && (
-                <span className="text-5xl font-medium text-[#171C35]">
-                  {category.mainNumber}
-                </span>
-              )}
-            </div>
-          )}
+    <p className="text-[#171C35] text-sm font-medium leading-snug">
+      {category.description}
+    </p>
+  </div>
+) : (
+  <div className="mt-2">
+    {category.mainNumber && (
+      <span className="text-5xl font-medium text-[#171C35]">
+        {category.mainNumber}
+      </span>
+    )}
+  </div>
+)}
+
         </div>
 
         <div className="absolute bottom-2 -right-1">
@@ -100,7 +101,7 @@ const Card = ({ category, maskId }: { category: (typeof categories)[0]; maskId: 
 const SubHeaderCard = () => {
   return (
     <CommonSpace>
-      <div className="-mt-18 ">
+      <div className="-mt-18  ">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {categories.map((category, index) => (
             <Card key={index} category={category} maskId={`cutoutMask${index}`} />

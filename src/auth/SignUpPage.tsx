@@ -1,6 +1,10 @@
-import { Eye } from 'lucide-react';
+
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+
+import eye from '../assets/svgIcon/Eye.svg'
+import eyeof from '../assets/svgIcon/EyeOff.svg'
+import logiImg from '../assets/svgIcon/authImg.svg'
 
 export default function SignupPage() {
   const [firstName, setFirstName] = useState('');
@@ -37,7 +41,7 @@ export default function SignupPage() {
       {/* Left Side - Image with Header */}
       <div className="hidden lg:block lg:w-1/2 rounded-[16px] p-10px] relative">
         <img
-          src="https://i.ibb.co.com/v6CxNtR7/loginImg.png"
+          src={logiImg}
           alt="Person smiling"
           className="w-full h-[930px] rounded-[16px] p-[10px]  object-cover"
         />
@@ -117,11 +121,11 @@ export default function SignupPage() {
                     className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
                   >
                     {showPassword ? (
-                        <Eye size={16} className="font-bold text-black"/>
+                         <img src={eye} alt="" />
                      
                     ) : (
                       <img
-                        src="https://i.ibb.co.com/mV6wgpY2/visible-Icon.png"
+                        src={eyeof}
                         alt="visible"
                       />
                     )}
@@ -146,11 +150,11 @@ export default function SignupPage() {
                     className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
                   >
                       {showPassword ? (
-                        <Eye size={16} className="font-bold text-black"/>
+                         <img src={eye} alt="" />
                      
                     ) : (
                       <img
-                        src="https://i.ibb.co.com/mV6wgpY2/visible-Icon.png"
+                        src={eyeof}
                         alt="visible"
                       />
                     )}

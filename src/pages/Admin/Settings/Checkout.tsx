@@ -157,7 +157,7 @@ const Checkout: React.FC = () => {
             <div key={request.id} className="bg-white rounded-lg shadow-sm p-4 space-y-4">
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center text-2xl flex-shrink-0">
-                  {request.avatar}
+                  <img src={profile} alt="" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <h3 className="text-base font-semibold text-[#171c35]">{request.name}</h3>

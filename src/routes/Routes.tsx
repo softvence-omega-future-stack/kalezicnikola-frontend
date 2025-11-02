@@ -29,6 +29,7 @@ import SystemHelthpage from "@/pages/Admin/SystemHealth/SystemHelthpage";
 import SecurityPage from "@/pages/Admin/Security/SecurityPage";
 import SettingPage from "@/pages/Admin/Settings/Settingpage";
 import SupportPage from "@/pages/Admin/Supports/SupportPage";
+import Home from "@/pages/Home";
 
 
 
@@ -39,10 +40,15 @@ const routes = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
-     {
+           {
         index: true,
-        element: <LoginPage />
+        element: <Home />
       },
+        {
+    path: "/",
+    element: <Home />, 
+  },
+   
      {
         path:'/login',
         element: <LoginPage />
@@ -110,6 +116,7 @@ const routes = createBrowserRouter([
       { path: "security", element: <SecurityPage /> },
       { path: "settings", element: <SettingPage /> },
       { path: "supports", element: <SupportPage /> },
+      
     ],
   }
 ]);

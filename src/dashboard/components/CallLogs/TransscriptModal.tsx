@@ -69,14 +69,14 @@ const PatientTranscriptPage: React.FC = () => {
   };
 
   return (
-    <div className=" bg-gray-100 p-4 md:p-8 lg:p-12 flex items-center justify-center font-sans">
-      <div className="bg-gray-100 w-[980px] mx-auto rounded-xl p-6 md:p-8 lg:p-10 relative">
+    <div className=" bg-[#F3F6F6D9] rounded-2xl p-4  flex items-center justify-center font-sans">
+      <div className=" w-[980px] mx-auto rounded-xl p-6  relative">
       
 
         <h2 className="text-2xl md:text-2xl font-semibold text-[#171C35] mb-6">Patient Transcript</h2>
 
         {/* AI Summary Section */}
-        <div className="mb-8 p-5 md:p-6 bg-white rounded-[32px]  ">
+        <div className="mb-8 p-5 md:p-6 bg-[#F5F5F5] border border-[#FFFFFF] rounded-[32px]  ">
           <div className="flex justify-between items-center mb-3">
             <h3 className="text-lg md:text-xl font-semibold text-[#171C35]">AI Summary</h3>
             <button className="text-gray-400 hover:text-gray-600">
@@ -95,7 +95,7 @@ const PatientTranscriptPage: React.FC = () => {
         </div>
 
         {/* Summarized Information Section */}
-        <div className="mb-8 p-5 md:p-6 bg-white rounded-[32px]">
+        <div className="mb-8 p-5 md:p-6 bg-[#F5F5F5] border border-[#FFFFFF] rounded-[32px]">
           <div className="flex justify-between items-center mb-3">
             <h3 className="text-lg md:text-xl font-semibold text-[#171C35]">Information's are Summarized</h3>
             <button className="text-gray-400 hover:text-gray-600">
@@ -110,11 +110,11 @@ const PatientTranscriptPage: React.FC = () => {
         </div>
 
         {/* Patients Transcript (Audio Player) Section */}
-        <div className="mb-8 p-5 md:p-6 bg-white rounded-[32px] ">
-          <h3 className="text-lg md:text-xl font-semibold text-[#171C35] mb-4">Patients Transcript</h3>
+        <div className="mb-8 p-5 md:p-6  ">
+          <h3 className="text-lg md:text-xl bg-[#F3F6F6D9] font-semibold text-[#171C35] mb-4">Patients Transcript</h3>
 
           {/* Audio Waveform / Progress Bar */}
-          <div className="relative w-full h-12 bg-gray-100 rounded-[32px] overflow-hidden flex items-center justify-between px-2">
+          <div className="relative w-full h-12  rounded-[32px] overflow-hidden flex items-center justify-between px-2">
             {AUDIO_SEGMENTS.map((segment, index) => (
               <div
                 key={index}

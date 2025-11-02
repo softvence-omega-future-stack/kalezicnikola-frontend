@@ -1,6 +1,10 @@
-import { Eye, } from "lucide-react";
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import eye from '../assets/svgIcon/Eye.svg'
+import eyeof from '../assets/svgIcon/EyeOff.svg'
+import logiImg from '../assets/svgIcon/authImg.svg'
+import logo from '../assets/svgIcon/logo.svg'
 
 
 export default function CreateNewPassword() {
@@ -15,7 +19,7 @@ export default function CreateNewPassword() {
       {/* Left Side - Image */}
       <div className="hidden lg:block lg:w-1/2 relative">
         <img
-          src="https://i.ibb.co.com/v6CxNtR7/loginImg.png"
+          src={logiImg}
           alt="Person smiling"
           className="w-full h-[930px] rounded-[16px] p-[10px] object-cover"
         />
@@ -23,7 +27,7 @@ export default function CreateNewPassword() {
           {/* Fixed Border Box (DocLine + Login Btn) */}
         <div className="fixed top-8 left-0 right-0 z-20 w-[95%] border border-gray-100 bg-white/10 backdrop-blur-sm rounded-full px-9 py-4 flex items-center justify-between mx-auto">
           <div className="flex items-center gap-2">
-            <img src="https://i.ibb.co.com/0yzBCxRm/logo.png" alt="" />
+            <img src={logo} alt="" />
             <span className="text-2xl font-semibold text-[#171C35]">Docline</span>
           </div>
           <button className="px-5 py-2 bg-gray-900 text-white rounded-full text-sm font-medium hover:bg-gray-800 transition">
@@ -71,11 +75,11 @@ your email to confirm its you
                     className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
                   >
                     {showPassword ? (
-                        <Eye size={16} className="font-bold text-black"/>
+                         <img src={eye} alt="" />
                      
                     ) : (
                       <img
-                        src="https://i.ibb.co.com/mV6wgpY2/visible-Icon.png"
+                        src={eyeof}
                         alt="visible"
                       />
                     )}
@@ -100,11 +104,11 @@ your email to confirm its you
                     className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
                   >
                       {showConfirmPassword? (
-                        <Eye size={16} className="font-bold text-black"/>
+                         <img src={eye} alt="" />
                      
                     ) : (
                       <img
-                        src="https://i.ibb.co.com/mV6wgpY2/visible-Icon.png"
+                        src={eyeof}
                         alt="visible"
                       />
                     )}

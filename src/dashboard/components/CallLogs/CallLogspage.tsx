@@ -7,6 +7,7 @@ import homeIcon from '../../../assets/svgIcon/homeIcon.svg'
 import chevronIcon from '../../../assets/svgIcon/chevronnRight.svg'
 import filter from '../../../assets/svgIcon/filter.svg'
 import viewIcon from '../../../assets/svgIcon/viewArrow.svg'
+import { useNavigate } from 'react-router-dom';
 
 interface CallLog {
   id: number;
@@ -21,6 +22,7 @@ const CallLogsPage: React.FC = () => {
   const [selectedRows, setSelectedRows] = useState<number[]>([]);
 
      const [currentCall, setCurrentCall] = useState<CallLog | null>(null);
+     const navigate = useNavigate()
   
 
  
@@ -165,7 +167,7 @@ const CallLogsPage: React.FC = () => {
         </button>
       </td>
       <td className="px-6 py-4">
-        <button className="flex items-center gap-2 text-sm font-medium text-[#526FFF]">
+        <button onClick={()=> navigate('/dashboard/patients')} className="flex items-center gap-2 text-sm font-medium text-[#526FFF]">
           View Profile <img src={viewIcon} alt="" />
         </button>
       </td>

@@ -5,14 +5,11 @@
 import  { useState, useRef, type KeyboardEvent, type ClipboardEvent,  } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import logiImg from '../assets/svgIcon/authImg.svg'
+
 
 export default function OtpPage() {
-//   const [email, setEmail] = useState("");
-// const navigate = useNavigate()
-
-//   const handleSubmit = () => {
-//     navigate('/otp')
-//   };
+;
 
  const [otp, setOtp] = useState<string[]>(new Array(6).fill(''));
   const [showSuccess, setShowSuccess] = useState<boolean>(false);
@@ -85,7 +82,7 @@ export default function OtpPage() {
       {/* Left Side - Image */}
       <div className="hidden lg:block lg:w-1/2 relative">
         <img
-          src="https://i.ibb.co.com/v6CxNtR7/loginImg.png"
+          src={logiImg}
           alt="Person smiling"
           className="w-full h-[930px] rounded-[16px] p-[10px] object-cover"
         />

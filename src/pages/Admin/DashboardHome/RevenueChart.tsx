@@ -58,7 +58,7 @@ const RevenueChart = () => {
           Total Revenue
         </h3>
 
-        <div className="flex gap-3">
+        <div className="flex flex-col md:flex-row gap-8 md:gap-3">
           {/* Side Info Section */}
           <div className="flex flex-col items-start justify-center text-left w-[200px]">
             <span className="text-3xl font-semibold text-[#171C35] mb-1">25k</span>

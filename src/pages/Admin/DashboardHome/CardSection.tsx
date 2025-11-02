@@ -43,13 +43,16 @@ const StatCard = ({ stat, maskId }: { stat: typeof statsCards[0]; maskId: string
         </div>
 
         {/* Bottom-right arrow */}
-        <div className="absolute bottom-2 right-0">
-          <div className="h-12 w-12 bg-black text-white rounded-full flex items-center justify-center shadow-md">
-            <ArrowUpRight className="w-5 h-5" />
-          </div>
+   <div className="absolute bottom-2 right-2 sm:right-3 md:right-4 lg:right-5 xl:right-2 2xl:right-0 transition-all duration-200">
+  <div className="h-10 w-10 md:h-11 md:w-11 lg:h-12 lg:w-12 bg-black text-white rounded-full flex items-center justify-center shadow-md">
+    <ArrowUpRight className="w-4 h-4 md:w-5 md:h-5" />
+  </div>
+</div>
+
+
         </div>
       </div>
-    </div>
+    
   );
 };
 
