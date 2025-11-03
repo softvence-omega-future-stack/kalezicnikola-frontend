@@ -1,10 +1,13 @@
 import React from 'react';
-import { Phone, MessageSquare, Settings, Wrench } from 'lucide-react';
+
 import icon from '../assets/svgIcon/herologo.svg';
+import row2 from '../assets/svgIcon/featurerow2.svg';
+import row3 from '../assets/svgIcon/featurerow3.svg';
+import row7 from '../assets/svgIcon/feturerow7.svg';
 
 const DoclineFeaturesSection: React.FC = () => {
   return (
-    <section className="w-full -mt-10 px-4 sm:px-6 lg:px-30">
+    <section className="w-full -mt-10 px-4 sm:px-6 xl:px-30">
       {/* Header */}
       <div className="text-center mb-16">
         <div className="inline-flex items-center gap-2 px-4 py-2 border border-white shadow-sm rounded-full mb-6">
@@ -36,60 +39,12 @@ const DoclineFeaturesSection: React.FC = () => {
         </div>
 
         <div className="lg:col-span-4">
-          <div className="bg-white rounded-3xl p-8 shadow-lg border border-gray-200 h-full">
-            <h4 className="text-2xl font-semibold text-[#171c35] mb-3">Docline handles 20 calls simultaneously</h4>
-            <p className="text-[#111A2D] text-base mb-6">
-              No more waiting. No wasted time. Patients <br /> get their appointments, each patient can <br /> be served immediately.
-            </p>
-            <div className="relative">
-              <div className="flex items-center justify-between">
-                <div className="flex flex-col gap-4">
-                  {[1,2,3].map(i => <div key={i} className="w-10 h-10 bg-gray-300 rounded-full"></div>)}
-                </div>
-                <div className="flex-1 flex items-center justify-center">
-                  <div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
-                    <Phone className="w-8 h-8 text-white" />
-                  </div>
-                </div>
-                <div className="flex flex-col gap-4">
-                  {[1,2].map(i => <div key={i} className="w-10 h-10 bg-gray-300 rounded-full"></div>)}
-                </div>
-              </div>
-              {/* Connection Lines */}
-              <svg className="absolute inset-0 w-full h-full pointer-events-none">
-                <line x1="15%" y1="25%" x2="45%" y2="50%" stroke="#e5e7eb" strokeWidth="2" strokeDasharray="5,5"/>
-                <line x1="15%" y1="50%" x2="45%" y2="50%" stroke="#e5e7eb" strokeWidth="2" strokeDasharray="5,5"/>
-                <line x1="15%" y1="75%" x2="45%" y2="50%" stroke="#e5e7eb" strokeWidth="2" strokeDasharray="5,5"/>
-                <line x1="55%" y1="50%" x2="85%" y2="30%" stroke="#e5e7eb" strokeWidth="2" strokeDasharray="5,5"/>
-                <line x1="55%" y1="50%" x2="85%" y2="70%" stroke="#e5e7eb" strokeWidth="2" strokeDasharray="5,5"/>
-              </svg>
-            </div>
-          </div>
+      <img src={row2} alt="" />
         </div>
 
         {/* Row 2 */}
         <div className="lg:col-span-2">
-          <div className="bg-white rounded-3xl p-8 shadow-lg border border-gray-200 h-full">
-            <h4 className="text-xl font-semibold text-[#171c35] mb-3">Intelligent Triage & Call Routing</h4>
-            <p className="text-gray-600 text-sm mb-6">
-              The AI recognizes urgent cases. Complex inquiries are prioritized and forwarded directly to the relevant contact person.
-            </p>
-            <div className="flex items-center justify-center gap-8 mt-8">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-yellow-400 rounded-full mx-auto mb-2"></div>
-                <p className="text-xs text-gray-600 font-medium">Patient</p>
-              </div>
-              <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-                </svg>
-              </div>
-              <div className="text-center">
-                <div className="w-16 h-16 bg-pink-400 rounded-full mx-auto mb-2"></div>
-                <p className="text-xs text-gray-600 font-medium">MFA</p>
-              </div>
-            </div>
-          </div>
+          <img src={row3} alt="" />
         </div>
 
         <div className="lg:col-span-2">
@@ -112,7 +67,7 @@ const DoclineFeaturesSection: React.FC = () => {
         </div>
 
         {/* Row 3 */}
-        <div className="lg:col-span-3">
+        <div className="lg:col-span-2">
           <div className="bg-white rounded-3xl p-8 shadow-lg border border-gray-200 h-full">
             <h4 className="text-xl font-semibold text-[#171c35] mb-3">No Additional Software or Hardware Required</h4>
             <p className="text-[#667085] text-base">
@@ -121,29 +76,8 @@ const DoclineFeaturesSection: React.FC = () => {
           </div>
         </div>
 
-        <div className="lg:col-span-3">
-          <div className="bg-white rounded-3xl p-8 shadow-lg border border-gray-200 h-full">
-            <h4 className="text-xl font-semibold text-[#171c35] mb-3">Individually Tailored to Your Practice</h4>
-            <p className="text-gray-600 text-sm mb-6">
-              Voice, language, and rules of the AI are adapted to the style of your practice. Patients notice seamlessly that AI speaks with them.
-            </p>
-            <div className="flex items-center justify-around mt-8">
-              <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
-                <MessageSquare className="w-6 h-6 text-blue-600"/>
-              </div>
-              <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
-                <Settings className="w-6 h-6 text-purple-600"/>
-              </div>
-              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center shadow-lg">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-                </svg>
-              </div>
-              <div className="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center">
-                <Wrench className="w-6 h-6 text-pink-600"/>
-              </div>
-            </div>
-          </div>
+        <div className="lg:col-span-4">
+          <img src={row7} alt="" />
         </div>
       </div>
     </section>

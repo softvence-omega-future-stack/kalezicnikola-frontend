@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import img1 from "../assets/svgIcon/slider1.svg";
 import img2 from "../assets/svgIcon/slider2.svg";
