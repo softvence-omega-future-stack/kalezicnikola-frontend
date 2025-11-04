@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import logo from '../assets/svgIcon/logo.svg';
+import textlogo from '../assets/svgIcon/textLogo.svg';
 import sidelogo from '../assets/svgIcon/rightside-logo.svg';
 
 import dashbord from '../assets/svgIcon/dashboard.svg';
@@ -16,8 +17,8 @@ const Logo: React.FC = () => (
   <div className="flex items-center justify-between  md:justify-start gap-4 p-4 relative">
     {/* Main Logo */}
     <div className="flex items-center gap-2">
-      <img src={logo} className="h-7 w-7" alt="logo" />
-      <span className="hidden md:inline text-3xl font-semibold text-[#171C35]">Docline</span>
+      <img src={logo} alt="logo" />
+     <img src={textlogo} alt="" />
     </div>
 
     {/* Side Logo */}

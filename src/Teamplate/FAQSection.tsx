@@ -63,7 +63,7 @@ const FAQSection: React.FC = () => {
         </div>
 
         {/* FAQ Accordion */}
-        <div className="space-y-3 sm:space-y-4">
+        <div className="space-y-1">
           {faqData.map((faq, index) => (
             <div
               key={index}

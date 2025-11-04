@@ -1,6 +1,7 @@
 // layout/DashboardLayout.jsx
+import AdminMainHeader from "@/AdminDashboard/AdminMainHeader";
 import AdminSidebar from "@/AdminDashboard/AdminSidebar";
-import MainHeader from "@/dashboard/components/dashboard/DashboardMainHeader";
+
 import LogoutModal from "@/pages/Admin/Logout/LogoutPopup";
 import { useState } from "react";
 
@@ -24,7 +25,7 @@ const AdminDashboardLayout = () => {
       {/* Main content */}
       <div className="flex-1 flex flex-col px-2 ">
         {/* Topbar */}
-        <MainHeader />
+        <AdminMainHeader />
 
         {/* Outlet for nested routes */}
         <main className="flex-1 px-5  overflow-auto">

@@ -16,9 +16,13 @@ import TestimonialSection from "@/Teamplate/WonersSlider"
 const Home = () => {
   return (
     <div className="bg-[#F3F6F6]">
-      <Header/>
+     <div className="">
+       <Header/>
       <DoclineHero/>
-      <DoclineFeaturesSection/>
+     </div>
+    <div className="-mt-20">
+        <DoclineFeaturesSection  />
+    </div>
      <DoclineWorkflowSlider/>
      <DoclineInterface/>
      <Functions/>

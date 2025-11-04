@@ -4,12 +4,12 @@ import herologo from "../assets/svgIcon/herologo.svg";
 
 const DoclineHero: React.FC = () => {
   return (
-    <section className="w-full bg-[#F3F6F6] py-16 lg:py-20">
-      <div className="flex flex-col lg:flex-row items-center justify-between px-8 lg:px-20">
+    <section className="w-full bg-[#F3F6F6] pt-16 lg:py-20 ">
+      <div className="flex flex-col lg:flex-row items-center justify-between px-8 lg:px-20 mt-14">
         {/* Left Content */}
         <div className="w-full lg:w-1/2 space-y-6 2xl:-mt-72">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-5 py-3 border border-white/10 bg-white/10 rounded-full">
+          <div className="inline-flex items-center gap-2 px-[10px] py-2 border border-white rounded-full">
             <img src={herologo} alt="Docline Logo" className="w-5 h-5" />
             <span className="text-[#171C35] text-sm font-medium">
               Your smarter telemedicine
@@ -17,7 +17,7 @@ const DoclineHero: React.FC = () => {
           </div>
 
           {/* Heading */}
-          <h1 className="text-[42px] sm:text-[52px] lg:text-[64px] font-semibold text-[#171C35] leading-tight">
+          <h1 style={{ fontFamily: 'Urbanist, sans-serif' }} className="text-[42px] sm:text-[52px] lg:text-[64px] font-semibold text-[#171C35] leading-tight">
             24/7 Availability <br /> for Your Patients.
             <span className="block mt-2">
               Zero Phone Stress for Your Team.
@@ -25,13 +25,13 @@ const DoclineHero: React.FC = () => {
           </h1>
 
           {/* Description */}
-          <p className="text-lg text-gray-600 leading-relaxed">
-            Your intelligent AI assistant takes over all phone calls and allows your staff 
-            to handle appointments, answer questions, and simplify tasks in your team.
+          <p style={{ fontFamily: 'Urbanist, sans-serif' }} className="text-lg text-gray-600 leading-relaxed">
+            Your intelligent AI assistant takes over all phone calls and allows your staff <br /> 
+            to handle appointments, answer  questions, and simplify tasks in your team.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 pt-4">
+          <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="flex flex-col sm:flex-row gap-4 pt-4">
             <button className="px-8 py-4 bg-[#526FFF] text-white rounded-[12px] font-medium transition-colors cursor-pointer">
               Get Started
             </button>

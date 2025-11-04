@@ -54,7 +54,7 @@ const DoclineInterface: React.FC = () => {
       <div className="">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8  lg:px-30">
           {/* Left Section */}
-          <div className="flex flex-col justify-start">
+          <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="flex flex-col justify-start">
             <div className="mb-6 mt-9">
               <div className="inline-flex items-center gap-2 px-5 py-3 border border-gray-300 mb-8 rounded-full bg-white shadow-sm">
                 <img src={icon} alt="Docline Logo" className="w-5 h-5" />
@@ -178,7 +178,7 @@ const DoclineInterface: React.FC = () => {
             </div>
 
             {/* Menu Items */}
-         <div className="-space-y-1">
+         <div className="-space-y-1 -mt-5">
   {menuItems.map((item, index) => (
     <div key={index} className="relative overflow-visible ">
       {/* Shadow */}
@@ -213,3 +213,12 @@ const DoclineInterface: React.FC = () => {
 };
 
 export default DoclineInterface;
+
+
+
+
+
+
+
+
+
