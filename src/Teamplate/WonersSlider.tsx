@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react'; // 👈 useEffect import kora holo
 import woner from '../assets/svgIcon/woner.svg';
 import icon from '../assets/svgIcon/herologo.svg';
 
@@ -44,9 +44,22 @@ const TestimonialSection: React.FC = () => {
     }
   ];
 
+  // 👈 New useEffect hook for auto-sliding
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // Proti 4 second por next slide-e jaabe
+      setActiveSlide((currentSlide) => 
+        (currentSlide + 1) % testimonials.length
+      );
+    }, 4000); // 4000ms = 4 seconds
+
+    // Component unmount hole interval-ti clear kore deoa holo memory leak prevent korar jonno
+    return () => clearInterval(interval);
+  }, [testimonials.length]); // testimonials.length change hole effect re-run hobe
+
   return (
-    <div className=" px-4 py- ">
-      <div className="xl:px-30">
+    <div className="px-4 py-8">
+      <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 border border-white shadow-sm rounded-full mb-6">
@@ -60,11 +73,12 @@ const TestimonialSection: React.FC = () => {
         </div>
 
         {/* Testimonial Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-12  items-center mb-12 bg-white   rounded-3xl">
+        <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch mb-12 bg-white rounded-3xl p-4 lg:p-8 shadow-xl">
+          
           {/* Left - Image */}
-          <div className="lg:col-span-4 flex  lg:justify-start">
+          <div className="lg:col-span-4 flex justify-center lg:justify-start h-full items-center lg:pl-0 pb-4 lg:pb-0">
             <div className="relative">
-              <div className="w-72 h-80 md:w-80 md:h-96 bg-gray-800 rounded-3xl overflow-hidden ">
+              <div className="w-72 h-full md:w-80 lg:h-full bg-gray-800 rounded-3xl overflow-hidden ">
                 <img 
                   src={testimonials[activeSlide].image} 
                   alt={testimonials[activeSlide].name}
@@ -75,8 +89,8 @@ const TestimonialSection: React.FC = () => {
           </div>
 
           {/* Middle - Quote */}
-          <div className="lg:col-span-5 flex flex-col justify-center -pl-52  border-r border-gray-100">
-            <blockquote className="text-[#111A2D] text-2xl font-medium  leading-relaxed mb-6">
+          <div className="lg:col-span-5 flex flex-col justify-center h-full border-r border-gray-100 px-4 lg:px-4 py-4 lg:py-0">
+            <blockquote className="text-[#111A2D] text-2xl font-medium leading-relaxed mb-6">
               {testimonials[activeSlide].quote}
             </blockquote>
             
@@ -91,10 +105,10 @@ const TestimonialSection: React.FC = () => {
           </div>
 
           {/* Right - Stats */}
-          <div className="lg:col-span-3 flex flex-col gap-4 pl-6">
+          <div className="lg:col-span-3 flex flex-col gap-4 px-4 lg:pl-4 h-full justify-center pt-4 lg:pt-0">
             {/* Time Saved Card */}
-            <div className="rounded-2xl p-4 text-center">
-              <div className="text-[128px] text-gray-900 mb-1">
+            <div className="rounded-2xl p-4 text-center border border-gray-100 lg:border-none">
+              <div className="text-5xl sm:text-7xl lg:text-[128px] text-gray-900 mb-1 leading-none">
                 {testimonials[activeSlide].stats.timeSaved}
               </div>
               <p className="text-[#171C35] text-xl font-medium">
@@ -103,8 +117,8 @@ const TestimonialSection: React.FC = () => {
             </div>
 
             {/* Acceptance Card */}
-            <div className="rounded-2xl p-4 text-center">
-              <div className="text-[128px]  text-[#111A2D] mb-1">
+            <div className="rounded-2xl p-4 text-center border border-gray-100 lg:border-none">
+              <div className="text-5xl sm:text-7xl lg:text-[128px] text-[#111A2D] mb-1 leading-none">
                 {testimonials[activeSlide].stats.acceptance}
               </div>
               <p className="text-[#171C35] text-xl font-medium">

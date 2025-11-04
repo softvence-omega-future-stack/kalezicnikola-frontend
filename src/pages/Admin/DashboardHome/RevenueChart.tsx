@@ -7,7 +7,7 @@ import {
   YAxis,
 
 } from "recharts";
-import type { RectangleProps } from "recharts"; // ✅ type-only import
+import type { RectangleProps } from "recharts"; 
 
 const RevenueChart = () => {
   const revenueData = [
@@ -51,7 +51,7 @@ const RevenueChart = () => {
   };
 
   return (
-    <div className="w-full bg-white p-6 rounded-3xl flex flex-col md:flex-row items-center md:items-stretch justify-between gap-6">
+    <div className="w-full bg-white p-6 rounded-3xl flex flex-col lg:flex-row items-center md:items-stretch justify-between gap-6">
       {/* Chart Section */}
       <div className="flex-1">
         <h3 className="text-xl font-semibold text-[#171C35] mb-4">

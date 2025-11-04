@@ -7,7 +7,7 @@ const DashboardLayout = () => {
   return (
     <div className="flex h-screen bg-[#F3F6F6]">
       {/* Sidebar - fixed width 280px */}
-      <div className="flex-shrink-0 w-20 md:w-72 border-r border-gray-100">
+      <div className="fw-[280px] border-r border-gray-300">
         <Sidebar />
       </div>
 

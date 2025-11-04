@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 // 🧩 Local SVG Icons
 import profile from '../../../../assets/svgIcon/karen.svg';
-import chat from '../../../../assets/svgIcon/chatIcon.svg';
+
 import support from '../../../../assets/svgIcon/supports.svg';
 import setting from '../../../../assets/svgIcon/settings.svg';
 import user from '../../../../assets/svgIcon/user.svg';
@@ -60,23 +60,23 @@ const UserDropdown: React.FC<UserDropdownProps> = ({ onClose }) => {
     if (onClose) onClose();
   };
 
-  const handleChat = () => {
-    console.log('Go to Chat');
-    if (onClose) onClose();
-  };
+  
 
   const handleSupport = () => {
     console.log('Go to Support');
+    navigate('/dashboard/supports')
     if (onClose) onClose();
   };
 
   const handleSettings = () => {
     console.log('Go to Settings');
+    navigate('/dashboard/settings')
     if (onClose) onClose();
   };
 
   const handleLogout = () => {
     console.log('Logging out...');
+    navigate('/login')
     if (onClose) onClose();
   };
 
@@ -101,7 +101,7 @@ const UserDropdown: React.FC<UserDropdownProps> = ({ onClose }) => {
         <div className="rounded-lg bg-gray-100">
           <MenuItem icon={user} text="Profile settings" onClick={handleProfileSettings} />
         </div>
-        <MenuItem icon={chat} text="Chat" onClick={handleChat} />
+        
         <MenuItem icon={support} text="Support" onClick={handleSupport} />
         <MenuItem icon={setting} text="Settings" onClick={handleSettings} />
       </nav>

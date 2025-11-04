@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import eye from '../assets/svgIcon/Eye.svg'
 import eyeof from '../assets/svgIcon/EyeOff.svg'
 import logiImg from '../assets/svgIcon/authImg.svg'
+import icon from '../assets/svgIcon/logo.svg'
+import logo from '../assets/svgIcon/textLogo.svg'
 
 
 export default function LoginPage() {
@@ -49,8 +51,8 @@ export default function LoginPage() {
 
         <div className="fixed top-8 left-0 right-0 z-20 w-[95%] border border-gray-100 bg-white/10 backdrop-blur-sm rounded-full px-9 py-4 flex items-center justify-between mx-auto">
           <div className="flex items-center gap-2">
-            <img src="https://i.ibb.co/0yzBCxRm/logo.png" alt="Logo" />
-            <span className="text-2xl font-semibold text-[#171C35]">Docline</span>
+            <img src={icon} alt="Logo" />
+            <img src={logo} alt="" />
           </div>
           <button className="px-5 py-2 bg-gray-900 text-white rounded-full text-sm font-medium hover:bg-gray-800 transition">
             Login

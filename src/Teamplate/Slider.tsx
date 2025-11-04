@@ -4,6 +4,7 @@ import img1 from "../assets/svgIcon/slider1.svg";
 import img2 from "../assets/svgIcon/slider2.svg";
 import img3 from "../assets/svgIcon/slider3.svg";
 import img4 from "../assets/svgIcon/slider4.svg";
+import icon from "../assets/svgIcon/herologo.svg";
 
 const DoclineWorkflowSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -29,8 +30,8 @@ const DoclineWorkflowSlider = () => {
       <div className="">
         {/* Header */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-4 py-2  mb-6 shadow-sm">
-            <span className="text-blue-600 text-sm">✦</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2  mb-6 rounded-full shadow-sm">
+           <img src={icon} alt="" />
             <span className="text-gray-800 text-sm font-medium">Intuitive & Modern</span>
           </div>
           

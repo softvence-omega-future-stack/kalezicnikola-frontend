@@ -55,7 +55,7 @@ const Card = ({ category, maskId }: { category: (typeof categories)[0]; maskId: 
           <h3 className="text-base font-medium mb-4 text-[#171C35]">{category.title}</h3>
 
           {category.avatars ? (
-  <div className="flex flex-col md:flex-row md:items-center gap-4">
+  <div className="flex flex-col md:flex-row md:items-center gap-">
     <div className="flex -space-x-3 items-center flex-shrink-0">
       {category.avatars.map((avatar, idx) => (
         <img

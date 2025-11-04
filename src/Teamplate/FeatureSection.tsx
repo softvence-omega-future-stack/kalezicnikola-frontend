@@ -24,11 +24,12 @@ const DoclineFeaturesSection: React.FC = () => {
         </p>
       </div>
 
-      {/* Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-6 gap-6">
+      {/* Grid - FIX: Added md:grid-cols-6 to maintain 6-column structure on MD devices. */}
+      <div className="grid grid-cols-1 **md:grid-cols-6** lg:grid-cols-6 gap-6 items-stretch"> 
 
-        {/* Row 1 */}
-        <div className="lg:col-span-2">
+        {/* Row 1: Card (2 columns) and Image (4 columns) */}
+        {/* NOTE: Added md:col-span-2/4 for consistency on MD screens. */}
+        <div className="**md:col-span-2** lg:col-span-2">
           <div className="bg-[#171C35] text-white rounded-4xl p-8 flex flex-col justify-between shadow-xl h-full">
             <h3 className="text-[99px] font-extralight mb-6">75%</h3>
             <h4 className="text-2xl font-medium mb-4">Relief</h4>
@@ -38,18 +39,28 @@ const DoclineFeaturesSection: React.FC = () => {
           </div>
         </div>
 
-        <div className="lg:col-span-4">
-      <img src={row2} alt="" />
+        <div className="**md:col-span-4** lg:col-span-4 h-full">
+          <img 
+            src={row2} 
+            alt="Feature 2" 
+            className="w-full h-full object-cover rounded-4xl" 
+          />
         </div>
 
-        {/* Row 2 */}
-        <div className="lg:col-span-2">
-          <img src={row3} alt="" />
+        {/* Row 2: Image (2 columns), Card (2 columns), Card (2 columns) */}
+        
+        {/* NOTE: Added md:col-span-2 for consistency on MD screens. */}
+        <div className="**md:col-span-2** lg:col-span-2 h-full">
+          <img 
+            src={row3} 
+            alt="Feature 3" 
+            className="w-full h-full object-cover rounded-4xl" 
+          />
         </div>
 
-        <div className="lg:col-span-2">
+        <div className="**md:col-span-2** lg:col-span-2">
           <div className="bg-[#526FFF] text-white rounded-4xl p-8 h-full flex flex-col justify-between shadow-xl">
-            <h3 className="text-[96px] font-extralight  mb-6">24/7</h3>
+            <h3 className="text-[96px] font-extralight mb-6">24/7</h3>
             <h4 className="text-2xl font-medium mb-4">Availability</h4>
             <p className=" text-sm leading-relaxed">
               Your practice is 24/7. Always accessible. Wherever the calls arrive, every request is answered and forwarded to the right contact in the cloud.
@@ -57,7 +68,7 @@ const DoclineFeaturesSection: React.FC = () => {
           </div>
         </div>
 
-        <div className="lg:col-span-2">
+        <div className="**md:col-span-2** lg:col-span-2">
           <div className="bg-white rounded-3xl p-8 shadow-lg border border-gray-200 h-full">
             <h4 className="text-xl font-semibold text-[#171C35] mb-3">Easy Connection to Your Phone System</h4>
             <p className="text-[#111A2D] text-base">
@@ -66,8 +77,10 @@ const DoclineFeaturesSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Row 3 */}
-        <div className="lg:col-span-2">
+        {/* Row 3: Card (2 columns) and Image (4 columns) */}
+        
+        {/* NOTE: Added md:col-span-2/4 for consistency on MD screens. */}
+        <div className="**md:col-span-2** lg:col-span-2">
           <div className="bg-white rounded-3xl p-8 shadow-lg border border-gray-200 h-full">
             <h4 className="text-xl font-semibold text-[#171c35] mb-3">No Additional Software or Hardware Required</h4>
             <p className="text-[#667085] text-base">
@@ -76,8 +89,12 @@ const DoclineFeaturesSection: React.FC = () => {
           </div>
         </div>
 
-        <div className="lg:col-span-4">
-          <img src={row7} alt="" />
+        <div className="**md:col-span-4** lg:col-span-4 h-full">
+          <img 
+            src={row7} 
+            alt="Feature 7" 
+            className="w-full h-full object-cover rounded-4xl" 
+          />
         </div>
       </div>
     </section>

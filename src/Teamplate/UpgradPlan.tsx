@@ -59,7 +59,7 @@ const UpgradPlan = () => {
               <div className="flex items-baseline gap-1 mb-1">
                 <span className="text-[36px] font-medium text-[#526FFF]">399€</span>
                 <span className="text-sm text-[#526FFF]">/month</span>
-                    <p className="text-sm text-[#171c35] text-right ml-7">Full Price</p>
+                    <p className="text-sm text-[#171c35] text-right xl:ml-7">Full Price</p>
               </div>
           
             </div>
@@ -104,7 +104,7 @@ const UpgradPlan = () => {
               <div className="flex items-baseline gap-1 mb-1">
                 <span className="text-[36px] font-medium text-white">899€</span>
                 <span className="text-sm text-gray-400">/month</span>
-                       <p className="text-sm text-gray-300 text-right ml-6">Full Price</p>
+                       <p className="text-sm text-gray-300 text-right xl:ml-6">Full Price</p>
               </div>
        
             </div>
@@ -153,7 +153,7 @@ const UpgradPlan = () => {
               <div className="flex items-baseline gap-1 mb-1">
                 <span className="text-[36px] font-medium text-blue-500">1299€</span>
                 <span className="text-sm text-gray-600">/month</span>
-                  <p className="text-sm text-[#171c35] text-right ml-2">Full Price</p>
+                  <p className="text-sm text-[#171c35] text-right xl:ml-2">Full Price</p>
               </div>
             
             </div>
