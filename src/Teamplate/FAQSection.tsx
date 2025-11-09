@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
-import icon from '../assets/svgIcon/herologo.svg';
+import icon from '../assets/svgIcon/herologo.svg'; 
 
 interface FAQItem {
   question: string;
@@ -48,22 +48,44 @@ const FAQSection: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen  px-4 py-12 sm:py-16 md:py-20 lg:py-24">
-      <div className="xl:px-30">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 border border-white shadow-sm rounded-full mb-6">
-            <img src={icon} alt="Docline logo" />
-            <span className="text-[#171C35] text-sm font-medium">FAQ</span>
-          </div>
+    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="min-h-screen px-4 py-12 sm:py-16 md:py-20 lg:py-24">
+      <div className="relative xl:px-30 overflow-hidden">
 
-          <h2 className="text-4xl sm:text-5xl lg:text-5xl font-semibold text-[#171c35] mb-4">
-            Frequently Asked Questions
-          </h2>
-        </div>
+        {/* Header Section */}
+  <div className="relative text-center mb-12">
 
-        {/* FAQ Accordion */}
-        <div className="space-y-1">
+  {/* FAQ Badge (icon + FAQ label) */}
+  <div className="inline-flex items-center gap-2 px-4 py-2 border border-white shadow-sm rounded-full mb-4 mx-auto">
+    <img src={icon} alt="Docline logo" />
+    <span className="text-[#171C35] text-sm font-medium">FAQ</span>
+  </div>
+
+  {/* Heading */}
+  <h2 className="text-4xl sm:text-5xl lg:text-5xl font-semibold text-[#171c35] ">
+    Frequently Asked Questions
+  </h2>
+
+  {/* Background Shape under Heading */}
+  <div
+    style={{
+      width: '90%',
+      maxWidth: '600px',
+      height: '500px',
+      borderRadius: '40px',
+      background: 'rgba(197, 23, 255, 0.10)',
+      filter: 'blur(50px)',
+    }}
+    className="mx-auto"
+  ></div>
+</div>
+
+
+
+        {/* FAQ Accordion Wrapper */}
+       <div className="-mt-[500px]  space-y-4 overflow-hidden   ">
+  {/* Background */}
+
+  <div className="relative z-10 space-y-1 ">
           {faqData.map((faq, index) => (
             <div
               key={index}
@@ -85,7 +107,7 @@ const FAQSection: React.FC = () => {
                 </div>
               </button>
 
-              {/* Answer - Expandable */}
+              {/* Answer */}
               <div
                 className={`overflow-hidden transition-all duration-300 ease-in-out ${
                   openIndex === index ? 'max-h-96' : 'max-h-0'
@@ -100,8 +122,7 @@ const FAQSection: React.FC = () => {
             </div>
           ))}
         </div>
-
-      
+</div>
       </div>
     </div>
   );

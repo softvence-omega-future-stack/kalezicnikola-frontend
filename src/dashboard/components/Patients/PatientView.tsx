@@ -19,7 +19,7 @@ export default function PatientsView() {
   ];
 
   return (
-    <div className="min-h-screenp-4 sm:p-6">
+    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="min-h-screenp-4 sm:p-6">
       {/* Breadcrumb */}
       <div className="flex items-center gap-2 text-sm text-gray-600 mb-6">
       <img src={homeIcon} alt="" />

@@ -35,7 +35,7 @@ const AdminMainHeader: React.FC = () => {
   <div className="flex items-center w-full max-w-lg">
     {/* 👇 Back button only when not on dashboard home */}
     {!isDashboardHome && (
-      <div className="flex items-center pr-3 mr-3">
+      <div className="flex items-center pr-3 mr-3 border-r border-gray-200">
         <button
           onClick={() => navigate(-1)}
           className="flex items-center gap-2 text-[#111A2D] font-semibold text-sm"

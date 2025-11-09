@@ -1,0 +1,36 @@
+.icon-container {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid white;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 10px;
+}
+
+/* Hide top-right and bottom-left rounded parts */
+.icon-container::before,
+.icon-container::after {
+  content: '';
+  position: absolute;
+  background: rgba(255, 255, 255, 0.1);
+  width: 50%;
+  height: 50%;
+}
+
+/* Top-right overlay */
+.icon-container::before {
+  top: 0;
+  right: 0;
+  border-top-right-radius: 16px;
+}
+
+/* Bottom-left overlay */
+.icon-container::after {
+  bottom: 0;
+  left: 0;
+  border-bottom-left-radius: 16px;
+}

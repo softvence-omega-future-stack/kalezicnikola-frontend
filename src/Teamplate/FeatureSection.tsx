@@ -22,11 +22,11 @@ const descStyle = {
 
 // --- 1. ReliefCard ---
 const ReliefCard: React.FC = () => (
-  <div className="p-6 md:p-8 bg-[#171C35] rounded-3xl shadow-sm h-full flex flex-col justify-between text-white">
+  <div className="p-6 md:p-8 xl:p-[30px] bg-[#171C35] rounded-3xl shadow-sm h-full flex flex-col justify-between text-white">
     <div style={{ fontFamily: 'Urbanist, sans-serif' }}>
-      <p className="text-5xl md:text-6xl font-bold mb-2 text-white">75%</p>
-      <h3 style={{ ...titleStyle, color: 'white' }}>Relief</h3>
-      <p style={{ ...descStyle, color: 'white' }} className="mt-3">
+      <p className="text-5xl md:text-6xl xl:text-[99px]  mb-14 text-white">75%</p>
+      <h3 style={{ ...titleStyle, color: 'white' }} className='text-2xl font-medium mb-3'>Relief</h3>
+      <p style={{ ...descStyle, color: 'white' }} className="mt-3 text-sm ">
         The AI assistant handles an average of 75% of routine calls completely independently. 
         Your team gains this time back for more patient care.
       </p>
@@ -36,7 +36,19 @@ const ReliefCard: React.FC = () => (
 
 // --- 2. ConversationCard ---
 const ConversationCard: React.FC = () => (
-  <div className="relative p-6 md:p-8 bg-white rounded-3xl  h-full flex flex-col justify-between">
+  <div
+    className="relative p-6 md:p-8 h-full flex flex-col justify-between"
+    style={{
+      borderRadius: "30px",
+      border: "1px solid #FFF",
+      background: `
+        radial-gradient(77.75% 73.99% at 100% 106.39%, rgba(71, 43, 255, 0.10) 0%, rgba(255, 255, 255, 0.00) 100%),
+        radial-gradient(138.26% 157.29% at -16.83% -75.11%, rgba(61, 165, 245, 0.20) 0%, rgba(43, 142, 255, 0.00) 100%),
+        #FFF
+      `,
+      backdropFilter: "blur(50px)",
+    }}
+  >
     <div>
       <h3 style={titleStyle}>Docline manages 20 calls at once</h3>
       <p style={descStyle} className="mt-3 mb-6">
@@ -49,9 +61,22 @@ const ConversationCard: React.FC = () => (
   </div>
 );
 
+
 // --- 3. TriadeCard ---
 const TriadeCard: React.FC = () => (
-  <div className="relative p-6 md:p-8 bg-white rounded-3xl  h-full flex flex-col justify-between">
+  <div
+    className="relative p-6 md:p-8 h-full flex flex-col justify-between"
+    style={{
+      borderRadius: "30px",
+      border: "1px solid #FFF",
+      background: `
+        linear-gradient(0deg, #FFF 0%, #FFF 100%),
+        radial-gradient(138.26% 157.29% at -16.83% -75.11%, rgba(61, 165, 245, 0.20) 0%, rgba(43, 142, 255, 0.00) 100%),
+        #FFF
+      `,
+      backdropFilter: "blur(50px)",
+    }}
+  >
     <div>
       <h3 style={titleStyle}>Smart Triage & Call Forwarding</h3>
       <p style={descStyle} className="mt-3 mb-6">
@@ -64,49 +89,120 @@ const TriadeCard: React.FC = () => (
   </div>
 );
 
+
 // --- 4. AvailabilityCard ---
 const AvailabilityCard: React.FC = () => (
-  <div className="relative p-6 md:p-8 bg-[#526FFF] rounded-3xl shadow-sm text-white h-full flex flex-col justify-between">
-    <div className="relative z-10">
-      <p className="text-5xl md:text-6xl font-bold mb-2">24/7</p>
-      <h3 style={{ ...titleStyle, color: 'white' }}>Availability</h3>
-      <p style={{ ...descStyle, color: '#E0E7FF' }} className="mt-3">
+  <div
+    style={{
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "flex-start",
+      padding: "30px 58px 30px 30px", // top right bottom left
+      gap: "83px", // spacing between children
+      borderRadius: "30px",
+      border: "1px solid #FFF",
+      background: "#526FFF",
+      backdropFilter: "blur(50px)",
+    }}
+  >
+    {/* 24/7 Section */}
+    <p className="text-5xl md:text-6xl text-white font-bold mb-0">24/7</p>
+
+    {/* Availability Section */}
+    <div>
+      <h3 style={{ ...titleStyle, color: "white", marginBottom: "0" }}>Availability</h3>
+      <p style={{ ...descStyle, color: "#E0E7FF" }}>
         Your practice is reachable 365 days a year. The AI answers all calls — regardless of holidays, illness, or staff shortage.
       </p>
     </div>
   </div>
 );
 
+
+
 // --- 5. IntegrationCard ---
 const IntegrationCard: React.FC = () => (
-  <div className="p-6 md:p-8 bg-white rounded-3xl h-full flex flex-col justify-between">
-    <div>
-      <h3 style={titleStyle}>Easy connection to your phone system</h3>
-      <p style={descStyle} className="mt-3">
-        No system change or IT stress. The integration with your existing phone setup is quick and easy by our onboarding team.
-      </p>
-    </div>
+  <div
+    style={{
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "flex-start",
+      alignItems: "flex-start",
+      padding: "30px 18.5px 92px 30px", // top right bottom left
+      borderRadius: "30px",
+      border: "1px solid #FFF",
+      background: `
+        linear-gradient(0deg, #FFF 0%, #FFF 100%),
+        radial-gradient(138.26% 157.29% at -16.83% -75.11%, rgba(61, 165, 245, 0.20) 0%, rgba(43, 142, 255, 0.00) 100%),
+        #FFF
+      `,
+      backdropFilter: "blur(50px)",
+      height: "100%",
+    }}
+  >
+    <h3   style={{
+    color: "var(--Secondary-color, #171C35)",
+    fontFamily: "Urbanist, sans-serif",
+    fontSize: "22px",
+    fontStyle: "normal",
+    fontWeight: 600,
+    lineHeight: "120%", // 26.4px
+  }} className=' pb-[16px] ' >Easy connection to your phone system</h3>
+   <p style={{ fontSize: "16px", lineHeight: "24px", margin: 0, color: "#333" }}>
+  No system change or IT stress. The integration <br />with your existing phone setup is quick and easy by <br /> our onboarding team.
+</p>
+
   </div>
 );
 
+
+
 // --- 6. SoftwareCard ---
 const SoftwareCard: React.FC = () => (
-  <div className="p-6 md:p-8 bg-white rounded-3xl  h-full flex flex-col justify-between">
+  <div
+    className="p-6 md:p-8 h-full flex flex-col justify-between"
+    style={{
+      borderRadius: "30px",
+      border: "1px solid #FFF",
+      background: `
+        linear-gradient(0deg, #FFF 0%, #FFF 100%),
+        radial-gradient(138.26% 157.29% at -16.83% -75.11%, rgba(61, 165, 245, 0.20) 0%, rgba(43, 142, 255, 0.00) 100%),
+        #FFF
+      `,
+      backdropFilter: "blur(50px)",
+      fontFamily: "Urbanist, sans-serif", // <-- applies Urbanist to all text inside
+    }}
+  >
     <div>
-      <h3 style={titleStyle}>No extra software or hardware required</h3>
-      <p style={descStyle} className="mt-3">
+      <h3 style={{ ...titleStyle, fontFamily: "Urbanist, sans-serif" }}>No extra software or hardware required</h3>
+      <p style={{ ...descStyle, fontFamily: "Urbanist, sans-serif" }} className="mt-3">
         Docline runs fully in the cloud. You save on physical devices, maintenance, and gain flexibility in your workflow.
       </p>
     </div>
   </div>
 );
 
+
 // --- 7. CustomizationCard ---
 const CustomizationCard: React.FC = () => (
-  <div className="relative p-6 md:p-8 bg-white rounded-3xl  h-full flex flex-col justify-between">
+  <div
+    className="relative p-6 md:p-8 h-full flex flex-col justify-between"
+    style={{
+      borderRadius: "30px",
+      border: "1px solid #FFF",
+      background: `
+        radial-gradient(77.75% 73.99% at 100% 106.39%, rgba(71, 43, 255, 0.10) 0%, rgba(255, 255, 255, 0.00) 100%),
+        radial-gradient(138.26% 157.29% at -16.83% -75.11%, rgba(61, 165, 245, 0.20) 0%, rgba(43, 142, 255, 0.00) 100%),
+        #FFF
+      `,
+      backdropFilter: "blur(50px)",
+      fontFamily: "Urbanist, sans-serif", // Ensures all text uses Urbanist
+    }}
+  >
     <div>
-      <h3 style={titleStyle}>Tailored to your practice</h3>
-      <p style={descStyle} className="mt-3 mb-6">
+      <h3 style={{ ...titleStyle, fontFamily: "Urbanist, sans-serif" }}>Tailored to your practice</h3>
+      <p style={{ ...descStyle, fontFamily: "Urbanist, sans-serif", marginTop: "12px", marginBottom: "24px" }}>
         The AI’s tone, wording, and rules are customized exactly to your practice style. <br /> Patients often don’t even notice they’re speaking to an AI.
       </p>
     </div>
@@ -116,12 +212,13 @@ const CustomizationCard: React.FC = () => (
   </div>
 );
 
+
 // --- Main Grid ---
 const FeatureCardsGrid: React.FC = () => {
   return (
-    <div className="py-8 px-4 mx-15 min-h-screen">
+    <div className="py-8 px-4 mx-15 ">
       <div className="text-center mb-16">
-        <div className="inline-flex items-center gap-2 px-4 py-2 border border-white rounded-full mb-6 -mt-7">
+        <div style={{}} className="inline-flex items-center gap-2 px-3 py-2 border border-white bg-[rgba(255, 255, 255, 0.10);] rounded-full mb-6 -mt-7">
           <img src={icon} alt="" />
           <span style={descStyle}>Peace on the phone</span>
         </div>

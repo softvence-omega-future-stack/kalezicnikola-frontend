@@ -1,4 +1,3 @@
-
 import CommonSpace from "@/common/space/CommonSpace";
 
 import unredview1 from '../../../assets/svgIcon/unredviewcard1.svg';
@@ -31,10 +30,10 @@ const Card = ({ category, maskId }: { category: (typeof categories)[0]; maskId: 
   const height = 180;
 
   return (
-    <div className="relative w-full h-[180px]">
+    <div className="relative w-full min-h-[180px] aspect-[380/180] max-w-lg mx-auto">
       <svg
         width="100%"
-        height={height}
+        height="100%"
         viewBox={`0 0 ${width} ${height}`}
         preserveAspectRatio="none"
         className="absolute top-0 left-0 w-full h-full"
@@ -54,8 +53,9 @@ const Card = ({ category, maskId }: { category: (typeof categories)[0]; maskId: 
         <div>
           <h3 className="text-base font-medium mb-4 text-[#171C35]">{category.title}</h3>
 
-          {category.avatars ? (
-  <div className="flex flex-col md:flex-row md:items-center gap-">
+        {category.avatars ? (
+  <div className="flex items-center justify-between gap-4 w-full flex-wrap">
+    {/* Avatars + extra count */}
     <div className="flex -space-x-3 items-center flex-shrink-0">
       {category.avatars.map((avatar, idx) => (
         <img
@@ -72,7 +72,8 @@ const Card = ({ category, maskId }: { category: (typeof categories)[0]; maskId: 
       )}
     </div>
 
-    <p className="text-[#171C35] text-sm font-medium leading-snug">
+    {/* Description text */}
+    <p className="text-[#171C35] text-sm font-medium leading-snug flex-1 md:min-w[40px] lg:min-w-[100px]">
       {category.description}
     </p>
   </div>
@@ -88,7 +89,7 @@ const Card = ({ category, maskId }: { category: (typeof categories)[0]; maskId: 
 
         </div>
 
-        <div className="absolute bottom-2 -right-1">
+        <div className="absolute bottom-2 right-0">
           <div className="h-12 w-12 bg-gray-900 rounded-full flex items-center justify-center">
             <img src={arrowRight} alt="" />
           </div>
@@ -101,8 +102,8 @@ const Card = ({ category, maskId }: { category: (typeof categories)[0]; maskId: 
 const SubHeaderCard = () => {
   return (
     <CommonSpace>
-      <div className="-mt-18  ">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+      <div className="-mt-18">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {categories.map((category, index) => (
             <Card key={index} category={category} maskId={`cutoutMask${index}`} />
           ))}

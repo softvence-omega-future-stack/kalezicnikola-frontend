@@ -17,7 +17,7 @@ import security from '../assets/svgIcon/securityAudit.svg';
 import chevron from '../assets/svgIcon/customersArow.svg';
 
 const Logo: React.FC = () => (
-  <div className="flex items-center justify-between md:justify-start xl:justify-between gap-2 p-4 h-16 md:h-20">
+  <div style={{ fontFamily: 'Urbanist' }} className="flex items-center justify-between md:justify-start xl:justify-between gap-2 p-4 h-16 md:h-20">
     <div className="flex items-center gap-2">
       <img src={icon} alt="Logo" className="h-8 w-8" />
       {/* Hide logo text on small screens */}

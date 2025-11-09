@@ -36,7 +36,7 @@ const GridView: React.FC = () => {
                 </div>
 
          <div   className={`p-3 rounded-[16px] ${
-    index === 1 ? 'bg-[#EEF1FF]' : 'bg-white'
+     'hover:bg-[#EEF1FF]'
   }`}>
                  {/* Contact Info */}
                 <div className="grid grid-cols-2 gap-x-4 gap-y-4 mb-6">
@@ -66,9 +66,9 @@ const GridView: React.FC = () => {
                 {/* View Button */}
                 <button        onClick={() => navigate(`/dashboard/patients/${patient.id}`)}
                   className={`w-full py-3 rounded-full border border-gray-300 mt-4 font-medium transition-colors cursor-pointer ${
-                    index === 1 
-                      ? 'bg-[#526FFF] text-white ' 
-                      : ' border border-gray-300 text-[#171C35]'
+                  
+                     
+                       ' border border-gray-300 text-[#171C35] hover:bg-[#526FFF] hover:text-white'
                   }`}
                 >
                   View

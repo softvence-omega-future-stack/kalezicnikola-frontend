@@ -28,7 +28,7 @@ const DashboardSlide: React.FC<{
   return (
     <div
       className={`p-6 md:p-8 ${bgColor} rounded-3xl shadow-xl relative overflow-hidden h-[600px] flex flex-col transition-all duration-700 transform ${
-        isActive ? "scale-100 opacity-100" : "scale-95 opacity-80"
+        isActive ? "scale-100 opacity-100" : "scale-95 o"
       } mx-auto w-full max-w-[1100px]`}
     >
       {/* Gradient Background */}
@@ -36,7 +36,7 @@ const DashboardSlide: React.FC<{
 
       {/* Text Section */}
       <div className="relative z-10 flex-shrink-0 mb-4">
-       <div className="inline-flex items-center text-sm font-medium text-[#3B82F6] mb-2 rounded-full py-2 px-3 border border-white">
+       <div className="inline-flex items-center text-sm font-medium text-[#3B82F6] mb-2 rounded-full py-2 px-3 border border-[#3B82F6]">
   <img src={icon} alt="" className="mr-2" />
   Dashboard
 </div>
@@ -54,7 +54,7 @@ const DashboardSlide: React.FC<{
       </div>
 
       {/* Image Section */}
-      <div className="relative z-10 rounded-xl overflow-hidden shadow-md mt-auto h-[250px]">
+      <div className="relative z-10 rounded-xl overflow-hidden shadow-md mt-auto h-[500px] w-[1100px] ">
         <img
           src={img}
           alt={title}

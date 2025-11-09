@@ -5,9 +5,9 @@ import herologo from "../assets/svgIcon/herologo.svg";
 const DoclineHero: React.FC = () => {
   return (
     <section className="w-full bg-[#F3F6F6] pt-16 lg:py-20 ">
-      <div className="flex flex-col lg:flex-row items-center justify-between px-8 lg:px-20 mt-14">
+      <div className="flex flex-col lg:flex-row items-center justify-between pl-8 lg:pl-20 mt-14">
         {/* Left Content */}
-        <div className="w-full lg:w-1/2 space-y-6 2xl:-mt-72">
+        <div className="w-full lg:w-1/2 space-y-6 xl:-mt-72">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-[10px] py-2 border border-white rounded-full">
             <img src={herologo} alt="Docline Logo" className="w-5 h-5" />

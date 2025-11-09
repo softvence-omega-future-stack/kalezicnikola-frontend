@@ -33,7 +33,7 @@ export default function PrescriptionsPage() {
   const closeModal = () => setIsOpen(false);
 
   return (
-    <div className="bg-white p-6 sm:p-8 lg:p-10">
+    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="bg-white p-6 sm:p-8 lg:p-10">
       {/* Header */}
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-2xl font-semibold text-[#171C35]">Prescriptions</h1>

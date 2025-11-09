@@ -16,7 +16,7 @@ const AdminDashboardLayout = () => {
     setShowLogoutModal(true); 
   };
   return (
-    <div className="flex h-screen bg-[#F3F6F6] ">
+    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="flex h-screen bg-[#F3F6F6] ">
       {/* Sidebar - fixed width 280px */}
       <div className="w-[280px] border-r border-gray-300">
         <AdminSidebar onLogoutClick={handleLogoutClick}/>

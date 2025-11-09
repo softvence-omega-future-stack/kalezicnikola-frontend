@@ -58,11 +58,11 @@ const TestimonialSection: React.FC = () => {
   }, [testimonials.length]); // testimonials.length change hole effect re-run hobe
 
   return (
-    <div className="px-4 py-8">
+    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="px-4 py-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 border border-white shadow-sm rounded-full mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 border border-white  rounded-full mb-6">
             <img src={icon} alt="Docline logo" />
             <span className="text-[#171C35] text-sm font-medium">What Our Users Say</span>
           </div>
@@ -73,7 +73,7 @@ const TestimonialSection: React.FC = () => {
         </div>
 
         {/* Testimonial Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch mb-12 bg-white rounded-3xl p-4 lg:p-8 shadow-xl">
+        <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch mb-12 bg-white rounded-3xl p-4 lg:p-8 ">
           
           {/* Left - Image */}
           <div className="lg:col-span-4 flex justify-center lg:justify-start h-full items-center lg:pl-0 pb-4 lg:pb-0">

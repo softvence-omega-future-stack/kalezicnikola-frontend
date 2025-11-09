@@ -1,5 +1,6 @@
 
 import Footer from "@/layout/Footer"
+// import DoclineHeader from "@/layout/Navbar"
 import CTABanner from "@/Teamplate/CTABanner"
 import DoclineInterface from "@/Teamplate/DoclineInterface"
 import FAQSection from "@/Teamplate/FAQSection"
@@ -15,24 +16,30 @@ import TestimonialSection from "@/Teamplate/WonersSlider"
 
 const Home = () => {
   return (
-    <div className="bg-[#F3F6F6]">
-     <div className="">
-       <Header/>
-      <DoclineHero/>
-     </div>
-    <div className="-mt-20">
-        <DoclineFeaturesSection  />
-    </div>
-     <DoclineWorkflowSlider/>
-     <DoclineInterface/>
-     <Functions/>
-     <SecuritySection/>
-     <TestimonialSection/>
-     <UpgradPlan/>
-     <FAQSection/>
-     <CTABanner/>
-     <Footer/>
-    </div>
+  <div className="bg-[#F3F6F6] ">
+    {/* <DoclineHeader/> */}
+  <Header />
+  <DoclineHero />
+ <div id="features">
+   <DoclineFeaturesSection />
+ </div>
+  <DoclineWorkflowSlider />
+  <div id="examples">
+    <DoclineInterface />
+  </div>
+  <Functions />
+  <SecuritySection />
+  <div id="testimonials">
+    <TestimonialSection />
+  </div>
+ <div id="pricing">
+   <UpgradPlan />
+ </div>
+  <FAQSection />
+  <CTABanner />
+  <Footer />
+</div>
+
   )
 }
 

@@ -2,7 +2,7 @@ import React from 'react';
 
 const CTABanner: React.FC = () => {
   return (
-    <div className="w-full px-4 py-8 sm:py-12 md:py-16 lg:py-20">
+    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="w-full px-4 py-8 sm:py-12 md:py-16 lg:py-20">
       <div className="xl:px-30">
         <div className="bg-[#526FFF] rounded-3xl sm:rounded-[2.5rem] md:rounded-[3rem] lg:rounded-[3.5rem] p-6 sm:p-8 md:p-10 lg:p-12 xl:p-16 shadow-2xl">
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 sm:gap-8">

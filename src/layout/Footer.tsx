@@ -29,7 +29,7 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="w-full  bg-[#F3F6F6]">
+    <footer style={{ fontFamily: 'Urbanist, sans-serif' }} className="w-full  bg-[#F3F6F6]">
       <div className=" px-4 py-8">
         {/* Top Section - Logo, Tagline, Email */}
         <div className="text-center mb-8 sm:mb-10 md:mb-12">

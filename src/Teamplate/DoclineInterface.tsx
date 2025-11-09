@@ -5,6 +5,9 @@ import skipleft from "../assets/svgIcon/voiceskipLeft.svg";
 import skipRight from "../assets/svgIcon/voiceskipRight.svg";
 import speaker from "../assets/svgIcon/speaker.svg";
 import play from "../assets/svgIcon/play.svg";
+import borderIcon from "../assets/svgIcon/BorderPlay.svg";
+import roundactiveImg from "../assets/svgIcon/activerecord.svg";
+import roundImg from "../assets/svgIcon/recordbtnborder.svg";
 
 const DoclineInterface: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -50,7 +53,7 @@ const DoclineInterface: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen  px-4 py-10 md:px-8 mt-20">
+    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="min-h-screen  px-4 py-10 md:px-8 ">
       <div className="">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8  lg:px-30">
           {/* Left Section */}
@@ -78,7 +81,7 @@ const DoclineInterface: React.FC = () => {
           {/* Right Section */}
           <div className=" p-6 md:p-8 w-full">
             {/* Audio Player */}
-            <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-6 mb-6">
+            <div className="bg-[#526FFF] rounded-2xl p-6 mb-6">
               <div className="mb-4">
                 <h3 className="text-white text-xl font-semibold mb-2">
                   Appointment for Blood Draw
@@ -89,47 +92,69 @@ const DoclineInterface: React.FC = () => {
               </div>
 
               {/* Waveform */}
-              <div className="relative mb-6">
-                <div className="flex items-center justify-between mb-2 px-1">
-                  {waveSegments.map((segment, i) => {
-                    const currentBar = Math.floor(
-                      (currentTime / totalDuration) * 6
-                    );
-                    const isActive = currentBar === i && isPlaying;
-                    return (
-                      <div key={i} className="flex-1 flex justify-center">
-                        {isActive ? (
-                          <span className="text-white text-xs font-medium">
-                            {segment.time}
-                          </span>
-                        ) : (
-                          <span className="text-xs opacity-0">
-                            {segment.time}
-                          </span>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
+           {/* Waveform */}
+<div className="relative mb-6 overflow-hidden">
+  {/* Waveform bars */}
+  <div className="flex items-center justify-between gap-2 h-28 relative">
+{waveSegments.map((segment, i) => {
+  const currentBar = Math.floor((currentTime / totalDuration) * waveSegments.length);
+  const isActive = i === currentBar && isPlaying;
 
-                <div className="flex items-center justify-between gap-2 h-16">
-                {waveSegments.map((segment, i) => {
-  const currentBar = Math.floor((currentTime / totalDuration) * 6);
-  const isActive = currentBar === i && isPlaying;
   return (
-    <div key={i} className="flex-1 flex items-center justify-center">
-      <div
-        className={`w-full rounded-full transition-all duration-300 ${
-          isActive ? "bg-white" : "bg-white/50"
-        }`}
-        style={{ height: `${segment.height}px` }} 
-      ></div>
-    </div>
+   <div key={i} className="flex-1 flex items-center justify-center relative">
+  {/* Wave bar */}
+  <div
+    className="w-full rounded-full bg-white transition-all duration-300 flex items-center justify-center relative"
+    style={{ height: `${segment.height}px` }}
+  >
+    {/* Always visible border image */}
+    <img
+      src={roundImg}       
+      alt="border"
+      className="absolute inset-0 w-full h-full object-contain"
+    />
+
+    {/* Active round image inside the bar */}
+    {isActive && (
+      <img
+        src={roundactiveImg}
+        alt="active"
+        className="relative z-10 h-full w-full"
+      />
+    )}
+  </div>
+</div>
+
   );
 })}
 
-                </div>
-              </div>
+
+
+    {/* Vertical moving line with icon */}
+    <div
+      className="absolute top-3 flex flex-col gap-1 items-center"
+      style={{
+        left: `${(currentTime / totalDuration) * 100}%`,
+        height: "100px",  // line height
+      }}
+    >
+     
+      {/* Vertical line */}
+      <div className="w-[2px] h-full bg-white "></div>
+      
+      {/* Icon at bottom of line */}
+
+      <img
+        src={borderIcon}
+        alt="cursor-icon"
+        className="  self-stretch"
+      />
+     
+    </div>
+  </div>
+</div>
+
+
 
               {/* Progress Bar */}
               <div className="mb-4">
@@ -177,33 +202,40 @@ const DoclineInterface: React.FC = () => {
               </div>
             </div>
 
-            {/* Menu Items */}
-         <div className="-space-y-1 -mt-5">
+  {/* Menu Items */}
+<div className="-space-y-1 -mt-5">
   {menuItems.map((item, index) => (
-    <div key={index} className="relative overflow-visible ">
-      {/* Shadow */}
+    <div key={index} className="relative overflow-visible">
+      {/* Shadow overlay */}
       <div
-        className="absolute inset-x-0 top-6 bottom-0 rounded-3xl pointer-events-none"
+        className="absolute inset-0 rounded-[24px] pointer-events-none"
         style={{
-          boxShadow: "0 10px 15px -5px rgba(147, 170, 189, 0.3), 0 4px 6px -2px rgba(147, 170, 189, 0.2)",
+          boxShadow: "0 -20px 50px rgba(147, 170, 189, 0.3)"
         }}
       ></div>
 
       {/* Card */}
-      <button className="w-full bg-white  shadow rounded-3xl p-4 flex items-center justify-between relative border border-gray-200">
-        <div className="text-left">
+      <div className="w-full flex flex-col items-start gap-6 p-6 h-[97px] rounded-[24px] border border-white bg-white shadow-md hover:shadow-lg transition-shadow relative">
+        <div className="text-left flex-1">
           <h4 className="text-[#171C35] font-semibold text-lg mb-1">
             {item.title}
           </h4>
-          <p className="text-[#111A2D] text-sm md:text-base s ">{item.subtitle}</p>
+          <p className="text-[#111A2D] text-sm md:text-base">{item.subtitle}</p>
         </div>
-        <div className="w-8 h-8 rounded-full bg-gray-200 group-hover:bg-blue-500 flex items-center justify-center transition-colors flex-shrink-0 ml-4 cursor-pointer">
+
+        {/* Play button */}
+        <button
+          className="w-8 h-8 rounded-full bg-gray-200 group-hover:bg-blue-500 flex items-center justify-center transition-colors cursor-pointer flex-shrink-0 absolute right-6 top-1/2 -translate-y-1/2"
+          onClick={() => console.log(`Play ${item.title}`)}
+        >
           <img src={play} alt="play" />
-        </div>
-      </button>
+        </button>
+      </div>
     </div>
   ))}
 </div>
+
+
 
           </div>
         </div>
