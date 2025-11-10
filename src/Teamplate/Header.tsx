@@ -18,18 +18,18 @@ const DoclineHeader: React.FC = () => {
   };
 
   const menuItems = [
-    { name: "Funktionen", id: "features" },
-    { name: "Beispiele", id: "examples" },
+    { name: "Features", id: "features" },
+    { name: "Examples", id: "examples" },
     { name: "Testimonials", id: "testimonials" },
-    { name: "Preise", id: "pricing" },
+    { name: "Pricing", id: "pricing" },
   ];
 
   return (
-    <header className="w-full fixed top-5 left-0 right-0 z-20 px-4 ">
+    <header className="w-full  fixed top-5 left-0 right-0 z-20 px-4 ">
       <div
-        className="mx-auto bg-white/10   border-2 border-white  rounded-[100px] flex items-center justify-between relative"
+        className=" bg-white/10 mx-auto    border-2 border-white  rounded-[100px] flex items-center justify-between relative"
         style={{
-          width: "1290px",
+          width: "93%",
           padding: "10px 10px 10px 30px",
         }}
       >
@@ -60,21 +60,23 @@ const DoclineHeader: React.FC = () => {
             <LanguageSelector />
 
             <div className="flex items-center gap-3 ml-2 rounded-full border border-gray-100 p-1">
-              <button className="px-5 py-2 rounded-full text-base font-medium text-[#171C35] bg-blue-100 hover:bg-blue-200 transition whitespace-nowrap">
-                Demo buchen
+              <button className="px-5 py-3.5 rounded-full text-base font-medium text-[#171C35] border border-[#171C35]  transition whitespace-nowrap">
+                  Book Demo
               </button>
 
               <button
                 onClick={() => navigate("/login")}
-                className="px-6 py-2 text-base font-medium text-[#171C35] bg-white rounded-full hover:text-blue-600 transition cursor-pointer whitespace-nowrap"
+                className="px-5 py-3.5 text-base font-medium text-[#171C35] bg-white rounded-full hover:text-blue-600 transition cursor-pointer whitespace-nowrap"
               >
                 Login
               </button>
             </div>
           </div>
 
-          <p className=" absolute top-0 right-0">a</p>
-          <p className=" absolute bottom-0 left-0">a</p>
+        
+          <p
+  className="absolute top-0 -right-1  h-9 w-4 bg-[#F3F6F6] z-10 "></p>
+<p className=" absolute bottom-0 left-0  h-9 w-4 bg-[#F3F6F6] z-10 "></p>
         </div>
 
         <div className="flex items-center gap-2 lg:hidden">

@@ -59,11 +59,13 @@ const DoclineInterface: React.FC = () => {
           {/* Left Section */}
           <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="flex flex-col justify-start">
             <div className="mb-6 mt-9">
-              <div className="inline-flex items-center gap-2 px-5 py-3 border border-gray-300 mb-8 rounded-full bg-white shadow-sm">
+              <div className="relative inline-flex items-center gap-2 px-5 py-3 border-l-2 border-t-2 border border-white mb-8 rounded-full bg-white/10 ">
                 <img src={icon} alt="Docline Logo" className="w-5 h-5" />
                 <span className="text-[#171C35] text-sm font-medium">
                   Real Examples
                 </span>
+                <span className="absolute top-0 right-0  h-3 w-5 bg-[#F3F6F6] z-10"></span>
+  <span className="absolute bottom-0 left-0  h-5 w-5 bg-[#F3F6F6] z-10"> </span>
               </div>
               <h1 className="text-3xl md:text-5xl font-semibold text-gray-900 leading-tight">
                 This is what Docline sounds <br className="hidden md:block" />{" "}

@@ -53,7 +53,7 @@ const TestimonialSection: React.FC = () => {
       );
     }, 4000); // 4000ms = 4 seconds
 
-    // Component unmount hole interval-ti clear kore deoa holo memory leak prevent korar jonno
+   
     return () => clearInterval(interval);
   }, [testimonials.length]); // testimonials.length change hole effect re-run hobe
 
@@ -62,9 +62,12 @@ const TestimonialSection: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 border border-white  rounded-full mb-6">
+          <div className="relative inline-flex items-center gap-2 px-4 py-2 border border-t-2 border-l-2 border-white bg-white/10  rounded-full mb-6">
             <img src={icon} alt="Docline logo" />
             <span className="text-[#171C35] text-sm font-medium">What Our Users Say</span>
+
+            <span className="absolute top-0 right-0  h-3 w-5 bg-[#F3F6F6] z-10"></span>
+  <span className="absolute bottom-0 left-0  h-5 w-5 bg-[#F3F6F6] z-10"> </span>
           </div>
 
           <h2 className="text-4xl sm:text-5xl lg:text-5xl font-semibold text-[#171c35] mb-4">

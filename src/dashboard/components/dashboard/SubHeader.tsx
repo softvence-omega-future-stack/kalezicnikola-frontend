@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import CommonSpace from "@/common/space/CommonSpace";
 
 import arrowRight from "../../../assets/svgIcon/arrowRight.svg";
@@ -30,58 +31,64 @@ const Card = ({
   maskId,
   className,
   index,
+  height,
 }: {
   category: (typeof categories)[0];
   maskId: string;
   className: string;
   index: number;
+  height?: number;
 }) => {
   const width = 380;
-  const height = 180;
+  const defaultHeight = 180;
+  const cardHeight = height || defaultHeight;
 
   return (
     <div
-      className={`relative w-full min-h-[180px] aspect-[380/180] max-w-lg mx-auto  ${className}`}
+      className={`relative w-full max-w-lg mx-auto ${className}`}
+      style={{ height: cardHeight }}
     >
       <svg
         width="100%"
         height="100%"
-        viewBox={`0 0 ${width} ${height}`}
+        viewBox={`0 0 ${width} ${defaultHeight}`}
         preserveAspectRatio="none"
         className="absolute top-0 left-0 w-full h-full"
       >
         <defs>
           <mask id={maskId}>
-            <rect width={width} height={height} rx="24" fill="white" />
+            <rect width={width} height={defaultHeight} rx="24" fill="white" />
             <path
-              d={`M${width} ${height} C${width} ${height - 20} ${width - 20} ${
-                height - 20
-              } ${width - 20} ${height} Z`}
+              d={`M${width} ${defaultHeight} C${width} ${
+                defaultHeight - 20
+              } ${width - 20} ${defaultHeight - 20} ${width - 20} ${defaultHeight} Z`}
               fill="black"
             />
             <path
-              d={`M${width} ${height - 64}H${width - 34}C${width - 50.5685} ${
-                height - 64
-              } ${width - 64} ${height - 50.569} ${width - 64} ${
-                height - 34
-              }V${height}H${width}V${height - 90}C${width} ${height - 75.641} ${
-                width - 11.6405
-              } ${height - 64} ${width - 26} ${height - 64}H${width}Z`}
+              d={`M${width} ${defaultHeight - 64}H${width - 34}C${
+                width - 50.5685
+              } ${defaultHeight - 64} ${width - 64} ${
+                defaultHeight - 50.569
+              } ${width - 64} ${defaultHeight - 34}V${defaultHeight}H${width}V${
+                defaultHeight - 90
+              }C${width} ${defaultHeight - 75.641} ${width - 11.6405} ${
+                defaultHeight - 64
+              } ${width - 26} ${defaultHeight - 64}H${width}Z`}
               fill="black"
             />
             <path
-              d={`M${width - 63} ${height}V${height - 26}C${width - 63} ${
-                height - 11.641
-              } ${width - 74.6405} ${height} ${width - 89} ${height}H${
-                width - 63
-              }Z`}
+              d={`M${width - 63} ${defaultHeight}V${
+                defaultHeight - 26
+              }C${width - 63} ${defaultHeight - 11.641} ${width - 74.6405} ${defaultHeight} ${
+                width - 89
+              } ${defaultHeight}H${width - 63}Z`}
               fill="black"
             />
           </mask>
         </defs>
         <rect
           width={width}
-          height={height}
+          height={defaultHeight}
           rx="24"
           fill={category.bgColor}
           mask={`url(#${maskId})`}
@@ -90,12 +97,12 @@ const Card = ({
 
       <div className="absolute top-0 left-0 w-full h-full p-6 flex flex-col justify-between">
         <div>
-          <h3 className="text-base font-medium mb-4 text-[#171C35]">
+          <h3 className="text-base font-medium mb:4 xl:mb-14 text-[#171C35]">
             {category.title}
           </h3>
 
           {category.avatars ? (
-            <div className="flex items-center justify-between gap-4 w-full flex-wrap">
+            <div className="flex items-center  gap-4 w-[75%] flex-wrap  ">
               <div className="flex -space-x-3 items-center flex-shrink-0">
                 {category.avatars.map((avatar, idx) => (
                   <img
@@ -112,10 +119,10 @@ const Card = ({
                 )}
               </div>
 
-              {/* Description text */}
-              <p className="text-[#171C35] text-sm font-medium leading-snug flex-1 md:min-w[40px] lg:min-w-[100px]">
-                {category.description}
-              </p>
+            <p className="text-[#171C35] text-sm font-medium leading-snug flex-1 md:min-w-[40px] xl:min-w-[80px]">
+  {category.description}
+</p>
+
             </div>
           ) : (
             <div className="mt-2">
@@ -130,7 +137,7 @@ const Card = ({
 
         <div
           className={`absolute  ${
-            index === 0 ? "bottom-5 right-2 " : "bottom-3 -right-4 "
+            index === 0 ? "bottom-3 right-4 " : "bottom-3 -right-4 "
           }`}
         >
           <div className="h-12 w-12 bg-gray-900 rounded-full flex items-center justify-center">
@@ -143,18 +150,33 @@ const Card = ({
 };
 
 const SubHeaderCard = () => {
+  const firstCardRef = useRef<HTMLDivElement>(null);
+  const [firstCardHeight, setFirstCardHeight] = useState<number>(0);
+
+  useEffect(() => {
+    if (firstCardRef.current) {
+      setFirstCardHeight(firstCardRef.current.offsetHeight);
+    }
+  }, []);
+
   return (
     <CommonSpace>
       <div className="-mt-18">
-        <div className="grid  grid-cols-4 gap-5">
+        <div className="grid grid-cols-4 gap-5">
           {categories.map((category, index) => (
-            <Card
+            <div
               key={index}
-              category={category}
-              maskId={`cutoutMask${index}`}
+              ref={index === 0 ? firstCardRef : null}
               className={index === 0 ? "col-span-2" : ""}
-              index={index}
-            />
+            >
+              <Card
+                category={category}
+                maskId={`cutoutMask${index}`}
+                className=""
+                index={index}
+                height={index === 0 ? undefined : firstCardHeight}
+              />
+            </div>
           ))}
         </div>
       </div>

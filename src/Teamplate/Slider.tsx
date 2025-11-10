@@ -124,9 +124,11 @@ const CarouselSection = () => {
       <div className="px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-4 py-2  mb-6 rounded-full shadow-sm">
+          <div className="relative inline-flex items-center gap-2 px-4 py-2 bg-white/10  mb-6 rounded-full  border-t-2 border-l-2 border border-white">
            <img src={icon} alt="" />
             <span className="text-gray-800 text-sm font-medium">Intuitive & Modern</span>
+            <span className="absolute top-0 right-0  h-3 w-5 bg-[#F3F6F6] z-10"></span>
+  <span className="absolute bottom-0 left-0  h-5 w-5 bg-[#F3F6F6] z-10"> </span>
            </div>
           
            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-900 mb-4">

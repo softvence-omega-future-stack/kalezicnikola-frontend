@@ -69,6 +69,7 @@ const UpgradPlan = () => {
             <div className="inline-flex items-center gap-2 px-4 py-2 border border-white shadow-sm rounded-full mb-6">
               <img src={icon} alt="Docline logo" />
               <span className="text-[#171C35] text-sm font-medium">Transparent pricing</span>
+              
             </div>
 
             <h2 className="text-4xl sm:text-5xl lg:text-5xl font-semibold text-[#171c35] mb-4">

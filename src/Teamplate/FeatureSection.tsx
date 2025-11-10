@@ -218,9 +218,11 @@ const FeatureCardsGrid: React.FC = () => {
   return (
     <div className="py-8 px-4 mx-15 ">
       <div className="text-center mb-16">
-        <div style={{}} className="inline-flex items-center gap-2 px-3 py-2 border border-white bg-[rgba(255, 255, 255, 0.10);] rounded-full mb-6 -mt-7">
+        <div style={{}} className="relative inline-flex items-center gap-2 px-3 py-2 border-t-2 border-l-2 border border-white bg-white/10 rounded-full mb-6 -mt-7">
           <img src={icon} alt="" />
           <span style={descStyle}>Peace on the phone</span>
+          <span className="absolute top-0 right-0  h-3 w-5 bg-[#F3F6F6] z-10"></span>
+  <span className="absolute bottom-0 left-0  h-5 w-5 bg-[#F3F6F6] z-10"> </span>
         </div>
 
         <h2
