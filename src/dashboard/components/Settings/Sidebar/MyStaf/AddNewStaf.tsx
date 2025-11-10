@@ -18,7 +18,7 @@ export default function AddNewStaff() {
           <h2 className="text-[#171C35] font-medium text-lg ">Add New Staf</h2>
           <p className="text-[#667085] text-sm font-medium mb-4 ">Create a new staff member profile</p>
           {/* Tabs */}
-          <div className="flex gap-2 mb-8 bg-[#FAFAFA] rounded-[8px] py-2 px-5">
+          <div className="flex gap-2 mb-8 bg-[#FAFAFA] rounded-xl py-2 px-5">
             <button
               onClick={() => setActiveTab("personal")}
               className={`px-6 py-2.5 text-base font-medium rounded-full transition-colors ${
@@ -49,10 +49,10 @@ export default function AddNewStaff() {
 
           {/* Action Buttons */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
-            <button className="w-full px-6 py-3 text-sm font-medium text-[#171c35] bg-white border border-gray-300 rounded-[8px] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">
+            <button className="w-full px-6 py-3 text-sm font-medium text-[#171c35] bg-white border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">
               Cancel
             </button>
-            <button className="w-full px-6 py-3 text-sm font-medium text-white bg-[#526FFF] rounded-[8px] focus:outline-none transition-colors">
+            <button className="w-full px-6 py-3 text-sm font-medium text-white bg-[#526FFF] rounded-xl focus:outline-none transition-colors">
               Next
             </button>
           </div>

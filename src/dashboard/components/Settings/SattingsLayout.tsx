@@ -22,7 +22,7 @@ export const SettingsLayout: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#F3F6F6] p-4 sm:p-6 lg:p-8">
-      {/* Breadcrumbs */}
+
       <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 mb-6">
           {/* Left side - Breadcrumb & Title */}
           <div>

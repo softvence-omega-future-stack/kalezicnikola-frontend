@@ -1,4 +1,4 @@
-// layout/DashboardLayout.jsx
+
 import AdminMainHeader from "@/AdminDashboard/AdminMainHeader";
 import AdminSidebar from "@/AdminDashboard/AdminSidebar";
 
@@ -17,17 +17,15 @@ const AdminDashboardLayout = () => {
   };
   return (
     <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="flex h-screen bg-[#F3F6F6] ">
-      {/* Sidebar - fixed width 280px */}
+    
       <div className="w-[280px] border-r border-gray-300">
         <AdminSidebar onLogoutClick={handleLogoutClick}/>
       </div>
 
-      {/* Main content */}
       <div className="flex-1 flex flex-col px-2 ">
-        {/* Topbar */}
+    
         <AdminMainHeader />
 
-        {/* Outlet for nested routes */}
         <main className="flex-1 px-5  overflow-auto">
         
           <Outlet />

@@ -36,18 +36,18 @@ export default function StaffManagement() {
             </button>
           </div>
 
-          {/* Table - Desktop */}
+       
        {/* Table - Desktop */}
 <div className="hidden lg:block overflow-x-auto">
   <table className="w-full">
     <thead>
       <tr className="border-b border-gray-200">
-        {/* Checkbox + Patient Name header একসাথে */}
+    
         <th className="text-left py-4 px-4">
           <div className="flex items-center gap-4">
             <input
               type="checkbox"
-              className="w-5 h-5 rounded-[24px] border-gray-300"
+              className="w-5 h-5 rounded-3xl border-gray-300"
             />
             <span className="text-base font-semibold text-[#171C35]">
               Patient Name
@@ -74,19 +74,19 @@ export default function StaffManagement() {
 
     <tbody>
       {staffMembers.map((staff) => (
-        <tr key={staff.id} className="border-b border-gray-100 hover:bg-gray-50">
-          {/* Checkbox + Patient একসাথে */}
+        <tr key={staff.id} className="border-b border-gray-100 ">
+        
           <td className="py-4 px-4">
             <div className="flex items-center gap-4">
               <input
                 type="checkbox"
-                className="w-5 h-5  rounded-[24px] border-gray-300"
+                className="w-5 h-5  rounded-3xl border-gray-300"
               />
               <div className="flex items-center gap-3">
                 <img
                   src={propfilePic}
                   alt={staff.name}
-                  className="w-10 h-10 rounded-full object-cover flex-shrink-0"
+                  className="w-10 h-10 rounded-full object-cover shrink-0"
                 />
                 <div>
                   <p className="text-sm font-medium text-[#111A2D]">{staff.name}</p>
@@ -150,7 +150,7 @@ export default function StaffManagement() {
                   <img 
                     src={`https://i.pravatar.cc/150?img=${staff.id}`}
                     alt={staff.name}
-                    className="w-10 h-10 rounded-full object-cover flex-shrink-0"
+                    className="w-10 h-10 rounded-full object-cover shrink-0"
                   />
                   <div className="flex-1">
                     <p className="text-sm font-medium text-[#1a1c21]">{staff.name}</p>
@@ -202,14 +202,14 @@ export default function StaffManagement() {
             <div className="flex gap-2">
               <button 
                 onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-                className="px-4 py-2 text-basae font-semibold text-[#111A2D] bg-[#F3F6F6] border border-gray-300 rounded-[8px]  transition-colors disabled:opacity-50"
+                className="px-4 py-2 text-basae font-semibold text-[#111A2D] bg-[#F3F6F6] border border-gray-300 rounded-xl  transition-colors disabled:opacity-50"
                 disabled={currentPage === 1}
               >
                 Previous
               </button>
               <button 
                 onClick={() => setCurrentPage(currentPage + 1)}
-                className="px-4 py-2 text-base font-semibold text-[#1a1c21] bg-[#F3F6F6] border border-gray-300 rounded-[8px]  transition-colors"
+                className="px-4 py-2 text-base font-semibold text-[#1a1c21] bg-[#F3F6F6] border border-gray-300 rounded-xl  transition-colors"
               >
                 Next
               </button>

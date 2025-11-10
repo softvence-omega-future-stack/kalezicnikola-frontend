@@ -101,17 +101,17 @@ const DoclineInterface: React.FC = () => {
   const isActive = i === currentBar && isPlaying;
 
   return (
-   <div key={i} className="flex-1 flex items-center justify-center relative">
+<div key={i} className="flex-1 flex items-center justify-center relative">
   {/* Wave bar */}
   <div
-    className="w-full rounded-full bg-white transition-all duration-300 flex items-center justify-center relative"
+    className="w-full max-w-[60px] sm:max-w-[70px] md:max-w-[80px] lg:max-w-[90px] xl:max-w-[100px] rounded-full bg-white overflow-hidden transition-all duration-300 flex items-center justify-center relative"
     style={{ height: `${segment.height}px` }}
   >
     {/* Always visible border image */}
     <img
-      src={roundImg}       
+      src={roundImg}
       alt="border"
-      className="absolute inset-0 w-full h-full object-contain"
+      className="absolute inset-0 w-full h-full object-cover"
     />
 
     {/* Active round image inside the bar */}
@@ -119,11 +119,12 @@ const DoclineInterface: React.FC = () => {
       <img
         src={roundactiveImg}
         alt="active"
-        className="relative z-10 h-full w-full"
+        className="absolute inset-0 w-full h-full object-cover z-10"
       />
     )}
   </div>
 </div>
+
 
   );
 })}

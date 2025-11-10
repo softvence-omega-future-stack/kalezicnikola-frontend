@@ -23,10 +23,10 @@ export default function StaffProfile() {
         <h1 className="text-2xl font-semibold text-[#171C35] mb-6">Staff Profile</h1>
 
         {/* Profile Card */}
-        <div className=" bg-[#E5E9FF] rounded-[32px] p-6 md:p-8 mb-6 mt-20">
+        <div className=" bg-[#E5E9FF] rounded-4xl p-6 md:p-8 mb-6 mt-20">
           <div className="flex flex-col md:flex-row gap-6">
             {/* Profile Image */}
-            <div className="flex-shrink-0 -mt-20">
+            <div className="shrink-0 -mt-20">
               <img
                 src={profile}
                 alt="Jonathon Sanders"

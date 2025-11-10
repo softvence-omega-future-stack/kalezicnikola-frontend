@@ -3,7 +3,7 @@ import eye from '../../../../assets/svgIcon/Eye.svg'
 import eyeOf from '../../../../assets/svgIcon/EyeOff.svg'
 
 
-// --- Reusable Password Input ---
+
 interface PasswordInputProps {
   label: string;
   name: string;
@@ -39,7 +39,6 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ label, name, value, onCha
   );
 };
 
-// --- Change Password Form ---
 const ChangePasswordForm: React.FC = () => {
   const [form, setForm] = useState({ current: "", newPass: "", confirm: "" });
 
@@ -79,13 +78,13 @@ const ChangePasswordForm: React.FC = () => {
         <div className="flex space-x-4 mt-6">
           <button
             type="button"
-            className="flex-1 py-3 text-[#171C35] border border-gray-200 rounded-[8px] cursor-pointer"
+            className="flex-1 py-3 text-[#171C35] border border-gray-200 rounded-xl cursor-pointer"
           >
             Cancel
           </button>
           <button
             type="submit"
-            className="flex-1 py-3 text-white bg-[#526FFF] rounded-[8px] cursor-pointer"
+            className="flex-1 py-3 text-white bg-[#526FFF] rounded-xl cursor-pointer"
           >
             Save Changes
           </button>

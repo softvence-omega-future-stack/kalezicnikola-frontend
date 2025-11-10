@@ -54,24 +54,19 @@ export default function PatientSummary() {
             {/* White rectangle covers the entire card area */}
             <rect width={width} height={height} rx="24" fill="white" />
             
-            {/* --- TOP-RIGHT CUTOUTS (Paths changed from bottom/height to top/0) --- */}
-            
-            {/* Path 1: Simple corner curve (Adjusted from bottom-right to top-right) */}
-            {/* Original: M${width} ${height} C${width} ${height - 20} ${width - 20} ${height - 20} ${width - 20} ${height} Z */}
+    
             <path
               d={`M${width} 0 C${width} 20 ${width - 20} 20 ${width - 20} 0 Z`}
               fill="black"
             />
             
-            {/* Path 2: Larger complex cut (Adjusted from bottom-right to top-right) */}
-            {/* Original: M${width} ${height - 64}H...V${height}H${width}V${height - 90}C... */}
+  
             <path
               d={`M${width} 64H${width - 34}C${width - 50.5685} 64 ${width - 64} 50.569 ${width - 64} 34V0H${width}V90C${width} 75.641 ${width - 11.6405} 64 ${width - 26} 64H${width}Z`}
               fill="black"
             />
             
-            {/* Path 3: Smallest cut (Adjusted from bottom-right to top-right) */}
-            {/* Original: M${width - 63} ${height}V...C${width - 74.6405} ${height} ${width - 89} ${height}H${width - 63}Z */}
+      
             <path
               d={`M${width - 63} 0V26C${width - 63} 11.641 ${width - 74.6405} 0 ${width - 89} 0H${width - 63}Z`}
               fill="black"
@@ -92,19 +87,18 @@ export default function PatientSummary() {
       {/* Content Area */}
       <div className="absolute top-0 left-0 w-full h-full p-6 flex flex-col justify-between">
         <div>
-          <h3 className="text-lg font-semibold text-[#171C35] mb-2">{card.title}</h3>
+          <h3 className="text-lg font-semibold text-[#171C35] mb-13">{card.title}</h3>
           <p className="text-sm font-medium text-[#111A2D99]">
             {card.date || card.count || card.type}
           </p>
           <p className="text-sm font-semibold text-[#171C35] mt-2">{card.detail}</p>
         </div>
 
-        {/* Arrow circle (Moved to top-right corner) */}
-       {/* Arrow circle (Made Responsive) */}
+     
         <div className="absolute top-2 right-2">
-          {/* Default size lowered, and larger size applied from 'md' breakpoint */}
+
           <div className="h-8 w-8 md:h-12 md:w-12 bg-[#171C35] rounded-full flex items-center justify-center transition-all duration-300">
-            {/* Icon size also lowered for small screens */}
+         
             <ArrowUpRight className="text-white w-4 h-4 md:w-5 md:h-5" />
           </div>
         </div>

@@ -9,12 +9,16 @@ const DoclineHero: React.FC = () => {
         {/* Left Content */}
         <div className="w-full lg:w-1/2 space-y-6 xl:-mt-72">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-[10px] py-2 border border-white rounded-full">
+          <div className="inline-flex items-center gap-2 px-[10px] py-2  bg-[rgba(255, 255, 255, 0.10)] border-t-2 border-l-2 border border-white rounded-full relative">
             <img src={herologo} alt="Docline Logo" className="w-5 h-5" />
             <span className="text-[#171C35] text-sm font-medium">
               Your smarter telemedicine
             </span>
+            <div className="absolute">
+            <span className="top-0 right-0">a</span>
           </div>
+          </div>
+          
 
           {/* Heading */}
           <h1 style={{ fontFamily: 'Urbanist, sans-serif' }} className="text-[42px] sm:text-[52px] lg:text-[64px] font-semibold text-[#171C35] leading-tight">

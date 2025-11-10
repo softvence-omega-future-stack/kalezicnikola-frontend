@@ -20,7 +20,7 @@ const Logo: React.FC = () => (
       <img src={textlogo} alt="" className="hidden md:block" />
     </div>
     <div className="absolute ml-10 top-1/2 -translate-y-1/2 md:relative md:right-auto md:top-auto md:translate-y-0">
-      <img src={sidelogo} alt="box" className="h-8 w-8" />
+      <img src={sidelogo} alt="box" className="h-8 w-8 hidden md:block" />
     </div>
   </div>
 );
@@ -29,14 +29,18 @@ interface NavItemProps {
   to: string;
   iconSrc: string;
   label: string;
+
+  end?: boolean; 
 }
 
-const NavItem: React.FC<NavItemProps> = ({ to, label, iconSrc }) => {
+const NavItem: React.FC<NavItemProps> = ({ to, label, iconSrc, end = false }) => {
   return (
     <NavLink
       to={to}
+   
+      end={end} 
       className={({ isActive }) =>
-        `flex items-center gap-3 py-3 mx-2 md:mx-6 px-4 mb-1 rounded-[8px] transition-colors
+        `flex items-center gap-3 py-3 mx-2 md:mx-6 px-4 mb-1 rounded-xl transition-colors
          ${isActive ? 'bg-[#DFE2E2] font-semibold' : 'text-[#111A2D] font-semibold'}
          justify-center md:justify-start`
       }
@@ -54,11 +58,13 @@ const Sidebar: React.FC = () => {
 
   return (
     <div className="flex flex-col justify-between h-screen border-r border-gray-200 w-20 md:w-72 transition-all duration-300">
-      {/* Top part with logo and main nav */}
+
       <div>
         <Logo />
         <nav className="flex flex-col mt-2 gap-2">
-          <NavItem to="/dashboard" iconSrc={dashbord} label="Dashboard" />
+    
+          <NavItem to="/dashboard" iconSrc={dashbord} label="Dashboard" end={true} />
+          
           <NavItem to="/dashboard/call_logs" iconSrc={callLogs} label="Call Logs" />
           <NavItem to="/dashboard/calendar" iconSrc={calendar} label="Calendar" />
           <NavItem to="/dashboard/patients" iconSrc={patients} label="Patients" />
@@ -67,9 +73,9 @@ const Sidebar: React.FC = () => {
         </nav>
       </div>
 
-      {/* Bottom part with Upgrade card (hidden on small screens) and settings/logout */}
+     
       <div className="flex flex-col">
-        {/* Upgrade Card for md+ */}
+ 
         <div className="hidden md:block bg-gray-200 p-4 rounded-xl m-4">
           <div className="mb-1">
             <div className="flex justify-start gap-4 items-center">
@@ -102,10 +108,11 @@ const Sidebar: React.FC = () => {
           </button>
         </div>
 
-        {/* Settings and Logout always visible, icons show on small screens */}
+      
         <div className="flex flex-col mt-auto mb-4 gap-2">
           <NavItem to="/dashboard/settings" iconSrc={settings} label="Settings" />
-          <NavItem to="/" iconSrc={logout} label="Logout" />
+     
+          <NavItem to="/" iconSrc={logout} label="Logout" end={true} />
         </div>
       </div>
     </div>

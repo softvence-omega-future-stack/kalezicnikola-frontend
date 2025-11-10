@@ -1,17 +1,9 @@
 
 
-import React, { useState,  useEffect } from 'react';
+import React, { useState, } from 'react';
+import WaveBar from './Wevebar';
 
-import {
 
-  FiPlay, 
-  FiPause, 
-  FiSkipBack, 
-  FiSkipForward, 
-  FiDownload,
-  FiVolume2, 
- 
-} from 'react-icons/fi';
 import TranscriptChat from './TranscriptChat';
 
 // --- DUMMY DATA ---
@@ -26,47 +18,16 @@ const PATIENT_INFO = {
 
 
 
-const AUDIO_SEGMENTS = [
-  { start: 0, end: 5, color: 'bg-blue-200' },
-  { start: 6, end: 10, color: 'bg-blue-300' },
-  { start: 11, end: 16, color: 'bg-blue-200' },
-  { start: 17, end: 22, color: 'bg-blue-300' },
-  { start: 23, end: 28, color: 'bg-blue-200' },
-  { start: 29, end: 30, color: 'bg-blue-300' },
-];
+
 
 // --- PatientTranscriptPage Component ---
 const PatientTranscriptPage: React.FC = () => {
   const [showFullSummary, setShowFullSummary] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [currentTime, setCurrentTime] = useState(0); 
-  const [duration, ] = useState(30); 
-  
 
-  // Effect for updating current time
-  useEffect(() => {
-    if (isPlaying) {
-      const interval = setInterval(() => {
-        setCurrentTime((prev) => (prev < duration ? prev + 0.1 : duration));
-      }, 100); 
-      return () => clearInterval(interval);
-    }
-  }, [isPlaying, duration]);
 
-  const togglePlayPause = () => {
-    setIsPlaying(!isPlaying);
-    
-  };
 
-  const formatTime = (seconds: number) => {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = Math.floor(seconds % 60);
-    return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
-  };
 
-  const calculateProgressWidth = (time: number) => {
-    return (time / duration) * 100;
-  };
+
 
   return (
     <div className=" bg-[#F3F6F6D9] rounded-2xl p-4  flex items-center justify-center font-sans">
@@ -112,39 +73,13 @@ const PatientTranscriptPage: React.FC = () => {
         {/* Patients Transcript (Audio Player) Section */}
         <div className="mb-8 p-5 md:p-6  ">
           <h3 className="text-lg md:text-xl bg-[#F3F6F6D9] font-semibold text-[#171C35] mb-4">Patients Transcript</h3>
+    <div className='h-full w-full'>
+      <WaveBar/>
+    </div>
+        
 
-          {/* Audio Waveform / Progress Bar */}
-          <div className="relative w-full h-12  rounded-[32px] overflow-hidden flex items-center justify-between px-2">
-            {AUDIO_SEGMENTS.map((segment, index) => (
-              <div
-                key={index}
-                className={`${segment.color} h-8 rounded-md mx-0.5`}
-                style={{ width: `${((segment.end - segment.start) / duration) * 100}%` }}
-              ></div>
-            ))}
-            {/* Playhead */}
-            <div
-              className="absolute top-0 bottom-0 w-1.5 bg-blue-600 rounded-full shadow-lg"
-              style={{ left: `${calculateProgressWidth(currentTime)}%` }}
-            ></div>
-          </div>
-
-          {/* Audio Controls */}
-          <div className="flex justify-between items-center mt-4">
-            <div className="text-sm font-medium text-gray-600">{formatTime(currentTime)}</div>
-            <div className="flex items-center space-x-4 md:space-x-6">
-              <button className="text-gray-600 hover:text-blue-600"><FiSkipBack className="h-6 w-6" /></button>
-              <button onClick={togglePlayPause} className="text-blue-600 hover:text-blue-700">
-                {isPlaying ? <FiPause className="h-8 w-8" /> : <FiPlay className="h-8 w-8" />}
-              </button>
-              <button className="text-gray-600 hover:text-blue-600"><FiSkipForward className="h-6 w-6" /></button>
-            </div>
-            <div className="flex items-center space-x-2">
-              <span className="text-sm font-medium text-gray-600">-1:23</span> {/* Static for now */}
-              <button className="text-gray-600 hover:text-blue-600"><FiDownload className="h-5 w-5" /></button>
-              <button className="text-gray-600 hover:text-blue-600"><FiVolume2 className="h-5 w-5" /></button>
-            </div>
-          </div>
+   
+          
         </div>
 
         {/* Transcript Chat Section */}

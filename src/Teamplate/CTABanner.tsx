@@ -18,7 +18,7 @@ const CTABanner: React.FC = () => {
 
             {/* Right Button */}
             <div className="w-full lg:w-auto flex-shrink-0">
-              <button className="w-full lg:w-auto bg-[#657cf2] text-white border border-white font-semibold px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 rounded-full sm:rounded-2xl transition-all duration-300 hover:shadow-xl text-sm sm:text-base md:text-lg lg:text-xl whitespace-nowrap">
+              <button className="w-full lg:w-auto bg-[#657cf2] text-white border border-white font-semibold px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 rounded-full sm:rounded-2xl transition-all duration-300 text-sm sm:text-base md:text-lg lg:text-xl whitespace-nowrap">
                 Get Started
               </button>
             </div>

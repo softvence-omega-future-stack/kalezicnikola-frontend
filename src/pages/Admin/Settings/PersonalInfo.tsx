@@ -223,7 +223,7 @@ const PersonalInfoFormAdmin: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
           <button
             onClick={handleCancel}
-            className="w-full px-6 py-3 border border-gray-200 rounded-lg text-sm font-semibold text-[#171c35] hover:bg-gray-50 transition-colors cursor-pointer"
+            className="w-full px-6 py-3 border border-gray-200 rounded-lg text-sm font-semibold text-[#171c35]  transition-colors cursor-pointer"
           >
             Cancel
           </button>

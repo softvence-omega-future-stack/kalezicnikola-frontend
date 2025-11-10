@@ -95,7 +95,7 @@ const Functions = () => {
       overflow: "hidden",
     }}
   >
-    <img src={img2} alt="" className="w-full h-auto p" />
+    <img src={img2} alt="" className="w-full h-auto pl-5" />
     <img src={img3} alt="" className="w-full h-auto" />
   </div>
 </div>

@@ -1,12 +1,13 @@
 
 import Footer from "@/layout/Footer"
+import NavbarShapes from "@/layout/Navbar"
 // import DoclineHeader from "@/layout/Navbar"
 import CTABanner from "@/Teamplate/CTABanner"
 import DoclineInterface from "@/Teamplate/DoclineInterface"
 import FAQSection from "@/Teamplate/FAQSection"
 import DoclineFeaturesSection from "@/Teamplate/FeatureSection"
 import Functions from "@/Teamplate/Functions"
-import Header from "@/Teamplate/Header"
+// import Header from "@/Teamplate/Header"
 import DoclineHero from "@/Teamplate/Hero"
 import SecuritySection from "@/Teamplate/SequritySection"
 import DoclineWorkflowSlider from "@/Teamplate/Slider"
@@ -17,8 +18,9 @@ import TestimonialSection from "@/Teamplate/WonersSlider"
 const Home = () => {
   return (
   <div className="bg-[#F3F6F6] ">
-    {/* <DoclineHeader/> */}
-  <Header />
+   
+  {/* <Header /> */}
+  <NavbarShapes/>
   <DoclineHero />
  <div id="features">
    <DoclineFeaturesSection />
