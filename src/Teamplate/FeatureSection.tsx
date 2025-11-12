@@ -216,7 +216,7 @@ const CustomizationCard: React.FC = () => (
 // --- Main Grid ---
 const FeatureCardsGrid: React.FC = () => {
   return (
-    <div className="py-8 px-4 mx-15 ">
+    <div className="py-8 px-4 mx-15 xl:-mt-40 ">
       <div className="text-center mb-16">
         <div style={{}} className="relative inline-flex items-center gap-2 backdrop-blur-lg px-3 py-2  border border-white bg-white/10 rounded-full mb-6 -mt-7">
           <img src={icon} alt="" />

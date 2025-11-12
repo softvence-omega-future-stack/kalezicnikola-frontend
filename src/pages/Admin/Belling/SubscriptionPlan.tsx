@@ -40,7 +40,7 @@ const SubscriptionPlan = () => {
               </div>
             </div>
 
-            <button className="w-full px-6 py-3 text-base mt-17 uppercase font-semibold text-[#526FFF] bg-white border-2 border-[#526FFF] rounded-full hover:bg-blue-50 focus:outline-none  transition-colors">
+            <button className="w-full px-6 py-3 text-base mt-17 uppercase font-semibold text-[#526FFF] bg-white border-2 border-[#526FFF] rounded-full  focus:outline-none  transition-colors">
               Active user 89
             </button>
           </div>

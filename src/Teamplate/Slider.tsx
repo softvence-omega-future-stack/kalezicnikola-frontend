@@ -1,46 +1,33 @@
-
-import icon from "../assets/svgIcon/herologo.svg";
-
-
-
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay,  } from "swiper/modules";
-import './slider.css'
+import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import "swiper/css/effect-coverflow";
 
-// Your images (Ensure these paths are correct and all files exist)
+import icon from "../assets/svgIcon/herologo.svg";
 import img1 from "../assets/svgIcon/workflowSlider1.svg";
 import img2 from "../assets/svgIcon/workflowSlider2.svg";
-import img3 from "../assets/svgIcon/wrokflowSlider3.svg"; 
+import img3 from "../assets/svgIcon/wrokflowSlider3.svg";
 import img4 from "../assets/svgIcon/workflowSlider4.svg";
 
-// --- DashboardSlide Component (No Change Here) ---
+// --- DashboardSlide Component ---
 const DashboardSlide: React.FC<{
   bgColor: string;
   title: string;
   subtitle: string;
   list: string[];
   img: string;
-  isActive?: boolean;
-}> = ({ bgColor, title, subtitle, list, img, isActive }) => {
+}> = ({ bgColor, title, subtitle, list, img }) => {
   return (
     <div
-      className={`p-6 md:p-8 ${bgColor} rounded-3xl shadow-xl relative overflow-hidden h-[600px] flex flex-col transition-all duration-700 transform ${
-        isActive ? "scale-100 opacity-100" : "scale-95 o"
-      } mx-auto w-full max-w-[1100px]`}
+      className={`p-6 md:p-8 ${bgColor} rounded-3xl shadow-xl relative overflow-hidden h-[600px] flex flex-col transition-all duration-700 transform mx-auto w-full max-w-[1100px]`}
     >
-      {/* Gradient Background */}
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-50 to-indigo-100 opacity-50 z-0"></div>
-
-      {/* Text Section */}
       <div className="relative z-10 flex-shrink-0 mb-4">
-       <div className="inline-flex items-center text-sm font-medium text-[#3B82F6] mb-2 rounded-full py-2 px-3 border border-[#3B82F6]">
-  <img src={icon} alt="" className="mr-2" />
-  Dashboard
-</div>
+        <div className="inline-flex items-center text-sm font-medium text-[#3B82F6] mb-2 rounded-full py-2 px-3 border border-[#3B82F6]">
+          <img src={icon} alt="" className="mr-2" />
+          Dashboard
+        </div>
 
         <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-2">
           {title}
@@ -54,22 +41,16 @@ const DashboardSlide: React.FC<{
         </ul>
       </div>
 
-      {/* Image Section */}
-      <div className="relative z-10 rounded-xl overflow-hidden shadow-md mt-auto h-[500px] w-[1100px] ">
-        <img
-          src={img}
-          alt={title}
-          className="w-full h-full object-cover rounded-xl"
-        />
+      <div className="relative z-10 rounded-xl overflow-hidden shadow-md mt-auto h-[500px] w-[1100px]">
+        <img src={img} alt={title} className="w-full h-full object-cover rounded-xl" />
       </div>
     </div>
   );
 };
 
-// --- CarouselSection Component (With Pagination Fix) ---
+// --- CarouselSection Component ---
 const CarouselSection = () => {
   const slides = [
-    // ... (slides data remains the same)
     {
       id: 1,
       title: "Clear Overview. More Efficiency",
@@ -121,52 +102,45 @@ const CarouselSection = () => {
   ];
 
   return (
-    <section className="py-16  font-[Urbanist]">
-      <div className="px-4 sm:px-6 lg:px-8">
+    <section className="py-16 font-[Urbanist]">
+      <div className="px-4">
         {/* Header */}
         <div className="text-center mb-12">
-          <div className="relative inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-lg  mb-6 rounded-full   border border-white">
-           <img src={icon} alt="" />
-            <span className="text-gray-800 text-sm font-medium">Intuitive & Modern</span>
-            <span className="absolute top-0 right-0  h-3 w-5 bg-[#F3F6F6] z-10"></span>
-  <span className="absolute bottom-0 left-0  h-5 w-5 bg-[#F3F6F6] z-10"> </span>
-           </div>
-          
-           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-900 mb-4">
-            The Modern Workflow{' '}
-            <span className="block">Your Team Will Love</span>
-           </h2>
-          
-           <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
+          <div className="relative inline-flex items-center gap-2 px-4 py-2 bg-white/10 mb-6 rounded-full border-t-2 border-l-2 border border-white">
+            <img src={icon} alt="" />
+            <span className="text-gray-800 text-sm font-medium">
+              Intuitive & Modern
+            </span>
+          </div>
+
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-900 mb-4">
+            The Modern Workflow <span className="block">Your Team Will Love</span>
+          </h2>
+
+          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
             The key to a practice that doesn't just respond but also works smarter together.
-           </p>
-         </div>
+          </p>
+        </div>
 
         {/* Swiper */}
-  
-<Swiper
-  modules={[Pagination, Autoplay]}
-  grabCursor={true}
-  centeredSlides={false} // কেন্দ্র না করে ৩টা slide দেখাবে
-  loop={true} // শেষ হয়ে আবার শুরু থেকে চলবে
-  slidesPerView={3} // একসাথে ৩টা slide
-  spaceBetween={25} // slide এর মাঝে ফাঁকা
-  autoplay={{
-    delay: 3000,
-    disableOnInteraction: false,
-  }}
-  pagination={{ clickable: true }}
-  className="w-full pb-10"
->
-  {slides.map((slide) => (
-    <SwiperSlide key={slide.id}>
-      <DashboardSlide {...slide} />
-    </SwiperSlide>
-  ))}
-</Swiper>
+        <Swiper
+          modules={[Pagination, Autoplay]}
+          grabCursor={true}
+          loop={true}
+          slidesPerView={3}
+          spaceBetween={25}
+          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          pagination={{ clickable: true }}
+          className="w-full pb-10"
+        >
+          {slides.map((slide) => (
+            <SwiperSlide key={slide.id}>
+              <DashboardSlide {...slide} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
 
-
-
+        {/* Pagination will appear automatically because of pagination module */}
       </div>
     </section>
   );

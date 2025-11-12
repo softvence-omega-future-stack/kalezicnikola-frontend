@@ -35,79 +35,47 @@ const DoclineHero: React.FC = () => {
             to handle appointments, answer  questions, and simplify tasks in your team.
           </p>
 
-          {/* CTA Buttons */}
-
-{/* <div className="flex items-center p-2 bg-white rounded-2xl shadow-lg border border-white max-w-md mx-auto">
-  <input 
-    type="tel" 
-    placeholder="Enter phone number" 
-    className="flex-grow p-3 text-lg text-gray-700 placeholder-gray-400 focus:outline-none bg-white rounded-l-2xl"
-  />
-  <button 
-    className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl ml-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-  >
-    Hit Me Up
-  </button>
-</div> */}
-
-          {/* <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="flex flex-col sm:flex-row gap-4 pt-4">
-            <button className="px-8 py-4 bg-[#526FFF] text-white rounded-[12px] font-medium transition-colors cursor-pointer">
-              Get Started
-            </button>
-            <button className="px-12 py-5 border-2 border-[#526FFF] bg-[#526FFF1A] text-[#526FFF] rounded-[12px] font-medium cursor-pointer transition-colors">
-              Book Demo
-            </button>
-          </div> */}
-
-
-<div className="flex items-center justify-center p-4">
-      <div 
-        className="
-          flex items-center bg-white 
-          p-1 pr-1 pl-5 // Wrapper-এর প্যাডিং
-          rounded-2xl // 16px বর্ডার রেডিয়াস
+  
+<div className="w-full max-w-[468px] relative">
+        <div style={{
+    boxShadow: '0 30px 70px 0 rgba(4, 6, 45, 0.15)'
+  }} className="flex items-center bg-white relative rounded-2xl  border-2 border-transparent">
+       
           
-          // ✨ মূল অংশ: মোটা নীল বর্ডার
-          border-[2.5px] border-[#526FFF] 
+          {/* Bottom-right corner border */}
+          <div  className="absolute top-0 right-0 w-52 h-20 pointer-events-none">
+            <div     style={{
           
-          // ✨ মূল অংশ: গভীর বক্স শ্যাডো
-          shadow-2xl shadow-black/20 
-          
-          max-w-xl w-full
-          
-          // Gap 125px রাখা হলো, যদি এটি খুব বেশি হয় তবে কমিয়ে দেবেন (যেমন: gap-6)
-          gap-[125px] 
-        "
-      >
-        {/* Input Field (No Border of its own) */}
-        <input
-          type="tel"
-          placeholder="Enter phone number"
-          className="
-            flex-1 
-            p-1 
-            text-gray-700 text-base sm:text-lg 
-            outline-none border-none bg-transparent
-          "
-        />
+          borderImage: 'linear-gradient( #97a6f2, #526FFF 50%, #97a6f2 )1'
 
-        {/* Button */}
-        <button
-          className="
-            bg-[#526FFF] text-white font-semibold 
-            px-6 sm:px-7 py-3 sm:py-4 
-            rounded-xl 
-            transition-colors duration-200 
-            hover:bg-[#405fff] active:scale-95
-            whitespace-nowrap
-            text-base sm:text-lg
-            shadow-md shadow-[#526FFF]/50
-          "
-        >
-          Hit Me Up
-        </button>
+        }}
+         className="absolute top-0 right-0 w-full h-full border-r-2 border-t-2 border-[#526FFF] rounded-tr-2xl"></div>
+          </div>
+             {/* Top-left corner border */}
+          <div className="absolute bottom-0 left-0 w-52 h-20 pointer-events-none">
+            <div className="absolute bottom-0 left-0 w-full h-full border-l-2 border-b-2 border-[#526FFF] rounded-bl-2xl"></div>
+          </div>
+
+          {/* Input Field */}
+          <div className="flex-1">
+            <input
+              type="tel"
+              placeholder="Enter phone number"
+              className="w-full px-8 py-6 text-lg bg-white focus:outline-none placeholder-gray-400 border-none rounded-2xl"
+            />
+          </div>
+
+          {/* Button */}
+          <button
+            className="px-10 py-6 bg-[#526FFF]  text-white text-xl font-normal rounded-2xl transition-colors duration-200 whitespace-nowrap mx-3 my-2"
+          >
+            Hit Me Up
+          </button>
+        </div>
       </div>
-    </div>
+
+
+
 
         </div>
 

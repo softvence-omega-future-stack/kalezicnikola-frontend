@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
-import {  ChevronLeft, ChevronRight, Plus } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Plus } from 'lucide-react';
 import DayView from './DayView';
 import CalendarWeekView from './WeekView';
 import CalendarMonthView from './MonthView';
-import homeIcon from '../../../assets/svgIcon/homeIcon.svg'
-import chevronIcon from '../../../assets/svgIcon/chevronnRight.svg'
+import homeIcon from '../../../assets/svgIcon/homeIcon.svg';
+import chevronIcon from '../../../assets/svgIcon/chevronnRight.svg';
+import NewAppointmentModal from '../dashboard/NewAppointmentModal';
+
 
 const CalendarView: React.FC = () => {
   const [viewType, setViewType] = useState<'day' | 'week' | 'month'>('day');
   const [currentDate] = useState(new Date(2025, 8, 29));
+  const [isModalOpen, setIsModalOpen] = useState(false); // modal state
 
   const monthYear = currentDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
-
   const handleViewChange = (type: 'day' | 'week' | 'month') => setViewType(type);
 
   return (
@@ -19,10 +21,10 @@ const CalendarView: React.FC = () => {
       {/* Breadcrumb */}
       <div className="px-4 sm:px-6 py-3">
         <div className="flex items-center gap-2 text-sm text-gray-500 flex-wrap">
-         <img src={homeIcon} alt="" />
+          <img src={homeIcon} alt="" />
           <img src={chevronIcon} alt="" />
           <span>Dashboard</span>
-         <img src={chevronIcon} alt="" />
+          <img src={chevronIcon} alt="" />
           <span className="text-[#171C35] font-medium">Calendar</span>
         </div>
       </div>
@@ -32,7 +34,7 @@ const CalendarView: React.FC = () => {
         <h1 className="text-2xl font-semibold text-[#171C35] mb-4 sm:mb-6">Calendar</h1>
 
         {/* Top Controls */}
-        <div className=" rounded-lg p-4 sm:p-5 mb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div className="rounded-lg p-4 sm:p-5 mb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           {/* Left Controls */}
           <div className="flex items-center gap-3 w-full sm:w-auto">
             <button className="p-1 hover:bg-gray-100 rounded">
@@ -56,7 +58,10 @@ const CalendarView: React.FC = () => {
               <option value="month">Month</option>
             </select>
 
-            <button className="flex items-center gap-2 px-3 sm:px-4 py-1.5 text-sm text-gray-600 hover:bg-gray-50 rounded-[8px] border border-gray-300 cursor-pointer w-full sm:w-auto justify-center">
+            <button
+              onClick={() => setIsModalOpen(true)} // modal open on click
+              className="flex items-center gap-2 px-3 sm:px-4 py-1.5 text-sm text-gray-600 hover:bg-gray-50 rounded-[8px] border border-gray-300 cursor-pointer w-full sm:w-auto justify-center"
+            >
               <Plus size={16} />
               Appointment
             </button>
@@ -70,6 +75,11 @@ const CalendarView: React.FC = () => {
           {viewType === 'month' && <CalendarMonthView />}
         </div>
       </div>
+
+      {/* Appointment Modal */}
+      {isModalOpen && (
+        <NewAppointmentModal onClose={() => setIsModalOpen(false)} />
+      )}
     </div>
   );
 };

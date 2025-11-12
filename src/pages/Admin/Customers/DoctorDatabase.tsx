@@ -30,6 +30,16 @@ const DoctorDatabaseTable: React.FC = () => {
   const [selectedRows, setSelectedRows] = useState<Set<string>>(new Set());
   const [searchTerm, setSearchTerm] = useState('');
 
+   const [isOpen, setIsOpen] = useState(false);
+  const [selectedStatus, setSelectedStatus] = useState('All Status');
+
+  const options = ['Active', 'Trial', 'Suspended'];
+
+  const handleSelect = (status: string) => {
+    setSelectedStatus(status);
+    setIsOpen(false); // dropdown close
+  };
+
   const toggleSelectAll = () => {
     if (selectedRows.size === doctorsData.length) {
       setSelectedRows(new Set());
@@ -100,10 +110,33 @@ const DoctorDatabaseTable: React.FC = () => {
               </div>
               
               {/* Status Filter */}
-              <button className="flex items-center justify-between gap-2 px-4 py-2 border border-[#D0D5DD] rounded-[8px] text-sm font-semibold text-[#111A2D] bg-white  transition-colors">
-                All Status
-                <ChevronDown className="w-4 h-4" />
-              </button>
+            <div className="relative inline-block text-left">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex items-center justify-between gap-2 px-4 py-2 border border-[#D0D5DD] rounded-[8px] text-sm font-semibold text-[#111A2D] bg-white transition-colors hover:bg-gray-50 w-48"
+      >
+        {selectedStatus}
+        <ChevronDown className="w-4 h-4" />
+      </button>
+
+      {isOpen && (
+        <div className="absolute mt-1 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
+          {options.map((status) => (
+            <button
+              key={status}
+              onClick={() => handleSelect(status)}
+              className={`block w-full text-left px-4 py-2 text-sm ${
+                selectedStatus === status
+                  ? 'bg-blue-100 text-blue-600 font-medium'
+                  : 'text-gray-700 hover:bg-gray-100'
+              }`}
+            >
+              {status}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
             </div>
           </div>
         </div>

@@ -9,13 +9,13 @@ const StatusDropdown = () => {
 
   const handleSelect = (status:string) => {
     setSelected(status);
-    setIsOpen(false); // dropdown বন্ধ করবে
+    setIsOpen(false); 
   };
 
   return (
     <div className="relative inline-block">
       <button
-        className="px-4 py-2 bg-[#F3F6F6] border border-gray-300 rounded-[8px] text-sm font-semibold text-[#111a2d] flex items-center gap-2"
+        className="px-4 py-2 bg-[#F3F6F6] border border-gray-300 rounded-xl text-sm font-semibold text-[#111a2d] flex items-center gap-2"
         onClick={() => setIsOpen(!isOpen)}
       >
         <span>{selected}</span>

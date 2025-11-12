@@ -83,7 +83,7 @@ const AddPatientForm: React.FC = () => {
         </div>
 
         {/* Page Title */}
-        <h1 className="text-2xl font-bold text-[#171c35] mb-8">Add New Patient 🧑‍⚕️</h1>
+        <h1 className="text-2xl font-bold text-[#171c35] mb-8">Add New Patient </h1>
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-lg p-6 md:p-8">
