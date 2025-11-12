@@ -182,7 +182,7 @@ const CallLogsPage: React.FC = () => {
    {/* Transcript Section */}
       {currentCall && (
   <div className="fixed inset-0 bg-black/50 bg-opacity-30 flex justify-center items-start p-6 z-50">
-    <div className="bg-white rounded-[8px] shadow-lg w-[980px] h-[1138px] overflow-y-auto max-h-[90vh] relative mt-20">
+    <div className="bg-white rounded-xl shadow-lg w-[980px] h-[1138px] overflow-y-auto max-h-[90vh] relative mt-20">
       <button
         className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 cursor-pointer"
         onClick={() => setCurrentCall(null)}

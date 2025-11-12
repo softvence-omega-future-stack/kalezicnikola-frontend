@@ -19,7 +19,14 @@ const PersonalInfo = () => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
   setFormData({ ...formData, [e.target.name]: e.target.value });
 };
-
+ const [photoPreview, setPhotoPreview] = useState<string | null>(null);
+ const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const previewURL = URL.createObjectURL(file);
+      setPhotoPreview(previewURL);
+    }
+  };
 
   return (
     <div className="space-y-6">
@@ -27,12 +34,30 @@ const PersonalInfo = () => {
       {/* Upload Photo + First & Last Name */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
         {/* Upload Photo */}
-        <div className="flex flex-col items-center justify-center py-8 border-2  border-gray-100 rounded-3xl  transition-colors cursor-pointer">
-          <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-3">
-           <img src={upload} alt="" />
-          </div>
-          <p className="text-xs text-[#667085] font-medium">Upload Photo</p>
+  
+ <div
+        className="flex flex-col items-center justify-center py-8 border-2 border-gray-100 rounded-3xl transition-colors cursor-pointer"
+        onClick={() => document.getElementById('photoUpload')?.click()}
+      >
+        <div className=" flex items-center justify-center mb-3 overflow-hidden">
+          <img
+            src={photoPreview || upload}
+            alt=""
+            className="w-full h-full object-cover"
+          />
         </div>
+        <p className="text-xs text-[#667085] font-medium">Upload Photo</p>
+      </div>
+
+      {/* Hidden file input */}
+      <input
+        type="file"
+        id="photoUpload"
+        className="hidden"
+        accept="image/*"
+        onChange={handlePhotoChange}
+      />
+
 
         {/* First Name */}
         <div className="flex flex-col space-y-1">

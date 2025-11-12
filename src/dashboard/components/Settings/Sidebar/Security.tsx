@@ -23,6 +23,12 @@ export default function SecuritySettings() {
     setSettings(prev => ({ ...prev, [field]: !prev[field] }));
   };
 
+  const handleSaveChanges = () => {
+  console.log("Saved Security Settings:", settings);
+  alert("Your changes have been saved!");
+};
+
+
   return (
     <div className="min-h-screen ">
       <div className=" bg-white rounded-2xl  p-6 md:p-8">
@@ -56,7 +62,7 @@ export default function SecuritySettings() {
               <label className="block text-base font-medium  text-[#171c35] mb-2">Password Expiry</label>
               <div className="relative">
                 <select 
-                  className="w-full px-4 py-2.5 text-sm text-gray-500 bg-white border border-gray-300 rounded-[8px] appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2.5 text-sm text-gray-500 bg-white border border-gray-300 rounded-xl appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   value={settings.passwordExpiry}
                   onChange={(e) => setSettings({...settings, passwordExpiry: e.target.value})}
                 >
@@ -74,7 +80,7 @@ export default function SecuritySettings() {
               <label className="block text-base font-medium text-[#171c35] mb-2">Minimum Password Length</label>
               <div className="relative">
                 <select 
-                  className="w-full px-4 py-2.5 text-sm text-gray-500 bg-white border border-gray-300 rounded-[8px] appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2.5 text-sm text-gray-500 bg-white border border-gray-300 rounded-xl appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   value={settings.minPasswordLength}
                   onChange={(e) => setSettings({...settings, minPasswordLength: e.target.value})}
                 >
@@ -134,7 +140,7 @@ export default function SecuritySettings() {
               <label className="block text-base font-medium text-[#171C35] mb-2">Session Timeout</label>
               <div className="relative">
                 <select 
-                  className="w-full px-4 py-2.5 text-sm text-gray-500 bg-white border border-gray-300 rounded-[8px] appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2.5 text-sm text-gray-500 bg-white border border-gray-300 rounded-xl appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   value={settings.sessionTimeout}
                   onChange={(e) => setSettings({...settings, sessionTimeout: e.target.value})}
                 >
@@ -152,7 +158,7 @@ export default function SecuritySettings() {
               <label className="block text-base font-medium text-[#171c35] mb-2">Maximum Login Attempts</label>
               <div className="relative">
                 <select 
-                  className="w-full px-4 py-2.5 text-sm text-gray-500 bg-white border border-gray-300 rounded-[8px] appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2.5 text-sm text-gray-500 bg-white border border-gray-300 rounded-xl appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   value={settings.maxLoginAttempts}
                   onChange={(e) => setSettings({...settings, maxLoginAttempts: e.target.value})}
                 >
@@ -199,10 +205,10 @@ export default function SecuritySettings() {
 
         {/* Action Buttons */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <button className="w-full px-6 py-2.5 text-sm font-medium text-[#171c35]bg-white border border-gray-300 rounded-[8px] hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#526FFF] transition-colors">
+          <button className="w-full px-6 py-2.5 text-sm font-medium text-[#171c35]bg-white border border-gray-300 rounded-xl hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#526FFF] transition-colors">
             Cancel
           </button>
-          <button className="w-full px-6 py-2.5 text-sm font-medium text-white bg-[#526FFF] rounded-[8px]  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#526FFF] transition-colors">
+          <button onClick={handleSaveChanges} className="w-full px-6 py-2.5 text-sm font-medium text-white bg-[#526FFF] rounded-xl  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#526FFF] transition-colors">
             Save Changes
           </button>
         </div>

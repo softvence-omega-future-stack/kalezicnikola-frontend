@@ -1,115 +1,119 @@
-import React, { useState } from "react";
-import { ChevronLeft, ChevronRight, Plus, ChevronDown } from "lucide-react";
-import NewAppointmentModal from "./NewAppointmentModal";
+import React, { useState } from 'react';
+import { ChevronLeft, ChevronRight, Plus } from 'lucide-react';
 
-const CalendarView: React.FC = () => {
-  const [currentMonth, ] = useState("September 2025");
-  const [isModalOpen, setIsModalOpen] = useState(false);
+import homeIcon from '../../../assets/svgIcon/homeIcon.svg';
+import chevronIcon from '../../../assets/svgIcon/chevronnRight.svg';
+import DayView from '../Calendar/DayView';
+import CalendarMonthView from '../Calendar/MonthView';
+import WeeklyCalendar from '../Calendar/WeekView';
+import NewAppointmentModal from './NewAppointmentModal';
 
-  // Event color mapping (3 types)
-  const eventColors = [ "bg-purple-50", "bg-green-50", "bg-orange-50" ];
 
-  const calendarDays = [
-    { date: 29, month: "prev" },
-    { date: 30, month: "prev" },
-    { date: 31, month: "prev" },
-    { date: 1 },
-    { date: 2 },
-    { date: 3 },
-    { date: 4 },
-    { date: 5 },
-    { date: 6 },
-    { date: 7 },
-    { date: 8 },
-    { date: 9, event: { name: "Floyd Miles", time: "6:00-7:00", colorIndex: 0 } },
-    { date: 10 },
-    { date: 11, event: { name: "Floyd Miles", time: "6:00-7:00", colorIndex: 1 } },
-    { date: 12 },
-    { date: 13 },
-    { date: 14 },
-    { date: 15 },
-    { date: 16 },
-    { date: 17 },
-    { date: 18 },
-    { date: 19 },
-    { date: 20 },
-    { date: 21 },
-    { date: 22, event: { name: "Floyd Miles", time: "6:00-7:00", colorIndex: 2 } },
-    { date: 23 },
-    { date: 24 },
-    { date: 25 },
-    { date: 26 },
-    { date: 27 },
-    { date: 28 },
-    { date: 29 },
-    { date: 30 },
-    { date: 1, month: "next" },
-  ];
+const DashboardCalendar: React.FC = () => {
+  const [viewType, setViewType] = useState<'day' | 'week' | 'month'>('month'); 
+  const [currentDate, setCurrentDate] = useState(new Date(2025, 8, 29));
+  const [isModalOpen, setIsModalOpen] = useState(false); // ✅ Modal state
+
+  const monthYear = currentDate.toLocaleDateString('en-US', {
+    month: 'long',
+    year: 'numeric',
+  });
+
+  const handleViewChange = (type: 'day' | 'week' | 'month') => {
+    setViewType(type);
+  };
+
+  const handleNext = () => {
+    const newDate = new Date(currentDate);
+    newDate.setMonth(currentDate.getMonth() + 1);
+    setCurrentDate(newDate);
+  };
+
+  const handlePrev = () => {
+    const newDate = new Date(currentDate);
+    newDate.setMonth(currentDate.getMonth() - 1);
+    setCurrentDate(newDate);
+  };
 
   return (
-    <div className="bg-white rounded-2xl p-5 -mt-15 ml-1 ">
-      {/* Header Section */}
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-xl font-semibold text-[#171C35">Calendar</h2>
-        <button  onClick={() => setIsModalOpen(true)} className="flex items-center gap-2 px-4 py-2 border border-gray-200 rounded-[8px] text-sm text-[#111A2D] hover:bg-gray-50">
-          <Plus className="w-4 h-4" />
-          Appointment
-        </button>
+    <div className="bg-white rounded-2xl p-4 sm:p-6 -mt-15">
+      {/* Breadcrumb */}
+      <div className="flex items-center gap-2 text-sm text-gray-500 mb-4 flex-wrap">
+        <img src={homeIcon} alt="home" />
+        <img src={chevronIcon} alt="" />
+        <span>Dashboard</span>
+        <img src={chevronIcon} alt="" />
+        <span className="text-[#171C35] font-medium">Calendar</span>
       </div>
 
-      {/* Month + View Selector */}
-      <div className="flex items-center justify-start mb-6">
-        <div className="flex items-center gap-4">
-          <button className="p-1 hover:bg-gray-100 rounded">
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-          <h3 className="text-lg font-medium text-[#171C35]">{currentMonth}</h3>
-          <button className="p-1 hover:bg-gray-100 rounded">
-            <ChevronRight className="w-5 h-5" />
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+        <h1 className="text-2xl font-semibold text-[#171C35]">Calendar</h1>
+
+        {/* Controls */}
+        <div className="flex items-center gap-3 w-full sm:w-auto flex-wrap sm:flex-nowrap">
+          {/* Add Appointment Button */}
+          <button
+            onClick={() => setIsModalOpen(true)} // ✅ Open modal on click
+            className="flex items-center gap-2 px-3 sm:px-4 py-1.5 text-sm text-gray-600 hover:bg-gray-50 rounded-[8px] border border-gray-300 cursor-pointer w-full sm:w-auto justify-center"
+          >
+            <Plus size={16} />
+            Appointment
           </button>
         </div>
-        <span className="flex text-[#111A2D] text-sm items-center">  Week <ChevronDown className="w-4 h-4" /></span>
       </div>
 
-      {/* Calendar Grid */}
-      <div className="grid grid-cols-7 gap-px bg-gray-200 border border-gray-200 rounded-lg overflow-hidden">
-        {["MON", "TUE", "WED", "THUR", "FRI", "SAT", "SUN"].map((day) => (
-          <div
-            key={day}
-            className="bg-white pt-4 pl-4 pr-16 pb-17 text-center text-xs font-medium text-gray-500"
-          >
-            {day}
-          </div>
-        ))}
+      {/* Top Navigation */}
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center gap-3">
+          <button onClick={handlePrev} className="p-1 hover:bg-gray-200 rounded">
+            <ChevronLeft size={20} className="text-gray-600" />
+          </button>
 
-        {calendarDays.map((day, idx) => {
-          const bgColor = day.event
-            ? eventColors[day.event.colorIndex % eventColors.length]
-            : "bg-white";
+          <h2 className="text-base sm:text-lg font-medium text-[#171C35]">
+            {monthYear}
+          </h2>
 
-          return (
-            <div
-              key={idx}
-              className={`p-3 min-h-[80px] ${bgColor} ${
-                day.month ? "text-gray-300" : "text-gray-900"
-              }`}
+          <button onClick={handleNext} className="p-1 hover:bg-gray-200 rounded">
+            <ChevronRight size={20} className="text-gray-600" />
+          </button>
+
+          <div className="ml-3 relative">
+            <select
+              value={viewType}
+              onChange={(e) =>
+                handleViewChange(e.target.value as 'day' | 'week' | 'month')
+              }
+              className="appearance-none rounded-[8px] px-3 py-1 text-sm text-gray-700 cursor-pointer focus:outline-none focus:ring-1 focus:ring-indigo-500 pr-8"
             >
-              <div className="text-lg font-medium">{day.date}</div>
+              <option value="day">Day</option>
+              <option value="week">Week</option>
+              <option value="month">Month</option>
+            </select>
 
-              {day.event && (
-                <div className="mt-2">
-                  <div className="text-sm font-medium">{day.event.name}</div>
-                  <div className="text-xs text-gray-900 flex items-center gap-1 ">
-                    {day.event.time}
-                   
-                  </div>
-                </div>
-              )}
+            {/* Icon on the right */}
+            <div className="pointer-events-none absolute inset-y-0 right-2 flex items-center">
+              <svg
+                className="w-4 h-4 text-gray-500"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
             </div>
-          );
-        })}
+          </div>
+        </div>
       </div>
-        {/* Modal show conditionally */}
+
+      {/* Calendar Content */}
+      <div className="overflow-x-auto border">
+        {viewType === 'day' && <DayView />}
+        {viewType === 'week' && <WeeklyCalendar />}
+        {viewType === 'month' && <CalendarMonthView />}
+      </div>
+
+      {/* Modal */}
       {isModalOpen && (
         <NewAppointmentModal onClose={() => setIsModalOpen(false)} />
       )}
@@ -117,4 +121,4 @@ const CalendarView: React.FC = () => {
   );
 };
 
-export default CalendarView;
+export default DashboardCalendar;

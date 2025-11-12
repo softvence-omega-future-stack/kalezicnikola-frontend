@@ -5,7 +5,8 @@ import icon from "../assets/svgIcon/herologo.svg";
 
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay, EffectCoverflow } from "swiper/modules";
+import { Pagination, Autoplay,  } from "swiper/modules";
+import './slider.css'
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/effect-coverflow";
@@ -124,7 +125,7 @@ const CarouselSection = () => {
       <div className="px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <div className="relative inline-flex items-center gap-2 px-4 py-2 bg-white/10  mb-6 rounded-full  border-t-2 border-l-2 border border-white">
+          <div className="relative inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-lg  mb-6 rounded-full   border border-white">
            <img src={icon} alt="" />
             <span className="text-gray-800 text-sm font-medium">Intuitive & Modern</span>
             <span className="absolute top-0 right-0  h-3 w-5 bg-[#F3F6F6] z-10"></span>
@@ -142,39 +143,28 @@ const CarouselSection = () => {
          </div>
 
         {/* Swiper */}
-        <Swiper
-  modules={[Pagination, Autoplay, EffectCoverflow]}
-  effect="coverflow"
+  
+<Swiper
+  modules={[Pagination, Autoplay]}
   grabCursor={true}
-  centeredSlides={true}
-  loop={true}
-  slidesPerView={1} // Default for mobile
-  spaceBetween={20} // Gap between slides
-  autoplay={{ delay: 3000, disableOnInteraction: false }}
+  centeredSlides={false} // কেন্দ্র না করে ৩টা slide দেখাবে
+  loop={true} // শেষ হয়ে আবার শুরু থেকে চলবে
+  slidesPerView={3} // একসাথে ৩টা slide
+  spaceBetween={25} // slide এর মাঝে ফাঁকা
+  autoplay={{
+    delay: 3000,
+    disableOnInteraction: false,
+  }}
   pagination={{ clickable: true }}
-  coverflowEffect={{
-    rotate: 0,
-    stretch: 0,
-    depth: 100,
-    modifier: 1,
-    slideShadows: false,
-  }}
-  breakpoints={{
-    640: { slidesPerView: 1, spaceBetween: 20 },
-    768: { slidesPerView: 2, spaceBetween: 30 },
-    1024: { slidesPerView: 3, spaceBetween: 40 },
-  }}
   className="w-full pb-10"
 >
   {slides.map((slide) => (
-    <SwiperSlide
-      key={slide.id}
-      className="!w-auto"
-    >
-      {({ isActive }) => <DashboardSlide {...slide} isActive={isActive} />}
+    <SwiperSlide key={slide.id}>
+      <DashboardSlide {...slide} />
     </SwiperSlide>
   ))}
 </Swiper>
+
 
 
       </div>

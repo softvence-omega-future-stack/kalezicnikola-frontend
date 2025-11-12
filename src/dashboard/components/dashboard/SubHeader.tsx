@@ -97,7 +97,7 @@ const Card = ({
 
       <div className="absolute top-0 left-0 w-full h-full p-6 flex flex-col justify-between">
         <div>
-          <h3 className="text-base font-medium mb:4 xl:mb-14 text-[#171C35]">
+          <h3 className="text-base font-medium mb:4 lg:mb-2 2xl:mb-14 text-[#171C35]">
             {category.title}
           </h3>
 
@@ -119,7 +119,7 @@ const Card = ({
                 )}
               </div>
 
-            <p className="text-[#171C35] text-sm font-medium leading-snug flex-1 md:min-w-[40px] xl:min-w-[80px]">
+            <p className="text-[#171C35] text-sm font-medium leading-snug flex-1 md:min-w-[40px] lg:min-w-40 xl:min-w-[80px]">
   {category.description}
 </p>
 
@@ -137,10 +137,10 @@ const Card = ({
 
         <div
           className={`absolute  ${
-            index === 0 ? "bottom-3 right-4 " : "bottom-3 -right-4 "
+            index === 0 ? "bottom-2 right-2 2xl:right-8 " : "bottom-3 right-3 xl:-right-2 2xl:-right-1 "
           }`}
         >
-          <div className="h-12 w-12 bg-gray-900 rounded-full flex items-center justify-center">
+          <div className="h-9 w-9 bg-gray-900 rounded-full flex items-center justify-center">
             <img src={arrowRight} alt="" />
           </div>
         </div>
@@ -161,8 +161,8 @@ const SubHeaderCard = () => {
 
   return (
     <CommonSpace>
-      <div className="-mt-18">
-        <div className="grid grid-cols-4 gap-5">
+      <div className="-mt-18 px-2.5">
+        <div className="grid grid-cols-4 gap-3">
           {categories.map((category, index) => (
             <div
               key={index}

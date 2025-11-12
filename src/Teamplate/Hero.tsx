@@ -9,7 +9,7 @@ const DoclineHero: React.FC = () => {
         {/* Left Content */}
         <div className="w-full lg:w-1/2 space-y-6 xl:-mt-72">
           {/* Badge */}
-          <div className="relative inline-flex items-center gap-2 px-[10px] py-2 border border-white rounded-full">
+          <div className="relative inline-flex items-center gap-2 px-[10px] py-2 backdrop-blur-2xl border border-white bg-white/10 rounded-full">
   <img src={herologo} alt="Docline Logo" className="w-5 h-5" />
   <span className="text-[#171C35] text-sm font-medium">
     Your smarter telemedicine
@@ -36,14 +36,79 @@ const DoclineHero: React.FC = () => {
           </p>
 
           {/* CTA Buttons */}
-          <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="flex flex-col sm:flex-row gap-4 pt-4">
+
+{/* <div className="flex items-center p-2 bg-white rounded-2xl shadow-lg border border-white max-w-md mx-auto">
+  <input 
+    type="tel" 
+    placeholder="Enter phone number" 
+    className="flex-grow p-3 text-lg text-gray-700 placeholder-gray-400 focus:outline-none bg-white rounded-l-2xl"
+  />
+  <button 
+    className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl ml-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+  >
+    Hit Me Up
+  </button>
+</div> */}
+
+          {/* <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="flex flex-col sm:flex-row gap-4 pt-4">
             <button className="px-8 py-4 bg-[#526FFF] text-white rounded-[12px] font-medium transition-colors cursor-pointer">
               Get Started
             </button>
             <button className="px-12 py-5 border-2 border-[#526FFF] bg-[#526FFF1A] text-[#526FFF] rounded-[12px] font-medium cursor-pointer transition-colors">
               Book Demo
             </button>
-          </div>
+          </div> */}
+
+
+<div className="flex items-center justify-center p-4">
+      <div 
+        className="
+          flex items-center bg-white 
+          p-1 pr-1 pl-5 // Wrapper-এর প্যাডিং
+          rounded-2xl // 16px বর্ডার রেডিয়াস
+          
+          // ✨ মূল অংশ: মোটা নীল বর্ডার
+          border-[2.5px] border-[#526FFF] 
+          
+          // ✨ মূল অংশ: গভীর বক্স শ্যাডো
+          shadow-2xl shadow-black/20 
+          
+          max-w-xl w-full
+          
+          // Gap 125px রাখা হলো, যদি এটি খুব বেশি হয় তবে কমিয়ে দেবেন (যেমন: gap-6)
+          gap-[125px] 
+        "
+      >
+        {/* Input Field (No Border of its own) */}
+        <input
+          type="tel"
+          placeholder="Enter phone number"
+          className="
+            flex-1 
+            p-1 
+            text-gray-700 text-base sm:text-lg 
+            outline-none border-none bg-transparent
+          "
+        />
+
+        {/* Button */}
+        <button
+          className="
+            bg-[#526FFF] text-white font-semibold 
+            px-6 sm:px-7 py-3 sm:py-4 
+            rounded-xl 
+            transition-colors duration-200 
+            hover:bg-[#405fff] active:scale-95
+            whitespace-nowrap
+            text-base sm:text-lg
+            shadow-md shadow-[#526FFF]/50
+          "
+        >
+          Hit Me Up
+        </button>
+      </div>
+    </div>
+
         </div>
 
         {/* Right Image */}

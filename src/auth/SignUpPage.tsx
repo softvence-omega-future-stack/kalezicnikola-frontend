@@ -79,7 +79,7 @@ export default function SignupPage() {
                     placeholder="eg. John"
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
-                    className="w-full px-4 py-3 rounded-[8px] border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+                    className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
                   />
                 </div>
                 <div>
@@ -89,7 +89,7 @@ export default function SignupPage() {
                     placeholder="eg. Doe"
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
-                    className="w-full px-4 py-3 rounded-[8px] border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+                    className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
                   />
                 </div>
               </div>
@@ -102,67 +102,53 @@ export default function SignupPage() {
                   placeholder="Enter your email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-3 rounded-[8px] border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+                  className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
                 />
               </div>
 
               {/* Password */}
-              <div>
-                <label className="block text-sm font-medium text-[#111A2D] mb-2">Choose Password</label>
-                <div className="relative">
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    placeholder="••••••••••••"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="w-full px-4 py-3 rounded-[8px] border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm pr-12"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                  >
-                    {showPassword ? (
-                         <img src={eye} alt="" />
-                     
-                    ) : (
-                      <img
-                        src={eyeof}
-                        alt="visible"
-                      />
-                    )}
-                  </button>
-                </div>
-              </div>
+          
+<div>
+  <label className="block text-sm font-medium text-[#111A2D] mb-2">Choose Password</label>
+  <div className="relative">
+    <input
+      type={showPassword ? "text" : "password"}
+      placeholder="••••••••••••"
+      value={password}
+      onChange={(e) => setPassword(e.target.value)}
+      className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm pr-12"
+    />
+    <button
+      type="button"
+      onClick={() => setShowPassword(!showPassword)}
+      className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+    >
+      {showPassword ? <img src={eye} alt="" /> : <img src={eyeof} alt="visible" />}
+    </button>
+  </div>
+</div>
 
-              {/* Confirm Password */}
-              <div>
-                <label className="block text-sm font-medium text-[#111A2D] mb-2">Confirm Password</label>
-                <div className="relative">
-                  <input
-                    type={showConfirmPassword ? "text" : "password"}
-                    placeholder="••••••••••••"
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    className="w-full px-4 py-3 rounded-[8px] border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm pr-12"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                  >
-                      {showPassword ? (
-                         <img src={eye} alt="" />
-                     
-                    ) : (
-                      <img
-                        src={eyeof}
-                        alt="visible"
-                      />
-                    )}
-                  </button>
-                </div>
-              </div>
+{/* Confirm Password */}
+<div>
+  <label className="block text-sm font-medium text-[#111A2D] mb-2">Confirm Password</label>
+  <div className="relative">
+    <input
+      type={showConfirmPassword ? "text" : "password"}
+      placeholder="••••••••••••"
+      value={confirmPassword}
+      onChange={(e) => setConfirmPassword(e.target.value)}
+      className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm pr-12"
+    />
+    <button
+      type="button"
+      onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+      className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+    >
+      {showConfirmPassword ? <img src={eye} alt="" /> : <img src={eyeof} alt="visible" />}
+    </button>
+  </div>
+</div>
+
 
               {/* Terms */}
               <div className="flex items-start gap-2">
@@ -182,7 +168,7 @@ export default function SignupPage() {
               {/* Button */}
               <button
                 onClick={handleSubmit}
-                className="w-full py-3 bg-[#526FFF] text-white rounded-[8px] font-medium transition-colors shadow-sm hover:bg-blue-700 cursor-pointer"
+                className="w-full py-3 bg-[#526FFF] text-white rounded-xl font-medium transition-colors shadow-sm hover:bg-blue-700 cursor-pointer"
               >
                 Sign Up
               </button>

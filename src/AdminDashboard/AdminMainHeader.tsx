@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 
-import { useNavigate, useLocation } from 'react-router-dom';
 
 import karennix from '../assets/svgIcon/karen.svg'
 import search from '../assets/svgIcon/search.svg'
 import notification from '../assets/svgIcon/notification.svg'
-import backIcon from '../assets/svgIcon/backIcon.svg'
+
 import LanguageSelector from '@/dashboard/components/dashboard/LanguageSelector';
 import NotificationsModal from '@/dashboard/components/dashboard/Notifications';
 
@@ -20,21 +19,20 @@ const userData = {
 const AdminMainHeader: React.FC = () => {
   const [showNotification, setShowNotification] = useState(false);
   const [showUserDropdown, setShowUserDropdown] = useState(false);
-  const navigate = useNavigate();
-  const location = useLocation();
+
 
 
   // ✅ Check if current route is dashboard home
-  const isDashboardHome =
-    location.pathname === '/dashboard' || location.pathname === '/dashboard/';
+  // const isDashboardHome =
+  //   location.pathname === '/dashboard' || location.pathname === '/dashboard/';
 
   return (
   <div className='flex flex-col w-full border-b border-gray-200'>
    <header className="w-full h-20 mb-2 flex items-center justify-between px-6 md:px-8 lg:px-10 sticky top-0 z-30">
   {/* 🔙 Back Button + Search Bar */}
   <div className="flex items-center w-full max-w-lg">
-    {/* 👇 Back button only when not on dashboard home */}
-    {!isDashboardHome && (
+   
+    {/* {!isDashboardHome && (
       <div className="flex items-center pr-3 mr-3 border-r border-gray-200">
         <button
           onClick={() => navigate(-1)}
@@ -44,9 +42,9 @@ const AdminMainHeader: React.FC = () => {
           Back
         </button>
       </div>
-    )}
+    )} */}
 
-    {/* 🔍 Search Box */}
+  
     <div className="flex items-center gap-3 flex-1 rounded-lg py-3 px-4 border border-transparent focus-within:border-indigo-300 transition-colors">
       <img src={search} alt="" />
       <input

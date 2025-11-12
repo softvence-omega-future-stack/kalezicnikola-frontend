@@ -51,7 +51,7 @@ const CalendarMonthView: React.FC = () => {
 
 
   return (
-    <div className="min-h-screen  rounded-2xl">
+    <div className=" rounded-2xl">
     
 
       {/* Main Content */}
@@ -90,11 +90,7 @@ const CalendarMonthView: React.FC = () => {
                     {day.event.time}
                     <span className="  rounded flex items-center justify-center text-[10px] ml-4">
                   
-                         <img
-      src="https://i.ibb.co.com/MkbGVLPg/logo-meet-2020q4-color-2x-web-96dp.png"
-  alt="Google Meet Icon"
-  className="w-6 h-6"
-/>
+   
 
 
 

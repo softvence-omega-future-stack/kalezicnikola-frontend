@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'; // 👈 useEffect import kora holo
+import React, { useState, useEffect } from 'react'; 
 import woner from '../assets/svgIcon/woner.svg';
 import icon from '../assets/svgIcon/herologo.svg';
 
@@ -44,18 +44,18 @@ const TestimonialSection: React.FC = () => {
     }
   ];
 
-  // 👈 New useEffect hook for auto-sliding
+
   useEffect(() => {
     const interval = setInterval(() => {
-      // Proti 4 second por next slide-e jaabe
+    
       setActiveSlide((currentSlide) => 
         (currentSlide + 1) % testimonials.length
       );
-    }, 4000); // 4000ms = 4 seconds
+    }, 4000); 
 
    
     return () => clearInterval(interval);
-  }, [testimonials.length]); // testimonials.length change hole effect re-run hobe
+  }, [testimonials.length]); 
 
   return (
     <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="px-4 py-8">

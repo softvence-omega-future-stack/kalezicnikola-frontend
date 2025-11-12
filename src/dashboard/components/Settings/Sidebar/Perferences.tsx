@@ -20,6 +20,11 @@ export default function Performances() {
   setSettings(prev => ({ ...prev, [field]: !prev[field] }));
 };
 
+const handleSaveChanges = () => {
+  console.log("Saved Settings:", settings);
+  alert("Your changes have been saved!");  
+};
+
   return (
     <div className="min-h-screen ">
       <div className=" bg-white rounded-[24px] p-6 md:p-8">
@@ -36,7 +41,7 @@ export default function Performances() {
             <label className="block text-base font-medium text-[#111A2D] mb-2">Timezone</label>
             <div className="relative">
               <select 
-                className="w-full px-4 py-2.5 text-sm text-[#667085] bg-white border border-gray-300 rounded-[8px] appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-2.5 text-sm text-[#667085] bg-white border border-gray-300 rounded-xl appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 value={settings.timezone}
                 onChange={(e) => setSettings({...settings, timezone: e.target.value})}
               >
@@ -53,7 +58,7 @@ export default function Performances() {
             <label className="block  text-base font-medium text-[#111A2D]  mb-2">Date Format</label>
             <div className="relative">
               <select 
-                className="w-full px-4 py-2.5 text-sm text-gray-500 bg-white border border-gray-300 rounded-[8px] appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-2.5 text-sm text-gray-500 bg-white border border-gray-300 rounded-xl appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 value={settings.dateFormat}
                 onChange={(e) => setSettings({...settings, dateFormat: e.target.value})}
               >
@@ -70,7 +75,7 @@ export default function Performances() {
             <label className="block  text-base font-medium text-[#111A2D]  mb-2">Time Format</label>
             <div className="relative">
               <select 
-                className="w-full px-4 py-2.5 text-sm text-gray-500 bg-white border border-gray-300 rounded-[8px] appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-2.5 text-sm text-gray-500 bg-white border border-gray-300 rounded-xl appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 value={settings.timeFormat}
                 onChange={(e) => setSettings({...settings, timeFormat: e.target.value})}
               >
@@ -87,7 +92,7 @@ export default function Performances() {
             <label className="block  text-base font-medium text-[#111A2D] mb-2">Language</label>
             <div className="relative">
               <select 
-                className="w-full px-4 py-2.5 text-sm text-gray-500 bg-white border border-gray-300 rounded-[8px] appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-2.5 text-sm text-gray-500 bg-white border border-gray-300 rounded-xl appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 value={settings.language}
                 onChange={(e) => setSettings({...settings, language: e.target.value})}
               >
@@ -109,7 +114,7 @@ export default function Performances() {
               <label className="block text-base font-medium text-[#171C35] mb-2">Default Calendar View</label>
               <div className="relative">
                 <select 
-                  className="w-full px-4 py-2.5 text-sm text-[#111a2d] bg-white border border-gray-300 rounded-[8px] appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2.5 text-sm text-[#111a2d] bg-white border border-gray-300 rounded-xl appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   value={settings.calendarView}
                   onChange={(e) => setSettings({...settings, calendarView: e.target.value})}
                 >
@@ -126,7 +131,7 @@ export default function Performances() {
               <label className="block text-base font-medium text-[#171C35] mb-2">Default Appointment Duration</label>
               <div className="relative">
                 <select 
-                  className="w-full px-4 py-2.5 text-sm text-[#111a2d] bg-white border border-gray-300 rounded-[8px] appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2.5 text-sm text-[#111a2d] bg-white border border-gray-300 rounded-xl appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   value={settings.appointmentDuration}
                   onChange={(e) => setSettings({...settings, appointmentDuration: e.target.value})}
                 >
@@ -203,7 +208,7 @@ export default function Performances() {
               <label className="block text-sm font-normal text-[#111a2d] mb-2">Reminder Time</label>
               <div className="relative">
                 <select 
-                  className="w-full px-4 py-2.5 text-sm text-[#111a2d] bg-white border border-gray-300 rounded-[8px] appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2.5 text-sm text-[#111a2d] bg-white border border-gray-300 rounded-xl appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   value={settings.reminderTime}
                   onChange={(e) => setSettings({...settings, reminderTime: e.target.value})}
                 >
@@ -220,7 +225,7 @@ export default function Performances() {
               <label className="block text-sm font-normal text-[#111a2d] mb-2">Buffer Time Between Appointments</label>
               <div className="relative">
                 <select 
-                  className="w-full px-4 py-2.5 text-sm text-[#111a2d] bg-white border border-gray-300 rounded-[8px] appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2.5 text-sm text-[#111a2d] bg-white border border-gray-300 rounded-xl appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   value={settings.bufferTime}
                   onChange={(e) => setSettings({...settings, bufferTime: e.target.value})}
                 >
@@ -236,10 +241,10 @@ export default function Performances() {
 
         {/* Action Buttons */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <button className="w-full px-6 py-2.5 text-sm font-medium text-[#111a2d] bg-white border border-gray-300 rounded-[8px] focus:outline-none  transition-colors">
+          <button className="w-full px-6 py-2.5 text-sm font-medium text-[#111a2d] bg-white border border-gray-300 rounded-xl focus:outline-none  transition-colors">
             Cancel
           </button>
-          <button className="w-full px-6 py-2.5 text-sm font-medium text-white bg-[#526FFF] rounded-[8px] focus:outline-none  transition-colors cursor-pointer">
+          <button onClick={handleSaveChanges} className="w-full px-6 py-2.5 text-sm font-medium text-white bg-[#526FFF] rounded-xl focus:outline-none  transition-colors cursor-pointer">
             Save Changes
           </button>
         </div>
