@@ -227,8 +227,8 @@ const FeatureSection: React.FC = () => {
 
         <h2
           style={{
-            fontFamily: 'Urbanist, sans-serif',
-            fontSize: '40px',
+            fontFamily: 'Urbanist',
+            fontSize: '48px',
             fontWeight: 600,
             color: '#171C35',
           }}

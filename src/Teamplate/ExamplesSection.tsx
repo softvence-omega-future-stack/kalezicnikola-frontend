@@ -119,7 +119,7 @@ const DoclineInterface: React.FC = () => {
               </span>
              
             </div>
-            <h1 className="text-3xl md:text-5xl font-semibold text-gray-900 leading-14 mb-7">
+            <h1   style={{ fontFamily: "Urbanist, sans-serif" }} className="text-5xl md:text-5xl font-semibold text-gray-900 leading-14 mb-7">
               This is what Docline sounds <br className="hidden md:block" /> like
               in everyday practice
             </h1>
