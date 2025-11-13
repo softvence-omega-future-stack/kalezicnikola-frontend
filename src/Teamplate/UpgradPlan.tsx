@@ -236,7 +236,7 @@ const UpgradPlan = () => {
 
   return (
     <div
-      className="relative mt-44 xl:mx-20 px-4 md:px-8 rounded-[40px] overflow-hidden"
+      className="relative mt-9 xl:mt-[180px] lg:mt-[180px] xl:mx-20 px-4 md:px-8 rounded-[40px] overflow-hidden"
       style={{ boxShadow: '0 20px 50px rgba(0, 0, 0, 0.05)', fontFamily: 'Urbanist, sans-serif' }}
     >
       {/* Background Blurs */}
@@ -266,8 +266,8 @@ const UpgradPlan = () => {
       {/* Main Content */}
       <div className="relative z-10 p-4 md:p-8 xl:p-12 pb-16">
         {/* Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 border border-white shadow-sm rounded-full mb-6 bg-white">
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-2 px-4 py-2 border border-white shadow-sm rounded-full mb-4 bg-white">
             <img src={icon} alt="Docline logo" />
             <span className="text-[#171C35] text-sm font-medium">Transparent pricing</span>
           </div>
@@ -279,7 +279,7 @@ const UpgradPlan = () => {
         </div>
 
         {/* Billing Toggle */}
-        <div className="flex justify-center mb-10">
+        <div className="flex justify-center mb-12">
           <div className="inline-flex bg-white rounded-full p-1 border border-gray-200 shadow-sm">
             <button
               onClick={() => setBillingCycle('monthly')}

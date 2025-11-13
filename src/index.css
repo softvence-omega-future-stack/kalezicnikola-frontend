@@ -119,3 +119,30 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+
+
+.swiper-pagination {
+  bottom: 0px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background: #d1d5db; /* light gray */
+  opacity: 1;
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+  width: 24px;
+  height: 8px;
+  background: #3b82f6; /* blue like your theme */
+  border-radius: 9999px;
+}

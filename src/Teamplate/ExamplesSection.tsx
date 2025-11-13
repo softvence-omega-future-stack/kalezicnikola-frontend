@@ -7,8 +7,9 @@ import speaker from "../assets/svgIcon/speaker.svg";
 import borderIcon from "../assets/svgIcon/BorderPlay.svg";
 import roundactiveImg from "../assets/svgIcon/activerecord.svg";
 import roundImg from "../assets/svgIcon/recordbtnborder.svg";
+import './buttom.css'
 
-// 🎵 Custom Play SVG Component
+
 const SvgPlayIcon = ({ fill = "#526FFF", size = 20, className = "" }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -105,20 +106,20 @@ const DoclineInterface: React.FC = () => {
   return (
     <div
       style={{ fontFamily: "Urbanist, sans-serif" }}
-      className="min-h-screen px-4 py-10 md:px-8"
+      className=" px-9 xl:mt-[180px] md:px-8 "
     >
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:px-30">
         {/* Left Section */}
         <div className="flex flex-col justify-start">
-          <div className="mb-6 mt-9">
-            <div className="relative inline-flex items-center gap-2 px-5 py-3 backdrop-blur-xl  border border-white/80 mb-8 rounded-full bg-white/10">
+          <div className="mb-4 mt-9">
+            <div className="relative inline-flex items-center mb-4 gap-2  liquid-glass liquid-glass-md liquid-glass-rounded-xl ">
               <img src={icon} alt="Docline Logo" className="w-5 h-5" />
               <span className="text-[#171C35] text-sm font-medium">
                 Real Examples
               </span>
              
             </div>
-            <h1 className="text-3xl md:text-5xl font-semibold text-gray-900 leading-tight">
+            <h1 className="text-3xl md:text-5xl font-semibold text-gray-900 leading-14 mb-7">
               This is what Docline sounds <br className="hidden md:block" /> like
               in everyday practice
             </h1>

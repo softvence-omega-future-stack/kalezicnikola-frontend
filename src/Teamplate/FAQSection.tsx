@@ -48,7 +48,7 @@ const FAQSection: React.FC = () => {
   };
 
   return (
-    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="min-h-screen px-4 py-12 sm:py-16 md:py-20 lg:py-24">
+    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="px-4  mt-9 xl:mt-[180px] lg:mt-[180px] ">
       <div className="relative xl:px-30 overflow-hidden">
 
         {/* Header Section */}
@@ -68,7 +68,6 @@ const FAQSection: React.FC = () => {
     Frequently Asked Questions
   </h2>
 
-  {/* Background Shape under Heading */}
   <div
     style={{
       width: '90%',

@@ -9,11 +9,11 @@ import img6 from '../assets/svgIcon/interface6.svg'
 
 const Functions = () => {
   return (
-    <section  style={{ fontFamily: 'Urbanist, sans-serif' }} className="py-12 sm:py-16 lg:py-20 ">
+    <section  style={{ fontFamily: 'Urbanist, sans-serif' }} className="xl:mt-[180px] lg:mt-[180px] mt-5 ">
       <div className=" px-4 sm:px-6 lg:px-8 mx-10">
 
      <div className="text-start mb-16 ">
-        <div className="relative inline-flex items-center gap-2 px-4 py-2 border border-t-2 border-l-2 border-white bg-white/10  rounded-full mb-6">
+        <div className="relative inline-flex items-center gap-2 px-4 py-2 border border-t-2 border-l-2 border-white bg-white/10  rounded-full mb-4">
           <img src={icon} alt="" />
           <span className="text-[#171C35] text-sm font-medium">Our Core Functions</span>
 
@@ -21,7 +21,7 @@ const Functions = () => {
   <span className="absolute bottom-0 left-0  h-5 w-5 bg-[#F3F6F6] z-10"> </span>
         </div>
 
-        <h2 className="text-4xl sm:text-5xl lg:text-5xl font-semibold text-[#171c35] mb-4">
+        <h2 className="text-4xl sm:text-5xl lg:text-5xl font-semibold text-[#171c35] mb-12">
            Everything you need to ease <br /> the burden on your practice
         </h2>
       </div>

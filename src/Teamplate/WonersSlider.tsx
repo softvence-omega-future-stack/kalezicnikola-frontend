@@ -58,11 +58,11 @@ const TestimonialSection: React.FC = () => {
   }, [testimonials.length]); 
 
   return (
-    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="px-4 py-8">
+    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="px-4 mt-9 xl:mt-[180px] lg:mt-[180px] ">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="relative inline-flex items-center gap-2 px-4 py-2 border border-t-2 border-l-2 border-white bg-white/10  rounded-full mb-6">
+          <div className="relative inline-flex items-center gap-2 px-4 py-2 border border-t-2 border-l-2 border-white bg-white/10  rounded-full mb-4">
             <img src={icon} alt="Docline logo" />
             <span className="text-[#171C35] text-sm font-medium">What Our Users Say</span>
 
@@ -70,7 +70,7 @@ const TestimonialSection: React.FC = () => {
   <span className="absolute bottom-0 left-0  h-5 w-5 bg-[#F3F6F6] z-10"> </span>
           </div>
 
-          <h2 className="text-4xl sm:text-5xl lg:text-5xl font-semibold text-[#171c35] mb-4">
+          <h2 className="text-4xl sm:text-5xl lg:text-5xl font-semibold text-[#171c35] mb-15">
             What Practice Owners <br /> Say About Docline
           </h2>
         </div>
@@ -93,15 +93,15 @@ const TestimonialSection: React.FC = () => {
 
           {/* Middle - Quote */}
           <div className="lg:col-span-5 flex flex-col justify-center h-full border-r border-gray-100 px-4 lg:px-4 py-4 lg:py-0">
-            <blockquote className="text-[#111A2D] text-2xl font-medium leading-relaxed mb-6">
+            <blockquote className="text-[#111A2D] text-2xl font-medium leading-relaxed mb-16">
               {testimonials[activeSlide].quote}
             </blockquote>
             
             <div>
-              <p className="text-gray-900 font-bold text-lg mb-1">
+              <p className="text-gray-900 font-bold text-lg mb-4">
                 {testimonials[activeSlide].name}
               </p>
-              <p className="text-gray-500 text-sm tracking-wide">
+              <p className="text-[#111A2D] text-base tracking-wide">
                 {testimonials[activeSlide].title}
               </p>
             </div>
