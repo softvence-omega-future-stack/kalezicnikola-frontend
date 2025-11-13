@@ -58,7 +58,7 @@ const TestimonialSection: React.FC = () => {
   }, [testimonials.length]); 
 
   return (
-    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="px-4 mt-9 xl:mt-[180px] lg:mt-[180px] ">
+    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="px-4 mt-9 xl:mt-[180px] lg:mt-[180px] md:mt-[180px] ">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">

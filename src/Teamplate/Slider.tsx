@@ -149,25 +149,19 @@
 // export default CarouselSection;
 
 
-
 import icon from "../assets/svgIcon/herologo.svg";
-
-
-
-import React from "react";
+import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay, EffectCoverflow } from "swiper/modules";
+import {  Autoplay, EffectCoverflow } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/effect-coverflow";
 
-// Your images (Ensure these paths are correct and all files exist)
 import img1 from "../assets/svgIcon/workflowSlider1.svg";
 import img2 from "../assets/svgIcon/workflowSlider2.svg";
 import img3 from "../assets/svgIcon/wrokflowSlider3.svg";
 import img4 from "../assets/svgIcon/workflowSlider4.svg";
 
-// --- DashboardSlide Component (No Change Here) ---
 const DashboardSlide: React.FC<{
   bgColor: string;
   title: string;
@@ -178,14 +172,14 @@ const DashboardSlide: React.FC<{
 }> = ({ bgColor, title, subtitle, list, img, isActive }) => {
   return (
     <div
-      className={`p-6 md:p-8 ${bgColor} rounded-3xl shadow-xl relative overflow-hidden h-[600px] flex flex-col transition-all duration-700 transform ${isActive ? "scale-100 opacity-100" : "scale-95 o"
-        } mx-auto w-full max-w-[1100px]`}
+      className={`p-6 md:p-8 ${bgColor} rounded-3xl shadow-xl relative overflow-hidden h-[600px] flex flex-col transition-all duration-700 transform ${
+        isActive ? "scale-100 opacity-100" : "scale-95 opacity-60"
+      } mx-auto w-full max-w-[1100px]`}
     >
-      {/* Gradient Background */}
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-50 to-indigo-100 opacity-50 z-0"></div>
 
       {/* Text Section */}
-      <div className="relative z-10 flex-shrink-0 mb-4">
+      <div className="relative z-10 shrink-0 mb-4">
         <div className="inline-flex items-center text-sm font-medium text-[#3B82F6] mb-2 rounded-full py-2 px-3 border border-[#3B82F6]">
           <img src={icon} alt="" className="mr-2" />
           Dashboard
@@ -204,7 +198,7 @@ const DashboardSlide: React.FC<{
       </div>
 
       {/* Image Section */}
-      <div className="relative z-10 rounded-xl overflow-hidden shadow-md mt-auto h-[500px] w-[1100px] ">
+      <div className="relative z-10 rounded-xl overflow-hidden shadow-md mt-auto h-[500px] w-[1100px]">
         <img
           src={img}
           alt={title}
@@ -215,10 +209,10 @@ const DashboardSlide: React.FC<{
   );
 };
 
-// --- CarouselSection Component (With Pagination Fix) ---
-const CarouselSection = () => {
+const Slider = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
   const slides = [
-    // ... (slides data remains the same)
     {
       id: 1,
       title: "Clear Overview. More Efficiency",
@@ -270,73 +264,83 @@ const CarouselSection = () => {
   ];
 
   return (
-    <section className=" xl:mt-[180px] mt-6  font-[Urbanist]">
-      <div className="">
+    <section className="xl:mt-[180px] lg:mt-[180px] md:mt-[180px]  mt-6 font-[Urbanist]">
+      <div>
         {/* Header */}
         <div className="mb-15 px-12 xl:px-30 flex items-center justify-between gap-8">
-  {/* Left side content */}
-  <div>
-    <div className="inline-flex items-center gap-2 px-4 py-2 mb-4 rounded-full shadow-sm">
-      <img src={icon} alt="" />
-      <span className="text-gray-800 text-sm font-medium">Intuitive & Modern</span>
-    </div>
+          <div>
+            <div className="inline-flex items-center py-2 px-5 mb-4   glass">
+              <img src={icon} alt="" />
+              <span className="text-gray-800 text-sm font-medium">
+                Intuitive & Modern
+              </span>
+            </div>
 
-    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-900 mb-4">
-      The Modern Workflow <span className="block">Your Team Will Love</span>
-    </h2>
-  </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-900 mb-4">
+              The Modern Workflow <span className="block">Your Team Will Love</span>
+            </h2>
+          </div>
 
-  {/* Right side content */}
-  <p className="text-base sm:text-lg text-gray-600 max-w-md">
-    The key to a practice that doesn't <br /> just respond  but also works smarter together.
-  </p>
-</div>
-
+          <p className="text-base sm:text-lg text-gray-600 max-w-md">
+            The key to a practice that doesn't <br /> just respond but also works smarter together.
+          </p>
+        </div>
 
         {/* Swiper */}
         <Swiper
-  modules={[Pagination, Autoplay, EffectCoverflow]}
-  effect="coverflow"
-  grabCursor={true}
-  centeredSlides={true}
-  loop={true}
-  slidesPerView={"auto"}
-  spaceBetween={20}
-  autoplay={{ delay: 3000, disableOnInteraction: false }}
-  pagination={{ clickable: true }}
-  coverflowEffect={{
-    rotate: 0,
-    stretch: -100,
-    depth: 250,
-    modifier: 2,
-    slideShadows: false,
-  }}
-  className="w-full pb-10"
->
-  {slides.map((slide) => (
-    <SwiperSlide
-      key={slide.id}
-      className="!w-[70%] md:!w-[60%] lg:!w-[70%] transition-transform duration-700 ease-in-out"
-    >
-      {({ isActive }) => (
-        <div
-          className={`transition-all duration-700 ${
-            isActive ? "scale-100 opacity-100" : "scale-90 opacity-50"
-          }`}
+          modules={[Autoplay, EffectCoverflow]}
+          effect="coverflow"
+          grabCursor={true}
+          centeredSlides={true}
+          loop={true}
+          slidesPerView={"auto"}
+          spaceBetween={20}
+          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          coverflowEffect={{
+            rotate: 0,
+            stretch: -100,
+            depth: 250,
+            modifier: 2,
+            slideShadows: false,
+          }}
+          onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+          className="w-full pb-10"
         >
-          <DashboardSlide {...slide} isActive={isActive} />
+          {slides.map((slide,) => (
+            <SwiperSlide
+              key={slide.id}
+              className="!w-[70%] md:!w-[60%] lg:!w-[50%] transition-transform duration-700 ease-in-out"
+            >
+              {({ isActive }) => (
+                <div
+                  className={`transition-all duration-700 ${
+                    isActive ? "scale-100 opacity-100" : "scale-90 opacity-90"
+                  }`}
+                >
+                  <DashboardSlide {...slide} isActive={isActive} />
+                </div>
+              )}
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
+        {/* Custom Pagination Dots */}
+        <div className="flex justify-center gap-3 mt-6">
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setActiveIndex(index)}
+              className={`h-2 rounded-full transition-all duration-500 ease-in-out ${
+                index === activeIndex
+                  ? "w-8 bg-[#526FFF] shadow-[0_0_6px_#526FFF]"
+                  : "w-2 bg-gray-300 hover:bg-gray-400"
+              }`}
+            />
+          ))}
         </div>
-      )}
-    </SwiperSlide>
-  ))}
-</Swiper>
-
-
-
-
       </div>
     </section>
   );
 };
 
-export default CarouselSection;
+export default Slider;

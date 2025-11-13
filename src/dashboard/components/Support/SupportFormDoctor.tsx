@@ -289,7 +289,7 @@
 
 
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 import call from '../../../assets/svgIcon/callLogs.svg';
 import vediocal from '../../../assets/svgIcon/videoCall.svg';
@@ -347,6 +347,11 @@ const SupportChat: React.FC = () => {
   ]);
   const [searchText, setSearchText] = useState('');
 
+  // Call Modal state
+  const [showCallModal, setShowCallModal] = useState(false);
+  const [isVideoCall, setIsVideoCall] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
   const contacts: Contact[] = [
     {
       id: 1,
@@ -365,7 +370,7 @@ const SupportChat: React.FC = () => {
         id: messages.length + 1,
         contactId: selectedContact,
         sender: 'You',
-        avatar: karennix, // your avatar
+        avatar: karennix,
         timestamp: new Date().toLocaleTimeString(),
         content: messageText,
         isDoctor: true
@@ -376,6 +381,24 @@ const SupportChat: React.FC = () => {
   };
 
   const filteredMessages = messages.filter(msg => msg.contactId === selectedContact);
+
+  // Frontend-only dummy video call
+  useEffect(() => {
+    if (showCallModal && isVideoCall) {
+      navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+        .then((stream) => {
+          if (videoRef.current) {
+            videoRef.current.srcObject = stream;
+            videoRef.current.play();
+          }
+        })
+        .catch((err) => console.log('Error accessing camera/microphone', err));
+    } else if (videoRef.current && videoRef.current.srcObject) {
+      const stream = videoRef.current.srcObject as MediaStream;
+      stream.getTracks().forEach(track => track.stop());
+      videoRef.current.srcObject = null;
+    }
+  }, [showCallModal, isVideoCall]);
 
   return (
     <div className="min-h-screen bg-[#F3F6F6] font-sans">
@@ -394,7 +417,7 @@ const SupportChat: React.FC = () => {
       {/* Main Content */}
       <div className="px-4 sm:px-6 lg:px-8 py-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-[10px]">
-          {/* Left Sidebar - Contacts */}
+          {/* Left Sidebar */}
           <div className="lg:col-span-1">
             <div className="bg-white rounded-2xl min-h-screen overflow-hidden">
               {/* Doctor Profile Header */}
@@ -414,10 +437,16 @@ const SupportChat: React.FC = () => {
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                    <button
+                      onClick={() => { setIsVideoCall(true); setShowCallModal(true); }}
+                      className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                    >
                       <img src={vediocal} alt="" />
                     </button>
-                    <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                    <button
+                      onClick={() => { setIsVideoCall(false); setShowCallModal(true); }}
+                      className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                    >
                       <img src={call} alt="" />
                     </button>
                   </div>
@@ -446,7 +475,7 @@ const SupportChat: React.FC = () => {
                     key={contact.id}
                     onClick={() => setSelectedContact(contact.id)}
                     className={`w-full p-4 flex items-start gap-3 transition-colors text-left ${
-                      selectedContact === contact.id ? 'bg-blue-50' : ''
+                      selectedContact === contact.id ? '' : ''
                     }`}
                   >
                     <div className="relative flex-shrink-0">
@@ -500,10 +529,16 @@ const SupportChat: React.FC = () => {
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                  <button
+                    onClick={() => { setIsVideoCall(true); setShowCallModal(true); }}
+                    className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                  >
                     <img src={vediocal} alt="" />
                   </button>
-                  <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                  <button
+                    onClick={() => { setIsVideoCall(false); setShowCallModal(true); }}
+                    className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                  >
                     <img src={call} alt="" />
                   </button>
                 </div>
@@ -565,6 +600,25 @@ const SupportChat: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Frontend-only Call Modal */}
+      {showCallModal && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
+          <div className="bg-white rounded-2xl w-96 p-4 flex flex-col items-center">
+            <h3 className="font-semibold text-lg mb-2">{isVideoCall ? 'Video Call' : 'Audio Call'}</h3>
+            {isVideoCall && (
+              <video ref={videoRef} className="w-64 h-48 bg-black rounded-md mb-4" autoPlay muted />
+            )}
+            <p className="mb-4">{isVideoCall ? 'Your camera preview' : 'Calling...'}</p>
+            <button
+              onClick={() => setShowCallModal(false)}
+              className="px-4 py-2 bg-red-500 text-white rounded-lg"
+            >
+              Hang Up
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

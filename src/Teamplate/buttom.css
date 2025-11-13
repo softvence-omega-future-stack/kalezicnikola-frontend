@@ -52,13 +52,13 @@
 }
 
 /* Hover State */
-.liquid-glass:hover {
+/* .liquid-glass:hover {
   transform: scale(1.05);
   box-shadow: 
     0 20px 60px rgba(255, 255, 255, 0.2),
     0 0 80px rgba(255, 255, 255, 0.1),
     inset 0 1px 1px rgba(255, 255, 255, 0.4);
-}
+} */
 
 /* Active/Click State */
 .liquid-glass:active {

@@ -236,8 +236,11 @@ const UpgradPlan = () => {
 
   return (
     <div
-      className="relative mt-9 xl:mt-[180px] lg:mt-[180px] xl:mx-20 px-4 md:px-8 rounded-[40px] overflow-hidden"
-      style={{ boxShadow: '0 20px 50px rgba(0, 0, 0, 0.05)', fontFamily: 'Urbanist, sans-serif' }}
+      className="relative mt-9 xl:mt-[180px] lg:mt-[180px] md:mt-[180px] xl:mx-20 px-4 md:px-8 rounded-[40px] overflow-hidden"
+      style={{
+        boxShadow: '0 20px 50px rgba(0, 0, 0, 0.05)',
+        fontFamily: 'Urbanist, sans-serif',
+      }}
     >
       {/* Background Blurs */}
       <div
@@ -305,63 +308,70 @@ const UpgradPlan = () => {
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {plans.map((plan, i) => (
             <div
               key={i}
               className={`${
                 plan.isPremium ? 'bg-[#171C35] border-[#3C4263]' : 'bg-white border-gray-100'
-              } rounded-3xl p-8 shadow-sm border`}
+              } rounded-3xl p-8 border flex flex-col justify-between`}
             >
-              <h2
-                className={`text-xl font-semibold mb-8 ${
-                  plan.isPremium ? 'text-white' : 'text-[#526FFF]'
-                }`}
-              >
-                {plan.name}
-              </h2>
+              {/* Header */}
+              <div>
+                <h2
+                  className={`text-2xl font-semibold mb-8 ${
+                    plan.isPremium ? 'text-white' : 'text-[#526FFF]'
+                  }`}
+                >
+                  {plan.name}
+                </h2>
 
-              {/* Price */}
-              <div className="mb-8">
-                <div className="flex items-baseline gap-1 mb-1">
-                  <span
-                    className={`text-[36px] font-medium ${
-                      plan.isPremium ? 'text-white' : `text-[${plan.color}]`
-                    }`}
-                  >
-                    {billingCycle === 'monthly' ? plan.monthly : plan.yearly}€
-                  </span>
-                  <span className={`text-sm ${plan.isPremium ? 'text-gray-300' : 'text-[#526FFF]'}`}>
-                    /{billingCycle === 'monthly' ? 'month' : 'year'}
-                  </span>
-                  {billingCycle === 'annually' && (
+                {/* Price */}
+                <div className="mb-8">
+                  <div className="flex items-baseline gap-1 mb-1">
                     <span
-                      className={`ml-2 text-xs font-semibold px-2 py-0.5 rounded-full ${
-                        plan.isPremium ? 'bg-white text-[#171C35]' : 'bg-green-100 text-green-600'
+                      className={`text-[48px] font-medium ${
+                        plan.isPremium ? 'text-white' : `text-[${plan.color}]`
                       }`}
                     >
-                      Save 20%
+                      {billingCycle === 'monthly' ? plan.monthly : plan.yearly}€
                     </span>
-                  )}
-                  <p
-                    className={`text-sm mt-1 ml-auto ${
-                      plan.isPremium ? 'text-gray-300' : 'text-[#171c35]'
-                    }`}
-                  >
-                    Full Price
-                  </p>
+                    <span
+                      className={`text-sm ${
+                        plan.isPremium ? 'text-gray-300' : 'text-[#526FFF]'
+                      }`}
+                    >
+                      /{billingCycle === 'monthly' ? 'month' : 'year'}
+                    </span>
+                    {billingCycle === 'annually' && (
+                      <span
+                        className={`ml-2 text-xs font-semibold px-2 py-0.5 rounded-full ${
+                          plan.isPremium
+                            ? 'bg-white text-[#171C35]'
+                            : 'bg-blue-100 text-[#526FFF]'
+                        }`}
+                      >
+                        Save 20%
+                      </span>
+                    )}
+                  </div>
+                
                 </div>
               </div>
 
               {/* Features */}
-              <div className="space-y-4 mb-8">
+              <div className="space-y-4 mb-8 flex-1">
                 {plan.features.map((text, i) => (
                   <div key={i} className="flex items-start gap-3">
                     <img
                       src={plan.isPremium ? tricjcirclewhite : tricjcircle}
                       alt=""
                     />
-                    <span className={plan.isPremium ? 'text-white text-sm' : 'text-[#171c35] text-sm'}>
+                    <span
+                      className={
+                        plan.isPremium ? 'text-white text-sm' : 'text-[#171c35] text-sm'
+                      }
+                    >
                       {text}
                     </span>
                   </div>
@@ -369,17 +379,18 @@ const UpgradPlan = () => {
               </div>
 
               {/* Button */}
-            <button
-  onClick={() => navigate('/signup')}
-  className={`w-full py-3 text-base font-medium rounded-full transition-colors shadow-lg border-2 flex justify-center items-center ${
-    plan.isPremium
-      ? 'text-white bg-[#526FFF] border-[#526FFF]'
-      : `text-[${plan.color}] bg-white border-[${plan.color}]`
-  }`}
->
-  GET STARTED
-</button>
-
+              <div className="mt-auto">
+                <button
+                  onClick={() => navigate('/signup')}
+                  className={`w-full py-3 text-base font-medium rounded-full transition-colors shadow-lg border-2 flex justify-center items-center cursor-pointer ${
+                    plan.isPremium
+                      ? 'text-white bg-[#526FFF] border-[#526FFF]'
+                      : `text-[${plan.color}] bg-white border-[${plan.color}]`
+                  }`}
+                >
+                  GET STARTED
+                </button>
+              </div>
             </div>
           ))}
         </div>
@@ -389,3 +400,4 @@ const UpgradPlan = () => {
 };
 
 export default UpgradPlan;
+

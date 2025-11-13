@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import logo from '../assets/svgIcon/logo.svg';
 import textlogo from '../assets/svgIcon/textLogo.svg';
@@ -28,15 +28,15 @@ const NavItem: React.FC<NavItemProps> = ({ to, label, iconSrc, end = false, coll
       to={to}
       end={end}
       className={({ isActive }) =>
-        `flex items-center gap-3 py-3 mx-2 md:mx-4 px-3 mb-1 rounded-[8px] transition-colors relative
-         ${isActive ? 'bg-[#DFE2E2] font-semibold' : 'text-[#111A2D] font-semibold'}
+        `flex items-center gap-3 py-3 px-3 mx-4 rounded-[8px] transition-colors relative
+         ${isActive ? 'bg-[#DFE2E2] mx-4 font-semibold' : 'text-[#111A2D] font-semibold'}
          ${collapsed ? 'justify-center' : 'justify-start'}`
       }
     >
       <img src={iconSrc} alt={label} className="h-6 w-6 object-contain" />
       {!collapsed && <span className="hidden md:inline">{label}</span>}
       {badge !== undefined && badge > 0 && (
-        <span className={`${collapsed ? 'absolute -top-2 -right-1' : 'ml-auto'} flex items-center justify-center p-4  h-4 w-2 bg-[#526FFF] text-white text-sm font-bold rounded-full`}>
+        <span className={`${collapsed ? 'absolute -top-1 right-2' : 'ml-auto'} flex items-center justify-center h-6 w-6 bg-[#526FFF] text-white text-base font-bold rounded-full`}>
           {badge}
         </span>
       )}
@@ -46,56 +46,66 @@ const NavItem: React.FC<NavItemProps> = ({ to, label, iconSrc, end = false, coll
 
 const Sidebar: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
   const totalMinutes = 1535;
   const [usedMinutes, setUsedMinutes] = useState(1035);
   const percentage = (usedMinutes / totalMinutes) * 100;
 
+  // Track window resize
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Decide collapsed state on small devices
+  const isMobile = windowWidth < 768;
+  const effectiveCollapsed = collapsed || isMobile; // small devices => collapsed
+
   return (
     <div
-      className={`relative flex flex-col justify-between h-screen border-r border-gray-200 transition-all duration-300 ${
-        collapsed ? 'w-20' : 'w-72'
-      }`}
+      className={`relative flex flex-col justify-between h-screen border-r border-gray-200 transition-all duration-300
+        ${effectiveCollapsed ? 'w-20' : 'w-72'}`}
     >
-      {/* Top part with logo and main nav */}
+      {/* Top */}
       <div>
-        {/* Logo Section */}
         <div className="flex items-center justify-between md:justify-start p-4 relative">
-          <div className={`flex items-center ${collapsed ? 'gap-2' : 'gap-4'}`}>
+          <div className={`flex items-center ${effectiveCollapsed ? 'gap-2' : 'gap-4'}`}>
             <img src={logo} alt="logo" />
-            {!collapsed && <img src={textlogo} alt="" className="hidden md:block" />}
+            {!effectiveCollapsed && <img src={textlogo} alt="" className="hidden md:block" />}
           </div>
 
-          {/* Sidelogo as collapse/expand toggle button */}
-          <button
-            onClick={() => setCollapsed(!collapsed)}
-            className="absolute xl:right-4 right-6 cursor-pointer"
-          >
-            <img src={sidelogo} alt="toggle" className="h-8 w-8" />
-          </button>
+          {/* Toggle button */}
+          {!isMobile && (
+            <button
+              onClick={() => setCollapsed(!collapsed)}
+              className="absolute xl:right-4 right-6 cursor-pointer"
+            >
+              <img src={sidelogo} alt="toggle" className="h-8 w-8" />
+            </button>
+          )}
         </div>
 
         {/* Navigation */}
-        <nav className="flex flex-col mt-2 gap-2">
-          <NavItem to="/dashboard" iconSrc={dashbord} label="Dashboard" end collapsed={collapsed} />
-          <NavItem to="/dashboard/call_logs" iconSrc={callLogs} label="Call Logs" collapsed={collapsed} badge={5} />
-          <NavItem to="/dashboard/calendar" iconSrc={calendar} label="Calendar" collapsed={collapsed} />
-          <NavItem to="/dashboard/patients" iconSrc={patients} label="Patients" collapsed={collapsed} />
-          <NavItem to="/dashboard/tasks" iconSrc={tasks} label="Tasks" collapsed={collapsed} />
-          <NavItem to="/dashboard/supports" iconSrc={supports} label="Supports" collapsed={collapsed} />
+        <nav style={{ fontFamily: 'Urbanist, sans-serif' }} className="flex flex-col mt-2 gap-2">
+          <NavItem to="/dashboard" iconSrc={dashbord} label="Dashboard" end collapsed={effectiveCollapsed} />
+          <NavItem to="/dashboard/call_logs" iconSrc={callLogs} label="Call Logs" collapsed={effectiveCollapsed} badge={5} />
+          <NavItem to="/dashboard/calendar" iconSrc={calendar} label="Calendar" collapsed={effectiveCollapsed} />
+          <NavItem to="/dashboard/patients" iconSrc={patients} label="Patients" collapsed={effectiveCollapsed} />
+          <NavItem to="/dashboard/tasks" iconSrc={tasks} label="Tasks" collapsed={effectiveCollapsed} />
+          <NavItem to="/dashboard/supports" iconSrc={supports} label="Supports" collapsed={effectiveCollapsed} />
         </nav>
       </div>
 
-      {/* Bottom part */}
+      {/* Bottom */}
       <div className="flex flex-col">
-        {/* Upgrade Card (hidden when collapsed) */}
-        {!collapsed && (
+        {!effectiveCollapsed && (
           <div className="hidden md:block bg-gray-200 p-4 rounded-xl m-4">
             <div className="mb-1">
               <div className="flex justify-start gap-4 items-center">
                 <span className="text-[#171C35] font-bold text-xl">Upgrade to</span>
-                <span className="text-sm font-medium px-2 py-0.5 rounded-full bg-[#111A2D] text-white">
-                  PRO
-                </span>
+                <span className="text-sm font-medium px-2 py-0.5 rounded-full bg-[#111A2D] text-white">PRO</span>
               </div>
               <span className="text-3xl font-bold text-[#171C35] block mt-1">Basic</span>
             </div>
@@ -124,10 +134,9 @@ const Sidebar: React.FC = () => {
           </div>
         )}
 
-        {/* Settings & Logout */}
         <div className="flex flex-col mt-auto mb-4 gap-2">
-          <NavItem to="/dashboard/settings" iconSrc={settings} label="Settings" collapsed={collapsed} />
-          <NavItem to="/" iconSrc={logout} label="Logout" collapsed={collapsed} />
+          <NavItem to="/dashboard/settings" iconSrc={settings} label="Settings" collapsed={effectiveCollapsed} />
+          <NavItem to="/" iconSrc={logout} label="Logout" collapsed={effectiveCollapsed} />
         </div>
       </div>
     </div>

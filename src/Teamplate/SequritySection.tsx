@@ -56,7 +56,7 @@ const SecuritySection: React.FC = () => {
   ];
 
   return (
-    <div className="px-4  bg-[#F3F6F6] mt-9 xl:mt-[180px] lg:mt-[180px] lg:px-30">
+    <div className="px-4  bg-[#F3F6F6] mt-9 xl:mt-[180px] lg:mt-[180px] md:mt-[180px] lg:px-30">
       <div>
         {/* Header */}
         <div className="text-center mb-16">

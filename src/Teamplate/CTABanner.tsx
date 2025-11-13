@@ -15,7 +15,7 @@ const CTABanner: React.FC = () => {
   };
 
   return (
-    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="w-full px-4 mt-9 xl:mt-[180px] ">
+    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="w-full px-4 mt-9 md:mt-[180px] lg:mt-[180px] xl:mt-[180px]">
       <div className="xl:px-30">
         <div className="bg-[#526FFF] rounded-3xl sm:rounded-[2.5rem] md:rounded-[3rem] lg:rounded-[3.5rem] p-6 sm:p-8 md:p-10 lg:p-12 xl:p-16 shadow-2xl">
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 sm:gap-8">
@@ -47,7 +47,7 @@ const CTABanner: React.FC = () => {
                   border: '1px solid rgba(255, 255, 255, 0.5)',
                   boxShadow: isHovered
                     ? '0 20px 60px rgba(255, 255, 255, 0.3), 0 0 80px rgba(255, 255, 255, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.4)'
-                    : '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.2)',
+                    : '',
                   transform: isHovered ? 'scale(1.05)' : 'scale(1)',
                 }}
               >

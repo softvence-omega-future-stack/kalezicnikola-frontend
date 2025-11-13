@@ -8,12 +8,11 @@ import ShadowBox from "./ShadowBox";
 const DoclineHeader: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+  const [, setHoveredItem] = useState<string | null>(null);
   const [hoveredButton, setHoveredButton] = useState<string | null>(null);
   const navigate = useNavigate();
   const [activeItem, setActiveItem] = useState("Preise");
 
- 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -64,7 +63,6 @@ const DoclineHeader: React.FC = () => {
           }}
         />
 
-      
         <div
           className="flex items-center gap-2 cursor-pointer relative z-10"
           onClick={() => navigate("/")}
@@ -75,9 +73,7 @@ const DoclineHeader: React.FC = () => {
           </span>
         </div>
 
-      
         <div className="hidden lg:flex items-center gap-6 h-full relative z-10">
-          {/* Nav Items with Liquid Glass Effect */}
           <nav className="flex items-center gap-4 text-sm xl:text-base font-medium">
             {menuItems.map((item) => (
               <button
@@ -90,14 +86,7 @@ const DoclineHeader: React.FC = () => {
                     ? "font-bold text-[#171C35]"
                     : "text-[#171C35]"
                 }`}
-                style={{
-                  background:
-                    hoveredItem === item.name
-                      ? ""
-                      : "",
-                }}
               >
-               
                 <span className="relative z-10">{item.name}</span>
               </button>
             ))}
@@ -106,9 +95,7 @@ const DoclineHeader: React.FC = () => {
           <div className="flex items-center gap-3 ml-2">
             <LanguageSelector />
 
-     
             <div className="flex items-center gap-3">
-         
               <button
                 onMouseEnter={() => setHoveredButton("demo")}
                 onMouseLeave={() => setHoveredButton(null)}
@@ -126,7 +113,6 @@ const DoclineHeader: React.FC = () => {
                       : "none",
                 }}
               >
-                {/* Shine Effect */}
                 <div
                   className="absolute inset-0 opacity-20 pointer-events-none"
                   style={{
@@ -137,7 +123,6 @@ const DoclineHeader: React.FC = () => {
                 <span className="relative z-10">Demo buchen</span>
               </button>
 
-              {/* Login - Liquid Glass Button */}
               <button
                 onClick={() => navigate("/login")}
                 onMouseEnter={() => setHoveredButton("login")}
@@ -151,7 +136,6 @@ const DoclineHeader: React.FC = () => {
                       : "0 4px 12px rgba(0, 0, 0, 0.08)",
                 }}
               >
-                {/* Hover Glow */}
                 {hoveredButton === "login" && (
                   <div
                     className="absolute inset-0 rounded-full pointer-events-none"
@@ -161,7 +145,6 @@ const DoclineHeader: React.FC = () => {
                     }}
                   />
                 )}
-                {/* Shine Effect */}
                 <div
                   className="absolute inset-0 opacity-30 pointer-events-none"
                   style={{
@@ -175,7 +158,6 @@ const DoclineHeader: React.FC = () => {
           </div>
         </div>
 
-        {/* Mobile Menu Toggle */}
         <div className="flex items-center gap-2 lg:hidden relative z-10">
           <LanguageSelector />
           <button
@@ -196,7 +178,6 @@ const DoclineHeader: React.FC = () => {
           </button>
         </div>
 
-        {/* Mobile Menu Content - Enhanced Glass Effect */}
         {mobileMenuOpen && (
           <div
             className="lg:hidden absolute top-full left-4 right-4 z-10 mt-2 rounded-3xl shadow-xl p-6 overflow-hidden"
@@ -208,7 +189,6 @@ const DoclineHeader: React.FC = () => {
                 "0 8px 32px rgba(0, 0, 0, 0.1), inset 0 1px 1px rgba(255, 255, 255, 0.5)",
             }}
           >
-            {/* Shine Effect */}
             <div
               className="absolute inset-0 opacity-20 pointer-events-none"
               style={{
@@ -236,7 +216,6 @@ const DoclineHeader: React.FC = () => {
         )}
       </div>
 
-  
       <ShadowBox
         width="321px"
         height="232px"

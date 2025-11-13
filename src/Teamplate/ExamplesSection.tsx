@@ -106,7 +106,7 @@ const DoclineInterface: React.FC = () => {
   return (
     <div
       style={{ fontFamily: "Urbanist, sans-serif" }}
-      className=" px-9 xl:mt-[180px] md:px-8 "
+      className=" px-9 md:mt-[180px] lg:mt-[180px] xl:mt-[180px] md:px-8 "
     >
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:px-30">
         {/* Left Section */}
@@ -147,7 +147,7 @@ const DoclineInterface: React.FC = () => {
 
             {/* Waveform */}
             <div className="relative mb-6 overflow-hidden">
-              <div className="flex items-center justify-between gap-2 h-28 relative">
+              <div className="flex items-center justify-between gap-2 h-28 w-full relative">
                 {waveSegments.map((segment, i) => {
                   const currentBar = Math.floor(
                     (currentTime / totalDuration) * waveSegments.length
@@ -160,7 +160,7 @@ const DoclineInterface: React.FC = () => {
                       className="flex-1 flex items-center justify-center relative"
                     >
                       <div
-                        className="w-full rounded-full bg-white transition-all duration-300 flex items-center justify-center relative"
+                        className="w-full h-10 rounded-full bg-white transition-all duration-300 flex items-center justify-center relative"
                         style={{ height: `${segment.height}px` }}
                       >
                         <img
@@ -188,7 +188,7 @@ const DoclineInterface: React.FC = () => {
                     height: "100px",
                   }}
                 >
-                  <div className="w-[2px] h-full bg-white "></div>
+                  <div className="w-0.5 h-full bg-white "></div>
                   <img
                     src={borderIcon}
                     alt="cursor-icon"

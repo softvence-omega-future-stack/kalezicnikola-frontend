@@ -137,7 +137,7 @@ const Card = ({
 
         <div
           className={`absolute  ${
-            index === 0 ? "bottom-2 right-2 2xl:right-8 " : "bottom-3 right-3 xl:-right-2 2xl:-right-1 "
+            index === 0 ? "bottom-2 right-2 2xl:right-8 " : "bottom-3 right-3 xl:-right-3 2xl:-right-1 "
           }`}
         >
           <div className="h-9 w-9 bg-gray-900 rounded-full flex items-center justify-center">
@@ -162,7 +162,7 @@ const SubHeaderCard = () => {
   return (
     <CommonSpace>
       <div className="-mt-18 px-2.5">
-        <div className="grid grid-cols-4 gap-3">
+        <div className="grid grid-cols-1  lg:grid-cols-2 xl:grid-cols-4 gap-3">
           {categories.map((category, index) => (
             <div
               key={index}
