@@ -112,7 +112,7 @@ const DoclineInterface: React.FC = () => {
         {/* Left Section */}
         <div className="flex flex-col justify-start">
           <div className="mb-4 mt-9">
-            <div className="relative inline-flex items-center mb-4 gap-2  liquid-glass liquid-glass-md liquid-glass-rounded-xl ">
+            <div className="relative inline-flex items-center mb-4 gap-2 pr-5 pl-2.5 py-2  glass ">
               <img src={icon} alt="Docline Logo" className="w-5 h-5" />
               <span className="text-[#171C35] text-sm font-medium">
                 Real Examples

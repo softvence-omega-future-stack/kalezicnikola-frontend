@@ -10,7 +10,8 @@ const DoclineHero: React.FC = () => {
         {/* Left Content */}
         <div className="w-full lg:w-1/2 space-y-5 xl:-mt-75 2xl:-mt-96">
           {/* Badge */}
-          <div className="relative glass py-2 px-5  inline-flex items-center gap-3.5">
+          
+          <div className="relative glass pr-5 pl-2.5 py-2   inline-flex items-center gap-3.5">
   <img src={herologo} alt="Docline Logo" className="w-5 h-5" />
   <span className="text-[#171C35] text-sm font-medium">
     Your smarter telemedicine

@@ -179,6 +179,7 @@ import tricjcircle from '../assets/svgIcon/tickcircle.svg';
 import tricjcirclewhite from '../assets/svgIcon/tick-circle-white.svg';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './buttom.css'
 
 const UpgradPlan = () => {
   const [billingCycle, setBillingCycle] = useState('monthly');

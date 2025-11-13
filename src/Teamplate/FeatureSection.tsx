@@ -4,6 +4,7 @@ import img1 from '../assets/svgIcon/featureImg1.svg';
 import img2 from '../assets/svgIcon/featureImg2.svg';
 import img3 from '../assets/svgIcon/featureImg3.svg';
 import icon from '../assets/svgIcon/herologo.svg';
+import './buttom.css'
 
 // Common styles
 const titleStyle = {
@@ -218,11 +219,10 @@ const FeatureSection: React.FC = () => {
   return (
     <div className="xl:-mt-20 mt-12 px-4 mx-15 ">
       <div className="text-center mb-16">
-        <div style={{fontFamily: 'Urbanist, sans-serif',}} className="relative inline-flex items-center gap-2 backdrop-blur-lg px-3 py-2  border border-white bg-white/10 rounded-full mb-6 -mt-7">
+        <div style={{fontFamily: 'Urbanist, sans-serif',}} className="relative glass inline-flex items-center gap-2 backdrop-blur-lg pr-5 pl-2.5 py-2  border border-white bg-white/10 rounded-full mb-6 -mt-7">
           <img src={icon} alt="" />
           <span style={descStyle}>Peace on the phone</span>
-          <span className="absolute top-0 right-0  h-3 w-5 bg-[#F3F6F6] z-10"></span>
-  <span className="absolute bottom-0 left-0  h-5 w-5 bg-[#F3F6F6] z-10"> </span>
+      
         </div>
 
         <h2

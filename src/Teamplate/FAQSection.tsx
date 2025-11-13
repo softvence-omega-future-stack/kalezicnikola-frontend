@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import icon from '../assets/svgIcon/herologo.svg'; 
+import './buttom.css'
 
 interface FAQItem {
   question: string;
@@ -55,12 +56,11 @@ const FAQSection: React.FC = () => {
   <div className="relative text-center mb-12">
 
   {/* FAQ Badge (icon + FAQ label) */}
-  <div className="relative inline-flex items-center gap-2 px-4 py-2 border border-t-2 border-l-2 border-white bg-white/10  rounded-full mb-4 mx-auto">
+  <div className="relative inline-flex items-center glass gap-2 pr-5 pl-2.5 py-2  border border-t-2 border-l-2 border-white bg-white/10  rounded-full mb-4 mx-auto">
     <img src={icon} alt="Docline logo" />
     <span className="text-[#171C35] text-sm font-medium">FAQ</span>
 
-    <span className="absolute top-0 right-0  h-3 w-5 bg-[#F3F6F6] z-10"></span>
-  <span className="absolute bottom-0 left-0  h-5 w-5 bg-[#F3F6F6] z-10"> </span>
+
   </div>
 
   {/* Heading */}
