@@ -1,9 +1,11 @@
 import { ExternalLink, Plus } from 'lucide-react'
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Patient = () => {
-  const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
-  const [clickedIndex, setClickedIndex] = useState<number | null>(null);
+  const [focusedIndex, ] = useState<number | null>(null);
+  const [clickedIndex, ] = useState<number | null>(null);
+  const navigate = useNavigate()
 
   const patients = [
     { id: 'SRN-1001', name: 'Floyd Miles', phone: '+881234565', date: '24-06-2024' },
@@ -18,7 +20,7 @@ const Patient = () => {
     <div className='bg-white'>
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-xl tracking-tighter font-semibold text-[#171C35]">Patients History</h3>
-        <button className="flex items-center gap-2 px-4 py-2 text-sm text-[#111A2D] font-semibold cursor-pointer bg-white hover:bg-gray-50 rounded-xl border border-gray-200 transition-colors">
+        <button onClick={()=> navigate('/dashboard/add-patient')} className="flex items-center gap-2 px-4 py-2 text-sm text-[#111A2D] font-semibold cursor-pointer bg-white hover:bg-gray-50 rounded-xl border border-gray-200 transition-colors">
           <Plus className="w-4 h-4" />
           <span>Add Patient</span>
         </button>
@@ -71,21 +73,24 @@ const Patient = () => {
         {patient.date}
       </td>
       <td className="px-6 py-4 whitespace-nowrap">
-        <button className="flex items-center gap-1 text-sm font-medium text-[#526FFF] ">
+        <button onClick={()=> navigate(`/dashboard/patients/${patient.id}`)} className="flex items-center gap-1 text-sm font-medium text-[#526FFF] cursor-pointer ">
           View History
           <ExternalLink className="w-3.5 h-3.5" />
         </button>
       </td>
       <td className="px-6 py-4 whitespace-nowrap">
         <button
-          onFocus={() => setFocusedIndex(idx)}
-          onBlur={() => setFocusedIndex(null)}
-          onClick={() => setClickedIndex(idx)}
+        onClick={()=> navigate(`/dashboard/patients/${patient.id}`)}
+          // onFocus={() => setFocusedIndex(idx)}
+          // onBlur={() => setFocusedIndex(null)}
+          // onClick={() => setClickedIndex(idx)}
           className={`px-6 py-2 text-sm font-medium rounded-full border transition-colors cursor-pointer ${
             focusedIndex === idx || clickedIndex === idx
               ? 'border-[#526FFF] text-[#526FFF]'
               : 'border-[#111A2D] font-normal'
           }`}
+
+          
         >
           View
         </button>

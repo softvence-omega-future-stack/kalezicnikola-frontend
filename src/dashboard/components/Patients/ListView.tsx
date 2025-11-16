@@ -16,7 +16,7 @@ const ListView = () => {
     { id: 'SRN-10101', name: 'Floyd Miles', phone: '+88234565', date: '24-06-2024' },
     { id: 'SRN-10101', name: 'Floyd Miles', phone: '+88234565', date: '24-06-2024' }
   ];
-    // ✅ Selected rows state
+   
   const [selectedRows, setSelectedRows] = useState<string[]>([]);
 
   // ✅ Toggle single row selection
@@ -26,7 +26,7 @@ const ListView = () => {
     );
   };
 
-  // ✅ Toggle all rows selection
+
   const toggleAllRows = () => {
     if (selectedRows.length === patients.length) {
       setSelectedRows([]);
@@ -46,7 +46,7 @@ const ListView = () => {
         <input
           type="checkbox"
           checked={selectedRows.length === patients.length}
-          onChange={toggleAllRows} // toggleAllRows function define করতে হবে
+          onChange={toggleAllRows} 
           className="w-4 h-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
         />
         Insurance Id

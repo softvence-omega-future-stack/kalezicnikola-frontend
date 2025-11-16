@@ -3,10 +3,10 @@ import CurrentPaln from './CurrentPaln';
 import ManageSubscription from './ManageSubscription';
 import Invoices from './Invoices';
 
-
+export type TabType = "current-plan" | "manage" | "invoices";
 export default function SubscriptionOverview() {
   const [activeTab, setActiveTab] = useState<'current-plan' | 'manage' | 'invoices'>('current-plan');
-
+  
 
   return (
     <div className="min-h-screen bg-white rounded-2xl p-4 ">
@@ -20,14 +20,15 @@ export default function SubscriptionOverview() {
           className={`px-6 py-3 text-md font-normal rounded-[12px] transition-colors cursor-pointer ${
             activeTab === 'current-plan'
               ? 'bg-[#DCE2FF] text-[#171c35]'
-              : ' '
+              : ''
           }`}
         >
           Current Plan
         </button>
+
         <button
           onClick={() => setActiveTab('manage')}
-          className={`px-6 py-3 text-md font-normal rounded-[12px] transition-colors  cursor-pointer ${
+          className={`px-6 py-3 text-md font-normal rounded-[12px] transition-colors cursor-pointer ${
             activeTab === 'manage'
               ? 'bg-[#DCE2FF] text-[#171c35]'
               : ''
@@ -35,9 +36,10 @@ export default function SubscriptionOverview() {
         >
           Manage Subscription
         </button>
+
         <button
           onClick={() => setActiveTab('invoices')}
-          className={`px-6 py-3 text-md cursor-pointer font-normal rounded-[12px] transition-colors  ${
+          className={`px-6 py-3 text-md font-normal rounded-[12px] transition-colors cursor-pointer ${
             activeTab === 'invoices'
               ? 'bg-[#DCE2FF] text-[#171c35]'
               : ''
@@ -48,12 +50,13 @@ export default function SubscriptionOverview() {
       </div>
 
       {/* Tab Content */}
-      <div className="bg-white rounded-2xl  p-6 md:p-8 cursor-pointer ">
-        {activeTab === 'current-plan' && (
-          <CurrentPaln/>
+      <div className="bg-white rounded-2xl p-3 md:p-2 cursor-pointer ">
+        {activeTab === 'current-plan' && <CurrentPaln setActiveTab={setActiveTab} />}
+
+        {activeTab === 'manage' && (
+          <ManageSubscription setActiveTab={setActiveTab} />
         )}
 
-        {activeTab === 'manage' && <ManageSubscription />}
         {activeTab === 'invoices' && <Invoices />}
       </div>
     </div>

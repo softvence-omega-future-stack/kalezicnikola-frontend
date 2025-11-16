@@ -25,7 +25,7 @@ const GridView: React.FC = () => {
     <div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-5">
             {patients.map((patient, index) => (
-              <div key={index} className=" rounded-[16px]  p-6 bg-[#E8E8E8]  ">
+              <div key={index} className=" rounded-[16px]  p-6 bg-[#F8F8F8]  ">
                 {/* Profile Section */}
                 <div className="flex items-start gap-4 mb-6">
                   <div className=""> <img className="h-14 w-14 rounded-full" src="https://i.ibb.co.com/wh1X6vJn/Screenshot-2025-10-26-144913.png" alt="" /></div>

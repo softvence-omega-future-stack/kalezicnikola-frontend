@@ -25,20 +25,25 @@ export const SettingsLayout: React.FC = () => {
       {/* Breadcrumbs */}
       <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 mb-6">
           {/* Left side - Breadcrumb & Title */}
-          <div>
-            <div className="flex items-center gap-2 text-sm text-gray-600 mb-4">
-              <img src={home} alt="" />
-              <span>Dashboard</span>
-            <img src={chevron} alt="" />
-              <span>Settings</span>
-            <img src={chevron} alt="" />
-              <span className="text-[#1a1c21] font-medium">My Staff</span>
-            </div>
-            <h1 className="text-2xl font-semibold text-[#1a1c21]">Settings</h1>
-          </div>
+        {/* Left side - Breadcrumb & Title */}
+  <div>
+    <div className="flex items-center gap-2 text-sm text-gray-600 mb-4">
+      <img src={home} alt="" />
+      <span>Dashboard</span>
+      <img src={chevron} alt="" />
+      <span>Settings</span>
+      <img src={chevron} alt="" />
+
+      {/* 👉 Dynamic Last Part */}
+      <span className="text-[#1a1c21] font-medium">{activeItem}</span>
+    </div>
+
+    {/* 👉 Title (also dynamic if you want) */}
+    <h1 className="text-2xl font-semibold text-[#1a1c21]">{activeItem}</h1>
+  </div>
 
           {/* Right side - Stats */}
-          <div className="flex flex-wrap gap-4">
+          {/* <div className="flex flex-wrap gap-4">
             <div className=" px-6 py-3 min-w-[120px]">
               <p className="text-sm text-[#111A2D] font-semibold mb-1">Total Staff</p>
               <p className="text-[32px] font-medium text-[#171C35]">63</p>
@@ -56,7 +61,7 @@ export const SettingsLayout: React.FC = () => {
                 <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </button>
-          </div>
+          </div> */}
         </div>
 
     

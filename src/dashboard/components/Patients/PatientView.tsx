@@ -5,11 +5,12 @@ import GridView from './GridView';
 import { useNavigate } from 'react-router-dom';
 import homeIcon from '../../../assets/svgIcon/homeIcon.svg'
 import chevronIcon from '../../../assets/svgIcon/chevronnRight.svg'
+import listIcon from '../../../assets/svgIcon/listIcon.svg'
 
 type ViewMode = 'list' | 'grid';
 
 export default function PatientsView() {
-  const [viewMode, setViewMode] = useState<ViewMode>('list'); // 'list' বা 'grid'
+  const [viewMode, setViewMode] = useState<ViewMode>('list');
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const navigate = useNavigate()
 
@@ -53,9 +54,9 @@ export default function PatientsView() {
             <div className="relative">
               <button
                 onClick={() => setDropdownOpen(!dropdownOpen)}
-                className="flex items-center gap-2 px-4 py-2.5 bg-white border border-[#D0D5DD] rounded-[8px] text-gray-700 font-medium hover:bg-gray-50 transition-colors"
+                className="flex items-center gap-2 px-4 py-2.5 bg-white border border-[#D0D5DD] rounded-[8px] text-gray-700 font-medium hover:bg-gray-50 transition-colors cursor-pointer "
               >
-                {viewMode === 'list' ? <img src="https://i.ibb.co.com/LzLB2TvX/listIcon.png" alt="" /> : <img src="https://i.ibb.co.com/Vc6fTzxd/gridIcon.png" alt="" /> }
+                {viewMode === 'list' ? <img src={listIcon} alt="" className='cursor-pointer' /> : <img src="https://i.ibb.co.com/Vc6fTzxd/gridIcon.png" alt="" /> }
                 <span>{viewMode === 'list' ? 'List' : 'Grid'}</span>
                 <ChevronDown className="w-4 h-4" />
               </button>
@@ -77,7 +78,7 @@ export default function PatientsView() {
                         {v.icon}
                         {v.label}
                       </div>
-                      {viewMode === v.type && <Check className="w-4 h-4 text-indigo-600" />}
+                      {viewMode === v.type && <Check className="w-4 h-4 " />}
                     </button>
                   ))}
                 </div>

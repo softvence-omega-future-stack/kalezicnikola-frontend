@@ -51,7 +51,7 @@ const CalendarView: React.FC = () => {
             <select
               value={viewType}
               onChange={(e) => handleViewChange(e.target.value as 'day' | 'week' | 'month')}
-              className="border border-gray-300 rounded-[8px] px-3 py-1 text-sm text-gray-700 cursor-pointer focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full sm:w-auto"
+              className="border border-gray-300 rounded-xl px-3 py-1 text-sm text-gray-700 cursor-pointer focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full sm:w-auto"
             >
               <option value="day">Day</option>
               <option value="week">Week</option>
@@ -69,7 +69,7 @@ const CalendarView: React.FC = () => {
         </div>
 
         {/* Calendar View */}
-        <div className="overflow-x-auto -mt-2">
+        <div className="overflow-x-auto rounded-3xl -mt-2">
           {viewType === 'day' && <DayView />}
           {viewType === 'week' && <CalendarWeekView />}
           {viewType === 'month' && <CalendarMonthView />}

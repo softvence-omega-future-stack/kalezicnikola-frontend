@@ -1,5 +1,3 @@
-
-
 export default function WeeklyCalendar() {
   const days = [
     { day: 'SUN', date: '28' },
@@ -37,10 +35,10 @@ export default function WeeklyCalendar() {
     <div className="min-h-screen bg-white rounded-2xl p-4 sm:p-6">
       <div className="overflow-x-auto">
         {/* Header */}
-        <div className="grid grid-cols-8 border-b border-gray-200">
-          <div className="p-4"></div>
+        <div className="grid" style={{ gridTemplateColumns: '80px repeat(7, 1fr)' }}>
+          <div></div> {/* Empty top-left */}
           {days.map((day, index) => (
-            <div key={index} className="p-4 text-center border-l border-gray-200">
+            <div key={index} className="p-4 text-center ">
               <div className="text-xs font-medium text-gray-500 mb-1">{day.day}</div>
               <div className="text-2xl font-normal text-gray-900">{day.date}</div>
             </div>
@@ -52,17 +50,21 @@ export default function WeeklyCalendar() {
           {timeSlots.map((time, timeIndex) => (
             <div
               key={timeIndex}
-              className="grid grid-cols-8 border-b border-gray-200 relative"
-              style={{ height: '100px' }}
+              className="grid"
+              style={{ gridTemplateColumns: '80px repeat(7, 1fr)', height: '100px' }}
             >
               {/* Time Label */}
-              <div className="p-4 text-sm text-gray-600 border-r border-gray-200">
+              <div
+                className={`px-2 text-base text-[#171C35] leading-4 border-r border-gray-200 flex justify-end ${
+                  timeIndex === 0 ? 'items-center -mt-2' : 'items-start'
+                }`}
+              >
                 {time}
               </div>
 
               {/* Day Columns */}
               {days.map((_, dayIndex) => (
-                <div key={dayIndex} className="border-l border-gray-200 relative">
+                <div key={dayIndex} className="border-l border-b border-gray-200 relative">
                   {appointments
                     .filter(apt => apt.day === dayIndex && Math.floor(apt.time) === timeIndex)
                     .map((apt, aptIndex) => {
@@ -75,7 +77,7 @@ export default function WeeklyCalendar() {
                             top: `${topOffset}px`,
                             left: '4px',
                             right: '4px',
-                            height: '50px', 
+                            height: '50px',
                             padding: '6px',
                             borderTopLeftRadius: '8px',
                             borderBottomLeftRadius: '8px'

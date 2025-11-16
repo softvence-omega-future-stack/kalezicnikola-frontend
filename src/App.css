@@ -1,4 +1,7 @@
 /* index.css বা App.css */
+*{
+    font-family: 'Urbanist' ;
+}
 
 body {
   /* background: ;  */
@@ -6,6 +9,7 @@ body {
   color: #000;
   transition: background-color 0.3s ease;
   overflow-x: hidden;
+    font-family: 'Urbanist';
 }
 
 /* globals.css বা component scoped CSS */

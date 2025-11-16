@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight, Plus } from 'lucide-react';
 
-import homeIcon from '../../../assets/svgIcon/homeIcon.svg';
-import chevronIcon from '../../../assets/svgIcon/chevronnRight.svg';
+
 import DayView from '../Calendar/DayView';
 import CalendarMonthView from '../Calendar/MonthView';
 import WeeklyCalendar from '../Calendar/WeekView';
@@ -37,14 +36,7 @@ const DashboardCalendar: React.FC = () => {
 
   return (
     <div className="bg-white rounded-2xl p-4 sm:p-6 -mt-15">
-      {/* Breadcrumb */}
-      <div className="flex items-center gap-2 text-sm text-gray-500 mb-4 flex-wrap">
-        <img src={homeIcon} alt="home" />
-        <img src={chevronIcon} alt="" />
-        <span>Dashboard</span>
-        <img src={chevronIcon} alt="" />
-        <span className="text-[#171C35] font-medium">Calendar</span>
-      </div>
+
 
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
@@ -107,7 +99,7 @@ const DashboardCalendar: React.FC = () => {
       </div>
 
       {/* Calendar Content */}
-      <div className="overflow-x-auto border">
+      <div className="overflow-x-auto border rounded-3xl">
         {viewType === 'day' && <DayView />}
         {viewType === 'week' && <WeeklyCalendar />}
         {viewType === 'month' && <CalendarMonthView />}

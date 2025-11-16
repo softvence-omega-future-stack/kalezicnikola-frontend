@@ -59,11 +59,11 @@ const CalendarMonthView: React.FC = () => {
        
 
        {/* Calendar Grid */}
-      <div className="grid grid-cols-7 gap-px bg-[#E8E8E8] rounded-[32px] overflow-hidden">
+      <div className="grid grid-cols-7 gap-px bg-[#E8E8E8] rounded-4xl overflow-hidden">
         {["MON", "TUE", "WED", "THUR", "FRI", "SAT", "SUN"].map((day) => (
           <div
             key={day}
-            className="bg-white pt-4 pl-4 pr-16 pb-17 text-center text-xs font-medium text-gray-500"
+            className="bg-white py-3 px-4 text-base font-medium text-[#667085] "
           >
             {day}
           </div>

@@ -352,7 +352,7 @@ const UpgradPlan = () => {
                             : 'bg-blue-100 text-[#526FFF]'
                         }`}
                       >
-                        Save 20%
+                        Save 15%
                       </span>
                     )}
                   </div>
