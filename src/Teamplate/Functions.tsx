@@ -190,11 +190,11 @@ const Functions = () => {
   <div
     className="absolute"
     style={{
-      bottom: 0,   // flush with bottom
-      right: 0,    // flush with right
-      left: "auto", // ignore left padding
+      bottom: 0,   
+      right: 0,    
+      left: "auto", 
       borderRadius: "inherit",
-      overflow: "hidden",
+
     }}
   >
     <img src={img6} alt="" className="w-auto h-auto" />

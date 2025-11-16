@@ -163,7 +163,7 @@ export default function StaffProfile() {
             {staffData.name}. History
           </h3>
 
-<<<<<<< HEAD
+
           <div className="grid grid-cols-1 gap-x-8 gap-y-4 bg-[#F3F6F6] p-4 rounded-2xl">
             {Object.entries({
               Name: staffData.name,
@@ -240,7 +240,7 @@ export default function StaffProfile() {
                 <span className="font-semibold">Jonathon Sanders</span> is a board-certified cardiologist with over 12 years of experience <br /> in diagnosing and treating cardiovascular conditions. She specializes in interventional cardiology and echocardiography, with a focus on preventive care. Dr. Johnson is dedicated to providing compassionate.
               </p>
             </div>
->>>>>>> 6424fb2d925a0ba2efc40cae5b04441dd52e94ee
+
           </div>
         </div>
 
@@ -332,6 +332,8 @@ export default function StaffProfile() {
           </div>
         </div>
       </div>
+    </div>
+    </div>
     </div>
   );
 }

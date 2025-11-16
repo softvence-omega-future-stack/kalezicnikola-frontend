@@ -1,19 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import {  Pause } from "lucide-react"; // Play/Pause icons
 
 
-<<<<<<< HEAD
+
+
 // SVG / Image imports
 
 import roundactiveImg from "../../../assets/svgIcon/activerecord.svg"; 
 import roundImg from "../../../assets/svgIcon/recordbtnborder.svg"; 
-=======
-import React, { useState, } from 'react';
+
+import React, { useEffect, useState, } from 'react';
 import WaveBar from './Wevebar';
 
 
->>>>>>> 6424fb2d925a0ba2efc40cae5b04441dd52e94ee
 import TranscriptChat from './TranscriptChat';
+import { Pause } from "lucide-react";
 
 // --- Dummy data ---
 const AI_SUMMARY_TEXT = `AI-powered tools help radiologists analyze images (like X-rays, CT scans, and MRIs) to identify conditions such as tumors, fractures, and infections with remarkable accuracy. AI systems can detect early signs of cancers like breast or lung cancer. AI-powered tools help radiologists analyze images (like X-rays, CT scans, and MRIs) to identify conditions such as tumors, fractures, and infections with remarkable accuracy. For example, AI systems can detect early signs of cancers like breast or lung cancer.`;
@@ -25,7 +24,6 @@ const PATIENT_INFO = {
 };
 
 
-<<<<<<< HEAD
 const PLAYER_WAVE_SEGMENTS = [
   { height: 45, time: "0:00" },
   { height: 45, time: "0:30" },
@@ -48,15 +46,14 @@ const SvgPlayIcon = ({ fill = "#526FFF", size = 20, className = "" }) => (
     </g>
   </svg>
 );
-=======
 
 
 
->>>>>>> 6424fb2d925a0ba2efc40cae5b04441dd52e94ee
+
 
 const PatientTranscriptPage: React.FC = () => {
   const [showFullSummary, setShowFullSummary] = useState(false);
-<<<<<<< HEAD
+
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(33);
 
@@ -78,13 +75,12 @@ const PatientTranscriptPage: React.FC = () => {
   const togglePlayPause = () => setIsPlaying(!isPlaying);
 
   const calculateProgressWidth = (time: number) => (time / totalDuration) * 100;
-=======
 
 
 
 
 
->>>>>>> 6424fb2d925a0ba2efc40cae5b04441dd52e94ee
+
 
   return (
     <div className="bg-[#F3F6F6D9] rounded-2xl p-4 flex items-center justify-center font-sans">
@@ -122,7 +118,7 @@ const PatientTranscriptPage: React.FC = () => {
           </div>
         </div>
 
-<<<<<<< HEAD
+
         {/* Audio Player */}
         <div className="mb-8 p-5 md:p-6">
           <h3 className="text-lg md:text-xl font-semibold text-[#171C35] mb-4">Patients Transcript</h3>
@@ -185,7 +181,7 @@ const PatientTranscriptPage: React.FC = () => {
               </div>
             </div>
           </div>
-=======
+
         {/* Patients Transcript (Audio Player) Section */}
         <div className="mb-8 p-5 md:p-6  ">
           <h3 className="text-lg md:text-xl bg-[#F3F6F6D9] font-semibold text-[#171C35] mb-4">Patients Transcript</h3>
@@ -196,14 +192,16 @@ const PatientTranscriptPage: React.FC = () => {
 
    
           
->>>>>>> 6424fb2d925a0ba2efc40cae5b04441dd52e94ee
+
         </div>
 
         {/* Transcript Chat Section */}
         <TranscriptChat />
       </div>
     </div>
+    </div>
   );
 };
 
 export default PatientTranscriptPage;
+

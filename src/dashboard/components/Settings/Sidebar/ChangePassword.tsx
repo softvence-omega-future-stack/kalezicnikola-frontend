@@ -81,7 +81,7 @@ const ChangePasswordForm: React.FC = () => {
       return;
     }
 
-    // ✅ এখানে তুমি backend API কল করতে পারো (উদাহরণস্বরূপ axios দিয়ে)
+ 
     console.log("Password changed successfully:", form);
 
     setSuccess("✅ Password changed successfully!");
@@ -124,22 +124,22 @@ const ChangePasswordForm: React.FC = () => {
         <div className="flex space-x-4 mt-6">
           <button
             type="button"
-<<<<<<< HEAD
+
             onClick={() => setForm({ current: "", newPass: "", confirm: "" })}
-            className="flex-1 py-3 text-[#171C35] border border-gray-300 rounded-[8px] hover:bg-gray-50 transition"
-=======
+            // className="flex-1 py-3 text-[#171C35] border border-gray-300 rounded-[8px] hover:bg-gray-50 transition"
+
             className="flex-1 py-3 text-[#171C35] border border-gray-200 rounded-xl cursor-pointer"
->>>>>>> 6424fb2d925a0ba2efc40cae5b04441dd52e94ee
+
           >
             Cancel
           </button>
           <button
             type="submit"
-<<<<<<< HEAD
-            className="flex-1 py-3 text-white bg-[#526FFF] rounded-[8px] hover:bg-[#4059FF] transition"
-=======
+
+            // className="flex-1 py-3 text-white bg-[#526FFF] rounded-[8px] hover:bg-[#4059FF] transition"
+
             className="flex-1 py-3 text-white bg-[#526FFF] rounded-xl cursor-pointer"
->>>>>>> 6424fb2d925a0ba2efc40cae5b04441dd52e94ee
+
           >
             Save Changes
           </button>

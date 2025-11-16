@@ -42,6 +42,7 @@ const ConversationCard: React.FC = () => (
     style={{
       borderRadius: "30px",
       border: "1px solid #FFF",
+        fontFamily: 'Urbanist, sans-serif',
       background: `
         radial-gradient(77.75% 73.99% at 100% 106.39%, rgba(71, 43, 255, 0.10) 0%, rgba(255, 255, 255, 0.00) 100%),
         radial-gradient(138.26% 157.29% at -16.83% -75.11%, rgba(61, 165, 245, 0.20) 0%, rgba(43, 142, 255, 0.00) 100%),
@@ -70,6 +71,7 @@ const TriadeCard: React.FC = () => (
     style={{
       borderRadius: "30px",
       border: "1px solid #FFF",
+      fontFamily: 'Urbanist, sans-serif',
       background: `
         linear-gradient(0deg, #FFF 0%, #FFF 100%),
         radial-gradient(138.26% 157.29% at -16.83% -75.11%, rgba(61, 165, 245, 0.20) 0%, rgba(43, 142, 255, 0.00) 100%),
@@ -99,11 +101,12 @@ const AvailabilityCard: React.FC = () => (
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "flex-start",
-      padding: "30px 58px 30px 30px", // top right bottom left
-      gap: "83px", // spacing between children
+      padding: "30px 58px 30px 30px", 
+      gap: "83px", 
       borderRadius: "30px",
       border: "1px solid #FFF",
       background: "#526FFF",
+      fontFamily: 'Urbanist, sans-serif',
       backdropFilter: "blur(50px)",
     }}
   >
@@ -130,7 +133,8 @@ const IntegrationCard: React.FC = () => (
       flexDirection: "column",
       justifyContent: "flex-start",
       alignItems: "flex-start",
-      padding: "30px 18.5px 92px 30px", // top right bottom left
+      padding: "30px 18.5px 92px 30px", 
+      fontFamily: 'Urbanist, sans-serif',
       borderRadius: "30px",
       border: "1px solid #FFF",
       background: `
@@ -147,8 +151,9 @@ const IntegrationCard: React.FC = () => (
     fontFamily: "Urbanist, sans-serif",
     fontSize: "22px",
     fontStyle: "normal",
+    
     fontWeight: 600,
-    lineHeight: "120%", // 26.4px
+    lineHeight: "120%", 
   }} className=' pb-[16px] ' >Easy connection to your phone system</h3>
    <p style={{ fontSize: "16px", lineHeight: "24px", margin: 0, color: "#333" }}>
   No system change or IT stress. The integration <br />with your existing phone setup is quick and easy by <br /> our onboarding team.
@@ -172,7 +177,7 @@ const SoftwareCard: React.FC = () => (
         #FFF
       `,
       backdropFilter: "blur(50px)",
-      fontFamily: "Urbanist, sans-serif", // <-- applies Urbanist to all text inside
+      fontFamily: "Urbanist, sans-serif",
     }}
   >
     <div>
@@ -217,11 +222,11 @@ const CustomizationCard: React.FC = () => (
 // --- Main Grid ---
 const FeatureSection: React.FC = () => {
   return (
-<<<<<<< HEAD
+
     <div className="xl:-mt-20 mt-12 px-4 mx-15 ">
-=======
+
     <div className="py-8 px-4 mx-15 xl:-mt-44 ">
->>>>>>> 6424fb2d925a0ba2efc40cae5b04441dd52e94ee
+
       <div className="text-center mb-16">
         <div style={{fontFamily: 'Urbanist, sans-serif',}} className="relative glass inline-flex items-center gap-2 backdrop-blur-lg pr-5 pl-2.5 py-2  border border-white bg-white/10 rounded-full mb-6 -mt-7">
           <img src={icon} alt="" />
@@ -268,6 +273,7 @@ const FeatureSection: React.FC = () => {
           <CustomizationCard />
         </div>
       </div>
+    </div>
     </div>
   );
 };

@@ -205,17 +205,14 @@ export default function SecuritySettings() {
 
         {/* Action Buttons */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-<<<<<<< HEAD
+
           <button className="w-full px-6 py-2.5 text-sm font-medium text-[#171c35]bg-white border border-gray-300 rounded-xl hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#526FFF] transition-colors">
             Cancel
           </button>
           <button onClick={handleSaveChanges} className="w-full px-6 py-2.5 text-sm font-medium text-white bg-[#526FFF] rounded-xl  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#526FFF] transition-colors">
-=======
-          <button className="w-full px-6 py-2.5 text-sm font-medium text-[#171c35]bg-white border border-gray-300 rounded-xl  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#526FFF] transition-colors">
-            Cancel
-          </button>
-          <button className="w-full px-6 py-2.5 text-sm font-medium text-white bg-[#526FFF] rounded-xl  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#526FFF] transition-colors">
->>>>>>> 6424fb2d925a0ba2efc40cae5b04441dd52e94ee
+
+         
+    
             Save Changes
           </button>
         </div>

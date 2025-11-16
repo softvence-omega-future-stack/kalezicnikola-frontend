@@ -66,16 +66,16 @@ export default function AddNewStaff() {
             <button className="w-full px-6 py-3 text-sm font-medium text-[#171c35] bg-white border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">
               Cancel
             </button>
-<<<<<<< HEAD
+
             <button
               onClick={handleNext}
               className="w-full px-6 py-3 text-sm font-medium text-white bg-[#526FFF] rounded-xl focus:outline-none transition-colors"
             >
               {activeTab === "personal" ? "Next" : "Save"}
-=======
-            <button className="w-full px-6 py-3 text-sm font-medium text-white bg-[#526FFF] rounded-xl focus:outline-none transition-colors">
-              Next
->>>>>>> 6424fb2d925a0ba2efc40cae5b04441dd52e94ee
+
+            {/* <button className="w-full px-6 py-3 text-sm font-medium text-white bg-[#526FFF] rounded-xl focus:outline-none transition-colors">
+              Next */}
+
             </button>
           </div>
         </div>

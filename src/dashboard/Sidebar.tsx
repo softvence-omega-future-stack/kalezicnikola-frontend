@@ -13,26 +13,10 @@ import supports from '../assets/svgIcon/supports.svg';
 import settings from '../assets/svgIcon/settings.svg';
 import logout from '../assets/svgIcon/logout.svg';
 
-<<<<<<< HEAD
-=======
-const Logo: React.FC = () => (
-  <div className="flex items-center justify-between md:justify-start gap-4 p-4 relative">
-    <div className="flex items-center gap-2">
-      <img src={logo} alt="logo" />
-      <img src={textlogo} alt="" className="hidden md:block" />
-    </div>
-    <div className="absolute ml-10 top-1/2 -translate-y-1/2 md:relative md:right-auto md:top-auto md:translate-y-0">
-      <img src={sidelogo} alt="box" className="h-8 w-8 hidden md:block" />
-    </div>
-  </div>
-);
-
->>>>>>> 6424fb2d925a0ba2efc40cae5b04441dd52e94ee
 interface NavItemProps {
   to: string;
   iconSrc: string;
   label: string;
-<<<<<<< HEAD
   end?: boolean;
   collapsed?: boolean;
   badge?: number;
@@ -47,22 +31,6 @@ const NavItem: React.FC<NavItemProps> = ({ to, label, iconSrc, end = false, coll
         `flex items-center gap-3 py-3 px-3 mx-4 rounded-[8px] transition-colors relative
           ${isActive ? 'bg-[#DFE2E2] mx-4 font-semibold' : 'text-[#111A2D] font-semibold'}
           ${collapsed ? 'justify-center' : 'justify-start'}`
-=======
-
-  end?: boolean; 
-}
-
-const NavItem: React.FC<NavItemProps> = ({ to, label, iconSrc, end = false }) => {
-  return (
-    <NavLink
-      to={to}
-   
-      end={end} 
-      className={({ isActive }) =>
-        `flex items-center gap-3 py-3 mx-2 md:mx-6 px-4 mb-1 rounded-xl transition-colors
-         ${isActive ? 'bg-[#DFE2E2] font-semibold' : 'text-[#111A2D] font-semibold'}
-         justify-center md:justify-start`
->>>>>>> 6424fb2d925a0ba2efc40cae5b04441dd52e94ee
       }
     >
       <img src={iconSrc} alt={label} className="h-6 w-6 object-contain" />
@@ -97,7 +65,6 @@ const Sidebar: React.FC = () => {
   const effectiveCollapsed = collapsed || isMobile;
 
   return (
-<<<<<<< HEAD
     <div
       className={`relative flex flex-col justify-between h-screen border-r border-gray-200 transition-all duration-300
         ${effectiveCollapsed ? 'w-20' : 'w-72'}`}
@@ -166,32 +133,6 @@ const Sidebar: React.FC = () => {
                 <span className="text-sm font-medium px-2 py-0.5 rounded-full bg-[#111A2D] text-white">PRO</span>
               </div>
               <span className="text-3xl font-bold text-[#171C35] block mt-1">Basic</span>
-=======
-    <div className="flex flex-col justify-between h-screen border-r border-gray-200 w-20 md:w-72 transition-all duration-300">
-
-      <div>
-        <Logo />
-        <nav className="flex flex-col mt-2 gap-2">
-    
-          <NavItem to="/dashboard" iconSrc={dashbord} label="Dashboard" end={true} />
-          
-          <NavItem to="/dashboard/call_logs" iconSrc={callLogs} label="Call Logs" />
-          <NavItem to="/dashboard/calendar" iconSrc={calendar} label="Calendar" />
-          <NavItem to="/dashboard/patients" iconSrc={patients} label="Patients" />
-          <NavItem to="/dashboard/tasks" iconSrc={tasks} label="Tasks" />
-          <NavItem to="/dashboard/supports" iconSrc={supports} label="Supports" />
-        </nav>
-      </div>
-
-     
-      <div className="flex flex-col">
- 
-        <div className="hidden md:block bg-gray-200 p-4 rounded-xl m-4">
-          <div className="mb-1">
-            <div className="flex justify-start gap-4 items-center">
-              <span className="text-[#171C35] font-bold text-xl">Upgrade to</span>
-              <span className="text-sm font-medium px-2 py-0.5 rounded-full bg-[#111A2D] text-white">PRO</span>
->>>>>>> 6424fb2d925a0ba2efc40cae5b04441dd52e94ee
             </div>
 
             <p className="text-md font-bold text-gray-800 mb-2">{usedMinutes} / {subscriptionTotalMinutes} Minutes Used</p>
@@ -218,22 +159,9 @@ const Sidebar: React.FC = () => {
           </div>
         )}
 
-<<<<<<< HEAD
         <div className="flex flex-col mt-auto mb-4 gap-2">
           <NavItem to="/dashboard/settings" iconSrc={settings} label="Settings" collapsed={effectiveCollapsed} />
           <NavItem to="/" iconSrc={logout} label="Logout" collapsed={effectiveCollapsed} />
-=======
-          <button className="w-full bg-[#111A2D] text-white text-sm font-semibold py-2 rounded-lg transition-colors mt-2">
-            {totalMinutes - usedMinutes} Minutes left
-          </button>
-        </div>
-
-      
-        <div className="flex flex-col mt-auto mb-4 gap-2">
-          <NavItem to="/dashboard/settings" iconSrc={settings} label="Settings" />
-     
-          <NavItem to="/" iconSrc={logout} label="Logout" end={true} />
->>>>>>> 6424fb2d925a0ba2efc40cae5b04441dd52e94ee
         </div>
       </div>
     </div>

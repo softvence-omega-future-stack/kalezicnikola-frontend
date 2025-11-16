@@ -20,10 +20,7 @@ export default function Performances() {
   setSettings(prev => ({ ...prev, [field]: !prev[field] }));
 };
 
-const handleSaveChanges = () => {
-  console.log("Saved Settings:", settings);
-  alert("Your changes have been saved!");  
-};
+
 
   return (
     <div className="min-h-screen ">
@@ -244,15 +241,15 @@ const handleSaveChanges = () => {
           <button className="w-full px-6 py-2.5 text-sm font-medium text-[#111a2d] bg-white border border-gray-300 rounded-xl focus:outline-none  transition-colors">
             Cancel
           </button>
-<<<<<<< HEAD
-          <button onClick={handleSaveChanges} className="w-full px-6 py-2.5 text-sm font-medium text-white bg-[#526FFF] rounded-xl focus:outline-none  transition-colors cursor-pointer">
-=======
+
+ 
+
           <button className="w-full px-6 py-2.5 text-sm font-medium text-white bg-[#526FFF] rounded-xl focus:outline-none  transition-colors cursor-pointer">
->>>>>>> 6424fb2d925a0ba2efc40cae5b04441dd52e94ee
+
             Save Changes
           </button>
         </div>
       </div>
-    </div>
+  </div>
   );
 }

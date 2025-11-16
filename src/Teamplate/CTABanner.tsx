@@ -29,7 +29,7 @@ const CTABanner: React.FC = () => {
               </p>
             </div>
 
-<<<<<<< HEAD
+
             {/* Right Button with Liquid Glass Effect */}
             <div className="relative">
               <button
@@ -52,7 +52,9 @@ const CTABanner: React.FC = () => {
                   transform: isHovered ? 'scale(1.05)' : 'scale(1)',
                 }}
               >
-                {/* Gradient overlay */}
+                Start Now
+                </button>
+           
                 <div
                   className="absolute inset-0 transition-opacity duration-300 pointer-events-none"
                   style={{
@@ -99,18 +101,19 @@ const CTABanner: React.FC = () => {
                   />
                 )}
 
-                <span className="relative z-10">Start Now</span>
-=======
+                
+
             {/* Right Button */}
-            <div className="w-full lg:w-auto flex-shrink-0">
+            {/* <div className="w-full lg:w-auto flex-shrink-0">
               <button className="w-full lg:w-auto bg-[#657cf2] text-white border border-white font-semibold px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 rounded-full sm:rounded-2xl transition-all duration-300 text-sm sm:text-base md:text-lg lg:text-xl whitespace-nowrap">
                 Get Started
->>>>>>> 6424fb2d925a0ba2efc40cae5b04441dd52e94ee
+
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };
