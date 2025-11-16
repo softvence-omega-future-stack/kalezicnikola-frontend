@@ -77,13 +77,13 @@ const PersonalInfoForm: React.FC = () => {
   };
 
   return (
-    <section className="space-y-8 bg-white p-[10px] rounded-2xl">
+    <section className="space-y-8 bg-white p-2.5 rounded-2xl">
       {/* Header */}
       <header className="flex justify-between items-center px-3 pt-3  pb-4">
         <h2 className="text-xl font-semibold text-[#171C35]">Personal Info</h2>
         <button
           onClick={handleEdit}
-          className="flex items-center gap-2 text-sm text-[#111a2D] border border-gray-300 py-1 px-3 rounded-[8px]"
+          className="flex items-center gap-2 text-sm text-[#111a2D] border border-gray-300 py-1 px-3 rounded-xl"
         >
           Edit
             <img src={edit} alt="" />
@@ -215,14 +215,14 @@ const PersonalInfoForm: React.FC = () => {
             <button
               type="button"
              onClick={handleCancel}
-              className="flex-1 px-4 py-2.5 bg-white border border-gray-300 text-[#111a2d] rounded-[8px] text-sm font-medium hover:bg-gray-50 transition-color cursor-pointer"
+              className="flex-1 px-4 py-2.5 bg-white border border-gray-300 text-[#111a2d] rounded-xl text-sm font-medium  transition-color cursor-pointer"
             >
               Cancel
             </button>
             <button
               type="button"
             onClick={handleSave}
-              className="flex-1 px-4 py-2.5 bg-[#526FFF] text-white rounded-[8px] text-sm font-medium transition-colors cursor-pointer"
+              className="flex-1 px-4 py-2.5 bg-[#526FFF] text-white rounded-xl text-sm font-medium transition-colors cursor-pointer"
             >
               Save Change
             </button>

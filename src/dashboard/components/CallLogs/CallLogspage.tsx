@@ -142,7 +142,7 @@ const CallLogsPage: React.FC = () => {
 
 <tbody>
   {callLogs.map((log) => (
-    <tr key={log.id} className="border-b border-gray-100 hover:bg-gray-50">
+    <tr key={log.id} className="border-b border-gray-100 ">
       <td className="px-6 py-4 flex items-center gap-2 text-sm font-semibold text-[#111A2D]">
         <input
           type="checkbox"

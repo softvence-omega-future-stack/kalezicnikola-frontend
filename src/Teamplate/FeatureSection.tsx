@@ -217,7 +217,11 @@ const CustomizationCard: React.FC = () => (
 // --- Main Grid ---
 const FeatureSection: React.FC = () => {
   return (
+<<<<<<< HEAD
     <div className="xl:-mt-20 mt-12 px-4 mx-15 ">
+=======
+    <div className="py-8 px-4 mx-15 xl:-mt-44 ">
+>>>>>>> 6424fb2d925a0ba2efc40cae5b04441dd52e94ee
       <div className="text-center mb-16">
         <div style={{fontFamily: 'Urbanist, sans-serif',}} className="relative glass inline-flex items-center gap-2 backdrop-blur-lg pr-5 pl-2.5 py-2  border border-white bg-white/10 rounded-full mb-6 -mt-7">
           <img src={icon} alt="" />

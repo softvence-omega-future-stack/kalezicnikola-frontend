@@ -1,4 +1,4 @@
-// Sidebar/SettingSidebar.tsx
+
 import React from "react";
 
 interface SidebarProps {

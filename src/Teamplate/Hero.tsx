@@ -10,6 +10,7 @@ const DoclineHero: React.FC = () => {
         {/* Left Content */}
         <div className="w-full lg:w-1/2 space-y-5 xl:-mt-75 2xl:-mt-96">
           {/* Badge */}
+<<<<<<< HEAD
           
           <div className="relative glass pr-5 pl-2.5 py-2   inline-flex items-center gap-3.5">
   <img src={herologo} alt="Docline Logo" className="w-5 h-5" />
@@ -20,6 +21,18 @@ const DoclineHero: React.FC = () => {
  
 </div>
 
+=======
+          <div className="inline-flex items-center gap-2 px-[10px] py-2  bg-[rgba(255, 255, 255, 0.10)] border-t-2 border-l-2 border border-white rounded-full relative">
+            <img src={herologo} alt="Docline Logo" className="w-5 h-5" />
+            <span className="text-[#171C35] text-sm font-medium">
+              Your smarter telemedicine
+            </span>
+            <div className="absolute">
+            <span className="top-0 right-0">a</span>
+          </div>
+          </div>
+          
+>>>>>>> 6424fb2d925a0ba2efc40cae5b04441dd52e94ee
 
           {/* Heading */}
           <h1 style={{ fontFamily: 'Urbanist, sans-serif' }} className="text-[42px] sm:text-[52px] lg:text-[64px] font-semibold text-[#171C35] leading-19">

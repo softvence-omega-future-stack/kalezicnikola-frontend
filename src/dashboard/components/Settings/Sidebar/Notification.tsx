@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-// --- Notification Settings Component ---
+
 export const NotificationSettings: React.FC = () => {
-  // State with proper type
+
   const [settings, setSettings] = useState({
     appointmentReminders: true,
     patientUpdates: false,
@@ -12,22 +12,13 @@ export const NotificationSettings: React.FC = () => {
     emailNotifications: true,
   });
 
-  // Keys type based on settings
   type SettingKey = keyof typeof settings;
 
   const handleToggle = (key: SettingKey) => {
     setSettings((prev) => ({ ...prev, [key]: !prev[key] }));
   };
 
-//   const handleCancel = () => {
-//     console.log('Canceled changes.');
-//   };
 
-//   const handleSave = () => {
-//     console.log('Saved settings:', settings);
-//   };
-
-  // List of notification items
   const items: { key: SettingKey; label: string; desc: string }[] = [
     { key: 'appointmentReminders', label: 'Appointment Reminders', desc: 'Get notified about upcoming appointments and schedule changes.' },
     { key: 'patientUpdates', label: 'Patient Updates', desc: 'Receive notifications when new patients are added or patient information is updated.' },
@@ -38,7 +29,7 @@ export const NotificationSettings: React.FC = () => {
   ];
 
   return (
-    <div className="p-6 bg-white rounded-[24px] ">
+    <div className="p-6 bg-white rounded-3xl ">
       <h2 className="text-xl font-semibold text-[#171C35">Notification</h2>
       <p className="text-sm text-[#111A2D] mb-6  pb-3">
         We may still send you important notifications about your account outside of your notification settings.
@@ -69,13 +60,13 @@ export const NotificationSettings: React.FC = () => {
  <div className="flex space-x-4 mt-6">
           <button
             type="button"
-            className="flex-1 py-3 text-[#111A2D] border border-gray-200 rounded-[8px] cursor-pointer"
+            className="flex-1 py-3 text-[#111A2D] border border-gray-200 rounded-xl cursor-pointer"
           >
             Cancel
           </button>
           <button
             type="submit"
-            className="flex-1 py-3 text-white bg-[#526FFF] rounded-[8px]  cursor-pointer"
+            className="flex-1 py-3 text-white bg-[#526FFF] rounded-xl  cursor-pointer"
           >
             Save Changes
           </button>

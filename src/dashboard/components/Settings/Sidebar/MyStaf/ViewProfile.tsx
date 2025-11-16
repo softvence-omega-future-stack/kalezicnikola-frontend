@@ -163,6 +163,7 @@ export default function StaffProfile() {
             {staffData.name}. History
           </h3>
 
+<<<<<<< HEAD
           <div className="grid grid-cols-1 gap-x-8 gap-y-4 bg-[#F3F6F6] p-4 rounded-2xl">
             {Object.entries({
               Name: staffData.name,
@@ -198,6 +199,48 @@ export default function StaffProfile() {
                 )}
               </div>
             ))}
+=======
+        {/* Profile Card */}
+        <div className=" bg-[#E5E9FF] rounded-4xl p-6 md:p-8 mb-6 mt-20">
+          <div className="flex flex-col md:flex-row gap-6">
+            {/* Profile Image */}
+            <div className="shrink-0 -mt-20">
+              <img
+                src={profile}
+                alt="Jonathon Sanders"
+                className="w- h-[300px]   rounded-2xl object-cover"
+              />
+            </div>
+
+            {/* Profile Info */}
+            <div className="flex-1 ">
+             <div className="flex items-start justify-between mb-3">
+  {/* Left side */}
+  <div>
+    <div className="flex items-center gap-3 mb-1">
+      <h2 className="text-2xl md:text-2xl font-semibold text-[#171c35]">Jonathon Sanders</h2>
+      <span className="px-3 py-1 bg-[#1DBF73] text-white text-base font-medium rounded-full">
+        Active
+      </span>
+    </div>
+    <p className="text-base font-medium text-[#171C35] mb-1">Role: Receptionist</p>
+    <p className="text-base font-bold text-[#171C35]">Id: 555-0101</p>
+  </div>
+
+  {/* Right side */}
+  <div className="self-start">
+    <button className="flex items-center gap-2 px-4 py-2 text-base font-semibold text-[#111A2D] border border-gray-300 rounded-2xl transition-colors">
+      <img src={edit} alt="Edit" />
+      Edit
+    </button>
+  </div>
+</div>
+
+              <p className="text-base text-[#171C35] leading-relaxed mt-3 w-[600px]">
+                <span className="font-semibold">Jonathon Sanders</span> is a board-certified cardiologist with over 12 years of experience <br /> in diagnosing and treating cardiovascular conditions. She specializes in interventional cardiology and echocardiography, with a focus on preventive care. Dr. Johnson is dedicated to providing compassionate.
+              </p>
+            </div>
+>>>>>>> 6424fb2d925a0ba2efc40cae5b04441dd52e94ee
           </div>
         </div>
 
