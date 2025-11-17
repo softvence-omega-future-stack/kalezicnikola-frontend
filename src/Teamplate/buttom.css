@@ -306,7 +306,7 @@
    RESPONSIVE UTILITIES
    ========================================= */
 
-@media (max-width: 640px) {
+/* @media (max-width: 640px) {
   .liquid-glass-responsive {
     border-radius: 9999px;
   }
@@ -316,4 +316,4 @@
   .liquid-glass-responsive {
     border-radius: 1.5rem;
   }
-}
+} */

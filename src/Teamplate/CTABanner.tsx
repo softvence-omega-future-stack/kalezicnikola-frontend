@@ -1,18 +1,21 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { } from 'react';
+// import { useNavigate } from 'react-router-dom';
+import './bnnarButon.css'
 
 const CTABanner: React.FC = () => {
-  const navigate = useNavigate();
-  const [isHovered, setIsHovered] = useState(false);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  // const navigate = useNavigate();
+  // const [isHovered, setIsHovered] = useState(false);
+  // const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  //  const [isPressed, setIsPressed] = useState(false);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    setMousePos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
-  };
+  // const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
+  //   const rect = e.currentTarget.getBoundingClientRect();
+  //   setMousePos({
+  //     x: e.clientX - rect.left,
+  //     y: e.clientY - rect.top,
+  //   });
+  // };
+  
 
   return (
     <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="w-full px-4 mt-9 md:mt-[180px] lg:mt-[180px] xl:mt-[180px]">
@@ -31,7 +34,7 @@ const CTABanner: React.FC = () => {
 
 
             {/* Right Button with Liquid Glass Effect */}
-            <div className="relative">
+            {/* <div className="relative">
               <button
                 onClick={() => navigate('/signup')}
                 onMouseEnter={() => setIsHovered(true)}
@@ -63,7 +66,7 @@ const CTABanner: React.FC = () => {
                   }}
                 />
                 
-                {/* Liquid effect */}
+             
                 {isHovered && (
                   <div
                     className="absolute rounded-full pointer-events-none transition-all duration-500 ease-out"
@@ -79,7 +82,7 @@ const CTABanner: React.FC = () => {
                   />
                 )}
 
-                {/* Shine effect */}
+          
                 <div
                   className="absolute inset-0 opacity-30 pointer-events-none"
                   style={{
@@ -87,7 +90,7 @@ const CTABanner: React.FC = () => {
                   }}
                 />
 
-                {/* Outer glow on hover */}
+          
                 {isHovered && (
                   <div
                     className="absolute inset-0 rounded-full sm:rounded-2xl pointer-events-none"
@@ -103,13 +106,64 @@ const CTABanner: React.FC = () => {
 
                 
 
-            {/* Right Button */}
-            {/* <div className="w-full lg:w-auto flex-shrink-0">
-              <button className="w-full lg:w-auto bg-[#657cf2] text-white border border-white font-semibold px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 rounded-full sm:rounded-2xl transition-all duration-300 text-sm sm:text-base md:text-lg lg:text-xl whitespace-nowrap">
-                Get Started
+         
+          </div> */}
 
-              </button>
-            </div> */}
+
+          <div className='relative'>
+            <button className='glass-card px-6 py-3 text-white'>Start Now</button>
+
+
+            {/* <button className="px-5 py-2.5 rounded-2xl text-white 
+bg-white/15 backdrop-blur-xl
+shadow-[inset_0_0_0_1px_rgba(255,255,255,0.25)]
+">
+  Start Now
+</button> */}
+
+{/* <button
+ 
+  className="relative overflow-hidden"
+  style={{
+    width: '218px',
+    height: '64px',
+    borderRadius: '32px',
+    background: 'rgba(255, 255, 255, 0.10)',
+    backdropFilter: 'blur(20px) saturate(180%)',
+    WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+ 
+    border: '1px solid rgba(255, 255, 255, 0.2)',
+ 
+    transform: 'scale(1)', 
+    transition: 'none',
+
+    boxShadow: '0 1px 0 rgba(255, 255, 255, 0.15) inset', 
+    cursor: 'default' 
+  }}
+>
+ <div
+    className="absolute top-0 left-0 right-0"
+    style={{
+      height: '50%',
+      background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%)',
+      pointerEvents: 'none',
+      borderRadius: '32px 32px 0 0'
+    }}
+  />
+  
+  <div className="relative z-10 flex items-center justify-center h-full">
+    <span
+      className="font-semibold text-xl tracking-wide"
+      style={{
+        color: 'rgba(255, 255, 255, 0.98)',
+        textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
+        transition: 'all 0.2s ease'
+      }}
+    >
+      Jetzt starten
+    </span>
+  </div>
+</button> */}
           </div>
         </div>
       </div>

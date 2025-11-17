@@ -2,17 +2,17 @@
 
 
 
-// SVG / Image imports
 
-import roundactiveImg from "../../../assets/svgIcon/activerecord.svg"; 
-import roundImg from "../../../assets/svgIcon/recordbtnborder.svg"; 
+
+// import roundactiveImg from "../../../assets/svgIcon/activerecord.svg"; 
+// import roundImg from "../../../assets/svgIcon/recordbtnborder.svg"; 
 
 import React, { useEffect, useState, } from 'react';
 import WaveBar from './Wevebar';
 
 
 import TranscriptChat from './TranscriptChat';
-import { Pause } from "lucide-react";
+// import { Pause } from "lucide-react";
 
 // --- Dummy data ---
 const AI_SUMMARY_TEXT = `AI-powered tools help radiologists analyze images (like X-rays, CT scans, and MRIs) to identify conditions such as tumors, fractures, and infections with remarkable accuracy. AI systems can detect early signs of cancers like breast or lung cancer. AI-powered tools help radiologists analyze images (like X-rays, CT scans, and MRIs) to identify conditions such as tumors, fractures, and infections with remarkable accuracy. For example, AI systems can detect early signs of cancers like breast or lung cancer.`;
@@ -24,28 +24,28 @@ const PATIENT_INFO = {
 };
 
 
-const PLAYER_WAVE_SEGMENTS = [
-  { height: 45, time: "0:00" },
-  { height: 45, time: "0:30" },
-  { height: 45, time: "1:00" },
-  { height: 45, time: "1:30" },
-  { height: 45, time: "2:00" },
-  { height: 45, time: "2:30" },
-];
-const totalDuration = 100; // normalized total duration
+// const PLAYER_WAVE_SEGMENTS = [
+//   { height: 45, time: "0:00" },
+//   { height: 45, time: "0:30" },
+//   { height: 45, time: "1:00" },
+//   { height: 45, time: "1:30" },
+//   { height: 45, time: "2:00" },
+//   { height: 45, time: "2:30" },
+// ];
+const totalDuration = 100; 
 
 // --- Custom Play Icon SVG ---
-const SvgPlayIcon = ({ fill = "#526FFF", size = 20, className = "" }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 32 32" fill="none" className={className}>
-    <mask id="mask0_2987_5353" style={{ maskType: "luminance" }} maskUnits="userSpaceOnUse" x="1" y="1" width="30" height="30">
-      <path d="M15.9974 29.3327C23.3614 29.3327 29.3307 23.3633 29.3307 15.9993C29.3307 8.63535 23.3614 2.66602 15.9974 2.66602C8.6334 2.66602 2.66406 8.63535 2.66406 15.9993C2.66406 23.3633 8.6334 29.3327 15.9974 29.3327Z" fill="white" stroke="white" strokeWidth="2" strokeLinejoin="round"/>
-      <path d="M13.3281 15.9995V11.3809L17.3281 13.6902L21.3281 15.9995L17.3281 18.3089L13.3281 20.6182V15.9995Z" fill="black" stroke="black" strokeWidth="2" strokeLinejoin="round"/>
-    </mask>
-    <g mask="url(#mask0_2987_5353)">
-      <path d="M0 0H32V32H0V0Z" fill={fill} />
-    </g>
-  </svg>
-);
+// const SvgPlayIcon = ({ fill = "#526FFF", size = 20, className = "" }) => (
+//   <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 32 32" fill="none" className={className}>
+//     <mask id="mask0_2987_5353" style={{ maskType: "luminance" }} maskUnits="userSpaceOnUse" x="1" y="1" width="30" height="30">
+//       <path d="M15.9974 29.3327C23.3614 29.3327 29.3307 23.3633 29.3307 15.9993C29.3307 8.63535 23.3614 2.66602 15.9974 2.66602C8.6334 2.66602 2.66406 8.63535 2.66406 15.9993C2.66406 23.3633 8.6334 29.3327 15.9974 29.3327Z" fill="white" stroke="white" strokeWidth="2" strokeLinejoin="round"/>
+//       <path d="M13.3281 15.9995V11.3809L17.3281 13.6902L21.3281 15.9995L17.3281 18.3089L13.3281 20.6182V15.9995Z" fill="black" stroke="black" strokeWidth="2" strokeLinejoin="round"/>
+//     </mask>
+//     <g mask="url(#mask0_2987_5353)">
+//       <path d="M0 0H32V32H0V0Z" fill={fill} />
+//     </g>
+//   </svg>
+// );
 
 
 
@@ -55,7 +55,7 @@ const PatientTranscriptPage: React.FC = () => {
   const [showFullSummary, setShowFullSummary] = useState(false);
 
   const [isPlaying, setIsPlaying] = useState(false);
-  const [currentTime, setCurrentTime] = useState(33);
+  const [, setCurrentTime] = useState(33);
 
   useEffect(() => {
     if (isPlaying) {
@@ -72,9 +72,9 @@ const PatientTranscriptPage: React.FC = () => {
     }
   }, [isPlaying]);
 
-  const togglePlayPause = () => setIsPlaying(!isPlaying);
+  // const togglePlayPause = () => setIsPlaying(!isPlaying);
 
-  const calculateProgressWidth = (time: number) => (time / totalDuration) * 100;
+  // const calculateProgressWidth = (time: number) => (time / totalDuration) * 100;
 
 
 
@@ -83,7 +83,7 @@ const PatientTranscriptPage: React.FC = () => {
 
 
   return (
-    <div className="bg-[#F3F6F6D9] rounded-2xl p-4 flex items-center justify-center font-sans">
+    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="bg-[#F3F6F6D9] rounded-2xl p-4 flex items-center justify-center font-sans">
       <div className="w-[980px] mx-auto rounded-xl p-6 relative">
         <h2 className="text-2xl md:text-2xl font-semibold text-[#171C35] mb-6">Patient Transcript</h2>
 
@@ -122,15 +122,15 @@ const PatientTranscriptPage: React.FC = () => {
         {/* Audio Player */}
         <div className="mb-8 p-5 md:p-6">
           <h3 className="text-lg md:text-xl font-semibold text-[#171C35] mb-4">Patients Transcript</h3>
-          <div className=" rounded-2xl p-6">
+           {/* <div className=" rounded-2xl p-6">
           
 
-            {/* Waveform */}
+          
             <div className="relative mb-6 overflow-hidden">
               <div className="flex bg-[#526FFF80] px-2 rounded-full items-center justify-between gap-2 h-28 relative">
               {PLAYER_WAVE_SEGMENTS.map((segment, i) => {
   const currentBar = Math.floor((currentTime / totalDuration) * PLAYER_WAVE_SEGMENTS.length);
-  const isActive = i === currentBar; // only the exact current bar
+  const isActive = i === currentBar; 
   return (
     <div key={i} className="flex-1 flex items-center justify-center relative">
       <div
@@ -155,7 +155,7 @@ const PatientTranscriptPage: React.FC = () => {
 
             
 
-            {/* Controls */}
+            
             <div className="flex items-center justify-between gap-4 flex-wrap">
               <span className="text-black text-sm">0:30</span>
               <div className="flex items-center gap-3">
@@ -180,7 +180,7 @@ const PatientTranscriptPage: React.FC = () => {
 </svg>
               </div>
             </div>
-          </div>
+          </div>  */}
 
         {/* Patients Transcript (Audio Player) Section */}
         <div className="mb-8 p-5 md:p-6  ">

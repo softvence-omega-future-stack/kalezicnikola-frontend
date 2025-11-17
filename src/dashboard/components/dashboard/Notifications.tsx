@@ -35,7 +35,7 @@ const notifications: Notification[] = [
 
 const NotificationsModal: React.FC<NotificationsModalProps> = ({ onClose }) => {
   return (
-    <div className="fixed inset-0 flex items-start mt-20 right-44 justify-end z-[9999] px-4">
+    <div  style={{ fontFamily: 'Urbanist, sans-serif' }} className="fixed inset-0 flex items-start mt-20 right-44 justify-end z-[9999] px-4">
       <div className="bg-white rounded-xl  w-full max-w-md overflow-hidden relative animate-fadeIn">
         
         {/* Header */}

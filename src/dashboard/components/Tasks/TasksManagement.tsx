@@ -189,7 +189,7 @@ export default function TaskList() {
     setShowAddModal(true);
   };
 
-  // ✅ Open Edit Modal Handler
+ 
   const openEditModal = (task: Task, columnId: string) => {
     setEditingTask(task);
     setCurrentColumnId(columnId);
@@ -232,7 +232,7 @@ export default function TaskList() {
             {/* Main Add Task button */}
             <button
               onClick={() => openAddModal(columns[0]?.id || 'todo')} 
-              className="px-4 py-2 bg-[#DCE2FF] text-black rounded-[8px] text-sm font-medium cursor-pointer flex items-center gap-2"
+              className="px-4 py-2 bg-[#DCE2FF] text-black rounded-[8px] text-sm font-medium cursor-pointer flex items-center gap-2 "
             >
               <Plus className="w-4 h-4" />
               Add Task
@@ -259,13 +259,13 @@ export default function TaskList() {
                     className="p-1 hover:bg-gray-100 rounded"
                     title={`Add Task to ${column.title}`}
                   >
-                    <Plus className='w-4 h-4 text-[#111A2D]' />
+                    <Plus className='w-4 h-4 text-[#111A2D] cursor-pointer' />
                   </button>
                   
                   {/* 2. Edit Column Name Icon */}
                   <button 
                     onClick={() => handleRenameColumn(column.id, column.title)}
-                    className="p-1 hover:bg-gray-100 rounded"
+                    className="p-1 hover:bg-gray-100 rounded cursor-pointer "
                     title="Rename Column"
                   >
                     <Edit className='w-4 h-4 text-[#111A2D]' />
@@ -274,7 +274,7 @@ export default function TaskList() {
                   {/* 3. Delete Column Icon */}
                   <button 
                     onClick={() => handleDeleteColumn(column.id, column.title)}
-                    className="p-1 hover:bg-gray-100 rounded"
+                    className="p-1 hover:bg-gray-100 rounded cursor-pointer "
                     title="Delete Column"
                   >
                     <Trash2 className='w-4 h-4 text-[#111A2D]' />
@@ -313,14 +313,14 @@ export default function TaskList() {
                              {/* Task Action Icons (Edit and Remove for individual task) */}
                             <button 
                               onClick={() => openEditModal(task, column.id)}
-                              className="p-1 text-gray-500 hover:text-[#526fff] rounded"
+                              className="p-1 text-gray-500 hover:text-[#526fff] cursor-pointer rounded"
                               title="Edit Task"
                             >
                               <Edit className='w-4 h-4' />
                             </button>
                             <button 
                               onClick={() => handleRemoveTask(task.id, column.id)}
-                              className="p-1 text-gray-500 hover:text-[#FF3D3D] rounded"
+                              className="p-1 text-gray-500 hover:text-[#FF3D3D] cursor-pointer rounded"
                               title="Remove Task"
                             >
                               <Trash2 className='w-4 h-4' />
