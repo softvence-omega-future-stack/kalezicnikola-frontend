@@ -47,9 +47,9 @@ const DashboardTopSection: React.FC = () => {
   const { firstName, lastName, date, todayIncomingCalls, successfulCalls, averageCallDuration } = mockDashboardData;
 
   return (
-    <div className="p-5 sm:p-6 md:p-8 rounded-lg bg-[#F3F6F6]">
+    <div className=" mt-6 px-5 bg-[#F3F6F6]">
       {/* Date Navigation */}
-      <div className="flex items-center justify-center sm:justify-start text-[#111A2D] text-sm sm:text-base font-medium mb-4 sm:mb-6 gap-2">
+      <div className="flex items-center justify-center sm:justify-start text-[#111A2D] text-sm sm:text-base font-medium  gap-2">
         <button className="p-2 sm:p-1 rounded-full transition-colors hover:bg-gray-200">
           <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
         </button>
@@ -72,7 +72,7 @@ const DashboardTopSection: React.FC = () => {
         </div>
 
         {/* Metrics */}
-        <div className="flex flex-col sm:flex-row items-center sm:items-end sm:space-x-6 space-y-4 sm:space-y-0">
+        <div className="flex flex-co mb-2 sm:flex-row items-center sm:items-end sm:space-x-6 space-y-4 sm:space-y-0">
           {[ 
             { label: 'Today Incoming Calls', value: todayIncomingCalls },
             { label: 'Successful Calls', value: successfulCalls },

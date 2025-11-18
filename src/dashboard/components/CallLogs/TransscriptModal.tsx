@@ -12,7 +12,7 @@ import WaveBar from './Wevebar';
 
 
 import TranscriptChat from './TranscriptChat';
-// import { Pause } from "lucide-react";
+
 
 // --- Dummy data ---
 const AI_SUMMARY_TEXT = `AI-powered tools help radiologists analyze images (like X-rays, CT scans, and MRIs) to identify conditions such as tumors, fractures, and infections with remarkable accuracy. AI systems can detect early signs of cancers like breast or lung cancer. AI-powered tools help radiologists analyze images (like X-rays, CT scans, and MRIs) to identify conditions such as tumors, fractures, and infections with remarkable accuracy. For example, AI systems can detect early signs of cancers like breast or lung cancer.`;
@@ -24,6 +24,10 @@ const PATIENT_INFO = {
 };
 
 
+
+
+const totalDuration = 100; // normalized total duration
+
 // const PLAYER_WAVE_SEGMENTS = [
 //   { height: 45, time: "0:00" },
 //   { height: 45, time: "0:30" },
@@ -32,7 +36,7 @@ const PATIENT_INFO = {
 //   { height: 45, time: "2:00" },
 //   { height: 45, time: "2:30" },
 // ];
-const totalDuration = 100; 
+
 
 // --- Custom Play Icon SVG ---
 // const SvgPlayIcon = ({ fill = "#526FFF", size = 20, className = "" }) => (
@@ -72,9 +76,7 @@ const PatientTranscriptPage: React.FC = () => {
     }
   }, [isPlaying]);
 
-  // const togglePlayPause = () => setIsPlaying(!isPlaying);
 
-  // const calculateProgressWidth = (time: number) => (time / totalDuration) * 100;
 
 
 
@@ -121,6 +123,7 @@ const PatientTranscriptPage: React.FC = () => {
 
         {/* Audio Player */}
         <div className="mb-8 p-5 md:p-6">
+
           <h3 className="text-lg md:text-xl font-semibold text-[#171C35] mb-4">Patients Transcript</h3>
            {/* <div className=" rounded-2xl p-6">
           
@@ -181,6 +184,7 @@ const PatientTranscriptPage: React.FC = () => {
               </div>
             </div>
           </div>  */}
+
 
         {/* Patients Transcript (Audio Player) Section */}
         <div className="mb-8 p-5 md:p-6  ">

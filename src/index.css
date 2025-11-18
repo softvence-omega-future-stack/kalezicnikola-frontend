@@ -4,6 +4,21 @@
 
 @custom-variant dark (&:is(.dark *));
 
+
+/* index.css বা App.css */
+*{
+    font-family: 'Urbanist' ;
+}
+
+body {
+  /* background: ;  */
+  backdrop-filter: blur(5px); 
+  color: #000;
+  transition: background-color 0.3s ease;
+  overflow-x: hidden;
+    font-family: 'Urbanist';
+}
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);

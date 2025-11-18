@@ -1,7 +1,9 @@
 
 import Footer from "@/layout/Footer";
-// import DoclineHeader from "@/layout/Navbar"
 import CTABanner from "@/Teamplate/CTABanner";
+
+
+
 import DoclineInterface from "@/Teamplate/ExamplesSection";
 import FAQSection from "@/Teamplate/FAQSection";
 import DoclineFeaturesSection from "@/Teamplate/FeatureSection";

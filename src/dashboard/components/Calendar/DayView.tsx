@@ -12,10 +12,10 @@ const DayView = () => {
   return (
     <div>
        {/* Calendar Grid */}
-        <div className="bg-white rounded-[32px] min-h-screen -mt-2">
+        <div className="bg-white rounded-[32px] py-10 -mt-2">
           {/* Day Header with Date Badge */}
           <div className="flex border-b border-gray-200 pl-20">
-            <div className="w-20 flex-shrink-0 flex items-center justify-center py-4">
+            <div className="w-20 shrink-0 flex items-center justify-center py-4">
               <div className="flex flex-col items-center">
                 <span className="text-xs font-medium text-gray-600 mb-1">{dayOfWeek}</span>
                 <div className="w-10 h-10 rounded-full bg-[#526FFF] flex items-center justify-center">

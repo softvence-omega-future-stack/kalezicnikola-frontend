@@ -9,7 +9,9 @@ const Dashboard: React.FC = () => {
   return (
     <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="min-h-screen   ">
     
-      <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="mb-8 ">
+
+      <div className="mb-6 ">
+
         <DashboardTopSection />
       </div>
 

@@ -36,7 +36,7 @@ const DoclineHeader: React.FC = () => {
         }}
       >
         
-        {/* লোগো */}
+       
         <div
           className="flex items-center gap-2 cursor-pointer"
           onClick={() => navigate("/")}
@@ -47,10 +47,10 @@ const DoclineHeader: React.FC = () => {
           </span>
         </div>
 
-        {/* ডানদিকের সমস্ত আইটেম কন্টেইনার */}
+      
         <div className="hidden lg:flex items-center gap-6 h-full"> 
             
-          {/* 🛠️ ফিক্স ১: NavItem Style Updated - শুধু font-bold ব্যবহার করা হয়েছে, আন্ডারলাইন সরানো হয়েছে */}
+          
           <nav className="flex items-center gap-8 text-sm xl:text-base font-medium">
             {menuItems.map((item) => (
               <button
@@ -58,7 +58,7 @@ const DoclineHeader: React.FC = () => {
                 onClick={() => handleScroll(item.id, item.name)}
                 className={`transition-colors whitespace-nowrap py-1 ${
                   item.name === activeItem
-                    ? 'font-bold text-[#171C35]' // <--- শুধুমাত্র font-bold
+                    ? 'font-bold text-[#171C35]' 
                     : 'text-[#171C35] hover:text-blue-600'
                 }`}
               >
@@ -67,11 +67,11 @@ const DoclineHeader: React.FC = () => {
             ))}
           </nav>
 
-          {/* ল্যাঙ্গুয়েজ সিলেক্টর এবং বাটন কন্টেইনার */}
+         
           <div className="flex items-center gap-3 ml-2">
             <LanguageSelector />
             
-            {/* বাটন কন্টেইনার */}
+           
             <div className="flex items-center gap-3">
               
               {/* Demo buchen */}
@@ -134,7 +134,7 @@ const DoclineHeader: React.FC = () => {
         )}
       </div>
       
-      {/* ShadowBox components অপরিবর্তিত */}
+      
       <ShadowBox
         width="321px"
         height="232px"
