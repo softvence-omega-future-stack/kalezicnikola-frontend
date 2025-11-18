@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { } from 'react';
+//import { useNavigate } from 'react-router-dom';
+import LiquidGlassButton from './LequiedGlassBtn';
 
 const CTABanner: React.FC = () => {
-  const navigate = useNavigate();
-  const [isHovered, setIsHovered] = useState(false);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  // const navigate = useNavigate();
+  // const [isHovered, setIsHovered] = useState(false);
+  // const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    setMousePos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
-  };
+  // const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
+  //   const rect = e.currentTarget.getBoundingClientRect();
+  //   setMousePos({
+  //     x: e.clientX - rect.left,
+  //     y: e.clientY - rect.top,
+  //   });
+  // };
 
   return (
     <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="w-full px-4 mt-9 md:mt-[180px] lg:mt-[180px] xl:mt-[180px]">
@@ -28,10 +29,13 @@ const CTABanner: React.FC = () => {
                 Phone stress consumes valuable time and leads to overload. Free up your staff and enjoy smooth operations from the very first minute. Let our AI handle your calls while your team focuses on patient care.
               </p>
             </div>
-
+   
+             <div>
+              <LiquidGlassButton/>
+             </div>
 
             {/* Right Button with Liquid Glass Effect */}
-            <div className="relative">
+            {/* <div className="relative">
               <button
                 onClick={() => navigate('/signup')}
                 onMouseEnter={() => setIsHovered(true)}
@@ -63,7 +67,7 @@ const CTABanner: React.FC = () => {
                   }}
                 />
                 
-                {/* Liquid effect */}
+        
                 {isHovered && (
                   <div
                     className="absolute rounded-full pointer-events-none transition-all duration-500 ease-out"
@@ -79,7 +83,7 @@ const CTABanner: React.FC = () => {
                   />
                 )}
 
-                {/* Shine effect */}
+              
                 <div
                   className="absolute inset-0 opacity-30 pointer-events-none"
                   style={{
@@ -87,7 +91,7 @@ const CTABanner: React.FC = () => {
                   }}
                 />
 
-                {/* Outer glow on hover */}
+              
                 {isHovered && (
                   <div
                     className="absolute inset-0 rounded-full sm:rounded-2xl pointer-events-none"
@@ -103,14 +107,8 @@ const CTABanner: React.FC = () => {
 
                 
 
-            {/* Right Button */}
-            {/* <div className="w-full lg:w-auto flex-shrink-0">
-              <button className="w-full lg:w-auto bg-[#657cf2] text-white border border-white font-semibold px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 rounded-full sm:rounded-2xl transition-all duration-300 text-sm sm:text-base md:text-lg lg:text-xl whitespace-nowrap">
-                Get Started
-
-              </button>
-            </div> */}
-          </div>
+          
+          </div> */}
         </div>
       </div>
     </div>
