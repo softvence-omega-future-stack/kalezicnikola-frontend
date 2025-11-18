@@ -1,13 +1,13 @@
 const Customer = () => {
   return (
-    <div>
+    <div className="flex justify-center">
       {/* Customer Acquisition vs Churn */}
-      <div className="bg-white rounded-3xl p-6 w-[388px] py-4 pb-14  ">
-        <h3 className="text-xl font-semibold text-[#171C35] mb-6">
+      <div className="bg-white rounded-3xl p-6 w-full max-w-md sm:max-w-lg md:w-[388px] py-4 pb-14">
+        <h3 className="text-xl font-semibold text-[#171C35] mb-6 text-center md:text-left">
           Customer Acquisition vs Churn
         </h3>
 
-        <div className="flex items-end justify-center gap-8 h-52 mb-6">
+        <div className="flex flex-col sm:flex-row items-center sm:items-end justify-center gap-6 sm:gap-8 h-auto sm:h-52 mb-6">
           {/* Churn Box */}
           <div className="flex flex-col items-center">
             {/* Percentage on top */}
@@ -38,7 +38,7 @@ const Customer = () => {
         </div>
 
         {/* Legend */}
-        <div className=" flex items-center justify-between ">
+        <div className="flex flex-col sm:flex-row items-center sm:justify-between gap-2 sm:gap-0">
           <div className="flex items-center gap-2 text-xs text-gray-600">
             <div className="w-3 h-3 bg-blue-200 rounded"></div>
             <span>50% Churn</span>
