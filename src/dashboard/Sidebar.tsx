@@ -66,6 +66,7 @@ const Sidebar: React.FC = () => {
 
   return (
     <div
+    style={{ fontFamily: 'Urbanist, sans-serif' }}
       className={`relative flex flex-col justify-between h-screen border-r border-gray-200 transition-all duration-300
         ${effectiveCollapsed ? 'w-20' : 'w-72'}`}
     >
@@ -112,7 +113,7 @@ const Sidebar: React.FC = () => {
             </div>
           )}
         </div>
-        {/* === END: UPDATED HEADER/LOGO SECTION === */}
+
 
         <nav style={{ fontFamily: 'Urbanist, sans-serif' }} className="flex flex-col mt-2 gap-2">
           <NavItem to="/dashboard" iconSrc={dashbord} label="Dashboard" end collapsed={effectiveCollapsed} />

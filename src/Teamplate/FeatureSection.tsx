@@ -223,9 +223,11 @@ const CustomizationCard: React.FC = () => (
 const FeatureSection: React.FC = () => {
   return (
 
+
     <div className="xl:-mt-20 mt-12  ">
 
-    <div className="py-8 px-4 mx-15 xl:-mt-44 ">
+
+    <div className="py-8 px-4 lg:mx-15 xl:-mt-44 ">
 
       <div className="text-center mb-16">
         <div style={{fontFamily: 'Urbanist, sans-serif',}} className="relative glass inline-flex items-center gap-2 backdrop-blur-lg pr-5 pl-2.5 py-2  border border-white bg-white/10 rounded-full mb-6 -mt-7">

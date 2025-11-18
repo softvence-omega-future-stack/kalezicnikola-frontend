@@ -87,7 +87,7 @@ export default function PatientSummary() {
       {/* Content Area */}
       <div className="absolute top-0 left-0 w-full h-full p-6 flex flex-col justify-between">
         <div>
-          <h3 className="text-lg font-semibold text-[#171C35] mb-13">{card.title}</h3>
+          <h3 className="text-lg font-semibold text-[#171C35] mb-5 lg:mb-1 xl:mb-13">{card.title}</h3>
           <p className="text-sm font-medium text-[#111A2D99]">
             {card.date || card.count || card.type}
           </p>
@@ -95,7 +95,7 @@ export default function PatientSummary() {
         </div>
 
      
-        <div className="absolute top-2 right-2">
+        <div className="absolute top-2 right-0">
 
           <div className="h-8 w-8 md:h-12 md:w-12 bg-[#171C35] rounded-full flex items-center justify-center transition-all duration-300">
          
@@ -117,7 +117,7 @@ export default function PatientSummary() {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
         {summaryCards.map((card, index) => (
           <Card key={index} card={card} maskId={`summaryMask${index}`} />
         ))}

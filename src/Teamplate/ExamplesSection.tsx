@@ -106,7 +106,7 @@ const DoclineInterface: React.FC = () => {
   return (
     <div
       style={{ fontFamily: "Urbanist, sans-serif" }}
-      className=" px-9 md:mt-[180px] lg:mt-[180px] xl:mt-[180px] md:px-8 "
+      className=" px-9 mt-16 md:mt-[180px] lg:mt-[180px] xl:mt-[180px] md:px-8 "
     >
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:px-30">
         {/* Left Section */}
@@ -133,7 +133,7 @@ const DoclineInterface: React.FC = () => {
         </div>
 
         {/* Right Section */}
-        <div className="p-6 md:p-8 w-full">
+        <div className=" md:p-8 w-full">
           {/* Audio Player */}
           <div className="bg-[#526FFF] rounded-2xl p-5 mb-6">
             <div className="mb-4">

@@ -17,7 +17,7 @@ const CalendarView: React.FC = () => {
   const handleViewChange = (type: 'day' | 'week' | 'month') => setViewType(type);
 
   return (
-    <div className="min-h-screen ">
+    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="min-h-screen ">
       {/* Breadcrumb */}
       <div className="px-4 sm:px-6 py-3">
         <div className="flex items-center gap-2 text-sm text-gray-500 flex-wrap">

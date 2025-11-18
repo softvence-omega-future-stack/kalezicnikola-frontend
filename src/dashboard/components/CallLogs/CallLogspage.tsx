@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import {  Play,} from 'lucide-react';
+import { Play } from 'lucide-react';
 import PatientTranscriptPage from './TransscriptModal';
 import { FiX } from 'react-icons/fi';
-
-import homeIcon from '../../../assets/svgIcon/homeIcon.svg'
-import chevronIcon from '../../../assets/svgIcon/chevronnRight.svg'
-import filter from '../../../assets/svgIcon/filter.svg'
-import viewIcon from '../../../assets/svgIcon/viewArrow.svg'
 import { useNavigate } from 'react-router-dom';
+
+import homeIcon from '../../../assets/svgIcon/homeIcon.svg';
+import chevronIcon from '../../../assets/svgIcon/chevronnRight.svg';
+import filter from '../../../assets/svgIcon/filter.svg';
+import viewIcon from '../../../assets/svgIcon/viewArrow.svg';
 
 interface CallLog {
   id: number;
@@ -20,25 +20,21 @@ interface CallLog {
 
 const CallLogsPage: React.FC = () => {
   const [selectedRows, setSelectedRows] = useState<number[]>([]);
-
-     const [currentCall, setCurrentCall] = useState<CallLog | null>(null);
-     const navigate = useNavigate()
-  
-
- 
+  const [currentCall, setCurrentCall] = useState<CallLog | null>(null);
+  const navigate = useNavigate();
 
   const callLogs: CallLog[] = [
-    { id: 1, patientName: 'Floyd Miles', timestamp: '01-09-2025 at 10:32:15', phoneNumber: '+88123456', status: 'Successful', duration: '05: 40 Sec' },
-    { id: 2, patientName: 'Floyd Miles', timestamp: '01-09-2025 at 10:32:15', phoneNumber: '+88123456', status: 'Unsuccessful', duration: '05: 40 Sec' },
-    { id: 3, patientName: 'Floyd Miles', timestamp: '01-09-2025 at 10:32:15', phoneNumber: '+88123456', status: 'Successful', duration: '05: 40 Sec' },
-    { id: 4, patientName: 'Floyd Miles', timestamp: '01-09-2025 at 10:32:15', phoneNumber: '+88123456', status: 'Transferred', duration: '05: 40 Sec' },
-    { id: 5, patientName: 'Floyd Miles', timestamp: '01-09-2025 at 10:32:15', phoneNumber: '+88123456', status: 'Successful', duration: '05: 40 Sec' },
-    { id: 6, patientName: 'Floyd Miles', timestamp: '01-09-2025 at 10:32:15', phoneNumber: '+88123456', status: 'Missed', duration: '05: 40 Sec' },
-    { id: 7, patientName: 'Floyd Miles', timestamp: '01-09-2025 at 10:32:15', phoneNumber: '+88123456', status: 'Unsuccessful', duration: '05: 40 Sec' },
-    { id: 8, patientName: 'Floyd Miles', timestamp: '01-09-2025 at 10:32:15', phoneNumber: '+88123456', status: 'Successful', duration: '05: 40 Sec' },
-    { id: 9, patientName: 'Floyd Miles', timestamp: '01-09-2025 at 10:32:15', phoneNumber: '+88123456', status: 'Successful', duration: '05: 40 Sec' },
-    { id: 10, patientName: 'Floyd Miles', timestamp: '01-09-2025 at 10:32:15', phoneNumber: '+88123456', status: 'Missed', duration: '05: 40 Sec' },
-    { id: 11, patientName: 'Floyd Miles', timestamp: '01-09-2025 at 10:32:15', phoneNumber: '+88123456', status: 'Successful', duration: '05: 40 Sec' },
+    { id: 1, patientName: 'Floyd Miles', timestamp: '01-09-2025 at 10:32:15', phoneNumber: '+88123456', status: 'Successful', duration: '05:40 Sec' },
+    { id: 2, patientName: 'Floyd Miles', timestamp: '01-09-2025 at 10:32:15', phoneNumber: '+88123456', status: 'Unsuccessful', duration: '05:40 Sec' },
+    { id: 3, patientName: 'Floyd Miles', timestamp: '01-09-2025 at 10:32:15', phoneNumber: '+88123456', status: 'Successful', duration: '05:40 Sec' },
+    { id: 4, patientName: 'Floyd Miles', timestamp: '01-09-2025 at 10:32:15', phoneNumber: '+88123456', status: 'Transferred', duration: '05:40 Sec' },
+    { id: 5, patientName: 'Floyd Miles', timestamp: '01-09-2025 at 10:32:15', phoneNumber: '+88123456', status: 'Successful', duration: '05:40 Sec' },
+    { id: 6, patientName: 'Floyd Miles', timestamp: '01-09-2025 at 10:32:15', phoneNumber: '+88123456', status: 'Missed', duration: '05:40 Sec' },
+    { id: 7, patientName: 'Floyd Miles', timestamp: '01-09-2025 at 10:32:15', phoneNumber: '+88123456', status: 'Unsuccessful', duration: '05:40 Sec' },
+    { id: 8, patientName: 'Floyd Miles', timestamp: '01-09-2025 at 10:32:15', phoneNumber: '+88123456', status: 'Successful', duration: '05:40 Sec' },
+    { id: 9, patientName: 'Floyd Miles', timestamp: '01-09-2025 at 10:32:15', phoneNumber: '+88123456', status: 'Successful', duration: '05:40 Sec' },
+    { id: 10, patientName: 'Floyd Miles', timestamp: '01-09-2025 at 10:32:15', phoneNumber: '+88123456', status: 'Missed', duration: '05:40 Sec' },
+    { id: 11, patientName: 'Floyd Miles', timestamp: '01-09-2025 at 10:32:15', phoneNumber: '+88123456', status: 'Successful', duration: '05:40 Sec' },
   ];
 
   const toggleRowSelection = (id: number) => {
@@ -86,115 +82,109 @@ const CallLogsPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen -ml- ">
+    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="min-h-screen bg-gray-50">
       {/* Header Navigation */}
-      <div className="  px-2 py-3">
-        <div className="flex items-center gap-[10px] text-sm">
-        
-            <img src={homeIcon} alt="" />
-        
-          <span className="text-gray-400"><img src="" alt="" /> </span>
-          <span className="text-gray-500 text-xs">Dashboard</span>
-          <span className="text-gray-400"><img src={chevronIcon} alt="" /></span>
+      <div className="px-4 py-3">
+        <div className="flex flex-wrap items-center gap-2 text-sm">
+          <img src={homeIcon} alt="home" className="w-4 h-4" />
+          <span className="text-gray-500 text-xs sm:text-sm">Dashboard</span>
+          <img src={chevronIcon} alt=">" className="w-3 sm:w-4" />
           <span className="text-[#042435] text-sm font-semibold">Call Logs</span>
         </div>
       </div>
 
       {/* Main Content */}
-      <div className="p-6  ">
-        <h1 className="text-2xl font-bold text-black mb-6">Call Logs</h1>
+      <div className="p-4 sm:p-6">
+        <h1 className="text-2xl sm:text-3xl font-bold text-black mb-6">Call Logs</h1>
 
         {/* Table Container */}
-        <div className=" rounded-2xl  bg-white  ">
-          {/* Table Header with Filters */}
-          <div className="flex items-center justify-between p-4  rounded-2xl ">
+        <div className="rounded-2xl bg-white shadow-sm">
+          {/* Table Header */}
+          <div className="flex flex-wrap justify-between items-center p-4 border-b border-gray-100">
             <h2 className="text-base font-semibold text-[#171C35]">Call Logs</h2>
-            <button className="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-[#111A2D] hover:bg-gray-50 rounded border border-gray-300">
-             <img src={filter} alt="" />
+            <button className="flex items-center gap-2 px-3 py-1.5 text-sm font-semibold text-[#111A2D] hover:bg-gray-50 rounded border border-gray-300">
+              <img src={filter} alt="filter" className="w-4 h-4" />
               Filters
             </button>
           </div>
 
           {/* Table */}
           <div className="overflow-x-auto">
-            <table className="w-full px-2">
-            <thead>
-  <tr className="">
-    <th className="  px-6 py-3 text-left text-sm font-semibold text-[#171C35]">
-      <div className="flex items-center gap-3">
-        <input
-          type="checkbox"
-          checked={selectedRows.length === callLogs.length}
-          onChange={toggleAllRows}
-          className="w-4 h-4 rounded-2xl border-gray-100 text-indigo-600 focus:ring-indigo-500"
-        />
-        Patient Name
-      </div>
-    </th>
-    <th className="px-6 py-3 text-left text-sm font-semibold text-[#171C35]">Timestamp</th>
-    <th className="px-6 py-3 text-left text-sm font-semibold text-[#171C35]">Phone Number</th>
-    <th className="px-6 py-3 text-left text-sm font-semibold text-[#171C35]">Status</th>
-    <th className="px-6 py-3 text-left text-sm font-semibold text-[#171C35]">Duration</th>
-    <th className="px-6 py-3 text-left text-sm font-semibold text-[#171C35]">Transcript</th>
-    <th className="px-6 py-3 text-left text-sm font-semibold text-[#171C35]">Profile</th>
-  </tr>
-</thead>
-
-<tbody>
-  {callLogs.map((log) => (
-    <tr key={log.id} className="border-b border-gray-100 ">
-      <td className="px-6 py-4 flex items-center gap-2 text-sm font-semibold text-[#111A2D]">
-        <input
-          type="checkbox"
-          checked={selectedRows.includes(log.id)}
-          onChange={() => toggleRowSelection(log.id)}
-          className="w-4 h-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-        />
-        {log.patientName}
-      </td>
-      <td className="px-6 py-4 text-sm font-semibold text-[#111A2D]">{log.timestamp}</td>
-      <td className="px-6 py-4 text-sm font-semibold text-[#111A2D]">{log.phoneNumber}</td>
-      <td className="px-6 py-4">
-        <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-semibold ${getStatusStyle(log.status)}`}>
-          <span className={`w-1.5 h-1.5 rounded-full ${getStatusDot(log.status)}`}></span>
-          {log.status}
-        </span>
-      </td>
-      <td className="px-6 py-4 text-sm font-semibold text-[#111A2D]">{log.duration}</td>
-      <td className="px-6 py-4">
-        <button onClick={() => setCurrentCall(log)} className="flex items-center gap-2 px-4 py-1.5 text-sm font-semibold text-[#171C35] rounded-2xl border border-gray-300">
-          Play <Play size={14} fill="currentColor" />
-        </button>
-      </td>
-      <td className="px-6 py-4">
-        <button onClick={()=> navigate('/dashboard/patients')} className="flex items-center gap-2 text-sm font-medium text-[#526FFF]">
-          View Profile <img src={viewIcon} alt="" />
-        </button>
-      </td>
-    </tr>
-  ))}
-</tbody>
-
+            <table className="min-w-full divide-y divide-gray-200">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th className="px-2 sm:px-4 py-2 text-left text-sm font-semibold text-[#171C35]">
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="checkbox"
+                        checked={selectedRows.length === callLogs.length}
+                        onChange={toggleAllRows}
+                        className="w-4 h-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                      />
+                      Patient Name
+                    </div>
+                  </th>
+                  <th className="px-2 sm:px-4 py-2 text-left text-sm font-semibold text-[#171C35] hidden sm:table-cell">Timestamp</th>
+                  <th className="px-2 sm:px-4 py-2 text-left text-sm font-semibold text-[#171C35]">Phone Number</th>
+                  <th className="px-2 sm:px-4 py-2 text-left text-sm font-semibold text-[#171C35]">Status</th>
+                  <th className="px-2 sm:px-4 py-2 text-left text-sm font-semibold text-[#171C35] hidden md:table-cell">Duration</th>
+                  <th className="px-2 sm:px-4 py-2 text-left text-sm font-semibold text-[#171C35]">Transcript</th>
+                  <th className="px-2 sm:px-4 py-2 text-left text-sm font-semibold text-[#171C35]">Profile</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100">
+                {callLogs.map((log) => (
+                  <tr key={log.id} className="hover:bg-gray-50">
+                    <td className="px-2 sm:px-4 py-2 flex items-center gap-2 text-sm font-semibold text-[#111A2D]">
+                      <input
+                        type="checkbox"
+                        checked={selectedRows.includes(log.id)}
+                        onChange={() => toggleRowSelection(log.id)}
+                        className="w-4 h-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                      />
+                      {log.patientName}
+                    </td>
+                    <td className="px-2 sm:px-4 py-2 text-sm text-[#111A2D] hidden sm:table-cell">{log.timestamp}</td>
+                    <td className="px-2 sm:px-4 py-2 text-sm text-[#111A2D]">{log.phoneNumber}</td>
+                    <td className="px-2 sm:px-4 py-2">
+                      <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-sm font-semibold ${getStatusStyle(log.status)}`}>
+                        <span className={`w-2 h-2 rounded-full ${getStatusDot(log.status)}`}></span>
+                        {log.status}
+                      </span>
+                    </td>
+                    <td className="px-2 sm:px-4 py-2 text-sm text-[#111A2D] hidden md:table-cell">{log.duration}</td>
+                    <td className="px-2 sm:px-4 py-2">
+                      <button onClick={() => setCurrentCall(log)} className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1 text-sm sm:text-base font-semibold text-[#171C35] rounded-2xl border border-gray-300">
+                        Play <Play size={14} fill="currentColor" />
+                      </button>
+                    </td>
+                    <td className="px-2 sm:px-4 py-2">
+                      <button onClick={() => navigate('/dashboard/patients')} className="flex items-center gap-1 sm:gap-2 text-sm font-medium text-[#526FFF]">
+                        View Profile <img src={viewIcon} alt="view" className="w-3 h-3 sm:w-4 sm:h-4" />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
             </table>
           </div>
         </div>
       </div>
-   {/* Transcript Section */}
+
+      {/* Transcript Section */}
       {currentCall && (
-  <div className="fixed inset-0 bg-black/50 bg-opacity-30 flex justify-center items-start p-6 z-50">
-    <div className="bg-white rounded-xl shadow-lg w-[980px] h-[1138px] overflow-y-auto max-h-[90vh] relative mt-20">
-      <button
-        className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 cursor-pointer"
-        onClick={() => setCurrentCall(null)}
-      >
-        <FiX size={20} />
-      </button>
-      <PatientTranscriptPage />
-    </div>
-  </div>
-)}
-
-
+        <div className="fixed inset-0 bg-black/50 flex justify-center items-start p-4 sm:p-6 z-50 overflow-y-auto">
+          <div className="bg-white rounded-xl shadow-lg w-full max-w-[980px] h-[90vh] overflow-y-auto relative mt-20 mx-2 sm:mx-6">
+            <button
+              className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 cursor-pointer"
+              onClick={() => setCurrentCall(null)}
+            >
+              <FiX size={20} />
+            </button>
+            <PatientTranscriptPage />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

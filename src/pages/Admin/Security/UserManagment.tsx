@@ -51,57 +51,74 @@ const UserManagement: React.FC = () => {
         <h1 className="text-2xl font-semibold text-[#171C35]">User Management</h1>
       </div>
 
-      <div className="overflow-x-auto">
-        <table className="w-full">
-          <thead>
-            <tr>
-              <th className="px-6 py-3 text-left">User</th>
-              <th className="px-6 py-3 text-left">Role</th>
-              <th className="px-6 py-3 text-left">Status</th>
-              <th className="px-6 py-3 text-left">2FA</th>
-              <th className="px-6 py-3 text-left">Last Login</th>
-              <th className="px-6 py-3 text-left">Actions</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-100">
-            {users.map(user => (
-              <tr key={user.id}>
-                <td className="px-6 py-4 flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-xl">
-                    <img src={profile} alt="" />
-                  </div>
-                  <span className="text-sm text-[#45464E]">{user.name}</span>
-                </td>
-                <td className="px-6 py-4 text-sm font-medium text-[#111A2D]">{user.role}</td>
-                <td className="px-6 py-4">
-                  <span className={`inline-flex items-center gap-2 px-4 py-1 rounded-full text-sm font-medium ${
-                    user.status === 'Active' ? 'bg-[#0089331A] text-[#008933]' : 'bg-red-100 text-red-500'
-                  }`}>
-                    <span className={`w-2 h-2 rounded-full ${user.status === 'Active' ? 'bg-[#008933]' : 'bg-red-500'}`}></span>
-                    {user.status}
-                  </span>
-                </td>
-                <td className="px-6 py-4">
-                  <span className={`inline-flex px-6 py-2 rounded-full text-sm font-medium ${
-                    user.twoFA === 'Enable' ? 'bg-[#526FFF1A] text-[#526FFF]' : 'bg-[#FF1C331A] text-[#FF1C33]'
-                  }`}>
-                    {user.twoFA}
-                  </span>
-                </td>
-                <td className="px-6 py-4 text-sm font-medium text-[#111A2D]">{user.lastLogin}</td>
-                <td className="px-6 py-4 flex items-center gap-2">
-                  <button onClick={() => handleEditClick(user)} className="p-1.5 rounded transition-colors">
-                    <img src={edit} alt="Edit" />
-                  </button>
-                  <button className="p-1.5 rounded transition-colors">
-                    <img src={userIcon} alt="View" />
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+<div className="overflow-x-auto">
+  <table className="w-full min-w-[600px]">
+    <thead className="bg-gray-50 border-b border-gray-200">
+      <tr>
+        {/* All th padding kept at px-1 for minimum spacing on mobile */}
+        <th className="px-1 sm:px-3 py-2 text-left text-xs sm:text-base font-semibold text-gray-600 w-[30%]">User</th>
+        <th className="px-1 sm:px-3 py-2 text-left text-xs sm:text-base font-semibold text-gray-600 w-[20%]">Role</th>
+        <th className="px-1 sm:px-3 py-2 text-left text-xs sm:text-base font-semibold text-gray-600 w-[15%]">Status</th>
+        <th className="px-1 sm:px-3 py-2 text-left text-xs sm:text-base font-semibold text-gray-600 w-[10%]">2FA</th>
+        <th className="px-1 sm:px-3 py-2 text-left text-xs sm:text-base font-semibold text-gray-600 w-[15%]">Last Login</th>
+        <th className="px-1 sm:px-3 py-2 text-left text-xs sm:text-base font-semibold text-gray-600 w-[10%]">Actions</th>
+      </tr>
+    </thead>
+    <tbody className="divide-y divide-gray-100">
+      {users.map(user => (
+        <tr key={user.id} className="text-xs text-gray-700 sm:text-base hover:bg-gray-50 transition-colors">
+          
+          {/* USER CELL: px-1 retained, vertical stack on mobile */}
+          <td className="px-1 sm:px-3 py-2">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-1 sm:gap-2">
+              <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-full bg-gray-200 flex items-center justify-center flex-shrink-0">
+                <img src={profile} alt="" className="w-5 h-5 sm:w-8 sm:h-8"/>
+              </div>
+              <span className="text-sm font-medium truncate max-w-[80px] sm:max-w-full leading-tight">{user.name}</span>
+            </div>
+          </td>
+          
+          {/* Role Cell: px-1 retained */}
+          <td className="px-1 sm:px-3 py-2 font-medium">{user.role}</td>
+          
+          {/* Status Cell: px-1 retained, badge padding reduced to px-1 py-0*/}
+          <td className="px-1 sm:px-3 py-2">
+            <span className={`inline-flex items-center gap-1 px-1 py-0 rounded-full text-[10px] sm:text-xs font-medium ${
+              user.status === 'Active' ? 'bg-[#0089331A] text-[#008933]' : 'bg-red-100 text-red-500'
+            }`}>
+              <span className={`w-1 h-1 rounded-full ${user.status === 'Active' ? 'bg-[#008933]' : 'bg-red-500'}`}></span>
+              {user.status}
+            </span>
+          </td>
+          
+          {/* 2FA Cell: px-1 retained, badge padding reduced to px-1 py-0*/}
+          <td className="px-1 sm:px-3 py-2">
+            <span className={`inline-flex px-1 py-0 rounded-full text-[10px] sm:text-xs font-medium ${
+              user.twoFA === 'Enable' ? 'bg-[#526FFF1A] text-[#526FFF]' : 'bg-[#FF1C331A] text-[#FF1C33]'
+            }`}>
+              {user.twoFA}
+            </span>
+          </td>
+          
+          {/* Last Login Cell: px-1 retained */}
+          <td className="px-1 sm:px-3 py-2 text-xs">{user.lastLogin}</td>
+          
+          {/* Actions Cell: px-1 retained, gap reduced to zero */}
+          <td className="px-1 sm:px-3 py-2 flex items-center gap-0">
+            {/* Reduced button padding to p-0.5 (2px) for minimum space */}
+            <button onClick={() => handleEditClick(user)} className="p-0.5 rounded hover:bg-gray-100">
+              <img src={edit} alt="Edit" className="w-4 h-4"/>
+            </button>
+            <button className="p-0.5 rounded hover:bg-gray-100">
+              <img src={userIcon} alt="View" className="w-4 h-4"/>
+            </button>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
 
       {/* Edit Modal */}
       {isModalOpen && selectedUser && (

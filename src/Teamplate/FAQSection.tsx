@@ -49,7 +49,7 @@ const FAQSection: React.FC = () => {
   };
 
   return (
-    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="px-4  mt-9 xl:mt-[180px] lg:mt-[180px] ">
+    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="px-4  mt-19 xl:mt-[180px] lg:mt-[180px] ">
       <div className="relative xl:px-30 overflow-hidden">
 
         {/* Header Section */}

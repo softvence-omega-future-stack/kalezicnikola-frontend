@@ -1,0 +1,154 @@
+.glass-card {
+  width: 218px;
+  height: 64px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(9px);
+  -webkit-backdrop-filter: blur(9px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 0 0px 0px rgba(255, 255, 255, 0);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.8),
+    transparent
+  );
+}
+
+.glass-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.8),
+    transparent,
+    rgba(255, 255, 255, 0.3)
+  );
+}
+
+/* .glass-btn {
+  padding: 14px 32px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: white;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  cursor: pointer;
+  box-shadow: 
+      inset 1px 1px 2px rgba(255,255,255,0.4),
+      inset -1px -1px 3px rgba(255,255,255,0.2),
+      0 4px 12px rgba(0,0,0,0.25);
+  transition: all 0.25s ease;
+}
+
+.glass-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow:
+      inset 1px 1px 2px rgba(255,255,255,0.5),
+      inset -1px -1px 4px rgba(255,255,255,0.25),
+      0 6px 18px rgba(0,0,0,0.35);
+} */
+.glassbtn {
+
+  background-color: rgba(255, 255, 255, 0.2);
+  
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); 
+
+  /* Additional styling for the button appearance */
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 15px; /* Adjust border-radius to match Apple's rounded corners */
+  padding: 10px 20px;
+  color: white;
+  font-size: 16px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+.glass-btn {
+  /* Basic button styling */
+  padding: 15px 25px;
+  border-radius: 12px; /* Adjust for desired roundness */
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff; /* Text color */
+  text-align: center;
+  cursor: pointer;
+  border: none; /* Remove default button border */
+
+  /* Liquid Glass effect */
+  background: rgba(255, 255, 255, 0.2); /* Translucent white background */
+  backdrop-filter: blur(8px) saturate(180%); /* Blur and saturation for glass effect */
+  -webkit-backdrop-filter: blur(8px) saturate(180%); /* Vendor prefix for broader compatibility */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), /* Soft drop shadow */
+              inset 0 1px 0 rgba(255, 255, 255, 0.5), /* Inner top highlight */
+              inset 0 -1px 0 rgba(0, 0, 0, 0.2); /* Inner bottom shadow */
+  transition: all 0.3s ease; /* Smooth transitions for hover effects */
+}
+
+.liquid-glass-button:hover {
+  background: rgba(255, 255, 255, 0.3); /* Slightly more opaque on hover */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15),
+              inset 0 1px 0 rgba(255, 255, 255, 0.6),
+              inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* .glass-btn:active {
+  transform: scale(0.96);
+  background: rgba(255, 255, 255, 0.28);
+} */
+
+
+
+/* .glass-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(2px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 2rem;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2), 
+              inset 0 4px 20px rgba(255, 255, 255, 0.3);
+}
+
+
+.glass-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2rem;
+  backdrop-filter: blur(1px);
+  box-shadow: inset -10px -8px 0px -11px rgba(255, 255, 255, 1),
+              inset 0px -9px 0px -8px rgba(255, 255, 255, 1);
+  opacity: 0.6;
+  z-index: -1;
+  filter: blur(1px) drop-shadow(10px 4px 6px black) brightness(115%);
+} */

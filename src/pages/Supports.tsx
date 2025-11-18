@@ -3,7 +3,7 @@ import SupportChat from "@/dashboard/components/Support/SupportFormDoctor"
 
 const Supports = () => {
   return (
-    <div>
+    <div style={{ fontFamily: 'Urbanist, sans-serif' }}>
       <SupportChat/>
     </div>
   )

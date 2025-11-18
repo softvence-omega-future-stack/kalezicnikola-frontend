@@ -10,7 +10,7 @@ import './buttom.css'
 
 const Functions = () => {
   return (
-    <section  style={{ fontFamily: 'Urbanist, sans-serif' }} className="xl:mt-[180px] lg:mt-[180px] mt-5 ">
+    <section  style={{ fontFamily: 'Urbanist, sans-serif' }} className="xl:mt-[180px] lg:mt-[180px] mt-19 ">
       <div className=" px-4 sm:px-6 lg:px-8 mx-10">
 
      <div className="text-start mb-16 ">

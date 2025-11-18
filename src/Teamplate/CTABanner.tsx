@@ -1,11 +1,18 @@
 import React, { } from 'react';
+
 //import { useNavigate } from 'react-router-dom';
 // import LiquidGlassButton from './LequiedGlassBtn';
+
+// import { useNavigate } from 'react-router-dom';
+
 
 const CTABanner: React.FC = () => {
   // const navigate = useNavigate();
   // const [isHovered, setIsHovered] = useState(false);
   // const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  //  const [isPressed, setIsPressed] = useState(false);
+
 
   // const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
   //   const rect = e.currentTarget.getBoundingClientRect();
@@ -14,6 +21,7 @@ const CTABanner: React.FC = () => {
   //     y: e.clientY - rect.top,
   //   });
   // };
+
 
   return (
     <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="w-full px-4 mt-9 md:mt-[180px] lg:mt-[180px] xl:mt-[180px]">
@@ -84,7 +92,9 @@ const CTABanner: React.FC = () => {
                   }}
                 />
                 
-        
+
+             
+
                 {isHovered && (
                   <div
                     className="absolute rounded-full pointer-events-none transition-all duration-500 ease-out"
@@ -100,7 +110,7 @@ const CTABanner: React.FC = () => {
                   />
                 )}
 
-              
+          
                 <div
                   className="absolute inset-0 opacity-30 pointer-events-none"
                   style={{

@@ -237,7 +237,7 @@ const UpgradPlan = () => {
 
   return (
     <div
-      className="relative mt-9 xl:mt-[180px] lg:mt-[180px] md:mt-[180px] xl:mx-20 px-4 md:px-8 rounded-[40px] overflow-hidden"
+      className="relative mt-19 xl:mt-[180px] lg:mt-[180px] md:mt-[180px] xl:mx-20 px-4 md:px-8 rounded-[40px] overflow-hidden"
       style={{
         boxShadow: '0 20px 50px rgba(0, 0, 0, 0.05)',
         fontFamily: 'Urbanist, sans-serif',

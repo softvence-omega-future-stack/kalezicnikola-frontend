@@ -164,16 +164,17 @@ import img4 from "../assets/svgIcon/workflowSlider4.svg";
 
 const DashboardSlide: React.FC<{
   bgColor: string;
+  label:string;
   title: string;
   subtitle: string;
   list: string[];
   img: string;
   isActive?: boolean;
-}> = ({ bgColor, title, subtitle, list, img, isActive }) => {
+}> = ({ bgColor, label, title, subtitle, list, img, isActive }) => {
   return (
     <div
       className={`p-6 md:p-8 ${bgColor} rounded-3xl shadow-xl relative overflow-hidden h-[600px] flex flex-col transition-all duration-700 transform ${
-        isActive ? "scale-100 opacity-100" : "scale-95 opacity-60"
+        isActive ? "scale-100 opacity-100" : "scale-95 opacity-100"
       } mx-auto w-full max-w-[1100px]`}
     >
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-50 to-indigo-100 opacity-50 z-0"></div>
@@ -182,7 +183,7 @@ const DashboardSlide: React.FC<{
       <div className="relative z-10 shrink-0 mb-4">
         <div className="inline-flex items-center text-sm font-medium text-[#3B82F6] mb-2 rounded-full py-2 px-3 border border-[#3B82F6]">
           <img src={icon} alt="" className="mr-2" />
-          Dashboard
+          {label}
         </div>
 
         <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-2">
@@ -215,6 +216,7 @@ const Slider = () => {
   const slides = [
     {
       id: 1,
+      label:"Task",
       title: "Clear Overview. More Efficiency",
       subtitle: "The dashboard that makes management easier and faster.",
       list: [
@@ -227,6 +229,7 @@ const Slider = () => {
     },
     {
       id: 2,
+      label:"Dashboard",
       title: "Optimized Workflow",
       subtitle: "Integrated task management ensures efficiency.",
       list: [
@@ -239,6 +242,7 @@ const Slider = () => {
     },
     {
       id: 3,
+      label:"Call Logs, Transcription & Audio",
       title: "Patient & Data Insights",
       subtitle: "Get a complete view of performance data.",
       list: [
@@ -251,6 +255,7 @@ const Slider = () => {
     },
     {
       id: 4,
+      label:"Calendar & Patient Records",
       title: "Collaborative Dashboard",
       subtitle: "Work together in real time.",
       list: [
@@ -264,7 +269,7 @@ const Slider = () => {
   ];
 
   return (
-    <section className="xl:mt-[180px] lg:mt-[180px] md:mt-[180px]  mt-6 font-[Urbanist]">
+    <section className="xl:mt-[180px] lg:mt-[180px] md:mt-[180px]  mt-16 font-[Urbanist]">
       <div>
         {/* Header */}
         <div className="mb-15 px-12 xl:px-30 flex items-center justify-between gap-8">
@@ -314,7 +319,7 @@ const Slider = () => {
               {({ isActive }) => (
                 <div
                   className={`transition-all duration-700 ${
-                    isActive ? "scale-100 opacity-100" : "scale-90 opacity-90"
+                    isActive ? "scale-100 opacity-100" : "scale-90 "
                   }`}
                 >
                   <DashboardSlide {...slide} isActive={isActive} />

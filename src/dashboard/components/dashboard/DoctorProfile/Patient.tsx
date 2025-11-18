@@ -17,7 +17,7 @@ const Patient = () => {
   ];
 
   return (
-    <div className='bg-white'>
+    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className='bg-white'>
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-xl tracking-tighter font-semibold text-[#171C35]">Patients History</h3>
         <button onClick={()=> navigate('/dashboard/add-patient')} className="flex items-center gap-2 px-4 py-2 text-sm text-[#111A2D] font-semibold cursor-pointer bg-white hover:bg-gray-50 rounded-xl border border-gray-200 transition-colors">

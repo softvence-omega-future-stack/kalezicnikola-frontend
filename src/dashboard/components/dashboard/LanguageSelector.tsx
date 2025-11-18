@@ -13,7 +13,7 @@ const LanguageSelector = () => {
   };
 
   return (
-    <div className="relative">
+    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="relative">
       {/* EN / DE button */}
       <button
         onClick={() => setShowDropdown(!showDropdown)}
