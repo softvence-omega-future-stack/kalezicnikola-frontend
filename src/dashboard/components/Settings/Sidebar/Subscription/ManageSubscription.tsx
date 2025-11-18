@@ -16,7 +16,7 @@ export default function ManageSubscription({ setActiveTab }: ManageSubscriptionP
     {
       name: 'Standard',
       monthly: 399,
-      yearly: 3990,
+      yearly: 339,
       features: [
         'AI Voicebot setup & configuration',
         '24/7 availability & call handling',
@@ -31,7 +31,7 @@ export default function ManageSubscription({ setActiveTab }: ManageSubscriptionP
     {
       name: 'Premium',
       monthly: 899,
-      yearly: 8990,
+      yearly: 765,
       features: [
         'AI Voicebot setup & configuration',
         '24/7 availability & call handling',
@@ -47,7 +47,7 @@ export default function ManageSubscription({ setActiveTab }: ManageSubscriptionP
     {
       name: 'Enterprise',
       monthly: 1299,
-      yearly: 12990,
+      yearly: 1105,
       features: [
         'AI Voicebot setup & configuration',
         '24/7 availability & call handling',

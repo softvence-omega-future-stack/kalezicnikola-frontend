@@ -76,8 +76,8 @@ const DoclineHero: React.FC = () => {
       </div> */}
 
 <div className="flex items-center gap-2">
-  <button className="py-6 px-12 rounded-[12px] text-base font-medium bg-[#526FFF] text-white ">Book Demo</button>
-  <button className="py-6 px-12 rounded-[12px] text-base font-medium border border-[#526FFF] text-[#526FFF]  bg-[rgba(82,_111,_255,_0.10)] ">Demo buchen</button>
+  <button className="py-6 px-12 rounded-[12px] text-base font-medium bg-[#526FFF] text-white ">Get Started</button>
+  <button className="py-6 px-12 rounded-[12px] text-base font-medium border border-[#526FFF] text-[#526FFF]  bg-[rgba(82,_111,_255,_0.10)] ">Book Demo </button>
 </div>
 
 
