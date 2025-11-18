@@ -1,6 +1,6 @@
 import React, { } from 'react';
 //import { useNavigate } from 'react-router-dom';
-import LiquidGlassButton from './LequiedGlassBtn';
+// import LiquidGlassButton from './LequiedGlassBtn';
 
 const CTABanner: React.FC = () => {
   // const navigate = useNavigate();
@@ -30,8 +30,25 @@ const CTABanner: React.FC = () => {
               </p>
             </div>
    
-             <div>
+             {/* <div>
               <LiquidGlassButton/>
+             </div> */}
+
+             <div>
+              <button
+  className="flex justify-center items-center gap-3 px-2 py-2 w-[218px] h-[64px] 
+             rounded-[100px] border border-white/100 
+             bg-[rgba(255,255,255,0.10)] backdrop-blur-[7.5px]
+             relative overflow-hidden"
+  style={{
+    background: "rgba(255, 255, 255, 0.10)",
+    border: "0.8px solid #FFFFFF",
+    backdropFilter: "blur(7.5px)",
+  }}
+>
+  <span className="text-white font-medium text-lg">Start Now</span>
+</button>
+
              </div>
 
             {/* Right Button with Liquid Glass Effect */}

@@ -223,7 +223,7 @@ const CustomizationCard: React.FC = () => (
 const FeatureSection: React.FC = () => {
   return (
 
-    <div className="xl:-mt-20 mt-12 px-4 mx-15 ">
+    <div className="xl:-mt-20 mt-12  ">
 
     <div className="py-8 px-4 mx-15 xl:-mt-44 ">
 

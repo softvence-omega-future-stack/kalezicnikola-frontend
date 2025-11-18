@@ -127,7 +127,7 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ onLogoutClick, collapsed, o
     <div className={`flex flex-col justify-between
         h-screen
         ${sidebarWidth} 
-        bg-white shadow-md
+        
         transition-all duration-300
         flex-shrink-0
         overflow-hidden`}>
