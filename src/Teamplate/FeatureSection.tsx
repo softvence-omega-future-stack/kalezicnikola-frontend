@@ -223,9 +223,13 @@ const CustomizationCard: React.FC = () => (
 const FeatureSection: React.FC = () => {
   return (
 
-    <div className="xl:-mt-20 mt-12 px-4 lg:mx-15 ">
 
-    <div className="py-8 px-4 lg:mx-15 xl:-mt-44 ">
+    <div className=" px-4  ">
+
+    <div className="  ">
+
+
+    <div className="py-8 px-4 lg:mx-15 xl:-mt-20 ">
 
       <div className="text-center mb-16">
         <div style={{fontFamily: 'Urbanist, sans-serif',}} className="relative glass inline-flex items-center gap-2 backdrop-blur-lg pr-5 pl-2.5 py-2  border border-white bg-white/10 rounded-full mb-6 -mt-7">
@@ -235,13 +239,8 @@ const FeatureSection: React.FC = () => {
         </div>
 
         <h2
-          style={{
-            fontFamily: 'Urbanist',
-            fontSize: '48px',
-            fontWeight: 600,
-            color: '#171C35',
-          }}
-          className="mb-4"
+    
+          className="mb-4 text-[42px] sm:text-[52px] lg:text-[54px] xl:text-[64px] font-semibold text-[#171C35] leading-snug lg:leading-tight"
         >
           The Relief <span className="block">Your Team Deserves</span>
         </h2>
@@ -273,6 +272,7 @@ const FeatureSection: React.FC = () => {
           <CustomizationCard />
         </div>
       </div>
+    </div>
     </div>
     </div>
   );

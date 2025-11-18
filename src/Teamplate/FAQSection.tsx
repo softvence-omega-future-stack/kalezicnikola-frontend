@@ -49,7 +49,7 @@ const FAQSection: React.FC = () => {
   };
 
   return (
-    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="px-4  mt-19 xl:mt-[180px] lg:mt-[180px] ">
+    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="px-4  mt-20 xl:mt-[180px] lg:mt-[180px] ">
       <div className="relative xl:px-30 overflow-hidden">
 
         {/* Header Section */}
@@ -64,7 +64,7 @@ const FAQSection: React.FC = () => {
   </div>
 
   {/* Heading */}
-  <h2 className="text-4xl sm:text-5xl lg:text-5xl font-semibold text-[#171c35] ">
+  <h2 className="text-[42px] sm:text-[52px] lg:text-[54px] xl:text-[64px] font-semibold text-[#171C35] leading-snug lg:leading-19 ">
     Frequently Asked Questions
   </h2>
 

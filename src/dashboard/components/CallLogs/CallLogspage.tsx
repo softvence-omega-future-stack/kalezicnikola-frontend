@@ -5,9 +5,9 @@ import { FiX } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 
 import homeIcon from '../../../assets/svgIcon/homeIcon.svg';
-import chevronIcon from '../../../assets/svgIcon/chevronnRight.svg';
+
 import filter from '../../../assets/svgIcon/filter.svg';
-import viewIcon from '../../../assets/svgIcon/viewArrow.svg';
+
 
 interface CallLog {
   id: number;
@@ -82,13 +82,15 @@ const CallLogsPage: React.FC = () => {
   };
 
   return (
-    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="min-h-screen bg-gray-50">
+    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="min-h-screen ">
       {/* Header Navigation */}
       <div className="px-4 py-3">
         <div className="flex flex-wrap items-center gap-2 text-sm">
           <img src={homeIcon} alt="home" className="w-4 h-4" />
           <span className="text-gray-500 text-xs sm:text-sm">Dashboard</span>
-          <img src={chevronIcon} alt=">" className="w-3 sm:w-4" />
+          <svg xmlns="http://www.w3.org/2000/svg" width="6" height="10" viewBox="0 0 6 10" fill="none">
+  <path d="M0.666992 8.66699L4.66699 4.66699L0.666992 0.666992" stroke="#D0D5DD" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
           <span className="text-[#042435] text-sm font-semibold">Call Logs</span>
         </div>
       </div>
@@ -98,7 +100,7 @@ const CallLogsPage: React.FC = () => {
         <h1 className="text-2xl sm:text-3xl font-bold text-black mb-6">Call Logs</h1>
 
         {/* Table Container */}
-        <div className="rounded-2xl bg-white shadow-sm">
+        <div className="rounded-2xl bg-white ">
           {/* Table Header */}
           <div className="flex flex-wrap justify-between items-center p-4 border-b border-gray-100">
             <h2 className="text-base font-semibold text-[#171C35]">Call Logs</h2>
@@ -154,13 +156,23 @@ const CallLogsPage: React.FC = () => {
                     </td>
                     <td className="px-2 sm:px-4 py-2 text-sm text-[#111A2D] hidden md:table-cell">{log.duration}</td>
                     <td className="px-2 sm:px-4 py-2">
-                      <button onClick={() => setCurrentCall(log)} className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1 text-sm sm:text-base font-semibold text-[#171C35] rounded-2xl border border-gray-300">
+                      <button onClick={() => setCurrentCall(log)} className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1 text-sm sm:text-base font-semibold text-[#171C35] rounded-2xl border border-gray-300 cursor-pointer ">
                         Play <Play size={14} fill="currentColor" />
                       </button>
                     </td>
                     <td className="px-2 sm:px-4 py-2">
-                      <button onClick={() => navigate('/dashboard/patients')} className="flex items-center gap-1 sm:gap-2 text-sm font-medium text-[#526FFF]">
-                        View Profile <img src={viewIcon} alt="view" className="w-3 h-3 sm:w-4 sm:h-4" />
+                      <button onClick={() => navigate('/dashboard/patients')} className="flex items-center gap-1 sm:gap-2 text-sm font-medium text-[#526FFF] cursor-pointer">
+                        View Profile 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+  <g clip-path="url(#clip0_452_7031)">
+    <path d="M3.74264 12.2426L12.2279 3.75736M12.2279 3.75736V12.2426M12.2279 3.75736H3.74264" stroke="#526FFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <defs>
+    <clipPath id="clip0_452_7031">
+      <rect width="16" height="16" rx="8" fill="white"/>
+    </clipPath>
+  </defs>
+</svg>
                       </button>
                     </td>
                   </tr>

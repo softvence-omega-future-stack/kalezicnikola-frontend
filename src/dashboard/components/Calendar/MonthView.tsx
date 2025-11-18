@@ -88,13 +88,7 @@ const CalendarMonthView: React.FC = () => {
                   <div className="text-sm font-medium">{day.event.name}</div>
                   <div className="text-xs text-gray-900 flex items-center gap-1 ">
                     {day.event.time}
-                    <span className="  rounded flex items-center justify-center text-[10px] ml-4">
-                  
-   
-
-
-
-                    </span>
+                    
                   </div>
                 </div>
               )}

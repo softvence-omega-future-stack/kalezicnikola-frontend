@@ -189,7 +189,7 @@ const UpgradPlan = () => {
     {
       name: 'Standard',
       monthly: 399,
-      yearly: 3990,
+      yearly: 339,
       features: [
         'AI Voicebot setup & configuration',
         '24/7 availability & call handling',
@@ -204,7 +204,7 @@ const UpgradPlan = () => {
     {
       name: 'Premium',
       monthly: 899,
-      yearly: 8990,
+      yearly: 765,
       features: [
         'AI Voicebot setup & configuration',
         '24/7 availability & call handling',
@@ -220,7 +220,7 @@ const UpgradPlan = () => {
     {
       name: 'Enterprise',
       monthly: 1299,
-      yearly: 12990,
+      yearly: 1105,
       features: [
         'AI Voicebot setup & configuration',
         '24/7 availability & call handling',
@@ -287,7 +287,7 @@ const UpgradPlan = () => {
           <div className="inline-flex bg-white rounded-full p-1 border border-gray-200 shadow-sm">
             <button
               onClick={() => setBillingCycle('monthly')}
-              className={`px-6 py-2.5 text-sm font-normal rounded-full transition-colors ${
+              className={`px-6 py-2.5 text-sm font-normal rounded-full transition-colors cursor-pointer ${
                 billingCycle === 'monthly'
                   ? 'bg-[#526FFF] text-white font-medium shadow-md'
                   : 'text-[#171c35] hover:bg-gray-50'
@@ -297,7 +297,7 @@ const UpgradPlan = () => {
             </button>
             <button
               onClick={() => setBillingCycle('annually')}
-              className={`px-6 py-2.5 text-sm font-normal rounded-full transition-colors ${
+              className={`px-6 py-2.5 text-sm font-normal rounded-full transition-colors cursor-pointer  ${
                 billingCycle === 'annually'
                   ? 'bg-[#526FFF] text-white font-medium shadow-md'
                   : 'text-[#171c35] hover:bg-gray-50'
@@ -309,7 +309,7 @@ const UpgradPlan = () => {
         </div>
 
         {/* Pricing Cards */}
-        <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {plans.map((plan, i) => (
             <div
               key={i}

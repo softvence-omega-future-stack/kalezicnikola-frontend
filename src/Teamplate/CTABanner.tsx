@@ -1,6 +1,11 @@
 import React, { } from 'react';
+
 // import { useNavigate } from 'react-router-dom';
 import './bnnarButon.css'
+
+//import { useNavigate } from 'react-router-dom';
+// import LiquidGlassButton from './LequiedGlassBtn';
+
 
 const CTABanner: React.FC = () => {
   // const navigate = useNavigate();
@@ -18,7 +23,7 @@ const CTABanner: React.FC = () => {
   
 
   return (
-    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="w-full px-4 mt-9 md:mt-[180px] lg:mt-[180px] xl:mt-[180px]">
+    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="w-full px-4 mt-19 md:mt-[180px] lg:mt-[180px] xl:mt-[180px]">
       <div className="xl:px-30">
         <div className="bg-[#526FFF] rounded-3xl sm:rounded-[2.5rem] md:rounded-[3rem] lg:rounded-[3.5rem] p-6 sm:p-8 md:p-10 lg:p-12 xl:p-16 shadow-2xl">
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 sm:gap-8">
@@ -31,6 +36,30 @@ const CTABanner: React.FC = () => {
                 Phone stress consumes valuable time and leads to overload. Free up your staff and enjoy smooth operations from the very first minute. Let our AI handle your calls while your team focuses on patient care.
               </p>
             </div>
+
+
+
+   
+             {/* <div>
+              <LiquidGlassButton/>
+             </div> */}
+
+             <div className='w-full md:w-[218px]'>
+              <button
+  className="flex justify-center items-center gap-3 px-2 py-2 w-full md:w-[218px] h-[64px] 
+             rounded-[100px] border border-white/100 
+             bg-[rgba(255,255,255,0.10)] backdrop-blur-[7.5px]
+             relative overflow-hidden"
+  style={{
+    background: "rgba(255, 255, 255, 0.10)",
+    border: "0.8px solid #FFFFFF",
+    backdropFilter: "blur(7.5px)",
+  }}
+>
+  <span className="text-white font-medium text-lg">Start Now</span>
+</button>
+
+             </div>
 
 
             {/* Right Button with Liquid Glass Effect */}
@@ -109,9 +138,9 @@ const CTABanner: React.FC = () => {
          
           </div> */}
 
-
+{/* 
           <div className='relative'>
-            <button className='glass-card px-6 py-3 text-white'>Start Now</button>
+            <button className='glass-card px-6 py-3 text-white'>Start Now</button> */}
 
 
             {/* <button className="px-5 py-2.5 rounded-2xl text-white 
@@ -168,7 +197,7 @@ shadow-[inset_0_0_0_1px_rgba(255,255,255,0.25)]
         </div>
       </div>
     </div>
-    </div>
+  
   );
 };
 
