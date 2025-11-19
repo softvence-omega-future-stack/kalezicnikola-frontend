@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { X } from 'lucide-react';
 
 import icon from "../assets/svgIcon/logo.svg";
 import logo from "../assets/svgIcon/textLogo.svg";
@@ -16,14 +17,15 @@ import logout from "../assets/svgIcon/logout.svg";
 interface LogoProps {
     collapsed: boolean;
     onToggle: (state: boolean) => void;
+    closeMobileMenu?: () => void;
 }
 
-const Logo: React.FC<LogoProps> = ({ collapsed, onToggle }) => {
+const Logo: React.FC<LogoProps> = ({ collapsed, onToggle, closeMobileMenu }) => {
     const [isHovering, setIsHovering] = useState(false);
 
     return (
         <div
-            className={`flex items-center p-4 h-16 md:h-20 ${collapsed ? "justify-center" : "justify-between"}`}
+            className={`flex items-center border-b border-b-gray-200 md:border-b-0 p-4 h-16 md:h-20 ${collapsed ? "justify-center" : "justify-between"} relative`}
             style={{ fontFamily: "Urbanist" }}
         >
             {collapsed ? (
@@ -40,16 +42,32 @@ const Logo: React.FC<LogoProps> = ({ collapsed, onToggle }) => {
                     />
                 </button>
             ) : (
-                <div className="flex items-center justify-between w-full">
+                <>
                     <div className="flex items-center gap-2">
                         <img src={icon} alt="Logo" className="h-8 w-8" />
                         <img src={logo} alt="Docline" className="hidden md:block" />
                     </div>
 
-                    <button onClick={() => onToggle(true)} className="cursor-pointer p-1 hidden md:block">
-                        <img src={sidelogo} alt="Close Menu" className="h-8 w-8" />
-                    </button>
-                </div>
+                    <div className="flex items-center gap-2">
+                        {/* Desktop Toggle Button - Exactly like AdminSidebar */}
+                        <button 
+                            onClick={() => onToggle(true)} 
+                            className="cursor-pointer p-1 hidden md:block"
+                        >
+                            <img src={sidelogo} alt="Close Menu" className="h-8 w-8" />
+                        </button>
+                        
+                        {/* Mobile Close Button - Only show when closeMobileMenu function is provided */}
+                        {closeMobileMenu && (
+                            <button 
+                                onClick={closeMobileMenu}
+                                className="cursor-pointer p-2 md:hidden bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors flex items-center justify-center"
+                            >
+                                <X className="h-5 w-5 text-gray-700" />
+                            </button>
+                        )}
+                    </div>
+                </>
             )}
         </div>
     );
@@ -67,8 +85,8 @@ interface NavItemProps {
 
 const NavItem: React.FC<NavItemProps> = ({ to, label, iconSrc, onClick, collapsed, closeMobileMenu, badge }) => {
     const baseClasses = collapsed
-        ? "flex items-center justify-center py-3 px-2 mb-1 mx-2 rounded-lg transition-colors text-[#111A2D] font-semibold relative"
-        : "flex items-center gap-3 py-3 px-4 mb-1 mx-4 rounded-lg transition-colors text-[#111A2D] font-semibold relative";
+        ? "flex items-center justify-center py-3 mx-2 rounded-lg transition-colors text-[#111A2D] font-semibold relative"
+        : "flex items-center gap-3 py-3 px-4 mx-2 rounded-lg transition-colors text-[#111A2D] font-semibold relative";
 
     const handleClick = () => {
         if (onClick) onClick();
@@ -78,12 +96,12 @@ const NavItem: React.FC<NavItemProps> = ({ to, label, iconSrc, onClick, collapse
     if (onClick) {
         return (
             <button onClick={handleClick} className={`${baseClasses} hover:bg-gray-100 w-auto`}>
-                <img src={iconSrc} alt={label} className="h-6 w-6 min-w-6 min-h-6 object-contain shrink-0" />
-                {!collapsed && <span className="flex-1 text-left whitespace-nowrap">{label}</span>}
+                <img src={iconSrc} alt={label} className="h-5 w-5 sm:h-6 sm:w-6 object-contain shrink-0" />
+                {!collapsed && <span className="flex-1 text-sm md:text-base text-left whitespace-nowrap">{label}</span>}
                 
                 {/* Badge for collapsed state */}
                 {badge !== undefined && badge > 0 && collapsed && (
-                    <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#526FFF] text-white text-xs font-bold">
+                    <span className="absolute -top-1 -right-1 flex h-8 w-8 items-center justify-center rounded-full bg-[#526FFF] text-white text-xs font-bold">
                         {badge}
                     </span>
                 )}
@@ -105,8 +123,8 @@ const NavItem: React.FC<NavItemProps> = ({ to, label, iconSrc, onClick, collapse
             onClick={handleClick}
             className={({ isActive }) => `${baseClasses} ${isActive ? "bg-[#DFE2E2]" : "hover:bg-[#DFE2E2]"}`}
         >
-            <img src={iconSrc} alt={label} className="h-6 w-6 min-w-6 min-h-6 object-contain shrink-0" />
-            {!collapsed && <span className="flex-1 text-left whitespace-nowrap">{label}</span>}
+            <img src={iconSrc} alt={label} className="h-5 w-5 sm:h-6 sm:w-6 object-contain shrink-0" />
+            {!collapsed && <span className="flex-1 text-sm md:text-base text-left whitespace-nowrap">{label}</span>}
             
             {/* Badge for collapsed state */}
             {badge !== undefined && badge > 0 && collapsed && (
@@ -136,40 +154,46 @@ const UpgradeCard: React.FC<UpgradeCardProps> = ({ collapsed }) => {
     const percentage = (usedMinutes / subscriptionTotalMinutes) * 100;
 
     if (collapsed) {
-        return null; // Hide upgrade card when sidebar is collapsed
+        return null;
     }
 
     return (
-        <div className="bg-gray-200 p-4 rounded-xl m-4">
-            <div className="mb-1">
-                <div className="flex justify-start gap-4 items-center">
-                    <span className="text-[#171C35] font-bold text-xl">Upgrade to</span>
-                    <span className="text-sm font-medium px-2 py-0.5 rounded-full bg-[#111A2D] text-white">PRO</span>
+        <div className="p-4 md:p-6">
+            <div className="bg-gray-200 p-3 sm:p-4 rounded-xl">
+                <div className="mb-1">
+                    <div className="flex justify-start gap-2 sm:gap-4 items-center flex-wrap">
+                        <span className="text-[#171C35] font-bold text-lg sm:text-xl">Upgrade to</span>
+                        <span className="text-xs sm:text-sm font-medium px-2 py-0.5 rounded-full bg-[#111A2D] text-white whitespace-nowrap">
+                            PRO
+                        </span>
+                    </div>
+                    <span className="text-2xl sm:text-3xl font-bold text-[#171C35] block mt-1">Basic</span>
                 </div>
-                <span className="text-3xl font-bold text-[#171C35] block mt-1">Basic</span>
-            </div>
 
-            <p className="text-md font-bold text-gray-800 mb-2">{usedMinutes} / {subscriptionTotalMinutes} Minutes Used</p>
+                <p className="text-sm sm:text-md font-bold text-gray-800 mb-2">
+                    {usedMinutes} / {subscriptionTotalMinutes} Minutes Used
+                </p>
 
-            <div
-                className="w-full bg-gray-300 rounded-full h-2 mb-3 cursor-pointer"
-                onClick={(e) => {
-                    const rect = e.currentTarget.getBoundingClientRect();
-                    const clickX = e.clientX - rect.left;
-                    const newPercentage = (clickX / rect.width) * 100;
-                    const newMinutes = Math.round((newPercentage / 100) * subscriptionTotalMinutes);
-                    setUsedMinutes(Math.min(newMinutes, subscriptionTotalMinutes));
-                }}
-            >
                 <div
-                    className="bg-[#111A2D] h-2 rounded-full transition-all duration-200"
-                    style={{ width: `${percentage}%` }}
-                />
-            </div>
+                    className="w-full bg-gray-300 rounded-full h-2 sm:h-2 mb-3 cursor-pointer"
+                    onClick={(e) => {
+                        const rect = e.currentTarget.getBoundingClientRect();
+                        const clickX = e.clientX - rect.left;
+                        const newPercentage = (clickX / rect.width) * 100;
+                        const newMinutes = Math.round((newPercentage / 100) * subscriptionTotalMinutes);
+                        setUsedMinutes(Math.min(newMinutes, subscriptionTotalMinutes));
+                    }}
+                >
+                    <div
+                        className="bg-[#111A2D] h-2 rounded-full transition-all duration-200"
+                        style={{ width: `${percentage}%` }}
+                    />
+                </div>
 
-            <button className="w-full bg-[#111A2D] text-white text-sm font-semibold py-2 rounded-lg transition-colors mt-2">
-                {remainingMinutes} Minutes left
-            </button>
+                <button className="w-full bg-[#111A2D] text-white text-xs sm:text-sm font-semibold py-2 sm:py-2 rounded-lg hover:bg-gray-900 transition-colors mt-2">
+                    {remainingMinutes} Minutes left
+                </button>
+            </div>
         </div>
     );
 };
@@ -182,7 +206,7 @@ interface UserSidebarProps {
 }
 
 const Sidebar: React.FC<UserSidebarProps> = ({ onLogoutClick, collapsed, onToggle, closeMobileMenu }) => {
-    const sidebarWidth = collapsed ? "w-[70px]" : "w-72";
+    const sidebarWidth = collapsed ? "w-[80px]" : "w-[280px]";
 
     return (
         <div
@@ -190,7 +214,11 @@ const Sidebar: React.FC<UserSidebarProps> = ({ onLogoutClick, collapsed, onToggl
             style={{ fontFamily: "Urbanist, sans-serif" }}
         >
             <div>
-                <Logo collapsed={collapsed} onToggle={onToggle} />
+                <Logo 
+                    collapsed={collapsed} 
+                    onToggle={onToggle} 
+                    closeMobileMenu={closeMobileMenu}
+                />
                 <nav className="flex flex-col mt-2 gap-2">
                     <NavItem
                         to="/dashboard"
@@ -239,10 +267,8 @@ const Sidebar: React.FC<UserSidebarProps> = ({ onLogoutClick, collapsed, onToggl
             </div>
 
             <div className="flex flex-col">
-                {/* Upgrade Card - Only show when sidebar is expanded */}
                 <UpgradeCard collapsed={collapsed} />
 
-                {/* Settings and Logout */}
                 <div className="flex flex-col p-4 space-y-4">
                     <NavItem
                         to="/dashboard/settings"
@@ -265,6 +291,9 @@ const Sidebar: React.FC<UserSidebarProps> = ({ onLogoutClick, collapsed, onToggl
 };
 
 export default Sidebar;
+
+
+
 
 
 
