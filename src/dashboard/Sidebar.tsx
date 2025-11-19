@@ -22,6 +22,13 @@ interface NavItemProps {
   badge?: number;
 }
 
+interface SidebarProps {
+  collapsed: boolean;
+  onToggle: (collapsed: boolean) => void;
+}
+
+
+
 const NavItem: React.FC<NavItemProps> = ({ to, label, iconSrc, end = false, collapsed, badge }) => {
   return (
     <NavLink
@@ -44,8 +51,8 @@ const NavItem: React.FC<NavItemProps> = ({ to, label, iconSrc, end = false, coll
   );
 };
 
-const Sidebar: React.FC = () => {
-  const [collapsed, setCollapsed] = useState(false);
+const Sidebar:  React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
+  // const [collapsed, setCollapsed] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   // State added for the hover-to-transform functionality
   const [isHoveringCollapsedLogo, setIsHoveringCollapsedLogo] = useState(false);
@@ -79,8 +86,9 @@ const Sidebar: React.FC = () => {
             <div className="flex flex-col items-center w-full">
               <button
                 // Click action: Expands the sidebar
-                onClick={() => setCollapsed(false)}
+                // onClick={() => setCollapsed(false)}
                 // Hover actions: Updates state to swap the image source
+                 onClick={() => onToggle(false)}
                 onMouseEnter={() => setIsHoveringCollapsedLogo(true)}
                 onMouseLeave={() => setIsHoveringCollapsedLogo(false)}
                 className="cursor-pointer"
@@ -104,7 +112,7 @@ const Sidebar: React.FC = () => {
               {/* Toggle Button - Click to collapse */}
               {!isMobile && (
                 <button
-                  onClick={() => setCollapsed(true)} 
+                   onClick={() => onToggle(true)}
                   className="cursor-pointer"
                 >
                   <img src={sidelogo} alt="close toggle" className="h-8 w-8" />
@@ -170,3 +178,5 @@ const Sidebar: React.FC = () => {
 };
 
 export default Sidebar;
+
+

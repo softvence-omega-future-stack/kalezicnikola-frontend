@@ -20,6 +20,7 @@ interface LogoProps {
   onToggle: (state: boolean) => void;
 }
 
+
 const Logo: React.FC<LogoProps> = ({ collapsed, onToggle }) => {
   const [isHovering, setIsHovering] = useState(false);
 
