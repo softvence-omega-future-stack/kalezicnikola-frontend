@@ -17,4 +17,4 @@ const TopSection = () => {
   )
 }
 
-export default TopSection
+export default TopSection;

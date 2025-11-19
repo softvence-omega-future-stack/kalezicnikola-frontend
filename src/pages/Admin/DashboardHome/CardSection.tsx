@@ -13,7 +13,7 @@ const StatCard = ({ stat, maskId }: { stat: typeof statsCards[0]; maskId: string
   const height = 184;
 
   return (
-    <div className="relative w-full h-[160px] sm:h-[170px] md:h-[180px]">
+    <div className="relative w-full h-40 sm:h-[170px] md:h-[180px]">
       {/* SVG background shape */}
       <svg
         width="40%"
