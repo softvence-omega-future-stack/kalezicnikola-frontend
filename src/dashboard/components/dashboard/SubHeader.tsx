@@ -255,7 +255,7 @@ const Card = ({
       >
         <defs>
           <mask id={maskId}>
-            <rect width={width} height={defaultHeight} rx="24" fill="white" />
+            <rect width={width} height={defaultHeight} rx="20" fill="white" />
 
             {/* Bottom right corner */}
             <path
@@ -313,7 +313,7 @@ const Card = ({
 
           {category.avatars ? (
             <div className="flex items-center 2xl:-mt-7 gap-4 w-[75%] flex-wrap">
-              <div className="flex lg:-mt-3 xl:-mt-4 -space-x-3 items-center shrink-0">
+              <div className="flex lg:-mt-3 xl:-mt-1 -space-x-3 items-center shrink-0">
                 {category.avatars.map((avatar, idx) => (
                   <img
                     key={idx}
@@ -329,12 +329,12 @@ const Card = ({
                 )}
               </div>
 
-              <p className="text-[#171C35] text-sm font-medium leading-snug flex-1 md:min-w-[40px] lg:min-w-40 xl:min-w-[80px] 2xl:min-w[100px]">
+              <p className="text-[#171C35] text-sm font-medium leading-snug flex-1 md:min-w-[40px] lg:min-w-40 xl:min-w-[100px] 2xl:min-w-[100px]">
                 {category.description}
               </p>
             </div>
           ) : (
-            <div className="lg:mt-5 xl:-mt-5">
+            <div className="lg:mt-5  xl:align-text-bottom 2xl:-mt-8">
               {category.mainNumber && (
                 <span className="text-5xl font-medium text-[#171C35]">
                   {category.mainNumber}
@@ -347,8 +347,8 @@ const Card = ({
         <div
           className={`absolute ${
             index === 0
-              ? "bottom-2.5 right-1.5 2xl:right-0 2xl:bottom-2"
-              : "bottom-3 right-3 xl:-right-2 2xl:-right-0"
+              ? "bottom-2.5 right-1.5 lg:right-0 xl:-right-2 2xl:right-0  2xl:bottom-2"
+              : "bottom-3 right-3 md:bottom-1 md:right-9 lg:right-0 xl:-right-2 2xl:right-0"
           }`}
         >
           <div className="h-8 w-8 bg-gray-900 rounded-full flex items-center justify-center">
@@ -366,7 +366,7 @@ const SubHeaderCard = () => {
   return (
     <CommonSpace>
       <div className="-mt-18 px-2.5">
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-3">
+        <div className="grid grid-cols-1  lg:grid-cols-2 xl:grid-cols-4 gap-3">
           {categories.map((category, index) => (
             <div
               key={index}

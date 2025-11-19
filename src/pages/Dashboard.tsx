@@ -10,27 +10,31 @@ const Dashboard: React.FC = () => {
     <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="min-h-screen   ">
     
 
+      <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="mb-8 ">
+
+
       <div className="mb-6 ">
 
         <DashboardTopSection />
       </div>
 
    
-      <div className="grid grid-cols-1 lg:grid-cols-3  gap-[10px]">
-      
-        <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="lg:col-span-1 pl-3">
-          <AppointmentsList />
-        </div>
+    <div className="flex flex-col lg:flex-row gap-[10px]">
 
-    
-        <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="lg:col-span-2 space-y-1 pr-4">
-          {/* Summary Cards */}
-          <SummaryCards />
+  {/* LEFT SIDE: Appointments */}
+  <div className="w-full lg:w-1/3 pl-3">
+    <AppointmentsList />
+  </div>
 
-          {/* Calendar */}
-          <DashboardCalender />
-        </div>
-      </div>
+  {/* RIGHT SIDE: SummaryCards + Calendar */}
+  <div className="w-full lg:w-2/3 pr-4 space-y-1">
+    <SummaryCards />
+    <DashboardCalender />
+  </div>
+
+</div>
+
+    </div>
     </div>
   );
 };

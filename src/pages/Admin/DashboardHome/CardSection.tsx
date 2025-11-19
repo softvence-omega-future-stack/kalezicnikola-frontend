@@ -10,13 +10,13 @@ const statsCards = [
 
 const StatCard = ({ stat, maskId }: { stat: typeof statsCards[0]; maskId: string }) => {
   const width = 300;
-  const height = 180;
+  const height = 184;
 
   return (
     <div className="relative w-full h-[160px] sm:h-[170px] md:h-[180px]">
       {/* SVG background shape */}
       <svg
-        width="100%"
+        width="40%"
         height="100%"
         viewBox={`0 0 ${width} ${height}`}
         preserveAspectRatio="none"

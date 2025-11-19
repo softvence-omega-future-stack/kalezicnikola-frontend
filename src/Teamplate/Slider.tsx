@@ -272,7 +272,7 @@ const Slider = () => {
     <section className="xl:mt-[180px] lg:mt-[180px] md:mt-[180px]  mt-16 font-[Urbanist]">
       <div>
         {/* Header */}
-        <div className="mb-15 px-12 xl:px-30 flex items-center justify-between gap-8">
+        <div className="mb-15 px-12 xl:px-30 flex flex-col md:flex-row items-center  lg:justify-between gap-8">
           <div>
             <div className="inline-flex items-center py-2 px-5 mb-4   glass">
               <img src={icon} alt="" />

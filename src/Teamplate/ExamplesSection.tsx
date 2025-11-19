@@ -108,7 +108,7 @@ const DoclineInterface: React.FC = () => {
       style={{ fontFamily: "Urbanist, sans-serif" }}
       className=" px-9 mt-16 md:mt-[180px] lg:mt-[180px] xl:mt-[180px] md:px-8 "
     >
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:px-30">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:px-20">
         {/* Left Section */}
         <div className="flex flex-col justify-start">
           <div className="mb-4 mt-9">
@@ -119,7 +119,7 @@ const DoclineInterface: React.FC = () => {
               </span>
              
             </div>
-            <h1   style={{ fontFamily: "Urbanist, sans-serif" }} className="text-5xl md:text-5xl font-semibold text-gray-900 leading-14 mb-7">
+            <h1  className="text-[42px] sm:text-[52px] lg:text-[54px] xl:text-[64px] font-semibold text-[#171C35] leading-snug lg:leading-19">
               This is what Docline sounds <br className="hidden md:block" /> like
               in everyday practice
             </h1>
@@ -137,7 +137,7 @@ const DoclineInterface: React.FC = () => {
           {/* Audio Player */}
           <div className="bg-[#526FFF] rounded-2xl p-5 mb-6">
             <div className="mb-4">
-              <h3 className="text-white text-xl font-semibold mb-2">
+              <h3 className="text-white h-10 text-xl font-semibold mb-2">
                 {menuItems[activeAudioIndex].title}
               </h3>
               <p className="text-blue-100 text-base">
@@ -159,23 +159,27 @@ const DoclineInterface: React.FC = () => {
                       key={i}
                       className="flex-1 flex items-center justify-center relative"
                     >
-                      <div
-                        className="w-full h-10 rounded-full bg-white transition-all duration-300 flex items-center justify-center relative"
-                        style={{ height: `${segment.height}px` }}
-                      >
-                        <img
-                          src={roundImg}
-                          alt="border"
-                          className="absolute inset-0 w-full h-full object-contain"
-                        />
-                        {isActive && (
-                          <img
-                            src={roundactiveImg}
-                            alt="active"
-                            className="relative z-10 h-full w-full"
-                          />
-                        )}
-                      </div>
+                    <div
+  className="relative w-full rounded-full bg-white overflow-hidden transition-all duration-300"
+  style={{ height: `${segment.height}px` }}
+>
+  {/* Static Border */}
+  <img
+    src={roundImg}
+    alt=""
+    className="absolute inset-0 w-full h-full object-fill"
+  />
+
+  {/* Active Pulse */}
+  {isActive && (
+    <img
+      src={roundactiveImg}
+      alt=""
+      className="absolute inset-0 w-full h-full object-fill z-10"
+    />
+  )}
+</div>
+
                     </div>
                   );
                 })}

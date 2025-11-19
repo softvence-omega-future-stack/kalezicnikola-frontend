@@ -1,9 +1,18 @@
 import React, { } from 'react';
 
+
+// import { useNavigate } from 'react-router-dom';
+import './bnnarButon.css'
+
+//import { useNavigate } from 'react-router-dom';
+// import LiquidGlassButton from './LequiedGlassBtn';
+
+
 //import { useNavigate } from 'react-router-dom';
 // import LiquidGlassButton from './LequiedGlassBtn';
 
 // import { useNavigate } from 'react-router-dom';
+
 
 
 const CTABanner: React.FC = () => {
@@ -14,6 +23,10 @@ const CTABanner: React.FC = () => {
   //  const [isPressed, setIsPressed] = useState(false);
 
 
+  //  const [isPressed, setIsPressed] = useState(false);
+
+
+
   // const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
   //   const rect = e.currentTarget.getBoundingClientRect();
   //   setMousePos({
@@ -22,9 +35,11 @@ const CTABanner: React.FC = () => {
   //   });
   // };
 
+  
+
 
   return (
-    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="w-full px-4 mt-9 md:mt-[180px] lg:mt-[180px] xl:mt-[180px]">
+    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="w-full px-4 mt-19 md:mt-[180px] lg:mt-[180px] xl:mt-[180px]">
       <div className="xl:px-30">
         <div className="bg-[#526FFF] rounded-3xl sm:rounded-[2.5rem] md:rounded-[3rem] lg:rounded-[3.5rem] p-6 sm:p-8 md:p-10 lg:p-12 xl:p-16 shadow-2xl">
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 sm:gap-8">
@@ -37,14 +52,17 @@ const CTABanner: React.FC = () => {
                 Phone stress consumes valuable time and leads to overload. Free up your staff and enjoy smooth operations from the very first minute. Let our AI handle your calls while your team focuses on patient care.
               </p>
             </div>
+
+
+
    
              {/* <div>
               <LiquidGlassButton/>
              </div> */}
 
-             <div>
+             <div className='w-full md:w-[218px]'>
               <button
-  className="flex justify-center items-center gap-3 px-2 py-2 w-[218px] h-[64px] 
+  className="flex justify-center items-center gap-3 px-2 py-2 w-full md:w-[218px] h-[64px] 
              rounded-[100px] border border-white/100 
              bg-[rgba(255,255,255,0.10)] backdrop-blur-[7.5px]
              relative overflow-hidden"
@@ -58,6 +76,7 @@ const CTABanner: React.FC = () => {
 </button>
 
              </div>
+
 
             {/* Right Button with Liquid Glass Effect */}
             {/* <div className="relative">
@@ -91,9 +110,12 @@ const CTABanner: React.FC = () => {
                     opacity: isHovered ? 1 : 0,
                   }}
                 />
-                
 
              
+
+
+             
+
 
                 {isHovered && (
                   <div
@@ -118,7 +140,11 @@ const CTABanner: React.FC = () => {
                   }}
                 />
 
+<<<<<<< HEAD
+          
+=======
               
+>>>>>>> 9c2652c5f50a5324a314048585d7adf6510c3323
                 {isHovered && (
                   <div
                     className="absolute inset-0 rounded-full sm:rounded-2xl pointer-events-none"
@@ -134,12 +160,74 @@ const CTABanner: React.FC = () => {
 
                 
 
-          
+<<<<<<< HEAD
+         
           </div> */}
+
+{/* 
+          <div className='relative'>
+            <button className='glass-card px-6 py-3 text-white'>Start Now</button> */}
+
+
+            {/* <button className="px-5 py-2.5 rounded-2xl text-white 
+bg-white/15 backdrop-blur-xl
+shadow-[inset_0_0_0_1px_rgba(255,255,255,0.25)]
+">
+  Start Now
+</button> */}
+
+{/* <button
+ 
+  className="relative overflow-hidden"
+  style={{
+    width: '218px',
+    height: '64px',
+    borderRadius: '32px',
+    background: 'rgba(255, 255, 255, 0.10)',
+    backdropFilter: 'blur(20px) saturate(180%)',
+    WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+ 
+    border: '1px solid rgba(255, 255, 255, 0.2)',
+ 
+    transform: 'scale(1)', 
+    transition: 'none',
+
+    boxShadow: '0 1px 0 rgba(255, 255, 255, 0.15) inset', 
+    cursor: 'default' 
+  }}
+>
+ <div
+    className="absolute top-0 left-0 right-0"
+    style={{
+      height: '50%',
+      background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%)',
+      pointerEvents: 'none',
+      borderRadius: '32px 32px 0 0'
+    }}
+  />
+  
+  <div className="relative z-10 flex items-center justify-center h-full">
+    <span
+      className="font-semibold text-xl tracking-wide"
+      style={{
+        color: 'rgba(255, 255, 255, 0.98)',
+        textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
+        transition: 'all 0.2s ease'
+      }}
+    >
+      Jetzt starten
+    </span>
+  </div>
+</button> */}
+          </div>
+
+          
+          </div> 
+
         </div>
       </div>
-    </div>
-    </div>
+   
+  
   );
 };
 

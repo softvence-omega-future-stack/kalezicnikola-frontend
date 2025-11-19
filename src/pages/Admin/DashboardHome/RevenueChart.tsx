@@ -24,7 +24,7 @@ const RevenueChart = () => {
     { month: "30", revenue: 72 },
   ];
 
-  // 🎨 Custom Bar Design
+  //  Custom Bar Design
   const CustomBar = (props: RectangleProps) => {
     const { x, y, width, height } = props;
 
@@ -51,17 +51,17 @@ const RevenueChart = () => {
   };
 
   return (
-    <div className="w-full bg-white p-6 rounded-3xl flex flex-col lg:flex-row items-center md:items-stretch justify-between gap-6">
+    <div className="w-full bg-white p-4 rounded-3xl flex flex-col lg:flex-row items-center md:items-stretch justify-between gap-6">
       {/* Chart Section */}
       <div className="flex-1">
-        <h3 className="text-xl font-semibold text-[#171C35] mb-4">
+        <h3 className="text-lg md:text-xl font-semibold text-[#171C35] mb-4">
           Total Revenue
         </h3>
 
         <div className="flex flex-col md:flex-row gap-8 md:gap-3">
           {/* Side Info Section */}
           <div className="flex flex-col items-start justify-center text-left w-[200px]">
-            <span className="text-3xl font-semibold text-[#171C35] mb-1">25k</span>
+            <span className="text-xl md:text-3xl font-semibold text-[#171C35] mb-1">25k</span>
             <span className="text-sm font-medium text-[#111A2D] leading-tight">
               Total Revenue in last month
             </span>

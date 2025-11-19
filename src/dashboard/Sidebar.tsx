@@ -35,7 +35,7 @@ const NavItem: React.FC<NavItemProps> = ({ to, label, iconSrc, end = false, coll
       to={to}
       end={end}
       className={({ isActive }) =>
-        `flex items-center gap-3 py-3 px-3 mx-4 rounded-[8px] transition-colors relative
+        `flex items-center gap-3 py-3 px-3 mx-4 rounded-lg transition-colors relative
           ${isActive ? 'bg-[#DFE2E2] mx-4 font-semibold' : 'text-[#111A2D] font-semibold'}
           ${collapsed ? 'justify-center' : 'justify-start'}`
       }

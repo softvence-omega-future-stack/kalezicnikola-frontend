@@ -7,11 +7,17 @@
 // import roundactiveImg from "../../../assets/svgIcon/activerecord.svg"; 
 // import roundImg from "../../../assets/svgIcon/recordbtnborder.svg"; 
 
-import React, { useEffect, useState, } from 'react';
+import React, {  useState, } from 'react';
 import WaveBar from './Wevebar';
 
 
 import TranscriptChat from './TranscriptChat';
+
+
+// import { Pause } from "lucide-react";
+
+
+
 
 
 // --- Dummy data ---
@@ -26,7 +32,9 @@ const PATIENT_INFO = {
 
 
 
-const totalDuration = 100; // normalized total duration
+
+//const totalDuration = 100; // normalized total duration
+
 
 // const PLAYER_WAVE_SEGMENTS = [
 //   { height: 45, time: "0:00" },
@@ -36,6 +44,12 @@ const totalDuration = 100; // normalized total duration
 //   { height: 45, time: "2:00" },
 //   { height: 45, time: "2:30" },
 // ];
+
+// const totalDuration = 100; 
+
+
+// const totalDuration = 100;
+
 
 
 // --- Custom Play Icon SVG ---
@@ -58,23 +72,30 @@ const totalDuration = 100; // normalized total duration
 const PatientTranscriptPage: React.FC = () => {
   const [showFullSummary, setShowFullSummary] = useState(false);
 
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [, setCurrentTime] = useState(33);
+  // const [isPlaying, setIsPlaying] = useState(false);
+  // const [, setCurrentTime] = useState(33);
 
-  useEffect(() => {
-    if (isPlaying) {
-      const interval = setInterval(() => {
-        setCurrentTime((prev) => {
-          if (prev >= totalDuration) {
-            setIsPlaying(false);
-            return 0;
-          }
-          return prev + 0.5;
-        });
-      }, 100);
-      return () => clearInterval(interval);
-    }
-  }, [isPlaying]);
+  // useEffect(() => {
+  //   if (isPlaying) {
+  //     const interval = setInterval(() => {
+  //       setCurrentTime((prev) => {
+  //         if (prev >= totalDuration) {
+  //           setIsPlaying(false);
+  //           return 0;
+  //         }
+  //         return prev + 0.5;
+  //       });
+  //     }, 100);
+  //     return () => clearInterval(interval);
+  //   }
+  // }, [isPlaying]);
+
+
+
+  // const togglePlayPause = () => setIsPlaying(!isPlaying);
+
+  // const calculateProgressWidth = (time: number) => (time / totalDuration) * 100;
+
 
 
 
@@ -184,6 +205,11 @@ const PatientTranscriptPage: React.FC = () => {
               </div>
             </div>
           </div>  */}
+
+
+         
+        
+
 
 
         {/* Patients Transcript (Audio Player) Section */}

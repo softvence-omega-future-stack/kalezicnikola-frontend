@@ -69,7 +69,7 @@ const SecuritySection: React.FC = () => {
 
         
           </div>
-          <h2 className="text-4xl sm:text-5xl lg:text-5xl font-semibold text-[#171c35] mb-15">
+          <h2 className="text-[42px] sm:text-[52px] lg:text-[54px] xl:text-[64px] font-semibold text-[#171C35] leading-snug lg:leading-19">
             Maximum Security <br /> 100% GDPR Compliant
           </h2>
         </div>
