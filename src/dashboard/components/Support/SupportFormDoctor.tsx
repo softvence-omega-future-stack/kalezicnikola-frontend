@@ -301,6 +301,7 @@ import chevron from '../../../assets/svgIcon/chevronnRight.svg';
 import doc from '../../../assets/svgIcon/document.svg';
 import react from '../../../assets/svgIcon/react.svg';
 import send from '../../../assets/svgIcon/send.svg';
+import { useNavigate } from 'react-router-dom';
 
 interface Message {
   id: number;
@@ -325,6 +326,7 @@ interface Contact {
 const SupportChat: React.FC = () => {
   const [selectedContact, setSelectedContact] = useState<number>(1);
   const [messageText, setMessageText] = useState('');
+  const navigate = useNavigate()
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 1,
@@ -378,13 +380,13 @@ const SupportChat: React.FC = () => {
   const filteredMessages = messages.filter(msg => msg.contactId === selectedContact);
 
   return (
-    <div className="min-h-screen bg-[#F3F6F6] font-sans">
+    <div className="min-h-screen bg-[#F3F6F6] mt-6 font-sans">
       {/* Header */}
-      <div className="px-4 sm:px-6 lg:px-8 py-4">
+      <div className="py-4">
         <div className="flex items-center gap-2 text-sm text-gray-600 mb-4">
           <img src={home} alt="" />
           <img src={chevron} alt="" />
-          <span className="text-gray-600">Dashboard</span>
+          <span onClick={()=> navigate('/dashboard')} className="text-gray-600 cursor-pointer">Dashboard</span>
           <img src={chevron} alt="" />
           <span className="text-gray-900 font-medium">Supports</span>
         </div>
@@ -392,7 +394,7 @@ const SupportChat: React.FC = () => {
       </div>
 
       {/* Main Content */}
-      <div className="px-4 sm:px-6 lg:px-8 py-6">
+      <div className=" py-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-[10px]">
           {/* Left Sidebar - Contacts */}
           <div className="lg:col-span-1">
@@ -424,19 +426,27 @@ const SupportChat: React.FC = () => {
                 </div>
 
                 {/* Search */}
-                <div className="relative bg-[#F3F6F6] rounded-[12px] p-2 flex items-center">
-                  <img src={search} className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
-                  <input
-                    type="text"
-                    placeholder="search..."
-                    value={searchText}
-                    onChange={(e) => setSearchText(e.target.value)}
-                    className="flex-1 px-3 pl-10 py-2.5 bg-white rounded-[12px] text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  />
-                  <button className="ml-2 px-3 py-2 text-sm font-medium transition-colors">
-                    Search
-                  </button>
-                </div>
+             <div className="flex flex-col sm:flex-row items-center gap-2 bg-[#F3F6F6] rounded-[12px] p-2">
+  {/* Input with icon */}
+  <div className="relative w-full sm:flex-1">
+    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
+      <img src={search} className="w-5 h-5" />
+    </span>
+    <input
+      type="text"
+      placeholder="search..."
+      value={searchText}
+      onChange={(e) => setSearchText(e.target.value)}
+      className="w-full px-10 py-2.5 rounded-[12px] text-sm border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+    />
+  </div>
+
+  {/* Button */}
+  <button className="w-full sm:w-auto px-4 py-2 text-sm font-medium bg-blue-500 text-white rounded-[12px] hover:bg-blue-600 transition-colors">
+    Search
+  </button>
+</div>
+
               </div>
 
               {/* Contact List */}
@@ -481,33 +491,37 @@ const SupportChat: React.FC = () => {
           <div className="lg:col-span-2">
             <div className="bg-white rounded-2xl overflow-hidden flex flex-col">
               {/* Chat Header */}
-              <div className="p-5 m-4 bg-[#F3F6F6] rounded-2xl flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="relative">
-                    <img
-                      src={karennix}
-                      alt="Dr. Keren nix"
-                      className="w-12 h-12 rounded-full object-cover"
-                    />
-                    <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-xl text-[#171C35] mb-2">Dr. Keren nix</h3>
-                    <div className="flex items-center gap-8 text-sm text-[#111A2D]">
-                      <span>Last seen 2 hours ago</span>
-                      <span>Local time: Jan 30, 2023, 5:10 AM</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2">
-                  <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-                    <img src={vediocal} alt="" />
-                  </button>
-                  <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-                    <img src={call} alt="" />
-                  </button>
-                </div>
-              </div>
+            <div className="p-5 m-4 bg-[#F3F6F6] rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+  {/* Left: Profile */}
+  <div className="flex items-center gap-3">
+    <div className="relative">
+      <img
+        src={karennix}
+        alt="Dr. Keren nix"
+        className="w-12 h-12 rounded-full object-cover"
+      />
+      <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
+    </div>
+    <div>
+      <h3 className="font-semibold text-xl text-[#171C35] mb-1 sm:mb-2">Dr. Keren nix</h3>
+      <div className="flex flex-col sm:flex-row sm:gap-6 text-sm text-[#111A2D]">
+        <span>Last seen 2 hours ago</span>
+        <span>Local time: Jan 30, 2023, 5:10 AM</span>
+      </div>
+    </div>
+  </div>
+
+  {/* Right: Buttons */}
+  <div className="flex items-center gap-2 sm:ml-auto">
+    <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+      <img src={vediocal} alt="Video Call" />
+    </button>
+    <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+      <img src={call} alt="Call" />
+    </button>
+  </div>
+</div>
+
 
               {/* Messages */}
               <div className="flex-1 overflow-y-auto p-5 space-y-4 bg-white">
@@ -536,31 +550,39 @@ const SupportChat: React.FC = () => {
               </div>
 
               {/* Message Input */}
-              <div className="p-4 bg-[#F3F6F6] m-3 rounded-3xl">
-                <div className="flex items-center gap-3">
-                  <button className="transition-colors flex-shrink-0">
-                    <img src={doc} alt="" className="p-[10px] bg-white h-10 w-10 rounded-full" />
-                  </button>
-                  <button className="p-2 rounded-lg transition-colors flex-shrink-0">
-                    <img src={react} alt="" className="p-[10px] bg-white h-10 w-10 rounded-full" />
-                  </button>
-                  <input
-                    type="text"
-                    placeholder="Type a message..."
-                    value={messageText}
-                    onChange={(e) => setMessageText(e.target.value)}
-                    onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                    className="flex-1 px-4 py-3 bg-white border border-gray-50 rounded-3xl placeholder:text-[#111A2D] text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  />
-                  <button
-                    onClick={handleSendMessage}
-                    className="px-5 py-2.5 bg-[#526FFF] text-white rounded-[25px] font-medium transition-colors flex items-center gap-2 flex-shrink-0"
-                  >
-                    SEND
-                    <img src={send} alt="" />
-                  </button>
-                </div>
-              </div>
+             <div className="p-2 bg-[#F3F6F6] m-2 rounded-3xl">
+  <div className="flex items-center gap-2 flex-nowrap">
+    {/* Doctor icon */}
+    <button className="flex-shrink-0">
+      <img src={doc} alt="" className="p-1.5 bg-white h-8 w-8 rounded-full" />
+    </button>
+
+    {/* React icon */}
+    <button className="flex-shrink-0">
+      <img src={react} alt="" className="p-1.5 bg-white h-8 w-8 rounded-full" />
+    </button>
+
+    {/* Input */}
+    <input
+      type="text"
+      placeholder="Type a message..."
+      value={messageText}
+      onChange={(e) => setMessageText(e.target.value)}
+      onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+      className="flex-1 min-w-0 px-2 py-2 bg-white border border-gray-50 rounded-3xl placeholder:text-[#111A2D] text-xs focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+    />
+
+    {/* Send button */}
+    <button
+      onClick={handleSendMessage}
+      className="flex-shrink-0 px-3 py-2 bg-[#526FFF] text-white rounded-3xl font-medium text-xs flex items-center gap-1"
+    >
+      SEND
+      <img src={send} alt="" className="h-3 w-3" />
+    </button>
+  </div>
+</div>
+
             </div>
           </div>
         </div>

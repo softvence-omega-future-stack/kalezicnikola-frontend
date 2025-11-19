@@ -38,35 +38,36 @@ export default function StaffManagement() {
 
        
        {/* Table - Desktop */}
-<div className="hidden lg:block overflow-x-auto">
-  <table className="w-full">
+<div className="w-full overflow-x-auto">
+  <table className="min-w-[650px] w-full">
     <thead>
       <tr className="border-b border-gray-200">
-    
-        <th className="text-left py-4 px-4">
-          <div className="flex items-center gap-4">
-            <input
-              type="checkbox"
-              className="w-5 h-5 rounded-3xl border-gray-300"
-            />
-            <span className="text-base font-semibold text-[#171C35]">
+        <th className="text-left py-3 px-3 whitespace-nowrap">
+          <div className="flex items-center gap-3">
+            <input type="checkbox" className="w-4 h-4 rounded border-gray-300" />
+            <span className="text-sm font-semibold text-[#171C35]">
               Patient Name
             </span>
           </div>
         </th>
-        <th className="text-left py-4 px-6 text-base font-semibold text-[#171C35]">
+
+        <th className="text-left py-3 px-3 text-sm font-semibold text-[#171C35] whitespace-nowrap">
           Joined
         </th>
-        <th className="text-left py-4 px-6 text-base font-semibold text-[#171C35]">
+
+        <th className="text-left py-3 px-3 text-sm font-semibold text-[#171C35] whitespace-nowrap">
           Role
         </th>
-        <th className="text-left py-4 px-6 text-base font-semibold text-[#171C35]">
+
+        <th className="text-left py-3 px-3 text-sm font-semibold text-[#171C35] whitespace-nowrap">
           Contact
         </th>
-        <th className="text-left py-4 px-6 text-base font-semibold text-[#171C35]">
+
+        <th className="text-left py-3 px-3 text-sm font-semibold text-[#171C35] whitespace-nowrap">
           Status
         </th>
-        <th className="text-left py-4 px-6 text-base font-semibold text-[#171C35]">
+
+        <th className="text-left py-3 px-3 text-sm font-semibold text-[#171C35] whitespace-nowrap">
           Profile
         </th>
       </tr>
@@ -74,34 +75,48 @@ export default function StaffManagement() {
 
     <tbody>
       {staffMembers.map((staff) => (
-        <tr key={staff.id} className="border-b border-gray-100 ">
-        
-          <td className="py-4 px-4">
-            <div className="flex items-center gap-4">
-              <input
-                type="checkbox"
-                className="w-5 h-5  rounded-3xl border-gray-300"
-              />
+        <tr key={staff.id} className="border-b border-gray-100">
+          {/* NAME */}
+          <td className="py-3 px-3 whitespace-nowrap">
+            <div className="flex items-center gap-3">
+              <input type="checkbox" className="w-4 h-4 border-gray-300" />
+
               <div className="flex items-center gap-3">
                 <img
                   src={propfilePic}
                   alt={staff.name}
-                  className="w-10 h-10 rounded-full object-cover shrink-0"
+                  className="w-10 h-10 rounded-full object-cover"
                 />
-                <div>
-                  <p className="text-sm font-medium text-[#111A2D]">{staff.name}</p>
-                  <p className="text-sm font-medium text-[#111A2D]">{staff.srn}</p>
+
+                <div className="min-w-[90px]">
+                  <p className="text-sm font-medium text-[#111A2D]">
+                    {staff.name}
+                  </p>
+                  <p className="text-xs text-[#111A2D]">{staff.srn}</p>
                 </div>
               </div>
             </div>
           </td>
 
-          <td className="py-4 px-6 text-sm font-medium text-[#1a1c21]">{staff.joined}</td>
-          <td className="py-4 px-6 text-sm font-medium text-[#111A2D]">{staff.role}</td>
-          <td className="py-4 px-6 text-sm font-medium text-[#111A2D]">{staff.email}</td>
-          <td className="py-4 px-6">
+          {/* JOINED */}
+          <td className="py-3 px-3 text-xs font-medium text-[#1a1c21] whitespace-nowrap">
+            {staff.joined}
+          </td>
+
+          {/* ROLE */}
+          <td className="py-3 px-3 text-xs font-medium text-[#111A2D] whitespace-nowrap">
+            {staff.role}
+          </td>
+
+          {/* EMAIL */}
+          <td className="py-3 px-3 text-xs font-medium text-[#111A2D] whitespace-nowrap">
+            {staff.email}
+          </td>
+
+          {/* STATUS */}
+          <td className="py-3 px-3 whitespace-nowrap">
             <span
-              className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-medium ${
+              className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium ${
                 staff.status === "Active"
                   ? "bg-[#0080801A] text-[#008080]"
                   : "bg-[#FF1C331A] text-[#FF1C33]"
@@ -115,11 +130,16 @@ export default function StaffManagement() {
               {staff.status}
             </span>
           </td>
-          <td className="py-4 px-6">
-            <button onClick={() => navigate(`staff/profile/${staff.id}`)} className="flex items-center gap-1 text-sm text-[#526FFF] font-medium">
+
+          {/* VIEW PROFILE */}
+          <td className="py-3 px-3 whitespace-nowrap">
+            <button
+              onClick={() => navigate(`staff/profile/${staff.id}`)}
+              className="flex items-center gap-1 text-xs text-[#526FFF] font-medium whitespace-nowrap"
+            >
               View Profile
               <svg
-                className="w-4 h-4"
+                className="w-3 h-3"
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -141,8 +161,9 @@ export default function StaffManagement() {
 </div>
 
 
+
           {/* Cards - Mobile/Tablet */}
-          <div className="lg:hidden divide-y divide-gray-100">
+          {/* <div className="lg:hidden divide-y divide-gray-100">
             {staffMembers.map((staff) => (
               <div key={staff.id} className="p-4">
                 <div className="flex items-start gap-3 mb-3">
@@ -192,7 +213,7 @@ export default function StaffManagement() {
                 </div>
               </div>
             ))}
-          </div>
+          </div> */}
 
          
         </div>

@@ -5,7 +5,7 @@ import Dashboard from "@/pages/Dashboard";
 import CallLogs from "@/pages/CallLogs";
 import Calendar from "@/pages/Calendar";
 import Patients from "@/pages/Patients";
-import AddPatientForm from "@/dashboard/components/Patients/Addpatient";
+// import AddPatientForm from "@/dashboard/components/Patients/Addpatient";
 import PatientProfilePage from "@/dashboard/components/Patients/PatientProfilePage";
 import Tasks from "@/pages/Tasks";
 import Supports from "@/pages/Supports";
@@ -30,6 +30,8 @@ import SecurityPage from "@/pages/Admin/Security/SecurityPage";
 import SettingPage from "@/pages/Admin/Settings/Settingpage";
 import SupportPage from "@/pages/Admin/Supports/SupportPage";
 import Home from "@/pages/Home";
+import AddPatientForm from "@/dashboard/components/Patients/Addpatient";
+// import AddPatientForm from "@/dashboard/components/Patients/Addpatient";
 
 
 
@@ -88,7 +90,7 @@ const routes = createBrowserRouter([
       { path: "call_logs", element: <CallLogs /> },
       {path:"calendar", element:<Calendar />},
       { path: "patients", element: <Patients/> },
-      { path: "add-patient", element: <AddPatientForm/> },
+      { path: "add-patient", element: <AddPatientForm /> },
       { path: "patients/:id", element: <PatientProfilePage /> },
       { path: "tasks", element: <Tasks /> },
       { path: "supports", element: <Supports/> },

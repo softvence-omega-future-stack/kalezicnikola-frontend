@@ -87,8 +87,8 @@ export default function PatientSummary() {
       {/* Content Area */}
       <div className="absolute top-0 left-0 w-full h-full p-6 flex flex-col justify-between">
         <div>
-          <h3 className="text-lg font-semibold text-[#171C35] mb-5 lg:mb-1 xl:mb-13">{card.title}</h3>
-          <p className="text-sm font-medium text-[#111A2D99]">
+          <h3 className="text-xs sm:text-sm lg:text-lg font-semibold text-[#171C35] mb-5 lg:mb-1 xl:mb-5 2xl:mb-13">{card.title}</h3>
+          <p className="text-xs md:text-sm font-medium text-[#111A2D99]">
             {card.date || card.count || card.type}
           </p>
           <p className="text-sm font-semibold text-[#171C35] mt-2">{card.detail}</p>
@@ -97,7 +97,7 @@ export default function PatientSummary() {
      
         <div className="absolute top-2 right-0">
 
-          <div className="h-8 w-8 md:h-12 md:w-12 bg-[#171C35] rounded-full flex items-center justify-center transition-all duration-300">
+          <div className="h-8 w-8 lg:h-10 lg:w-10 2xl:h-12 2xl:w-12 bg-[#171C35] right-4 top-4  md:top-4 rounded-full flex items-center justify-center transition-all duration-300">
          
             <ArrowUpRight className="text-white w-4 h-4 md:w-5 md:h-5" />
           </div>
@@ -117,7 +117,7 @@ export default function PatientSummary() {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
         {summaryCards.map((card, index) => (
           <Card key={index} card={card} maskId={`summaryMask${index}`} />
         ))}
@@ -130,7 +130,8 @@ export default function PatientSummary() {
           {appointments.map((apt, index) => (
             <div
               key={index}
-              className="py-3 bg-[#FAFAFA] border-b px-2 border-gray-100 last:border-0 rounded-2xl flex items-center justify-between"
+              className="py-3 bg-[#FAFAFA] border-b px-3 border-gray-100 
+            last:border-0 rounded-2xl flex flex-col sm:flex-row sm:items-center sm:justify-between"
             >
               <div className="flex flex-col">
                 <span className="text-base font-semibold text-[#171C35]">{apt.type}</span>

@@ -50,11 +50,11 @@ const TranscriptChat: React.FC = () => {
   };
 
   return (
-    <div className="p-6">
+    <div className="p-2 md:p-6">
       <div className="max-w-4xl mx-auto">
         <div className='flex items-center justify-between cursor-pointer mb-6'>
           <h1 className="text-2xl font-semibold text-[#171C35]">Transcript</h1>
-          <img src="https://i.ibb.co/C5fw58ZT/Copyicon.png" alt="Copy All" />
+          <img src="https://i.ibb.co/C5fw58ZT/Copyicon.png" className='shrink-0' alt="Copy All" />
         </div>
 
         <div className="flex flex-col gap-0">
@@ -116,7 +116,7 @@ const TranscriptChat: React.FC = () => {
                     {!isFloyd && (
                       <button
                         onClick={() => copyMessage(msg.text)}
-                        className="p-1.5 rounded transition-opacity opacity-0 group-hover:opacity-100 hover:bg-gray-100 mr-2"
+                        className="p-1.5 rounded transition-opacity opacity-0 group-hover:opacity-100 shrink-0 cursor-pointer hover:bg-gray-100 mr-2"
                         aria-label="Copy message"
                       >
                         <img
@@ -135,7 +135,7 @@ const TranscriptChat: React.FC = () => {
                     {isFloyd && (
                       <button
                         onClick={() => copyMessage(msg.text)}
-                        className="p-1.5 rounded transition-opacity opacity-0 group-hover:opacity-100 hover:bg-gray-100 ml-2"
+                        className="p-1.5 rounded transition-opacity opacity-0 group-hover:opacity-100 shrink-0 cursor-pointer hover:bg-gray-100 ml-2"
                         aria-label="Copy message"
                       >
                         <img

@@ -90,7 +90,7 @@ const ChangePasswordForm: React.FC = () => {
 
   return (
     <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
-      <h2 className="text-xl font-semibold text-[#171C35] mb-6 pb-4 border-b">
+      <h2 className="text-xl font-semibold text-[#171C35]  mb-6 pb-4 border-b">
         Change Password
       </h2>
 
@@ -121,14 +121,14 @@ const ChangePasswordForm: React.FC = () => {
           <p className="text-green-600 text-sm mt-2 font-medium">{success}</p>
         )}
 
-        <div className="flex space-x-4 mt-6">
+        <div className="flex flex-col md:flex-row gap-2 w-full md:space-x-4 mt-6">
           <button
             type="button"
 
             onClick={() => setForm({ current: "", newPass: "", confirm: "" })}
             // className="flex-1 py-3 text-[#171C35] border border-gray-300 rounded-[8px] hover:bg-gray-50 transition"
 
-            className="flex-1 py-3 text-[#171C35] border border-gray-200 rounded-xl cursor-pointer"
+            className="flex-1 py-3  text-[#171C35] border border-gray-200 rounded-xl cursor-pointer"
 
           >
             Cancel

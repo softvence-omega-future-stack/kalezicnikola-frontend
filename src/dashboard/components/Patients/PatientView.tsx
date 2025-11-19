@@ -22,13 +22,15 @@ export default function PatientsView() {
   ];
 
   return (
-    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="min-h-screenp-4 sm:p-6">
+    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="min-h-screenp-4 ">
       {/* Breadcrumb */}
-      <div className="flex items-center gap-2 text-sm text-gray-600 mb-6">
+      <div className="mt-6">
+        <div className='flex items-center gap-2 py-6 px-2 md:px-0 text-sm text-gray-600 mb-6'>
       <img src={homeIcon} alt="" />
         <span>Dashboard</span>
        <img src={chevronIcon} alt="" />
         <span className="font-semibold text-[#171C35]">Patients</span>
+      </div>
       </div>
 
 <div className='bg-white rounded-2xl'>

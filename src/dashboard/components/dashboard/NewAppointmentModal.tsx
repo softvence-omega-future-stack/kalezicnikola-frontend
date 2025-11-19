@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { X, } from "lucide-react";
-import calender from '../../../assets/svgIcon/calender.svg'
+// import calender from '../../../assets/svgIcon/calender.svg'
 
 interface NewAppointmentModalProps {
   onClose: () => void;
@@ -150,13 +150,13 @@ const NewAppointmentModal: React.FC<NewAppointmentModalProps> = ({ onClose }) =>
                   name="dateOfBirth"
                   value={formData.dateOfBirth}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-white rounded-[8px] text-sm text-[#526FFF]  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#526FFF] appearance-none"
+                  className="w-full px-4 py-3 bg-white rounded-[8px] text-sm   placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#526FFF] appearance-none"
                 />
-                 <img
+                 {/* <img
     src={calender}
     alt="icon"
     className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 pointer-events-none"
-  />
+  /> */}
               </div>
             </div>
             <div>
@@ -206,13 +206,13 @@ const NewAppointmentModal: React.FC<NewAppointmentModalProps> = ({ onClose }) =>
                   name="schedule"
                   value={formData.schedule}
                   onChange={handleChange}
-                  className="w-full px-4 py-3  bg-white rounded-[8px] text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-3 appearance-none bg-white rounded-[8px] text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-              <img
+              {/* <img
     src={calender}
     alt="icon"
     className="absolute text-[#111A2D] right-3 top-1/2 -translate-y-1/2 w-5 h-5 pointer-events-none"
-  />
+  /> */}
               </div>
             </div>
           </div>

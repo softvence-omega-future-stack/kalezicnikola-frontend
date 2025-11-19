@@ -5,6 +5,7 @@ import homeIcon from '../../../assets/svgIcon/homeIcon.svg'
 import chevronIcon from '../../../assets/svgIcon/chevronnRight.svg'
 import StatusDropdown from './Status';
 import PriorityDropdown from './Prioritys';
+import { useNavigate } from 'react-router-dom';
 
 // --- Interface Definitions (No Change) ---
 interface Task {
@@ -27,6 +28,7 @@ interface Column {
 
 export default function TaskList() {
 
+  const navigate = useNavigate()
   const [columns, setColumns] = useState<Column[]>([
     {
       id: 'todo',
@@ -198,13 +200,13 @@ export default function TaskList() {
   
 
   return (
-    <div className="">
+    <div className="mt-6">
       {/* Header */}
-      <div className=" sm:px-6 lg:px- py-4">
+      <div className="  py-4">
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-sm text-gray-600 mb-4">
           <img src={homeIcon} alt="Home" />
-          <span className="text-gray-600 font-medium">Dashboard</span>
+          <span onClick={()=> navigate('/dashboard')} className="text-gray-600 font-medium cursor-pointer">Dashboard</span>
            <img src={chevronIcon} alt=">" />
           <span className="text-[#042435]  text-xs font-semibold">Task</span>
         </div>
@@ -242,14 +244,14 @@ export default function TaskList() {
       </div>
 
       {/* Columns */}
-      <div className="p-4 sm:p-6 ">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <div className=" ">
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
           {columns.map((column) => (
             <div key={column.id} className="bg-white rounded-2xl">
               {/* Column Header */}
               <div className="flex items-center justify-between px-4 py-3 ">
                 <div className="flex items-center gap-2">
-                  <h2 className="text-xl font-semibold text-[#171c35]">{column.title}</h2>
+                  <h2 className="text-sm sm:text-xl font-medium sm:font-semibold text-[#171c35]">{column.title}</h2>
                   <span className="text-sm text-gray-500">({column.count})</span>
                 </div>
                 <div className="flex items-center gap-1">
@@ -287,7 +289,7 @@ export default function TaskList() {
                 {column.tasks.map((task) => (
                   <div
                     key={task.id}
-                    className="bg-[#F3F6F6] rounded-2xl p-3"
+                    className="bg-[#F3F6F6]  rounded-2xl p-3"
                   >
                     <div className="flex items-start gap-3">
                       
@@ -300,8 +302,8 @@ export default function TaskList() {
                             // Toggle complete logic can be added here if needed
                             className="w-4 h-4 mt-1 rounded border-gray-300 text-indigo-600 focus:ring-[#526fff] cursor-pointer flex-shrink-0"
                           />
-                          <h3 className="text-xl font-semibold text-[#171c35] flex-1">{task.title}</h3>
-                          <div className='flex items-center gap-2 pr-2'>
+                          <h3 className="text-sm sm:text-xl font-semibold text-[#171c35] flex-1">{task.title}</h3>
+                          <div className='flex  items-center gap-2 pr-2'>
                             {/* Priority Tag */}
                             <span
                               className={`px-2 py-0.5 rounded-full text-xs font-medium whitespace-nowrap ${getPriorityColor(
@@ -327,14 +329,16 @@ export default function TaskList() {
                             </button>
                           </div>
                         </div>
-                        <p className="text-base text-[#111A2D] mb-2 leading-relaxed pl-7 pr-7">{task.description}</p>
+                        <p className="text-xs sm:text-base text-[#111A2D] mb-2 leading-relaxed pl-7 pr-7">{task.description}</p>
                         <div className="flex items-center gap-4 text-sm font-medium text-[#171C35]">
                           <div className="flex items-center gap-1 pl-7 mt-2">
-                            <span className='text-xs'>🕒</span> 
+                           <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8" fill="none">
+  <path d="M4.9636 4.5108L3.95 3.95V2.5636M7.15 3.95C7.15 4.79869 6.81286 5.61262 6.21274 6.21274C5.61262 6.81286 4.79869 7.15 3.95 7.15C3.10131 7.15 2.28737 6.81286 1.68726 6.21274C1.08714 5.61262 0.75 4.79869 0.75 3.95C0.75 3.10131 1.08714 2.28737 1.68726 1.68726C2.28737 1.08714 3.10131 0.75 3.95 0.75C4.79869 0.75 5.61262 1.08714 6.21274 1.68726C6.81286 2.28737 7.15 3.10131 7.15 3.95Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
                             <span>{task.time}</span>
                           </div>
                           <div className="flex items-center gap-1 mt-2">
-                            <span className='text-xs'>📅</span>
+                            <span className='text-xs'></span>
                             <span>Due: {task.dueDate}</span>
                           </div>
                         </div>

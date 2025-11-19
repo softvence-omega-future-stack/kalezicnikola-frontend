@@ -32,7 +32,7 @@ const PersonalInfo = () => {
     <div className="space-y-6">
 
       {/* Upload Photo + First & Last Name */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
         {/* Upload Photo */}
   
  <div
@@ -87,7 +87,7 @@ const PersonalInfo = () => {
       </div>
 
       {/* Date of Birth & Gender */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div>
           <label className="block text-base font-medium text-[#171c35] mb-2">Date of Birth</label>
           <input
@@ -116,7 +116,7 @@ const PersonalInfo = () => {
       </div>
 
       {/* Email & Phone */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div>
           <label className="block text-base font-medium text-[#171c35] mb-2">Email Address</label>
           <input
@@ -142,7 +142,7 @@ const PersonalInfo = () => {
       </div>
 
       {/* Address & State */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div>
           <label className="block text-base font-medium text-[#171c35] mb-2">Address</label>
           <input
@@ -168,7 +168,7 @@ const PersonalInfo = () => {
       </div>
 
       {/* Postal Code & Country */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div>
           <label className="block text-base font-medium text-[#171c35] mb-2">Postal Code</label>
           <input

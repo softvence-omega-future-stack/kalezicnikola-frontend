@@ -41,7 +41,7 @@ const ListView = () => {
               <table className="w-full">
                <thead className="border-b border-gray-200">
   <tr>
-    <th className="px-6 py-3 text-left text-sm font-semibold text-[#171C35]">
+    <th className="px-6 py-3 text-left text-base font-semibold text-[#171C35]">
       <div className="flex items-center gap-2">
         <input
           type="checkbox"

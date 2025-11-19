@@ -3,6 +3,7 @@ import home from "../../../../../assets/svgIcon/homeIcon.svg";
 import chevron from "../../../../../assets/svgIcon/chevronnRight.svg";
 import profile from "../../../../../assets/svgIcon/staftProfile.svg";
 import edit from "../../../../../assets/svgIcon/edit2.svg";
+import { useNavigate } from "react-router-dom";
 
 interface StaffData {
   name: string;
@@ -22,6 +23,7 @@ interface StaffData {
 
 export default function StaffProfile() {
   const [isEditing, setIsEditing] = useState(false);
+  const navigate = useNavigate()
   const [staffData, setStaffData] = useState<StaffData>({
     name: "Jonathon Sanders",
     role: "Receptionist",
@@ -57,7 +59,7 @@ export default function StaffProfile() {
       {/* Breadcrumb */}
       <div className="flex items-center gap-2 text-base text-gray-600 mb-4">
         <img src={home} alt="" />
-        <span>Dashboard</span>
+        <span onClick={()=> navigate('/dashboard')} className="cursor-pointer" >Dashboard</span>
         <img src={chevron} alt="" />
         <span>Patients</span>
         <img src={chevron} alt="" />

@@ -9,7 +9,7 @@ import Perferences from "./Sidebar/Perferences";
 import SecuritySettings from "./Sidebar/Security";
 import SubscriptionOverview from "./Sidebar/Subscription/SubscriptionOverview";
 import StaffManagement from "./Sidebar/MyStaf/StafMembers";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 
 import chevron from '../../../assets/svgIcon/chevronnRight.svg'
 
@@ -19,19 +19,20 @@ import home from '../../../assets/svgIcon/homeIcon.svg'
 
 export const SettingsLayout: React.FC = () => {
   const [activeItem, setActiveItem] = useState("Personal Info");
+  const navigate = useNavigate()
 
   return (
-    <div className="min-h-screen bg-[#F3F6F6] p-4 sm:p-6 lg:p-8">
+    <div className="min-h-screen bg-[#F3F6F6] mt-6">
 
-      <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 mb-6">
+      <div className="flex flex-col lg:flex-row lg:items-start  lg:justify-between gap-6 py-6 mb-6">
           {/* Left side - Breadcrumb & Title */}
         {/* Left side - Breadcrumb & Title */}
   <div>
-    <div className="flex items-center gap-2 text-sm text-gray-600 mb-4">
+    <div className="flex px-2 items-center gap-2 text-sm text-gray-600 mb-4">
       <img src={home} alt="" />
-      <span>Dashboard</span>
+      <span onClick={()=> navigate('/dashboard')} className="cursor-pointer">Dashboard</span>
       <img src={chevron} alt="" />
-      <span>Settings</span>
+      <span onClick={()=>navigate('/dashboard/settings')} className="cursor-pointer">Settings</span>
       <img src={chevron} alt="" />
 
       {/* 👉 Dynamic Last Part */}
@@ -39,7 +40,7 @@ export const SettingsLayout: React.FC = () => {
     </div>
 
     {/* 👉 Title (also dynamic if you want) */}
-    <h1 className="text-2xl font-semibold text-[#1a1c21]">{activeItem}</h1>
+    <h1 className="text-2xl px-2 md:px-0 font-semibold text-[#1a1c21]">{activeItem}</h1>
   </div>
 
           {/* Right side - Stats */}
@@ -68,7 +69,7 @@ export const SettingsLayout: React.FC = () => {
 
       <div className="flex flex-col lg:flex-row lg:space-x-5">
         {/* Sidebar */}
-        <div className="w-full lg:w-[240px] mb-6 lg:mb-0  bg-white rounded-xl  ">
+        <div className="w-full lg:w-[240px] mb-6 lg:mb-0   bg-white rounded-xl  ">
              <h2 className="text-[#171C35] font-semibold text-xl pl-5 pt-2">Setting</h2>
           <Sidebar activeItem={activeItem} setActiveItem={setActiveItem} />
         </div>

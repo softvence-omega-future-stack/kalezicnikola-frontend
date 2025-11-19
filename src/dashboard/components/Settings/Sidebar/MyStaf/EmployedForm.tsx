@@ -1,7 +1,9 @@
+import { ChevronDown } from "lucide-react";
+
 export default function EmployeeDetailsForm() {
   return (
-    <div className="p-4 sm:p-8 bg-white rounded-xl shadow-lg space-y-8">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-8">
+    <div className="p-4 sm:p-8 bg-white rounded-xl  space-y-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-8">
 
         {/* Row 1 */}
         <div className="flex flex-col space-y-1">
@@ -14,10 +16,10 @@ export default function EmployeeDetailsForm() {
         </div>
 
         {/* Department */}
-        <div className="flex flex-col space-y-1">
+        <div className="relative flex flex-col space-y-1">
           <label className="text-base font-medium text-[#171c35]">Department</label>
           <select 
-            className="w-full p-3 pr-8 border border-gray-300 rounded-lg text-sm text-[#171c35] bg-white focus:ring-blue-500 focus:border-blue-500"
+            className="w-full px-4 py-2.5 text-sm text-[#667085] bg-white border border-gray-300 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             defaultValue=""
           >
             <option value="" disabled>Select department</option>
@@ -27,6 +29,7 @@ export default function EmployeeDetailsForm() {
             <option>HR</option>
             <option>Finance</option>
           </select>
+          <ChevronDown className="absolute right-3  bottom-1/2 top-7 translate-y-1/2 w-5 h-5 text-[#667085] pointer-events-none" />
         </div>
 
         {/* Row 2 */}
@@ -39,10 +42,10 @@ export default function EmployeeDetailsForm() {
           />
         </div>
 
-        <div className="flex flex-col space-y-1">
+        <div className="relative flex flex-col space-y-1">
           <label className="text-base font-medium text-[#171c35]">Reporting To</label>
           <select 
-            className="w-full p-3 pr-8 border border-gray-300 rounded-lg text-sm text-[#171c35] bg-white focus:ring-blue-500 focus:border-blue-500"
+            className="w-full px-4 py-2.5 text-sm text-[#667085] bg-white border border-gray-300 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             defaultValue=""
           >
             <option value="" disabled>Select manager</option>
@@ -50,6 +53,8 @@ export default function EmployeeDetailsForm() {
             <option>Manager B</option>
             <option>Manager C</option>
           </select>
+          <ChevronDown className="absolute right-3  bottom-1/2 top-7 translate-y-1/2 w-5 h-5 text-[#667085] pointer-events-none" />
+          
         </div>
 
         {/* Row 3 */}
@@ -61,10 +66,10 @@ export default function EmployeeDetailsForm() {
           />
         </div>
 
-        <div className="flex flex-col space-y-1">
+        <div className="relative flex flex-col space-y-1">
           <label className="text-base font-medium text-[#171c35]">Employment Type</label>
           <select 
-            className="w-full p-3 pr-8 border border-gray-300 rounded-lg text-sm text-[#171c35] bg-white focus:ring-blue-500 focus:border-blue-500"
+            className="w-full px-4 py-2.5 text-sm text-[#667085] bg-white border border-gray-300 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             defaultValue=""
           >
             <option value="" disabled>Select type</option>
@@ -72,13 +77,14 @@ export default function EmployeeDetailsForm() {
             <option>Part-time</option>
             <option>Contract</option>
           </select>
+          <ChevronDown className="absolute right-3  bottom-1/2 top-7 translate-y-1/2 w-5 h-5 text-[#667085] pointer-events-none" />
         </div>
 
         {/* Row 4 */}
-        <div className="flex flex-col space-y-1">
+        <div className="relative flex flex-col space-y-1">
           <label className="text-base font-medium text-[#171c35]">Work Schedule</label>
           <select 
-            className="w-full p-3 pr-8 border border-gray-300 rounded-lg text-sm text-[#171c35] bg-white focus:ring-blue-500 focus:border-blue-500"
+            className="w-full px-4 py-2.5 text-sm text-[#667085] bg-white border border-gray-300 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             defaultValue=""
           >
             <option value="" disabled>Select schedule</option>
@@ -86,12 +92,13 @@ export default function EmployeeDetailsForm() {
             <option>Flexible</option>
             <option>Shift-based</option>
           </select>
+          <ChevronDown className="absolute right-3  bottom-1/2 top-7 translate-y-1/2 w-5 h-5 text-[#667085] pointer-events-none" />
         </div>
 
-        <div className="flex flex-col space-y-1">
+        <div className="relative flex flex-col space-y-1">
           <label className="text-base font-medium text-[#171c35]">Work Hours (Weekly)</label>
           <select 
-            className="w-full p-3 pr-8 border border-gray-300 rounded-lg text-sm text-[#171c35] bg-white focus:ring-blue-500 focus:border-blue-500"
+            className="w-full px-4 py-2.5 text-sm text-[#667085] bg-white border border-gray-300 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             defaultValue=""
           >
             <option value="" disabled>Select hours</option>
@@ -99,6 +106,7 @@ export default function EmployeeDetailsForm() {
             <option>30 hours</option>
             <option>20 hours</option>
           </select>
+          <ChevronDown className="absolute right-3 bottom-1/2 top-7 translate-y-1/2 w-5 h-5 text-[#667085] pointer-events-none" />
         </div>
       </div>
     </div>

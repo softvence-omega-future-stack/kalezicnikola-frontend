@@ -69,8 +69,8 @@ const AddPatientForm: React.FC = () => {
   const labelClass = "block text-base font-medium text-[#171c35] mb-2";
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4 md:p-8">
-      <div className="">
+    <div className="min-h-screen mt-6">
+      <div className="py-6">
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-sm text-gray-600 mb-4">
           <Home className="w-4 h-4 text-gray-500" />
@@ -92,7 +92,7 @@ const AddPatientForm: React.FC = () => {
           <div className="mb-8 pb-4 border-b border-gray-100">
             <h2 className="text-xl font-semibold text-[#171c35] mb-6">Personal Information</h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* First Name */}
               <div>
                 <label htmlFor="firstName" className={labelClass}>First Name *</label>
@@ -309,7 +309,7 @@ const AddPatientForm: React.FC = () => {
           </div>
 
           {/* 3. Action Buttons */}
-          <div className="flex justify-end gap-4 mt-8">
+          <div className="flex  justify-end gap-4 mt-8">
             <button
               type="button"
               onClick={handleCancel}
