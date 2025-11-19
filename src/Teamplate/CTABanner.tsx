@@ -1,5 +1,6 @@
 import React, { } from 'react';
 
+
 // import { useNavigate } from 'react-router-dom';
 import './bnnarButon.css'
 
@@ -7,11 +8,24 @@ import './bnnarButon.css'
 // import LiquidGlassButton from './LequiedGlassBtn';
 
 
+//import { useNavigate } from 'react-router-dom';
+// import LiquidGlassButton from './LequiedGlassBtn';
+
+// import { useNavigate } from 'react-router-dom';
+
+
+
 const CTABanner: React.FC = () => {
   // const navigate = useNavigate();
   // const [isHovered, setIsHovered] = useState(false);
   // const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
   //  const [isPressed, setIsPressed] = useState(false);
+
+
+  //  const [isPressed, setIsPressed] = useState(false);
+
+
 
   // const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
   //   const rect = e.currentTarget.getBoundingClientRect();
@@ -20,7 +34,9 @@ const CTABanner: React.FC = () => {
   //     y: e.clientY - rect.top,
   //   });
   // };
+
   
+
 
   return (
     <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="w-full px-4 mt-19 md:mt-[180px] lg:mt-[180px] xl:mt-[180px]">
@@ -94,8 +110,13 @@ const CTABanner: React.FC = () => {
                     opacity: isHovered ? 1 : 0,
                   }}
                 />
-                
+
              
+
+
+             
+
+
                 {isHovered && (
                   <div
                     className="absolute rounded-full pointer-events-none transition-all duration-500 ease-out"
@@ -119,7 +140,11 @@ const CTABanner: React.FC = () => {
                   }}
                 />
 
+<<<<<<< HEAD
           
+=======
+              
+>>>>>>> 9c2652c5f50a5324a314048585d7adf6510c3323
                 {isHovered && (
                   <div
                     className="absolute inset-0 rounded-full sm:rounded-2xl pointer-events-none"
@@ -135,6 +160,7 @@ const CTABanner: React.FC = () => {
 
                 
 
+<<<<<<< HEAD
          
           </div> */}
 
@@ -194,9 +220,13 @@ shadow-[inset_0_0_0_1px_rgba(255,255,255,0.25)]
   </div>
 </button> */}
           </div>
+
+          
+          </div> 
+
         </div>
       </div>
-    </div>
+   
   
   );
 };

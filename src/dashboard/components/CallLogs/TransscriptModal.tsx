@@ -13,7 +13,9 @@ import WaveBar from './Wevebar';
 
 import TranscriptChat from './TranscriptChat';
 
+
 // import { Pause } from "lucide-react";
+
 
 
 
@@ -29,6 +31,11 @@ const PATIENT_INFO = {
 
 
 
+
+
+//const totalDuration = 100; // normalized total duration
+
+
 // const PLAYER_WAVE_SEGMENTS = [
 //   { height: 45, time: "0:00" },
 //   { height: 45, time: "0:30" },
@@ -37,10 +44,12 @@ const PATIENT_INFO = {
 //   { height: 45, time: "2:00" },
 //   { height: 45, time: "2:30" },
 // ];
+
 // const totalDuration = 100; 
 
 
 // const totalDuration = 100;
+
 
 
 // --- Custom Play Icon SVG ---
@@ -82,9 +91,11 @@ const PatientTranscriptPage: React.FC = () => {
   // }, [isPlaying]);
 
 
+
   // const togglePlayPause = () => setIsPlaying(!isPlaying);
 
   // const calculateProgressWidth = (time: number) => (time / totalDuration) * 100;
+
 
 
 
@@ -195,8 +206,10 @@ const PatientTranscriptPage: React.FC = () => {
             </div>
           </div>  */}
 
+
          
         
+
 
 
         {/* Patients Transcript (Audio Player) Section */}

@@ -224,6 +224,11 @@ const FeatureSection: React.FC = () => {
   return (
 
 
+
+    <div className="xl:-mt-20 mt-12  ">
+
+
+
     <div className=" px-4  ">
 
     <div className="  ">
@@ -272,6 +277,7 @@ const FeatureSection: React.FC = () => {
           <CustomizationCard />
         </div>
       </div>
+    </div>
     </div>
     </div>
     </div>
