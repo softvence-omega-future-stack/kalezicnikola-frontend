@@ -1,4 +1,4 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowDownRight } from "lucide-react";
 
 const statsCards = [
   { title: "Total MRR", value: "$284", change: "+12.5%", color: "#D0E1F5" },
@@ -8,23 +8,34 @@ const statsCards = [
   { title: "Customer Churn Rate", value: "$28", change: "+12.5%", color: "#D0E1F5" },
 ];
 
-const StatCard = ({ stat, maskId }: { stat: typeof statsCards[0]; maskId: string }) => {
+interface StatCardProps {
+  stat: {
+    title: string;
+    value: string;
+    change: string;
+    color: string;
+  };
+  maskId: string;
+}
+
+const StatCard = ({ stat, maskId }: StatCardProps) => {
   const width = 300;
   const height = 184;
 
   return (
-    <div className="relative w-full h-40 sm:h-[170px] md:h-[180px]">
-      {/* SVG background shape */}
+    <div className="relative w-full h-[150px] sm:h-[170px]">
+
+      {/* SVG Background */}
       <svg
-        width="40%"
-        height="100%"
         viewBox={`0 0 ${width} ${height}`}
         preserveAspectRatio="none"
-        className="absolute top-0 left-0 w-full h-full"
+        className="absolute inset-0 w-full h-full"
       >
         <defs>
           <mask id={maskId}>
             <rect width={width} height={height} rx="24" fill="white" />
+
+            {/* mask shapes */}
             <path
               d={`M${width} ${height} C${width} ${height - 20} ${width - 20} ${height - 20} ${width - 20} ${height} Z`}
               fill="black"
@@ -39,39 +50,75 @@ const StatCard = ({ stat, maskId }: { stat: typeof statsCards[0]; maskId: string
             />
           </mask>
         </defs>
-        <rect width={width} height={height} rx="24" fill={stat.color} mask={`url(#${maskId})`} />
+
+        <rect
+          width={width}
+          height={height}
+          rx="24"
+          fill={stat.color}
+          mask={`url(#${maskId})`}
+        />
       </svg>
 
-      {/* Card content */}
-      <div className="absolute top-0 left-0 w-full h-full p-4 md:p-5 flex flex-col justify-between">
+      {/* Card Content */}
+      <div className="absolute inset-0 p-4 sm:p-5 flex flex-col justify-between pb-14 z-10">
         <div>
-          <p className="text-sm sm:text-base font-semibold text-[#171C35] mb-1 sm:mb-2">
+          <p className="text-sm sm:text-base font-semibold text-headingBlack mb-10">
             {stat.title}
           </p>
-          <p className="text-2xl sm:text-[28px] md:text-[32px] font-medium text-[#171C35] mb-1">
+          <p className="text-3xl sm:text-[36px] font-semibold text-headingBlack leading-none mb-2">
             {stat.value}
           </p>
-          <p className="text-xs sm:text-sm text-[#111A2D]">Last month {stat.change}</p>
-        </div>
-
-        {/* Bottom-right arrow */}
-        <div className="absolute bottom-3 md:bottom-2 right-3 sm:-right-2 md:right-1 lg:-right-4 xl:right-2 transition-all duration-200">
-          <div className="h-9 w-9 sm:h-10 sm:w-10 md:h-12 md:w-12 bg-black text-white rounded-full flex items-center justify-center shadow-md">
-            <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
-          </div>
+          <p className="text-xs sm:text-sm text-subHeadingBlack">
+            Last month {stat.change}
+          </p>
         </div>
       </div>
+
+      {/* Arrow – now clean, spaced and responsive */}
+      <button
+        aria-label="View details"
+        className="
+          absolute
+          right-5
+          bottom-1
+          sm:right-3
+          sm:bottom-1
+          md:right-3
+          md:bottom-2
+          lg:right-2
+          lg:bottom-1
+          h-10 w-10 sm:h-12 sm:w-12
+          rounded-full
+          bg-black text-white
+          shadow-md
+          flex items-center justify-center
+          z-20
+          cursor-pointer
+        "
+      >
+        <ArrowDownRight className="w-5 h-5" />
+      </button>
     </div>
   );
 };
 
 const CardHeader = () => {
   return (
-    <div className="py-4">
-      {/* Responsive grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-5 sm:pr-8">
-        {statsCards.map((stat, index) => (
-          <StatCard key={index} stat={stat} maskId={`statCardMask${index}`} />
+    <div className="pt-6 md:pt-10 pb-4">
+      <div
+        className="
+          grid
+          grid-cols-1
+          sm:grid-cols-2
+md:grid-cols-2
+          lg:grid-cols-3
+          xl:grid-cols-5
+          gap-5
+        "
+      >
+        {statsCards.map((stat, i) => (
+          <StatCard key={i} stat={stat} maskId={`statCardMask${i}`} />
         ))}
       </div>
     </div>
