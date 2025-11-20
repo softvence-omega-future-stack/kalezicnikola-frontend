@@ -7,10 +7,10 @@ import DashboardCalender from "@/dashboard/components/dashboard/DashboardCalende
 
 const Dashboard: React.FC = () => {
   return (
-    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="min-h-screen   ">
+    <div  className="min-h-screen -ml-4  ">
     
 
-      <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="mb-8 ">
+      <div  className="mb-8 ">
 
 
       <div className="mb-6 ">
@@ -19,10 +19,10 @@ const Dashboard: React.FC = () => {
       </div>
 
    
-    <div className="flex flex-col lg:flex-row gap-[10px]">
+    <div className="flex flex-col lg:flex-row ">
 
   {/* LEFT SIDE: Appointments */}
-  <div className="w-full lg:w-1/3 pl-3">
+  <div className="w-full lg:w-1/3 ">
     <AppointmentsList />
   </div>
 

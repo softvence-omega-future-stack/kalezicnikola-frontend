@@ -27,7 +27,7 @@ export default function PatientsView() {
       <div className="mt-6">
         <div className='flex items-center gap-2 py-6 px-2 md:px-0 text-sm text-gray-600 mb-6'>
       <img src={homeIcon} alt="" />
-        <span>Dashboard</span>
+        <span onClick={()=> navigate('/dashboard')}>Dashboard</span>
        <img src={chevronIcon} alt="" />
         <span className="font-semibold text-[#171C35]">Patients</span>
       </div>
@@ -37,7 +37,7 @@ export default function PatientsView() {
       {/* Header */}
       <div className=" p-6 mb-6">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <h1 className="text-2xl font-bold text-[#171C35]">Total 60 Patients</h1>
+          <h1 className="text-xl font-semibold text-[#171C35]">Total 60 Patients</h1>
 
           <div className="flex flex-wrap items-center gap-3">
            <button

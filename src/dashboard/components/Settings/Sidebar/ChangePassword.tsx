@@ -89,7 +89,7 @@ const ChangePasswordForm: React.FC = () => {
   };
 
   return (
-    <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
+    <div className="p-6 bg-white rounded-xl  border border-gray-100">
       <h2 className="text-xl font-semibold text-[#171C35]  mb-6 pb-4 border-b">
         Change Password
       </h2>

@@ -44,7 +44,7 @@ export default function StaffManagement() {
       <tr className="border-b border-gray-200">
         <th className="text-left py-3 px-3 whitespace-nowrap">
           <div className="flex items-center gap-3">
-            <input type="checkbox" className="w-4 h-4 rounded border-gray-300" />
+            
             <span className="text-sm font-semibold text-[#171C35]">
               Patient Name
             </span>
@@ -79,7 +79,7 @@ export default function StaffManagement() {
           {/* NAME */}
           <td className="py-3 px-3 whitespace-nowrap">
             <div className="flex items-center gap-3">
-              <input type="checkbox" className="w-4 h-4 border-gray-300" />
+         
 
               <div className="flex items-center gap-3">
                 <img
@@ -88,12 +88,13 @@ export default function StaffManagement() {
                   className="w-10 h-10 rounded-full object-cover"
                 />
 
-                <div className="min-w-[90px]">
-                  <p className="text-sm font-medium text-[#111A2D]">
-                    {staff.name}
-                  </p>
-                  <p className="text-xs text-[#111A2D]">{staff.srn}</p>
-                </div>
+            <div className="">
+  <p className="text-sm font-medium text-[#111A2D] whitespace-normal leading-tight max-w-[120px]">
+    {staff.name}
+  </p>
+  <p className="text-xs text-[#111A2D]">{staff.srn}</p>
+</div>
+
               </div>
             </div>
           </td>
@@ -102,6 +103,9 @@ export default function StaffManagement() {
           <td className="py-3 px-3 text-xs font-medium text-[#1a1c21] whitespace-nowrap">
             {staff.joined}
           </td>
+          {/* <td className="py-3 px-3 text-xs font-medium text-[#1a1c21] whitespace-nowrap">
+            {staff.joined}
+          </td> */}
 
           {/* ROLE */}
           <td className="py-3 px-3 text-xs font-medium text-[#111A2D] whitespace-nowrap">
@@ -135,7 +139,7 @@ export default function StaffManagement() {
           <td className="py-3 px-3 whitespace-nowrap">
             <button
               onClick={() => navigate(`staff/profile/${staff.id}`)}
-              className="flex items-center gap-1 text-xs text-[#526FFF] font-medium whitespace-nowrap"
+              className="flex items-center gap-1 text-xs text-[#526FFF] font-medium whitespace-nowrap cursor-pointer"
             >
               View Profile
               <svg
@@ -159,64 +163,7 @@ export default function StaffManagement() {
     </tbody>
   </table>
 </div>
-
-
-
-          {/* Cards - Mobile/Tablet */}
-          {/* <div className="lg:hidden divide-y divide-gray-100">
-            {staffMembers.map((staff) => (
-              <div key={staff.id} className="p-4">
-                <div className="flex items-start gap-3 mb-3">
-                  <input type="checkbox" className="w-4 h-4 rounded border-gray-300 mt-1" />
-                  <img 
-                    src={`https://i.pravatar.cc/150?img=${staff.id}`}
-                    alt={staff.name}
-                    className="w-10 h-10 rounded-full object-cover shrink-0"
-                  />
-                  <div className="flex-1">
-                    <p className="text-sm font-medium text-[#1a1c21]">{staff.name}</p>
-                    <p className="text-xs text-gray-600">{staff.srn}</p>
-                  </div>
-                  <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium ${
-                    staff.status === 'Active' 
-                      ? 'bg-green-50 text-green-700' 
-                      : 'bg-red-50 text-red-700'
-                  }`}>
-                    <span className={`w-1.5 h-1.5 rounded-full ${
-                      staff.status === 'Active' ? 'bg-green-600' : 'bg-red-600'
-                    }`}></span>
-                    {staff.status}
-                  </span>
-                </div>
-                <div className="ml-14 space-y-2 mb-3">
-                  <div className="flex justify-between text-xs">
-                    <span className="text-gray-600">Joined:</span>
-                    <span className="text-[#1a1c21]">{staff.joined}</span>
-                  </div>
-                  <div className="flex justify-between text-xs">
-                    <span className="text-gray-600">Role:</span>
-                    <span className="text-[#1a1c21]">{staff.role}</span>
-                  </div>
-                  <div className="flex justify-between text-xs">
-                    <span className="text-gray-600">Contact:</span>
-                    <span className="text-[#1a1c21]">{staff.email}</span>
-                  </div>
-                </div>
-                <div className="ml-14">
-                  <button    onClick={() => navigate(`staff/profile/${staff.id}`)}
-                   className="flex items-center gap-1 text-sm text-blue-600 hover:text-blue-700 font-medium">
-                    View Profile
-                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div> */}
-
-         
-        </div>
+ </div>
          {/* Pagination */}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-6">
             <p className="text-sm font-medium text-[#000000]">Showing 1-8 of 63 staff members</p>

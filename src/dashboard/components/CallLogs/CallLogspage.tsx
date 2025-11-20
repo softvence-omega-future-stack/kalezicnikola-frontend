@@ -84,10 +84,10 @@ const CallLogsPage: React.FC = () => {
   return (
     <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="min-h-screen ">
       {/* Header Navigation */}
-      <div className="px-4 py-3">
-        <div className="flex flex-wrap items-center gap-2 text-sm">
+      <div className="mt-6">
+        <div className="flex flex-wrap items-center gap-2 pt-6 text-sm">
           <img src={homeIcon} alt="home" className="w-4 h-4" />
-          <span className="text-gray-500 text-xs sm:text-sm">Dashboard</span>
+          <span onClick={()=> navigate('/dashboard')} className="text-gray-500 text-xs sm:text-sm cursor-pointer ">Dashboard</span>
           <svg xmlns="http://www.w3.org/2000/svg" width="6" height="10" viewBox="0 0 6 10" fill="none">
   <path d="M0.666992 8.66699L4.66699 4.66699L0.666992 0.666992" stroke="#D0D5DD" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
@@ -96,8 +96,8 @@ const CallLogsPage: React.FC = () => {
       </div>
 
       {/* Main Content */}
-      <div className="p-4 sm:p-6">
-        <h1 className="text-2xl sm:text-3xl font-bold text-black mb-6">Call Logs</h1>
+      <div className="mt-4">
+        <h1 className="text-2xl sm:text-3xl font-semibold text-black mb-6">Call Logs</h1>
 
         {/* Table Container */}
         <div className="rounded-2xl bg-white ">

@@ -8,9 +8,11 @@ import LabResultsPage from "./LabResults";
 
 import homeIcon from "../../../assets/svgIcon/homeIcon.svg";
 import chevronIcon from "../../../assets/svgIcon/chevronnRight.svg";
+import { useNavigate } from "react-router-dom";
 
 const PatientProfilePage: React.FC = () => {
   const [activeTab, setActiveTab] = useState("Personal Info");
+  const navigate = useNavigate()
 
   const tabs = [
     "Personal Info",
@@ -21,26 +23,26 @@ const PatientProfilePage: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen w-full">
+    <div className="min-h-screen mt-6 w-full">
       {/* Header Navigation */}
-      <div className="px-4 sm:px-6 py-3">
+      <div className=" pt-6">
         <div className="flex flex-wrap items-center gap-2 text-sm">
           <button className="text-gray-400 hover:text-gray-600">
             <img src={homeIcon} alt="" />
           </button>
 
           <img src={chevronIcon} alt="" className="text-gray-400" />
-          <span className="text-gray-600">Dashboard</span>
+          <span onClick={()=> navigate('/dashboard')} className="text-gray-600 cursor-pointer">Dashboard</span>
 
           <img src={chevronIcon} alt="" className="text-gray-400" />
-          <span className="text-gray-600">Patients</span>
+          <span onClick={()=> navigate('/dashboard/patients')} className="text-gray-600 cursor-pointer">Patients</span>
 
           <img src={chevronIcon} alt="" className="text-gray-400" />
-          <span className="text-[#171C35] font-medium">Patient Profile</span>
+          <span  className="text-[#171C35] font-medium">Patient Profile</span>
         </div>
       </div>
 
-      <div className="p-4 sm:p-6">
+      <div className=" pt-4">
         <h1 className="text-2xl font-semibold text-[#171C35] mb-5 sm:mb-9">
           Zur Patientenakte
         </h1>

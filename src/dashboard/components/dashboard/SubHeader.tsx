@@ -202,7 +202,8 @@ import arrowRight from "../../../assets/svgIcon/arrowRight.svg";
 import unredview1 from "../../../assets/svgIcon/unredviewcard1.svg";
 import unredview2 from "../../../assets/svgIcon/unredviewcard2.svg";
 import unredview3 from "../../../assets/svgIcon/unredviewcard3.svg";
-
+// import topcorner from '../../../assets/topCorner.svg'
+// import { ArrowBigLeft } from "lucide-react";
 const categories = [
   {
     title: "Unreviewed calls",
@@ -366,6 +367,80 @@ const SubHeaderCard = () => {
   return (
     <CommonSpace>
       <div className="-mt-18 px-2.5">
+
+{/* <div className="mb-4">
+  <div className="relative w-[200px] h-[118px]">
+    <div className="bg-blue-100 w-full h-full rounded-lg"></div>
+
+    <div className="absolute bottom-0 right-0 h-12 w-12 bg-[#F3F6F6] rounded-t-full flex items-center justify-center">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32" fill="none">
+        <rect width="32" height="32" rx="16" fill="black"/>
+        <path d="M12.2426 20.2426L20.7279 11.7574M20.7279 11.7574V20.2426M20.7279 11.7574H12.2426" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    </div>
+  </div>
+</div> */}
+
+
+{/* <div className="mb-4">
+  <div className="relative w-[200px] h-[118px] overflow-hidden rounded-2xl">
+    
+   
+    <div className="bg-blue-100 w-full h-full"></div>
+
+    
+    <div 
+      className="
+        absolute top-0 left-0 
+        h-12 w-12 
+        bg-[#F3F6F6] 
+        flex items-center justify-center
+        rl rounded-2xl
+        [clip-path:polygon(0%_100%,_100%_100%,_100%_0%,_0%_0%,_0%_100%)] 
+        
+        [clip-path:circle(64px_at_100%_100%)]
+      "
+      style={{ 
+    
+        clipPath: 'circle(64px at 100% 100%)', 
+      
+      }}
+    >
+   
+   <div className="relative h-14 w-14 flex items-center justify-center">
+
+
+  <div className="h-10 w-10 bg-black rounded-full flex items-center justify-center z-10">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32" fill="none">
+      <path d="M12.2426 20.2426L20.7279 11.7574M20.7279 11.7574V20.2426M20.7279 11.7574H12.2426" 
+        stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"
+      />
+    </svg>
+  </div>
+
+
+  <img 
+    src={topcorner} 
+    alt="" 
+    className="h-6 w-6 absolute left-0 bottom-0 translate-x-[-40%] translate-y-[40%] rotate-45 z-20"
+  />
+
+ 
+  <img 
+    src={topcorner} 
+    alt="" 
+    className="h-6 w-6 absolute right-0 top-0 translate-x-[40%] translate-y-[-40%] -rotate-45 z-20"
+  />
+
+</div>
+
+
+    </div>
+  </div>
+</div> */}
+
+
+
         <div className="grid grid-cols-1  lg:grid-cols-2 xl:grid-cols-4 gap-3">
           {categories.map((category, index) => (
             <div

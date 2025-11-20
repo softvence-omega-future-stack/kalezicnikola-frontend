@@ -1,41 +1,42 @@
 import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight, Plus } from 'lucide-react';
+import {  Plus } from 'lucide-react';
 
 
 import DayView from '../Calendar/DayView';
 import CalendarMonthView from '../Calendar/MonthView';
 import WeeklyCalendar from '../Calendar/WeekView';
 import NewAppointmentModal from './NewAppointmentModal';
+import CalendarHeader from '../Calendar/CalendarHeader';
 
 
 const DashboardCalendar: React.FC = () => {
   const [viewType, setViewType] = useState<'day' | 'week' | 'month'>('month'); 
-  const [currentDate, setCurrentDate] = useState(new Date(2025, 8, 29));
+  // const [currentDate, setCurrentDate] = useState(new Date(2025, 8, 29));
   const [isModalOpen, setIsModalOpen] = useState(false); // ✅ Modal state
 
-  const monthYear = currentDate.toLocaleDateString('en-US', {
-    month: 'long',
-    year: 'numeric',
-  });
+  // const monthYear = currentDate.toLocaleDateString('en-US', {
+  //   month: 'long',
+  //   year: 'numeric',
+  // });
 
   const handleViewChange = (type: 'day' | 'week' | 'month') => {
     setViewType(type);
   };
 
-  const handleNext = () => {
-    const newDate = new Date(currentDate);
-    newDate.setMonth(currentDate.getMonth() + 1);
-    setCurrentDate(newDate);
-  };
+  // const handleNext = () => {
+  //   const newDate = new Date(currentDate);
+  //   newDate.setMonth(currentDate.getMonth() + 1);
+  //   setCurrentDate(newDate);
+  // };
 
-  const handlePrev = () => {
-    const newDate = new Date(currentDate);
-    newDate.setMonth(currentDate.getMonth() - 1);
-    setCurrentDate(newDate);
-  };
+  // const handlePrev = () => {
+  //   const newDate = new Date(currentDate);
+  //   newDate.setMonth(currentDate.getMonth() - 1);
+  //   setCurrentDate(newDate);
+  // };
 
   return (
-    <div className="bg-white rounded-2xl p-4 sm:p-6 -mt-15">
+    <div className="bg-white rounded-2xl p-4 sm:p-6 -mt-16">
 
 
       {/* Header */}
@@ -46,7 +47,7 @@ const DashboardCalendar: React.FC = () => {
         <div className="flex items-center gap-3 w-full sm:w-auto flex-wrap sm:flex-nowrap">
           {/* Add Appointment Button */}
           <button
-            onClick={() => setIsModalOpen(true)} // ✅ Open modal on click
+            onClick={() => setIsModalOpen(true)} 
             className="flex items-center gap-2 px-3 sm:px-4 py-1.5 text-sm text-gray-600 hover:bg-gray-50 rounded-[8px] border border-gray-300 cursor-pointer w-full sm:w-auto justify-center"
           >
             <Plus size={16} />
@@ -58,7 +59,7 @@ const DashboardCalendar: React.FC = () => {
       {/* Top Navigation */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
-          <button onClick={handlePrev} className="p-1 hover:bg-gray-200 rounded">
+          {/* <button onClick={handlePrev} className="p-1 hover:bg-gray-200 rounded">
             <ChevronLeft size={20} className="text-gray-600" />
           </button>
 
@@ -68,7 +69,8 @@ const DashboardCalendar: React.FC = () => {
 
           <button onClick={handleNext} className="p-1 hover:bg-gray-200 rounded">
             <ChevronRight size={20} className="text-gray-600" />
-          </button>
+          </button> */}
+          <CalendarHeader/>
 
           <div className="ml-3 relative">
             <select
@@ -99,7 +101,7 @@ const DashboardCalendar: React.FC = () => {
       </div>
 
       {/* Calendar Content */}
-      <div className="overflow-x-auto border rounded-3xl">
+      <div className="overflow-x-auto ">
         {viewType === 'day' && <DayView />}
         {viewType === 'week' && <WeeklyCalendar />}
         {viewType === 'month' && <CalendarMonthView />}
