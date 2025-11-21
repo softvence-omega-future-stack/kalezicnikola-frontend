@@ -100,7 +100,7 @@ const data = [
 
 const AIVoiceCall = () => {
   return (
-    <div className="bg-white p-4 md:p-6 rounded-xl  md:rounded-3xl mt-4">
+    <div className="bg-white p-4 md:p-6 rounded-xl md:rounded-3xl mt-4">
       <div className="mb-4">
         <h1 className="text-xl md:text-2xl font-semibold text-headingBlack pb-1 md:pb-3">
           AI Voicebot Call Volume
