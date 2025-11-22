@@ -56,13 +56,13 @@ const DoctorDatabaseTable: React.FC = () => {
     setIsOpen(false);
   };
 
-  const toggleSelectAll = () => {
-    if (selectedRows.size === filteredDoctors.length) {
-      setSelectedRows(new Set());
-    } else {
-      setSelectedRows(new Set(filteredDoctors.map(d => d.id)));
-    }
-  };
+  // const toggleSelectAll = () => {
+  //   if (selectedRows.size === filteredDoctors.length) {
+  //     setSelectedRows(new Set());
+  //   } else {
+  //     setSelectedRows(new Set(filteredDoctors.map(d => d.id)));
+  //   }
+  // };
 
   const toggleSelectRow = (id: string) => {
     const newSelected = new Set(selectedRows);
@@ -184,14 +184,14 @@ const DoctorDatabaseTable: React.FC = () => {
             <table className="w-full">
               <thead>
                 <tr className="border-b border-gray-200">
-                  <th className="px-2 sm:px-4 py-3 text-left w-12">
+                  {/* <th className="px-2 sm:px-4 py-3 text-left w-12">
                     <input
                       type="checkbox"
                       checked={selectedRows.size === filteredDoctors.length && filteredDoctors.length > 0}
                       onChange={toggleSelectAll}
                       className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 cursor-pointer"
                     />
-                  </th>
+                  </th> */}
                   <th className="px-2 sm:px-4 py-3 text-left text-sm sm:text-base font-semibold text-headingBlack tracking-wider">
                     Doctor Name
                   </th>

@@ -57,7 +57,7 @@ const AdminDashboardLayout = () => {
                 <AdminMainHeader onMobileMenuOpen={() => setMobileMenuOpen(true)} />
 
                 {/* Scrollable content */}
-                <main className="flex-1 overflow-y-auto px-3 md:pt-[30px] md:px-6 pb-6">
+                <main className="flex-1 overflow-y-auto px-3 md:pt-12 md:px-6 pb-6">
                     <Outlet />
                 </main>
 
