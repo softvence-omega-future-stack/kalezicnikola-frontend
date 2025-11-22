@@ -5,6 +5,7 @@ import img2 from '../assets/svgIcon/featureImg2.svg';
 import img3 from '../assets/svgIcon/featureImg3.svg';
 import icon from '../assets/svgIcon/herologo.svg';
 import './buttom.css'
+import SectionHeader from './SectionHeader';
 
 // Common styles
 const titleStyle = {
@@ -225,7 +226,7 @@ const FeatureSection: React.FC = () => {
 
 
 
-    <div className="xl:-mt-20 mt-12  ">
+    <div className="xl:-mt-20 mt-  ">
 
 
 
@@ -236,7 +237,7 @@ const FeatureSection: React.FC = () => {
 
     <div className="py-8 px-4 lg:mx-15 xl:-mt-20 ">
 
-      <div className="text-center mb-16">
+      {/* <div className="text-center mb-16">
         <div style={{fontFamily: 'Urbanist, sans-serif',}} className="relative glass inline-flex items-center gap-2 backdrop-blur-lg pr-5 pl-2.5 py-2  border border-white bg-white/10 rounded-full mb-6 -mt-7">
           <img src={icon} alt="" />
           <span style={descStyle}>Peace on the phone</span>
@@ -253,7 +254,21 @@ const FeatureSection: React.FC = () => {
         <p style={descStyle} className="max-w-2xl mx-auto">
           The Docline AI assistant solves the biggest challenges in daily practice.
         </p>
-      </div>
+      </div> */}
+
+<SectionHeader
+  badgeIcon={icon}
+  badgeText="Peace on the phone"
+  heading={
+    <>
+      The Relief <span className="block">Your Team Deserves</span>
+    </>
+  }
+  subText="The Docline AI assistant solves the biggest challenges in daily practice."
+  align="center"
+  subAlign="center"
+/>
+
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {/* Row 1 */}

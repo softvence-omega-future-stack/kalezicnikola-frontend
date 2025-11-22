@@ -80,7 +80,7 @@ export default function OtpPage() {
 
 //   const isComplete = otp.every(digit => digit !== '');
   return (
-    <div className=" flex relative bg-[#F3F6F6]">
+    <div className=" min-h-screen flex relative bg-[#F3F6F6]">
       {/* Left Side - Image */}
       <div className="hidden rounded-[16px] p-[10px] lg:block lg:w-1/2 relative">
         <img
@@ -90,7 +90,7 @@ export default function OtpPage() {
         />
 
           {/* Fixed Border Box (DocLine + Login Btn) */}
-        <div className="fixed top-8 left-0 right-0 z-20 w-[95%] border border-gray-100 bg-white/10 backdrop-blur-sm rounded-full px-9 py-4 flex items-center justify-between mx-auto">
+        <div className="fixed top-8 left-0 right-0 z-20 w-[95%] border border-white bg-white/10 backdrop-blur-sm rounded-full px-9 py-4 flex items-center justify-between mx-auto">
           <div className="flex items-center gap-2">
               <img src={icon} alt="Logo" />
             <img src={logo} alt="" />
@@ -102,86 +102,82 @@ export default function OtpPage() {
       </div>
 
       {/* Right Side - Login Form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-gray-50 relative">
-        <div className="w-full max-w-md">
-         
+ <div className="w-full lg:w-1/2 flex items-center justify-center p-4 sm:p-8 relative">
+  {/* Mobile Login Button */}
+  <div className="absolute top-4 right-4 lg:hidden">
+    <button className="px-4 py-2 bg-gray-900 text-white rounded-full text-sm font-medium">
+      Login
+    </button>
+  </div>
 
-          {/* Login Button Top Right (for mobile) */}
-          <div className="absolute top-8 right-8 lg:hidden">
-            <button className="px-6 py-2 bg-gray-900 text-white rounded-full text-sm font-medium">
-              Login
-            </button>
-          </div>
+  {/* OTP Card */}
+  <div className="w-full max-w-md   p-2 md:p-4 ">
+    <h1 className="text-3xl sm:text-4xl font-bold text-[#171C35] mb-4 sm:mb-5">
+      OTP
+    </h1>
 
-               <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-gray-50 relative">
-        <div className="w-full max-w-md"></div>
-           <div className=" rounded-3xl  p-10  ">
-        <h1 className="text-4xl font-bold text-[#171C35] mb-5">OTP</h1>
-        
-        <p className="text-[#111A2D] text-base mb-8 leading-relaxed">
-          Please enter the Six digit One time password we sent to your email to confirm its you
-        </p>
+    <p className="text-[#111A2D] text-sm sm:text-base mb-6 sm:mb-8 leading-relaxed">
+      Please enter the six-digit one-time password we sent to your email.
+    </p>
 
-        {showSuccess && (
-          <div className="bg-emerald-500 text-white px-4 py-3 rounded-[8px] mb-5 text-center font-medium">
-            OTP Verified Successfully!
-          </div>
-        )}
+    {showSuccess && (
+      <div className="bg-emerald-500 text-white px-4 py-3 rounded-[8px] mb-5 text-center font-medium">
+        OTP Verified Successfully!
+      </div>
+    )}
+    {showError && (
+      <div className="bg-red-500 text-white px-4 py-3 rounded-[8px] mb-5 text-center font-medium">
+        Invalid OTP. Please try again.
+      </div>
+    )}
 
-        {showError && (
-          <div className="bg-red-500 text-white px-4 py-3 rounded-[8px] mb-5 text-center font-medium">
-            Invalid OTP. Please try again.
-          </div>
-        )}
+    <label className="block text-[#171C35] font-medium text-base mb-3">OTP</label>
+    <div className="flex justify-between gap-2 sm:gap-4 mb-6 sm:mb-8 flex-wrap">
+      {otp.map((digit, index) => (
+        <div
+          key={index}
+          className="w-10 sm:w-14 h-10 sm:h-14 text-[#111A2D] border-2 rounded-xl flex items-center justify-center"
+        >
+          <input
+           ref={(el) => {
+  inputRefs.current[index] = el; 
+}}
 
-        <label className="block text-[#171C35] font-medium text-base mb-3">OTP</label>
-        
-<div className="flex justify-between gap-4 mb-8">
-  {otp.map((digit, index) => (
-    <div key={index} className="w-14 h-14 text-[#111A2D] border-2 rounded-xl flex items-center justify-center">
-      <input
-        ref={el => {
-    inputRefs.current[index] = el;
-  }}
-        type="text"
-        inputMode="numeric"
-        maxLength={1}
-        value={digit}
-        onChange={(e) => handleChange(index, e.target.value)}
-        onKeyDown={(e) => handleKeyDown(index, e)}
-        onPaste={handlePaste}
-        className="w-full h-full text-center text-2xl font-semibold outline-none text-[#111A2D] bg-transparent"
-        placeholder="-"  // Dash centered inside box
-      />
+            type="text"
+            inputMode="numeric"
+            maxLength={1}
+            value={digit}
+            onChange={(e) => handleChange(index, e.target.value)}
+            onKeyDown={(e) => handleKeyDown(index, e)}
+            onPaste={handlePaste}
+            className="w-full h-full text-center text-xl sm:text-2xl font-semibold outline-none text-[#111A2D] bg-transparent"
+            placeholder="-"
+          />
+        </div>
+      ))}
     </div>
-  ))}
+
+    <div className="flex flex-col gap-4 sm:gap-6">
+      <button
+        onClick={handleSubmit}
+        className="w-full py-3 bg-[#526FFF] text-white rounded-[8px] font-medium text-sm sm:text-base hover:bg-[#4255E0] transition"
+      >
+        Submit OTP
+      </button>
+
+      <p className="text-center text-[#171C35] text-sm mb-1 sm:mb-2">
+        Did not receive OTP?
+      </p>
+      <button
+        onClick={handleResend}
+        className="w-full text-center text-[#526FFF] font-semibold text-sm sm:text-base hover:underline transition"
+      >
+        Send OTP Again
+      </button>
+    </div>
+  </div>
 </div>
 
-
-
-       <div className='flex flex-col gap-6'>
-         <button
-                onClick={handleSubmit}
-                className="w-full py-3 bg-[#526FFF] text-white rounded-[8px] font-medium  transition-colors cursor-pointer"
-              >
-                Submit OTP
-              </button> 
-
-        <p className="text-center text-[#171C35]  text-sm mb-2">
-          Did not receive OTP?
-        </p>
-        
-        <button
-          onClick={handleResend}
-          className="block w-full text-center text-[#526FFF] font-semibold text-base  hover:underline transition-colors"
-        >
-          Send OTP Again
-        </button>
-       </div>
-      </div>
-      </div>
-      </div>
-        </div>
       </div>
    
   );

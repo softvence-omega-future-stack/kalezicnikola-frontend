@@ -162,6 +162,7 @@ import img2 from "../assets/svgIcon/workflowSlider2.svg";
 import img3 from "../assets/svgIcon/wrokflowSlider3.svg";
 import img4 from "../assets/svgIcon/workflowSlider4.svg";
 
+
 const DashboardSlide: React.FC<{
   bgColor: string;
   label:string;
@@ -274,22 +275,23 @@ const Slider = () => {
         {/* Header */}
         <div className="mb-15 px-12 xl:px-30 flex flex-col md:flex-row items-center  lg:justify-between gap-8">
           <div>
-            <div className="inline-flex items-center py-2 px-5 mb-4   glass">
+            <div className="inline-flex items-center py-2 px-5 mb-4   bg-white/10 border border-white rounded-full">
               <img src={icon} alt="" />
               <span className="text-gray-800 text-sm font-medium">
                 Intuitive & Modern
               </span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-900 mb-4">
+            <h2 className="text-[32px] sm:text-[42px] md:text-[52px] lg:text-[54px] xl:text-[64px] font-semibold text-gray-900 mb-4">
               The Modern Workflow <span className="block">Your Team Will Love</span>
             </h2>
           </div>
 
-          <p className="text-base sm:text-lg text-gray-600 max-w-md">
+          <p className="text-base sm:text-lg -mt-8 md:-mt-0 text-gray-600 max-w-md">
             The key to a practice that doesn't <br /> just respond but also works smarter together.
           </p>
         </div>
+
 
         {/* Swiper */}
         <Swiper

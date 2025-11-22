@@ -180,6 +180,7 @@ import tricjcirclewhite from '../assets/svgIcon/tick-circle-white.svg';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './buttom.css'
+import SectionHeader from './SectionHeader';
 
 const UpgradPlan = () => {
   const [billingCycle, setBillingCycle] = useState('monthly');
@@ -270,7 +271,7 @@ const UpgradPlan = () => {
       {/* Main Content */}
       <div className="relative z-10 p-4 md:p-8 xl:p-12 pb-16">
         {/* Header */}
-        <div className="text-center mb-12">
+        {/* <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-2 border border-white shadow-sm rounded-full mb-4 bg-white">
             <img src={icon} alt="Docline logo" />
             <span className="text-[#171C35] text-sm font-medium">Transparent pricing</span>
@@ -280,7 +281,21 @@ const UpgradPlan = () => {
             Choose the right plan
             <br /> for your practice
           </h2>
-        </div>
+        </div> */}
+
+         <SectionHeader
+          badgeIcon={icon}
+          badgeText=" Transparent pricing"
+          heading={
+            <>
+               Choose the right plan
+            <br /> for your practice
+            </>
+          }
+          //subText="Your patients will hardly notice the difference. Easily adapt the AI assistant's voice to your practice's style. Choose a confident male or female voice. This ensures a smooth and professional reception for every call."
+          align="center"
+          
+        />
 
         {/* Billing Toggle */}
         <div className="flex justify-center mb-12">

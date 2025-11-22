@@ -49,7 +49,7 @@ export default function SignupPage() {
         />
 
         {/* Fixed Border Box (DocLine + Login Btn) */}
-        <div className="fixed top-8 left-0 right-0 z-20 w-[95%] border border-gray-100 bg-white/10 backdrop-blur-sm rounded-full px-9 py-4 flex items-center justify-between mx-auto">
+        <div className="fixed top-8 left-0 right-0 z-20 w-[95%] border border-white bg-white/10 backdrop-blur-sm rounded-full px-9 py-4 flex items-center justify-between mx-auto">
           <div className="flex items-center gap-2">
               <img src={icon} alt="Logo" />
             <img src={logo} alt="" />
@@ -61,7 +61,7 @@ export default function SignupPage() {
       </div>
 
       {/* Right Side - Signup Form */}
-      <div className="flex-1 lg:w-1/2 flex items-center justify-center p-6 lg:p-8 bg-gray-50">
+      <div className="flex-1 lg:w-1/2 flex items-center justify-center p-6 lg:p-8 ">
         <div className="w-full max-w-md">
           <div className="space-y-6">
             <div>

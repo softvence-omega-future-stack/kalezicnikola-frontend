@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import woner from '../assets/svgIcon/woner.svg';
 import icon from '../assets/svgIcon/herologo.svg';
 import './buttom.css'
+import SectionHeader from './SectionHeader';
 
 const TestimonialSection: React.FC = () => {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -62,7 +63,7 @@ const TestimonialSection: React.FC = () => {
     <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="px-4 mt-19 xl:mt-[180px] lg:mt-[180px] md:mt-[180px] ">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-16">
+        {/* <div className="text-center mb-16">
           <div className="relative inline-flex items-center glass gap-2 pr-5 pl-2.5 py-2  border border-t-2 border-l-2 border-white bg-white/10  rounded-full mb-4">
             <img src={icon} alt="Docline logo" />
             <span className="text-[#171C35] text-sm font-medium">What Our Users Say</span>
@@ -72,7 +73,20 @@ const TestimonialSection: React.FC = () => {
           <h2 className="text-4xl sm:text-5xl lg:text-5xl font-semibold text-[#171c35] mb-15">
             What Practice Owners <br /> Say About Docline
           </h2>
-        </div>
+        </div> */}
+
+         <SectionHeader
+          badgeIcon={icon}
+          badgeText="What Our Users Say"
+          heading={
+            <>
+              What Practice Owners <br /> Say About Docline
+            </>
+          }
+          //subText="Your patients will hardly notice the difference. Easily adapt the AI assistant's voice to your practice's style. Choose a confident male or female voice. This ensures a smooth and professional reception for every call."
+          align="center"
+       
+        />
 
         {/* Testimonial Content */}
         <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch mb-12 bg-white rounded-3xl p-4 lg:p-8 ">

@@ -4,7 +4,7 @@ import CTABanner from "@/Teamplate/CTABanner";
 
 
 
-import DoclineInterface from "@/Teamplate/ExamplesSection";
+import ExampleSection from "@/Teamplate/ExamplesSection";
 import FAQSection from "@/Teamplate/FAQSection";
 import DoclineFeaturesSection from "@/Teamplate/FeatureSection";
 import Functions from "@/Teamplate/Functions";
@@ -25,7 +25,7 @@ const Home = () => {
       </div>
       <DoclineWorkflowSlider />
       <div id="examples">
-        <DoclineInterface />
+        <ExampleSection />
       </div>
       <Functions />
       <SecuritySection />

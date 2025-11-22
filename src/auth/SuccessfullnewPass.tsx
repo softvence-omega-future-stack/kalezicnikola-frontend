@@ -9,7 +9,7 @@ export default function SuccessfullNewPassword() {
 const navigate = useNavigate()
   
   return (
-    <div className=" flex relative bg-[#F3F6F6] ">
+    <div className=" flex min-h-screen relative bg-[#F3F6F6] ">
       {/* Left Side - Image */}
       <div className="hidden lg:block rounded-[16px] p-[10px] lg:w-1/2 relative">
         <img
@@ -19,7 +19,7 @@ const navigate = useNavigate()
         />
 
          {/* Fixed Border Box (DocLine + Login Btn) */}
-        <div className="fixed top-8 left-0 right-0 z-20 w-[95%] border border-gray-100 bg-white/10 backdrop-blur-sm rounded-full px-9 py-4 flex items-center justify-between mx-auto">
+        <div className="fixed top-8 left-0 right-0 z-20 w-[95%] border border-white bg-white/10 backdrop-blur-sm rounded-full px-9 py-4 flex items-center justify-between mx-auto">
           <div className="flex items-center gap-2">
               <img src={icon} alt="Logo" />
             <img src={logo} alt="" />
@@ -31,7 +31,7 @@ const navigate = useNavigate()
       </div>
 
       {/* Right Side - Login Form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-gray-50 relative">
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-8  relative">
         <div className="w-full max-w-md">
          
 

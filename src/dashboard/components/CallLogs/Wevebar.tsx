@@ -59,42 +59,23 @@ const WaveBar: React.FC = () => {
         {/* IMPORTANT CHANGES: Removed 'overflow-hidden' and added 'h-16' for fixed height */}
         <div className="relative bg-[#526FFF80] p-2 rounded-full mb-6 w-full h-16">
           <div className="flex items-center justify-between gap-2 w-full relative h-full"> 
-            {waveSegments.map((segment, i) => {
-              const currentBar = Math.floor(
-                (currentTime / totalDuration) * waveSegments.length
-              );
-              const isActive = i === currentBar && isPlaying;
+       {waveSegments.map((segment, i) => {
+  const currentBar = Math.floor((currentTime / totalDuration) * waveSegments.length);
+  const isActive = i === currentBar && isPlaying;
 
-              return (
-                <div
-                  key={i}
-                  className="flex-1 flex items-center justify-center relative"
-                >
-                  {/* Wave bar */}
-                  <div
-                    className="w-full rounded-full bg-white overflow-hidden transition-all duration-300 flex items-center justify-center relative"
-                    style={{
-                      height: `${segment.height}px`,
-                      minHeight: "30px",
-                      maxHeight: "100px",
-                    }}
-                  >
-                    <img
-                      src={roundImg}
-                      alt="border"
-                      className="absolute inset-0 w-full h-full object-cover"
-                    />
-                    {isActive && (
-                      <img
-                        src={roundactiveImg}
-                        alt="active"
-                        className="absolute inset-0 w-full h-full object-cover z-10"
-                      />
-                    )}
-                  </div>
-                </div>
-              );
-            })}
+  return (
+    <div key={i} className="flex-1 flex items-center justify-center relative">
+      <div
+        className="w-full rounded-full bg-white overflow-hidden transition-all duration-300 flex items-center justify-center relative"
+        style={{ height: `${segment.height}px` }} // now using 'segment'
+      >
+        <img src={roundImg} alt="border" className="absolute inset-0 w-full h-full object-cover" />
+        {isActive && <img src={roundactiveImg} alt="active" className="absolute inset-0 w-full h-full object-cover z-10" />}
+      </div>
+    </div>
+  );
+})}
+
 
             {/* Vertical moving line with icon (Playhead) */}
             <div

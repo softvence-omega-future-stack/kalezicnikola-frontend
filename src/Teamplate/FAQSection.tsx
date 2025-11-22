@@ -3,6 +3,7 @@ import { ChevronDown, ChevronUp } from 'lucide-react';
 import icon from '../assets/svgIcon/herologo.svg'; 
 import './buttom.css'
 
+
 interface FAQItem {
   question: string;
   answer: string;
@@ -54,17 +55,11 @@ const FAQSection: React.FC = () => {
 
         {/* Header Section */}
   <div className="relative text-center mb-12">
-
-  {/* FAQ Badge (icon + FAQ label) */}
-  <div className="relative inline-flex items-center glass gap-2 pr-5 pl-2.5 py-2  border border-t-2 border-l-2 border-white bg-white/10  rounded-full mb-4 mx-auto">
+<div className="relative inline-flex items-center  gap-2 pr-5 pl-2.5 py-2  border border-t-2 border-l-2 border-white bg-white/10  rounded-full mb-4 mx-auto">
     <img src={icon} alt="Docline logo" />
     <span className="text-[#171C35] text-sm font-medium">FAQ</span>
-
-
-  </div>
-
-  {/* Heading */}
-  <h2 className="text-[42px] sm:text-[52px] lg:text-[54px] xl:text-[64px] font-semibold text-[#171C35] leading-snug lg:leading-19 ">
+</div>
+  <h2 className="text-[32px] sm:text-[42px] md:text-[52px] lg:text-[54px] xl:text-[64px] font-semibold text-[#171C35] leading-snug lg:leading-19 ">
     Frequently Asked Questions
   </h2>
 
@@ -83,6 +78,8 @@ const FAQSection: React.FC = () => {
 
 
 
+
+
         {/* FAQ Accordion Wrapper */}
        <div className="-mt-[500px]  space-y-4 overflow-hidden   ">
   {/* Background */}
@@ -97,7 +94,7 @@ const FAQSection: React.FC = () => {
                 onClick={() => toggleAccordion(index)}
                 className="w-full px-5 sm:px-6 md:px-8 py-5 sm:py-6 md:py-7 flex items-center justify-between text-left group"
               >
-                <span className="text-2xl font-medium text-[#171C35] pr-4 leading-relaxed">
+                <span className="text-xl md:text-2xl font-medium text-[#171C35] pr-4 leading-relaxed">
                   {faq.question}
                 </span>
                 <div className="flex-shrink-0">

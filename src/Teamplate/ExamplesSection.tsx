@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Play, Pause } from "lucide-react";
 import icon from "../assets/svgIcon/herologo.svg";
 import skipleft from "../assets/svgIcon/voiceskipLeft.svg";
@@ -8,7 +8,7 @@ import borderIcon from "../assets/svgIcon/BorderPlay.svg";
 import roundactiveImg from "../assets/svgIcon/activerecord.svg";
 import roundImg from "../assets/svgIcon/recordbtnborder.svg";
 import './buttom.css'
-
+import SectionHeader from "./SectionHeader";
 
 const SvgPlayIcon = ({ fill = "#526FFF", size = 20, className = "" }) => (
   <svg
@@ -49,36 +49,12 @@ const SvgPlayIcon = ({ fill = "#526FFF", size = 20, className = "" }) => (
   </svg>
 );
 
-const DoclineInterface: React.FC = () => {
+const ExampleSection: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(33);
   const totalDuration = 100;
   const [activeAudioIndex, setActiveAudioIndex] = useState<number>(0);
-
-  const handlePlayListItem = (index: number) => {
-    if (activeAudioIndex === index) {
-      setIsPlaying((prev) => !prev);
-    } else {
-      setActiveAudioIndex(index);
-      setIsPlaying(true);
-      setCurrentTime(0);
-    }
-  };
-
-  React.useEffect(() => {
-    if (isPlaying) {
-      const interval = setInterval(() => {
-        setCurrentTime((prev) => {
-          if (prev >= 100) {
-            setIsPlaying(false);
-            return 0;
-          }
-          return prev + 0.5;
-        });
-      }, 100);
-      return () => clearInterval(interval);
-    }
-  }, [isPlaying]);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const menuItems = [
     { title: "Lectures & Training", subtitle: "Orthopedics Dr. Gruber" },
@@ -103,179 +79,71 @@ const DoclineInterface: React.FC = () => {
     { height: 45, time: "2:30" },
   ];
 
+  const handlePlayListItem = (index: number) => {
+    if (activeAudioIndex === index) {
+      setIsPlaying((prev) => !prev);
+    } else {
+      setActiveAudioIndex(index);
+      setIsPlaying(true);
+      setCurrentTime(0);
+
+      // scroll active item to top
+      setTimeout(() => {
+        const container = containerRef.current;
+        if (container) {
+          const item = container.querySelectorAll(".menu-item")[index] as HTMLElement;
+          if (item) {
+            item.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        }
+      }, 100);
+    }
+  };
+
+  useEffect(() => {
+    if (isPlaying) {
+      const interval = setInterval(() => {
+        setCurrentTime((prev) => {
+          if (prev >= 100) {
+            setIsPlaying(false);
+            return 0;
+          }
+          return prev + 0.5;
+        });
+      }, 100);
+      return () => clearInterval(interval);
+    }
+  }, [isPlaying]);
+
   return (
     <div
       style={{ fontFamily: "Urbanist, sans-serif" }}
       className=" px-9 mt-16 md:mt-[180px] lg:mt-[180px] xl:mt-[180px] md:px-8 "
     >
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:px-20">
-        {/* Left Section */}
-        <div className="flex flex-col justify-start">
-          <div className="mb-4 mt-9">
-            <div className="relative inline-flex items-center mb-4 gap-2 pr-5 pl-2.5 py-2  glass ">
-              <img src={icon} alt="Docline Logo" className="w-5 h-5" />
-              <span className="text-[#171C35] text-sm font-medium">
-                Real Examples
-              </span>
-             
-            </div>
-            <h1  className="text-[42px] sm:text-[52px] lg:text-[54px] xl:text-[64px] font-semibold text-[#171C35] leading-snug lg:leading-19">
-              This is what Docline sounds <br className="hidden md:block" /> like
+        <SectionHeader
+          badgeIcon={icon}
+          badgeText=" Real Examples"
+          heading={
+            <>
+              This is what Docline sounds  like
               in everyday practice
-            </h1>
-          </div>
-          <p className="text-[#111A2D] text-base md:text-lg leading-relaxed">
-            Your patients will hardly notice the difference. Easily <br />
-            adapt the AI assistant's voice to your practice's style. Choose
-            <br /> a confident male or female voice. This ensures a smooth and
-            professional reception for every call.
-          </p>
-        </div>
+            </>
+          }
+          subText="Your patients will hardly notice the difference. Easily adapt the AI assistant's voice to your practice's style. Choose a confident male or female voice. This ensures a smooth and professional reception for every call."
+          align="left"
+          subAlign="left"
+        />
 
         {/* Right Section */}
-        <div className=" md:p-8 w-full">
-          {/* Audio Player */}
-          <div className="bg-[#526FFF] rounded-2xl p-5 mb-6">
-            <div className="mb-4">
-              <h3 className="text-white h-10 text-xl font-semibold mb-2">
-                {menuItems[activeAudioIndex].title}
-              </h3>
-              <p className="text-blue-100 text-base">
-                {menuItems[activeAudioIndex].subtitle}
-              </p>
-            </div>
-
-            {/* Waveform */}
-            <div className="relative mb-6 overflow-hidden">
-              <div className="flex items-center justify-between gap-2 h-28 w-full relative">
-                {waveSegments.map((segment, i) => {
-                  const currentBar = Math.floor(
-                    (currentTime / totalDuration) * waveSegments.length
-                  );
-                  const isActive = i === currentBar && isPlaying;
-
-                  return (
-                    <div
-                      key={i}
-                      className="flex-1 flex items-center justify-center relative"
-                    >
-                    <div
-  className="relative w-full rounded-full bg-white overflow-hidden transition-all duration-300"
-  style={{ height: `${segment.height}px` }}
->
-  {/* Static Border */}
-  <img
-    src={roundImg}
-    alt=""
-    className="absolute inset-0 w-full h-full object-fill"
-  />
-
-  {/* Active Pulse */}
-  {isActive && (
-    <img
-      src={roundactiveImg}
-      alt=""
-      className="absolute inset-0 w-full h-full object-fill z-10"
-    />
-  )}
-</div>
-
-                    </div>
-                  );
-                })}
-
-                {/* Moving Line with Icon */}
-                <div
-                  className="absolute top-3 flex flex-col gap-1 items-center"
-                  style={{
-                    left: `${(currentTime / totalDuration) * 100}%`,
-                    height: "100px",
-                  }}
-                >
-                  <div className="w-0.5 h-full bg-white "></div>
-                  <img
-                    src={borderIcon}
-                    alt="cursor-icon"
-                    className="self-stretch"
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* Progress Bar */}
-            <div className="mb-4">
-              <div className="flex justify-between text-white text-xs mb-2">
-                <span>0:00</span>
-                <span>2:45</span>
-              </div>
-              <div className="relative h-1 bg-blue-400/30 rounded-full overflow-hidden">
-                <div
-                  className="absolute h-full bg-white rounded-full transition-all duration-300"
-                  style={{ width: `${currentTime}%` }}
-                ></div>
-                <div
-                  className="absolute w-3 h-3 bg-white rounded-full top-1/2 -translate-y-1/2 shadow-lg"
-                  style={{ left: `${currentTime}%`, marginLeft: "-6px" }}
-                ></div>
-              </div>
-            </div>
-
-            {/* Controls */}
-            <div className="flex items-center justify-between gap-4 flex-wrap">
-              <span className="text-white text-sm">0:30</span>
-              <div className="flex items-center gap-3">
-                <button
-  onClick={() => {
-    setActiveAudioIndex((prev) =>
-      prev > 0 ? prev - 1 : menuItems.length - 1
-    );
-    setIsPlaying(true);
-    setCurrentTime(0);
-  }}
-  className="hover:scale-110 transition-transform"
->
-  <img src={skipleft} alt="skip left" />
-</button>
-
-                <button
-                  onClick={() => setIsPlaying(!isPlaying)}
-                  className="w-12 h-12 border border-white backdrop-blur-xl  rounded-full flex items-center justify-center hover:scale-105 transition-transform shadow-lg"
-                >
-                  {isPlaying ? (
-                    <Pause size={20} className="text-white" />
-                  ) : (
-                    <Play size={20} className="text-white ml-1" />
-                  )}
-                </button>
-
-              <button
-  onClick={() => {
-    setActiveAudioIndex((prev) =>
-      prev < menuItems.length - 1 ? prev + 1 : 0
-    );
-    setIsPlaying(true);
-    setCurrentTime(0);
-  }}
-  className="hover:scale-110 transition-transform"
->
-  <img src={skipRight} alt="skip right" />
-</button>
-
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-white text-sm">-1:23</span>
-                <img src={speaker} alt="speaker" />
-              </div>
-            </div>
-          </div>
-
-          {/* Menu Items */}
+        <div className="w-full" ref={containerRef}>
           <div className="-space-y-1 -mt-5">
             {menuItems.map((item, index) => {
-              const isThisItemPlaying =
-                activeAudioIndex === index && isPlaying;
+              const isThisItemActive = activeAudioIndex === index;
+              const isThisItemPlaying = isThisItemActive && isPlaying;
+
               return (
-                <div key={index} className="relative overflow-visible">
+                <div key={index} className="relative overflow-visible menu-item">
                   <div
                     className="absolute inset-0 rounded-[24px] pointer-events-none"
                     style={{
@@ -283,7 +151,10 @@ const DoclineInterface: React.FC = () => {
                     }}
                   ></div>
 
-                  <div className="w-full flex flex-col items-start gap-6 p-6 h-[97px] rounded-[24px] border border-white bg-white shadow-md hover:shadow-lg transition-shadow relative">
+                  <div
+                    className="w-full flex flex-col items-start gap-6 p-6 h-[97px] rounded-[24px] border border-white bg-white shadow-md hover:shadow-lg transition-shadow relative cursor-pointer"
+                    onClick={() => handlePlayListItem(index)}
+                  >
                     <div className="text-left flex-1">
                       <h4 className="text-[#171C35] font-semibold text-lg mb-1">
                         {item.title}
@@ -293,9 +164,11 @@ const DoclineInterface: React.FC = () => {
                       </p>
                     </div>
 
-                    {/* Play/Pause button */}
                     <button
-                      onClick={() => handlePlayListItem(index)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handlePlayListItem(index);
+                      }}
                       className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center hover:scale-105 transition-transform shadow-lg absolute right-6 top-1/2 -translate-y-1/2"
                     >
                       {isThisItemPlaying ? (
@@ -305,6 +178,101 @@ const DoclineInterface: React.FC = () => {
                       )}
                     </button>
                   </div>
+
+                  {/* Audio Player below the active menu item */}
+                  {isThisItemActive && (
+                    <div className="mt-2">
+                      <div className="bg-[#526FFF] rounded-2xl p-5">
+                        <div className="mb-4">
+                          <h3 className="text-white h-10 text-xl font-semibold mb-2">
+                            {item.title}
+                          </h3>
+                          <p className="text-blue-100 text-base">{item.subtitle}</p>
+                        </div>
+
+                        {/* Waveform */}
+                        <div className="relative mb-6 overflow-hidden">
+                          <div className="flex items-center justify-between gap-2 h-28 w-full relative">
+                           {waveSegments.map((segment, i) => {
+  const currentBar = Math.floor((currentTime / totalDuration) * waveSegments.length);
+  const isActive = i === currentBar && isPlaying;
+
+  return (
+    <div key={i} className="flex-1 flex items-center justify-center relative">
+      <div
+        className="w-full rounded-full bg-white overflow-hidden transition-all duration-300 flex items-center justify-center relative"
+        style={{ height: `${segment.height}px` }} // now using 'segment'
+      >
+        <img src={roundImg} alt="border" className="absolute inset-0 w-full h-full object-cover" />
+        {isActive && <img src={roundactiveImg} alt="active" className="absolute inset-0 w-full h-full object-cover z-10" />}
+      </div>
+    </div>
+  );
+})}
+
+
+                            <div
+                              className="absolute top-3 flex flex-col gap-1 items-center"
+                              style={{
+                                left: `${(currentTime / totalDuration) * 100}%`,
+                                height: "100px",
+                              }}
+                            >
+                              <div className="w-0.5 h-full bg-white "></div>
+                              <img src={borderIcon} alt="cursor-icon" className="self-stretch" />
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Controls */}
+                        <div className="flex items-center justify-between gap-4 flex-wrap">
+                          <span className="text-white text-sm">0:30</span>
+                          <div className="flex items-center gap-3">
+                            <button
+                              onClick={() => {
+                                setActiveAudioIndex((prev) =>
+                                  prev > 0 ? prev - 1 : menuItems.length - 1
+                                );
+                                setIsPlaying(true);
+                                setCurrentTime(0);
+                              }}
+                              className="hover:scale-110 transition-transform"
+                            >
+                              <img src={skipleft} alt="skip left" />
+                            </button>
+
+                            <button
+                              onClick={() => setIsPlaying(!isPlaying)}
+                              className="w-12 h-12 border border-white backdrop-blur-xl rounded-full flex items-center justify-center hover:scale-105 transition-transform shadow-lg"
+                            >
+                              {isPlaying ? (
+                                <Pause size={20} className="text-white" />
+                              ) : (
+                                <Play size={20} className="text-white ml-1" />
+                              )}
+                            </button>
+
+                            <button
+                              onClick={() => {
+                                setActiveAudioIndex((prev) =>
+                                  prev < menuItems.length - 1 ? prev + 1 : 0
+                                );
+                                setIsPlaying(true);
+                                setCurrentTime(0);
+                              }}
+                              className="hover:scale-110 transition-transform"
+                            >
+                              <img src={skipRight} alt="skip right" />
+                            </button>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <span className="text-white text-sm">-1:23</span>
+                            <img src={speaker} alt="speaker" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               );
             })}
@@ -315,4 +283,4 @@ const DoclineInterface: React.FC = () => {
   );
 };
 
-export default DoclineInterface;
+export default ExampleSection;
