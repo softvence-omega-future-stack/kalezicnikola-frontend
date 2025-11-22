@@ -127,7 +127,7 @@ export default function WeeklyCalendar() {
   ];
 
   return (
-    <div className="min-h-screen bg-white rounded-2xl p-2 sm:p-4 md:p-6 overflow-x-auto">
+    <div className=" bg-white rounded-2xl p-2 sm:p-4 md:p-6 overflow-x-auto">
       <div className="min-w-[600px] md:min-w-full">
         {/* Header */}
         <div className="grid" style={{ gridTemplateColumns: '80px repeat(7, 1fr)' }}>
@@ -181,7 +181,7 @@ export default function WeeklyCalendar() {
                             borderBottomLeftRadius: '6px'
                           }}
                         >
-                          <div className="text-[10px] sm:text-xs md:text-sm font-medium text-gray-900 truncate">{apt.name}</div>
+                          <div className="text-[10px] sm:text-xs px-1 md:text-sm font-medium text-gray-900 truncate">{apt.name}</div>
                           <div className="text-[8px] sm:text-[10px] md:text-xs text-gray-600 mt-1">{apt.hour}</div>
                         </div>
                       );

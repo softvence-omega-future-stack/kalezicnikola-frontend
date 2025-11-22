@@ -108,8 +108,8 @@ const TranscriptChat: React.FC = () => {
                 {/* Message Box */}
                 <div className="flex-1 relative group">
                   <div
-                    className={`border border-gray-50 p-4 rounded-2xl bg-white flex items-center ${
-                      isFloyd ? 'justify-between' : 'justify-end'
+                    className={`border border-gray-50 p-2 md:p-4 rounded-2xl bg-white flex items-center ${
+                      isFloyd ? 'justify-between' : 'justify-center md:justify-end'
                     }`}
                   >
                     {/* User message: icon left */}

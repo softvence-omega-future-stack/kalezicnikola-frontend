@@ -97,7 +97,7 @@ const AppointmentsList: React.FC = () => {
 
   return (
     // Outer container with a slight background color for contrast
-    <div className="bg-white p-4 w-full max-w-sm mx-auto sm:max-w-md md:max-w-lg  md:rounded-3xl">
+    <div className="bg-white p-4 w-full    md:rounded-3xl">
       
       {/* List Header */}
       <div className="px-2 mb-4">

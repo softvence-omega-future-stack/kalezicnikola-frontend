@@ -208,7 +208,7 @@ export default function TaskList() {
       {/* Header */}
       <div className="py-4">
         <div className="flex items-center gap-2 text-sm text-gray-600 mb-4">
-          <img src={homeIcon} alt="Home" />
+          <img src={homeIcon} alt="Home" className="w-4 h-4" />
           <span onClick={() => navigate('/dashboard')} className="text-gray-600 font-medium cursor-pointer">Dashboard</span>
           <img src={chevronIcon} alt=">" />
           <span className="text-[#042435] text-xs font-semibold">Task</span>

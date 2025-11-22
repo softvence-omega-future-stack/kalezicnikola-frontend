@@ -24,7 +24,7 @@ const CalendarView: React.FC = () => {
       {/* Breadcrumb */}
       <div className="mt-6 ">
         <div className="flex items-center gap-2 pt-6 text-sm text-gray-500 flex-wrap">
-          <img src={homeIcon} alt="" />
+          <img src={homeIcon} alt="" className="w-4 h-4" />
           <img src={chevronIcon} alt="" />
           <span onClick={()=> navigate('/dashboard')} className='cursor-pointer'>Dashboard</span>
           <img src={chevronIcon} alt="" />
@@ -34,7 +34,7 @@ const CalendarView: React.FC = () => {
 
       {/* Main Content */}
       <div className="pt-3.5">
-        <h1 className="text-2xl font-semibold text-[#171C35] mb-4 sm:mb-6">Calendar</h1>
+        <h1 className="text-xl md:text-xl font-semibold text-[#171C35] mb-4 sm:mb-6">Calendar</h1>
 
         {/* Top Controls */}
         <div className="rounded-lg pt-6 mb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">

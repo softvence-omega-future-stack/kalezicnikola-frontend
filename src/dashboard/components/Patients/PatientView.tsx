@@ -26,7 +26,7 @@ export default function PatientsView() {
       {/* Breadcrumb */}
       <div className="mt-6">
         <div className='flex items-center gap-2 py-6 px-2 md:px-0 text-sm text-gray-600 mb-6'>
-      <img src={homeIcon} alt="" />
+      <img src={homeIcon} alt="" className="w-4 h-4" />
         <span onClick={()=> navigate('/dashboard')}>Dashboard</span>
        <img src={chevronIcon} alt="" />
         <span className="font-semibold text-[#171C35]">Patients</span>

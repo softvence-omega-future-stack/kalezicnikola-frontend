@@ -120,24 +120,24 @@ const WaveBar: React.FC = () => {
         </div>
 
         {/* Progress Bar */}
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <div className="flex justify-between text-black text-xs mb-2">
             <span>0:00</span>
             <span>2:45</span>
           </div>
           <div className="relative h-1 bg-black/20 rounded-full overflow-hidden">
-            {/* Filled part of progress */}
+       
             <div
               className="absolute h-full bg-black rounded-full transition-all duration-300"
               style={{ width: `${currentTime}%` }}
             ></div>
-            {/* Cursor */}
+         
             <div
               className="absolute w-3 h-3 bg-black rounded-full top-1/2 -translate-y-1/2 shadow-lg"
               style={{ left: `${currentTime}%`, marginLeft: "-6px" }}
             ></div>
           </div>
-        </div>
+        </div> */}
 
 
         {/* Controls */}
@@ -152,7 +152,7 @@ const WaveBar: React.FC = () => {
             </button>
             <button
               onClick={() => setIsPlaying(!isPlaying)}
-              className="g"
+              className="cursor-pointer"
             >
               {isPlaying ? (
                 <Pause size={20} className="text-blue-500" />

@@ -2,8 +2,9 @@ import React from "react";
 
 import DashboardTopSection from "@/dashboard/components/dashboard/DashboardTopSection";
 import AppointmentsList from "@/dashboard/components/dashboard/AppointmentSidebar";
-import SummaryCards from "@/dashboard/components/dashboard/SubHeader";
+
 import DashboardCalender from "@/dashboard/components/dashboard/DashboardCalender";
+import DashboardCard from "@/dashboard/components/dashboard/DashboardCard";
 
 const Dashboard: React.FC = () => {
   return (
@@ -19,16 +20,17 @@ const Dashboard: React.FC = () => {
       </div>
 
    
-    <div className="flex flex-col lg:flex-row ">
+   <div className="flex flex-col lg:flex-row w-full gap-2.5">
+
 
   {/* LEFT SIDE: Appointments */}
-  <div className="w-full lg:w-1/3 ">
+  <div className="w-full lg:w-1/3 pl-2  ">
     <AppointmentsList />
   </div>
 
   {/* RIGHT SIDE: SummaryCards + Calendar */}
-  <div className="w-full lg:w-2/3 pr-4 space-y-1">
-    <SummaryCards />
+  <div className="w-full lg:w-2/3 pr-4 space-y-1 pl-2.5 md:pl-0">
+   <DashboardCard/>
     <DashboardCalender />
   </div>
 

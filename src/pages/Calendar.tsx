@@ -3,7 +3,7 @@ import CalendarView from "@/dashboard/components/Calendar/CalendarView"
 
 const Calendar = () => {
   return (
-    <div>
+    <div className="-ml-2">
       <CalendarView/>
     </div>
   )

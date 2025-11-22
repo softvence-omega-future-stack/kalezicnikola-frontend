@@ -52,7 +52,7 @@ const DashboardTopSection: React.FC = () => {
   return (
     <div className=" mt-6.5  bg-[#F3F6F6]">
       {/* Date Navigation */}
-      <div className="flex items-center justify-center sm:justify-start text-[#111A2D] text-sm sm:text-base font-medium pt-6  gap-2">
+      <div className="flex items-center justify-center  md:justify-start text-[#111A2D] text-sm sm:text-base font-medium pt-6  gap-2">
         {/* <button className="p-2 sm:p-1 rounded-full transition-colors hover:bg-gray-200">
           <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
         </button>

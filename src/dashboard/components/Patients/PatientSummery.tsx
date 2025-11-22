@@ -36,74 +36,109 @@ export default function PatientSummary() {
     { type: "Check-up", date: "27-09-2025", time: "01:00 AM", status: "Complete" },
   ];
 
-  const Card = ({ card, maskId }: { card: (typeof summaryCards)[0]; maskId: string }) => {
-    const width = 380;
-    const height = 180;
+  // FIXED cutout dimensions - won't change with screen size
+  const cutoutWidth = 50;
+  const cutoutHeight = 50;
+  const curveRadius = 20;
+  const smallCurveRadius = 12;
 
+  const Card = ({ card }: { card: (typeof summaryCards)[0] }) => {
     return (
-   <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="relative w-full min-h-[180px] aspect-[380/180] max-w-lg mx-auto">
-      <svg
-        width="100%"
-        height="100%"
-        viewBox={`0 0 ${width} ${height}`}
-        preserveAspectRatio="none"
-        className="absolute top-0 left-0 w-full h-full"
+      <div 
+        style={{ fontFamily: 'Urbanist, sans-serif' }} 
+        className="relative w-full min-h-[180px]"
       >
-        <defs>
-          <mask id={maskId}>
-            {/* White rectangle covers the entire card area */}
-            <rect width={width} height={height} rx="24" fill="white" />
-            
-    
-            <path
-              d={`M${width} 0 C${width} 20 ${width - 20} 20 ${width - 20} 0 Z`}
-              fill="black"
+        {/* Background with fixed cutout using CSS */}
+        <div 
+          className="absolute inset-0 rounded-[24px]"
+          style={{ backgroundColor: card.bgColor }}
+        >
+          {/* Fixed size cutout container - positioned from TOP-RIGHT */}
+          <div 
+            className="absolute top-0 right-0"
+            style={{
+              width: cutoutWidth + curveRadius,
+              height: cutoutHeight + curveRadius,
+            }}
+          >
+            {/* Main cutout - background color to "cut" the card */}
+            <div 
+              className="absolute top-0 right-0 bg-white"
+              style={{
+                width: cutoutWidth,
+                height: cutoutHeight,
+                borderBottomLeftRadius: curveRadius,
+              }}
             />
             
-  
-            <path
-              d={`M${width} 64H${width - 34}C${width - 50.5685} 64 ${width - 64} 50.569 ${width - 64} 34V0H${width}V90C${width} 75.641 ${width - 11.6405} 64 ${width - 26} 64H${width}Z`}
-              fill="black"
+            {/* Bottom curve connector */}
+            <div 
+              className="absolute right-0 bg-white"
+              style={{
+                width: smallCurveRadius,
+                height: smallCurveRadius,
+                top: cutoutHeight,
+              }}
+            />
+            <div 
+              className="absolute right-0"
+              style={{
+                width: smallCurveRadius,
+                height: smallCurveRadius,
+                top: cutoutHeight,
+                backgroundColor: card.bgColor,
+                borderTopRightRadius: smallCurveRadius,
+              }}
             />
             
-      
-            <path
-              d={`M${width - 63} 0V26C${width - 63} 11.641 ${width - 74.6405} 0 ${width - 89} 0H${width - 63}Z`}
-              fill="black"
+            {/* Left curve connector */}
+            <div 
+              className="absolute top-0 bg-white"
+              style={{
+                width: smallCurveRadius,
+                height: smallCurveRadius,
+                right: cutoutWidth,
+              }}
             />
-          </mask>
-        </defs>
-        
-        {/* The card fill uses the mask */}
-        <rect
-          width={width}
-          height={height}
-          rx="24"
-          fill={card.bgColor}
-          mask={`url(#${maskId})`}
-        />
-      </svg>
-
-      {/* Content Area */}
-      <div className="absolute top-0 left-0 w-full h-full p-6 flex flex-col justify-between">
-        <div>
-          <h3 className="text-xs sm:text-sm lg:text-lg font-semibold text-[#171C35] mb-5 lg:mb-1 xl:mb-5 2xl:mb-13">{card.title}</h3>
-          <p className="text-xs md:text-sm font-medium text-[#111A2D99]">
-            {card.date || card.count || card.type}
-          </p>
-          <p className="text-sm font-semibold text-[#171C35] mt-2">{card.detail}</p>
+            <div 
+              className="absolute top-0"
+              style={{
+                width: smallCurveRadius,
+                height: smallCurveRadius,
+                right: cutoutWidth,
+                backgroundColor: card.bgColor,
+                borderTopRightRadius: smallCurveRadius,
+              }}
+            />
+          </div>
         </div>
 
-     
-        <div className="absolute top-2 right-0">
+        {/* Content Area */}
+        <div className="relative w-full h-full p-6 flex flex-col justify-between min-h-[180px]">
+          <div>
+            <h3 className="text-sm lg:text-lg font-semibold text-[#171C35] mb-5 lg:mb-1 xl:mt-5 2xl:mb-13">
+              {card.title}
+            </h3>
+            <p className="text-xs md:text-sm font-medium text-[#111A2D99]">
+              {card.date || card.count || card.type}
+            </p>
+            <p className="text-sm font-semibold text-[#171C35] mt-2">{card.detail}</p>
+          </div>
 
-          <div className="h-8 w-8 lg:h-10 lg:w-10 2xl:h-12 2xl:w-12 bg-[#171C35] right-4 top-4  md:top-4 rounded-full flex items-center justify-center transition-all duration-300">
-         
-            <ArrowUpRight className="text-white w-4 h-4 md:w-5 md:h-5" />
+          {/* FIXED position arrow button - always same distance from top-right */}
+          <div
+            className="absolute"
+            style={{
+              top: 6,
+              right: 6,
+            }}
+          >
+            <div className="h-9 w-9 bg-[#171C35] rounded-full flex items-center justify-center">
+              <ArrowUpRight className="text-white w-4 h-4" />
+            </div>
           </div>
         </div>
       </div>
-    </div>
     );
   };
 
@@ -117,9 +152,9 @@ export default function PatientSummary() {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
         {summaryCards.map((card, index) => (
-          <Card key={index} card={card} maskId={`summaryMask${index}`} />
+          <Card key={index} card={card} />
         ))}
       </div>
 
@@ -131,12 +166,12 @@ export default function PatientSummary() {
             <div
               key={index}
               className="py-3 bg-[#FAFAFA] border-b px-3 border-gray-100 
-            last:border-0 rounded-2xl flex flex-col sm:flex-row sm:items-center sm:justify-between"
+              last:border-0 rounded-2xl flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2"
             >
               <div className="flex flex-col">
                 <span className="text-base font-semibold text-[#171C35]">{apt.type}</span>
                 <div className="flex items-center gap-3 mt-1 text-sm text-[#111A2D]">
-                  <div className="flex items-center gap-1.5 text-sm text-[#111A2D]">
+                  <div className="flex items-center gap-1.5">
                     <img
                       src="https://i.ibb.co.com/gbYTtKHC/Date-Birth-Icon.png"
                       className="h-3 w-3"
@@ -144,7 +179,7 @@ export default function PatientSummary() {
                     />
                     <span className="text-sm font-normal">{apt.date}</span>
                   </div>
-                  <div className="flex items-center gap-1.5 text-[#111A2D]">
+                  <div className="flex items-center gap-1.5">
                     <img
                       src="https://i.ibb.co.com/TxG7Rk1Q/clock.png"
                       className="h-3 w-3"
@@ -155,7 +190,7 @@ export default function PatientSummary() {
                 </div>
               </div>
               <span
-                className={`text-sm font-semibold px-3 py-1 rounded-[8px] ${
+                className={`text-sm font-semibold px-3 py-1 rounded-[8px] w-fit ${
                   apt.status === "Upcoming"
                     ? "bg-[#0040FF1A] text-[#0040FF]"
                     : "bg-[#0080801A] text-[#008080]"

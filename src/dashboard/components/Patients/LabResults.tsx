@@ -48,7 +48,7 @@ const LabResultsPage: React.FC = () => {
         {labResults.map((item) => (
           <div
             key={item.id}
-            className="flex justify-between items-center rounded-2xl p-4 bg-[#FAFAFA] transition"
+            className="flex flex-col gap-2 sm:flex-row sm:justify-between items-center rounded-2xl p-4 bg-[#FAFAFA] transition"
           >
             <div>
               <p className="font-medium text-xl text-[#171C35]">{item.testName}</p>

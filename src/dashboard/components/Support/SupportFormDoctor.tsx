@@ -289,7 +289,7 @@
 
 
 
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 import call from '../../../assets/svgIcon/callLogs.svg';
 import vediocal from '../../../assets/svgIcon/videoCall.svg';
@@ -302,6 +302,7 @@ import doc from '../../../assets/svgIcon/document.svg';
 import react from '../../../assets/svgIcon/react.svg';
 import send from '../../../assets/svgIcon/send.svg';
 import { useNavigate } from 'react-router-dom';
+import EmojiPicker from "emoji-picker-react";
 
 interface Message {
   id: number;
@@ -327,6 +328,9 @@ const SupportChat: React.FC = () => {
   const [selectedContact, setSelectedContact] = useState<number>(1);
   const [messageText, setMessageText] = useState('');
   const navigate = useNavigate()
+  
+const fileInputRef = useRef<HTMLInputElement>(null);
+const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 1,
@@ -384,13 +388,13 @@ const SupportChat: React.FC = () => {
       {/* Header */}
       <div className="py-4">
         <div className="flex items-center gap-2 text-sm text-gray-600 mb-4">
-          <img src={home} alt="" />
+          <img src={home} alt="" className="w-4 h-4" />
           <img src={chevron} alt="" />
           <span onClick={()=> navigate('/dashboard')} className="text-gray-600 cursor-pointer">Dashboard</span>
           <img src={chevron} alt="" />
           <span className="text-gray-900 font-medium">Supports</span>
         </div>
-        <h1 className="text-2xl sm:text-3xl font-semibold text-[#171C35]">Supports</h1>
+        <h1 className="text-xl md:text-2xl  font-semibold text-[#171C35]">Supports</h1>
       </div>
 
       {/* Main Content */}
@@ -525,51 +529,102 @@ const SupportChat: React.FC = () => {
 
               {/* Messages */}
               <div className="flex-1 overflow-y-auto p-5 space-y-4 bg-white">
-                {filteredMessages.map((message) => (
-                  <div key={message.id} className={`flex gap-3 ${message.isDoctor ? 'justify-end' : 'justify-start'}`}>
-                    {!message.isDoctor && (
-                      <img
-                        src={message.avatar}
-                        alt={message.sender}
-                        className="w-10 h-10 rounded-full object-cover flex-shrink-0"
-                      />
-                    )}
-                    <div className={`inline-block py-2.5 rounded-2xl max-w-lg px-4 ${message.isDoctor ? 'bg-blue-500 text-white' : 'bg-gray-100 text-[#171C35]'}`}>
-                      <p className="text-sm font-medium leading-relaxed">{message.content}</p>
-                      <span className="text-xs block mt-1">{message.timestamp}</span>
-                    </div>
-                    {message.isDoctor && (
-                      <img
-                        src={message.avatar}
-                        alt={message.sender}
-                        className="w-10 h-10 rounded-full object-cover flex-shrink-0"
-                      />
-                    )}
-                  </div>
-                ))}
-              </div>
+  {filteredMessages.map((message) => (
+    <div
+      key={message.id}
+      className={`flex gap-3 ${message.isDoctor ? 'justify-end' : 'justify-start'}`}
+    >
+      {!message.isDoctor && (
+        <img
+          src={message.avatar}
+          alt={message.sender}
+          className="w-10 h-10 rounded-full object-cover flex-shrink-0"
+        />
+      )}
+
+      {/* Message + Timestamp wrapper */}
+      <div className="flex flex-col items-start space-y-1 max-w-lg">
+        {/* Timestamp on top */}
+        <span
+          className={`text-xs text-gray-400 ${
+            message.isDoctor ? 'self-end' : 'self-start'
+          }`}
+        >
+          {message.timestamp}
+        </span>
+
+        {/* Message bubble */}
+        <div
+          className={`py-2.5 px-4 rounded-2xl text-sm font-medium leading-relaxed ${
+            message.isDoctor ? 'bg-blue-500 text-white self-end' : 'bg-gray-100 text-[#171C35]'
+          }`}
+        >
+          {message.content}
+        </div>
+      </div>
+
+      {message.isDoctor && (
+        <img
+          src={message.avatar}
+          alt={message.sender}
+          className="w-10 h-10 rounded-full object-cover flex-shrink-0"
+        />
+      )}
+    </div>
+  ))}
+</div>
+
 
               {/* Message Input */}
-             <div className="p-2 bg-[#F3F6F6] m-2 rounded-3xl">
-  <div className="flex items-center gap-2 flex-nowrap">
-    {/* Doctor icon */}
-    <button className="flex-shrink-0">
-      <img src={doc} alt="" className="p-1.5 bg-white h-8 w-8 rounded-full" />
-    </button>
+<div className=" p-5 bg-[#F3F6F6] m-2 rounded-[20px] m-4 relative">
+  <div className="flex items-center gap-2">
+    {/* Left icons */}
+    <div className="flex items-center gap-2">
+      {/* Document icon */}
+      <button
+        className="shrink-0 cursor-pointer"
+        onClick={() => fileInputRef.current?.click()}
+      >
+        <img src={doc} alt="Upload" className="p-1.5 bg-white h-8 w-8 rounded-full" />
+      </button>
+      <input
+        type="file"
+        ref={fileInputRef}
+        style={{ display: "none" }}
+        onChange={(e) => {
+          const file = e.target.files?.[0];
+          if (file) console.log("Selected file:", file);
+        }}
+      />
 
-    {/* React icon */}
-    <button className="flex-shrink-0">
-      <img src={react} alt="" className="p-1.5 bg-white h-8 w-8 rounded-full" />
-    </button>
+      {/* React / Emoji icon */}
+      <button
+        className="shrink-0 cursor-pointer"
+        onClick={() => setShowEmojiPicker((prev) => !prev)}
+      >
+        <img src={react} alt="React / Emoji" className="p-1.5 bg-white h-8 w-8 rounded-full" />
+      </button>
 
-    {/* Input */}
+      {showEmojiPicker && (
+        <div className="absolute bottom-16 left-2 z-50">
+          <EmojiPicker
+            onEmojiClick={(emojiData) => {
+              setMessageText((prev) => prev + emojiData.emoji);
+              setShowEmojiPicker(false);
+            }}
+          />
+        </div>
+      )}
+    </div>
+
+    {/* Input field */}
     <input
       type="text"
       placeholder="Type a message..."
       value={messageText}
       onChange={(e) => setMessageText(e.target.value)}
-      onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-      className="flex-1 min-w-0 px-2 py-2 bg-white border border-gray-50 rounded-3xl placeholder:text-[#111A2D] text-xs focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+      onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
+      className="flex-1 min-w-0 px-4 h-10 bg-white border border-gray-50 rounded-3xl placeholder:text-[#111A2D] text-xs focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
     />
 
     {/* Send button */}
@@ -582,6 +637,7 @@ const SupportChat: React.FC = () => {
     </button>
   </div>
 </div>
+
 
             </div>
           </div>

@@ -60,7 +60,7 @@ const MainHeader: React.FC<MainHeaderProps> = ({ onMobileMenuOpen }) => {
                             onClick={() => setShowNotification(true)}
                             className="relative p-2 text-[#111A2D] focus:outline-none"
                         >
-                            <img src={notification} alt="Notification" className="w-5 h-5 sm:w-6 sm:h-6" />
+                            <img src={notification} alt="Notification" className="w-5 h-5 sm:w-6 sm:h-6 cursor-pointer" />
                             {/* Notification Badge */}
                             <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white">
                                 3

@@ -21,7 +21,7 @@ const tab = searchParams.get("tab");
 
   useEffect(() => {
     if (tab) {
-      setActiveItem(tab);   // This will activate Subscription tab
+      setActiveItem(tab);   
     }
   }, [tab]);
 
@@ -34,7 +34,7 @@ const tab = searchParams.get("tab");
         {/* Breadcrumb + Title */}
         <div>
           <div className="flex items-center gap-2 text-sm text-gray-600 mb-4">
-            <img src={home} alt="" />
+            <img src={home} alt="" className="w-4 h-4" />
             <span onClick={() => navigate('/dashboard')} className="cursor-pointer">
               Dashboard
             </span>
@@ -47,7 +47,7 @@ const tab = searchParams.get("tab");
             <span className="text-[#1a1c21] font-medium">{activeItem}</span>
           </div>
 
-          <h1 className="text-2xl px-2 md:px-0 font-semibold text-[#1a1c21]">
+          <h1 className="text-xl md:text-2xl px-2 md:px-0 font-semibold text-[#1a1c21]">
             Settings
           </h1>
         </div>

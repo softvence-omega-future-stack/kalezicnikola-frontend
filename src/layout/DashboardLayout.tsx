@@ -94,11 +94,12 @@ const DashboardLayout = () => {
             </div>
 
             {/* Main Content */}
-            <div className="flex-1 flex flex-col min-h-screen w-full">
+       <div className="flex-1 flex flex-col min-h-screen w-full">
+
                 <UserMainHeader onMobileMenuOpen={() => setMobileMenuOpen(true)} />
 
                 {/* Scrollable content */}
-                <main className="flex-1 overflow-y-auto px-3 md:px-6 pb-6">
+                <main className="flex-1 overflow-y-auto w-full px-3 md:px-6 pb-6">
                     <Outlet />
                 </main>
 

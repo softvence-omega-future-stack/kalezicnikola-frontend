@@ -3,7 +3,7 @@ import CallLogsPage from "@/dashboard/components/CallLogs/CallLogspage"
 
 const CallLogs = () => {
   return (
-    <div>
+    <div className="-ml-2">
       <CallLogsPage/>
     </div>
   )
