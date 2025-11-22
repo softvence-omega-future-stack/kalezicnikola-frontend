@@ -95,7 +95,7 @@ const NavItem: React.FC<NavItemProps> = ({ to, label, iconSrc, onClick, collapse
 
   if (onClick) {
     return (
-      <button onClick={handleClick} className={`${baseClasses} hover:bg-gray-100 w-auto`}>
+      <button onClick={handleClick} className={`${baseClasses} hover:bg-gray-100 w-auto cursor-pointer`}>
         <img src={iconSrc} alt={label} className="h-5 w-5 sm:h-6 sm:w-6 object-contain shrink-0" />
         {!collapsed && <span className="flex-1 text-sm md:text-base text-left whitespace-nowrap">{label}</span>}
       </button>
