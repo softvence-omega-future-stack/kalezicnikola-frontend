@@ -3,7 +3,7 @@ const Customer = () => {
     <div className="flex justify-center">
       {/* Customer Acquisition vs Churn */}
       <div className="bg-white rounded-3xl p-6 w-full max-w-md sm:max-w-lg md:w-[388px] py-4 pb-14">
-        <h3 className="text-xl font-semibold text-[#171C35] mb-6 text-center md:text-left">
+        <h3 className="text-xl font-semibold text-headingBlack mb-6 text-center md:text-left">
           Customer Acquisition vs Churn
         </h3>
 
@@ -11,7 +11,7 @@ const Customer = () => {
           {/* Churn Box */}
           <div className="flex flex-col items-center">
             {/* Percentage on top */}
-            <p className="text-base font-semibold text-[#171C35] mb-1">50%</p>
+            <p className="text-base font-semibold text-headingBlack mb-1">50%</p>
 
             {/* Box */}
             <div className="w-24 h-24 bg-[#D0E1F5] rounded-3xl relative overflow-hidden mb-2">
@@ -23,17 +23,17 @@ const Customer = () => {
                 }}
               ></div>
             </div>
-            <p className="text-base font-semibold text-[#171C35]">Churn</p>
+            <p className="text-base font-semibold text-headingBlack">Churn</p>
           </div>
 
           {/* Acquisition Box */}
           <div className="flex flex-col items-center">
             {/* Percentage on top */}
-            <p className="text-base font-semibold text-[#171C35] mb-1">90%</p>
+            <p className="text-base font-semibold text-headingBlack mb-1">90%</p>
 
             {/* Box */}
-            <div className="w-24 h-32 bg-[#BDC8FF] rounded-3xl mb-2"></div>
-            <p className="text-base font-semibold text-[#171C35]">Acquisition</p>
+            <div className="w-28 md:w-24 h-32 bg-[#BDC8FF] rounded-3xl mb-2"></div>
+            <p className="text-base font-semibold text-headingBlack">Acquisition</p>
           </div>
         </div>
 
