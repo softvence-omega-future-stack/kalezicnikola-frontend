@@ -1,5 +1,5 @@
 
-import arrow from '../../../assets/svgIcon/arrowRight.svg'
+import { ArrowDownRight } from 'lucide-react';
 
 
 // CommonSpace Component
@@ -86,10 +86,9 @@ const StatsCard = ({ card, maskId }: { card: (typeof statsCards)[0]; maskId: str
 
         {/* Bottom-right arrow button */}
         <div className="absolute  bottom-1 right-4">
-          <div className="h-9 w-9 bg-gray-900 rounded-full flex items-center justify-center">
-            {/* <img src={arrowRight} alt="" className="w-4 h-4" /> */}
-            <img src={arrow} alt="" />
-          </div>
+          <button className="h-9 w-9 bg-gray-900 rounded-full flex items-center justify-center cursor-pointer">
+            <ArrowDownRight className="w-5 h-5 text-white" />
+          </button>
         </div>
       </div>
     </div>

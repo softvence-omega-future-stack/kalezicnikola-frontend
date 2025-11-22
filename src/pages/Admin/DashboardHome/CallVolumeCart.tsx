@@ -19,9 +19,9 @@ const callVolumeData: CallData[] = [
 
 const CallvolumeChart = () => {
   return (
-    <div className="rounded-[24px] p-4 mt-4 bg-white w-full">
+    <div className="rounded-3xl p-4 mt-4 bg-white w-full">
       {/* Header */}
-      <h3 className="text-xl font-semibold text-[#171C35]">
+      <h3 className="text-xl font-semibold text-headingBlack">
         AI Voicebot Call Volume
       </h3>
       <p className="text-[#667085] font-medium text-sm mb-4">

@@ -1,11 +1,11 @@
 
-import arrow from '../../../assets/svgIcon/arrowRight.svg'
+import { ArrowDownRight } from 'lucide-react';
 
 
 // CommonSpace Component
 const CommonSpace = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   return (
-    <div className={`w-full py-6 ${className}`}>
+    <div className={`w-full pt-6 md:pt-10 pb-4 md:pb-6 ${className}`}>
       {children}
     </div>
   );
@@ -71,25 +71,24 @@ const StatsCard = ({ card, maskId }: { card: (typeof statsCards)[0]; maskId: str
       <div className="absolute top-0 left-0 w-full h-full p-4 flex flex-col justify-between">
         <div>
           {/* Title */}
-          <h3 className="text-lg font-semibold text-[#171C35] mb-1">{card.title}</h3>
+          <h3 className="text-lg font-semibold text-headingBlack mb-1">{card.title}</h3>
           {/* Subtitle */}
          
         </div>
 
         {/* Value */}
         <div className="mb-2">
-          <span className="text-3xl font-medium text-[#171C35]">{card.value}</span>
+          <span className="text-3xl font-medium text-headingBlack">{card.value}</span>
         </div>
         <div>
-             <p className="text-sm text-[#111A2D] opacity-70 ">{card.lastMonth}</p>
+             <p className="text-sm text-subHeadingBlack opacity-70 ">{card.lastMonth}</p>
         </div>
 
         {/* Bottom-right arrow button */}
         <div className="absolute  bottom-1 right-4">
-          <div className="h-9 w-9 bg-gray-900 rounded-full flex items-center justify-center">
-            {/* <img src={arrowRight} alt="" className="w-4 h-4" /> */}
-            <img src={arrow} alt="" />
-          </div>
+          <button className="h-9 w-9 bg-gray-900 rounded-full flex items-center justify-center cursor-pointer">
+            <ArrowDownRight className="w-5 h-5 text-white" />
+          </button>
         </div>
       </div>
     </div>

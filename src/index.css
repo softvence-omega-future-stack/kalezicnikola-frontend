@@ -19,6 +19,11 @@ body {
     font-family: 'Urbanist';
 }
 
+@theme {
+  --color-headingBlack: #171C35;
+  --color-subHeadingBlack: #111A2D;
+}
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);

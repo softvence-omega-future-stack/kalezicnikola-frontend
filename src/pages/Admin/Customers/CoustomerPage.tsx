@@ -5,7 +5,7 @@ import DoctorDatabaseTable from './DoctorDatabase'
 
 const CoustomerPage = () => {
   return (
-    <div>
+    <div className='max-[767px]:mt-6'>
        <TopSection/>
        <CustomerCard/>
        <DoctorDatabaseTable/>

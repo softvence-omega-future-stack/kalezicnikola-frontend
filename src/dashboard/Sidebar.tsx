@@ -25,7 +25,7 @@ const Logo: React.FC<LogoProps> = ({ collapsed, onToggle, closeMobileMenu }) => 
 
     return (
         <div
-            className={`flex items-center border-b border-b-gray-200 md:border-b-0 p-4 h-16 md:h-20 ${collapsed ? "justify-center" : "justify-between"} relative`}
+            className={`flex items-center border-b border-b-gray-200 md:border-b-0 p-6 ${collapsed ? "justify-center" : "justify-between"} relative`}
             style={{ fontFamily: "Urbanist" }}
         >
             {collapsed ? (
@@ -162,12 +162,12 @@ const UpgradeCard: React.FC<UpgradeCardProps> = ({ collapsed }) => {
             <div className="bg-gray-200 p-3 sm:p-4 rounded-xl">
                 <div className="mb-1">
                     <div className="flex justify-start gap-2 sm:gap-4 items-center flex-wrap">
-                        <span className="text-[#171C35] font-bold text-lg sm:text-xl">Upgrade to</span>
-                        <span className="text-xs sm:text-sm font-medium px-2 py-0.5 rounded-full bg-[#111A2D] text-white whitespace-nowrap">
+                        <span className="text-headingBlack font-bold text-lg sm:text-xl">Upgrade to</span>
+                        <span className="text-xs sm:text-sm font-medium px-2 py-0.5 rounded-full bg-subHeadingBlack text-white whitespace-nowrap">
                             PRO
                         </span>
                     </div>
-                    <span className="text-2xl sm:text-3xl font-bold text-[#171C35] block mt-1">Basic</span>
+                    <span className="text-2xl sm:text-3xl font-bold text-headingBlack block mt-1">Basic</span>
                 </div>
 
                 <p className="text-sm sm:text-md font-bold text-gray-800 mb-2">
@@ -185,12 +185,12 @@ const UpgradeCard: React.FC<UpgradeCardProps> = ({ collapsed }) => {
                     }}
                 >
                     <div
-                        className="bg-[#111A2D] h-2 rounded-full transition-all duration-200"
+                        className="bg-subHeadingBlack h-2 rounded-full transition-all duration-200"
                         style={{ width: `${percentage}%` }}
                     />
                 </div>
 
-                <button className="w-full bg-[#111A2D] text-white text-xs sm:text-sm font-semibold py-2 sm:py-2 rounded-lg hover:bg-gray-900 transition-colors mt-2">
+                <button className="w-full bg-subHeadingBlack text-white text-xs sm:text-sm font-semibold py-2 sm:py-2 rounded-lg hover:bg-gray-900 transition-colors mt-2">
                     {remainingMinutes} Minutes left
                 </button>
             </div>

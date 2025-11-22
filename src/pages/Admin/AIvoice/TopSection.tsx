@@ -1,22 +1,18 @@
-
-
 const TopSection = () => {
   return (
-    <div>
-       {/* Header */}
-      <div className=" flex items-center gap-12 mt-5">
+    <div className="max-[767px]:mt-6">
+      <div className=" flex items-center gap-12">
         <div className="flex flex-col gap-3">
-            <h1 className="text-[32px] md:text-3xl font-semibold text-[#171C35]">
-          AI Voicebot Performance
-        </h1>
-       <p className='text-[#111A2D] font-medium text-base '>
-       Monitor AI voicebot call metrics and success rates
-       </p>
+          <h1 className="text-xl sm:text-2xl md:text-3xl font-semibold text-headingBlack">
+            AI Voicebot Performance
+          </h1>
+          <p className='text-sm sm:text-base text-subHeadingBlack'>
+            Monitor AI voicebot call metrics and success rates
+          </p>
         </div>
-       
       </div>
     </div>
   )
 }
 
-export default TopSection
+export default TopSection;

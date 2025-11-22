@@ -8,7 +8,7 @@ import TopSection from "./TopSection"
 
 const DashboardHome = () => {
   return (
-    <div className="">
+    <div className='max-[767px]:mt-6'>
       <TopSection />
       <CardHeader />
       <div className="flex flex-col md:flex-row gap-5">
