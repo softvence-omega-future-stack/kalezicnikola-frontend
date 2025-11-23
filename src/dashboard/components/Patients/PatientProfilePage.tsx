@@ -23,9 +23,9 @@ const PatientProfilePage: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen mt-6 w-full">
+    <div className="min-h-screen mt-[30px] w-full">
       {/* Header Navigation */}
-      <div className=" pt-6">
+      <div className=" ">
         <div className="flex flex-wrap items-center gap-2 text-sm">
           <button className="text-gray-400 hover:text-gray-600">
             <img src={homeIcon} alt="" />

@@ -8,7 +8,7 @@ import DashboardCard from "@/dashboard/components/dashboard/DashboardCard";
 
 const Dashboard: React.FC = () => {
   return (
-    <div  className="min-h-screen -ml-4  ">
+    <div  className="min-h-screen -ml-4 px-2 md:px-0 ">
     
 
       <div  className="mb-8 ">

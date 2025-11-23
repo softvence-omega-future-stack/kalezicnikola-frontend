@@ -45,7 +45,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
       </div>
 
       {/* Heading */}
-      <h1 className="mb-4 text-[32px] sm:text-[42px] md:text-[52px] lg:text-[54px] xl:text-[64px] font-semibold text-[#171C35] leading-snug lg:leading-tight">
+      <h1 className="mb-4 text-[24px] sm:text-[32px] md:text-[52px] lg:text-[54px] xl:text-[64px] font-semibold text-[#171C35] leading-snug lg:leading-tight">
         {heading}
       </h1>
 

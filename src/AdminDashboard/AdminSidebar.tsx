@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { X } from 'lucide-react'; // Close icon import
+import { X } from 'lucide-react';
 
 import icon from "../assets/svgIcon/logo.svg";
 import logo from "../assets/svgIcon/textLogo.svg";
@@ -21,12 +21,7 @@ interface LogoProps {
   closeMobileMenu?: () => void;
 }
 
-
-
-// const Logo: React.FC<LogoProps> = ({ collapsed, onToggle }) => {
-
 const Logo: React.FC<LogoProps> = ({ collapsed, onToggle, closeMobileMenu }) => {
-
   const [isHovering, setIsHovering] = useState(false);
 
   return (
@@ -55,7 +50,6 @@ const Logo: React.FC<LogoProps> = ({ collapsed, onToggle, closeMobileMenu }) => 
           </div>
 
           <div className="flex items-center gap-2">
-            {/* Desktop Toggle Button */}
             <button 
               onClick={() => onToggle(true)} 
               className="cursor-pointer p-1 hidden md:block"
@@ -63,7 +57,6 @@ const Logo: React.FC<LogoProps> = ({ collapsed, onToggle, closeMobileMenu }) => 
               <img src={sidelogo} alt="Close Menu" className="h-8 w-8" />
             </button>
             
-            {/* Mobile Close Button - Only show when closeMobileMenu function is provided */}
             {closeMobileMenu && (
               <button 
                 onClick={closeMobileMenu}
@@ -95,7 +88,7 @@ const NavItem: React.FC<NavItemProps> = ({ to, label, iconSrc, onClick, collapse
 
   const handleClick = () => {
     if (onClick) onClick();
-    if (closeMobileMenu) closeMobileMenu(); // close mobile menu on route click
+    if (closeMobileMenu) closeMobileMenu();
   };
 
   if (onClick) {
@@ -152,10 +145,16 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ onLogoutClick, collapsed, o
         </nav>
       </div>
 
+
       <div className="flex flex-col space-y-4">
+
+      {/* FIXED: padding conditional based on collapsed state */}
+      <div className={`flex flex-col space-y-2 ${collapsed ? "py-4" : "p-4"}`}>
+
         <NavItem to="/admin/settings" iconSrc={settings} label="Settings" collapsed={collapsed} closeMobileMenu={closeMobileMenu} />
         <NavItem iconSrc={logout} label="Logout" onClick={onLogoutClick} collapsed={collapsed} closeMobileMenu={closeMobileMenu} />
       </div>
+    </div>
     </div>
   );
 };

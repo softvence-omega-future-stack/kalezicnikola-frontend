@@ -40,7 +40,7 @@ export default function PatientSummary() {
   const cutoutWidth = 50;
   const cutoutHeight = 50;
   const curveRadius = 20;
-  const smallCurveRadius = 12;
+  const smallCurveRadius = 20;
 
   const Card = ({ card }: { card: (typeof summaryCards)[0] }) => {
     return (

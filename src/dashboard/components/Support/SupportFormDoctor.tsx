@@ -384,15 +384,15 @@ const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const filteredMessages = messages.filter(msg => msg.contactId === selectedContact);
 
   return (
-    <div className="min-h-screen bg-[#F3F6F6] mt-6 font-sans">
+    <div className="min-h-screen bg-[#F3F6F6] mt-[30px] font-sans">
       {/* Header */}
-      <div className="py-4">
+      <div className="pb-4">
         <div className="flex items-center gap-2 text-sm text-gray-600 mb-4">
           <img src={home} alt="" className="w-4 h-4" />
           <img src={chevron} alt="" />
           <span onClick={()=> navigate('/dashboard')} className="text-gray-600 cursor-pointer">Dashboard</span>
           <img src={chevron} alt="" />
-          <span className="text-gray-900 font-medium">Supports</span>
+          <span className="text-gray-900 text-sm font-semibold">Supports</span>
         </div>
         <h1 className="text-xl md:text-2xl  font-semibold text-[#171C35]">Supports</h1>
       </div>

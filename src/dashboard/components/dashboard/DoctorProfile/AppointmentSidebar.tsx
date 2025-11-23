@@ -28,7 +28,7 @@ export default function AppointmentList() {
   ];
 
   return (
-    <div className="min-h-screen bg-white rounded-2xl px-4 sm:p-6 -mt-20 lg:p-8">
+    <div className="min-h-screen bg-white pb-5 rounded-2xl px-4 sm:p-6  lg:p-8">
       <div className="max-w-sm mx-auto bg-white rounded-xl">
         {/* Header */}
         <div className="px-5 py-4 border-b border-gray-100">
@@ -72,7 +72,7 @@ export default function AppointmentList() {
                   {/* Content */}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between gap-2 mb-1">
-                      <h3 className={`truncate text-base text-[#171C35] font-medium ${isWilliam ? "font-semibold text-xl" : "text-base font-semibold"}`}>
+                      <h3 className={`truncate text-base text-[#171C35] font-medium ${isWilliam ? "font-semibold text-base md:text-xl " : "text-base font-semibold"}`}>
                         {apt.name}
                       </h3>
                       {apt.isNew && !isWilliam && (

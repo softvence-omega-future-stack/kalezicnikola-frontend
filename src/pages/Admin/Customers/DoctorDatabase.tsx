@@ -27,7 +27,7 @@ const doctorsData: Doctor[] = [
 ];
 
 const DoctorDatabaseTable: React.FC = () => {
-  const [selectedRows, setSelectedRows] = useState<Set<string>>(new Set());
+ // const [selectedRows, setSelectedRows] = useState<Set<string>>(new Set());
   const [searchTerm, setSearchTerm] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [selectedStatus, setSelectedStatus] = useState('All Status');
@@ -64,15 +64,15 @@ const DoctorDatabaseTable: React.FC = () => {
   //   }
   // };
 
-  const toggleSelectRow = (id: string) => {
-    const newSelected = new Set(selectedRows);
-    if (newSelected.has(id)) {
-      newSelected.delete(id);
-    } else {
-      newSelected.add(id);
-    }
-    setSelectedRows(newSelected);
-  };
+  // const toggleSelectRow = (id: string) => {
+  //   const newSelected = new Set(selectedRows);
+  //   if (newSelected.has(id)) {
+  //     newSelected.delete(id);
+  //   } else {
+  //     newSelected.add(id);
+  //   }
+  //   setSelectedRows(newSelected);
+  // };
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -184,6 +184,7 @@ const DoctorDatabaseTable: React.FC = () => {
             <table className="w-full">
               <thead>
                 <tr className="border-b border-gray-200">
+
                   {/* <th className="px-2 sm:px-4 py-3 text-left w-12">
                     <input
                       type="checkbox"
@@ -212,19 +213,32 @@ const DoctorDatabaseTable: React.FC = () => {
                   </th>
                   <th className="px-2 sm:px-4 py-3 text-left text-sm sm:text-base font-semibold text-headingBlack tracking-wider">
                     Actions
+                    </th>
+
+                  <th className="px-4 py-3 text-left w-12">
+                    
+
                   </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200 bg-white">
                 {filteredDoctors.map((doctor) => (
                   <tr key={doctor.id} className="hover:bg-gray-50 transition-colors">
+
                     <td className="px-2 sm:px-4 py-4">
-                      <input
+                    
+
+                    <td className="px-4 py-4">
+                      {/* <input
+
                         type="checkbox"
                         checked={selectedRows.has(doctor.id)}
                         onChange={() => toggleSelectRow(doctor.id)}
                         className="w-4 h-4 rounded border border-gray-400 checked:bg-blue-600 checked:border-blue-600 cursor-pointer"
-                      />
+                      /> */}
+                      
+                     
+                    </td>
                     </td>
                     <td className="px-2 sm:px-4 py-4">
                       <div className="flex items-center gap-2 sm:gap-3">
