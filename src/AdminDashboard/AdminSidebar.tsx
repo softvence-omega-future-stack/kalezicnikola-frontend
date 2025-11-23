@@ -26,7 +26,7 @@ const Logo: React.FC<LogoProps> = ({ collapsed, onToggle, closeMobileMenu }) => 
 
   return (
     <div
-      className={`flex items-center border-b border-b-gray-200 md:border-b-0 p-4 h-16 md:h-20 ${collapsed ? "justify-center" : "justify-between"} relative`}
+      className={`flex items-center border-b-gray-200 md:border-b-0 p-6 ${collapsed ? "justify-center" : "justify-between"} relative`}
       style={{ fontFamily: "Urbanist" }}
     >
       {collapsed ? (
@@ -93,7 +93,7 @@ const NavItem: React.FC<NavItemProps> = ({ to, label, iconSrc, onClick, collapse
 
   if (onClick) {
     return (
-      <button onClick={handleClick} className={`${baseClasses} hover:bg-gray-100 w-auto`}>
+      <button onClick={handleClick} className={`${baseClasses} hover:bg-gray-100 w-auto cursor-pointer`}>
         <img src={iconSrc} alt={label} className="h-5 w-5 sm:h-6 sm:w-6 object-contain shrink-0" />
         {!collapsed && <span className="flex-1 text-sm md:text-base text-left whitespace-nowrap">{label}</span>}
       </button>
@@ -121,7 +121,7 @@ interface AdminSidebarProps {
 }
 
 const AdminSidebar: React.FC<AdminSidebarProps> = ({ onLogoutClick, collapsed, onToggle, closeMobileMenu }) => {
-  const sidebarWidth = collapsed ? "w-[70px]" : "w-full";
+  const sidebarWidth = collapsed ? "w-[80px]" : "w-[280px]";
 
   return (
     <div
@@ -145,12 +145,12 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ onLogoutClick, collapsed, o
         </nav>
       </div>
 
-      {/* FIXED: padding conditional based on collapsed state */}
-      <div className={`flex flex-col space-y-2 ${collapsed ? "py-4" : "p-4"}`}>
+
+
         <NavItem to="/admin/settings" iconSrc={settings} label="Settings" collapsed={collapsed} closeMobileMenu={closeMobileMenu} />
         <NavItem iconSrc={logout} label="Logout" onClick={onLogoutClick} collapsed={collapsed} closeMobileMenu={closeMobileMenu} />
       </div>
-    </div>
+  
   );
 };
 

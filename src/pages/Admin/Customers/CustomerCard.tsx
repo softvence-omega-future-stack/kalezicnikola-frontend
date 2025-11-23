@@ -1,5 +1,8 @@
 
+
+
 // import arrow from '../../../assets/svgIcon/arrowRight.svg'
+
 
 
 // // CommonSpace Component
@@ -114,7 +117,7 @@ import arrow from '../../../assets/svgIcon/arrowRight.svg';
 // CommonSpace Component
 const CommonSpace = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   return (
-    <div className={`w-full py-6 ${className}`}>
+    <div className={`w-full pb-6 pt-6 md:pt-10 ${className}`}>
       {children}
     </div>
   );
@@ -224,13 +227,16 @@ const StatsCard = ({ card }: { card: (typeof statsCards)[0] }) => {
       {/* Content overlay */}
       <div className="relative w-full h-full p-4 flex flex-col justify-between">
         <div>
+
           <h3 className="text-lg font-semibold text-[#171C35] mb-1">{card.title}</h3>
           <p className="text-sm text-[#111A2D] opacity-70">{card.subtitle}</p>
+
         </div>
 
         <div className="mb-2">
-          <span className="text-3xl font-medium text-[#171C35]">{card.value}</span>
+          <span className="text-3xl font-medium text-subHeadingBlack">{card.value}</span>
         </div>
+
 
         {/* FIXED position arrow button */}
         <div
@@ -243,6 +249,7 @@ const StatsCard = ({ card }: { card: (typeof statsCards)[0] }) => {
           <div className="h-8 w-8 bg-gray-900 rounded-full flex items-center justify-center">
             <img src={arrow} alt="" />
           </div>
+
         </div>
       </div>
     </div>

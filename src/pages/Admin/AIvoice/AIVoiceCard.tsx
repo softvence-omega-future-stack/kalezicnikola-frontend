@@ -1,5 +1,5 @@
 
-// import arrow from '../../../assets/svgIcon/arrowRight.svg'
+
 
 
 // // CommonSpace Component
@@ -240,6 +240,7 @@ const StatsCard = ({ card }: { card: (typeof statsCards)[0] }) => {
           <p className="text-sm text-[#111A2D] opacity-70">{card.lastMonth}</p>
         </div>
 
+
         {/* FIXED position arrow button */}
         <div
           className="absolute"
@@ -251,6 +252,7 @@ const StatsCard = ({ card }: { card: (typeof statsCards)[0] }) => {
           <div className="h-8 w-8 bg-gray-900 rounded-full flex items-center justify-center">
             <img src={arrow} alt="" />
           </div>
+
         </div>
       </div>
     </div>

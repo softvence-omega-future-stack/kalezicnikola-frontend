@@ -86,25 +86,29 @@ import {
   ResponsiveContainer,
   CartesianGrid,
 } from "recharts";
-import CommonHeader from "@/common/header/CommonHeader";
 
 const data = [
-    { day: "Sun", value: 80 },
+  { day: "Sun", value: 80 },
   { day: "Mon", value: 90 },
   { day: "Tue", value: 85 },
   { day: "Wed", value: 60 },
   { day: "Thu", value: 65 },
   { day: "Fri", value: 90 },
   { day: "Sat", value: 85 },
-  
+
 ];
 
 const AIVoiceCall = () => {
   return (
-    <div className="bg-white p-4 rounded-xl ">
-      <CommonHeader className="!text-lg mb-6">
-        Platform Usage Trends
-      </CommonHeader>
+    <div className="bg-white p-4 md:p-6 rounded-xl md:rounded-3xl mt-4">
+      <div className="mb-4">
+        <h1 className="text-xl md:text-2xl font-semibold text-headingBlack pb-1 md:pb-3">
+          AI Voicebot Call Volume
+        </h1>
+        <p className='text-[#667085] text-sm md:text-base '>
+          Daily call volume trend (last 7 days)
+        </p>
+      </div>
 
       <div className="relative w-full" style={{ height: "370px" }}>
         <ResponsiveContainer width="100%" height="100%">
@@ -121,7 +125,7 @@ const AIVoiceCall = () => {
 
             {/* শুধুমাত্র horizontal dashed border */}
             <CartesianGrid
-             
+
               vertical={false}
               stroke="#E6EDEE"
             />
@@ -131,7 +135,7 @@ const AIVoiceCall = () => {
               axisLine={false}
               tickLine={false}
               tick={{ fill: "#111A2D", fontSize: 13 }}
-               dy={15} 
+              dy={15}
             />
 
             <YAxis
@@ -141,7 +145,7 @@ const AIVoiceCall = () => {
               ticks={[30, 60, 80, 100]}
               tickFormatter={(tick) => `${tick}%`}
               tick={{ fill: "#667085", fontSize: 13 }}
-                dx={-15}
+              dx={-15}
             />
 
             <Tooltip
