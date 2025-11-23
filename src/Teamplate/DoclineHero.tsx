@@ -2,8 +2,10 @@ import React from "react";
 import heroImg from "../assets/svgIcon/heroImg.svg";
 import herologo from "../assets/svgIcon/herologo.svg";
 import SectionHeader from "./SectionHeader";
+import { useNavigate } from "react-router-dom";
 
 const DoclineHero: React.FC = () => {
+  const navigate = useNavigate()
   return (
     <section className="w-full bg-[#F3F6F6] pt-[80px] sm:pt-[140px]">
       <div className="flex flex-col lg:flex-row items-center justify-between pl-6 sm:pl-8 lg:pl-20 mt-14 gap-10">
@@ -28,10 +30,10 @@ const DoclineHero: React.FC = () => {
 
           {/* Buttons */}
           <div className="flex flex-col md:flex-row w-full items-center gap-3">
-            <button className="w-full md:w-auto py-6 px-12 rounded-[12px] text-base font-medium bg-[#526FFF] text-white">
+            <button onClick={()=> navigate('/login')} className="w-full md:w-auto py-6 px-12 rounded-[12px] text-base font-medium bg-[#526FFF] text-white cursor-pointer">
               Get Started
             </button>
-            <button className="w-full md:w-auto py-6 px-12 rounded-[12px] text-base font-medium border border-[#526FFF] text-[#526FFF] bg-[rgba(82,111,255,0.1)]">
+            <button className="w-full md:w-auto py-6 px-12 rounded-[12px] text-base font-medium border border-[#526FFF] text-[#526FFF] bg-[rgba(82,111,255,0.1)] cursor-pointer">
               Book Demo
             </button>
           </div>

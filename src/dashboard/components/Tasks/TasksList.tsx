@@ -204,18 +204,19 @@ export default function TaskList() {
   };
 
   return (
-    <div className="mt-6" onClick={() => setSelectedTask(null)}>
+    <div className="mt-[30px]" onClick={() => setSelectedTask(null)}>
       {/* Header */}
-      <div className="py-4">
+      <div className="pb-4">
         <div className="flex items-center gap-2 text-sm text-gray-600 mb-4">
           <img src={homeIcon} alt="Home" className="w-4 h-4" />
+           <img src={chevronIcon} alt=">" />
           <span onClick={() => navigate('/dashboard')} className="text-gray-600 font-medium cursor-pointer">Dashboard</span>
           <img src={chevronIcon} alt=">" />
-          <span className="text-[#042435] text-xs font-semibold">Task</span>
+          <span className="text-[#042435] text-sm font-semibold">Task</span>
         </div>
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-semibold text-[#171c35]">Task</h1>
+            <h1 className="text-xl md:text-2xl font-semibold text-[#171c35]">Task</h1>
             <p className="text-base font-medium text-[#111A2D] mt-1">{columns.reduce((acc, col) => acc + col.tasks.length, 0)} Total task</p>
           </div>
           <div className="flex items-center gap-3">

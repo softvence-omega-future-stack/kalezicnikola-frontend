@@ -282,7 +282,7 @@ const Slider = () => {
               </span>
             </div>
 
-            <h2 className="text-[32px] sm:text-[42px] md:text-[52px] lg:text-[54px] xl:text-[64px] font-semibold text-gray-900 mb-4">
+            <h2 className="text-[24px] sm:text-[32px] md:text-[52px] lg:text-[54px] xl:text-[64px] font-semibold text-gray-900 mb-4">
               The Modern Workflow <span className="block">Your Team Will Love</span>
             </h2>
           </div>

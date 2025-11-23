@@ -157,6 +157,7 @@ import dr2 from '../../../assets/svgIcon/drChat3.svg';
 import dr3 from '../../../assets/svgIcon/drChat4.svg';
 import dr4 from '../../../assets/svgIcon/drChat2.svg';
 import SupportRight from './SupportRight';
+import { useNavigate } from 'react-router-dom';
 
 interface Message {
   id: number;
@@ -191,14 +192,16 @@ const SupportLeft: React.FC = () => {
     setSelectedFriend(friend);
   };
 
+  const navigate = useNavigate()
+
   return (
-    <div className="w-full p-4 md:p-6 lg:p-8 bg-[#F3F6F6] font-sans min-h-screen">
+    <div className="w-full mt-7 bg-[#F3F6F6] font-sans min-h-screen">
       {/* Header */}
       <div className="pb-4 md:pb-6">
         <div className="flex items-center gap-2 text-sm text-gray-600 mb-2 md:mb-4">
           <img src={home} alt="Home" className="h-4 w-4" />
           <img src={chevron} alt="Chevron" className="h-3 w-3" />
-          <span className="text-gray-600">Dashboard</span>
+          <span onClick={()=> navigate('/admin')} className="text-gray-600 cursor-pointer">Dashboard</span>
           <img src={chevron} alt="Chevron" className="h-3 w-3" />
           <span className="text-[#171c35] font-medium">Supports</span>
         </div>

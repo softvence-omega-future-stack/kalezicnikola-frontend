@@ -20,15 +20,15 @@ const CalendarView: React.FC = () => {
   const handleViewChange = (type: 'day' | 'week' | 'month') => setViewType(type);
 
   return (
-    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="min-h-screen ">
+    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="min-h-screen mt-[30px]">
       {/* Breadcrumb */}
-      <div className="mt-6 ">
-        <div className="flex items-center gap-2 pt-6 text-sm text-gray-500 flex-wrap">
+      <div className="">
+        <div className="flex items-center gap-2  text-sm text-gray-500 flex-wrap">
           <img src={homeIcon} alt="" className="w-4 h-4" />
           <img src={chevronIcon} alt="" />
           <span onClick={()=> navigate('/dashboard')} className='cursor-pointer'>Dashboard</span>
           <img src={chevronIcon} alt="" />
-          <span className="text-[#171C35] font-medium">Calendar</span>
+          <span className="text-[#171C35] text-sm font-semibold">Calendar</span>
         </div>
       </div>
 

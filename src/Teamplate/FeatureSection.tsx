@@ -10,7 +10,7 @@ import SectionHeader from './SectionHeader';
 // Common styles
 const titleStyle = {
   fontFamily: 'Urbanist, sans-serif',
-  fontSize: '22px',
+ 
   fontWeight: 600,
   color: '#171C35',
 };
@@ -26,8 +26,8 @@ const descStyle = {
 const ReliefCard: React.FC = () => (
   <div className="p-6 md:p-8 xl:p-[30px] bg-[#171C35] rounded-3xl shadow-sm h-full flex flex-col justify-between text-white">
     <div style={{ fontFamily: 'Urbanist, sans-serif' }}>
-      <p className="text-5xl md:text-6xl xl:text-[99px]  mb-14 text-white">75%</p>
-      <h3 style={{ ...titleStyle, color: 'white' }} className='text-2xl font-medium mb-3'>Relief</h3>
+      <p className="text-3xl md:text-6xl xl:text-[96px]  mb-14 text-white">75%</p>
+      <h3 style={{ ...titleStyle, color: 'white' }} className='text-lg sm:text-xl lg:text-2xl font-medium mb-3'>Relief</h3>
       <p style={{ ...descStyle, color: 'white' }} className="mt-3 text-sm ">
         The AI assistant handles an average of 75% of routine calls completely independently. 
         Your team gains this time back for more patient care.
@@ -53,7 +53,7 @@ const ConversationCard: React.FC = () => (
     }}
   >
     <div>
-      <h3 style={titleStyle}>Docline manages 20 calls at once</h3>
+      <h3 className='text-lg sm:text-xl lg:text-2xl font-semibold leading-5 md:leading-7' >Docline manages 20 calls at once</h3>
       <p style={descStyle} className="mt-3 mb-6">
         Never busy tones or waiting lines again. The AI handles all incoming <br /> calls in parallel so every patient is answered immediately.
       </p>
@@ -82,7 +82,7 @@ const TriadeCard: React.FC = () => (
     }}
   >
     <div>
-      <h3 style={titleStyle}>Smart Triage & Call Forwarding</h3>
+      <h3 style={titleStyle} className='text-lg sm:text-xl lg:text-2xl '>Smart Triage & Call Forwarding</h3>
       <p style={descStyle} className="mt-3 mb-6">
         The AI detects emergencies. Complex inquiries are prioritized and routed directly to the responsible staff.
       </p>
@@ -112,11 +112,11 @@ const AvailabilityCard: React.FC = () => (
     }}
   >
     {/* 24/7 Section */}
-    <p className="text-5xl md:text-6xl text-white font-bold mb-0">24/7</p>
+    <p className="text-3xl md:text-6xl xl:text-[96px]  text-white font-bold mb-0">24/7</p>
 
     {/* Availability Section */}
     <div>
-      <h3 style={{ ...titleStyle, color: "white", marginBottom: "0" }}>Availability</h3>
+      <h3 className='text-lg sm:text-xl lg:text-2xl ' style={{ ...titleStyle, color: "white", marginBottom: "0" } }>Availability</h3>
       <p style={{ ...descStyle, color: "#E0E7FF" }}>
         Your practice is reachable 365 days a year. The AI answers all calls — regardless of holidays, illness, or staff shortage.
       </p>
@@ -147,15 +147,7 @@ const IntegrationCard: React.FC = () => (
       height: "100%",
     }}
   >
-    <h3   style={{
-    color: "var(--Secondary-color, #171C35)",
-    fontFamily: "Urbanist, sans-serif",
-    fontSize: "22px",
-    fontStyle: "normal",
-    
-    fontWeight: 600,
-    lineHeight: "120%", 
-  }} className=' pb-[16px] ' >Easy connection to your phone system</h3>
+    <h3  className='text-lg sm:text-xl lg:text-2xl ' style={titleStyle} >Easy connection to your phone system</h3>
    <p style={{ fontSize: "16px", lineHeight: "24px", margin: 0, color: "#333" }}>
   No system change or IT stress. The integration <br />with your existing phone setup is quick and easy by <br /> our onboarding team.
 </p>
@@ -182,7 +174,7 @@ const SoftwareCard: React.FC = () => (
     }}
   >
     <div>
-      <h3 style={{ ...titleStyle, fontFamily: "Urbanist, sans-serif" }}>No extra software or hardware required</h3>
+      <h3 className='text-lg sm:text-xl lg:text-2xl ' style={{ ...titleStyle, fontFamily: "Urbanist, sans-serif" }}>No extra software or hardware required</h3>
       <p style={{ ...descStyle, fontFamily: "Urbanist, sans-serif" }} className="mt-3">
         Docline runs fully in the cloud. You save on physical devices, maintenance, and gain flexibility in your workflow.
       </p>
@@ -208,7 +200,7 @@ const CustomizationCard: React.FC = () => (
     }}
   >
     <div>
-      <h3 style={{ ...titleStyle, fontFamily: "Urbanist, sans-serif" }}>Tailored to your practice</h3>
+      <h3 className='text-lg sm:text-xl lg:text-2xl ' style={titleStyle} >Tailored to your practice</h3>
       <p style={{ ...descStyle, fontFamily: "Urbanist, sans-serif", marginTop: "12px", marginBottom: "24px" }}>
         The AI’s tone, wording, and rules are customized exactly to your practice style. <br /> Patients often don’t even notice they’re speaking to an AI.
       </p>

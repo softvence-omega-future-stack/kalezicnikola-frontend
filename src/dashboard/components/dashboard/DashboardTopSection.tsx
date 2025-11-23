@@ -24,13 +24,13 @@ const MetricCard: React.FC<MetricCardProps> = ({ label, value }) => (
     {/* Value */}
     {typeof value === 'string' && value.includes('hr') ? (
       <div className="flex items-center justify-center sm:justify-start gap-1">
-        <span className="text-2xl sm:text-3xl md:text-4xl font-medium text-[#111A2D] leading-none">
+        <span className="text-2xl sm:text-3xl md:text-[32px] font-medium text-[#171C35] leading-none">
           {value.substring(0, 2)}
         </span>
         <span className="text-xs sm:text-sm text-gray-700 leading-none">
           {value.substring(2, 4)}
         </span>
-        <span className="text-2xl sm:text-3xl md:text-4xl font-medium text-[#111A2D] leading-none">
+        <span className="text-2xl sm:text-3xl md:text-[32px] font-medium text-[#171C35] leading-none">
           {value.substring(4, 6)}
         </span>
         <span className="text-xs sm:text-sm text-gray-700 leading-none">
@@ -38,7 +38,7 @@ const MetricCard: React.FC<MetricCardProps> = ({ label, value }) => (
         </span>
       </div>
     ) : (
-      <p className="text-2xl sm:text-3xl md:text-4xl font-medium text-[#111A2D] leading-none">
+      <p className="text-2xl sm:text-3xl md:text-[32px] font-medium text-[#111A2D] leading-none">
         {value}
       </p>
     )}
@@ -50,7 +50,7 @@ const DashboardTopSection: React.FC = () => {
   const navigate = useNavigate()
 
   return (
-    <div className=" mt-6.5  bg-[#F3F6F6]">
+    <div className=" mt-2  bg-[#F3F6F6]">
       {/* Date Navigation */}
       <div className="flex items-center justify-center  md:justify-start text-[#111A2D] text-sm sm:text-base font-medium pt-6  gap-2">
         {/* <button className="p-2 sm:p-1 rounded-full transition-colors hover:bg-gray-200">

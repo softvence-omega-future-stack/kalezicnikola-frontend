@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Home, ChevronDown, ChevronRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 interface FormData {
   firstName: string;
@@ -40,6 +41,7 @@ const AddPatientForm: React.FC = () => {
   };
 
   const handleSubmit = (e: React.FormEvent) => {
+    
     e.preventDefault(); // Prevent default form submission
     console.log('Patient Data Submitted:', formData);
     // In a real application, you would send formData to an API here.
@@ -67,7 +69,7 @@ const AddPatientForm: React.FC = () => {
 
   const inputClass = "w-full px-4 py-2.5 bg-gray-50 border border-[#D0D5DD] rounded-[8px] text-sm text-[#111A2D] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#526FFF] focus:border-transparent";
   const labelClass = "block text-base font-medium text-[#171c35] mb-2";
-
+const navigate = useNavigate()
   return (
     <div className="min-h-screen mt-6">
       <div className="py-6">
@@ -75,9 +77,9 @@ const AddPatientForm: React.FC = () => {
         <div className="flex items-center gap-2 text-sm text-gray-600 mb-4">
           <Home className="w-4 h-4 text-gray-500" />
           <ChevronRight size={12} className="text-gray-500"/>
-          <span className="text-gray-600">Dashboard</span>
+          <span onClick={()=> navigate('/dashboard')} className="text-gray-600 cursor-pointer">Dashboard</span>
           <ChevronRight size={12} className="text-gray-500"/>
-          <span className="text-gray-600">Patients</span>
+          <span onClick={()=> navigate('/dashboard/patients')} className="text-gray-600 cursor-pointer">Patients</span>
           <ChevronRight size={12} className="text-gray-500"/>
           <span className="text-[#171c35] font-semibold">Add Patient</span>
         </div>

@@ -26,10 +26,10 @@ const tab = searchParams.get("tab");
   }, [tab]);
 
   return (
-    <div className="mt-6">
+    <div className="mt-[30px]">
 
       {/* Top Header Section */}
-      <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between py-6 mb-6">
+      <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between pb-6 mb-6">
         
         {/* Breadcrumb + Title */}
         <div>
@@ -44,7 +44,7 @@ const tab = searchParams.get("tab");
             </span>
             <img src={chevron} alt="" />
 
-            <span className="text-[#1a1c21] font-medium">{activeItem}</span>
+            <span className="text-[#1a1c21] text-sm font-semibold">{activeItem}</span>
           </div>
 
           <h1 className="text-xl md:text-2xl px-2 md:px-0 font-semibold text-[#1a1c21]">

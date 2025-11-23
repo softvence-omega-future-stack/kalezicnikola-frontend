@@ -240,8 +240,8 @@ const Card = ({
   // index 0 = 1st card (large), index 1,2 = 2nd,3rd card (small)
   const cutoutWidth = index === 0 ? 40 : 40;
   const cutoutHeight = index === 0 ? 40 : 40;
-  const curveRadius = index === 0 ? 22 : 22;
-  const smallCurveRadius = index === 0 ? 12 : 10;
+  const curveRadius = index === 0 ? 20 : 20;
+  const smallCurveRadius = index === 0 ? 20 : 20;
 
   const navigate = useNavigate()
   return (
@@ -324,7 +324,7 @@ const Card = ({
           </h3>
 
           {category.avatars ? (
-            <div className="flex items-center gap-4 flex-wrap pr-16 2xl:mt-9 ">
+            <div className="flex items-center gap-2 flex-wrap pr-16 2xl:mt-9 ">
               <div className="flex -space-x-3 items-center shrink-0">
                 {category.avatars.map((avatar, idx) => (
                   <img
@@ -341,7 +341,7 @@ const Card = ({
                 )}
               </div>
 
-              <p className="text-[#171C35] text-sm font-medium leading-snug flex-1 min-w-[80px]">
+              <p className="text-[#171C35] text-sm mb-3 md:mb-0 font-medium leading-snug flex-1 min-w-[80px]">
                 {category.description}
               </p>
             </div>
@@ -397,7 +397,8 @@ const DashboardCard = () => {
             </div>
           ))}
         </div>
-      </div>
+     </div>
+     
     </CommonSpace>
   );
 };

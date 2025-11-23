@@ -273,7 +273,7 @@ const doctorsData: Doctor[] = [
 ];
 
 const DoctorDatabaseTable: React.FC = () => {
-  const [selectedRows, setSelectedRows] = useState<Set<string>>(new Set());
+ // const [selectedRows, setSelectedRows] = useState<Set<string>>(new Set());
   const [searchTerm, setSearchTerm] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [selectedStatus, setSelectedStatus] = useState('All Status');
@@ -287,23 +287,23 @@ const DoctorDatabaseTable: React.FC = () => {
     setIsOpen(false);
   };
 
-  const toggleSelectAll = () => {
-    if (selectedRows.size === filteredDoctors.length) {
-      setSelectedRows(new Set());
-    } else {
-      setSelectedRows(new Set(filteredDoctors.map(d => d.id)));
-    }
-  };
+  // const toggleSelectAll = () => {
+  //   if (selectedRows.size === filteredDoctors.length) {
+  //     setSelectedRows(new Set());
+  //   } else {
+  //     setSelectedRows(new Set(filteredDoctors.map(d => d.id)));
+  //   }
+  // };
 
-  const toggleSelectRow = (id: string) => {
-    const newSelected = new Set(selectedRows);
-    if (newSelected.has(id)) {
-      newSelected.delete(id);
-    } else {
-      newSelected.add(id);
-    }
-    setSelectedRows(newSelected);
-  };
+  // const toggleSelectRow = (id: string) => {
+  //   const newSelected = new Set(selectedRows);
+  //   if (newSelected.has(id)) {
+  //     newSelected.delete(id);
+  //   } else {
+  //     newSelected.add(id);
+  //   }
+  //   setSelectedRows(newSelected);
+  // };
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -412,12 +412,7 @@ const DoctorDatabaseTable: React.FC = () => {
               <thead>
                 <tr className="border-b border-gray-200">
                   <th className="px-4 py-3 text-left w-12">
-                    <input
-                      type="checkbox"
-                      checked={selectedRows.size === filteredDoctors.length && filteredDoctors.length > 0}
-                      onChange={toggleSelectAll}
-                      className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 cursor-pointer"
-                    />
+                    
                   </th>
                   <th className="px-4 py-3 text-left text-base font-semibold text-[#171C35] tracking-wider">Doctor Name</th>
                   <th className="px-4 py-3 text-left text-base font-semibold text-[#171C35] tracking-wider">Doctor ID</th>
@@ -432,12 +427,12 @@ const DoctorDatabaseTable: React.FC = () => {
                 {filteredDoctors.map((doctor) => (
                   <tr key={doctor.id} className="hover:bg-gray-50 transition-colors">
                     <td className="px-4 py-4">
-                      <input
+                      {/* <input
                         type="checkbox"
                         checked={selectedRows.has(doctor.id)}
                         onChange={() => toggleSelectRow(doctor.id)}
                         className="w-4 h-4 rounded border border-gray-400 checked:bg-blue-600 checked:border-blue-600 cursor-pointer"
-                      />
+                      /> */}
                     </td>
                     <td className="px-4 py-4">
                       <div className="flex items-center gap-3">
