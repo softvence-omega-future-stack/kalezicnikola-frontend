@@ -148,7 +148,7 @@ const CalendarMonthView: React.FC = () => {
   ];
 
   return (
-    <div className="rounded-2xl p-2 md:p-4 overflow-x-auto"> 
+    <div className="rounded-2xl p-2 md:p-4  overflow-x-auto"> 
       <div className="min-w-[400px] md:min-w-full">
         <div className="grid grid-cols-7 gap-px bg-[#E8E8E8] border rounded-2xl overflow-hidden"> 
           {/* Day Headers */}

@@ -238,7 +238,7 @@ const UpgradPlan = () => {
 
   return (
     <div
-      className="relative mt-19 xl:mt-[180px] lg:mt-[180px] md:mt-[180px] xl:mx-20 px-4 md:px-8 rounded-[40px] overflow-hidden"
+      className="relative mt-19 xl:mt-[180px] lg:mt-[180px] md:mt-[180px] xl:mx-20 px-4 md:px-8 rounded-2xl md:rounded-[40px] overflow-hidden"
       style={{
         boxShadow: '0 20px 50px rgba(0, 0, 0, 0.05)',
         fontFamily: 'Urbanist, sans-serif',
@@ -269,7 +269,7 @@ const UpgradPlan = () => {
       ></div>
 
       {/* Main Content */}
-      <div className="relative z-10 p-4 md:p-8 xl:p-12 pb-16">
+      <div className="relative z-10 p-4 mt-5 md:mt-0 md:p-8 xl:p-12 pb-16">
         {/* Header */}
         {/* <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-2 border border-white shadow-sm rounded-full mb-4 bg-white">

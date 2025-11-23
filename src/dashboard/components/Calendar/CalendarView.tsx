@@ -75,7 +75,7 @@ const CalendarView: React.FC = () => {
         </div>
 
         {/* Calendar View */}
-        <div className="overflow-x-auto rounded-3xl -mt-2">
+        <div className="overflow-x-auto  rounded-3xl -mt-2">
           {viewType === 'day' && <DayView />}
           {viewType === 'week' && <CalendarWeekView />}
           {viewType === 'month' && <CalendarMonthView />}

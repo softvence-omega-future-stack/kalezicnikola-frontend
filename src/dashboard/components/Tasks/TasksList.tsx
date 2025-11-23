@@ -206,31 +206,56 @@ export default function TaskList() {
   return (
     <div className="mt-[30px]" onClick={() => setSelectedTask(null)}>
       {/* Header */}
-      <div className="pb-4">
-        <div className="flex items-center gap-2 text-sm text-gray-600 mb-4">
-          <img src={homeIcon} alt="Home" className="w-4 h-4" />
-           <img src={chevronIcon} alt=">" />
-          <span onClick={() => navigate('/dashboard')} className="text-gray-600 font-medium cursor-pointer">Dashboard</span>
-          <img src={chevronIcon} alt=">" />
-          <span className="text-[#042435] text-sm font-semibold">Task</span>
-        </div>
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <div>
-            <h1 className="text-xl md:text-2xl font-semibold text-[#171c35]">Task</h1>
-            <p className="text-base font-medium text-[#111A2D] mt-1">{columns.reduce((acc, col) => acc + col.tasks.length, 0)} Total task</p>
-          </div>
-          <div className="flex items-center gap-3">
-            <button><StatusDropdown /></button>
-            <button><PriorityDropdown /></button>
-            <button
-              onClick={() => openAddModal(columns[0]?.id || 'todo')}
-              className="px-4 py-2 bg-[#DCE2FF] text-black rounded-[8px] text-sm font-medium cursor-pointer flex items-center gap-2"
-            >
-              <Plus className="w-4 h-4" /> Add Task
-            </button>
-          </div>
-        </div>
+    <div className="pb-4">
+  {/* Breadcrumb */}
+  <div className="flex flex-col sm:flex-row items-center gap-2 text-sm text-gray-600 mb-4">
+    <div className="flex items-center gap-2">
+      <img src={homeIcon} alt="Home" className="w-4 h-4" />
+      <img src={chevronIcon} alt=">" />
+      <span
+        onClick={() => navigate('/dashboard')}
+        className="text-gray-600 font-medium cursor-pointer"
+      >
+        Dashboard
+      </span>
+      <img src={chevronIcon} alt=">" />
+      <span className="text-[#042435] text-sm font-semibold">Task</span>
+    </div>
+  </div>
+
+  {/* Header + Buttons */}
+  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+    {/* Title */}
+    <div>
+      <h1 className="text-xl md:text-2xl font-semibold text-[#171c35]">Task</h1>
+      <p className="text-base font-medium text-[#111A2D] mt-1">
+        {columns.reduce((acc, col) => acc + col.tasks.length, 0)} Total task
+      </p>
+    </div>
+
+    {/* Buttons / Dropdowns */}
+    <div className="flex flex-col sm:flex-row w-full sm:w-auto items-center gap-3">
+      {/* Status Dropdown */}
+      <div className="w-full sm:w-auto">
+        <StatusDropdown  />
       </div>
+
+      {/* Priority Dropdown */}
+      <div className="w-full sm:w-auto">
+        <PriorityDropdown  />
+      </div>
+
+      {/* Add Task Button */}
+      <button
+        onClick={() => openAddModal(columns[0]?.id || 'todo')}
+        className="w-full sm:w-auto px-4 py-2 bg-[#DCE2FF] text-black rounded-[8px] text-sm font-medium flex items-center justify-center gap-2"
+      >
+        <Plus className="w-4 h-4" /> Add Task
+      </button>
+    </div>
+  </div>
+</div>
+
 
       {/* Columns */}
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">

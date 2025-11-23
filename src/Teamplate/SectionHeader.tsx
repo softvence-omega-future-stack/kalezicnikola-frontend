@@ -18,7 +18,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
   const descStyle = {
     fontFamily: "Urbanist, sans-serif",
     color: "#171C35",
-    fontSize: "16px",
+    
   };
 
  
@@ -28,13 +28,15 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
       : "text-center";
 
   
-  const subTextClass =
+ const subTextClass =
     subAlign === "left"
-      ? "text-center sm:text-center md:text-left"
+      ? "text-center sm:text-center md:text-left "
       : subAlign === "right"
-      ? "text-center sm:text-center md:text-right"
+      ? "text-center sm:text-center md:text-right xl:text-right"
       : "text-center";
 
+  
+     
   return (
     <div className={`${headingAlignClass} mb-10`}>
       
@@ -53,7 +55,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
       {subText && (
         <p
           style={descStyle}
-          className={`max-w-xl mx-auto md:mx-0 leading-7 ${subTextClass}`}
+          className={`max-w-lg   leading-7 text-sm md:text-xl ${subTextClass}`}
         >
           {subText}
         </p>

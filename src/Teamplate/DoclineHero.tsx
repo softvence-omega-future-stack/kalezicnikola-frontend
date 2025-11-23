@@ -25,6 +25,7 @@ const DoclineHero: React.FC = () => {
    subText=" Your intelligent AI assistant takes over all phone calls and allows your staff  
             to handle appointments, answer questions, and simplify tasks in your team.."
               align="left" 
+              subAlign="left"
 />
 
 
