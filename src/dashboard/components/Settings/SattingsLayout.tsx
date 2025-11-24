@@ -55,31 +55,28 @@ const tab = searchParams.get("tab");
 
 
       {/* Main Layout */}
-      <div className="flex flex-col lg:flex-row w-full overflow-x-hidden">
+      <div className="flex flex-col lg:flex-row w-full  items-stretch">
+  {/* Sidebar */}
+  <div className="w-full lg:w-[240px] px-4 bg-white rounded-xl flex flex-col h-full">
+    <h2 className="text-[#171C35] font-semibold text-xl leading-5 pt-6">
+      Setting
+    </h2>
+    <Sidebar activeItem={activeItem} setActiveItem={setActiveItem}  />
+  </div>
 
-        {/* Sidebar */}
-        <div className="w-full lg:w-[240px] mb-6 lg:mb-0 px-4 bg-white rounded-xl">
-          <h2 className="text-[#171C35] font-semibold text-xl leading-5 pt-6">
-            Setting
-          </h2>
+  {/* Main Content */}
+  <div className="flex-1 w-full bg-[#F3F6F6] mt-5 lg:mt-0 rounded-2xl pl-4 pb-6 h-full">
+    {activeItem === "Personal Info" && <PersonalInfoForm />}
+    {activeItem === "My Staff" && <StaffManagement />}
+    {activeItem === "Change Password" && <ChangePassword />}
+    {activeItem === "Notification" && <NotificationSettings />}
+    {activeItem === "Subscription" && <SubscriptionOverview />}
+    {activeItem === "Preferences" && <Perferences />}
+    {activeItem === "Security" && <SecuritySettings />}
+    <Outlet />
+  </div>
+</div>
 
-          <Sidebar activeItem={activeItem} setActiveItem={setActiveItem} />
-        </div>
-
-        {/* Main Content */}
-        <div className="flex-1 w-full bg-[#F3F6F6] rounded-2xl pl-4 pb-6">
-          {activeItem === "Personal Info" && <PersonalInfoForm />}
-          {activeItem === "My Staff" && <StaffManagement />}
-          {activeItem === "Change Password" && <ChangePassword />}
-          {activeItem === "Notification" && <NotificationSettings />}
-          {activeItem === "Subscription" && <SubscriptionOverview />}
-          {activeItem === "Preferences" && <Perferences />}
-          {activeItem === "Security" && <SecuritySettings />}
-
-          <Outlet />
-        </div>
-
-      </div>
     </div>
   );
 };

@@ -146,20 +146,16 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ onLogoutClick, collapsed, o
       </div>
 
 
-      <div className="flex flex-col space-y-4">
-
-      {/* FIXED: padding conditional based on collapsed state */}
-      <div className={`flex flex-col space-y-2 ${collapsed ? "py-4" : "p-4"}`}>
 
         <NavItem to="/admin/settings" iconSrc={settings} label="Settings" collapsed={collapsed} closeMobileMenu={closeMobileMenu} />
         <NavItem iconSrc={logout} label="Logout" onClick={onLogoutClick} collapsed={collapsed} closeMobileMenu={closeMobileMenu} />
       </div>
-    </div>
-    </div>
+  
   );
 };
 
 export default AdminSidebar;
+
 
 
 

@@ -287,7 +287,7 @@ const Slider = () => {
             </h2>
           </div>
 
-          <p className="text-base sm:text-lg -mt-8 md:-mt-0 text-gray-600 max-w-md">
+          <p className="text-sm md:text-xl -mt-8 md:-mt-0 text-[#111A2D] max-w-md">
             The key to a practice that doesn't <br /> just respond but also works smarter together.
           </p>
         </div>
@@ -300,6 +300,7 @@ const Slider = () => {
           grabCursor={true}
           centeredSlides={true}
           loop={true}
+          
           slidesPerView={"auto"}
           spaceBetween={20}
           autoplay={{ delay: 3000, disableOnInteraction: false }}

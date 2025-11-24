@@ -1,8 +1,10 @@
 
 
+
 import { ArrowDownRight } from 'lucide-react';
 
 // import arrow from '../../../assets/svgIcon/arrowRight.svg'
+
 
 
 
@@ -232,12 +234,14 @@ const StatsCard = ({ card }: { card: (typeof statsCards)[0] }) => {
       <div className="relative w-full h-full p-4 flex flex-col justify-between">
         <div>
 
+
           {/* Title */}
           <h3 className="text-lg font-semibold text-headingBlack mb-1">{card.title}</h3>
           {/* Subtitle */}
          
 
           <h3 className="text-lg font-semibold text-[#171C35] mb-1">{card.title}</h3>
+
 
         </div>
 
@@ -247,6 +251,7 @@ const StatsCard = ({ card }: { card: (typeof statsCards)[0] }) => {
         
         <div>
 
+
              <p className="text-sm text-subHeadingBlack opacity-70 ">{card.lastMonth}</p>
         </div>
 
@@ -255,6 +260,7 @@ const StatsCard = ({ card }: { card: (typeof statsCards)[0] }) => {
           <button className="h-9 w-9 bg-gray-900 rounded-full flex items-center justify-center cursor-pointer">
             <ArrowDownRight className="w-5 h-5 text-white" />
           </button>
+
 
           <p className="text-sm text-[#111A2D] opacity-70">{card.lastMonth}</p>
         </div>

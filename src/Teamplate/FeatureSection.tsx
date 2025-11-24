@@ -218,7 +218,7 @@ const FeatureSection: React.FC = () => {
 
 
 
-    <div className="xl:-mt-20 mt-  ">
+    <div className="xl:-mt-20 mt-9  ">
 
 
 
@@ -256,11 +256,11 @@ const FeatureSection: React.FC = () => {
       The Relief <span className="block">Your Team Deserves</span>
     </>
   }
-  subText="The Docline AI assistant solves the biggest challenges in daily practice."
-  align="center"
-  subAlign="center"
-/>
 
+  align="center"
+ 
+/>
+<p className='text-center -mt-8 mb-10 text-sm md:text-xl'>The Docline AI assistant solves the biggest challenges in daily practice</p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {/* Row 1 */}

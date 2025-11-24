@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import {  Plus } from 'lucide-react';
-
+import React, { useState, useEffect, useRef } from 'react';
+import { Plus } from 'lucide-react';
 
 import DayView from '../Calendar/DayView';
 import CalendarMonthView from '../Calendar/MonthView';
@@ -8,46 +7,75 @@ import WeeklyCalendar from '../Calendar/WeekView';
 import NewAppointmentModal from './NewAppointmentModal';
 import CalendarHeader from '../Calendar/CalendarHeader';
 
+interface DashboardCalendarProps {
+  onHeightChange?: (height: number) => void;
+}
 
-const DashboardCalendar: React.FC = () => {
-  const [viewType, setViewType] = useState<'day' | 'week' | 'month'>('month'); 
-  // const [currentDate, setCurrentDate] = useState(new Date(2025, 8, 29));
-  const [isModalOpen, setIsModalOpen] = useState(false); // ✅ Modal state
+const DashboardCalendar: React.FC<DashboardCalendarProps> = ({ onHeightChange }) => {
+  const [viewType, setViewType] = useState<'day' | 'week' | 'month'>('month');
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // const monthYear = currentDate.toLocaleDateString('en-US', {
-  //   month: 'long',
-  //   year: 'numeric',
-  // });
+  const calendarRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const handleViewChange = (type: 'day' | 'week' | 'month') => {
     setViewType(type);
   };
 
-  // const handleNext = () => {
-  //   const newDate = new Date(currentDate);
-  //   newDate.setMonth(currentDate.getMonth() + 1);
-  //   setCurrentDate(newDate);
-  // };
+  // Height update করার function
+  const updateHeight = () => {
+    if (containerRef.current && onHeightChange) {
+      // Small delay দিয়ে DOM render হতে দিলাম
+      setTimeout(() => {
+        const height = containerRef.current?.scrollHeight || 0;
+        onHeightChange(height);
+      }, 100);
+    }
+  };
 
-  // const handlePrev = () => {
-  //   const newDate = new Date(currentDate);
-  //   newDate.setMonth(currentDate.getMonth() - 1);
-  //   setCurrentDate(newDate);
-  // };
+  // ViewType change হলে height update
+  useEffect(() => {
+    updateHeight();
+  }, [viewType]);
+
+  // Content change detect করার জন্য MutationObserver
+  useEffect(() => {
+    if (!calendarRef.current) return;
+
+    const observer = new MutationObserver(() => {
+      updateHeight();
+    });
+
+    observer.observe(calendarRef.current, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Window resize
+  useEffect(() => {
+    window.addEventListener('resize', updateHeight);
+    return () => window.removeEventListener('resize', updateHeight);
+  }, []);
+
+  // Initial load এ height set
+  useEffect(() => {
+    updateHeight();
+  }, []);
 
   return (
-    <div className="bg-white rounded-2xl p-4 sm:p-6 -mt-16">
-
-
+    <div ref={containerRef} className="bg-white  rounded-2xl p-4 sm:p-6 xl:pb-11  -mt-16">
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
         <h1 className="text-2xl font-semibold text-[#171C35]">Calendar</h1>
 
         {/* Controls */}
         <div className="flex items-center gap-3 w-full sm:w-auto flex-wrap sm:flex-nowrap">
-          {/* Add Appointment Button */}
           <button
-            onClick={() => setIsModalOpen(true)} 
+            onClick={() => setIsModalOpen(true)}
             className="flex items-center gap-2 px-3 sm:px-4 py-1.5 text-sm text-gray-600 hover:bg-gray-50 rounded-[8px] border border-gray-300 cursor-pointer w-full sm:w-auto justify-center"
           >
             <Plus size={16} />
@@ -59,19 +87,7 @@ const DashboardCalendar: React.FC = () => {
       {/* Top Navigation */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
-          {/* <button onClick={handlePrev} className="p-1 hover:bg-gray-200 rounded">
-            <ChevronLeft size={20} className="text-gray-600" />
-          </button>
-
-          <h2 className="text-base sm:text-lg font-medium text-[#171C35]">
-            {monthYear}
-          </h2>
-
-          <button onClick={handleNext} className="p-1 hover:bg-gray-200 rounded">
-            <ChevronRight size={20} className="text-gray-600" />
-          </button> */}
-          <CalendarHeader/>
-
+          <CalendarHeader />
           <div className="ml-3 relative">
             <select
               value={viewType}
@@ -85,7 +101,6 @@ const DashboardCalendar: React.FC = () => {
               <option value="month">Month</option>
             </select>
 
-            {/* Icon on the right */}
             <div className="pointer-events-none absolute inset-y-0 right-2 flex items-center">
               <svg
                 className="w-4 h-4 text-gray-500"
@@ -101,7 +116,7 @@ const DashboardCalendar: React.FC = () => {
       </div>
 
       {/* Calendar Content */}
-      <div className="overflow-x-auto ">
+      <div ref={calendarRef} className="overflow-x-auto">
         {viewType === 'day' && <DayView />}
         {viewType === 'week' && <WeeklyCalendar />}
         {viewType === 'month' && <CalendarMonthView />}

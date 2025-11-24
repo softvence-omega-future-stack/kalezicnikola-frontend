@@ -77,7 +77,7 @@ const PersonalInfoForm: React.FC = () => {
   };
 
   return (
-    <section className="space-y-8 bg-white p-6 rounded-2xl">
+    <section className="space-y-8 min-h-screen bg-white p-6 rounded-2xl">
       {/* Header */}
       <header className="flex justify-between items-center px-3 pt-3  pb-4">
         <h2 className="text-xl font-semibold text-[#171C35]">Personal Info</h2>

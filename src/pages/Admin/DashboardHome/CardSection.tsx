@@ -1,5 +1,6 @@
 
 
+
 // import { ArrowUpRight } from "lucide-react";
 
 // const statsCards = [
@@ -97,8 +98,8 @@ const statsCards = [
 // FIXED cutout dimensions - won't change with screen size
 const cutoutWidth = 48;
 const cutoutHeight = 52;
-const curveRadius = 18;
-const smallCurveRadius = 10;
+const curveRadius = 20;
+const smallCurveRadius = 20;
 
 const StatCard = ({ stat }: { stat: typeof statsCards[0] }) => {
   return (
@@ -197,7 +198,7 @@ const StatCard = ({ stat }: { stat: typeof statsCards[0] }) => {
   );
 };
 
-const CardHeader = () => {
+const CardSection = () => {
   return (
     <div className="py-4">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-5">
@@ -209,4 +210,4 @@ const CardHeader = () => {
   );
 };
 
-export default CardHeader;
+export default CardSection;

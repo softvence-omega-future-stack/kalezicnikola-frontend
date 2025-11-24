@@ -1,10 +1,10 @@
-import  { useState } from "react";
+import  { useEffect, useRef, useState } from "react";
 import { ChevronDown } from "lucide-react";
 
 const StatusDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState("All Status");
-
+const dropdownRef = useRef<HTMLDivElement>(null);
   const statuses = ["To Do", "In Progress", "Done"];
 
   const handleSelect = (status:string) => {
@@ -12,10 +12,29 @@ const StatusDropdown = () => {
     setIsOpen(false); 
   };
 
+    // 👉 Close dropdown when clicking outside
+    useEffect(() => {
+      const handleClickOutside = (event: MouseEvent) => {
+        if (
+          dropdownRef.current &&
+          !dropdownRef.current.contains(event.target as Node)
+        ) {
+          setIsOpen(false);
+        }
+      };
+  
+      document.addEventListener("mousedown", handleClickOutside);
+  
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, []);
+  
+
   return (
-    <div className="relative inline-block">
+    <div  ref={dropdownRef} className="relative  w-full ">
       <button
-        className="px-4 py-2 bg-[#F3F6F6] border border-gray-300 rounded-xl text-sm font-semibold text-[#111a2d] flex items-center gap-2"
+        className="px-4 py-2 bg-[#F3F6F6] border border-gray-300 w-full md:w-auto rounded-xl text-sm font-semibold text-[#111a2d] flex items-center justify-between md:justify-center cursor-pointer gap-2"
         onClick={() => setIsOpen(!isOpen)}
       >
         <span>{selected}</span>

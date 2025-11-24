@@ -29,7 +29,7 @@ export const NotificationSettings: React.FC = () => {
   ];
 
   return (
-    <div className="p-6 bg-white rounded-3xl ">
+    <div className="p-6 bg-white min-h-screen rounded-3xl ">
       <h2 className="text-xl font-semibold text-[#171C35">Notification</h2>
       <p className="text-sm text-[#111A2D] mb-6  pb-3">
         We may still send you important notifications about your account outside of your notification settings.

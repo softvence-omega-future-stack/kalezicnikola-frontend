@@ -1,7 +1,8 @@
 
+
 import { ArrowDownRight } from 'lucide-react';
 
-// import arrow from '../../../assets/svgIcon/arrowRight.svg'
+
 
 
 
@@ -243,11 +244,13 @@ const StatsCard = ({ card }: { card: (typeof statsCards)[0] }) => {
           <p className="text-sm text-[#111A2D] opacity-70">{card.lastMonth}</p>
         </div>
 
+
         {/* Bottom-right arrow button */}
         <div className="absolute  bottom-1 right-4">
           <button className="h-9 w-9 bg-gray-900 rounded-full flex items-center justify-center cursor-pointer">
             <ArrowDownRight className="w-5 h-5 text-white" />
           </button>
+
 
         {/* FIXED position arrow button */}
         <div

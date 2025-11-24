@@ -127,13 +127,13 @@ export default function WeeklyCalendar() {
   ];
 
   return (
-    <div className=" bg-white rounded-2xl p-2 sm:p-4 md:p-6 overflow-x-auto">
+    <div className="bg-white rounded-2xl p-2 sm:p-4 md:p-6 overflow-x-auto">
       <div className="min-w-[600px] md:min-w-full">
         {/* Header */}
-        <div className="grid" style={{ gridTemplateColumns: '80px repeat(7, 1fr)' }}>
-          <div></div>
+        <div className="grid gap-0" style={{ gridTemplateColumns: '80px repeat(7, 1fr)' }}>
+          <div className="h-16"></div>
           {days.map((day, index) => (
-            <div key={index} className="p-2 text-center">
+            <div key={index} className="p-2 text-center h-16 flex flex-col justify-center">
               <div className="text-[10px] sm:text-xs md:text-sm font-medium text-gray-500 mb-1">
                 <span className="hidden sm:inline">{day.day}</span>
                 <span className="sm:hidden">{day.day.charAt(0)}</span>
@@ -148,7 +148,7 @@ export default function WeeklyCalendar() {
           {timeSlots.map((time, timeIndex) => (
             <div
               key={timeIndex}
-              className="grid"
+              className="grid gap-0"
               style={{ gridTemplateColumns: '80px repeat(7, 1fr)', height: '100px' }}
             >
               {/* Time Label */}
@@ -170,19 +170,21 @@ export default function WeeklyCalendar() {
                       return (
                         <div
                           key={aptIndex}
-                          className={`${apt.color} border-l-4 ${apt.borderColor} absolute`}
+                          className={`${apt.color} border-l-4 ${apt.borderColor} absolute rounded-l-md`}
                           style={{
                             top: `${topOffset}px`,
-                            left: '2px',
-                            right: '2px',
+                            left: '4px',
+                            right: '4px',
                             height: '50px',
-                            padding: '4px sm:6px',
-                            borderTopLeftRadius: '6px',
-                            borderBottomLeftRadius: '6px'
+                            padding: '6px'
                           }}
                         >
-                          <div className="text-[10px] sm:text-xs px-1 md:text-sm font-medium text-gray-900 truncate">{apt.name}</div>
-                          <div className="text-[8px] sm:text-[10px] md:text-xs text-gray-600 mt-1">{apt.hour}</div>
+                          <div className="text-[10px] sm:text-xs md:text-sm font-medium text-gray-900 truncate">
+                            {apt.name}
+                          </div>
+                          <div className="text-[8px] sm:text-[10px] md:text-xs text-gray-600 mt-1">
+                            {apt.hour}
+                          </div>
                         </div>
                       );
                     })}
