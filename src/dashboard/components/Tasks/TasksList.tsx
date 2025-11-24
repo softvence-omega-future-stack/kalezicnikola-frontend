@@ -208,7 +208,7 @@ export default function TaskList() {
       {/* Header */}
     <div className="pb-4">
   {/* Breadcrumb */}
-  <div className="flex flex-col sm:flex-row items-center gap-2 text-sm text-gray-600 mb-4">
+  <div className="flex  items-center gap-2 text-sm text-gray-600 mb-4">
     <div className="flex items-center gap-2">
       <img src={homeIcon} alt="Home" className="w-4 h-4" />
       <img src={chevronIcon} alt=">" />
@@ -248,7 +248,7 @@ export default function TaskList() {
       {/* Add Task Button */}
       <button
         onClick={() => openAddModal(columns[0]?.id || 'todo')}
-        className="w-full sm:w-auto px-4 py-2 bg-[#DCE2FF] text-black rounded-[8px] text-sm font-medium flex items-center justify-center gap-2"
+        className="w-full sm:w-auto px-4 py-2 bg-[#DCE2FF] text-black rounded-[8px] text-sm font-medium flex items-center justify-center cursor-pointer gap-2"
       >
         <Plus className="w-4 h-4" /> Add Task
       </button>

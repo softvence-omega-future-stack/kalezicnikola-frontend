@@ -18,7 +18,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem }) =
   ];
 
   return (
-    <div className="min-h-screen bg-white rounded-xl p-3 flex flex-col justify-between">
+    <div className="h-[820px] bg-white rounded-xl p-3 mt-2 flex flex-col justify-between">
    
       {/* Navigation Items */}
       <div className="space-y-1">

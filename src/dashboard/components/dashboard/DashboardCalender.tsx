@@ -16,32 +16,58 @@ const DashboardCalendar: React.FC<DashboardCalendarProps> = ({ onHeightChange })
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const calendarRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const handleViewChange = (type: 'day' | 'week' | 'month') => {
     setViewType(type);
   };
 
-  // Update height whenever viewType changes
-  useEffect(() => {
-    if (calendarRef.current && onHeightChange) {
-      const height = calendarRef.current.offsetHeight;
-      onHeightChange(height);
+  // Height update করার function
+  const updateHeight = () => {
+    if (containerRef.current && onHeightChange) {
+      // Small delay দিয়ে DOM render হতে দিলাম
+      setTimeout(() => {
+        const height = containerRef.current?.scrollHeight || 0;
+        onHeightChange(height);
+      }, 100);
     }
-  }, [viewType, onHeightChange]);
+  };
 
-  // Optional: Update on window resize
+  // ViewType change হলে height update
   useEffect(() => {
-    const handleResize = () => {
-      if (calendarRef.current && onHeightChange) {
-        onHeightChange(calendarRef.current.offsetHeight);
-      }
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [onHeightChange]);
+    updateHeight();
+  }, [viewType]);
+
+  // Content change detect করার জন্য MutationObserver
+  useEffect(() => {
+    if (!calendarRef.current) return;
+
+    const observer = new MutationObserver(() => {
+      updateHeight();
+    });
+
+    observer.observe(calendarRef.current, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Window resize
+  useEffect(() => {
+    window.addEventListener('resize', updateHeight);
+    return () => window.removeEventListener('resize', updateHeight);
+  }, []);
+
+  // Initial load এ height set
+  useEffect(() => {
+    updateHeight();
+  }, []);
 
   return (
-    <div className="bg-white rounded-2xl p-4 sm:p-6 pb-17 -mt-16">
+    <div ref={containerRef} className="bg-white  rounded-2xl p-4 sm:p-6 xl:pb-11  -mt-16">
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
         <h1 className="text-2xl font-semibold text-[#171C35]">Calendar</h1>

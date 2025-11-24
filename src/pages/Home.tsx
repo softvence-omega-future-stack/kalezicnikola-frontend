@@ -1,5 +1,5 @@
 
-import Footer from "@/layout/Footer";
+
 import CTABanner from "@/Teamplate/CTABanner";
 
 
@@ -14,6 +14,7 @@ import SecuritySection from "@/Teamplate/SequritySection";
 import DoclineWorkflowSlider from "@/Teamplate/Slider";
 import UpgradPlan from "@/Teamplate/UpgradPlan";
 import TestimonialSection from "@/Teamplate/WonersSlider";
+import Footer from "@/layout/Footer";
 
 const Home = () => {
   return (
@@ -37,7 +38,8 @@ const Home = () => {
       </div>
       <FAQSection />
       <CTABanner />
-      <Footer />
+   
+      <Footer/>
     </div>
   );
 };

@@ -1,14 +1,18 @@
 import { useState } from "react";
 
+interface DayViewProps {
+  currentDate?: Date;
+}
 
-const DayView = () => {
-    const [currentDate, ] = useState(new Date(2025, 8, 29)); 
-      const dayOfWeek = currentDate.toLocaleDateString('en-US', { weekday: 'short' }).toUpperCase();
-  const dayOfMonth = currentDate.getDate();
+const DayView = ({ currentDate: propDate }: DayViewProps) => {
+    const [currentDate] = useState(propDate || new Date(2025, 8, 29)); 
+    const dayOfWeek = currentDate.toLocaleDateString('en-US', { weekday: 'short' }).toUpperCase();
+    const dayOfMonth = currentDate.getDate();
 
   const timeSlots = [
     '7 AM', '8 AM', '9 AM', '10 AM', '11 AM', '12 AM', '1 PM', '2 PM', '3 PM'
   ];
+  
   return (
     <div>
        {/* Calendar Grid */}
@@ -33,8 +37,8 @@ const DayView = () => {
               <div className="w-20 flex-shrink-0 px-4 py-2 text-right">
                 <span className="text-sm text-gray-500">GTM+06</span>
               </div>
-              <div className="flex-1   border-l border-b border-gray-200">
-                <div className="bg-[#526FFF] text-white rounded-[8px] px-3  text-sm font-medium h-full flex items-center">
+              <div className="flex-1 border-l border-b border-gray-200">
+                <div className="bg-[#526FFF] text-white rounded-[8px] px-3 text-sm font-medium h-full flex items-center">
                   William Brooks
                 </div>
               </div>

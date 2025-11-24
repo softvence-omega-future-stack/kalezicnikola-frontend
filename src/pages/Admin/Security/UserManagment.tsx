@@ -22,33 +22,33 @@ const UserManagement: React.FC = () => {
     { id: 6, name: 'Cody Fisher', avatar: profile, role: 'Doctor', status: 'Active', twoFA: 'Enable', lastLogin: '01-09-2025' },
   ]);
 
-  const [selectedUsers, setSelectedUsers] = useState<number[]>([]);
+  //const [selectedUsers, setSelectedUsers] = useState<number[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
 
   // Check if all users are selected
-  const allSelected = selectedUsers.length === users.length && users.length > 0;
+ // const allSelected = selectedUsers.length === users.length && users.length > 0;
   
   // Check if some (but not all) users are selected
-  const someSelected = selectedUsers.length > 0 && selectedUsers.length < users.length;
+  //const someSelected = selectedUsers.length > 0 && selectedUsers.length < users.length;
 
   // Handle select all checkbox
-  const handleSelectAll = () => {
-    if (allSelected) {
-      setSelectedUsers([]);
-    } else {
-      setSelectedUsers(users.map(u => u.id));
-    }
-  };
+  // const handleSelectAll = () => {
+  //   if (allSelected) {
+  //     setSelectedUsers([]);
+  //   } else {
+  //     setSelectedUsers(users.map(u => u.id));
+  //   }
+  // };
 
   // Handle individual checkbox
-  const handleSelectUser = (userId: number) => {
-    if (selectedUsers.includes(userId)) {
-      setSelectedUsers(selectedUsers.filter(id => id !== userId));
-    } else {
-      setSelectedUsers([...selectedUsers, userId]);
-    }
-  };
+  // const handleSelectUser = (userId: number) => {
+  //   if (selectedUsers.includes(userId)) {
+  //     setSelectedUsers(selectedUsers.filter(id => id !== userId));
+  //   } else {
+  //     setSelectedUsers([...selectedUsers, userId]);
+  //   }
+  // };
 
   const handleEditClick = (user: User) => {
     setSelectedUser(user);
@@ -79,7 +79,7 @@ const UserManagement: React.FC = () => {
           <table className="w-full">
             <thead className="bg-gray-50">
               <tr className='text-sm md:text-base font-semibold text-headingBlack whitespace-nowrap'>
-                <th className="px-4 py-4 text-left w-12">
+                {/* <th className="px-4 py-4 text-left w-12">
                   <input
                     type="checkbox"
                     checked={allSelected}
@@ -91,7 +91,7 @@ const UserManagement: React.FC = () => {
                     onChange={handleSelectAll}
                     className="w-4 h-4 rounded-[6px] border border-[#D0D5DD] text-blue-600 focus:ring-blue-500 cursor-pointer"
                   />
-                </th>
+                </th> */}
                 <th className="px-4 py-4 text-left">User</th>
                 <th className="px-4 py-4 text-left">Role</th>
                 <th className="px-4 py-4 text-left">Status</th>
@@ -106,14 +106,14 @@ const UserManagement: React.FC = () => {
                   key={user.id} 
                   className="hover:bg-gray-50 transition-colors"
                 >
-                  <td className="px-4 py-4">
+                  {/* <td className="px-4 py-4">
                     <input
                       type="checkbox"
                       checked={selectedUsers.includes(user.id)}
                       onChange={() => handleSelectUser(user.id)}
                       className="w-4 h-4 rounded-[6px] border border-[#D0D5DD] text-blue-600 focus:ring-blue-500 cursor-pointer"
                     />
-                  </td>
+                  </td> */}
                   
                   <td className="px-4 py-4">
                     <div className="flex items-center gap-3">
