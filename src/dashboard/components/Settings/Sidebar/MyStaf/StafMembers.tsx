@@ -26,11 +26,11 @@ export default function StaffManagement() {
      
 
         {/* Staff Management Card */}
-        <div className="bg-white rounded-2xl ">
+        <div className="bg-white rounded-2xl p-6 lg:pb-20">
           {/* Header */}
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-6 border-b border-gray-200">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
             <h2 className="text-xl font-semibold text-[#1a1c21]">Staff Management</h2>
-            <button   onClick={() => navigate('staff/add')} className="flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold text-[#111A2D] bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+            <button   onClick={() => navigate('staff/add')} className="flex cursor-pointer items-center justify-center gap-2 px-4 py-2 text-sm font-semibold text-[#111A2D] bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
               <Plus className="w-4 h-4" />
               Add New Staff
             </button>
@@ -41,7 +41,7 @@ export default function StaffManagement() {
 <div className="w-full overflow-x-auto">
   <table className="min-w-[650px] w-full">
     <thead>
-      <tr className="border-b border-gray-200">
+      <tr className="">
         <th className="text-left py-3 px-3 whitespace-nowrap">
           <div className="flex items-center gap-3">
             
@@ -51,23 +51,23 @@ export default function StaffManagement() {
           </div>
         </th>
 
-        <th className="text-left py-3 px-3 text-sm font-semibold text-[#171C35] whitespace-nowrap">
+        <th className="text-left py-3 px-3 text-base font-semibold text-[#171C35] whitespace-nowrap">
           Joined
         </th>
 
-        <th className="text-left py-3 px-3 text-sm font-semibold text-[#171C35] whitespace-nowrap">
+        <th className="text-left py-3 px-3 text-base font-semibold text-[#171C35] whitespace-nowrap">
           Role
         </th>
 
-        <th className="text-left py-3 px-3 text-sm font-semibold text-[#171C35] whitespace-nowrap">
+        <th className="text-left py-3 px-3 text-base font-semibold text-[#171C35] whitespace-nowrap">
           Contact
         </th>
 
-        <th className="text-left py-3 px-3 text-sm font-semibold text-[#171C35] whitespace-nowrap">
+        <th className="text-left py-3 px-3 text-base font-semibold text-[#171C35] whitespace-nowrap">
           Status
         </th>
 
-        <th className="text-left py-3 px-3 text-sm font-semibold text-[#171C35] whitespace-nowrap">
+        <th className="text-left py-3 px-3 text-base font-semibold text-[#171C35] whitespace-nowrap">
           Profile
         </th>
       </tr>
@@ -89,10 +89,10 @@ export default function StaffManagement() {
                 />
 
             <div className="">
-  <p className="text-sm font-medium text-[#111A2D] whitespace-normal leading-tight max-w-[120px]">
+  <p className="text-base font-medium text-[#111A2D] whitespace-normal leading-tight max-w-[120px]">
     {staff.name}
   </p>
-  <p className="text-xs text-[#111A2D]">{staff.srn}</p>
+  <p className="text-sm text-[#111A2D]">{staff.srn}</p>
 </div>
 
               </div>
@@ -100,7 +100,7 @@ export default function StaffManagement() {
           </td>
 
           {/* JOINED */}
-          <td className="py-3 px-3 text-xs font-medium text-[#1a1c21] whitespace-nowrap">
+          <td className="py-3 px-3 text-sm font-medium text-[#1a1c21] whitespace-nowrap">
             {staff.joined}
           </td>
           {/* <td className="py-3 px-3 text-xs font-medium text-[#1a1c21] whitespace-nowrap">
@@ -108,19 +108,19 @@ export default function StaffManagement() {
           </td> */}
 
           {/* ROLE */}
-          <td className="py-3 px-3 text-xs font-medium text-[#111A2D] whitespace-nowrap">
+          <td className="py-3 px-3 text-sm font-medium text-[#111A2D] whitespace-nowrap">
             {staff.role}
           </td>
 
           {/* EMAIL */}
-          <td className="py-3 px-3 text-xs font-medium text-[#111A2D] whitespace-nowrap">
+          <td className="py-3 px-3 text-sm font-medium text-[#111A2D] whitespace-nowrap">
             {staff.email}
           </td>
 
           {/* STATUS */}
           <td className="py-3 px-3 whitespace-nowrap">
             <span
-              className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium ${
+              className={`inline-flex items-center w-[109px] i justify-center gap-1.5 px-2.5 py-1 rounded-full text-sm font-medium ${
                 staff.status === "Active"
                   ? "bg-[#0080801A] text-[#008080]"
                   : "bg-[#FF1C331A] text-[#FF1C33]"
@@ -139,23 +139,19 @@ export default function StaffManagement() {
           <td className="py-3 px-3 whitespace-nowrap">
             <button
               onClick={() => navigate(`staff/profile/${staff.id}`)}
-              className="flex items-center gap-1 text-xs text-[#526FFF] font-medium whitespace-nowrap cursor-pointer"
+              className="flex items-center gap-1 text-sm text-[#526FFF] font-medium whitespace-nowrap cursor-pointer"
             >
               View Profile
-              <svg
-                className="w-3 h-3"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M7 17L17 7M17 7H7M17 7V17"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+  <g clip-path="url(#clip0_3686_3380)">
+    <path d="M3.74264 12.2426L12.2279 3.75736M12.2279 3.75736V12.2426M12.2279 3.75736H3.74264" stroke="#526FFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <defs>
+    <clipPath id="clip0_3686_3380">
+      <rect width="16" height="16" rx="8" fill="white"/>
+    </clipPath>
+  </defs>
+</svg>
             </button>
           </td>
         </tr>

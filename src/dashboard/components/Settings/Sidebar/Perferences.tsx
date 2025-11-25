@@ -24,7 +24,7 @@ export default function Performances() {
 
   return (
     <div className="min-h-screen ">
-      <div className=" bg-white rounded-3xl p-6 md:p-8">
+      <div className=" bg-white rounded-3xl p-6 md:p-8 lg:pb-10">
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-xl font-semibold text-[#171C35] mb-1">Regional Settings</h1>
@@ -152,7 +152,7 @@ export default function Performances() {
             <div className="flex items-center">
               <button
                 onClick={() => handleToggle('allowOnlineBooking')}
-                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors cursor-pointer ${
                   settings.allowOnlineBooking ? 'bg-[#526FFF]' : 'bg-gray-300'
                 }`}
               >
@@ -168,8 +168,8 @@ export default function Performances() {
             <div className="flex items-center">
               <button
                 onClick={() => handleToggle('requireApproval')}
-                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  settings.requireApproval ? 'bg-blue-600' : 'bg-gray-300'
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors cursor-pointer ${
+                  settings.requireApproval ? 'bg-[#526FFF]' : 'bg-gray-300'
                 }`}
               >
                 <span
@@ -184,7 +184,7 @@ export default function Performances() {
             <div className="flex items-center">
               <button
                 onClick={() => handleToggle('sendReminders')}
-                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors cursor-pointer ${
                   settings.sendReminders ? 'bg-[#526FFF]' : 'bg-gray-300'
                 }`}
               >

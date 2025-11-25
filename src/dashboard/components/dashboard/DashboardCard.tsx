@@ -317,58 +317,63 @@ const Card = ({
       </div>
 
       {/* Content */}
-      <div className="absolute top-0 left-0 w-full h-full p-5 flex flex-col">
-        <div>
-          <h3 className="text-base font-medium mb-2 text-[#171C35]">
-            {category.title}
-          </h3>
+     {/* Content */}
+{/* Content */}
+<div className="absolute top-0 left-0 w-full h-full p-5 flex flex-col justify-between">
+  {/* Title - Top e thakbe */}
+  <div>
+    <h3 className="text-base font-medium text-[#171C35]">
+      {category.title}
+    </h3>
+  </div>
 
-          {category.avatars ? (
-            <div className="flex items-center gap-2 flex-wrap pr-16 2xl:mt-9 ">
-              <div className="flex -space-x-3 items-center shrink-0">
-                {category.avatars.map((avatar, idx) => (
-                  <img
-                    key={idx}
-                    className="h-10 w-10 rounded-full border-2 border-white object-cover"
-                    src={avatar}
-                    alt=""
-                  />
-                ))}
-                {category.extraCount && (
-                  <div className="h-10 w-10 bg-gray-900 text-white rounded-full border-2 border-white flex items-center justify-center text-sm font-medium">
-                    {category.extraCount}
-                  </div>
-                )}
-              </div>
-
-              <p className="text-[#171C35] text-sm mb-3 md:mb-0 font-medium leading-snug flex-1 min-w-[80px]">
-                {category.description}
-              </p>
-            </div>
-          ) : (
-            <div className="mt-4">
-              {category.mainNumber && (
-                <span className="text-5xl font-medium text-[#171C35]">
-                  {category.mainNumber}
-                </span>
-              )}
+  {/* Content - Bottom e thakbe with proper spacing */}
+  <div className="pb-2">
+    {category.avatars ? (
+      <div className="flex items-center gap-3 pr-12">
+        {/* Avatar section */}
+        <div className="flex -space-x-3 items-center shrink-0">
+          {category.avatars.map((avatar, idx) => (
+            <img
+              key={idx}
+              className="h-10 w-10 rounded-full border-2 border-white object-cover"
+              src={avatar}
+              alt=""
+            />
+          ))}
+          {category.extraCount && (
+            <div className="h-10 w-10 bg-gray-900 text-white rounded-full border-2 border-white flex items-center justify-center text-sm font-medium">
+              {category.extraCount}
             </div>
           )}
         </div>
 
-        {/* FIXED position arrow button - always same distance from bottom-right */}
-       <div
-          className={`absolute ${
-            index === 0
-              ? "bottom-0 right-0"
-              : "bottom-0 right-0"
-          }`}
-        >
-          <div onClick={()=> navigate('/dashboard/tasks')}  className="h-8 w-8 bg-gray-900 rounded-full flex items-center justify-center cursor-pointer">
-            <img src={arrowRight} alt="" />
-          </div>
-        </div>
+        {/* Description */}
+        <p className="text-[#171C35] text-sm font-medium leading-snug min-w-[80px]">
+          {category.description}
+        </p>
       </div>
+    ) : (
+      <div className="pr-12">
+        {category.mainNumber && (
+          <span className="text-5xl font-medium text-[#171C35]">
+            {category.mainNumber}
+          </span>
+        )}
+      </div>
+    )}
+  </div>
+
+  {/* Arrow button - Bottom-right corner e */}
+  <div className="absolute bottom-0 right-0">
+    <div 
+      onClick={() => navigate('/dashboard/tasks')} 
+      className="h-8 w-8 bg-gray-900 rounded-full flex items-center justify-center cursor-pointer"
+    >
+      <img src={arrowRight} alt="" />
+    </div>
+  </div>
+</div>
     </div>
   );
 };

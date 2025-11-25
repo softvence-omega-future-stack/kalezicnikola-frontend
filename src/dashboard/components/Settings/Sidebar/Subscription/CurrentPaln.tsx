@@ -70,19 +70,50 @@ export default function CurrentPlan({ setActiveTab }: ManageSubscriptionProps) {
           <div className="flex items-center gap-3">
             <img src={tricjcircle} alt="" />
             <span className="text-base text-[#111A2D]">
-              Average of 2-5 easy to follow trade alerts
+             
+             AI Voicebot setup & configuration
+        
+      
+       
+       
+        
+        
             </span>
           </div>
           <div className="flex items-center gap-3">
             <img src={tricjcircle} alt="" />
             <span className="text-base text-[#171c35]">
-              Average of 2-5 easy to follow trade
+              24/7 availability & call handling
             </span>
           </div>
           <div className="flex items-center gap-3">
             <img src={tricjcircle} alt="" />
             <span className="text-base text-[#171c35]">
-              Average of 2-5 easy to follow trade alerts per week
+               Intelligent triage & task creation
+            </span>
+          </div>
+          <div className="flex items-center gap-3">
+            <img src={tricjcircle} alt="" />
+            <span className="text-base text-[#171c35]">
+               4000 call minutes / month included
+            </span>
+          </div>
+          <div className="flex items-center gap-3">
+            <img src={tricjcircle} alt="" />
+            <span className="text-base text-[#171c35]">
+                €0.30 per extra minute
+            </span>
+          </div>
+          <div className="flex items-center gap-3">
+            <img src={tricjcircle} alt="" />
+            <span className="text-base text-[#171c35]">
+               Multilingual (25+ languages)
+            </span>
+          </div>
+          <div className="flex items-center gap-3">
+            <img src={tricjcircle} alt="" />
+            <span className="text-base text-[#171c35]">
+               Prioritized email and live chat support
             </span>
           </div>
         </div>

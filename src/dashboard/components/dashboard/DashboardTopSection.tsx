@@ -52,7 +52,7 @@ const DashboardTopSection: React.FC = () => {
   return (
     <div className=" mt-2  bg-[#F3F6F6]">
       {/* Date Navigation */}
-      <div className="flex items-center justify-center  md:justify-start text-[#111A2D] text-sm sm:text-base font-medium pt-6  gap-2">
+      <div className="flex items-center justify-center   md:justify-start text-[#111A2D] text-sm sm:text-base font-medium pt-6  gap-2">
         {/* <button className="p-2 sm:p-1 rounded-full transition-colors hover:bg-gray-200">
           <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
         </button>
@@ -64,10 +64,10 @@ const DashboardTopSection: React.FC = () => {
       </div>
 
       {/* Welcome + Metrics */}
-      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-6 sm:gap-8 px-2">
+      <div className="flex flex-col md:flex-row sm:justify-between sm:items-center  gap-6 sm:gap-8">
         {/* Welcome */}
         <div className="text-center sm:text-left">
-          <h1 className="text-xl sm:text-2xl md:text-[32px]  font-semibold text-[#111A2D] leading-8">
+          <h1 className="text-xl md:pl-2 sm:text-2xl md:text-[32px]  font-semibold text-[#111A2D] leading-8">
             Welcome,{' '}
             <span className="font-semibold inline">
               {firstName} {lastName}

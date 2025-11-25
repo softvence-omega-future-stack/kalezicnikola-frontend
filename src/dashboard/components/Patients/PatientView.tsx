@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {  List,  ChevronDown, Check,  } from 'lucide-react';
+import {  List,  ChevronDown, Check, Grid,  } from 'lucide-react';
 import ListView from './ListView';
 import GridView from './GridView';
 import { useNavigate } from 'react-router-dom';
@@ -16,9 +16,8 @@ export default function PatientsView() {
 
   const views: { type: ViewMode; label: string; icon: React.ReactNode }[] = [
     { type: 'list', label: 'List', icon: <List className="w-5 h-5" /> },
-    { type: 'grid', label: 'Grid', icon: <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-  <path d="M2.5 10H17.5M10 2.5V17.5M6.5 2.5H13.5C14.9001 2.5 15.6002 2.5 16.135 2.77248C16.6054 3.01217 16.9878 3.39462 17.2275 3.86502C17.5 4.3998 17.5 5.09987 17.5 6.5V13.5C17.5 14.9001 17.5 15.6002 17.2275 16.135C16.9878 16.6054 16.6054 16.9878 16.135 17.2275C15.6002 17.5 14.9001 17.5 13.5 17.5H6.5C5.09987 17.5 4.3998 17.5 3.86502 17.2275C3.39462 16.9878 3.01217 16.6054 2.77248 16.135C2.5 15.6002 2.5 14.9001 2.5 13.5V6.5C2.5 5.09987 2.5 4.3998 2.77248 3.86502C3.01217 3.39462 3.39462 3.01217 3.86502 2.77248C4.3998 2.5 5.09987 2.5 6.5 2.5Z" stroke="#171C35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg> },
+    { type: 'grid', label: 'Grid', icon: <Grid  />},
+  
   ];
 
   return (
@@ -43,17 +42,19 @@ export default function PatientsView() {
           <div className="flex flex-wrap items-center gap-3">
            <button
   onClick={() => navigate('/dashboard/add-patient')}
-  className="flex items-center gap-2 px-4 py-2.5 bg-[#DCE2FF] text-[#171C35] rounded-[8px] font-medium transition-colors"
+  className="flex items-center gap-2 px-4 py-2.5 bg-[#DCE2FF] text-[#171C35] rounded-[8px] font-medium transition-colors cursor-pointer"
 >
-  <img src="https://i.ibb.co.com/WNWLMm0k/plusIcon.png" alt="" />
+  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+  <path d="M6.66634 0.833008V12.4997M0.833008 6.66634H12.4997" stroke="#171C35" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
   <span>Add Patient</span>
 </button>
 
 
-            <button className="flex items-center gap-2 px-4 py-2.5 bg-white border border-[#D0D5DD] text-[#171C35] rounded-[8px] font-medium transition-colors">
+            {/* <button className="flex items-center gap-2 px-4 py-2.5 bg-white border border-[#D0D5DD] text-[#171C35] rounded-[8px] font-medium transition-colors">
             <img src="https://i.ibb.co.com/m5VnxjwT/importpatient-Icon.png" alt="" />
               <span>Import Patient</span>
-            </button>
+            </button> */}
 
             {/* List/Grid Dropdown */}
             <div className="relative">
@@ -61,7 +62,7 @@ export default function PatientsView() {
                 onClick={() => setDropdownOpen(!dropdownOpen)}
                 className="flex items-center gap-2 px-4 py-2.5 bg-white border border-[#D0D5DD] rounded-[8px] text-gray-700 font-medium hover:bg-gray-50 transition-colors cursor-pointer "
               >
-                {viewMode === 'list' ? <img src={listIcon} alt="" className='cursor-pointer' /> : <img src="https://i.ibb.co.com/Vc6fTzxd/gridIcon.png" alt="" /> }
+                {viewMode === 'list' ? <img src={listIcon} alt="" className='cursor-pointer' /> : <Grid/>  }
                 <span>{viewMode === 'list' ? 'List' : 'Grid'}</span>
                 <ChevronDown className="w-4 h-4" />
               </button>
@@ -75,7 +76,7 @@ export default function PatientsView() {
                         setViewMode(v.type);
                         setDropdownOpen(false);
                       }}
-                      className={`w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center justify-between ${
+                      className={`w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center justify-between cursor-pointer ${
                         viewMode === v.type ? 'font-semibold' : ''
                       }`}
                     >

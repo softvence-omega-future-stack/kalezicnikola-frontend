@@ -99,7 +99,7 @@ const DashboardLayout = () => {
                 <UserMainHeader onMobileMenuOpen={() => setMobileMenuOpen(true)} />
 
                 {/* Scrollable content */}
-                <main className="flex-1 overflow-y-auto w-full px-3 md:px-6 pb-6">
+                <main className="flex-1 overflow-y-auto w-full  pb-6">
                     <Outlet />
                 </main>
 

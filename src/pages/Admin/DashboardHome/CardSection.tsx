@@ -84,7 +84,6 @@
 // export default CardHeader;
 
 
-
 import { ArrowUpRight } from "lucide-react";
 
 const statsCards = [
@@ -95,7 +94,7 @@ const statsCards = [
   { title: "Customer Churn Rate", value: "$28", change: "+12.5%", color: "#D0E1F5" },
 ];
 
-// FIXED cutout dimensions - won't change with screen size
+// FIXED cutout dimensions
 const cutoutWidth = 48;
 const cutoutHeight = 52;
 const curveRadius = 20;
@@ -103,7 +102,7 @@ const smallCurveRadius = 20;
 
 const StatCard = ({ stat }: { stat: typeof statsCards[0] }) => {
   return (
-    <div className="relative w-full h-40 sm:h-[170px] md:h-[180px]">
+    <div className="relative w-full h-[180px]">
       {/* Background with fixed cutout using CSS */}
       <div 
         className="absolute inset-0 rounded-[24px]"
@@ -170,15 +169,18 @@ const StatCard = ({ stat }: { stat: typeof statsCards[0] }) => {
       </div>
 
       {/* Card content */}
-      <div className="relative w-full h-full p-4 md:p-5 flex flex-col justify-between">
-        <div>
-          <p className="text-sm sm:text-base font-semibold text-[#171C35] mb-1 sm:mb-2">
-            {stat.title}
-          </p>
-          <p className="text-2xl sm:text-[28px] md:text-[32px] font-medium text-[#171C35] mb-1">
+      <div className="relative w-full h-full p-5 flex flex-col justify-between">
+        {/* Title at top */}
+        <p className="text-base font-semibold text-[#171C35]">
+          {stat.title}
+        </p>
+
+        {/* Amount and Last month at bottom */}
+        <div className="pb-2">
+          <p className="text-[32px] font-medium text-[#171C35] leading-none mb-1">
             {stat.value}
           </p>
-          <p className="text-xs sm:text-sm text-[#111A2D]">Last month {stat.change}</p>
+          <p className="text-sm text-[#111A2D]">Last month {stat.change}</p>
         </div>
 
         {/* FIXED position arrow button */}

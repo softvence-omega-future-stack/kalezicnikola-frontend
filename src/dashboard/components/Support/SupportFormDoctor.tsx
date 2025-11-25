@@ -293,8 +293,8 @@ import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import EmojiPicker from "emoji-picker-react";
 
-import call from '../../../assets/svgIcon/callLogs.svg';
-import vediocal from '../../../assets/svgIcon/videoCall.svg';
+// import call from '../../../assets/svgIcon/callLogs.svg';
+// import vediocal from '../../../assets/svgIcon/videoCall.svg';
 import karennix from '../../../assets/svgIcon/karenNix.svg';
 import kurmisadia from '../../../assets/svgIcon/kurmisadia.svg';
 import search from '../../../assets/svgIcon/search.svg';
@@ -416,14 +416,14 @@ const SupportChat: React.FC = () => {
                     <h3 className="font-semibold text-base text-[#171C35]">Dr. Keren nix</h3>
                   </div>
                 </div>
-                <div className="flex items-center gap-2">
+                {/* <div className="flex items-center gap-2">
                   <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
                     <img src={vediocal} alt="" />
                   </button>
                   <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
                     <img src={call} alt="" />
                   </button>
-                </div>
+                </div> */}
               </div>
 
               <div className="flex flex-col sm:flex-row items-center gap-2 bg-[#F3F6F6] rounded-[12px] p-2">
@@ -497,14 +497,14 @@ const SupportChat: React.FC = () => {
                   </div>
                 </div>
               </div>
-              <div className="flex items-center gap-2 sm:ml-auto">
+              {/* <div className="flex items-center gap-2 sm:ml-auto">
                 <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
                   <img src={vediocal} alt="Video Call" />
                 </button>
                 <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
                   <img src={call} alt="Call" />
                 </button>
-              </div>
+              </div> */}
             </div>
 
             {/* Messages */}

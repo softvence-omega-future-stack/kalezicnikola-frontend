@@ -40,11 +40,15 @@ const PersonalInfo = () => {
         onClick={() => document.getElementById('photoUpload')?.click()}
       >
         <div className=" flex items-center justify-center mb-3 overflow-hidden">
-          <img
-            src={photoPreview || upload}
-            alt=""
-            className="w-full h-full object-cover"
-          />
+            <img
+      src={photoPreview || upload}
+      alt=""
+      className={
+        photoPreview
+          ? "w-12 h-12 object-cover rounded-xl border border-gray-200"   
+          : "w-8 h-8 object-contain opacity-70"                                    
+      }
+    />
         </div>
         <p className="text-xs text-[#667085] font-medium">Upload Photo</p>
       </div>
@@ -186,7 +190,7 @@ const PersonalInfo = () => {
             name="country"
             value={formData.country}
             onChange={handleInputChange}
-            className="w-full px-4 py-2.5 text-sm text-[#667085] bg-white border border-gray-300 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-4 py-2.5   text-sm text-[#667085] bg-white border  rounded-lg  appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           >
             <option value="">Select country</option>
             <option value="us">United States</option>

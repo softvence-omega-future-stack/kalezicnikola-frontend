@@ -236,11 +236,10 @@ const StatsCard = ({ card }: { card: (typeof statsCards)[0] }) => {
           <h3 className="text-lg font-semibold text-[#171C35] mb-1">{card.title}</h3>
         </div>
 
-        <div className="mb-2">
-          <span className="text-3xl font-medium text-[#171C35]">{card.value}</span>
-        </div>
+        
         
         <div>
+            <span className="text-3xl font-medium text-[#171C35]">{card.value}</span>
           <p className="text-sm text-[#111A2D] opacity-70">{card.lastMonth}</p>
         </div>
 

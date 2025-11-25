@@ -47,7 +47,7 @@ const tab = searchParams.get("tab");
             <span className="text-[#1a1c21] text-sm font-semibold">{activeItem}</span>
           </div>
 
-          <h1 className="text-xl md:text-2xl px-2 md:px-0 font-semibold text-[#1a1c21]">
+          <h1 className="text-xl md:text-2xl px-2  md:px-0 font-semibold text-[#1a1c21]">
             Settings
           </h1>
         </div>
@@ -58,7 +58,7 @@ const tab = searchParams.get("tab");
       <div className="flex flex-col lg:flex-row w-full  items-stretch">
   {/* Sidebar */}
   <div className="w-full lg:w-[240px] px-4 bg-white rounded-xl flex flex-col h-full">
-    <h2 className="text-[#171C35] font-semibold text-xl leading-5 pt-6">
+    <h2 className="text-[#171C35] font-semibold text-xl pl-3 leading-5 pt-6">
       Setting
     </h2>
     <Sidebar activeItem={activeItem} setActiveItem={setActiveItem}  />

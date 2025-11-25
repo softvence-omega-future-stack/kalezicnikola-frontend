@@ -117,12 +117,12 @@ export default function SecuritySettings() {
             <h2 className="text-lg font-semibold text-[#171c35]">Login Security</h2>
             <button
               onClick={() => handleToggle('loginSecurity')}
-              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                settings.loginSecurity ? 'bg-blue-600' : 'bg-gray-300'
+              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors cursor-pointer ${
+                settings.loginSecurity ? 'bg-[#526FFF]' : 'bg-gray-300'
               }`}
             >
               <span
-                className={`inline-block h-5 w-5 transform rounded-full bg-white transition-transform ${
+                className={`inline-block h-5 w-5 transform rounded-full bg-white transition-transform cursor-pointer ${
                   settings.loginSecurity ? 'translate-x-6' : 'translate-x-0.5'
                 }`}
               />
@@ -179,7 +179,7 @@ export default function SecuritySettings() {
             <h2 className="text-lg font-semibold text-[#171c35]">Data Protection</h2>
             <button
               onClick={() => handleToggle('dataProtection')}
-              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors cursor-pointer ${
                 settings.dataProtection ? 'bg-[#526FFF]' : 'bg-gray-300'
               }`}
             >
@@ -206,10 +206,10 @@ export default function SecuritySettings() {
         {/* Action Buttons */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
-          <button className="w-full px-6 py-2.5 text-sm font-medium text-[#171c35]bg-white border border-gray-300 rounded-xl hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#526FFF] transition-colors">
+          <button className="w-full px-6 py-2.5 text-sm font-medium text-[#171c35]bg-white border cursor-pointer border-gray-300 rounded-xl  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#526FFF] transition-colors">
             Cancel
           </button>
-          <button onClick={handleSaveChanges} className="w-full px-6 py-2.5 text-sm font-medium text-white bg-[#526FFF] rounded-xl  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#526FFF] transition-colors">
+          <button onClick={handleSaveChanges} className="w-full px-6 py-2.5 text-sm font-medium cursor-pointer text-white bg-[#526FFF] rounded-xl  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#526FFF] transition-colors">
 
          
     

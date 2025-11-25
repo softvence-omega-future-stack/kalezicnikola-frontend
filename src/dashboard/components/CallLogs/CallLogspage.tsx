@@ -100,7 +100,7 @@ const CallLogsPage: React.FC = () => {
 
       {/* Main Content */}
     <div className="mt-4">
-  <h1 className="text-xl md:text-2xl font-semibold text-black mb-6">Call Logs</h1>
+  <h1 className="text-xl md:text-2xl font-semibold text-[#171C35] mb-6">Call Logs</h1>
 
   {/* Table Container */}
   <div className="rounded-2xl bg-white overflow-x-auto">
@@ -154,7 +154,7 @@ const CallLogsPage: React.FC = () => {
             <td className="px-2 sm:px-4 py-2 text-sm text-[#111A2D]  whitespace-nowrap">{log.timestamp}</td>
             <td className="px-2 sm:px-4 py-2 text-sm text-[#111A2D] whitespace-nowrap">{log.phoneNumber}</td>
             <td className="px-2 sm:px-4 py-2 whitespace-nowrap">
-              <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-sm font-semibold ${getStatusStyle(log.status)}`}>
+              <span className={`inline-flex w-[109px] justify-center items-center gap-1 px-2 py-1 rounded-full text-sm font-semibold ${getStatusStyle(log.status)}`}>
                 <span className={`w-2 h-2 rounded-full ${getStatusDot(log.status)}`}></span>
                 {log.status}
               </span>

@@ -23,7 +23,7 @@ const PatientProfilePage: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen mt-[30px] w-full">
+    <div className="min-h-screen p-6 mt-[30px] w-full">
       {/* Header Navigation */}
       <div className=" ">
         <div className="flex flex-wrap items-center gap-2 text-sm">

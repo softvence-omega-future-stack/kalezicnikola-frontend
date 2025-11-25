@@ -77,7 +77,7 @@ const InterActions = () => {
                     <h3 className="font-semibold text-headingBlack text-sm">{interaction.user}</h3>
                     <p className="text-xs text-gray-500 mt-1">{interaction.timestamp}</p>
                   </div>
-                  <span className={`inline-flex items-center justify-center px-3 py-1 gap-1 rounded-full text-xs font-medium ${
+                  <span className={`inline-flex items-center w-[109px] justify-center px-3 py-1 gap-1 rounded-full text-xs font-medium ${
                     interaction.severity === 'high'
                       ? 'bg-[#FF2F2F1A] text-[#FF2F2F]'
                       : 'bg-[#A052FF1A] text-[#A052FF]'
@@ -106,7 +106,7 @@ const InterActions = () => {
 
         {/* Show more button for mobile */}
         <div className="lg:hidden mt-6 text-center">
-          <button className="text-blue-600 hover:text-blue-700 font-medium text-sm transition-colors">
+          <button className="text-[#526FFF]  font-medium text-sm transition-colors">
             Show More Interactions
           </button>
         </div>

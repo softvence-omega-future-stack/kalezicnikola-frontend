@@ -71,7 +71,7 @@ const AddPatientForm: React.FC = () => {
   const labelClass = "block text-base font-medium text-[#171c35] mb-2";
 const navigate = useNavigate()
   return (
-    <div className="min-h-screen mt-6">
+    <div className="min-h-screen mt-6 p-6">
       <div className="py-6">
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-sm text-gray-600 mb-4">
@@ -310,22 +310,24 @@ const navigate = useNavigate()
             </div>
           </div>
 
-          {/* 3. Action Buttons */}
-          <div className="flex  justify-end gap-4 mt-8">
-            <button
-              type="button"
-              onClick={handleCancel}
-              className="px-6 py-3 bg-white border border-[#D0D5DD] rounded-[8px] text-sm font-medium text-[#111A2D] hover:bg-gray-50 transition-colors shadow-sm"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              className="px-6 py-3 bg-[#526FFF] rounded-[8px] text-sm font-medium text-white hover:bg-[#435FFF] transition-colors shadow-md"
-            >
-              Add Patient
-            </button>
-          </div>
+          
+       {/* 3. Action Buttons */}
+<div className="flex  gap-4 mt-8">
+  <button
+    type="button"
+    onClick={handleCancel}
+    className="w-full px-6 py-3 bg-white border cursor-pointer border-[#D0D5DD] rounded-[8px] text-sm font-medium text-[#111A2D] transition-colors"
+  >
+    Cancel
+  </button>
+  <button
+    type="submit"
+    className="w-full px-6 py-3 bg-[#526FFF] rounded-[8px] cursor-pointer text-sm font-medium text-white  transition-colors "
+  >
+    Add Patient
+  </button>
+</div>
+
         </form>
       </div>
     </div>

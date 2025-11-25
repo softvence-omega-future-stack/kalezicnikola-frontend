@@ -23,8 +23,8 @@ const navigate = useNavigate()
   };
 
   return (
-    <div className="min-h-screen mt-6">
-      <div className=" px-2 sm:px-0 ">
+    <div className="min-h-screen mt-6 ">
+      <div className=" p-6 ">
         {/* Header */}
              {/* Breadcrumb */}
       <div className="flex items-center gap-2 text-base py-6 text-gray-600 ">
@@ -40,7 +40,7 @@ const navigate = useNavigate()
         </div>
 
         {/* Card */}
-        <div className="bg-white rounded-xl shadow-sm p-6 md:p-8">
+        <div className="bg-white rounded-xl  p-6 md:p-8">
           <h2 className="text-[#171C35] font-medium text-lg ">Add New Staff</h2>
           <p className="text-[#667085] text-sm font-medium mb-4 ">Create a new staff member profile</p>
 

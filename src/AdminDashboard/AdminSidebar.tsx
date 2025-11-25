@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import React, { } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 import { X } from 'lucide-react';
 
 import icon from "../assets/svgIcon/logo.svg";
@@ -9,7 +9,7 @@ import dashbord from "../assets/svgIcon/dashboard.svg";
 import customers from "../assets/svgIcon/user.svg";
 import voice from "../assets/svgIcon/callLogs.svg";
 import belling from "../assets/svgIcon/belling.svg";
-import supports from "../assets/svgIcon/supports.svg";
+import supports from "../assets/svgIcon/support.svg";
 import settings from "../assets/svgIcon/settings.svg";
 import logout from "../assets/svgIcon/logout.svg";
 import systemHealth from "../assets/svgIcon/systemHealth.svg";
@@ -22,23 +22,19 @@ interface LogoProps {
 }
 
 const Logo: React.FC<LogoProps> = ({ collapsed, onToggle, closeMobileMenu }) => {
-  const [isHovering, setIsHovering] = useState(false);
-
   return (
     <div
-      className={`flex items-center border-b-gray-200 md:border-b-0 p-6 ${collapsed ? "justify-center" : "justify-between"} relative`}
+      className={`flex items-center border-b border-b-gray-200 md:border-b-0 p-6 ${collapsed ? "justify-center" : "justify-between"} relative`}
       style={{ fontFamily: "Urbanist" }}
     >
       {collapsed ? (
         <button
           onClick={() => onToggle(false)}
-          onMouseEnter={() => setIsHovering(true)}
-          onMouseLeave={() => setIsHovering(false)}
           className="cursor-pointer p-1"
         >
           <img
-            src={isHovering ? sidelogo : icon}
-            alt={isHovering ? "Open Menu" : "Logo"}
+            src={icon}
+            alt="Logo"
             className="h-8 w-8 object-contain transition-transform duration-100"
           />
         </button>
@@ -52,7 +48,7 @@ const Logo: React.FC<LogoProps> = ({ collapsed, onToggle, closeMobileMenu }) => 
           <div className="flex items-center gap-2">
             <button 
               onClick={() => onToggle(true)} 
-              className="cursor-pointer p-1 hidden md:block"
+              className="cursor-pointer hidden md:block"
             >
               <img src={sidelogo} alt="Close Menu" className="h-8 w-8" />
             </button>
@@ -79,22 +75,30 @@ interface NavItemProps {
   onClick?: () => void;
   collapsed: boolean;
   closeMobileMenu?: () => void;
+  className?: string;
 }
 
-const NavItem: React.FC<NavItemProps> = ({ to, label, iconSrc, onClick, collapsed, closeMobileMenu }) => {
+const NavItem: React.FC<NavItemProps> = ({ to, label, iconSrc, onClick, collapsed, closeMobileMenu, className }) => {
+  const location = useLocation();
+  
   const baseClasses = collapsed
-    ? "flex items-center justify-center py-3 px-2 mx-2 rounded-lg transition-colors text-[#111A2D] font-semibold relative"
-    : "flex items-center gap-3 py-3 px-4 mx-2 rounded-lg transition-colors text-[#111A2D] font-semibold relative";
+    ? "flex items-center justify-center py-3 mx-2 rounded-lg transition-colors font-semibold"
+    : "flex items-center gap-3 py-3 px-4 mr-6 ml-2 rounded-lg transition-colors font-semibold flex-1";
 
   const handleClick = () => {
     if (onClick) onClick();
     if (closeMobileMenu) closeMobileMenu();
   };
 
+  const finalClasses = `${baseClasses} ${className || ""}`;
+  const isActive = to ? location.pathname === to : false;
+
   if (onClick) {
     return (
-      <button onClick={handleClick} className={`${baseClasses} hover:bg-gray-100 w-auto cursor-pointer`}>
-        <img src={iconSrc} alt={label} className="h-5 w-5 sm:h-6 sm:w-6 object-contain shrink-0" />
+      <button onClick={handleClick} className={`${finalClasses} hover:bg-[#DFE2E2] relative`}>
+        <div className="relative flex items-center gap-3">
+          <img src={iconSrc} alt={label} className="h-5 w-5 sm:h-6 sm:w-6 object-contain shrink-0" />
+        </div>
         {!collapsed && <span className="flex-1 text-sm md:text-base text-left whitespace-nowrap">{label}</span>}
       </button>
     );
@@ -105,9 +109,11 @@ const NavItem: React.FC<NavItemProps> = ({ to, label, iconSrc, onClick, collapse
       to={to!}
       end
       onClick={handleClick}
-      className={({ isActive }) => `${baseClasses} ${isActive ? "bg-[#DFE2E2]" : "hover:bg-[#DFE2E2]"}`}
+      className={`${finalClasses} relative ${isActive ? "bg-[#DFE2E2] text-[#171C35]" : "text-[#667085] hover:bg-[#DFE2E2]"}`}
     >
-      <img src={iconSrc} alt={label} className="h-5 w-5 sm:h-6 sm:w-6 object-contain shrink-0" />
+      <div className="relative flex items-center gap-3">
+        <img src={iconSrc} alt={label} className="h-5 w-5 sm:h-6 sm:w-6 object-contain shrink-0" />
+      </div>
       {!collapsed && <span className="flex-1 text-sm md:text-base text-left whitespace-nowrap">{label}</span>}
     </NavLink>
   );
@@ -145,12 +151,18 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ onLogoutClick, collapsed, o
         </nav>
       </div>
 
-
-
+      <div className="flex flex-col p-4 space-y-4">
         <NavItem to="/admin/settings" iconSrc={settings} label="Settings" collapsed={collapsed} closeMobileMenu={closeMobileMenu} />
-        <NavItem iconSrc={logout} label="Logout" onClick={onLogoutClick} collapsed={collapsed} closeMobileMenu={closeMobileMenu} />
+        <NavItem 
+          iconSrc={logout} 
+          label="Logout" 
+          onClick={onLogoutClick} 
+          collapsed={collapsed} 
+          closeMobileMenu={closeMobileMenu}
+          className="text-[#667085]"
+        />
       </div>
-  
+    </div>
   );
 };
 

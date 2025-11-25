@@ -23,7 +23,7 @@ const MainHeader: React.FC<MainHeaderProps> = ({ onMobileMenuOpen }) => {
 
     return (
         <div className="flex flex-col w-full">
-            <header className="w-full h-16 sm:h-20 flex justify-between items-center gap-2 px-3 sm:px-6 md:px-8 lg:px-10
+            <header className="w-full h-16 sm:h-20 flex justify-between items-center gap-2 px-3 sm:px-6 
                 bg-[#F3F6F6] top-0 left-0 border-b border-[#D0D5DD]">
 
                 {/* Mobile Menu */}
@@ -36,7 +36,7 @@ const MainHeader: React.FC<MainHeaderProps> = ({ onMobileMenuOpen }) => {
 
                 {/* Search Bar */}
                 <div className="flex items-center flex-1 min-w-0 max-w-xs sm:max-w-md md:max-w-lg">
-                    <div className="flex items-center gap-2 sm:gap-3 w-full rounded-lg py-2 sm:py-3 px-2 sm:px-4 border border-gray-200 focus-within:border-indigo-300 transition-colors">
+                    <div className="flex items-center gap-2 sm:gap-3 w-full rounded-lg py-2 sm:py-3 px-2 sm:px-4 border border-gray-50 focus-within:border-indigo-300 transition-colors">
                         <img src={search} alt="Search" className="w-4 h-4 shrink-0" />
                         <input
                             type="text"
@@ -47,7 +47,7 @@ const MainHeader: React.FC<MainHeaderProps> = ({ onMobileMenuOpen }) => {
                 </div>
 
                 {/* Notification + User */}
-                <div className="flex items-center gap-2 sm:gap-4 md:gap-6 shrink-0">
+                <div className="flex items-center gap-2 md:gap-4 shrink-0">
 
                     {/* Language */}
                     <div className="relative hidden md:block">
@@ -55,12 +55,12 @@ const MainHeader: React.FC<MainHeaderProps> = ({ onMobileMenuOpen }) => {
                     </div>
 
                     {/* Notification Desktop */}
-                    <div className="hidden sm:flex items-center border-r border-gray-200 pr-3 h-10">
+                    <div className="hidden sm:flex items-center border-l px-3 border-r border-gray-200 h-10">
                         <button
                             onClick={() => setShowNotification(true)}
                             className="relative p-2 text-[#111A2D] focus:outline-none"
                         >
-                            <img src={notification} alt="Notification" className="w-5 h-5 sm:w-6 sm:h-6 cursor-pointer" />
+                            <img src={notification} alt="Notification" className="w-5 h-5  cursor-pointer" />
                             {/* Notification Badge */}
                             <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white">
                                 3

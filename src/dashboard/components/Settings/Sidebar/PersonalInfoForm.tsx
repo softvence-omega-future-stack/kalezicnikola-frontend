@@ -83,7 +83,7 @@ const PersonalInfoForm: React.FC = () => {
         <h2 className="text-xl font-semibold text-[#171C35]">Personal Info</h2>
         <button
           onClick={handleEdit}
-          className="flex items-center gap-2 text-sm text-[#111a2D] border border-gray-300 py-1 px-3 rounded-xl"
+          className="flex items-center gap-2 text-sm text-[#111a2D] border border-gray-300 py-1 px-3 rounded-xl cursor-pointer"
         >
           Edit
             <img src={edit} alt="" />

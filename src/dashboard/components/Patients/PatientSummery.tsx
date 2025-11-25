@@ -7,24 +7,28 @@ export default function PatientSummary() {
       date: "April 20, 2024",
       detail: "1:30 PM - Check-up",
       bgColor: "#EDF0FF",
+      route: "/appointments", 
     },
     {
       title: "Active Medications",
       count: "3 Active Prescriptions",
       detail: "Last updated: Feb 3, 2024",
       bgColor: "#EDF0FF",
+      route: "/appointments", 
     },
     {
       title: "Recent Lab Results",
       type: "Comprehensive Metabolic Panel",
       detail: "January 20, 2024",
       bgColor: "#EDF0FF",
+      route: "/appointments", 
     },
     {
       title: "Recent Call",
       type: "Call Type: Follow-up",
       detail: "Call Duration: 01h 45min",
       bgColor: "#EDF0FF",
+      route: "/appointments", 
     },
   ];
 

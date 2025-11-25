@@ -99,7 +99,7 @@ const Dashboard: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen -ml-4 px-2 md:px-0">
+    <div className="min-h-screen  p-6 ">
       <div className="mb-8">
         <div className="mb-6">
           <DashboardTopSection />
@@ -109,7 +109,7 @@ const Dashboard: React.FC = () => {
           {/* LEFT SIDE: Appointments */}
           <div
             ref={leftRef}
-            className="w-full lg:w-1/3 pl-2"
+            className="w-full lg:w-1/3"
           >
             <AppointmentsList />
           </div>
@@ -117,7 +117,7 @@ const Dashboard: React.FC = () => {
           {/* RIGHT SIDE: SummaryCards + Calendar */}
           <div 
             ref={rightRef}
-            className="w-full lg:w-2/3 pr-4 space-y-1 pl-2.5 md:pl-0"
+            className="w-full lg:w-2/3  space-y-1 pl-2.5 md:pl-0"
             style={{ minHeight: `${minHeight}px` }}
           >
             <DashboardCard />

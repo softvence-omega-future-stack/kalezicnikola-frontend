@@ -20,7 +20,7 @@ export default function Invoices() {
   ]);
 
   return (
-    <div className="min-h-screen  bg-white p-4 md:p-8">
+    <div className="  bg-white">
       <div className="">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
@@ -51,7 +51,7 @@ export default function Invoices() {
                   <td className="py-5 px-4 text-sm font-medium text-[#111A2D]">{transaction.name}</td>
                   <td className="py-5 px-4 text-sm font-medium text-[#111A2D]">{transaction.transactionId}</td>
                   <td className="py-5 px-4">
-                    <span className={`inline-flex items-center px-6 py-1.5 rounded-full text-sm font-normal ${
+                    <span className={`inline-flex items-center w-[109px] justify-center px-6 py-1.5 rounded-full text-sm font-normal ${
                       transaction.status === 'Paid' 
                         ? 'bg-[#0089331A] text-[#008933]' 
                         : 'bg-[#DD8F001A] text-[#DD8F00]'
