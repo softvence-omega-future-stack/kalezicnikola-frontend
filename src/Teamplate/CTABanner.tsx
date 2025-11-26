@@ -3,6 +3,7 @@ import React, { } from 'react';
 
 // import { useNavigate } from 'react-router-dom';
 import './bnnarButon.css'
+import LequidGlassBtn from './LequidGlassBtn';
 
 //import { useNavigate } from 'react-router-dom';
 // import LiquidGlassButton from './LequiedGlassBtn';
@@ -39,8 +40,8 @@ const CTABanner: React.FC = () => {
 
 
   return (
-    <div  className="w-full px-4 mt-19 md:mt-[180px] lg:mt-[180px] xl:mt-[180px]">
-      <div className="xl:px-30">
+    <div  className="w-full  mt-19 md:mt-[180px] lg:mt-[180px] xl:mt-[180px]">
+      <div className="">
         <div className="bg-[#526FFF] rounded-[40px]  p-6 sm:p-8 md:p-10 lg:p-12 xl:p-16 shadow-2xl">
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 sm:gap-8">
             {/* Left Content */}
@@ -60,8 +61,8 @@ const CTABanner: React.FC = () => {
               <LiquidGlassButton/>
              </div> */}
 
-             <div className='w-full md:w-[218px]'>
-              <button
+             <div className=''>
+              {/* <button
   className="flex justify-center items-center gap-3 px-2 py-2 w-full md:w-[218px] h-[64px] 
              rounded-[100px] border border-white/100 
              bg-[rgba(255,255,255,0.10)] backdrop-blur-[7.5px]
@@ -72,9 +73,10 @@ const CTABanner: React.FC = () => {
     backdropFilter: "blur(7.5px)",
   }}
 >
-  <span className="text-white font-medium text-lg">Start Now</span>
-</button>
-
+  <span className="te
+  xt-white font-medium text-lg">Start Now</span>
+</button> */}
+    <LequidGlassBtn/>
              </div>
 
 
@@ -144,7 +146,7 @@ const CTABanner: React.FC = () => {
           
 =======
               
->>>>>>> 9c2652c5f50a5324a314048585d7adf6510c3323
+
                 {isHovered && (
                   <div
                     className="absolute inset-0 rounded-full sm:rounded-2xl pointer-events-none"

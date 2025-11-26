@@ -1,36 +1,40 @@
 import { ArrowUpRight } from "lucide-react";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function PatientSummary() {
-  const summaryCards = [
-    {
-      title: "Next Appointment",
-      date: "April 20, 2024",
-      detail: "1:30 PM - Check-up",
-      bgColor: "#EDF0FF",
-      route: "/appointments", 
-    },
-    {
-      title: "Active Medications",
-      count: "3 Active Prescriptions",
-      detail: "Last updated: Feb 3, 2024",
-      bgColor: "#EDF0FF",
-      route: "/appointments", 
-    },
-    {
-      title: "Recent Lab Results",
-      type: "Comprehensive Metabolic Panel",
-      detail: "January 20, 2024",
-      bgColor: "#EDF0FF",
-      route: "/appointments", 
-    },
-    {
-      title: "Recent Call",
-      type: "Call Type: Follow-up",
-      detail: "Call Duration: 01h 45min",
-      bgColor: "#EDF0FF",
-      route: "/appointments", 
-    },
-  ];
+    const { id } = useParams<{ id: string }>();
+    const navigate =useNavigate()
+const summaryCards = [
+  {
+    title: "Next Appointment",
+    date: "April 20, 2024",
+    detail: "1:30 PM - Check-up",
+    bgColor: "#EDF0FF",
+    route: `/adashboard/patients/${id}?tab=appointment`, // hash = appointment tab
+  },
+  {
+    title: "Active Medications",
+    count: "3 Active Prescriptions",
+    detail: "Last updated: Feb 3, 2024",
+    bgColor: "#EDF0FF",
+    route: `/adashboard/patients/${id}#medications`,
+  },
+  {
+    title: "Recent Lab Results",
+    type: "Comprehensive Metabolic Panel",
+    detail: "January 20, 2024",
+    bgColor: "#EDF0FF",
+    route: `/adashboard/patients/${id}#labresults`,
+  },
+  {
+    title: "Recent Call",
+    type: "Call Type: Follow-up",
+    detail: "Call Duration: 01h 45min",
+    bgColor: "#EDF0FF",
+    route: `/adashboard/patients/${id}#calls`,
+  },
+];
+
 
   const appointments = [
     { type: "Check-up", date: "27-09-2025", time: "01:00 AM", status: "Upcoming" },
@@ -137,7 +141,7 @@ export default function PatientSummary() {
               right: 6,
             }}
           >
-            <div className="h-9 w-9 bg-[#171C35] rounded-full flex items-center justify-center">
+            <div onClick={() => navigate(card.route)}  className="h-9 w-9 bg-[#171C35] rounded-full flex items-center justify-center">
               <ArrowUpRight className="text-white w-4 h-4" />
             </div>
           </div>

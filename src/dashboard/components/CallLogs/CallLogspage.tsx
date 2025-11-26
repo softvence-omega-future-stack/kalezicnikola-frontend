@@ -5,8 +5,9 @@ import { FiX } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 
 import homeIcon from '../../../assets/svgIcon/homeIcon.svg';
+import DateRange from './DateRange';
 
-import filter from '../../../assets/svgIcon/filter.svg';
+//import calendar from '../../../assets/svgIcon/calendar2.svg';
 
 
 interface CallLog {
@@ -82,7 +83,7 @@ const CallLogsPage: React.FC = () => {
   };
 
   return (
-    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="min-h-screen mt-[30px] ">
+    <div  className="min-h-screen mt-[30px] ">
       {/* Header Navigation */}
       <div className="">
         <div className="flex flex-wrap items-center gap-2 text-sm">
@@ -103,18 +104,15 @@ const CallLogsPage: React.FC = () => {
   <h1 className="text-xl md:text-2xl font-semibold text-[#171C35] mb-6">Call Logs</h1>
 
   {/* Table Container */}
-  <div className="rounded-2xl bg-white overflow-x-auto">
+  <div className="rounded-2xl bg-white overflow-x-auto p-6">
     {/* Table Header */}
-    <div className="flex flex-wrap justify-between items-center p-4 border-b border-gray-100">
+    <div className="flex flex-wrap justify-between items-center p-4 ">
       <h2 className="text-base font-semibold text-[#171C35]">Call Logs</h2>
-      <button className="flex items-center gap-2 px-3 py-1.5 text-sm font-semibold text-[#111A2D] hover:bg-gray-50 rounded border border-gray-300">
-        <img src={filter} alt="filter" className="w-4 h-4" />
-        Filters
-      </button>
+     <DateRange/>
     </div>
 
     {/* Table */}
-    <table className="min-w-full divide-y divide-gray-200 table-fixed">
+    <table className="min-w-full  divide-gray-200 table-fixed">
      <thead>
   <tr>
     {/* Patient Name */}

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import InvoiceModal from './InvoiceViewModal';
-import filter from '../../../../../assets/svgIcon/filter.svg'
+
+import DateRange from '@/dashboard/components/CallLogs/DateRange';
 
 
 
@@ -25,10 +26,7 @@ export default function Invoices() {
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <h1 className="text-xl font-semibold text-[#171c35]">Transaction Overview</h1>
-          <button className="flex items-center gap-2 px-4 py-2 text-sm text-[#111A2D] font-semibold bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-            <img src={filter} alt="" />
-            Filters
-          </button>
+         <DateRange/> 
         </div>
 
         {/* Desktop Table */}
@@ -101,7 +99,7 @@ export default function Invoices() {
                 </div>
               </div>
               
-              <button className="w-full px-4 py-2 text-sm text-[#111A2D] font-medium bg-white border border-gray-300 rounded-full hover:bg-gray-50 transition-colors">
+              <button className="w-full px-4 py-2 text-sm text-[#111A2D] font-medium cursor-pointer bg-white border border-gray-300 rounded-full hover:bg-gray-50 transition-colors">
                 View
               </button>
             </div>

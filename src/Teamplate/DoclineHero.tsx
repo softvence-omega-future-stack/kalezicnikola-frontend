@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const DoclineHero: React.FC = () => {
   const navigate = useNavigate()
   return (
-    <section className="w-full bg-[#F3F6F6] pt-[80px] sm:pt-[140px]">
+    <section className="w-full bg-[#F3F6F6] pt-[80px] md:pt-[151px]">
       <div className="flex flex-col lg:flex-row items-center justify-between pl-6 sm:pl-8 lg:pl-20 mt-14 gap-10">
         {/* Left Content */}
         <div className="w-full lg:w-1/2  xl:-mt-10 2xl:-mt-80 px-5 lg:px-0">

@@ -40,7 +40,7 @@ const Logo: React.FC<LogoProps> = ({ collapsed, onToggle, closeMobileMenu }) => 
         </button>
       ) : (
         <>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center ">
             <img src={icon} alt="Logo" className="h-8 w-8" />
             <img src={logo} alt="Docline" className="hidden md:block" />
           </div>

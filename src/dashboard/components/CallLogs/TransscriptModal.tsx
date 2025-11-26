@@ -39,7 +39,7 @@ const PatientTranscriptPage: React.FC = () => {
   const [showFullSummary, setShowFullSummary] = useState(false);
 
   return (
-    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="bg-[#F3F6F6D9] rounded-2xl p-1 sm:p-4 flex items-center justify-center font-sans">
+    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="bg-[#F3F6F6D9] rounded-2xl p-1 sm:p-4 flex items-center justify-center font-sans overflow-auto scrollbar-hide">
       <div className="w-[980px] mx-auto rounded-xl p-2 sm:p-6 relative">
         <h2 className="text-2xl md:text-2xl font-semibold text-[#171C35] mb-6">Patient Transcript</h2>
 

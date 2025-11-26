@@ -27,7 +27,7 @@ const Footer: React.FC = () => {
     const socialLinks = [
         { icon: <BsLinkedin size={18} />, href: '#', label: 'LinkedIn' },
         { icon: <FaFacebook size={18} />, href: '#', label: 'Facebook' },
-        { icon: <AiFillInstagram size={18} />, href: '#', label: 'Instagram' }
+        { icon: <AiFillInstagram size={22} />, href: '#', label: 'Instagram' }
     ];
 
     return (
@@ -46,12 +46,12 @@ const Footer: React.FC = () => {
                     <div className="px-4 md:px-0">
                         
                         {/* 1. Logo und Kontakt - ZENTRIERT */}
-                        <div className="text-center mb-10 relative z-10">
-                            <div className="flex items-center justify-center gap-2 mb-2">
+                        <div className="text-center mb-8 relative z-10">
+                            <div className="flex items-center justify-center mb-4">
                                 <img src={logo} alt="Docline Logo" className="h-8 w-8" />
                                 <span className="text-2xl font-semibold text-[#171C35]">Docline</span>
                             </div>
-                            <p className="text-base text-gray-700 mb-3">
+                            <p className="text-base text-gray-700 mb-4">
                                 Wir schaffen stressfreie Praxen
                             </p>
                             <a
@@ -63,7 +63,7 @@ const Footer: React.FC = () => {
                         </div>
 
                         {/* 2. Navigation Links - ZENTRIERT */}
-                        <nav className="mb-10 relative z-10">
+                        <nav className=" relative z-10">
                             <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
                                 {navigationLinks.map((link, index) => (
                                     <li key={index}>

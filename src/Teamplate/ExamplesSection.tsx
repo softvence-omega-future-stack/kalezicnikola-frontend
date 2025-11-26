@@ -398,9 +398,9 @@ const ExampleSection: React.FC = () => {
   return (
     <div
       style={{ fontFamily: "Urbanist, sans-serif" }}
-      className="px-9 mt-16 md:mt-[180px] lg:mt-[180px] xl:mt-[180px] md:px-8"
+      className=" mt-16 md:mt-[180px] lg:mt-[180px] xl:mt-[180px] "
     >
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:px-20">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <SectionHeader
           badgeIcon={icon}
           badgeText=" Real Examples"

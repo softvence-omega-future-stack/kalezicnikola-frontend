@@ -33,9 +33,7 @@ const Patient = () => {
         <table className="min-w-[700px] sm:min-w-full w-full border-collapse">
           <thead>
             <tr className="bg-gray-50">
-              <th className="px-2 py-3">
-                {/* <input type="checkbox" className="w-4 h-4" /> */}
-              </th>
+            
               <th className="text-left text-sm font-semibold text-[#171C35] tracking-wider px-3 py-3">
                 Insurance ID
               </th>
@@ -60,9 +58,7 @@ const Patient = () => {
           <tbody>
             {patients.map((patient, idx) => (
               <tr key={idx} className="transition-colors border-b border-gray-200">
-                {/* <td className="px-2 py-4 whitespace-nowrap">
-                  <input type="checkbox" className="w-4 h-4" />
-                </td> */}
+             
                 <td className="px-3 py-4 whitespace-nowrap text-sm font-medium text-[#111A2D]">
                   {patient.id}
                 </td>

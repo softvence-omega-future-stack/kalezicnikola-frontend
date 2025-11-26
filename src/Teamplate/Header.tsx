@@ -255,7 +255,7 @@ const DoclineHeader: React.FC = () => {
   ];
 
   return (
-    <header ref={headerRef} className="w-full fixed top-5 left-0 right-0 z-[9999] px-2 sm:px-4">
+    <header ref={headerRef} className="w-full fixed top-0 left-0 right-0 z-[9999] pt-5 px-2 sm:px-4">
       <div className="relative">
         <div
           className="bg-white/10 mx-auto backdrop-blur-md border-2 border-white rounded-[100px] flex items-center justify-between relative w-[93%] z-[9999]"
@@ -269,9 +269,9 @@ const DoclineHeader: React.FC = () => {
             className="flex items-center gap-2 cursor-pointer"
             onClick={() => navigate("/")}
           >
-            <img src={logo} alt="Docline Logo" className="h-6 max-h-7" /> 
+            <img src={logo} alt="Docline Logo" className="" /> 
             <span className="text-2xl sm:text-3xl font-semibold text-[#171C35] whitespace-nowrap">
-              <img src={logoText} alt="Docline" className="h-4 sm:h-5 md:h-6" /> 
+              <img src={logoText} alt="Docline" className="" /> 
             </span>
           </div>
 
@@ -313,7 +313,7 @@ const DoclineHeader: React.FC = () => {
           </div>
           
           {/* Mobile Menu Toggle */}
-          <div className="flex items-center gap-2 lg:hidden"> 
+          <div className="flex lg:ml-5 items-center gap-2 lg:hidden"> 
             <LanguageSelector />
             <button
               onClick={() => navigate("/login")}

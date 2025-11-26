@@ -28,8 +28,8 @@ export default function AppointmentList() {
   ];
 
   return (
-    <div className="min-h-screen bg-white pb-5 rounded-2xl px-4 sm:p-6  lg:p-8">
-      <div className="max-w-sm mx-auto bg-white rounded-xl">
+    <div className="min-h-screen bg-white pb-5 rounded-2xl px-4">
+      <div className=" bg-white rounded-xl">
         {/* Header */}
         <div className="px-5 py-4 border-b border-gray-100">
           <h1 className="text-[#171c35] text-sm font-medium mb-1">

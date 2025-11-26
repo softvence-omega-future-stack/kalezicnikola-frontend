@@ -12,7 +12,7 @@ import SectionHeader from "./SectionHeader";
 const Functions = () => {
   return (
     <section  style={{ fontFamily: 'Urbanist, sans-serif' }} className="xl:mt-[180px] lg:mt-[180px] mt-24 ">
-      <div className=" px-9 sm:px-12 lg:px-20 ">
+      <div className="  ">
 
      {/* <div className="text-start mb-16 ">
         <div className="relative inline-flex glass items-center gap-2 pr-5 pl-2.5 py-2   mb-4">
@@ -25,6 +25,7 @@ const Functions = () => {
            Everything you need to ease <br /> the burden on your practice
         </h2>
       </div> */}
+      <div className="">
        <SectionHeader
           badgeIcon={icon}
           badgeText=" Our Core Functions"
@@ -37,7 +38,7 @@ const Functions = () => {
           align="left"
           
         />
-
+       </div>
         {/* Features Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           

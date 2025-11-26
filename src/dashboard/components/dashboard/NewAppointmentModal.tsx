@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { X, } from "lucide-react";
+import { CalendarDays, X, } from "lucide-react";
+import CustomDateInput from "./Appoin";
 // import calender from '../../../assets/svgIcon/calender.svg'
 
 interface NewAppointmentModalProps {
@@ -107,6 +108,7 @@ const NewAppointmentModal: React.FC<NewAppointmentModalProps> = ({ onClose }) =>
               />
             </div>
           </div>
+          <CustomDateInput/>
 
           {/* Email and Phone */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
@@ -196,25 +198,27 @@ const NewAppointmentModal: React.FC<NewAppointmentModalProps> = ({ onClose }) =>
                 )}
               </select>
             </div>
-            <div>
-              <label className="block text-sm font-medium text-[#171C35] mb-2">
-                Schedule
-              </label>
-              <div className="relative text-[#111A2D]">
-                <input
-                  type="datetime-local"
-                  name="schedule"
-                  value={formData.schedule}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 appearance-none bg-white rounded-[8px] text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              {/* <img
-    src={calender}
-    alt="icon"
-    className="absolute text-[#111A2D] right-3 top-1/2 -translate-y-1/2 w-5 h-5 pointer-events-none"
-  /> */}
-              </div>
-            </div>
+         
+<div>
+  <label className="block text-sm font-medium text-[#171C35] mb-2">
+    Schedule
+  </label>
+  <div className="relative text-[#111A2D]">
+    <input
+      type="datetime-local"
+      name="schedule"
+      value={formData.schedule}
+      onChange={handleChange}
+      className="w-full px-4 py-3 pr-10 appearance-none bg-white rounded-[8px] text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
+
+    {/* Custom icon */}
+    <CalendarDays
+      size={20}
+      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"
+    />
+  </div>
+</div>
           </div>
 
           {/* Appointment Details */}

@@ -14,7 +14,7 @@ export default function DoctorProfile() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen mt-[30px]">
+    <div className="min-h-screen mt-[30px] p-6">
       {/* Header Breadcrumb */}
       <div className="mb-3.5">
         <div className="flex items-center gap-2 text-sm text-gray-600 flex-wrap">
@@ -111,7 +111,7 @@ export default function DoctorProfile() {
                   <button
                     key={tab}
                     onClick={() => setActiveTab(tab)}
-                    className={`px-4 py-2 text-sm sm:text-base font-medium transition-colors rounded-[12px] whitespace-nowrap ${
+                    className={`px-4 py-2 text-sm sm:text-base font-medium transition-colors rounded-[12px] whitespace-nowrap cursor-pointer ${
                       activeTab === tab
                         ? 'bg-[#DCE2FF] text-[#171C35]'
                         : 'text-[#667085]'

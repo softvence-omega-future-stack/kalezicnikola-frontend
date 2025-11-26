@@ -51,7 +51,7 @@ export const NotificationSettings: React.FC = () => {
       <button
         onClick={() => handleToggle(key)}
         className={`w-12 h-6 rounded-full transition-colors duration-200 cursor-pointer ${
-          settings[key] ? 'bg-[#2A71FF]' : 'bg-gray-200'
+          settings[key] ? 'bg-[#526FFF]' : 'bg-gray-200'
         } relative`}
       >
         <span

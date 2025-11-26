@@ -52,7 +52,7 @@ const DashboardTopSection: React.FC = () => {
   return (
     <div className=" mt-2  bg-[#F3F6F6]">
       {/* Date Navigation */}
-      <div className="flex items-center justify-center   md:justify-start text-[#111A2D] text-sm sm:text-base font-medium pt-6  gap-2">
+      <div className="flex items-center justify-center -pl-1   md:justify-start text-[#111A2D] text-sm sm:text-base font-medium pt-6  gap-2">
         {/* <button className="p-2 sm:p-1 rounded-full transition-colors hover:bg-gray-200">
           <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
         </button>
@@ -94,7 +94,7 @@ const DashboardTopSection: React.FC = () => {
 onClick={() => navigate('/dashboard/settings?tab=Subscription')}
 
 
-            className="flex items-center justify-center h-12 w-12 sm:h-14 sm:w-14 bg-[#526FFF] text-white rounded-xl shadow-lg transition-colors hover:bg-indigo-600 shrink-0 cursor-pointer"
+            className="flex items-center justify-center h-12 w-12 sm:h-14 sm:w-14 bg-[#526FFF] text-white rounded-xl shadow-lg transition-colors  shrink-0 cursor-pointer"
             aria-label="View Details"
           >
             <ArrowUpRight className="w-5 h-5 sm:w-6 sm:h-6" />

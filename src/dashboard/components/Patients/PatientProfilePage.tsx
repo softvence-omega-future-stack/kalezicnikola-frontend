@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import ParsonalInfo from "./ParsonalInfo";
 import PatientSummary from "./PatientSummery";
@@ -8,11 +8,19 @@ import LabResultsPage from "./LabResults";
 
 import homeIcon from "../../../assets/svgIcon/homeIcon.svg";
 import chevronIcon from "../../../assets/svgIcon/chevronnRight.svg";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const PatientProfilePage: React.FC = () => {
   const [activeTab, setActiveTab] = useState("Personal Info");
   const navigate = useNavigate()
+  const location = useLocation();
+
+  useEffect(() => {
+    // query param থেকে tab set করা
+    const params = new URLSearchParams(location.search);
+    const tab = params.get("tab");
+    if (tab) setActiveTab(tab);
+  }, [location.search]);
 
   const tabs = [
     "Personal Info",
@@ -43,7 +51,7 @@ const PatientProfilePage: React.FC = () => {
       </div>
 
       <div className=" pt-4">
-        <h1 className="text-2xl font-semibold text-[#171C35] mb-5 sm:mb-9">
+        <h1 className="text-2xl font-semibold text-[#171C35] mb-5 sm:mb-15">
           Zur Patientenakte
         </h1>
 
@@ -51,75 +59,68 @@ const PatientProfilePage: React.FC = () => {
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-4 sm:gap-6 mb-6">
 
           {/* Left: Patient Info + Photo */}
-          <div className="xl:col-span-2 bg-[#E5E9FF] rounded-[24px] p-4 sm:p-6 flex flex-col xl:flex-row justify-between items-start gap-4">
-            
-            {/* Patient Info */}
-            <div className="flex-1 pr-0 xl:pr-6 w-full">
-              <h2 className="text-xl sm:text-2xl font-semibold text-[#171C35] mb-1">
-                Jonathon Sanders
-              </h2>
-              <p className="text-sm font-medium text-[#171C35] mb-4">
-                Insurance ID: #P170025
-              </p>
+         <div className="xl:col-span-2 bg-[#E5E9FF] rounded-[24px] p-4 sm:p-6 h-px] flex flex-col xl:flex-row gap-6 relative">
 
-              {/* First Row */}
-              <div className="flex flex-wrap gap-x-10 gap-y-4 border-b border-gray-300 pb-3 mb-4">
-                <div>
-                  <div className="text-sm text-[#111A2D]">Treatment Phase</div>
-                  <div className="font-semibold text-[#171C35]">
-                    Initial Inspection
-                  </div>
-                </div>
+  {/* Left Content */}
+  <div className="flex-1 flex flex-col w-full">
 
-                <div>
-                  <div className="text-sm text-[#111A2D]">Diagnosis</div>
-                  <div className="font-semibold text-[#171C35]">
-                    Chronic Headache
-                  </div>
-                </div>
+    {/* Top */}
+    <div className="mb-10"> {/* gap between Top and Middle */}
+      <h2 className="text-xl sm:text-2xl font-semibold text-[#171C35] mb-1">
+        Jonathon Sanders
+      </h2>
+      <p className="text-sm font-medium text-[#171C35]">
+        Insurance ID: #P170025
+      </p>
+    </div>
 
-                <div>
-                  <div className="text-sm text-[#111A2D]">Blood Sugar</div>
-                  <div className="text-2xl font-semibold text-[#171C35]">
-                    90 <span className="text-sm">mg/dl</span>
-                  </div>
-                </div>
-              </div>
+    {/* Middle */}
+    <div className="flex flex-wrap gap-x-10 gap-y-4 border-b border-gray-300 pb-3 mb-4">
+      <div>
+        <div className="text-sm text-[#111A2D]">Treatment Phase</div>
+        <div className="font-semibold text-[#171C35]">Initial Inspection</div>
+      </div>
+      <div>
+        <div className="text-sm text-[#111A2D]">Diagnosis</div>
+        <div className="font-semibold text-[#171C35]">Chronic Headache</div>
+      </div>
+      <div>
+        <div className="text-sm text-[#111A2D]">Blood Sugar</div>
+        <div className="text-2xl font-semibold text-[#171C35]">
+          90 <span className="text-sm">mg/dl</span>
+        </div>
+      </div>
+    </div>
 
-              {/* Second Row */}
-              <div className="flex flex-wrap gap-x-14 gap-y-4">
-                <div>
-                  <div className="text-sm text-[#111A2D]">Last Visited</div>
-                  <div className="font-semibold text-[#171C35]">
-                    30 Apr 2025
-                  </div>
-                </div>
+    {/* Bottom */}
+    <div className="flex flex-wrap gap-x-14 gap-y-4 mt-2"> {/* snug with Middle */}
+      <div>
+        <div className="text-sm text-[#111A2D]">Last Visited</div>
+        <div className="font-semibold text-[#171C35]">30 Apr 2025</div>
+      </div>
+      <div>
+        <div className="text-sm text-[#111A2D]">Phone</div>
+        <div className="font-semibold text-[#171C35]">+1 54546 45648</div>
+      </div>
+      <div>
+        <div className="text-sm text-[#111A2D]">Email</div>
+        <div className="font-semibold text-[#171C35]">username@gmail.com</div>
+      </div>
+    </div>
 
-                <div>
-                  <div className="text-sm text-[#111A2D]">Phone</div>
-                  <div className="font-semibold text-[#171C35]">
-                    +1 54546 45648
-                  </div>
-                </div>
+  </div>
 
-                <div>
-                  <div className="text-sm text-[#111A2D]">Email</div>
-                  <div className="font-semibold text-[#171C35]">
-                    username@gmail.com
-                  </div>
-                </div>
-              </div>
-            </div>
+  {/* Right Image */}
+  <div className="w-full sm:w-[200px] md:w-[222px]  h-[220px] sm:h-[260px] xl:h-[290px] xl:-mt-15 rounded-[28px] overflow-hidden bg-white self-center xl:self-auto">
+    <img
+      src="https://i.ibb.co.com/d0ZCyRCP/patient-Profile-Icon.png"
+      className="w-full h-full object-contain md:object-cover"
+      alt=""
+    />
+  </div>
 
-            {/* Right Image */}
-            <div className="w-full sm:w-[260px] md:w-[300px] h-[320px] sm:h-[360px] xl:h-[370px] rounded-[28px] overflow-hidden bg-white self-center xl:self-auto">
-              <img
-                src="https://i.ibb.co.com/d0ZCyRCP/patient-Profile-Icon.png"
-                className="w-full h-full object-cover"
-                alt=""
-              />
-            </div>
-          </div>
+</div>
+
 
           {/* Right Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -132,7 +133,7 @@ const PatientProfilePage: React.FC = () => {
               <div className="text-2xl font-semibold text-[#171C35]">
                 65 <span className="text-sm">mm/hr</span>
               </div>
-              <div className="text-sm text-[#171C35] mt-1">
+              <div className="text-sm text-[#171C35] mt-6">
                 Inflammation (25% Increase)
               </div>
             </div>
@@ -146,7 +147,7 @@ const PatientProfilePage: React.FC = () => {
               <div className="text-2xl font-semibold text-[#171C35]">
                 28 <span className="text-sm">ng/ml</span>
               </div>
-              <div className="text-sm text-[#171C35] mt-1">
+              <div className="text-sm text-[#171C35] mt-6">
                 Stable but declining (15% Drop)
               </div>
             </div>
@@ -154,7 +155,7 @@ const PatientProfilePage: React.FC = () => {
             {/* Overall Status */}
             <div className="bg-[#FADACA] rounded-3xl p-4 sm:col-span-2">
               <div className="text-sm text-[#171C35] mb-1">Overall Status</div>
-              <div className="text-xl font-semibold text-[#171C35] mb-1">
+              <div className="text-xl font-semibold text-[#171C35] mb-5">
                 All Markers Stable
               </div>
               <div className="text-sm text-[#111A2D]">
@@ -174,7 +175,7 @@ const PatientProfilePage: React.FC = () => {
           </div>
 
           {/* Tabs */}
-          <div className="bg-gray-50 py-2 mx-4 rounded-2xl overflow-x-auto">
+          <div className="bg-[#FAFAFA] py-2 mx-4 rounded-2xl overflow-x-auto">
             <div className="flex px-4 sm:px-6 gap-2 sm:gap-3">
               {tabs.map((tab) => (
                 <button

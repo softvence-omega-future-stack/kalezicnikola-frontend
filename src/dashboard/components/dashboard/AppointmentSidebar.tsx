@@ -100,9 +100,9 @@ const AppointmentsList: React.FC = () => {
     <div className="bg-white px-3 py-4 w-full    md:rounded-3xl">
       
       {/* List Header */}
-      <div className=" mb-4">
-        <h2 className="text-sm  text-[#111A2D]">Sunday, 11th</h2>
-        <p className="text-lg font-semibold  text-[#171C35]">{mockAppointments.length} patients</p>
+      <div className=" mb-6">
+        <h2 className="text-sm leading-3.5 mb-1.5  text-[#111A2D]">Sunday, 11th</h2>
+        <p className="text-lg font-semibold leading-4  text-[#171C35]">{mockAppointments.length} patients</p>
       </div>
       
       {/* Appointment List Items */}

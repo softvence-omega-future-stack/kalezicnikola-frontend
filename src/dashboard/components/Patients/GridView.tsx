@@ -23,7 +23,7 @@ const GridView: React.FC = () => {
   ];
   return (
     <div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-5 ">
             {patients.map((patient, index) => (
               <div key={index} className=" rounded-[16px]  p-6 bg-[#F8F8F8]  ">
                 {/* Profile Section */}

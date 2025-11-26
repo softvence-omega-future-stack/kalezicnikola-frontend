@@ -238,7 +238,7 @@ const UpgradPlan = () => {
 
   return (
     <div
-      className="relative mt-19 xl:mt-[180px] lg:mt-[180px] md:mt-[180px] xl:mx-20 px-4 md:px-8 rounded-2xl md:rounded-[40px] overflow-hidden"
+      className="relative mt-19 xl:mt-[180px] lg:mt-[180px] md:mt-[180px]  rounded-2xl md:rounded-[40px] overflow-hidden"
       style={{
         boxShadow: '0 20px 50px rgba(0, 0, 0, 0.05)',
         fontFamily: 'Urbanist, sans-serif',
@@ -269,7 +269,7 @@ const UpgradPlan = () => {
       ></div>
 
       {/* Main Content */}
-      <div className="relative z-10 p-4 mt-5 md:mt-0 md:p-8 xl:p-12 pb-16">
+      <div className="relative z-10 p-4 mt-5 md:mt-0  px-[103px] py-[47px]">
         {/* Header */}
         {/* <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-2 border border-white shadow-sm rounded-full mb-4 bg-white">
@@ -299,10 +299,10 @@ const UpgradPlan = () => {
 
         {/* Billing Toggle */}
         <div className="flex justify-center mb-12">
-          <div className="inline-flex bg-white rounded-full p-1 border border-gray-200 shadow-sm">
+          <div className="inline-flex bg-white rounded-full p-1  w-[266px] border border-gray-200 shadow-sm">
             <button
               onClick={() => setBillingCycle('monthly')}
-              className={`px-6 py-2.5 text-sm font-normal rounded-full transition-colors cursor-pointer ${
+              className={`px-6 py-2.5 text-sm font-normal w-[131px] rounded-full transition-colors cursor-pointer ${
                 billingCycle === 'monthly'
                   ? 'bg-[#526FFF] text-white font-medium shadow-md'
                   : 'text-[#171c35] hover:bg-gray-50'
@@ -312,7 +312,7 @@ const UpgradPlan = () => {
             </button>
             <button
               onClick={() => setBillingCycle('annually')}
-              className={`px-6 py-2.5 text-sm font-normal rounded-full transition-colors cursor-pointer  ${
+              className={`px-6 py-2.5 text-sm w-[131px] font-normal rounded-full transition-colors cursor-pointer  ${
                 billingCycle === 'annually'
                   ? 'bg-[#526FFF] text-white font-medium shadow-md'
                   : 'text-[#171c35] hover:bg-gray-50'
@@ -357,7 +357,7 @@ const UpgradPlan = () => {
                         plan.isPremium ? 'text-gray-300' : 'text-[#526FFF]'
                       }`}
                     >
-                      /{billingCycle === 'monthly' ? 'month' : 'year'}
+                      /{billingCycle === 'monthly' ? 'month' : 'month'}
                     </span>
                     {billingCycle === 'annually' && (
                       <span
