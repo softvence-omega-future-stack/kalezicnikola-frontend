@@ -16,6 +16,7 @@ import UpgradPlan from "@/Teamplate/UpgradPlan";
 import TestimonialSection from "@/Teamplate/WonersSlider";
 import Footer from "@/layout/Footer";
 import Slider from "@/Teamplate/Slider";
+import LequidButton from "@/Teamplate/LequidButtont";
 
 const Home = () => {
   return (
@@ -24,7 +25,7 @@ const Home = () => {
   <DoclineHero />
 
   {/* content wrapper */}
-  <div className="mx-[75px]">
+  <div className="mx-4 lg:mx-[75px]">
     <div id="features">
       <DoclineFeaturesSection />
     </div>
@@ -33,7 +34,7 @@ const Home = () => {
   {/* Slider full width */}
   < Slider/>
 
-  <div className="mx-[75px]">
+  <div className=" mx-4 lg:mx-[75px]">
     <div id="examples">
       <ExampleSection />
     </div>
@@ -47,6 +48,7 @@ const Home = () => {
     </div>
     <FAQSection />
     <CTABanner />
+    <LequidButton/>
    
   </div>
    <Footer />
