@@ -27,7 +27,7 @@ const DoclineHeader: React.FC = () => {
   ];
 
   return (
-    <header className="w-full fixed top-5 left-0 right-0 z-20 px-4 ">
+    <header className="w-full top-5 left-0 right-0 px-4 fixed z-50">
       <div
         className="bg-white/10 mx-auto backdrop-blur-md border-2 border-white rounded-[100px] flex items-center justify-between relative"
         style={{
@@ -42,7 +42,7 @@ const DoclineHeader: React.FC = () => {
           onClick={() => navigate("/")}
         >
           <img src={logo} alt="Docline Logo" className="w-8 h-10" />
-          <span className="text-2xl sm:text-3xl font-semibold text-[#171C35] whitespace-nowrap">
+          <span className="text-2xl sm:text-3xl font-semibold text-headingBlack whitespace-nowrap">
             Docline
           </span>
         </div>
@@ -58,8 +58,8 @@ const DoclineHeader: React.FC = () => {
                 onClick={() => handleScroll(item.id, item.name)}
                 className={`transition-colors whitespace-nowrap py-1 ${
                   item.name === activeItem
-                    ? 'font-bold text-[#171C35]' 
-                    : 'text-[#171C35] hover:text-blue-600'
+                    ? 'font-bold text-headingBlack' 
+                    : 'text-headingBlack hover:text-blue-600'
                 }`}
               >
                 {item.name}
@@ -75,14 +75,14 @@ const DoclineHeader: React.FC = () => {
             <div className="flex items-center gap-3">
               
               {/* Demo buchen */}
-              <button className="px-5 py-3.5 rounded-full text-base font-medium text-[#171C35] border border-[#171C35] transition whitespace-nowrap">
+              <button className="px-5 py-3.5 rounded-full text-base font-medium text-headingBlack border border-headingBlack transition whitespace-nowrap">
                   Demo buchen
               </button>
 
               {/* Login */}
               <button
                 onClick={() => navigate("/login")}
-                className="px-5 py-3.5 text-base font-medium text-[#171C35] bg-white rounded-full transition cursor-pointer whitespace-nowrap shadow-md"
+                className="px-5 py-3.5 text-base font-medium text-headingBlack bg-white rounded-full transition cursor-pointer whitespace-nowrap shadow-md"
               >
                 Login
               </button>
@@ -95,7 +95,7 @@ const DoclineHeader: React.FC = () => {
           <LanguageSelector />
           <button
             onClick={() => navigate("/login")}
-            className="px-4 py-1.5 text-sm font-medium text-[#171C35] bg-white rounded-full hover:text-blue-600 transition cursor-pointer"
+            className="px-4 py-1.5 text-sm font-medium text-headingBlack bg-white rounded-full hover:text-blue-600 transition cursor-pointer"
           >
             Login
           </button>
@@ -104,9 +104,9 @@ const DoclineHeader: React.FC = () => {
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? (
-              <X className="w-6 h-6 text-[#171C35]" />
+              <X className="w-6 h-6 text-headingBlack" />
             ) : (
-              <Menu className="w-6 h-6 text-[#171C35]" />
+              <Menu className="w-6 h-6 text-headingBlack" />
             )}
           </button>
         </div>
@@ -119,13 +119,13 @@ const DoclineHeader: React.FC = () => {
                 <button
                   key={item.name}
                   onClick={() => handleScroll(item.id, item.name)}
-                  className="text-[#171C35] hover:text-blue-600 transition-colors text-left py-1"
+                  className="text-headingBlack hover:text-blue-600 transition-colors text-left py-1"
                 >
                   {item.name}
                 </button>
               ))}
               <div className="pt-4 border-t border-gray-200 flex flex-col gap-3">
-                <button className="px-5 py-2 rounded-full text-base font-medium text-[#171C35] bg-blue-100 hover:bg-blue-200 transition">
+                <button className="px-5 py-2 rounded-full text-base font-medium text-headingBlack bg-blue-100 hover:bg-blue-200 transition">
                   Demo buchen
                 </button>
               </div>
