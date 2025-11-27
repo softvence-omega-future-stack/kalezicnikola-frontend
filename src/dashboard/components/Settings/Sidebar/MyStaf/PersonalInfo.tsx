@@ -1,6 +1,8 @@
-import { ChevronDown,  } from "lucide-react";
+
 import { useState } from "react";
-import upload from '../../../../../assets/svgIcon/upload.svg'
+import upload from '../../../../../assets/svgIcon/upload.svg';
+import CustomDropdown from "../CustomDropdown";
+
 
 const PersonalInfo = () => {
   const [formData, setFormData] = useState({
@@ -16,11 +18,16 @@ const PersonalInfo = () => {
     country: ''
   });
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-  setFormData({ ...formData, [e.target.name]: e.target.value });
-};
- const [photoPreview, setPhotoPreview] = useState<string | null>(null);
- const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleDropdownChange = (field: keyof typeof formData, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  const [photoPreview, setPhotoPreview] = useState<string | null>(null);
+  const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       const previewURL = URL.createObjectURL(file);
@@ -33,35 +40,34 @@ const PersonalInfo = () => {
 
       {/* Upload Photo + First & Last Name */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
+
         {/* Upload Photo */}
-  
- <div
-        className="flex flex-col items-center justify-center py-8 border-2 border-gray-100 rounded-3xl transition-colors cursor-pointer"
-        onClick={() => document.getElementById('photoUpload')?.click()}
-      >
-        <div className=" flex items-center justify-center mb-3 overflow-hidden">
+        <div
+          className="flex flex-col items-center justify-center py-8 border-2 border-gray-100 rounded-3xl transition-colors cursor-pointer"
+          onClick={() => document.getElementById('photoUpload')?.click()}
+        >
+          <div className="flex items-center justify-center mb-3 overflow-hidden">
             <img
-      src={photoPreview || upload}
-      alt=""
-      className={
-        photoPreview
-          ? "w-12 h-12 object-cover rounded-xl border border-gray-200"   
-          : "w-8 h-8 object-contain opacity-70"                                    
-      }
-    />
+              src={photoPreview || upload}
+              alt=""
+              className={
+                photoPreview
+                  ? "w-12 h-12 object-cover rounded-xl border border-gray-200"
+                  : "w-8 h-8 object-contain opacity-70"
+              }
+            />
+          </div>
+          <p className="text-xs text-[#667085] font-medium">Upload Photo</p>
         </div>
-        <p className="text-xs text-[#667085] font-medium">Upload Photo</p>
-      </div>
 
-      {/* Hidden file input */}
-      <input
-        type="file"
-        id="photoUpload"
-        className="hidden"
-        accept="image/*"
-        onChange={handlePhotoChange}
-      />
-
+        {/* Hidden file input */}
+        <input
+          type="file"
+          id="photoUpload"
+          className="hidden"
+          accept="image/*"
+          onChange={handlePhotoChange}
+        />
 
         {/* First Name */}
         <div className="flex flex-col space-y-1">
@@ -102,20 +108,19 @@ const PersonalInfo = () => {
             className="w-full px-4 py-2.5 text-sm text-[#667085] placeholder-[#667085] bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           />
         </div>
-        <div className="relative">
+
+        <div>
           <label className="block text-base font-medium text-[#171c35] mb-2">Gender</label>
-          <select
-            name="gender"
+          <CustomDropdown
             value={formData.gender}
-            onChange={handleInputChange}
-            className="w-full px-4 py-2.5 text-sm text-[#667085] bg-white border border-gray-300 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          >
-            <option value="">Select gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
-          </select>
-          <ChevronDown className="absolute right-3 top-1/2 translate-y-1/2 w-5 h-5 text-[#667085] pointer-events-none" />
+            onChange={(val) => handleDropdownChange("gender", val)}
+            options={[
+              { value: "male", label: "Male" },
+              { value: "female", label: "Female" },
+              { value: "other", label: "Other" }
+            ]}
+            placeholder="Select gender"
+          />
         </div>
       </div>
 
@@ -184,21 +189,19 @@ const PersonalInfo = () => {
             className="w-full px-4 py-2.5 text-sm text-[#171c35] placeholder-[#667085] bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           />
         </div>
-        <div className="relative">
+        <div>
           <label className="block text-base font-medium text-[#171c35] mb-2">Country</label>
-          <select
-            name="country"
+          <CustomDropdown
             value={formData.country}
-            onChange={handleInputChange}
-            className="w-full px-4 py-2.5   text-sm text-[#667085] bg-white border  rounded-lg  appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          >
-            <option value="">Select country</option>
-            <option value="us">United States</option>
-            <option value="uk">United Kingdom</option>
-            <option value="bd">Bangladesh</option>
-            <option value="in">India</option>
-          </select>
-          <ChevronDown className="absolute right-3 top-1/2 translate-y-1/2 w-5 h-5 text-[#667085] pointer-events-none" />
+            onChange={(val) => handleDropdownChange("country", val)}
+            options={[
+              { value: "us", label: "United States" },
+              { value: "uk", label: "United Kingdom" },
+              { value: "bd", label: "Bangladesh" },
+              { value: "in", label: "India" },
+            ]}
+            placeholder="Select country"
+          />
         </div>
       </div>
 

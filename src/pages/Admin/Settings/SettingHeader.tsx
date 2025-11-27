@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import chevron from '../../../assets/svgIcon/chevronnRight.svg';
 import home from '../../../assets/svgIcon/homeIcon.svg';
 import { ChevronDown } from 'lucide-react';
@@ -7,6 +7,7 @@ import NotificationSettings from './Notifications';
 import SecuritySetting from './SecuritySetting';
 import BellingSetting from './BellingSetting';
 import Checkout from './Checkout';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 const tabs = [
   { label: 'Personal Info', key: 'Personal Info' },
@@ -21,19 +22,40 @@ const SettingHeader = () => {
     'Personal Info' | 'Notifications' | 'Security' | 'Belling' | 'Checkout'
   >('Personal Info');
 
+  const [activeItem, setActiveItem] = useState(activeTab);
+
+  const [searchParams] = useSearchParams(); 
+  const tab = searchParams.get("tab");  
+
+  useEffect(() => {
+    if (tab) {
+      setActiveTab(tab as typeof activeTab);
+    }
+  }, [tab]);
+
+  // Sync activeItem with activeTab
+  useEffect(() => {
+    setActiveItem(activeTab);
+  }, [activeTab]);
+
   const [showMobileDropdown, setShowMobileDropdown] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <div className="max-[767px]:mt-6">
       {/* Breadcrumb */}
       <div className="mb-4">
-        <div className="flex items-center gap-1 md:gap-2 text-xs sm:text-sm text-[#667085] flex-wrap">
-          <img src={home} alt="home" className="w-3 h-3 md:w-4 md:h-4" />
-          <span className="truncate">Dashboard</span>
-          <img src={chevron} alt="chevron" className="w-3 h-3 md:w-4 md:h-4" />
-          <span className="truncate">Settings</span>
-          <img src={chevron} alt="chevron" className="w-3 h-3 md:w-4 md:h-4" />
-          <span className="text-[#1a1c21] font-medium truncate">{activeTab}</span>
+        <div className="flex items-center gap-2 text-sm text-gray-600 mb-4">
+            <img src={home} alt="" className="w-4 h-4" />
+            <span onClick={() => navigate('/admin')} className="cursor-pointer">
+              Dashboard
+            </span>
+            <img src={chevron} alt="" />
+            <span onClick={() => navigate('/')} className="cursor-pointer">
+              Settings
+            </span>
+            <img src={chevron} alt="" />
+            <span className="text-[#1a1c21] text-sm font-semibold">{activeItem}</span>
         </div>
         <h1 className="text-lg sm:text-xl md:text-2xl font-semibold text-headingBlack mt-4 sm:mt-6">
           Admin Settings

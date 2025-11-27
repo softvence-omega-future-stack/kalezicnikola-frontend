@@ -7,6 +7,7 @@ import timeIon from '../../../assets/svgIcon/taskTimeIcon.svg';
 import StatusDropdown from './Status';
 import PriorityDropdown from './Prioritys';
 import { useNavigate } from 'react-router-dom';
+import { PatientRecordsModal } from './PatientRecordModal';
 
 interface Task {
   id: number;
@@ -79,6 +80,8 @@ export default function TaskList() {
   const [editingTask, setEditingTask] = useState<Task | null>(null);
   const [currentColumnId, setCurrentColumnId] = useState<string>('todo');
   const [selectedTask, setSelectedTask] = useState<{ task: Task, columnId: string } | null>(null);
+  const [showRecordModal, setShowRecordModal] = useState(false);
+
 
   // Delete confirmation and success
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
@@ -289,48 +292,69 @@ export default function TaskList() {
 
             {/* Tasks */}
             <div className="p-3 space-y-3 overflow-y-auto">
-              {column.tasks.map(task => (
-                <div
-                  key={task.id}
-                  draggable
-                  onDragStart={(e) => onDragStart(e, task.id, column.id)}
-                  onClick={(e) => { e.stopPropagation(); setSelectedTask({ task, columnId: column.id }) }}
-                  className={`bg-[#F3F6F6] cursor-pointer rounded-2xl p-3`}
-                >
-                  <div className="flex items-start gap-3">
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-start gap-3 mb-2">
-                        <input
-                          type="checkbox"
-                          className="w-4 h-4 mt-1 text-indigo-600 cursor-pointer accent-[#526fff]"
-                          onChange={(e) => {
-                            setColumns(prev => prev.map(col => {
-                              if (col.id === column.id) {
-                                return { ...col, tasks: col.tasks.map(t => t.id === task.id ? { ...t, completed: e.target.checked } : t) }
-                              }
-                              return col;
-                            }))
-                          }}
-                        />
-                        <h3 className="text-sm sm:text-xl font-semibold text-[#171c35] flex-1">{task.title}</h3>
-                        <div className='flex items-center gap-2 pr-2'>
-                          <span className={`px-2 py-0.5 rounded-full text-xs font-medium whitespace-nowrap ${getPriorityColor(task.priority)}`}>{task.priority}</span>
-                        </div>
-                      </div>
-                      <p className="text-xs sm:text-base text-[#111A2D] mb-2 leading-relaxed pl-7 pr-7">{task.description}</p>
-                      <div className="flex items-center gap-4 text-sm font-medium text-[#171C35]">
-                        <div className="flex items-center gap-1 pl-7 mt-2">
-                          <img src={timeIon} alt="" />
-                          <span>{task.time}</span>
-                        </div>
-                        <div className="flex items-center gap-1 mt-2">
-                          <span>Due: {task.dueDate}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
+ {column.tasks.map(task => {
+  const isSelected = selectedTask?.task.id === task.id;
+
+  return (
+    <div
+      key={task.id}
+      draggable
+      onDragStart={(e) => onDragStart(e, task.id, column.id)}
+      className={`cursor-pointer rounded-2xl p-3 ${isSelected ? "bg-[#DDE2FF]" : "bg-[#F3F6F6]"}`}
+    >
+      <div className="flex items-start gap-3">
+        <div className="flex-1 min-w-0">
+          <div className="flex items-start gap-3 mb-2">
+            {/* Checkbox */}
+            <input
+              type="checkbox"
+              className="w-4 h-4 mt-1 text-indigo-600 cursor-pointer accent-[#526fff]"
+              checked={isSelected}
+              onClick={(e) => e.stopPropagation()} // Prevent modal open
+              onChange={(e) => {
+                if (e.target.checked) {
+                  setSelectedTask({ task, columnId: column.id }); // select task
+                } else {
+                  setSelectedTask(null); // deselect task
+                }
+              }}
+            />
+
+            {/* Task title & clickable area for modal */}
+            <div
+              className="flex-1"
+              onClick={() => {
+                setShowRecordModal(true); // Open modal on task click
+              }}
+            >
+              <h3 className="text-sm sm:text-xl font-semibold text-[#171C35]">{task.title}</h3>
+              <p className="text-xs sm:text-base text-[#111A2D] mb-2 leading-relaxed">{task.description}</p>
+            </div>
+
+            {/* Priority badge */}
+            <div className='flex items-center gap-2 pr-2'>
+              <span className={`px-2 py-0.5 rounded-full text-xs font-medium whitespace-nowrap ${getPriorityColor(task.priority)}`}>{task.priority}</span>
+            </div>
+          </div>
+
+          {/* Task time & due date */}
+          <div className="flex items-center gap-4 text-sm font-medium text-[#171C35] pl-7">
+            <div className="flex items-center gap-1 mt-2">
+              <img src={timeIon} alt="" />
+              <span>{task.time}</span>
+            </div>
+            <div className="flex items-center gap-1 mt-2">
+              <span>Due: {task.dueDate}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+})}
+
+
+
             </div>
           </div>
         ))}
@@ -347,6 +371,12 @@ export default function TaskList() {
           }
         />
       )}
+  {showRecordModal && selectedTask && (
+  <PatientRecordsModal
+    task={selectedTask.task}
+    onClose={() => setShowRecordModal(false)}
+  />
+)}
 
       {/* Delete Confirmation */}
       {showDeleteConfirm && (

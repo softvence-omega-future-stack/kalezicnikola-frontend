@@ -51,8 +51,8 @@ const AdminMainHeader: React.FC<HeaderProps> = ({ onMobileMenuOpen }) => {
           </div>
 
           {/* Notification Desktop */}
-          <div className="hidden sm:flex items-center border-r border-gray-200 pr-3 h-10">
-            <button onClick={() => setShowNotification(true)} className="relative p-2 text-[#111A2D] focus:outline-none">
+          <div className="hidden sm:flex items-center border-l  border-r border-gray-200 p-3 h-10">
+            <button onClick={() => setShowNotification(true)} className="relative p-2 text-[#111A2D] focus:outline-none cursor-pointer">
               <img src={notification} alt="" className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
           </div>

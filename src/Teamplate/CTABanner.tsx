@@ -77,6 +77,10 @@ const CTABanner: React.FC = () => {
   xt-white font-medium text-lg">Start Now</span>
 </button> */}
     <LequidGlassBtn/>
+
+<div className="container">
+    <button className="apple-liquid-glass">Start Now</button>
+</div>
              </div>
 
 

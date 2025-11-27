@@ -320,8 +320,8 @@
 
 
 import React, { useState } from 'react';
-import call from '../../../assets/svgIcon/callLogs.svg';
-import vediocal from '../../../assets/svgIcon/videoCall.svg';
+// import call from '../../../assets/svgIcon/callLogs.svg';
+// import vediocal from '../../../assets/svgIcon/videoCall.svg';
 import kurmisadia from '../../../assets/svgIcon/kurmisadia.svg';
 import searchIcon from '../../../assets/svgIcon/search.svg';
 import home from '../../../assets/svgIcon/homeIcon.svg';
@@ -402,10 +402,10 @@ const SupportLeft: React.FC = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-                    <img src={vediocal} alt="Video Call" />
+                    {/* <img src={vediocal} alt="Video Call" /> */}
                   </button>
                   <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-                    <img src={call} alt="Call" />
+                    {/* <img src={call} alt="Call" /> */}
                   </button>
                 </div>
               </div>

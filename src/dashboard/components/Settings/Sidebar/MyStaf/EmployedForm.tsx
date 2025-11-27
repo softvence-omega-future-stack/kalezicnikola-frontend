@@ -1,6 +1,20 @@
-import { ChevronDown } from "lucide-react";
+import { useState } from "react";
+import CustomDropdown from "../CustomDropdown";
+
 
 export default function EmployeeDetailsForm() {
+  const [formData, setFormData] = useState({
+    department: "",
+    reportingTo: "",
+    employmentType: "",
+    workSchedule: "",
+    workHours: "",
+  });
+
+  const handleDropdownChange = (field: keyof typeof formData, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
   return (
     <div className="p-4 sm:p-8 bg-white rounded-xl  space-y-8">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-8">
@@ -16,20 +30,20 @@ export default function EmployeeDetailsForm() {
         </div>
 
         {/* Department */}
-        <div className="relative flex flex-col space-y-1">
+        <div className="flex flex-col space-y-1">
           <label className="text-base font-medium text-[#171c35]">Department</label>
-          <select 
-            className="w-full px-4 py-2.5 text-sm text-[#667085] bg-white border border-gray-300 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            defaultValue=""
-          >
-            <option value="" disabled>Select department</option>
-            <option>Sales</option>
-            <option>Marketing</option>
-            <option>Technology</option>
-            <option>HR</option>
-            <option>Finance</option>
-          </select>
-          <ChevronDown className="absolute right-3  bottom-1/2 top-7 translate-y-1/2 w-5 h-5 text-[#667085] pointer-events-none" />
+          <CustomDropdown
+            value={formData.department}
+            onChange={(val) => handleDropdownChange("department", val)}
+            options={[
+              { value: "sales", label: "Sales" },
+              { value: "marketing", label: "Marketing" },
+              { value: "technology", label: "Technology" },
+              { value: "hr", label: "HR" },
+              { value: "finance", label: "Finance" },
+            ]}
+            placeholder="Select department"
+          />
         </div>
 
         {/* Row 2 */}
@@ -42,19 +56,19 @@ export default function EmployeeDetailsForm() {
           />
         </div>
 
-        <div className="relative flex flex-col space-y-1">
+        {/* Reporting To */}
+        <div className="flex flex-col space-y-1">
           <label className="text-base font-medium text-[#171c35]">Reporting To</label>
-          <select 
-            className="w-full px-4 py-2.5 text-sm text-[#667085] bg-white border border-gray-300 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            defaultValue=""
-          >
-            <option value="" disabled>Select manager</option>
-            <option>Manager A</option>
-            <option>Manager B</option>
-            <option>Manager C</option>
-          </select>
-          <ChevronDown className="absolute right-3  bottom-1/2 top-7 translate-y-1/2 w-5 h-5 text-[#667085] pointer-events-none" />
-          
+          <CustomDropdown
+            value={formData.reportingTo}
+            onChange={(val) => handleDropdownChange("reportingTo", val)}
+            options={[
+              { value: "managerA", label: "Manager A" },
+              { value: "managerB", label: "Manager B" },
+              { value: "managerC", label: "Manager C" },
+            ]}
+            placeholder="Select manager"
+          />
         </div>
 
         {/* Row 3 */}
@@ -66,48 +80,50 @@ export default function EmployeeDetailsForm() {
           />
         </div>
 
-        <div className="relative flex flex-col space-y-1">
+        {/* Employment Type */}
+        <div className="flex flex-col space-y-1">
           <label className="text-base font-medium text-[#171c35]">Employment Type</label>
-          <select 
-            className="w-full px-4 py-2.5 text-sm text-[#667085] bg-white border border-gray-300 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            defaultValue=""
-          >
-            <option value="" disabled>Select type</option>
-            <option>Full-time</option>
-            <option>Part-time</option>
-            <option>Contract</option>
-          </select>
-          <ChevronDown className="absolute right-3  bottom-1/2 top-7 translate-y-1/2 w-5 h-5 text-[#667085] pointer-events-none" />
+          <CustomDropdown
+            value={formData.employmentType}
+            onChange={(val) => handleDropdownChange("employmentType", val)}
+            options={[
+              { value: "full-time", label: "Full-time" },
+              { value: "part-time", label: "Part-time" },
+              { value: "contract", label: "Contract" },
+            ]}
+            placeholder="Select type"
+          />
         </div>
 
         {/* Row 4 */}
-        <div className="relative flex flex-col space-y-1">
+        <div className="flex flex-col space-y-1">
           <label className="text-base font-medium text-[#171c35]">Work Schedule</label>
-          <select 
-            className="w-full px-4 py-2.5 text-sm text-[#667085] bg-white border border-gray-300 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            defaultValue=""
-          >
-            <option value="" disabled>Select schedule</option>
-            <option>9:00 AM - 5:00 PM</option>
-            <option>Flexible</option>
-            <option>Shift-based</option>
-          </select>
-          <ChevronDown className="absolute right-3  bottom-1/2 top-7 translate-y-1/2 w-5 h-5 text-[#667085] pointer-events-none" />
+          <CustomDropdown
+            value={formData.workSchedule}
+            onChange={(val) => handleDropdownChange("workSchedule", val)}
+            options={[
+              { value: "9-5", label: "9:00 AM - 5:00 PM" },
+              { value: "flexible", label: "Flexible" },
+              { value: "shift", label: "Shift-based" },
+            ]}
+            placeholder="Select schedule"
+          />
         </div>
 
-        <div className="relative flex flex-col space-y-1">
+        <div className="flex flex-col space-y-1">
           <label className="text-base font-medium text-[#171c35]">Work Hours (Weekly)</label>
-          <select 
-            className="w-full px-4 py-2.5 text-sm text-[#667085] bg-white border border-gray-300 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            defaultValue=""
-          >
-            <option value="" disabled>Select hours</option>
-            <option>40 hours</option>
-            <option>30 hours</option>
-            <option>20 hours</option>
-          </select>
-          <ChevronDown className="absolute right-3 bottom-1/2 top-7 translate-y-1/2 w-5 h-5 text-[#667085] pointer-events-none" />
+          <CustomDropdown
+            value={formData.workHours}
+            onChange={(val) => handleDropdownChange("workHours", val)}
+            options={[
+              { value: "40", label: "40 hours" },
+              { value: "30", label: "30 hours" },
+              { value: "20", label: "20 hours" },
+            ]}
+            placeholder="Select hours"
+          />
         </div>
+
       </div>
     </div>
   );

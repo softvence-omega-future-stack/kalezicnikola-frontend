@@ -47,8 +47,9 @@ const Home = () => {
     </div>
     <FAQSection />
     <CTABanner />
-    <Footer />
+   
   </div>
+   <Footer />
 </div>
 
   );
