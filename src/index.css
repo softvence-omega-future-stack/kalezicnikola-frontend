@@ -20,50 +20,147 @@ body {
 }
 
 
-/* @keyframes shimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-@keyframes shimmerReverse {
-  0% { transform: translateX(100%); }
-  100% { transform: translateX(-100%); }
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
-@keyframes floating1 {
-  0%, 100% { transform: translateY(0); opacity: 0.4; }
-  50% { transform: translateY(-20px) scale(1.1); opacity: 0.7; }
+body {
+  overflow-x: hidden;
+  /* Remove if you have custom scrollbar */
 }
 
-@keyframes floating2 {
-  0%, 100% { transform: translateY(0); opacity: 0.4; }
-  50% { transform: translateY(-25px) scale(1.15); opacity: 0.7; }
+/* 2. GPU Acceleration for All Animated Elements */
+.animated-element,
+[class*="animate"],
+[class*="transition"],
+.card,
+.hero-section,
+.navbar {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform, opacity;
 }
 
-@keyframes floating3 {
-  0%, 100% { transform: translateY(0); opacity: 0.4; }
-  50% { transform: translateY(-30px) scale(1.2); opacity: 0.7; }
+/* 3. Optimize Images - Add to all image containers */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  transform: translateZ(0);
 }
 
-@keyframes floating4 {
-  0%, 100% { transform: translateY(0); opacity: 0.4; }
-  50% { transform: translateY(-18px) scale(1.1); opacity: 0.7; }
+/* 4. Fix for Fixed/Sticky Elements */
+.navbar,
+.fixed-header,
+.sticky-sidebar,
+[class*="fixed"],
+[class*="sticky"] {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform;
 }
 
-@keyframes floating5 {
-  0%, 100% { transform: translateY(0); opacity: 0.4; }
-  50% { transform: translateY(-28px) scale(1.2); opacity: 0.7; }
+/* 5. Smooth Transitions */
+.transition,
+.hover-effect,
+button,
+a {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@keyframes rotate {
-  0% { transform: translate(-50%, -50%) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) rotate(360deg); }
+/* 6. Container Optimization */
+.container,
+.section,
+.wrapper {
+  transform: translate3d(0, 0, 0);
 }
 
-@keyframes ripple {
-  0% { transform: scale(1); opacity: 1; }
-  100% { transform: scale(1.1); opacity: 0; } */
-/* } */
+/* 7. Remove Jank from Parallax/Scroll Effects */
+.parallax,
+.scroll-effect {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* ============================================
+   REMOVE PROBLEMATIC ANIMATIONS
+   ============================================ */
+
+/* If you have these, they might cause jank */
+/* Remove or optimize them */
+
+/* Bad - causes reflow */
+/* 
+.bad-animation {
+  animation: moveWidth 1s infinite;
+}
+@keyframes moveWidth {
+  from { width: 100px; }
+  to { width: 200px; }
+}
+*/
+
+/* Good - uses transform */
+.good-animation {
+  animation: moveTransform 1s infinite;
+}
+@keyframes moveTransform {
+  from { transform: translateX(0); }
+  to { transform: translateX(100px); }
+}
+
+/* ============================================
+   TAILWIND SPECIFIC FIXES
+   ============================================ */
+
+/* If using Tailwind, add these to your tailwind.config.js 
+   or global CSS */
+
+.smooth-scroll {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Optimize backdrop blur if you're using it */
+.backdrop-blur-sm,
+.backdrop-blur-md,
+.backdrop-blur-lg {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  will-change: backdrop-filter;
+}
+
+/* ============================================
+   RESPONSIVE OPTIMIZATION
+   ============================================ */
+
+/* Disable animations on low-end devices */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Mobile specific optimizations */
+@media (max-width: 768px) {
+  * {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+}
+
 
 /* Animation classes */
 .animate-shimmer { animation: shimmer 4s ease-in-out infinite; }
@@ -76,50 +173,7 @@ body {
 .animate-floating4 { animation: floating4 6s ease-in-out infinite; }
 .animate-floating5 { animation: floating5 7s ease-in-out infinite; }
 
-/* আপনার globals.css বা index.css এ এটা add করুন */
 
-input[type="date"]::-webkit-calendar-picker-indicator {
-  background: transparent;
-  bottom: 0;
-  color: transparent;
-  cursor: pointer;
-  height: auto;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: auto;
-  opacity: 0;
-}
-
-input[type="date"]::-webkit-inner-spin-button {
-  display: none;
-  -webkit-appearance: none;
-}
-
-input[type="date"]::-webkit-clear-button {
-  display: none;
-  -webkit-appearance: none;
-}
-input[type="date"]::-webkit-calendar-picker-indicator {
-  opacity: 0 !important;
-  position: absolute !important;
-  width: 100% !important;
-  height: 100% !important;
-  top: 0 !important;
-  left: 0 !important;
-  cursor: pointer !important;
-}
-
-input[type="date"]::-webkit-inner-spin-button,
-input[type="date"]::-webkit-clear-button {
-  display: none !important;
-  -webkit-appearance: none !important;
-}
-/* Firefox এর জন্য */
-input[type="date"] {
-  -moz-appearance: textfield;
-}
 
 @theme {
   --color-headingBlack: #171C35;

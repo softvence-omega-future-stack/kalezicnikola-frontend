@@ -9,7 +9,7 @@ export default function SuccessfullNewPassword() {
 const navigate = useNavigate()
   
   return (
-    <div className=" flex min-h-screen relative bg-[#F3F6F6] ">
+    <div className=" flex relative bg-[#F3F6F6] ">
       {/* Left Side - Image */}
       <div className="hidden lg:block rounded-[16px] p-[10px] lg:w-1/2 relative">
         <img

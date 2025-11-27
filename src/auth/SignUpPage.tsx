@@ -39,7 +39,7 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#F3F6F6] lg:flex-row">
+    <div className=" flex flex-col bg-[#F3F6F6] lg:flex-row">
       {/* Left Side - Image with Header */}
       <div className="hidden lg:block lg:w-1/2 rounded-[16px] p-[10px] relative">
         <img

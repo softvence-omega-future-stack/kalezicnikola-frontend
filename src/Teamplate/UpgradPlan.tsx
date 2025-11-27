@@ -299,7 +299,7 @@ const UpgradPlan = () => {
 
         {/* Billing Toggle */}
         <div className="flex justify-center mb-12">
-          <div className="inline-flex bg-white rounded-full p-1  w-[266px] border border-gray-200 shadow-sm">
+          <div className="inline-flex bg-white rounded-full p-1  w-[266px] border border-[#EAECF0] shadow-sm">
             <button
               onClick={() => setBillingCycle('monthly')}
               className={`px-6 py-2.5 text-sm font-normal w-[131px] rounded-full transition-colors cursor-pointer ${

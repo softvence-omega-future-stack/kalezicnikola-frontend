@@ -80,7 +80,7 @@ export default function OtpPage() {
 
 //   const isComplete = otp.every(digit => digit !== '');
   return (
-    <div className=" min-h-screen flex relative bg-[#F3F6F6]">
+    <div className="  flex relative bg-[#F3F6F6]">
       {/* Left Side - Image */}
       <div className="hidden rounded-[16px] p-[10px] lg:block lg:w-1/2 relative">
         <img

@@ -79,7 +79,7 @@ const Footer: React.FC = () => {
                         </nav>
 
                         {/* ShadowBoxes als Hintergrund-Dekoration */}
-                        <div className="absolute inset-x-0 bottom-0 z-0 pointer-events-none opacity-50">
+                        <div className="absolute w-full inset-x-0 bottom-0 z-0 pointer-events-none opacity-50">
                             <ShadowBox
                                 width="321px"
                                 height="232px"

@@ -15,7 +15,7 @@ const navigate = useNavigate()
   };
 
   return (
-    <div className=" flex relative min-h-screen bg-[#F3F6F6]">
+    <div className=" flex relative  bg-[#F3F6F6]">
       {/* Left Side - Image */}
       <div className="hidden p-[10px] rounded-[16px] lg:block lg:w-1/2 relative">
         <img

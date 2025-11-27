@@ -31,10 +31,10 @@ const DoclineHero: React.FC = () => {
 
           {/* Buttons */}
           <div className="flex flex-col md:flex-row w-full items-center gap-3">
-            <button onClick={()=> navigate('/login')} className="w-full md:w-auto py-6 px-12 rounded-[12px] text-base font-medium bg-[#526FFF] text-white cursor-pointer">
+            <button onClick={()=> navigate('/login')} className="w-full md:w-auto py-5 px-12 rounded-[12px] text-base font-medium bg-[#526FFF] text-white cursor-pointer">
               Get Started
             </button>
-            <button className="w-full md:w-auto py-6 px-12 rounded-[12px] text-base font-medium border border-[#526FFF] text-[#526FFF] bg-[rgba(82,111,255,0.1)] cursor-pointer">
+            <button className="w-full md:w-auto py-5 px-12 rounded-[12px] text-base font-medium border border-[#526FFF] text-[#526FFF] bg-[rgba(82,111,255,0.1)] cursor-pointer">
               Book Demo
             </button>
           </div>

@@ -68,7 +68,7 @@ export default function ManageSubscription({ setActiveTab }: ManageSubscriptionP
         
         {/* Billing Toggle */}
         <div className="flex justify-center mb-12">
-  <div className="inline-flex bg-white w-[266px] rounded-full p-1 border border-gray-200 shadow-sm">
+  <div className="inline-flex bg-white w-[266px] rounded-full p-1 border border-[#EAECF0] shadow-sm">
     
     {/* Monthly Button */}
     <button
