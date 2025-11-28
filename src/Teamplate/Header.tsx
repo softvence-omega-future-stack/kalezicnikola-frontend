@@ -213,7 +213,7 @@ import { useNavigate } from "react-router-dom";
 import logo from "../assets/svgIcon/logo.svg";
 import logoText from "../assets/svgIcon/textLogo.svg";
 import ShadowBox from "./ShadowBox";
-
+import './bnnarButon.css'
 const DoclineHeader: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
@@ -258,7 +258,7 @@ const DoclineHeader: React.FC = () => {
     <header ref={headerRef} className="w-full  fixed inset-0  z-[9999] pt-5 px-2 sm:px-4">
       <div className="relative">
         <div
-          className="bg-white/10 mx-auto backdrop-blur-md border-2 border-white rounded-[100px] flex items-center justify-between relative w-[93%] z-[9999]"
+          className="bg-white/10 mx-auto btn backdrop-blur-md border-2 border-white rounded-[100px] flex items-center justify-between relative w-[93%] z-[9999]"
           style={{
             padding: "10px 10px 10px 30px",
           }}

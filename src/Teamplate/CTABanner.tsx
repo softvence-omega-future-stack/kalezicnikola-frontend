@@ -31,7 +31,7 @@ const CTABanner: React.FC = () => {
   {/* Button */}
   <div className="w-full lg:w-auto mt-4 lg:mt-0 flex justify-center">
     <button onClick={()=> navigate('/login')} className="btn w-full lg:w-[218px] py-4 rounded-full cursor-pointer text-white bg-white/10">
-      Click Me
+      Start Now
     </button>
   </div>
 </div>
