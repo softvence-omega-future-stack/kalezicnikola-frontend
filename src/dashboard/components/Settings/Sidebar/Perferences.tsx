@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { ChevronDown, Check } from "lucide-react";
+import Toggle from "@/common/Toggle";
 
 interface DropdownOption {
   value: string;
@@ -20,6 +21,9 @@ interface Settings {
   reminderTime: string;
   bufferTime: string;
 }
+
+// Only boolean fields for Toggle
+type BooleanField = "allowOnlineBooking" | "requireApproval" | "sendReminders";
 
 function CustomDropdown({ value, onChange, options, placeholder = "Select" }: {
   value: string;
@@ -72,27 +76,37 @@ function CustomDropdown({ value, onChange, options, placeholder = "Select" }: {
         />
       </div>
 
-      {open && createPortal(
-        <div
-          id="dropdown-portal"
-          style={{ position: "absolute", top: `${position.top}px`, left: `${position.left}px`, width: `${position.width}px`, zIndex: 99999 }}
-          className="bg-white border border-gray-200 rounded-xl shadow-xl max-h-60 overflow-y-auto"
-        >
-          {options.map((opt) => (
-            <div
-              key={opt.value}
-              onClick={() => { onChange(opt.value); setOpen(false); }}
-              className={`px-4 py-2.5 text-sm cursor-pointer transition-colors flex items-center justify-between ${
-                opt.value === value ? "bg-blue-50 text-[#526FFF] font-medium" : "text-[#111a2d] hover:bg-gray-100"
-              }`}
-            >
-              {opt.label}
-              {opt.value === value && <Check size={16} className="text-[#526FFF]" />}
-            </div>
-          ))}
-        </div>,
-        document.body
-      )}
+      {open &&
+        createPortal(
+          <div
+            id="dropdown-portal"
+            style={{
+              position: "absolute",
+              top: `${position.top}px`,
+              left: `${position.left}px`,
+              width: `${position.width}px`,
+              zIndex: 99999,
+            }}
+            className="bg-white border border-gray-200 rounded-xl shadow-xl max-h-60 overflow-y-auto"
+          >
+            {options.map((opt) => (
+              <div
+                key={opt.value}
+                onClick={() => {
+                  onChange(opt.value);
+                  setOpen(false);
+                }}
+                className={`px-4 py-2.5 text-sm cursor-pointer transition-colors flex items-center justify-between ${
+                  opt.value === value ? "bg-blue-50 text-[#526FFF] font-medium" : "text-[#111a2d] hover:bg-gray-100"
+                }`}
+              >
+                {opt.label}
+                {opt.value === value && <Check size={16} className="text-[#526FFF]" />}
+              </div>
+            ))}
+          </div>,
+          document.body
+        )}
     </>
   );
 }
@@ -114,7 +128,7 @@ export default function Performances() {
 
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
-  const handleToggle = (field: keyof Settings) => {
+  const handleToggle = (field: BooleanField) => {
     setSettings((prev) => ({ ...prev, [field]: !prev[field] }));
   };
 
@@ -124,21 +138,14 @@ export default function Performances() {
     setTimeout(() => setToastMessage(null), 3000);
   };
 
-  const ToggleSwitch: React.FC<{ field: keyof Settings; label: string }> = ({ field, label }) => (
+  // ✅ Reusable ToggleSwitch for boolean fields
+  const ToggleSwitch: React.FC<{ field: BooleanField; label: string }> = ({ field, label }) => (
     <div className="flex items-center">
-      <button
+      <Toggle enabled={settings[field]} onToggle={() => handleToggle(field)} />
+      <span
+        className="ml-3 text-sm font-semibold text-[#111a2d] select-none cursor-pointer"
         onClick={() => handleToggle(field)}
-        className={`relative inline-flex h-6 w-12 items-center rounded-full transition-colors cursor-pointer ${
-          settings[field] ? "bg-[#526FFF]" : "bg-gray-300"
-        }`}
       >
-        <span
-          className={`inline-block h-5 w-5 transform rounded-full bg-white transition-transform ${
-            settings[field] ? "translate-x-6" : "translate-x-0.5"
-          }`}
-        />
-      </button>
-      <span className="ml-3 text-sm font-semibold text-[#111a2d] select-none cursor-pointer" onClick={() => handleToggle(field)}>
         {label}
       </span>
     </div>
@@ -147,7 +154,7 @@ export default function Performances() {
   return (
     <div className="min-h-screen bg-white p-4 sm:p-8 rounded-3xl">
       <div className="rounded-3xl p-6 md:p-8 lg:pb-10">
-
+        {/* Regional Settings */}
         <div className="mb-8">
           <h1 className="text-xl font-semibold text-[#171C35] mb-1">Regional Settings</h1>
           <p className="text-sm font-medium text-gray-600">Configure time, date, and regional preferences</p>
@@ -212,6 +219,7 @@ export default function Performances() {
           </div>
         </div>
 
+        {/* Calendar Preferences */}
         <div className="mb-8 border-t pt-6 border-gray-100">
           <h2 className="text-lg font-semibold text-[#171C35] mb-6">Calendar Preferences</h2>
 
@@ -239,13 +247,14 @@ export default function Performances() {
                   { value: "15 min..", label: "15 minutes" },
                   { value: "30 min..", label: "30 minutes (Standard)" },
                   { value: "45 min..", label: "45 minutes" },
-                  { value: "60 min..", label: "60 minutes (Hourly)" },
+                  { value: "60 min..", label: "Hourly" },
                 ]}
               />
             </div>
           </div>
         </div>
 
+        {/* Online Booking & Reminders */}
         <div className="mb-8 border-t pt-6 border-gray-100">
           <h2 className="text-lg font-semibold text-[#171C35] mb-6">Online Booking & Reminders</h2>
 
@@ -286,20 +295,22 @@ export default function Performances() {
           </div>
         </div>
 
+        {/* Buttons */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-6 border-t border-gray-200">
-          <button className="w-full h-12 text-base font-medium text-[#111a2d] bg-white border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors">
+          <button className="w-full h-12 text-base font-medium text-[#111a2d] bg-white border cursor-pointer border-gray-300 rounded-xl hover:bg-gray-50 transition-colors">
             Cancel
           </button>
 
           <button
             onClick={handleSaveChanges}
-            className="w-full h-12 text-base font-medium text-white bg-[#526FFF] rounded-xl hover:bg-[#4158D9] transition-colors"
+            className="w-full h-12 text-base font-medium text-white bg-[#526FFF] cursor-pointer rounded-xl hover:bg-[#4158D9] transition-colors"
           >
             Save Changes
           </button>
         </div>
       </div>
 
+      {/* Toast */}
       {toastMessage && (
         <div className="fixed bottom-4 right-4 z-[999999]">
           <div className="bg-green-600 text-white px-6 py-3 rounded-xl shadow-2xl transition-all">

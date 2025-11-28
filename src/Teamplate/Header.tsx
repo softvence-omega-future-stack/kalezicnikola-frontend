@@ -255,7 +255,7 @@ const DoclineHeader: React.FC = () => {
   ];
 
   return (
-    <header ref={headerRef} className="w-full fixed top-0 left-0 right-0 z-[9999] pt-5 px-2 sm:px-4">
+    <header ref={headerRef} className="w-full  fixed inset-0  z-[9999] pt-5 px-2 sm:px-4">
       <div className="relative">
         <div
           className="bg-white/10 mx-auto backdrop-blur-md border-2 border-white rounded-[100px] flex items-center justify-between relative w-[93%] z-[9999]"
