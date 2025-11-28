@@ -26,10 +26,10 @@ const tab = searchParams.get("tab");
   }, [tab]);
 
   return (
-    <div className="mt-[30px]">
+    <div className=" md:mt-[30px]">
 
       {/* Top Header Section */}
-      <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between pb-6 mb-6">
+      <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between pb-6 md:pb-12">
         
         {/* Breadcrumb + Title */}
         <div>
@@ -55,17 +55,17 @@ const tab = searchParams.get("tab");
 
 
       {/* Main Layout */}
-      <div className="flex flex-col lg:flex-row w-full  items-stretch">
+      <div className="flex flex-col xl:flex-row w-full gap-2  items-stretch">
   {/* Sidebar */}
-  <div className="w-full lg:w-[240px] px-4 bg-white rounded-xl flex flex-col h-full">
-    <h2 className="text-[#171C35] font-semibold text-xl pl-3 leading-5 pt-6">
+  <div className="w-full lg:w-[240px] md:px-4 bg-white rounded-xl flex flex-col h-full">
+    <h2 className="text-headingBlack font-semibold text-xl pl-3 leading-5 pt-6">
       Setting
     </h2>
     <Sidebar activeItem={activeItem} setActiveItem={setActiveItem}  />
   </div>
 
   {/* Main Content */}
-  <div className="flex-1 w-full bg-[#F3F6F6] mt-5 lg:mt-0 rounded-2xl pl-4 pb-6 h-full">
+  <div className="flex-1 w-full bg-[#F3F6F6] mt-5 lg:mt-0 rounded-xl md:rounded-2xl md:pl-4 pb-6 h-full">
     {activeItem === "Personal Info" && <PersonalInfoForm />}
     {activeItem === "My Staff" && <StaffManagement />}
     {activeItem === "Change Password" && <ChangePassword />}

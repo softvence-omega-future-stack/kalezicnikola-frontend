@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Play } from 'lucide-react';
-import PatientTranscriptPage from './TransscriptModal';
 import { FiX } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
+import DateRange from './DateRange';
+import PatientTranscriptPage from './TransscriptModal';
 
 import homeIcon from '../../../assets/svgIcon/homeIcon.svg';
-import DateRange from './DateRange';
-
-//import calendar from '../../../assets/svgIcon/calendar2.svg';
-
 
 interface CallLog {
   id: number;
@@ -20,9 +17,9 @@ interface CallLog {
 }
 
 const CallLogsPage: React.FC = () => {
-  //const [selectedRows, setSelectedRows] = useState<number[]>([]);
   const [currentCall, setCurrentCall] = useState<CallLog | null>(null);
   const navigate = useNavigate();
+  const modalRef = useRef<HTMLDivElement>(null);
 
   const callLogs: CallLog[] = [
     { id: 1, patientName: 'Floyd Miles', timestamp: '01-09-2025 at 10:32:15', phoneNumber: '+88123456', status: 'Successful', duration: '05:40 Sec' },
@@ -38,19 +35,22 @@ const CallLogsPage: React.FC = () => {
     { id: 11, patientName: 'Floyd Miles', timestamp: '01-09-2025 at 10:32:15', phoneNumber: '+88123456', status: 'Successful', duration: '05:40 Sec' },
   ];
 
-  // const toggleRowSelection = (id: number) => {
-  //   setSelectedRows(prev =>
-  //     prev.includes(id) ? prev.filter(rowId => rowId !== id) : [...prev, id]
-  //   );
-  // };
+  // Close modal on click outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+        setCurrentCall(null);
+      }
+    };
 
-  // const toggleAllRows = () => {
-  //   if (selectedRows.length === callLogs.length) {
-  //     setSelectedRows([]);
-  //   } else {
-  //     setSelectedRows(callLogs.map(log => log.id));
-  //   }
-  // };
+    if (currentCall) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [currentCall]);
 
   const getStatusStyle = (status: string) => {
     switch (status) {
@@ -83,121 +83,122 @@ const CallLogsPage: React.FC = () => {
   };
 
   return (
-    <div  className="min-h-screen mt-[30px] ">
+    <div className="min-h-screen mt-[30px]">
+
       {/* Header Navigation */}
       <div className="">
         <div className="flex flex-wrap items-center gap-2 text-sm">
           <img src={homeIcon} alt="home" className="w-4 h-4" />
-                <svg xmlns="http://www.w3.org/2000/svg" width="6" height="10" viewBox="0 0 6 10" fill="none">
-  <path d="M0.666992 8.66699L4.66699 4.66699L0.666992 0.666992" stroke="#D0D5DD" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-          <span onClick={()=> navigate('/dashboard')} className="text-gray-500 text-xs sm:text-sm cursor-pointer ">Dashboard</span>
           <svg xmlns="http://www.w3.org/2000/svg" width="6" height="10" viewBox="0 0 6 10" fill="none">
-  <path d="M0.666992 8.66699L4.66699 4.66699L0.666992 0.666992" stroke="#D0D5DD" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+            <path d="M0.666992 8.66699L4.66699 4.66699L0.666992 0.666992" stroke="#D0D5DD" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+          <span onClick={() => navigate('/dashboard')} className="text-gray-500 text-xs sm:text-sm cursor-pointer">Dashboard</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="6" height="10" viewBox="0 0 6 10" fill="none">
+            <path d="M0.666992 8.66699L4.66699 4.66699L0.666992 0.666992" stroke="#D0D5DD" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
           <span className="text-[#042435] text-sm font-semibold">Call Logs</span>
         </div>
       </div>
 
       {/* Main Content */}
-    <div className="mt-4">
-  <h1 className="text-xl md:text-2xl font-semibold text-[#171C35] mb-6">Call Logs</h1>
+      <div className="mt-4">
+        <h1 className="text-xl md:text-2xl font-semibold text-[#171C35] mb-6">Call Logs</h1>
 
-  {/* Table Container */}
-  <div className="rounded-2xl bg-white overflow-x-auto p-6">
-    {/* Table Header */}
-    <div className="flex flex-wrap justify-between items-center p-4 ">
-      <h2 className="text-base font-semibold text-[#171C35]">Call Logs</h2>
-     <DateRange/>
-    </div>
+        {/* Table Container */}
+        <div className="rounded-2xl bg-white p-6 relative z-10">
 
-    {/* Table */}
-    <table className="min-w-full  divide-gray-200 table-fixed">
-     <thead>
-  <tr>
-    {/* Patient Name */}
-    <th className="px-2 sm:px-4 py-2 text-left text-sm md:text-base font-semibold text-[#171C35]">
-      <div className="flex items-center gap-2 min-w-0">
-      
-        <span className="truncate">Patient Name</span>
+          {/* Header */}
+          <div className="flex flex-wrap justify-between gap-4 items-center p-4 relative z-20">
+            <h2 className="text-base font-semibold text-[#171C35]">Call Logs</h2>
+            <DateRange />
+          </div>
+
+          {/* Table — Only this scrolls */}
+          <div className="relative z-0 max-h-[60vh] overflow-x-auto overflow-y-hidden">
+            <table className="min-w-full divide-gray-200 table-fixed">
+              <thead>
+                <tr>
+                  <th className="px-2 sm:px-4 py-2 text-left text-sm md:text-base font-semibold text-[#171C35]">
+                    <div className="flex items-center gap-2 min-w-0">
+                      <span className="truncate">Patient Name</span>
+                    </div>
+                  </th>
+                  <th className="px-2 sm:px-4 py-2 text-left text-sm md:text-base font-semibold text-[#171C35]">Timestamp</th>
+                  <th className="px-2 sm:px-4 py-2 text-left text-sm md:text-base font-semibold text-[#171C35]">
+                    <div className="flex items-center min-w-0">
+                      <span className="truncate">Phone Number</span>
+                    </div>
+                  </th>
+                  <th className="px-2 sm:px-4 py-2 text-left text-sm md:text-base font-semibold text-[#171C35]">Status</th>
+                  <th className="px-2 sm:px-4 py-2 text-left text-sm md:text-base font-semibold text-[#171C35]">Duration</th>
+                  <th className="px-2 sm:px-4 py-2 text-left text-sm md:text-base font-semibold text-[#171C35]">Transcript</th>
+                  <th className="px-2 sm:px-4 py-2 text-left text-sm md:text-base font-semibold text-[#171C35]">Profile</th>
+                </tr>
+              </thead>
+
+              <tbody className="divide-y divide-gray-100">
+                {callLogs.map((log) => (
+                  <tr key={log.id} className="hover:bg-gray-50">
+                    <td className="px-2 sm:px-4 py-2 text-sm font-semibold text-[#111A2D] whitespace-nowrap">
+                      {log.patientName}
+                    </td>
+                    <td className="px-2 sm:px-4 py-2 text-sm text-[#111A2D] whitespace-nowrap">{log.timestamp}</td>
+                    <td className="px-2 sm:px-4 py-2 text-sm text-[#111A2D] whitespace-nowrap">{log.phoneNumber}</td>
+
+                    <td className="px-2 sm:px-4 py-2 whitespace-nowrap">
+                      <span className={`inline-flex w-[109px] justify-center items-center gap-1 px-2 py-1 rounded-full text-sm font-semibold ${getStatusStyle(log.status)}`}>
+                        <span className={`w-2 h-2 rounded-full ${getStatusDot(log.status)}`}></span>
+                        {log.status}
+                      </span>
+                    </td>
+
+                    <td className="px-2 sm:px-4 py-2 text-sm text-[#111A2D] whitespace-nowrap">{log.duration}</td>
+
+                    <td className="px-2 sm:px-4 py-2 whitespace-nowrap">
+                      <button
+                        onClick={() => setCurrentCall(log)}
+                        className="flex items-center gap-2 px-3 py-1 text-sm font-semibold text-[#171C35] rounded-2xl border border-gray-300 hover:bg-gray-50"
+                      >
+                        Play <Play size={14} fill="currentColor" />
+                      </button>
+                    </td>
+
+                    <td className="px-2 sm:px-4 py-2 whitespace-nowrap">
+                      <button
+                        onClick={() => navigate("/dashboard/patients")}
+                        className="flex items-center gap-2 text-sm font-medium text-[#526FFF] hover:underline"
+                      >
+                        View Profile
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                          <g clipPath="url(#clip0_452_7031)">
+                            <path d="M3.74264 12.2426L12.2279 3.75736M12.2279 3.75736V12.2426M12.2279 3.75736H3.74264" stroke="#526FFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                          </g>
+                          <defs>
+                            <clipPath id="clip0_452_7031">
+                              <rect width="16" height="16" rx="8" fill="white" />
+                            </clipPath>
+                          </defs>
+                        </svg>
+                      </button>
+                    </td>
+
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
-    </th>
 
-    {/* Timestamp */}
-    <th className="px-2 sm:px-4 py-2 text-left text-sm md:text-base  font-semibold text-[#171C35] ">
-      Timestamp
-    </th>
-
-    {/* Phone Number */}
-    <th className="px-2 sm:px-4 py-2 text-left text-sm md:text-base  font-semibold text-[#171C35]">
-      <div className="flex items-center min-w-0">
-        <span className="truncate">Phone Number</span>
-      </div>
-    </th>
-
-    {/* Other Columns */}
-    <th className="px-2 sm:px-4 py-2 text-left text-sm md:text-base  font-semibold text-[#171C35]">Status</th>
-    <th className="px-2 sm:px-4 py-2 text-left text-sm md:text-base  font-semibold text-[#171C35] ">Duration</th>
-    <th className="px-2 sm:px-4 py-2 text-left text-sm md:text-base  font-semibold text-[#171C35]">Transcript</th>
-    <th className="px-2 sm:px-4 py-2 text-left text-sm md:text-base  font-semibold text-[#171C35]">Profile</th>
-  </tr>
-</thead>
-      <tbody className="divide-y divide-gray-100">
-        {callLogs.map((log) => (
-          <tr key={log.id} className="hover:bg-gray-50">
-            <td className="px-2 sm:px-4 py-2 flex items-center gap-2 text-sm font-semibold text-[#111A2D] whitespace-nowrap">
-            
-              {log.patientName}
-            </td>
-            <td className="px-2 sm:px-4 py-2 text-sm text-[#111A2D]  whitespace-nowrap">{log.timestamp}</td>
-            <td className="px-2 sm:px-4 py-2 text-sm text-[#111A2D] whitespace-nowrap">{log.phoneNumber}</td>
-            <td className="px-2 sm:px-4 py-2 whitespace-nowrap">
-              <span className={`inline-flex w-[109px] justify-center items-center gap-1 px-2 py-1 rounded-full text-sm font-semibold ${getStatusStyle(log.status)}`}>
-                <span className={`w-2 h-2 rounded-full ${getStatusDot(log.status)}`}></span>
-                {log.status}
-              </span>
-            </td>
-            <td className="px-2 sm:px-4 py-2 text-sm text-[#111A2D] whitespace-nowrap">{log.duration}</td>
-            <td className="px-2 sm:px-4 py-2 whitespace-nowrap">
-              <button
-                onClick={() => setCurrentCall(log)}
-                className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1 text-sm sm:text-base font-semibold text-[#171C35] rounded-2xl border border-gray-300 cursor-pointer"
-              >
-                Play <Play size={14} fill="currentColor" />
-              </button>
-            </td>
-            <td className="px-2 sm:px-4 py-2 whitespace-nowrap">
-              <button
-                onClick={() => navigate("/dashboard/patients")}
-                className="flex items-center gap-1 sm:gap-2 text-sm font-medium text-[#526FFF] cursor-pointer"
-              >
-                View Profile
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <g clipPath="url(#clip0_452_7031)">
-                    <path d="M3.74264 12.2426L12.2279 3.75736M12.2279 3.75736V12.2426M12.2279 3.75736H3.74264" stroke="#526FFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_452_7031">
-                      <rect width="16" height="16" rx="8" fill="white"/>
-                    </clipPath>
-                  </defs>
-                </svg>
-              </button>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
-</div>
-
-
-      {/* Transcript Section */}
+      {/* Transcript Modal */}
       {currentCall && (
-        <div className="fixed inset-0 bg-black/50 flex justify-center items-start p-4 sm:p-6 z-50 overflow-y-auto">
-          <div className="bg-white rounded-xl shadow-lg w-full max-w-[980px] h-[90vh] overflow-y-auto relative mt-20 mx-2 sm:mx-6">
+        <div className="fixed inset-0 bg-black/50 flex justify-center items-start p-4 sm:p-6 z-[100] overflow-y-auto">
+          <div
+            ref={modalRef}
+            className="bg-white rounded-xl shadow-lg w-full max-w-[980px] h-[90vh] overflow-y-auto relative mt-20 mx-2 sm:mx-6"
+          >
             <button
-              className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 cursor-pointer"
+              className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 z-10"
               onClick={() => setCurrentCall(null)}
             >
               <FiX size={20} />

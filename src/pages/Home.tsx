@@ -16,7 +16,7 @@ import UpgradPlan from "@/Teamplate/UpgradPlan";
 import TestimonialSection from "@/Teamplate/WonersSlider";
 import Footer from "@/layout/Footer";
 import Slider from "@/Teamplate/Slider";
-import LequidButton from "@/Teamplate/LequidButtont";
+// import LequidButton from "@/Teamplate/LequidButtont";
 
 const Home = () => {
   return (
@@ -48,7 +48,7 @@ const Home = () => {
     </div>
     <FAQSection />
     <CTABanner />
-    <LequidButton/>
+    {/* <LequidButton/> */}
    
   </div>
    <Footer />

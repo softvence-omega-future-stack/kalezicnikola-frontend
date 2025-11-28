@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import NotificationsDrawer from './Notifications';
 import UserDropdown from './DoctorProfile/DoctorProfileDropdown';
 import karennix from '../../../assets/svgIcon/karen.svg';
@@ -20,11 +20,65 @@ interface MainHeaderProps {
 const MainHeader: React.FC<MainHeaderProps> = ({ onMobileMenuOpen }) => {
     const [showNotification, setShowNotification] = useState(false);
     const [showUserDropdown, setShowUserDropdown] = useState(false);
+    
+    const dropdownRef = useRef<HTMLDivElement>(null);
+
+    // Click outside handler
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+                setShowUserDropdown(false);
+            }
+        };
+
+        if (showUserDropdown) {
+            document.addEventListener('mousedown', handleClickOutside);
+        }
+        
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [showUserDropdown]);
+
+    
+
+    // Body scroll lock
+    useEffect(() => {
+        if (showNotification || showUserDropdown) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, [showNotification, showUserDropdown]);
+
+
+    // In MainHeader:
+const dropdownPortalRef = useRef<HTMLDivElement>(null);
+
+useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+        if (dropdownPortalRef.current && !dropdownPortalRef.current.contains(event.target as Node)) {
+            setShowUserDropdown(false);
+        }
+    };
+
+    if (showUserDropdown) {
+        document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+    };
+}, [showUserDropdown]);
+
 
     return (
-        <div className="flex flex-col w-full">
+        <>
             <header className="w-full h-16 sm:h-20 flex justify-between items-center gap-2 px-3 sm:px-6 
-                bg-[#F3F6F6] top-0 left-0 border-b border-[#D0D5DD]">
+                bg-[#F3F6F6] top-0 left-0 border-b border-[#D0D5DD] z-40 relative">
 
                 {/* Mobile Menu */}
                 <button
@@ -36,7 +90,7 @@ const MainHeader: React.FC<MainHeaderProps> = ({ onMobileMenuOpen }) => {
 
                 {/* Search Bar */}
                 <div className="flex items-center flex-1 min-w-0 max-w-xs sm:max-w-md md:max-w-lg">
-                    <div className="flex items-center gap-2 sm:gap-3 w-full rounded-lg py-2 sm:py-3 px-2 sm:px-4 border border-gray-50 focus-within:border-indigo-300 transition-colors">
+                    <div className="flex items-center gap-2 sm:gap-3 w-full rounded-lg py-2 sm:py-3 px-2 sm:px-4 focus-within:border-indigo-300 transition-colors">
                         <img src={search} alt="Search" className="w-4 h-4 shrink-0" />
                         <input
                             type="text"
@@ -60,8 +114,7 @@ const MainHeader: React.FC<MainHeaderProps> = ({ onMobileMenuOpen }) => {
                             onClick={() => setShowNotification(true)}
                             className="relative p-2 text-[#111A2D] focus:outline-none"
                         >
-                            <img src={notification} alt="Notification" className="w-5 h-5  cursor-pointer" />
-                            {/* Notification Badge */}
+                            <img src={notification} alt="Notification" className="w-5 h-5 cursor-pointer" />
                             <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white">
                                 3
                             </span>
@@ -82,7 +135,7 @@ const MainHeader: React.FC<MainHeaderProps> = ({ onMobileMenuOpen }) => {
                     </div>
 
                     {/* User Profile */}
-                    <div className="relative shrink-0">
+                    <div className="relative shrink-0" >
                         <div
                             className="flex items-center cursor-pointer rounded-full"
                             onClick={() => setShowUserDropdown(!showUserDropdown)}
@@ -97,19 +150,34 @@ const MainHeader: React.FC<MainHeaderProps> = ({ onMobileMenuOpen }) => {
                                 <p className="text-sm text-[#171C35] leading-none mt-1">{userData.role}</p>
                             </div>
                         </div>
-                        {showUserDropdown && (
-                            <UserDropdown onClose={() => setShowUserDropdown(false)} />
-                        )}
                     </div>
-
                 </div>
             </header>
 
-            {/* Notifications Drawer */}
+            {/* UserDropdown - Portal style with backdrop */}
+        {showUserDropdown && (
+  <div className="fixed inset-0 z-[9999]">
+    <div 
+      className="absolute inset-0 bg-black/20 md:bg-transparent"
+      onClick={() => setShowUserDropdown(false)}
+    />
+    <div  className="absolute top-16 sm:top-20 right-3 sm:right-6">
+      <UserDropdown onClose={() => setShowUserDropdown(false)} />
+    </div>
+  </div>
+)}
+
+
+            {/* Notifications Drawer - Portal style */}
             {showNotification && (
-                <NotificationsDrawer onClose={() => setShowNotification(false)} />
+                <div 
+                    className="fixed inset-0 z-[9999]"
+                    style={{ position: 'fixed', zIndex: 9999 }}
+                >
+                    <NotificationsDrawer onClose={() => setShowNotification(false)} />
+                </div>
             )}
-        </div>
+        </>
     );
 };
 

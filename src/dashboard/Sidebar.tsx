@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink, useNavigate, useLocation } from "react-router-dom";
+import { NavLink, useNavigate, useLocation, Link } from "react-router-dom";
 import { X } from 'lucide-react';
 
 import icon from "../assets/svgIcon/logo.svg";
@@ -32,10 +32,12 @@ const Logo: React.FC<LogoProps> = ({ collapsed, onToggle, closeMobileMenu }) => 
                 </button>
             ) : (
                 <>
-                    <div className="flex items-center gap-">
+                    <Link to="/" className="flex items-center gap-">
+                     
                         <img src={icon} alt="Logo" className="h-8 w-8" />
+                      
                         <img src={logo} alt="Docline" className="hidden md:block" />
-                    </div>
+                    </Link>
                     <div className="flex items-center gap-2">
                         <button onClick={() => onToggle(true)} className="cursor-pointer hidden md:block">
                             <img src={sidelogo} alt="Close Menu" className="h-8 w-8" />

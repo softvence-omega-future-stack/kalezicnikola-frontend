@@ -32,11 +32,11 @@ const LabResultsPage: React.FC = () => {
   return (
     <div className=" bg-white p-6 sm:p-8 lg:p-10">
       {/* Header */}
-      <div className="flex justify-between items-center mb-8">
+      <div className="flex flex-col sm:flex-row gap-2 justify-between items-center mb-8">
         <h1 className="text-2xl font-semibold text-[#171C35]">Lab Results</h1>
         <button
           onClick={handleAddTest}
-          className="flex items-center gap-2 px-5 py-2 text-sm text-[#111A2D] font-semibold border rounded-[8px] hover:bg-gray-100"
+          className="flex items-center cursor-pointer gap-2 px-5 py-2 text-sm text-[#111A2D] font-semibold border rounded-[8px] hover:bg-gray-100"
         >
           <Plus className="w-4 h-4 text-[#171C35]" />
           Add New Lab Test
@@ -51,7 +51,7 @@ const LabResultsPage: React.FC = () => {
             className="flex flex-col gap-2 sm:flex-row sm:justify-between items-center rounded-2xl p-4 bg-[#FAFAFA] transition"
           >
             <div>
-              <p className="font-medium text-xl text-[#171C35]">{item.testName}</p>
+              <p className="font-medium text-base md:text-xl text-[#171C35]">{item.testName}</p>
               <p className="text-base font-medium text-[#111A2D]">Date: {item.date}</p>
             </div>
             <button

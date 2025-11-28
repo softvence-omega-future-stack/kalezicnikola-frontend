@@ -463,7 +463,7 @@ const ExampleSection: React.FC = () => {
               {/* Controls */}
               <div className="flex items-center justify-between gap-4 flex-wrap">
                 <span className="text-white text-sm">0:30</span>
-                <div className="flex items-center gap-5">
+                <div className="flex items-center gap-3">
                   <button
                     onClick={() => {
                       setActiveAudioIndex((prev) =>
@@ -472,7 +472,7 @@ const ExampleSection: React.FC = () => {
                       setIsPlaying(true);
                       setCurrentTime(0);
                     }}
-                    className="hover:scale-110 transition-transform p-5"
+                    className="hover:scale-110 transition-transform"
                   >
                     <img src={skipleft} alt="skip left" />
                   </button>
@@ -496,13 +496,13 @@ const ExampleSection: React.FC = () => {
                       setIsPlaying(true);
                       setCurrentTime(0);
                     }}
-                    className="hover:scale-110 transition-transform p-5"
+                    className="hover:scale-110 transition-transform"
                   >
-                    <img src={skipRight} alt="skip right " />
+                    <img src={skipRight} alt="skip right" />
                   </button>
                 </div>
-                <div className="flex items-center pr-3 gap-4">
-                  <span className="text-white p-4 text-sm">-1:23</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-white text-sm">-1:23</span>
                   <img src={speaker} alt="speaker" />
                 </div>
               </div>
@@ -542,7 +542,7 @@ const ExampleSection: React.FC = () => {
                         e.stopPropagation();
                         handlePlayListItem(index);
                       }}
-                      className="w-12 h-12  bg-gray-200 hover:bg-[#526FFF] rounded-full flex items-center justify-center hover:scale-105 transition-transform shadow-lg absolute right-6 top-1/2 cursor-pointer -translate-y-1/2"
+                      className="w-12 h-12 bg-gray-200 hover:bg-[#526FFF] rounded-full flex items-center justify-center hover:scale-105 transition-transform shadow-lg absolute right-6 top-1/2 -translate-y-1/2"
                     >
                       {isThisItemPlaying ? (
                         <Pause size={20} className="text-white" />

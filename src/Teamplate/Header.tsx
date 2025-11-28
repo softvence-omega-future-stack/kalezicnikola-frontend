@@ -270,8 +270,8 @@ const DoclineHeader: React.FC = () => {
             onClick={() => navigate("/")}
           >
             <img src={logo} alt="Docline Logo" className="" /> 
-            <span className="text-2xl sm:text-3xl font-semibold text-[#171C35] whitespace-nowrap">
-              <img src={logoText} alt="Docline" className="" /> 
+            <span className="font-semibold text-[#171C35] whitespace-nowrap">
+              <img src={logoText} alt="Docline" className="hidden sm:block" /> 
             </span>
           </div>
 
@@ -313,25 +313,30 @@ const DoclineHeader: React.FC = () => {
           </div>
           
           {/* Mobile Menu Toggle */}
-          <div className="flex lg:ml-5 items-center gap-2 lg:hidden"> 
-            <LanguageSelector />
-            <button
-              onClick={() => navigate("/login")}
-              className="px-4 py-2 text-sm font-medium text-[#171C35] bg-white rounded-full hover:text-blue-600 transition cursor-pointer whitespace-nowrap"
-            >
-              Login
-            </button>
-            <button
-              className="p-2 rounded-lg hover:bg-white/50 transition cursor-pointer"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              {mobileMenuOpen ? (
-                <X className="w-6 h-6 text-[#171C35]" />
-              ) : (
-                <Menu className="w-6 h-6 text-[#171C35]" />
-              )}
-            </button>
-          </div>
+          {/* Mobile Menu Toggle */}
+<div className="flex items-center justify-between lg:hidden w-full px-4">
+
+
+  {/* Language Selector */}
+  <LanguageSelector />
+
+  {/* Login Button */}
+  <button
+    onClick={() => navigate("/login")}
+    className="px-4 py-2 text-sm font-medium text-[#171C35] bg-white rounded-full hover:text-blue-600 transition cursor-pointer"
+  >
+    Login
+  </button>
+
+  {/* Menu Icon */}
+  <button
+    className="p-2 rounded-lg hover:bg-white/50 transition cursor-pointer"
+    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+  >
+    {mobileMenuOpen ? <X className="w-6 h-6 text-[#171C35]" /> : <Menu className="w-6 h-6 text-[#171C35]" />}
+  </button>
+</div>
+
         </div>
 
         {/* Mobile Menu Dropdown - Now outside the main nav bar */}
