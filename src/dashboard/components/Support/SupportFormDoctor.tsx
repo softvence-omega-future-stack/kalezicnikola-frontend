@@ -287,7 +287,6 @@
 
 
 
-
 import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import EmojiPicker from "emoji-picker-react";
@@ -323,7 +322,7 @@ interface Contact {
 
 const SupportChat: React.FC = () => {
   const [selectedContact, setSelectedContact] = useState<number | null>(null);
-  const [showChat, setShowChat] = useState(false); // Mobile View Logic
+  const [showChat, setShowChat] = useState(false); // Mobile logic
   const [messageText, setMessageText] = useState('');
   const navigate = useNavigate();
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -385,25 +384,27 @@ const SupportChat: React.FC = () => {
   );
 
   return (
-    <div className="bg-[#F3F6F6] mt-[30px] font-sans min-h-screen">
+    <div className="bg-[#F3F6F6] md:mt-[30px] font-sans min-h-screen">
 
-      {/* Header */}
-      <div className="pb-4">
-        <div className="flex items-center gap-2 text-sm text-gray-600 mb-4">
-          <img src={home} alt="" className="w-4 h-4" />
-          <img src={chevron} alt="" />
-          <span onClick={() => navigate('/dashboard')} className="cursor-pointer">Dashboard</span>
-          <img src={chevron} alt="" />
-          <span className="font-semibold">Supports</span>
+      {/* Desktop Header (Mobile Chat Fullscreen এ hide হবে) */}
+      {!showChat && (
+        <div className="pb-4">
+          <div className="flex items-center gap-2 text-sm text-gray-600 mb-4">
+            <img src={home} alt="" className="w-4 h-4" />
+            <img src={chevron} alt="" />
+            <span onClick={() => navigate('/dashboard')} className="cursor-pointer">Dashboard</span>
+            <img src={chevron} alt="" />
+            <span className="font-semibold">Supports</span>
+          </div>
+          <h1 className="text-xl md:text-2xl font-semibold text-[#171C35]">Supports</h1>
         </div>
-        <h1 className="text-xl md:text-2xl font-semibold text-[#171C35]">Supports</h1>
-      </div>
+      )}
 
       {/* Main Grid */}
       <div className="py-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 min-h-[calc(100vh-180px)]">
 
-          {/* LEFT SIDEBAR (Contacts) */}
+          {/* LEFT CONTACT LIST */}
           <div className={`bg-white rounded-2xl flex flex-col overflow-hidden ${showChat ? 'hidden lg:flex' : 'flex'}`}>
             <div className="p-5 border-b">
               <div className="flex items-center gap-3 mb-4">
@@ -435,7 +436,7 @@ const SupportChat: React.FC = () => {
                   key={contact.id}
                   onClick={() => {
                     setSelectedContact(contact.id);
-                    setShowChat(true); // Mobile → show chat
+                    setShowChat(true); // Mobile → show full screen chat
                   }}
                   className="w-full p-4 flex items-center gap-3 text-left hover:bg-gray-50 transition-colors"
                 >
@@ -467,20 +468,18 @@ const SupportChat: React.FC = () => {
           </div>
 
           {/* RIGHT CHAT AREA */}
-          <div className={`bg-white rounded-2xl flex flex-col justify-start cursor-pointer overflow-hidden ${showChat ? 'flex' : 'hidden lg:flex'} lg:col-span-2`}>
-
-            {/* Mobile Back Button */}
-            {showChat && (
+          {showChat && selectedContact && (
+            <div className="fixed inset-0 lg:static z-50 bg-white rounded-2xl flex flex-col justify-start cursor-pointer overflow-hidden lg:col-span-2">
+              
+              {/* Mobile Back Button */}
               <button
                 className="lg:hidden p-4 text-[#526FFF] font-semibold text-left"
                 onClick={() => setShowChat(false)}
               >
                 ← Back
               </button>
-            )}
 
-            {/* Chat Header */}
-            {selectedContact && (
+              {/* Chat Header */}
               <div className="p-5 m-4 bg-[#F3F6F6] rounded-2xl flex items-center gap-3 justify-between">
                 <div className="flex items-center gap-3">
                   <div className="relative">
@@ -493,88 +492,70 @@ const SupportChat: React.FC = () => {
                   </div>
                 </div>
               </div>
-            )}
 
-            {/* MESSAGES */}
-            <div className="flex-1 overflow-y-auto p-5 space-y-4">
-              {filteredMessages.map((message) => (
-                <div key={message.id} className={`flex gap-3 ${message.isDoctor ? 'justify-end' : 'justify-start'}`}>
-                  {!message.isDoctor && <img src={message.avatar} className="w-10 h-10 rounded-full" />}
+              {/* Messages */}
+              <div className="flex-1 overflow-y-auto p-5 space-y-4">
+                {filteredMessages.map((message) => (
+                  <div key={message.id} className={`flex gap-3 ${message.isDoctor ? 'justify-end' : 'justify-start'}`}>
+                    {!message.isDoctor && <img src={message.avatar} className="w-10 h-10 rounded-full" />}
 
-                  <div className="max-w-lg">
-                    <span className="text-xs text-gray-400">{message.timestamp}</span>
-                    <div className={`py-2.5 px-4 rounded-2xl text-sm font-medium ${message.isDoctor ? 'bg-blue-500 text-white self-end' : 'bg-gray-100 text-[#171C35]'}`}>
-                      {message.content}
+                    <div className="max-w-lg">
+                      <span className="text-xs text-gray-400">{message.timestamp}</span>
+                      <div className={`py-2.5 px-4 rounded-2xl text-sm font-medium ${message.isDoctor ? 'bg-blue-500 text-white self-end' : 'bg-gray-100 text-[#171C35]'}`}>
+                        {message.content}
+                      </div>
                     </div>
+
+                    {message.isDoctor && <img src={message.avatar} className="w-10 h-10 rounded-full" />}
                   </div>
+                ))}
+              </div>
 
-                  {message.isDoctor && <img src={message.avatar} className="w-10 h-10 rounded-full" />}
+              {/* Input Box */}
+              <div className="p-5 bg-[#F3F6F6] m-2 rounded-[20px] relative">
+                <div className="flex flex-wrap items-center gap-2">
+                  <button onClick={() => fileInputRef.current?.click()}>
+                    <img src={doc} className="p-1.5 bg-white h-8 w-8 rounded-full min-w-max" />
+                  </button>
+                  <input type="file" ref={fileInputRef} className="hidden" />
+
+                  <button onClick={() => setShowEmojiPicker(!showEmojiPicker)}>
+                    <img src={react} className="p-1.5 bg-white h-8 w-8 rounded-full min-w-max" />
+                  </button>
+
+                  {showEmojiPicker && (
+                    <div className="absolute bottom-16 left-2 z-50">
+                      <EmojiPicker
+                        onEmojiClick={(emojiData) => setMessageText(prev => prev + emojiData.emoji)}
+                      />
+                    </div>
+                  )}
+
+                  <input
+                    placeholder="Type a message..."
+                    value={messageText}
+                    onChange={(e) => setMessageText(e.target.value)}
+                    onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
+                    className="flex-1 w-full px-4 h-10 bg-white rounded-3xl text-xs"
+                  />
+
+                  <button
+                    onClick={handleSendMessage}
+                    className="px-3 py-2 bg-[#526FFF] text-white rounded-3xl text-xs flex items-center gap-1 min-w-max"
+                  >
+                    SEND
+                    <img src={send} className="h-3 w-3" />
+                  </button>
                 </div>
-              ))}
+              </div>
+
             </div>
-
-      {/* INPUT BOX */}
-<div className="p-5 bg-[#F3F6F6] m-2 rounded-[20px] relative">
-  <div className="flex flex-wrap items-center gap-2">
-
-    {/* Document Button */}
-    <button onClick={() => fileInputRef.current?.click()}>
-      <img
-        src={doc}
-        className="p-1.5 bg-white h-8 w-8 rounded-full min-w-max"
-      />
-    </button>
-
-    <input type="file" ref={fileInputRef} className="hidden" />
-
-    {/* Emoji Button */}
-    <button onClick={() => setShowEmojiPicker(!showEmojiPicker)}>
-      <img
-        src={react}
-        className="p-1.5 bg-white h-8 w-8 rounded-full min-w-max"
-      />
-    </button>
-
-    {/* Emoji Picker */}
-    {showEmojiPicker && (
-      <div className="absolute bottom-16 left-2 z-50">
-        <EmojiPicker
-          onEmojiClick={(emojiData) =>
-            setMessageText((prev) => prev + emojiData.emoji)
-          }
-        />
-      </div>
-    )}
-
-    {/* Text Input */}
-    <input
-      placeholder="Type a message..."
-      value={messageText}
-      onChange={(e) => setMessageText(e.target.value)}
-      onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
-      className="flex-1 w-full px-4 h-10 bg-white rounded-3xl text-xs"
-    />
-
-    {/* Send Button */}
-    <button
-      onClick={handleSendMessage}
-      className="px-3 py-2 bg-[#526FFF] text-white rounded-3xl text-xs flex items-center gap-1 min-w-max"
-    >
-      SEND
-      <img src={send} className="h-3 w-3" />
-    </button>
-  </div>
-</div>
-
-
-          </div>
+          )}
 
         </div>
       </div>
-
     </div>
   );
 };
 
 export default SupportChat;
-

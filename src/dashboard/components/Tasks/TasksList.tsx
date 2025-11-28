@@ -237,7 +237,7 @@ export default function TaskList() {
   const hasMultipleSelected = selectedTaskIds.length > 1;
 
   return (
-    <div className="mt-2.5 lg:mt-[30px]" onClick={() => setSelectedTaskIds([])}>
+    <div className="mt-2.5 md:mt-[30px]" onClick={() => setSelectedTaskIds([])}>
       {/* Header */}
       <div className="pb-4">
         {/* Breadcrumb */}

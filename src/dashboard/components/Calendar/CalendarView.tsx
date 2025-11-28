@@ -58,7 +58,7 @@ const CalendarView: React.FC = () => {
   }, [open]);
 
   return (
-    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="min-h-screen mt-[30px]">
+    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="min-h-screen md:mt-[30px]">
       {/* Breadcrumb */}
       <div>
         <div className="flex items-center gap-2 text-sm text-gray-500 flex-wrap">

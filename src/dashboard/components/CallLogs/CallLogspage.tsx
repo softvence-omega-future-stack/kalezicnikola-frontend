@@ -83,7 +83,7 @@ const CallLogsPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen mt-[30px]">
+    <div className="min-h-screen md:mt-[30px]">
 
       {/* Header Navigation */}
       <div className="">
