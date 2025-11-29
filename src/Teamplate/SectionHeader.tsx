@@ -3,8 +3,8 @@ interface SectionHeaderProps {
   badgeIcon: string;
   heading: React.ReactNode;
   subText?: string;
-  align?: 'left' | 'center';
-  subAlign?: 'left' | 'center' | 'right';
+  align?: "left" | "center";
+  subAlign?: "left" | "center" | "right";
 }
 
 const SectionHeader: React.FC<SectionHeaderProps> = ({
@@ -12,42 +12,46 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
   badgeIcon,
   heading,
   subText,
-  align = 'center',
-  subAlign = 'center',
+  align = "center",
+  subAlign = "center",
 }) => {
   const descStyle = {
     fontFamily: "Urbanist, sans-serif",
     color: "#171C35",
-    
   };
 
- 
   const headingAlignClass =
     align === "left"
       ? "text-center sm:text-center md:text-left"
       : "text-center";
 
-  
- const subTextClass =
+  const subTextClass =
     subAlign === "left"
       ? "text-center sm:text-center md:text-left "
       : subAlign === "right"
       ? "text-center sm:text-center md:text-right xl:text-right"
       : "text-center";
 
-  
-     
   return (
     <div className={`${headingAlignClass} mb-10`}>
-      
       {/* Badge: Always center on mobile/sm */}
-      <div className="relative  inline-flex items-center gap-2 backdrop-blur-lg pr-5 pl-2.5 py-2 border border-white bg-white/10 rounded-full mb-6 -mt-7 mx-auto md:mx-0">
+      <div
+        style={{
+          boxShadow: `1px 1px 4px 0 rgba(0, 0, 0, 0.05) inset, 
+                -6px -11px 18px 0 rgba(255, 255, 255, 0.16) inset, 
+                1px 1px 0 -0.4px #FFF inset, 
+                -1px -1px 0 -0.5px #FFF inset`,
+          padding: "10px 20px 10px 20px",
+          backdropFilter: "blur(5px)",
+        }}
+        className="relative inline-flex items-center gap-2 backdrop-blur-lg sm:pr-5 sm:pl-2.5 py-2 bg-gray-200/20  rounded-full mb-3 md:mb-6 mx-auto md:mx-0"
+      >
         <img src={badgeIcon} alt="" className="w-5 h-5" />
         <span style={descStyle}>{badgeText}</span>
       </div>
 
       {/* Heading */}
-      <h1 className="mb-4 text-[24px] sm:text-[32px] lg:text-[40px]  xl:text-[64px] font-semibold text-[#171C35] leading-snug xl:leading-tight">
+      <h1 className="mb-4 md:mb-[30px] md:leading-[120%] text-2xl sm:text-[32px] md:text-5xl font-semibold text-headingBlack">
         {heading}
       </h1>
 

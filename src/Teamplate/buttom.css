@@ -1,12 +1,4 @@
-/* .glass{
-    background: white/10;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 20px;
-    border:1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-} */
-
+/* 
 
 
 .glass {
@@ -17,11 +9,11 @@
   );
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
-  border-radius: 9999px; /* full rounded */
+  border-radius: 9999px; 
   border: 1px solid rgba(255, 255, 255, 0.25);
   box-shadow:
-    0 4px 20px rgba(0, 0, 0, 0.2),  /* bottom dark shadow */
-    0 -2px 10px rgba(255, 255, 255, 0.3); /* top white glow */
+    0 4px 20px rgba(0, 0, 0, 0.2), 
+    0 -2px 10px rgba(255, 255, 255, 0.3); 
   transition: all 0.3s ease;
 }
 
@@ -36,7 +28,7 @@
 
 
 
-/* Base Glass Effect */
+
 .liquid-glass {
   position: relative;
   overflow: hidden;
@@ -51,21 +43,11 @@
   cursor: pointer;
 }
 
-/* Hover State */
-/* .liquid-glass:hover {
-  transform: scale(1.05);
-  box-shadow: 
-    0 20px 60px rgba(255, 255, 255, 0.2),
-    0 0 80px rgba(255, 255, 255, 0.1),
-    inset 0 1px 1px rgba(255, 255, 255, 0.4);
-} */
 
-/* Active/Click State */
 .liquid-glass:active {
   transform: scale(0.95);
 }
 
-/* Shine Effect Layer */
 .liquid-glass::before {
   content: '';
   position: absolute;
@@ -80,7 +62,7 @@
   z-index: 1;
 }
 
-/* Gradient Overlay on Hover */
+
 .liquid-glass::after {
   content: '';
   position: absolute;
@@ -100,18 +82,15 @@
   opacity: 1;
 }
 
-/* Ensure content stays on top */
+
 .liquid-glass > * {
   position: relative;
   z-index: 10;
 }
 
 
-/* =========================================
-   VARIANTS - Different Styles
-   ========================================= */
 
-/* Primary - Blue Theme */
+
 .liquid-glass-primary {
   background: rgba(0, 122, 255, 0.1);
   border: 1px solid rgba(0, 122, 255, 0.5);
@@ -132,7 +111,7 @@
   );
 }
 
-/* White/Light Theme */
+
 .liquid-glass-light {
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.8);
@@ -145,7 +124,7 @@
     inset 0 1px 1px rgba(255, 255, 255, 0.4);
 }
 
-/* Dark Theme */
+
 .liquid-glass-dark {
   background: rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -157,7 +136,6 @@
     inset 0 1px 1px rgba(255, 255, 255, 0.2);
 }
 
-/* Success - Green */
 .liquid-glass-success {
   background: rgba(52, 199, 89, 0.1);
   border: 1px solid rgba(52, 199, 89, 0.5);
@@ -170,7 +148,7 @@
     inset 0 1px 1px rgba(255, 255, 255, 0.3);
 }
 
-/* Danger - Red */
+
 .liquid-glass-danger {
   background: rgba(255, 59, 48, 0.1);
   border: 1px solid rgba(255, 59, 48, 0.5);
@@ -183,10 +161,6 @@
     inset 0 1px 1px rgba(255, 255, 255, 0.3);
 }
 
-
-/* =========================================
-   SIZE VARIANTS
-   ========================================= */
 
 .liquid-glass-sm {
   padding: 0.5rem 1.5rem;
@@ -211,9 +185,6 @@
 }
 
 
-/* =========================================
-   SHAPE VARIANTS
-   ========================================= */
 
 .liquid-glass-rounded {
   border-radius: 0.5rem;
@@ -236,9 +207,6 @@
 }
 
 
-/* =========================================
-   DISABLED STATE
-   ========================================= */
 
 .liquid-glass:disabled,
 .liquid-glass-disabled {
@@ -248,28 +216,23 @@
 }
 
 
-/* =========================================
-   ADDITIONAL EFFECTS
-   ========================================= */
 
-/* Stronger Blur */
 .liquid-glass-blur-strong {
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(30px);
 }
 
-/* Less Blur */
 .liquid-glass-blur-light {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
 
-/* No Scale on Hover */
+
 .liquid-glass-no-scale:hover {
   transform: scale(1);
 }
 
-/* Glow Effect */
+
 .liquid-glass-glow:hover {
   box-shadow: 
     0 0 20px rgba(255, 255, 255, 0.5),
@@ -277,11 +240,6 @@
     0 0 60px rgba(255, 255, 255, 0.2),
     inset 0 1px 1px rgba(255, 255, 255, 0.4);
 }
-
-
-/* =========================================
-   ANIMATION UTILITIES
-   ========================================= */
 
 @keyframes liquidPulse {
   0%, 100% {
@@ -301,19 +259,4 @@
   animation: liquidPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-
-/* =========================================
-   RESPONSIVE UTILITIES
-   ========================================= */
-
-/* @media (max-width: 640px) {
-  .liquid-glass-responsive {
-    border-radius: 9999px;
-  }
-}
-
-@media (min-width: 641px) {
-  .liquid-glass-responsive {
-    border-radius: 1.5rem;
-  }
-} */
+ */

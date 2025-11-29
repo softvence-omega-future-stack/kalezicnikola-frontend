@@ -60,7 +60,7 @@ const TestimonialSection: React.FC = () => {
   }, [testimonials.length]); 
 
   return (
-    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="px-4 mt-19 xl:mt-[180px] lg:mt-[180px] md:mt-[180px] ">
+    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="mt-12 md:mt-[120px]">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         {/* <div className="text-center mb-16">
@@ -89,12 +89,12 @@ const TestimonialSection: React.FC = () => {
         />
 
         {/* Testimonial Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch mb-12 bg-white rounded-3xl p-4 lg:p-8 ">
+        <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch mb-12 bg-white rounded-2xl md:rounded-3xl max-[767px]:px-2.5 max-[767px]:pt-5 md:p-2.5 ">
           
           {/* Left - Image */}
-          <div className="lg:col-span-4 flex justify-center lg:justify-start h-full items-center lg:pl-0 pb-4 lg:pb-0">
+          <div className="lg:col-span-4 flex justify-center lg:justify-start h-full items-center lg:pl-0 pb-2 md:pb-4 lg:pb-0">
             <div className="relative">
-              <div className="w-72 h-full md:w-80 lg:h-full bg-gray-800 rounded-3xl overflow-hidden ">
+              <div className="w-full h-full md:w-80 lg:h-full bg-gray-800 rounded-2xl md:rounded-3xl overflow-hidden ">
                 <img 
                   src={testimonials[activeSlide].image} 
                   alt={testimonials[activeSlide].name}
@@ -106,7 +106,7 @@ const TestimonialSection: React.FC = () => {
 
           {/* Middle - Quote */}
           <div className="lg:col-span-5 flex flex-col justify-center h-full border-r border-gray-100 px-4 lg:px-4 py-4 lg:py-0">
-            <blockquote className="text-[#111A2D] text-2xl font-medium leading-relaxed mb-16">
+            <blockquote className="text-[#111A2D] text-lg md:text-2xl font-medium leading-relaxed mb-8 md:mb-16">
               {testimonials[activeSlide].quote}
             </blockquote>
             
@@ -121,7 +121,7 @@ const TestimonialSection: React.FC = () => {
           </div>
 
           {/* Right - Stats */}
-          <div className="lg:col-span-3 flex flex-col gap-4 px-4 lg:pl-4 h-full justify-center pt-4 lg:pt-0">
+          <div className="lg:col-span-3 flex flex-col gap-4 px-4 lg:pl-4 h-full justify-center max-[767px]:pb-5 pt-4 lg:pt-0">
             {/* Time Saved Card */}
             <div className="rounded-2xl p-4 text-center border border-gray-100 lg:border-none">
               <div className="text-5xl sm:text-7xl lg:text-[128px] text-gray-900 mb-1 leading-none">

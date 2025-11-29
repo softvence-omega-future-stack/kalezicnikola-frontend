@@ -49,7 +49,15 @@ export default function LoginPage() {
           className="w-full h-[930px] rounded-[16px] object-cover"
         />
 
-        <div className="fixed top-8 left-0 right-0 z-20 w-[95%] border border-white bg-white/10 backdrop-blur-sm rounded-full px-9 py-4 flex items-center justify-between mx-auto">
+        <div           style={{
+    boxShadow: `1px 1px 4px 0 rgba(0, 0, 0, 0.05) inset, 
+                -6px -11px 18px 0 rgba(255, 255, 255, 0.16) inset, 
+                1px 1px 0 -0.4px #FFF inset, 
+                -1px -1px 0 -0.5px #FFF inset`,
+                   padding: "10px 10px 10px 30px",
+    backdropFilter: "blur(5px)",
+  }}
+   className="fixed top-8 left-0 right-0 z-20 w-[95%]  bg-white/10 backdrop-blur-sm rounded-full px-9 py-4 flex items-center justify-between mx-auto">
           <div className="flex items-center gap-2">
             <img src={icon} alt="Logo" />
             <img src={logo} alt="" />

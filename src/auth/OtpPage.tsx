@@ -80,7 +80,7 @@ export default function OtpPage() {
 
 //   const isComplete = otp.every(digit => digit !== '');
   return (
-    <div className="  flex relative bg-[#F3F6F6]">
+    <div className=" min-h-screen  flex relative bg-[#F3F6F6]">
       {/* Left Side - Image */}
       <div className="hidden rounded-[16px] p-[10px] lg:block lg:w-1/2 relative">
         <img
@@ -90,7 +90,16 @@ export default function OtpPage() {
         />
 
           {/* Fixed Border Box (DocLine + Login Btn) */}
-        <div className="fixed top-8 left-0 right-0 z-20 w-[95%] border border-white bg-white/10 backdrop-blur-sm rounded-full px-9 py-4 flex items-center justify-between mx-auto">
+        <div
+                  style={{
+    boxShadow: `1px 1px 4px 0 rgba(0, 0, 0, 0.05) inset, 
+                -6px -11px 18px 0 rgba(255, 255, 255, 0.16) inset, 
+                1px 1px 0 -0.4px #FFF inset, 
+                -1px -1px 0 -0.5px #FFF inset`,
+                   padding: "10px 10px 10px 30px",
+    backdropFilter: "blur(5px)",
+  }}
+        className="fixed top-8 left-0 right-0 z-20 w-[95%] border border-white bg-white/10 backdrop-blur-sm rounded-full px-9 py-4 flex items-center justify-between mx-auto">
           <div className="flex items-center gap-2">
               <img src={icon} alt="Logo" />
             <img src={logo} alt="" />

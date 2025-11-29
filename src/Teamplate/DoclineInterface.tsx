@@ -53,19 +53,25 @@ const DoclineInterface: React.FC = () => {
   ];
 
   return (
-    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="min-h-screen  px-4 py-10 md:px-8 ">
+    <div
+      style={{ fontFamily: "Urbanist, sans-serif" }}
+      className="min-h-screen  px-4 py-10 md:px-8 "
+    >
       <div className="">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8  lg:px-30">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8  lg:px-30">
           {/* Left Section */}
-          <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="flex flex-col justify-start">
-            <div className="mb-6 mt-9">
+          <div
+            style={{ fontFamily: "Urbanist, sans-serif" }}
+            className="flex flex-col justify-start"
+          >
+            <div className="mb-6 mt-9 text-center md:text-left">
               <div className="inline-flex items-center gap-2 px-5 py-3 border border-gray-300 mb-8 rounded-full bg-white shadow-sm">
                 <img src={icon} alt="Docline Logo" className="w-5 h-5" />
                 <span className="text-[#171C35] text-sm font-medium">
                   Real Examples
                 </span>
               </div>
-              <h1 className="text-3xl md:text-5xl font-semibold text-gray-900 leading-tight">
+              <h1 className="mb-4 text-2xl sm:text-[32px] md:text-[64px] font-semibold text-[#171C35]">
                 This is what Docline sounds <br className="hidden md:block" />{" "}
                 like in everyday practice
               </h1>
@@ -92,70 +98,67 @@ const DoclineInterface: React.FC = () => {
               </div>
 
               {/* Waveform */}
-           {/* Waveform */}
-<div className="relative mb-6 overflow-hidden">
-  {/* Waveform bars */}
-  <div className="flex items-center justify-between gap-2 h-28 relative">
-{waveSegments.map((segment, i) => {
-  const currentBar = Math.floor((currentTime / totalDuration) * waveSegments.length);
-  const isActive = i === currentBar && isPlaying;
+              {/* Waveform */}
+              <div className="relative mb-6 overflow-hidden">
+                {/* Waveform bars */}
+                <div className="flex items-center justify-between gap-2 h-28 relative">
+                  {waveSegments.map((segment, i) => {
+                    const currentBar = Math.floor(
+                      (currentTime / totalDuration) * waveSegments.length
+                    );
+                    const isActive = i === currentBar && isPlaying;
 
-  return (
-<div key={i} className="flex-1 flex items-center justify-center relative">
-  {/* Wave bar */}
-  <div
-    className="w-full max-w-[60px] sm:max-w-[70px] md:max-w-[80px] lg:max-w-[90px] xl:max-w-[100px] rounded-full bg-white overflow-hidden transition-all duration-300 flex items-center justify-center relative"
-    style={{ height: `${segment.height}px` }}
-  >
-    {/* Always visible border image */}
-    <img
-      src={roundImg}
-      alt="border"
-      className="absolute inset-0 w-full h-full object-cover"
-    />
+                    return (
+                      <div
+                        key={i}
+                        className="flex-1 flex items-center justify-center relative"
+                      >
+                        {/* Wave bar */}
+                        <div
+                          className="w-full max-w-[60px] sm:max-w-[70px] md:max-w-[80px] lg:max-w-[90px] xl:max-w-[100px] rounded-full bg-white overflow-hidden transition-all duration-300 flex items-center justify-center relative"
+                          style={{ height: `${segment.height}px` }}
+                        >
+                          {/* Always visible border image */}
+                          <img
+                            src={roundImg}
+                            alt="border"
+                            className="absolute inset-0 w-full h-full object-cover"
+                          />
 
-    {/* Active round image inside the bar */}
-    {isActive && (
-      <img
-        src={roundactiveImg}
-        alt="active"
-        className="absolute inset-0 w-full h-full object-cover z-10"
-      />
-    )}
-  </div>
-</div>
+                          {/* Active round image inside the bar */}
+                          {isActive && (
+                            <img
+                              src={roundactiveImg}
+                              alt="active"
+                              className="absolute inset-0 w-full h-full object-cover z-10"
+                            />
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
 
+                  {/* Vertical moving line with icon */}
+                  <div
+                    className="absolute top-3 flex flex-col gap-1 items-center"
+                    style={{
+                      left: `${(currentTime / totalDuration) * 100}%`,
+                      height: "100px", // line height
+                    }}
+                  >
+                    {/* Vertical line */}
+                    <div className="w-[2px] h-full bg-white "></div>
 
-  );
-})}
+                    {/* Icon at bottom of line */}
 
-
-
-    {/* Vertical moving line with icon */}
-    <div
-      className="absolute top-3 flex flex-col gap-1 items-center"
-      style={{
-        left: `${(currentTime / totalDuration) * 100}%`,
-        height: "100px",  // line height
-      }}
-    >
-     
-      {/* Vertical line */}
-      <div className="w-[2px] h-full bg-white "></div>
-      
-      {/* Icon at bottom of line */}
-
-      <img
-        src={borderIcon}
-        alt="cursor-icon"
-        className="  self-stretch"
-      />
-     
-    </div>
-  </div>
-</div>
-
-
+                    <img
+                      src={borderIcon}
+                      alt="cursor-icon"
+                      className="  self-stretch"
+                    />
+                  </div>
+                </div>
+              </div>
 
               {/* Progress Bar */}
               <div className="mb-4">
@@ -203,41 +206,40 @@ const DoclineInterface: React.FC = () => {
               </div>
             </div>
 
-  {/* Menu Items */}
-<div className="-space-y-1 -mt-5">
-  {menuItems.map((item, index) => (
-    <div key={index} className="relative overflow-visible">
-      {/* Shadow overlay */}
-      <div
-        className="absolute inset-0 rounded-[24px] pointer-events-none"
-        style={{
-          boxShadow: "0 -20px 50px rgba(147, 170, 189, 0.3)"
-        }}
-      ></div>
+            {/* Menu Items */}
+            <div className="-space-y-1 -mt-5">
+              {menuItems.map((item, index) => (
+                <div key={index} className="relative overflow-visible">
+                  {/* Shadow overlay */}
+                  <div
+                    className="absolute inset-0 rounded-[24px] pointer-events-none"
+                    style={{
+                      boxShadow: "0 -20px 50px rgba(147, 170, 189, 0.3)",
+                    }}
+                  ></div>
 
-      {/* Card */}
-      <div className="w-full flex flex-col items-start gap-6 p-6 h-[97px] rounded-[24px] border border-white bg-white shadow-md hover:shadow-lg transition-shadow relative">
-        <div className="text-left flex-1">
-          <h4 className="text-[#171C35] font-semibold text-lg mb-1">
-            {item.title}
-          </h4>
-          <p className="text-[#111A2D] text-sm md:text-base">{item.subtitle}</p>
-        </div>
+                  {/* Card */}
+                  <div className="w-full flex flex-col items-start gap-6 p-6 h-[97px] rounded-[24px] border border-white bg-white shadow-md hover:shadow-lg transition-shadow relative">
+                    <div className="text-left flex-1">
+                      <h4 className="text-[#171C35] font-semibold text-lg mb-1">
+                        {item.title}
+                      </h4>
+                      <p className="text-[#111A2D] text-sm md:text-base">
+                        {item.subtitle}
+                      </p>
+                    </div>
 
-        {/* Play button */}
-        <button
-          className="w-8 h-8 rounded-full bg-gray-200 group-hover:bg-blue-500 flex items-center justify-center transition-colors cursor-pointer flex-shrink-0 absolute right-6 top-1/2 -translate-y-1/2"
-          onClick={() => console.log(`Play ${item.title}`)}
-        >
-          <img src={play} alt="play" />
-        </button>
-      </div>
-    </div>
-  ))}
-</div>
-
-
-
+                    {/* Play button */}
+                    <button
+                      className="w-8 h-8 rounded-full bg-gray-200 group-hover:bg-blue-500 flex items-center justify-center transition-colors cursor-pointer flex-shrink-0 absolute right-6 top-1/2 -translate-y-1/2"
+                      onClick={() => console.log(`Play ${item.title}`)}
+                    >
+                      <img src={play} alt="play" />
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -246,12 +248,3 @@ const DoclineInterface: React.FC = () => {
 };
 
 export default DoclineInterface;
-
-
-
-
-
-
-
-
-

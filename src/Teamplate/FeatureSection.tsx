@@ -2,57 +2,44 @@ import React from "react";
 
 import img1 from "../assets/svgIcon/featureImg1.svg";
 import img2 from "../assets/svgIcon/featureImg2.svg";
-import img3 from "../assets/svgIcon/featureImg3.svg";
+import img3 from "../assets/img/important.png";
 import icon from "../assets/svgIcon/herologo.svg";
 import "./buttom.css";
 import SectionHeader from "./SectionHeader";
 
 // Common styles
 const titleStyle = {
-  fontFamily: "Urbanist, sans-serif",
-
-  fontWeight: 600,
+  fontWeight: 500,
   color: "#171C35",
-};
-
-const descStyle = {
-  fontFamily: "Urbanist, sans-serif",
-  fontSize: "16px",
-  color: "#111A2D",
-  lineHeight: "1.6",
 };
 
 // --- 1. ReliefCard ---
 const ReliefCard: React.FC = () => (
-  <div className="p-6 md:p-8 xl:p-[30px] bg-[#171C35] rounded-3xl shadow-sm h-full flex flex-col justify-between text-white">
-    <div style={{ fontFamily: "Urbanist, sans-serif" }}>
-      <p className="text-3xl md:text-6xl xl:text-[96px]  mb-14 text-white">
+  <div className="p-4 md:p-8 xl:p-[30px] bg-headingBlack  rounded-2xl sm:rounded-[30px] flex flex-col justify-between text-white">
+    <div>
+      <p className="text-2xl sm:text-3xl md:text-6xl xl:text-[96px] mb-8 md:mb-14 font-extralight font-urbanist text-[96px]  leading-none  text-white">
         75%
       </p>
-      <h3
-        style={{ ...titleStyle, color: "white" }}
-        className="text-lg sm:text-xl lg:text-2xl font-medium mb-3"
-      >
+      <h3 className="text-lg sm:text-xl lg:text-2xl font-medium leading-7">
         Relief
       </h3>
 
-        <p style={{ ...descStyle, color: "white" }} className="mt-3 text-sm ">
-          The AI assistant handles an average of 75% of routine calls completely
-          independently. Your team gains this time back for more patient care.
-        </p>
-      
-  
-     </div>
+      <p className="mt-3 mb-2 text-sm sm:text-base text-white">
+        The AI assistant handles an average of 75% of routine calls completely
+        independently.
+      </p>
+      <span className="">
+        Your team gains this time back for <br /> more patient care.
+      </span>
     </div>
-
+  </div>
 );
 
 // --- 2. ConversationCard ---
 const ConversationCard: React.FC = () => (
   <div
-    className="relative p-6 md:p-8 h-full flex flex-col justify-between"
+    className="relative p-4 md:p-8 lg:pt-[30px] lg:px-[30px] h-full rounded-2xl sm:rounded-[30px] flex flex-col lg:flex-row justify-between overflow-hidden"
     style={{
-      borderRadius: "30px",
       border: "1px solid #FFF",
       fontFamily: "Urbanist, sans-serif",
       background: `
@@ -63,17 +50,17 @@ const ConversationCard: React.FC = () => (
       backdropFilter: "blur(50px)",
     }}
   >
-    <div>
-      <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold leading-5 md:leading-7">
+    <div className="">
+      <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold text-headingBlack leading-5 md:leading-7">
         Docline manages 20 calls at once
       </h3>
-      <p style={descStyle} className="mt-3 mb-6">
-        Never busy tones or waiting lines again. The AI handles all incoming{" "}
-        <br /> calls in parallel so every patient is answered immediately.
+      <p className="mt-3 mb-2 text-sm sm:text-base text-subHeadingBlack">
+        Never busy tones or waiting lines again <br /> The AI handles all
+        incoming calls in parallel so every patient is answered immediately.
       </p>
     </div>
-    <div className="flex items-center justify-end">
-      <img src={img1} alt="feature visual" />
+    <div className="flex items-end justify-center lg:justify-end mt-10 sm:mt-auto">
+      <img src={img1} alt="feature visual" className="max-w-full h-auto" />
     </div>
   </div>
 );
@@ -81,9 +68,8 @@ const ConversationCard: React.FC = () => (
 // --- 3. TriadeCard ---
 const TriadeCard: React.FC = () => (
   <div
-    className="relative p-6 md:p-8 h-full flex flex-col justify-between"
+    className="relative pt-6 px-6 pb-0 md:pt-[30px] md:pl-[30px] h-full rounded-2xl sm:rounded-[30px] flex flex-col justify-between overflow-hidden"
     style={{
-      borderRadius: "30px",
       border: "1px solid #FFF",
       fontFamily: "Urbanist, sans-serif",
       background: `
@@ -94,17 +80,18 @@ const TriadeCard: React.FC = () => (
       backdropFilter: "blur(50px)",
     }}
   >
-    <div>
-      <h3 style={titleStyle} className="text-lg sm:text-xl lg:text-2xl ">
+    <div className="mb-4 md:mb-6">
+      <h3 className="text-lg sm:text-xl lg:text-2xl">
         Smart Triage & Call Forwarding
       </h3>
-      <p style={descStyle} className="mt-3 mb-6">
-        The AI detects emergencies. Complex inquiries are prioritized and routed
-        directly to the responsible staff.
+      <p className="mt-3 mb-2 text-sm sm:text-base text-subHeadingBlack">
+        The AI detects emergencies. Complex inquiries{" "}
+        <br className="hidden lg:block" /> are prioritized and routed directly
+        to the responsible staff.
       </p>
     </div>
-    <div className="flex items-center justify-center">
-      <img src={img2} alt="triage feature" />
+    <div className="flex items-end justify-start ">
+      <img src={img2} alt="triage feature" className="max-w-full " />
     </div>
   </div>
 );
@@ -112,36 +99,29 @@ const TriadeCard: React.FC = () => (
 // --- 4. AvailabilityCard ---
 const AvailabilityCard: React.FC = () => (
   <div
+    className="p-4 md:p-[30px] h-full rounded-2xl sm:rounded-[30px] flex flex-col justify-between"
     style={{
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "flex-start",
-      padding: "30px 58px 30px 30px",
-      gap: "83px",
-      borderRadius: "30px",
       border: "1px solid #FFF",
       background: "#526FFF",
       fontFamily: "Urbanist, sans-serif",
       backdropFilter: "blur(50px)",
     }}
   >
-    {/* 24/7 Section */}
-    <p className="text-3xl md:text-6xl xl:text-[96px]  text-white font-bold mb-0">
+    <p className="text-3xl md:text-6xl xl:text-[96px] mb-8 md:mb-14 font-extralight text-white">
       24/7
     </p>
 
-    {/* Availability Section */}
     <div>
       <h3
-        className="text-lg sm:text-xl lg:text-2xl "
-        style={{ ...titleStyle, color: "white", marginBottom: "0" }}
+        className="text-lg sm:text-xl lg:text-2xl leading-7 mb-3"
+        style={{ ...titleStyle, color: "white", marginBottom: "12px" }}
       >
         Availability
       </h3>
-      <p style={{ ...descStyle, color: "#E0E7FF" }}>
+      <p className="mt-3 mb-2 text-sm sm:text-base text-white">
         Your practice is reachable 365 days a year. The AI answers all calls —
-        regardless of holidays, illness, or staff shortage.
+        regardless of holidays, illness,
+        <br className="hidden lg:block" /> or staff shortage.
       </p>
     </div>
   </div>
@@ -150,14 +130,8 @@ const AvailabilityCard: React.FC = () => (
 // --- 5. IntegrationCard ---
 const IntegrationCard: React.FC = () => (
   <div
+    className="p-4 md:p-[30px] h-full rounded-2xl sm:rounded-[30px] flex flex-col justify-start"
     style={{
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "flex-start",
-      alignItems: "flex-start",
-      padding: "30px 18.5px 92px 30px",
-      fontFamily: "Urbanist, sans-serif",
-      borderRadius: "30px",
       border: "1px solid #FFF",
       background: `
         linear-gradient(0deg, #FFF 0%, #FFF 100%),
@@ -165,17 +139,16 @@ const IntegrationCard: React.FC = () => (
         #FFF
       `,
       backdropFilter: "blur(50px)",
-      height: "100%",
     }}
   >
-    <h3 className="text-lg sm:text-xl lg:text-2xl " style={titleStyle}>
-      Easy connection to your phone system
+    <h3 className="text-lg sm:text-xl lg:text-2xl leading-7 mb-4">
+      Easy connection to your <br className="hidden lg:block" /> phone system
     </h3>
-    <p
-      style={{ fontSize: "16px", lineHeight: "24px", margin: 0, color: "#333" }}
-    >
-      No system change or IT stress. The integration <br />
-      with your existing phone setup is quick and easy by <br /> our onboarding
+    <p className="mt-3 mb-2 text-sm sm:text-base text-subHeadingBlack">
+      No system change or IT stress. <br className="hidden lg:block" />
+      The integration with your existing <br className="hidden lg:block" />{" "}
+      phone setup is quick and easy by our onboarding{" "}
+      <br className="hidden lg:block" />
       team.
     </p>
   </div>
@@ -184,9 +157,8 @@ const IntegrationCard: React.FC = () => (
 // --- 6. SoftwareCard ---
 const SoftwareCard: React.FC = () => (
   <div
-    className="p-6 md:p-8 h-full flex flex-col justify-between"
+    className="p-4 md:p-[30px] h-full rounded-2xl sm:rounded-[30px] flex flex-col justify-start"
     style={{
-      borderRadius: "30px",
       border: "1px solid #FFF",
       background: `
         linear-gradient(0deg, #FFF 0%, #FFF 100%),
@@ -198,18 +170,15 @@ const SoftwareCard: React.FC = () => (
     }}
   >
     <div>
-      <h3
-        className="text-lg sm:text-xl lg:text-2xl "
-        style={{ ...titleStyle, fontFamily: "Urbanist, sans-serif" }}
-      >
-        No extra software or hardware required
+      <h3 className="text-lg sm:text-xl lg:text-2xl leading-7 font-semibold mb-3">
+        No extra software or <br className="hidden lg:block" /> hardware
+        required
       </h3>
-      <p
-        style={{ ...descStyle, fontFamily: "Urbanist, sans-serif" }}
-        className="mt-3"
-      >
-        Docline runs fully in the cloud. You save on physical devices,
-        maintenance, and gain flexibility in your workflow.
+      <p className="mt-3 mb-2 text-sm sm:text-base text-subHeadingBlack">
+        Docline runs fully in the cloud. <br className="hidden lg:block" /> You
+        save on physical devices, maintenance,{" "}
+        <br className="hidden lg:block" /> and gain flexibility in your
+        workflow.
       </p>
     </div>
   </div>
@@ -218,9 +187,8 @@ const SoftwareCard: React.FC = () => (
 // --- 7. CustomizationCard ---
 const CustomizationCard: React.FC = () => (
   <div
-    className="relative p-6 md:p-8 h-full flex flex-col justify-between"
+    className="relative w-full p-4 lg:p-8 rounded-2xl sm:rounded-[30px] h-full flex flex-col lg:flex-row justify-between overflow-hidden"
     style={{
-      borderRadius: "30px",
       border: "1px solid #FFF",
       background: `
         radial-gradient(77.75% 73.99% at 100% 106.39%, rgba(71, 43, 255, 0.10) 0%, rgba(255, 255, 255, 0.00) 100%),
@@ -228,28 +196,28 @@ const CustomizationCard: React.FC = () => (
         #FFF
       `,
       backdropFilter: "blur(50px)",
-      fontFamily: "Urbanist, sans-serif", // Ensures all text uses Urbanist
+      fontFamily: "Urbanist, sans-serif",
     }}
   >
-    <div>
-      <h3 className="text-lg sm:text-xl lg:text-2xl " style={titleStyle}>
+    <div className="">
+      <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold">
         Tailored to your practice
       </h3>
-      <p
-        style={{
-          ...descStyle,
-          fontFamily: "Urbanist, sans-serif",
-          marginTop: "12px",
-          marginBottom: "24px",
-        }}
-      >
-        The AI’s tone, wording, and rules are customized exactly to your
-        practice style. <br /> Patients often don’t even notice they’re speaking
-        to an AI.
-      </p>
-    </div>
-    <div className="flex items-center justify-end">
-      <img src={img3} alt="customization feature" />
+      <div className="flex flxe-col md:flex-row">
+        <p className="mt-3 text-sm sm:text-base text-subHeadingBlack">
+          The AI's tone, wording, and rules are customized exactly to your
+          practice style. Patients often don't even notice they're speaking to
+          an AI.
+        </p>
+        <div
+          className="flex flex-col items-end w-[328px] h-full justify-center lg:justify-end"
+          style={{
+            filter: "drop-shadow(0 9.756px 95.122px rgba(99, 120, 225, 0.31))",
+          }}
+        >
+          <img src={img3} alt="customization feature" className="" />
+        </div>
+      </div>
     </div>
   </div>
 );
@@ -257,29 +225,10 @@ const CustomizationCard: React.FC = () => (
 // --- Main Grid ---
 const FeatureSection: React.FC = () => {
   return (
-    <div className=" ">
-      <div className="   ">
-        <div className="  ">
-          <div className="py-8  xl:-mt-19 ">
-            {/* <div className="text-center mb-16">
-        <div style={{fontFamily: 'Urbanist, sans-serif',}} className="relative glass inline-flex items-center gap-2 backdrop-blur-lg pr-5 pl-2.5 py-2  border border-white bg-white/10 rounded-full mb-6 -mt-7">
-          <img src={icon} alt="" />
-          <span style={descStyle}>Peace on the phone</span>
-      
-        </div>
-
-        <h2
-    
-          className="mb-4 text-[42px] sm:text-[52px] lg:text-[54px] xl:text-[64px] font-semibold text-[#171C35] leading-snug lg:leading-tight"
-        >
-          The Relief <span className="block">Your Team Deserves</span>
-        </h2>
-
-        <p style={descStyle} className="max-w-2xl mx-auto">
-          The Docline AI assistant solves the biggest challenges in daily practice.
-        </p>
-      </div> */}
-
+    <div className="">
+      <div className="">
+        <div className="">
+          <div className="pt-0 pb-0 sm:pt-8 md:-mt-19">
             <SectionHeader
               badgeIcon={icon}
               badgeText="Peace on the phone"
@@ -290,30 +239,36 @@ const FeatureSection: React.FC = () => {
               }
               align="center"
             />
-            <p className="text-center -mt-8 mb-10 text-sm md:text-xl">
+            <p className="text-center -mt-4 mb-10 md:mb-[60px] text-sm md:text-xl">
               The Docline AI assistant solves the biggest challenges in daily
               practice
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {/* Row 1 */}
-              <div className="lg:col-span-1">
+              {/* Row 1: 2 cards - Relief (1 col) + Conversation (2 cols on lg) */}
+              <div className="md:col-span-1 lg:col-span-1">
                 <ReliefCard />
               </div>
-              <div className="md:col-span-2 lg:col-span-2">
+              <div className="md:col-span-1 lg:col-span-2">
                 <ConversationCard />
               </div>
 
-              {/* Row 2 */}
-              <TriadeCard />
-              <AvailabilityCard />
-              <IntegrationCard />
+              {/* Row 2: 3 cards - each 1 col */}
+              <div className="md:col-span-1 lg:col-span-1">
+                <TriadeCard />
+              </div>
+              <div className="md:col-span-1 lg:col-span-1">
+                <AvailabilityCard />
+              </div>
+              <div className="md:col-span-2 lg:col-span-1">
+                <IntegrationCard />
+              </div>
 
-              {/* Row 3 */}
-              <div className="lg:col-span-1">
+              {/* Row 3: 2 cards - Software (1 col) + Customization (2 cols on lg) */}
+              <div className="md:col-span-1 lg:col-span-1">
                 <SoftwareCard />
               </div>
-              <div className="md:col-span-2 lg:col-span-2">
+              <div className="md:col-span-1 lg:col-span-2">
                 <CustomizationCard />
               </div>
             </div>

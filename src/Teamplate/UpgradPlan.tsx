@@ -205,12 +205,12 @@ const plans = [
     monthly: 399,
     yearly: 339,
     features: [
-      'AI Voicebot setup & configuration',
-      '24/7 availability & call handling',
-      'Intelligent triage & task creation',
-      '2000 call minutes / month included',
-      '€0.35 per extra minute',
-      'Email Support',
+      'KI-Voicebot-Erstellung & Setup',
+      '24/7 Erreichbarkeit & Anrufprotokollierung',
+      'Intelligente Triage & Aufgaben-Erstellung',
+      '2000 Anrufminuten / Monat inkludiert',
+      '0,35 € pro Überminute',
+      'E-Mail Support',
     ],
     color: '#526FFF',
     isPremium: false,
@@ -220,11 +220,11 @@ const plans = [
     monthly: 899,
     yearly: 765,
     features: [
-      'AI Voicebot setup & configuration',
-      '24/7 availability & call handling',
-      'Intelligent triage & task creation',
-      '4000 call minutes / month included',
-      '€0.30 per extra minute',
+      'KI-Voicebot-Erstellung & Setup',
+      '24/7 Erreichbarkeit & Anrufprotokollierung',
+      'Intelligente Triage & Aufgaben-Erstellung',
+      '4000 Anrufminuten / Monat inkludiert',
+      '0,35 € pro Überminute',
       'Multilingual (25+ languages)',
       'Prioritized email and live chat support',
     ],
@@ -236,22 +236,20 @@ const plans = [
     monthly: 1299,
     yearly: 1105,
     features: [
-      'AI Voicebot setup & configuration',
-      '24/7 availability & call handling',
-      'Intelligent triage & task creation',
-      '4000 call minutes / month included',
-      '€0.30 per overtime minute',
+       'KI-Voicebot-Erstellung & Setup',
+      '24/7 Erreichbarkeit & Anrufprotokollierung',
+      'Intelligente Triage & Aufgaben-Erstellung',
+      '8000 Anrufminuten / Monat inkludiert',
+      '0,25 € pro Überminute',
       'Multilingual (25+ languages)',
-      '24/7 Premium Support',
+      '24/7 Premium-Support',
     ],
     color: '#526FFF',
     isPremium: false,
   },
 ];
 
-// ------------------
-//  Pricing Card (Memoized for Speed)
-// ------------------
+
 const PricingCard = memo(({ plan, billingCycle, navigate }: PricingCardProps) => {
 
   return (
@@ -262,17 +260,17 @@ const PricingCard = memo(({ plan, billingCycle, navigate }: PricingCardProps) =>
     >
       <div>
         <h2
-          className={`text-2xl font-semibold mb-8 ${
+          className={`text-2xl font-semibold mb-2 md:mb-8 ${
             plan.isPremium ? 'text-white' : 'text-[#526FFF]'
           }`}
         >
           {plan.name}
         </h2>
 
-        <div className="mb-8">
+        <div className="mb-4 md:mb-8">
           <div className="flex items-baseline gap-1 mb-1">
             <span
-              className={`text-[48px] font-medium ${
+              className={ ` text-3xl md:text-[48px] font-medium ${
                 plan.isPremium ? 'text-white' : `text-[${plan.color}]`
               }`}
             >
@@ -289,6 +287,7 @@ const PricingCard = memo(({ plan, billingCycle, navigate }: PricingCardProps) =>
 
             {billingCycle === 'annually' && (
               <span
+              
                 className={`ml-2 text-xs font-semibold px-2 py-0.5 rounded-full ${
                   plan.isPremium
                     ? 'bg-white text-[#171C35]'
@@ -340,7 +339,7 @@ const UpgradPlan = () => {
 
   return (
     <div
-      className="relative mt-19 xl:mt-[180px] lg:mt-[180px] md:mt-[180px]  rounded-2xl md:rounded-[40px] overflow-hidden"
+      className="relative mt-12 md:mt-[120px]  rounded-2xl md:rounded-[30px] overflow-hidden"
       style={{
         boxShadow: '0 20px 50px rgba(0, 0, 0, 0.05)',
         fontFamily: 'Urbanist, sans-serif',
@@ -355,23 +354,22 @@ const UpgradPlan = () => {
         className="absolute top-32 right-[-80px] z-0 opacity-50 blur-[150px] bg-[#472bff33] w-[654px] h-[400px] rounded-full"
       ></div>
 
-      <div className="relative z-10 p-4 mt-5 md:mt-0 px-[10px] py-[47px]">
-
+      <div className="relative z-10 p-4 mt-5 md:mt-0 px-[10px] py-6 md:py-[47px]">
         <SectionHeader
           badgeIcon={icon}
           badgeText=" Transparent pricing"
           heading={
-            <>
+            <div className='max-[767px]:mt-2'>
               Choose the right plan
               <br /> for your practice
-            </>
+            </div>
           }
           align="center"
         />
 
         {/* Billing Toggle */}
-        <div className="flex justify-center mb-12">
-          <div className="inline-flex bg-white rounded-full p-1 w-[266px] border border-[#EAECF0] shadow-sm">
+        <div className="flex justify-center mb-8 md:mb-12">
+          <div className="inline-flex bg-white rounded-full p-1 w-fit border border-[#EAECF0] shadow-lg">
             <button
               onClick={() => setBillingCycle('monthly')}
               className={`px-6 py-2.5 text-sm font-normal w-[131px] rounded-full transition-all duration-300 cursor-pointer ${

@@ -58,7 +58,7 @@ const SecuritySection: React.FC = () => {
   ];
 
   return (
-    <div className=" bg-[#F3F6F6] mt-20 xl:mt-[180px] lg:mt-[180px] md:mt-[180px] ">
+    <div className="mt-12 md:mt-[120px]">
       <div>
         {/* Header */}
         {/* <div className="text-center mb-16">
@@ -94,13 +94,20 @@ const SecuritySection: React.FC = () => {
           {features.map((feature, index) => (
             <div
               key={index}
-              className="rounded-3xl p-6 md:p-8 transition-all bg-white/5 hover:bg-white/10 backdrop-blur-sm group"
+              className="rounded-2xl sm:rounded-[30px] p-4 md:p-8 transition-all bg-white/5 hover:bg-white/10 backdrop-blur-sm group"
             >
               {/* Icon container */}
               <div
+                        style={{
+    boxShadow: `2px 2px 4px 0 rgba(0, 0, 0, 0.05) inset, 
+                -6px -11px 18px 0 rgba(255, 255, 255, 0.16) inset, 
+                2px 2px 0 -0.4px #FFF inset, 
+                -2px -2px 0 -0.5px #FFF inset`,
+             
+    backdropFilter: "blur(5px)",
+  }}
                 className="flex justify-center items-center 
-                           border-t-2 border-l-2 border-b-1 border-r-1 border-white 
-                           w-[56px] h-[56px] rounded-[16px] bg-white/10 p-[8px_10px] mb-6
+                           w-[56px] h-[56px] rounded-[16px]  p-[8px_10px] mb-4 md:mb-6
                            text-[#171C35] group-hover:text-[#526FFF] transition-colors duration-300"
               >
                 {React.cloneElement(feature.icon, {
@@ -109,12 +116,12 @@ const SecuritySection: React.FC = () => {
               </div>
 
               {/* Title */}
-              <h3 className="text-2xl font-semibold mb-4 text-[#171C35] group-hover:text-[#526FFF] transition-colors duration-300">
+              <h3 className="text-lg md:text-2xl font-semibold mb-2 md:mb-4 text-[#171C35] group-hover:text-[#526FFF] transition-colors duration-300">
                 {feature.title}
               </h3>
 
               {/* Description */}
-              <p className="text-[#171C35] text-base leading-relaxed mb-4">
+              <p className="text-[#171C35] text-sm md:text-base leading-relaxed mb-4">
                 {feature.description}
               </p>
 

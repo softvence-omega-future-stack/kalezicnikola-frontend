@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import UkFlag from '../../../assets/svgIcon/Ellipse 2170.svg';
 import DeFlag from '../../../assets/svgIcon/DEFlag.svg';
 import arrow from '../../../assets/svgIcon/langselect.svg';
@@ -6,14 +6,35 @@ import arrow from '../../../assets/svgIcon/langselect.svg';
 const LanguageSelector = () => {
   const [language, setLanguage] = useState<'EN' | 'DE'>('EN');
   const [showDropdown, setShowDropdown] = useState(false);
+    const headerRef = useRef<HTMLDivElement>(null);
+
 
   const handleSelect = (lang: 'EN' | 'DE') => {
     setLanguage(lang);
     setShowDropdown(false);
   };
 
+useEffect(() => {
+  const handleClickOutside = (event: MouseEvent) => {
+    if (headerRef.current && !headerRef.current.contains(event.target as Node)) {
+      setShowDropdown(false); // close dropdown when clicking outside
+    }
+  };
+
+  if (showDropdown) {
+    document.addEventListener("mousedown", handleClickOutside);
+  } else {
+    document.removeEventListener("mousedown", handleClickOutside);
+  }
+
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutside);
+  };
+}, [showDropdown]);
+
+
   return (
-    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="relative">
+    <div ref={headerRef} style={{ fontFamily: 'Urbanist, sans-serif' }} className="relative">
       {/* EN / DE button */}
       <button
         onClick={() => setShowDropdown(!showDropdown)}
