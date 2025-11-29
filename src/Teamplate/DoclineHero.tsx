@@ -9,10 +9,10 @@ import { useNavigate } from "react-router-dom";
 const DoclineHero: React.FC = () => {
   const navigate = useNavigate()
   return (
-   <section className="w-full bg-[#F3F6F6] pt-[80px] md:pt-[151px]">
-  <div className="flex flex-col lg:flex-row items-center justify-between px-4 sm:px-8 lg:px-20 mt-14 gap-10">
+   <section className="w-full bg-[#F3F6F6] pt-19 lg:pt-[190px] ">
+  <div className="flex flex-col lg:flex-row items-center justify-between px-4 sm:pl-8 lg:pl-20 mt-14 gap-10">
     {/* Left Content */}
-    <div className="w-full lg:w-1/2 xl:-mt-10 2xl:-mt-80">
+    <div className="w-full lg:w-1/2 xl:-pt-10 2xl:-pt-80">
       <SectionHeader
         badgeIcon={herologo}
         badgeText="Your smarter telemedicine"
@@ -33,11 +33,11 @@ const DoclineHero: React.FC = () => {
         
         <button
           onClick={() => navigate("/login")}
-          className="w-full md:w-auto py-5 px-12 rounded-[12px] text-base font-medium bg-[#526FFF] text-white cursor-pointer"
+          className="w-full md:w-auto py-3 px-5 xl:py-5 xl:px-12 rounded-[12px] text-base font-medium bg-[#526FFF] text-white cursor-pointer"
         >
           Get Started
         </button>
-        <button className="w-full md:w-auto py-5 px-12 rounded-[12px] text-base font-medium border border-[#526FFF] text-[#526FFF] bg-[rgba(82,111,255,0.1)] cursor-pointer">
+        <button className="w-full md:w-auto py-3 px-5 xl:py-5 xl:px-12  rounded-[12px] text-base font-medium border border-[#526FFF] text-[#526FFF] bg-[rgba(82,111,255,0.1)] cursor-pointer">
           Book Demo
         </button>
       </div>

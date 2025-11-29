@@ -8,7 +8,7 @@ import ExampleSection from "@/Teamplate/ExamplesSection";
 import FAQSection from "@/Teamplate/FAQSection";
 import DoclineFeaturesSection from "@/Teamplate/FeatureSection";
 import Functions from "@/Teamplate/Functions";
-import Header from "@/Teamplate/Header";
+// import Header from "@/Teamplate/Header";
 import DoclineHero from "@/Teamplate/DoclineHero";
 import SecuritySection from "@/Teamplate/SequritySection";
 
@@ -21,11 +21,11 @@ import Slider from "@/Teamplate/Slider";
 const Home = () => {
   return (
  <div className="bg-[#F3F6F6] ">
-  <Header />
+  {/* <Header /> */}
   <DoclineHero />
 
   {/* content wrapper */}
-  <div className="mx-4 lg:mx-[75px]">
+  <div className="mx-4 lg:px-[75px]">
     <div id="features">
       <DoclineFeaturesSection />
     </div>
