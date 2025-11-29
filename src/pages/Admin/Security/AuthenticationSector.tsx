@@ -13,7 +13,7 @@ const AuthenticationSector = () => {
         </h2>
 
         {/* Toggle Section */}
-        <div className="flex flex-col xs:flex-row items-start xs:items-center justify-between gap-4 sm:gap-6">
+        <div className="flex flex-col md:flex-row xs:flex-row items-start xs:items-center justify-between gap-4 sm:gap-6">
 
           {/* Text Content */}
           <div className="flex-1 space-y-1 sm:space-y-2">
@@ -29,7 +29,7 @@ const AuthenticationSector = () => {
           <button
             onClick={() => setTwoFAEnabled(!twoFAEnabled)}
             className={`relative inline-flex h-6 w-11 sm:h-7 sm:w-12 items-center rounded-full transition-colors cursor-pointer
-              ${twoFAEnabled ? "bg-blue-600" : "bg-gray-300"}`}
+              ${twoFAEnabled ? "bg-[#526FFF]" : "bg-gray-300"}`}
             aria-label={`Two-factor authentication is ${twoFAEnabled ? "enabled" : "disabled"}`}
             aria-pressed={twoFAEnabled}
           >

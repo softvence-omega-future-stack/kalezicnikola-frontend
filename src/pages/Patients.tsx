@@ -5,8 +5,8 @@ import PatientsView from "@/dashboard/components/Patients/PatientView"
 
 const Patients = () => {
   return (
-    <div>
-      {/* <PatientProfilePage/> */}
+    <div className="p-6">
+      
       <PatientsView/>
     </div>
   )

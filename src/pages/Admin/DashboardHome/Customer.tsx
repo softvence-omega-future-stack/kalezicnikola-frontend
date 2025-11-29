@@ -1,3 +1,4 @@
+import churnBoxImg from '../../../assets/svgIcon/churnBoxImg.svg'
 const Customer = () => {
   return (
     <div className="flex justify-center">
@@ -14,14 +15,15 @@ const Customer = () => {
             <p className="text-base font-semibold text-headingBlack mb-1">50%</p>
 
             {/* Box */}
-            <div className="w-24 h-24 bg-[#D0E1F5] rounded-3xl relative overflow-hidden mb-2">
-              <div
+            <div className="">
+              {/* <div
                 className="absolute inset-0 bg-[#D0E1F5]"
                 style={{
                   backgroundImage:
                     "repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,.5) 10px, rgba(255,255,255,.5) 20px)",
                 }}
-              ></div>
+              ></div> */}
+              <img src={churnBoxImg} alt="" />
             </div>
             <p className="text-base font-semibold text-headingBlack">Churn</p>
           </div>

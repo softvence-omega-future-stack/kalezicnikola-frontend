@@ -1,3 +1,44 @@
+
+// import MainHeader from "@/dashboard/components/dashboard/DashboardMainHeader";
+// import Sidebar from "@/dashboard/Sidebar";
+// import { useState } from "react";
+// import { Outlet } from "react-router-dom";
+
+// const DashboardLayout = () => {
+
+//     const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false); 
+//     const [menuOpen, setMenuOpen] = useState(false);
+
+//   const toggleMenu = () => setMenuOpen(!menuOpen);
+
+//     const toggleSidebar = (newState: boolean) => {
+//         setIsSidebarCollapsed(newState);
+//     };
+//   return (
+//     <div className="flex h-screen bg-[#F3F6F6]">
+
+//       <div className="fw-[280px] border-r border-gray-300">
+//         <Sidebar   onToggle={toggleSidebar}  collapsed={isSidebarCollapsed} />
+//       </div>
+
+     
+//       <div className="flex-1 flex flex-col pl-2">
+      
+//         <MainHeader toggleMenu={toggleMenu }/>
+
+//         <main className="flex-1 -pl-6 overflow-auto">
+        
+//           <Outlet />
+//         </main>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default DashboardLayout;
+
+
+
 import UserMainHeader from "@/dashboard/components/dashboard/DashboardMainHeader";
 import UserSidebar from "@/dashboard/Sidebar";
 import LogoutModal from "@/pages/Admin/Logout/LogoutPopup";
@@ -53,11 +94,12 @@ const DashboardLayout = () => {
             </div>
 
             {/* Main Content */}
-            <div className="flex-1 flex flex-col min-h-screen w-full">
+       <div className="flex-1 flex flex-col min-h-screen w-full">
+
                 <UserMainHeader onMobileMenuOpen={() => setMobileMenuOpen(true)} />
 
                 {/* Scrollable content */}
-                <main className="flex-1 overflow-y-auto px-3 md:px-6 pb-6">
+                <main className="flex-1 overflow-y-auto w-full  pb-6">
                     <Outlet />
                 </main>
 
@@ -74,6 +116,7 @@ const DashboardLayout = () => {
             </div>
         </div>
     );
+
 };
 
 export default DashboardLayout;

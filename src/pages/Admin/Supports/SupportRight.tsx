@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import kurmisadia from '../../../assets/svgIcon/kurmisadia.svg';
-import call from '../../../assets/svgIcon/callLogs.svg';
-import vediocal from '../../../assets/svgIcon/videoCall.svg';
+// import call from '../../../assets/svgIcon/callLogs.svg';
+// import vediocal from '../../../assets/svgIcon/videoCall.svg';
 import send from '../../../assets/svgIcon/send.svg';
 import doc from '../../../assets/svgIcon/document.svg';
 import react from '../../../assets/svgIcon/react.svg';
@@ -191,10 +191,10 @@ const SupportRight = ({ selectedFriend }: SupportRightProps) => {
           </div>
           <div className="flex items-center gap-1 md:gap-2 shrink-0">
             <button className="p-1.5 md:p-2 hover:bg-gray-100 rounded-lg transition-colors">
-              <img src={vediocal} alt="Video Call" className="w-4 h-4 md:w-6 md:h-6" />
+              {/* <img src={vediocal} alt="Video Call" className="w-4 h-4 md:w-6 md:h-6" /> */}
             </button>
             <button className="p-1.5 md:p-2 hover:bg-gray-100 rounded-lg transition-colors">
-              <img src={call} alt="Call" className="w-4 h-4 md:w-6 md:h-6" />
+              {/* <img src={call} alt="Call" className="w-4 h-4 md:w-6 md:h-6" /> */}
             </button>
           </div>
         </div>

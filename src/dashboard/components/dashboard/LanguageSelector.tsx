@@ -17,7 +17,7 @@ const LanguageSelector = () => {
       {/* EN / DE button */}
       <button
         onClick={() => setShowDropdown(!showDropdown)}
-        className="flex items-center text-[#111A2D] hover:text-indigo-600 transition-colors pr-4 border-r border-gray-200 h-10 cursor-pointer"
+        className="flex items-center text-[#111A2D] hover:text-indigo-600 transition-colors   border-gray-200 h-10 cursor-pointer"
       >
         <img
           src={language === 'EN' ? UkFlag : DeFlag}

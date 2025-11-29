@@ -18,12 +18,12 @@ export default function ManageSubscription({ setActiveTab }: ManageSubscriptionP
       monthly: 399,
       yearly: 339,
       features: [
-        'AI Voicebot setup & configuration',
-        '24/7 availability & call handling',
-        'Intelligent triage & task creation',
-        '2000 call minutes / month included',
-        '€0.35 per extra minute',
-        'Email Support',
+        'Average of 2-5 easy to follow trade alerts',
+        'Average of 2-5 easy to follow trade alerts',
+        'Average of 2-5 easy to follow trade alerts',
+        'Average of 2-5 easy to follow trade alerts',
+        // '€0.35 per extra minute',
+        // 'Email Support',
       ],
       color: '#526FFF',
       isPremium: false,
@@ -33,13 +33,13 @@ export default function ManageSubscription({ setActiveTab }: ManageSubscriptionP
       monthly: 899,
       yearly: 765,
       features: [
-        'AI Voicebot setup & configuration',
-        '24/7 availability & call handling',
-        'Intelligent triage & task creation',
-        '4000 call minutes / month included',
-        '€0.30 per extra minute',
-        'Multilingual (25+ languages)',
-        'Prioritized email and live chat support',
+        'Average of 2-5 easy to follow trade alerts',
+        'Average of 2-5 easy to follow trade',
+        'Average of 2-5 easy to follow trade alerts per week',
+        'Average of 2-5 easy to follow',
+        // '€0.30 per extra minute',
+        // 'Multilingual (25+ languages)',
+        // 'Prioritized email and live chat support',
       ],
       color: '#171C35',
       isPremium: true,
@@ -49,13 +49,13 @@ export default function ManageSubscription({ setActiveTab }: ManageSubscriptionP
       monthly: 1299,
       yearly: 1105,
       features: [
-        'AI Voicebot setup & configuration',
-        '24/7 availability & call handling',
-        'Intelligent triage & task creation',
-        '4000 call minutes / month included',
-        '€0.30 per overtime minute',
-        'Multilingual (25+ languages)',
-        '24/7 Premium Support',
+        // 'AI Voicebot setup & configuration',
+        // '24/7 availability & call handling',
+        // 'Intelligent triage & task creation',
+        'Average of 2-5 easy to follow trade alerts',
+        'Average of 2-5 easy to follow trade alerts',
+        'Average of 2-5 easy to follow',
+        'Average of 2-5 easy to follow trade alerts',
       ],
       color: '#526FFF',
       isPremium: false,
@@ -68,30 +68,35 @@ export default function ManageSubscription({ setActiveTab }: ManageSubscriptionP
         
         {/* Billing Toggle */}
         <div className="flex justify-center mb-12">
-          <div className="inline-flex bg-white rounded-full p-1 border border-gray-200 shadow-sm">
-            <button
-              onClick={() => setBillingCycle('monthly')}
-              className={`px-6 py-2.5 text-sm font-normal rounded-full transition-colors cursor-pointer ${
-                billingCycle === 'monthly'
-                  ? 'bg-[#526FFF] text-white font-medium shadow-md'
-                  : 'text-[#171c35] hover:bg-gray-50'
-              }`}
-            >
-              Monthly
-            </button>
+  <div className="inline-flex bg-white w-[266px] rounded-full p-1 border border-[#EAECF0] shadow-sm">
+    
+    {/* Monthly Button */}
+    <button
+      onClick={() => setBillingCycle('monthly')}
+      className={`px-6 py-2.5 w-[131px] text-sm font-normal rounded-full transition-colors cursor-pointer
+        ${billingCycle === 'monthly'
+          ? 'bg-[#526FFF] text-white font-medium shadow-md'
+          : 'text-[#171c35] hover:bg-gray-50'
+        }`}
+    >
+      Monthly
+    </button>
 
-            <button
-              onClick={() => setBillingCycle('annually')}
-              className={`px-6 py-2.5 text-sm font-normal rounded-full transition-colors cursor-pointer ${
-                billingCycle === 'annually'
-                  ? 'bg-[#526FFF] text-white font-medium shadow-md'
-                  : 'text-[#171c35] hover:bg-gray-50'
-              }`}
-            >
-              Yearly
-            </button>
-          </div>
-        </div>
+    {/* Yearly Button */}
+    <button
+      onClick={() => setBillingCycle('annually')}
+      className={`px-6 py-2.5 text-sm font-normal w-[131px] rounded-full transition-colors cursor-pointer
+        ${billingCycle === 'annually'
+          ? 'bg-[#526FFF] text-white font-medium shadow-md'
+          : 'text-[#171c35] hover:bg-gray-50'
+        }`}
+    >
+      Yearly
+    </button>
+
+  </div>
+</div>
+
 
         {/* Pricing Cards */}
         <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -121,7 +126,7 @@ export default function ManageSubscription({ setActiveTab }: ManageSubscriptionP
                     </span>
 
                     <span className={`text-sm ${plan.isPremium ? 'text-gray-300' : 'text-[#526FFF]'}`}>
-                      /{billingCycle === 'monthly' ? 'month' : 'year'}
+                      /{billingCycle === 'monthly' ? 'month' : 'month'}
                     </span>
 
                     {billingCycle === 'annually' && (

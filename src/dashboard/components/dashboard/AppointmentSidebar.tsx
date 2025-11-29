@@ -43,7 +43,7 @@ const mockAppointments: Appointment[] = [
 ];
 
 const AppointmentItem: React.FC<AppointmentItemProps> = ({ name, timeRange, isNew }) => (
-  <div className={`p-4 mx-2 rounded-xl transition-colors ${isNew ? 'bg-gray-100 hover:bg-gray-200' : 'bg-gray-50 hover:bg-gray-100'}`}>
+  <div className={`p-4  rounded-xl transition-colors ${isNew ? 'bg-gray-100 hover:bg-gray-200' : 'bg-gray-50 hover:bg-gray-100'}`}>
     <div className="flex justify-between items-center">
       <p className="text-[#171C35] font-semibold text-base leading-snug">{name}</p>
       {isNew && (
@@ -62,7 +62,7 @@ interface ActiveAppointmentProps {
 }
 
 const ActiveAppointmentCard: React.FC<ActiveAppointmentProps> = ({ data }) => (
-  <div className="p-4 mx-2 mb-4 bg-[#F5F6FF]  rounded-xl border border-gray-100">
+  <div className="p-4  mb-4 bg-[#F5F6FF]  rounded-xl border border-gray-100">
     
     {/* Top Row: Avatar and Name/Phone */}
     <div className="flex items-start mb-4">
@@ -97,12 +97,12 @@ const AppointmentsList: React.FC = () => {
 
   return (
     // Outer container with a slight background color for contrast
-    <div className="bg-white p-4 w-full max-w-sm mx-auto sm:max-w-md md:max-w-lg  md:rounded-3xl">
+    <div className="bg-white px-3 py-4 w-full    md:rounded-3xl">
       
       {/* List Header */}
-      <div className="px-2 mb-4">
-        <h2 className="text-sm  text-[#111A2D]">Sunday, 11th</h2>
-        <p className="text-lg font-semibold  text-[#171C35]">{mockAppointments.length} patients</p>
+      <div className=" mb-6">
+        <h2 className="text-sm leading-3.5 mb-1.5  text-[#111A2D]">Sunday, 11th</h2>
+        <p className="text-lg font-semibold leading-4  text-[#171C35]">{mockAppointments.length} patients</p>
       </div>
       
       {/* Appointment List Items */}

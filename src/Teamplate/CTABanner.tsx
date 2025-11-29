@@ -1,17 +1,50 @@
-"use client";
+
+
+// import { useNavigate } from 'react-router-dom';
+import './bnnarButon.css'
+// e
+
+//import { useNavigate } from 'react-router-dom';
+// import LiquidGlassButton from './LequiedGlassBtn';
+
+
+//import { useNavigate } from 'react-router-dom';
+// import LiquidGlassButton from './LequiedGlassBtn';
+
+// import { useNavigate } from 'react-router-dom';
 
 import React from "react";
 import img from "@/assets/img/steigern.png";
 import AppleGlassButton from "@/dashboard/components/AppleGlassButton";
 
+
 const CTABanner: React.FC = () => {
+  // const navigate = useNavigate();
+  // const [isHovered, setIsHovered] = useState(false);
+  // const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  //  const [isPressed, setIsPressed] = useState(false);
+
+
+  //  const [isPressed, setIsPressed] = useState(false);
+
+
+
+  // const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
+  //   const rect = e.currentTarget.getBoundingClientRect();
+  //   setMousePos({
+  //     x: e.clientX - rect.left,
+  //     y: e.clientY - rect.top,
+  //   });
+  // };
+
+  
+
+
   return (
-    <div
-      style={{ fontFamily: 'Urbanist, sans-serif' }}
-      className="w-full px-4 mt-9 md:mt-[180px] lg:mt-[180px] xl:mt-[180px] relative"
-    >
-      <div className="xl:px-30">
-        <div className="bg-[#526FFF] rounded-3xl sm:rounded-[2.5rem] md:rounded-[40px] p-6 sm:p-8 md:p-10 lg:p-[85px] relative overflow-hidden">
+    <div  className="w-full  mt-19 md:mt-[180px] lg:mt-[180px] xl:mt-[180px]">
+      <div className="">
+        <div className="bg-[#526FFF] rounded-[40px]  p-6 sm:p-8 md:p-10 lg:p-12 xl:p-16 shadow-2xl">
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 sm:gap-8">
             
             {/* Left Content */}
@@ -50,6 +83,9 @@ const CTABanner: React.FC = () => {
         </div>
       </div>
     </div>
+  );
+};
+  
   );
 };
 

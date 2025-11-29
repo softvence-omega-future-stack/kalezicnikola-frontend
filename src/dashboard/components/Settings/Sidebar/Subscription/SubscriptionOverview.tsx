@@ -14,7 +14,7 @@ export default function SubscriptionOverview() {
       <h1 className="text-lg font-semibold text-[#171c35] mb-6">Subscription Overview</h1>
 
       {/* Tabs */}
-      <div className="flex flex-wrap gap-2 mb-8 bg-[#FAFAFA] rounded-2xl py-3 px-4 ">
+      <div className="flex flex-wrap gap-2 mb-2 bg-[#FAFAFA] rounded-2xl py-3 px-4 ">
         <button
           onClick={() => setActiveTab('current-plan')}
           className={`px-6 py-3 text-md font-normal rounded-[12px] transition-colors cursor-pointer ${

@@ -1,9 +1,9 @@
-import TaskList from "@/dashboard/components/Tasks/TasksManagement"
+import TaskList from "@/dashboard/components/Tasks/TasksList"
 
 
 const Tasks = () => {
   return (
-    <div style={{ fontFamily: 'Urbanist, sans-serif' }}>
+    <div className="p-6">
       <TaskList/>
     </div>
   )

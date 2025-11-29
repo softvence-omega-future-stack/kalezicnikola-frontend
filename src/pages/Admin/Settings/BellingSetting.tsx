@@ -100,7 +100,7 @@ const BellingSetting: React.FC = () => {
                 <button
                   onClick={() => handleToggle('autoGenerateInvoices')}
                   className={`relative inline-flex h-6 w-12 shrink-0 items-center rounded-full transition-colors cursor-pointer ${
-                    settings.autoGenerateInvoices ? 'bg-blue-600' : 'bg-gray-300'
+                    settings.autoGenerateInvoices ? 'bg-[#526FFF]' : 'bg-gray-300'
                   }`}
                 >
                   <span
@@ -125,7 +125,7 @@ const BellingSetting: React.FC = () => {
                 <button
                   onClick={() => handleToggle('sendInvoiceEmails')}
                   className={`relative inline-flex h-6 w-12 shrink-0 items-center rounded-full transition-colors cursor-pointer ${
-                    settings.sendInvoiceEmails ? 'bg-blue-600' : 'bg-gray-300'
+                    settings.sendInvoiceEmails ? 'bg-[#526FFF]' : 'bg-gray-300'
                   }`}
                 >
                   <span

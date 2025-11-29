@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
-import { Home, ChevronDown, ChevronRight } from 'lucide-react';
+import { Home, ChevronRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import CustomDropdown from '../Settings/Sidebar/CustomDropdown';
+
 
 interface FormData {
   firstName: string;
   lastName: string;
   dateOfBirth: string;
-  gender: 'Male' | 'Female' | 'Other' | ''; // Updated for select
+  gender: 'Male' | 'Female' | 'Other' | '';
   bloodGroup: 'A+' | 'A-' | 'B+' | 'B-' | 'O+' | 'O-' | 'AB+' | 'AB-' | '';
-  maritalStatus: 'Single' | 'Married' | 'Divorced' | 'Widowed' | ''; // Added new field
+  maritalStatus: 'Single' | 'Married' | 'Divorced' | 'Widowed' | '';
   city: string;
   insuranceId: string;
   address: string;
@@ -23,7 +26,7 @@ const AddPatientForm: React.FC = () => {
     dateOfBirth: '',
     gender: '',
     bloodGroup: '',
-    maritalStatus: '', // Initialized new field
+    maritalStatus: '',
     city: '',
     insuranceId: '',
     address: '',
@@ -32,22 +35,24 @@ const AddPatientForm: React.FC = () => {
     alternativePhone: ''
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
   };
 
+  const handleDropdownChange = (field: keyof FormData, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault(); // Prevent default form submission
+    e.preventDefault();
     console.log('Patient Data Submitted:', formData);
-    // In a real application, you would send formData to an API here.
     alert('Patient data submitted! Check console for details.');
   };
 
   const handleCancel = () => {
-    // Optionally clear the form or navigate away
     setFormData({
       firstName: '',
       lastName: '',
@@ -68,31 +73,32 @@ const AddPatientForm: React.FC = () => {
   const inputClass = "w-full px-4 py-2.5 bg-gray-50 border border-[#D0D5DD] rounded-[8px] text-sm text-[#111A2D] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#526FFF] focus:border-transparent";
   const labelClass = "block text-base font-medium text-[#171c35] mb-2";
 
+  const navigate = useNavigate();
+
   return (
-    <div className="min-h-screen bg-gray-50 p-4 md:p-8">
-      <div className="">
+    <div className="min-h-screen mt-6 p-6">
+      <div className="py-6">
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-sm text-gray-600 mb-4">
           <Home className="w-4 h-4 text-gray-500" />
           <ChevronRight size={12} className="text-gray-500"/>
-          <span className="text-gray-600">Dashboard</span>
+          <span onClick={()=> navigate('/dashboard')} className="text-gray-600 cursor-pointer">Dashboard</span>
           <ChevronRight size={12} className="text-gray-500"/>
-          <span className="text-gray-600">Patients</span>
+          <span onClick={()=> navigate('/dashboard/patients')} className="text-gray-600 cursor-pointer">Patients</span>
           <ChevronRight size={12} className="text-gray-500"/>
           <span className="text-[#171c35] font-semibold">Add Patient</span>
         </div>
 
         {/* Page Title */}
-        <h1 className="text-2xl font-bold text-[#171c35] mb-8">Add New Patient </h1>
+        <h1 className="text-2xl font-bold text-[#171c35] mb-8">Add New Patient</h1>
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-lg p-6 md:p-8">
-          
-          {/* 1. Personal Info Section */}
+
+          {/* Personal Info Section */}
           <div className="mb-8 pb-4 border-b border-gray-100">
             <h2 className="text-xl font-semibold text-[#171c35] mb-6">Personal Information</h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* First Name */}
               <div>
                 <label htmlFor="firstName" className={labelClass}>First Name *</label>
@@ -126,88 +132,66 @@ const AddPatientForm: React.FC = () => {
               {/* Date of Birth */}
               <div>
                 <label htmlFor="dateOfBirth" className={labelClass}>Date of Birth *</label>
-                <div className="relative">
-                  <input
-                    id="dateOfBirth"
-                    type="date"
-                    name="dateOfBirth"
-                    value={formData.dateOfBirth}
-                    onChange={handleChange}
-                    required
-                    className={inputClass + " appearance-none"} // Use appearance-none to hide default calendar icon if needed
-                  />
-                  {/* The default date input styling is often sufficient, but you can keep the image if preferred */}
-                  {/* <img src="https://i.ibb.co.com/gbYTtKHC/Date-Birth-Icon.png" alt="calendar" className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 pointer-events-none" /> */}
-                </div>
+                <input
+                  id="dateOfBirth"
+                  type="date"
+                  name="dateOfBirth"
+                  value={formData.dateOfBirth}
+                  onChange={handleChange}
+                  required
+                  className={inputClass + " appearance-none"}
+                />
               </div>
 
-              {/* Gender (Updated to Select) */}
+              {/* Gender Dropdown */}
               <div>
                 <label htmlFor="gender" className={labelClass}>Gender *</label>
-                <div className="relative">
-                  <select
-                    id="gender"
-                    name="gender"
-                    value={formData.gender}
-                    onChange={handleChange}
-                    required
-                    className={inputClass + " appearance-none cursor-pointer"}
-                  >
-                    <option value="" disabled>Select gender</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Other">Other</option>
-                  </select>
-                  <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
-                </div>
+                <CustomDropdown
+                  value={formData.gender}
+                  onChange={(val) => handleDropdownChange("gender", val)}
+                  options={[
+                    { value: "Male", label: "Male" },
+                    { value: "Female", label: "Female" },
+                    { value: "Other", label: "Other" }
+                  ]}
+                  placeholder="Select gender"
+                />
               </div>
 
-              {/* Blood Group */}
+              {/* Blood Group Dropdown */}
               <div>
                 <label htmlFor="bloodGroup" className={labelClass}>Blood Group *</label>
-                <div className="relative">
-                  <select
-                    id="bloodGroup"
-                    name="bloodGroup"
-                    value={formData.bloodGroup}
-                    onChange={handleChange}
-                    required
-                    className={inputClass + " appearance-none cursor-pointer"}
-                  >
-                    <option value="" disabled>Select blood group</option>
-                    <option value="A+">A+</option>
-                    <option value="A-">A-</option>
-                    <option value="B+">B+</option>
-                    <option value="B-">B-</option>
-                    <option value="O+">O+</option>
-                    <option value="O-">O-</option>
-                    <option value="AB+">AB+</option>
-                    <option value="AB-">AB-</option>
-                  </select>
-                  <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
-                </div>
+                <CustomDropdown
+                  value={formData.bloodGroup}
+                  onChange={(val) => handleDropdownChange("bloodGroup", val)}
+                  options={[
+                    { value: "A+", label: "A+" },
+                    { value: "A-", label: "A-" },
+                    { value: "B+", label: "B+" },
+                    { value: "B-", label: "B-" },
+                    { value: "O+", label: "O+" },
+                    { value: "O-", label: "O-" },
+                    { value: "AB+", label: "AB+" },
+                    { value: "AB-", label: "AB-" },
+                  ]}
+                  placeholder="Select blood group"
+                />
               </div>
-              
-              {/* Marital Status (NEW FIELD) */}
+
+              {/* Marital Status Dropdown */}
               <div>
                 <label htmlFor="maritalStatus" className={labelClass}>Marital Status *</label>
-                <div className="relative">
-                  <select
-                    id="maritalStatus"
-                    name="maritalStatus"
-                    value={formData.maritalStatus}
-                    onChange={handleChange}
-                    required
-                    className={inputClass + " appearance-none cursor-pointer"}
-                  >
-                    <option value="" disabled>Select marital status</option>
-                    <option value="Single">Single</option>
-                    <option value="Married">Married</option>
-                    <option value="Divorced">Divorced</option>
-                    <option value="Widowed">Widowed</option>
-                  </select>
-                  <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
-                </div>
+                <CustomDropdown
+                  value={formData.maritalStatus}
+                  onChange={(val) => handleDropdownChange("maritalStatus", val)}
+                  options={[
+                    { value: "Single", label: "Single" },
+                    { value: "Married", label: "Married" },
+                    { value: "Divorced", label: "Divorced" },
+                    { value: "Widowed", label: "Widowed" }
+                  ]}
+                  placeholder="Select marital status"
+                />
               </div>
 
               {/* Insurance ID */}
@@ -219,20 +203,17 @@ const AddPatientForm: React.FC = () => {
                   name="insuranceId"
                   value={formData.insuranceId}
                   onChange={handleChange}
-                  placeholder="Insurance ID (e.g., policy number)..."
+                  placeholder="Insurance ID..."
                   className={inputClass}
                 />
               </div>
             </div>
           </div>
 
-          {/* 2. Contact & Address Section */}
+          {/* Contact & Address Section */}
           <div className="mb-8 pb-4 border-b border-gray-100">
             <h2 className="text-xl font-semibold text-[#171c35] mb-6">Contact & Address</h2>
-            
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              
-              {/* Email */}
               <div>
                 <label htmlFor="email" className={labelClass}>Email *</label>
                 <input
@@ -247,7 +228,6 @@ const AddPatientForm: React.FC = () => {
                 />
               </div>
 
-              {/* Phone Number */}
               <div>
                 <label htmlFor="phoneNumber" className={labelClass}>Phone Number *</label>
                 <input
@@ -262,7 +242,6 @@ const AddPatientForm: React.FC = () => {
                 />
               </div>
 
-              {/* Alternative Phone */}
               <div>
                 <label htmlFor="alternativePhone" className={labelClass}>Alternative Phone</label>
                 <input
@@ -271,12 +250,11 @@ const AddPatientForm: React.FC = () => {
                   name="alternativePhone"
                   value={formData.alternativePhone}
                   onChange={handleChange}
-                  placeholder="Enter alternative phone number (optional)..."
+                  placeholder="Enter alternative phone number..."
                   className={inputClass}
                 />
               </div>
-              
-              {/* City (Updated to Input/Select depending on your needs, keeping as input for flexibility) */}
+
               <div>
                 <label htmlFor="city" className={labelClass}>City *</label>
                 <input
@@ -291,7 +269,6 @@ const AddPatientForm: React.FC = () => {
                 />
               </div>
 
-              {/* Address (Full width) */}
               <div className="lg:col-span-2">
                 <label htmlFor="address" className={labelClass}>Address *</label>
                 <input
@@ -300,7 +277,7 @@ const AddPatientForm: React.FC = () => {
                   name="address"
                   value={formData.address}
                   onChange={handleChange}
-                  placeholder="Full address (Street, locality, zip)..."
+                  placeholder="Full address..."
                   required
                   className={inputClass}
                 />
@@ -308,22 +285,23 @@ const AddPatientForm: React.FC = () => {
             </div>
           </div>
 
-          {/* 3. Action Buttons */}
-          <div className="flex justify-end gap-4 mt-8">
+          {/* Action Buttons */}
+          <div className="flex gap-4 mt-8">
             <button
               type="button"
               onClick={handleCancel}
-              className="px-6 py-3 bg-white border border-[#D0D5DD] rounded-[8px] text-sm font-medium text-[#111A2D] hover:bg-gray-50 transition-colors shadow-sm"
+              className="w-full px-6 py-3 bg-white border border-[#D0D5DD] rounded-[8px] text-sm font-medium text-[#111A2D] transition-colors cursor-pointer"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-6 py-3 bg-[#526FFF] rounded-[8px] text-sm font-medium text-white hover:bg-[#435FFF] transition-colors shadow-md"
+              className="w-full px-6 py-3 bg-[#526FFF] rounded-[8px] text-sm font-medium text-white transition-colors cursor-pointer"
             >
               Add Patient
             </button>
           </div>
+
         </form>
       </div>
     </div>

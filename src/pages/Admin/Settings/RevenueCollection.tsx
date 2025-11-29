@@ -49,7 +49,7 @@ const RevenueCollection: React.FC = () => {
             <button
               onClick={() => handleToggle('retryFailedPayments')}
               className={`relative inline-flex h-6 w-12 shrink-0 items-center rounded-full transition-colors cursor-pointer ${
-                settings.retryFailedPayments ? 'bg-blue-600' : 'bg-gray-300'
+                settings.retryFailedPayments ? 'bg-[#526FFF]' : 'bg-gray-300'
               }`}
             >
               <span
@@ -75,7 +75,7 @@ const RevenueCollection: React.FC = () => {
             <button
               onClick={() => handleToggle('gracePeriod')}
               className={`relative inline-flex h-6 w-12 shrink-0 items-center rounded-full transition-colors cursor-pointer ${
-                settings.gracePeriod ? 'bg-blue-600' : 'bg-gray-300'
+                settings.gracePeriod ? 'bg-[#526FFF]' : 'bg-gray-300'
               }`}
             >
               <span
@@ -101,7 +101,7 @@ const RevenueCollection: React.FC = () => {
             <button
               onClick={() => handleToggle('proration')}
               className={`relative inline-flex h-6 w-12 shrink-0 items-center rounded-full transition-colors cursor-pointer ${
-                settings.proration ? 'bg-blue-600' : 'bg-gray-300'
+                settings.proration ? 'bg-[#526FFF]' : 'bg-gray-300'
               }`}
             >
               <span

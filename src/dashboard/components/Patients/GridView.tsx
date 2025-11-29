@@ -23,7 +23,7 @@ const GridView: React.FC = () => {
   ];
   return (
     <div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-5 ">
             {patients.map((patient, index) => (
               <div key={index} className=" rounded-[16px]  p-6 bg-[#F8F8F8]  ">
                 {/* Profile Section */}
@@ -39,7 +39,7 @@ const GridView: React.FC = () => {
      'hover:bg-[#EEF1FF]'
   }`}>
                  {/* Contact Info */}
-                <div className="grid grid-cols-2 gap-x-4 gap-y-4 mb-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-4 mb-6">
                   <div>
                     <p className="text-xs font-medium text-[#111A2D] mb-1">Telephone Number</p>
                     <p className="text-base font-semibold text-[#171C35]">+880 1234 56 78</p>

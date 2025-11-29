@@ -40,7 +40,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex relative bg-[#F3F6F6] min-h-screen">
+    <div className="flex relative bg-[#F3F6F6] ">
       {/* Left Side - Image */}
       <div className="hidden lg:block lg:w-1/2 p-[10px] rounded-[16px] relative">
         <img
@@ -49,7 +49,7 @@ export default function LoginPage() {
           className="w-full h-[930px] rounded-[16px] object-cover"
         />
 
-        <div className="fixed top-8 left-0 right-0 z-20 w-[95%] border border-gray-100 bg-white/10 backdrop-blur-sm rounded-full px-9 py-4 flex items-center justify-between mx-auto">
+        <div className="fixed top-8 left-0 right-0 z-20 w-[95%] border border-white bg-white/10 backdrop-blur-sm rounded-full px-9 py-4 flex items-center justify-between mx-auto">
           <div className="flex items-center gap-2">
             <img src={icon} alt="Logo" />
             <img src={logo} alt="" />
@@ -61,7 +61,7 @@ export default function LoginPage() {
       </div>
 
       {/* Right Side - Login Form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-gray-50 relative">
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-8  relative">
         <div className="w-full max-w-md">
           <div className="absolute top-8 right-8 lg:hidden">
             <button className="px-6 py-2 bg-[#171c35] text-white rounded-full text-sm font-medium">

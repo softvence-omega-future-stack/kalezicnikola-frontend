@@ -1,4 +1,4 @@
-.glass-card {
+/* .glass-card {
   width: 218px;
   height: 64px;
   background: rgba(255, 255, 255, 0.05);
@@ -43,7 +43,7 @@
     transparent,
     rgba(255, 255, 255, 0.3)
   );
-}
+} */
 
 /* .glass-btn {
   padding: 14px 32px;
@@ -151,4 +151,64 @@
   opacity: 0.6;
   z-index: -1;
   filter: blur(1px) drop-shadow(10px 4px 6px black) brightness(115%);
+} */
+
+
+
+
+
+.apple-liquid-glass {
+    /* Layout from Figma */
+    display: flex;
+    width: 218px;
+    height: 64px;
+    padding: 8px 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    flex-shrink: 0;
+    
+    /* Your specified styles */
+    border-radius: 16px;
+    background: white/50;
+    
+    /* Apple liquid glass effect */
+    backdrop-filter: blur(30px) saturate(200%);
+    -webkit-backdrop-filter: blur(30px) saturate(200%);
+    
+    /* NO BORDER */
+    border: none;
+    
+    /* Shadow only on 2 corners to create border effect */
+    box-shadow: 
+        /* Main shadow */
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        
+        /* Shadow as border on top-right corner */
+        1px -1px 0 rgba(255, 255, 255, 0.3),
+        
+        /* Shadow as border on bottom-left corner */
+        -1px 1px 0 rgba(255, 255, 255, 0.3),
+        
+        /* Inner effects */
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    
+    /* Text styling */
+    color: rgba(255, 255, 255, 0.9);
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Container to see the effect (optional) */
+/* .container {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+    border-radius: 20px;
 } */

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import InvoiceModal from './InvoiceViewModal';
-import filter from '../../../../../assets/svgIcon/filter.svg'
+
+import DateRange from '@/dashboard/components/CallLogs/DateRange';
 
 
 
@@ -20,15 +21,12 @@ export default function Invoices() {
   ]);
 
   return (
-    <div className="min-h-screen  bg-white p-4 md:p-8">
+    <div className="  bg-white">
       <div className="">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <h1 className="text-xl font-semibold text-[#171c35]">Transaction Overview</h1>
-          <button className="flex items-center gap-2 px-4 py-2 text-sm text-[#111A2D] font-semibold bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-            <img src={filter} alt="" />
-            Filters
-          </button>
+         <DateRange/> 
         </div>
 
         {/* Desktop Table */}
@@ -51,7 +49,7 @@ export default function Invoices() {
                   <td className="py-5 px-4 text-sm font-medium text-[#111A2D]">{transaction.name}</td>
                   <td className="py-5 px-4 text-sm font-medium text-[#111A2D]">{transaction.transactionId}</td>
                   <td className="py-5 px-4">
-                    <span className={`inline-flex items-center px-6 py-1.5 rounded-full text-sm font-normal ${
+                    <span className={`inline-flex items-center w-[109px] justify-center px-6 py-1.5 rounded-full text-sm font-normal ${
                       transaction.status === 'Paid' 
                         ? 'bg-[#0089331A] text-[#008933]' 
                         : 'bg-[#DD8F001A] text-[#DD8F00]'
@@ -101,7 +99,7 @@ export default function Invoices() {
                 </div>
               </div>
               
-              <button className="w-full px-4 py-2 text-sm text-[#111A2D] font-medium bg-white border border-gray-300 rounded-full hover:bg-gray-50 transition-colors">
+              <button className="w-full px-4 py-2 text-sm text-[#111A2D] font-medium cursor-pointer bg-white border border-gray-300 rounded-full hover:bg-gray-50 transition-colors">
                 View
               </button>
             </div>

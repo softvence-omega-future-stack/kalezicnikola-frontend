@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { X, ChevronDown } from 'lucide-react';
-import calender from '../../../assets/svgIcon/calender.svg'
+//import calender from '../../../assets/svgIcon/calender.svg'
 
 // Define the Task structure expected when editing from the parent component (TaskList)
 interface Task {
@@ -171,7 +171,7 @@ export default function AddTaskModal({ onClose, onAddTask, initialTask }: AddTas
                 onChange={handleChange}
                 className="w-full px-4 py-2.5 bg-white border border-gray-300 rounded-xl text-sm text-[#171c35] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#526fff] focus:border-transparent"
               />
-                <img src={calender} className='absolute right-4 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none' alt="Calendar icon" />
+                {/* <img src={calender} className='absolute right-4 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none' alt="Calendar icon" /> */}
             </div>
           </div>
 

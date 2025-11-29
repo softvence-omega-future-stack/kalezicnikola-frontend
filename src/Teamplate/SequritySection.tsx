@@ -1,6 +1,7 @@
 import React from 'react';
 import icon from '../assets/svgIcon/herologo.svg';
 import './buttom.css'
+import SectionHeader from './SectionHeader';
 
 const SecuritySection: React.FC = () => {
   const features = [
@@ -57,10 +58,10 @@ const SecuritySection: React.FC = () => {
   ];
 
   return (
-    <div className="px-4  bg-[#F3F6F6] mt-20 xl:mt-[180px] lg:mt-[180px] md:mt-[180px] lg:px-30">
+    <div className=" bg-[#F3F6F6] mt-20 xl:mt-[180px] lg:mt-[180px] md:mt-[180px] ">
       <div>
         {/* Header */}
-        <div className="text-center mb-16">
+        {/* <div className="text-center mb-16">
           <div className="relative glass inline-flex items-center gap-2 px-4 py-2 border border-t-2 border-l-2 border-white bg-white/10  rounded-full mb-4">
             <img src={icon} alt="" />
             <span className="text-[#171C35] text-sm font-medium">
@@ -69,13 +70,27 @@ const SecuritySection: React.FC = () => {
 
         
           </div>
-          <h2 className="text-4xl sm:text-5xl lg:text-5xl font-semibold text-[#171c35] mb-15">
+          <h2 className="text-[42px] sm:text-[52px] lg:text-[54px] xl:text-[64px] font-semibold text-[#171C35] leading-snug lg:leading-19">
             Maximum Security <br /> 100% GDPR Compliant
           </h2>
-        </div>
+        </div> */}
+         <SectionHeader
+          badgeIcon={icon}
+          badgeText=" Compliance & Security"
+          heading={
+            <>
+               Maximum Security <br /> 100% GDPR Compliant
+            </>
+          }
+         // subText="Your patients will hardly notice the difference. Easily adapt the AI assistant's voice to your practice's style. Choose a confident male or female voice. This ensures a smooth and professional reception for every call."
+          align="center"
+          
+        />
+
+
 
         {/* Features Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 lg:gap-8">
           {features.map((feature, index) => (
             <div
               key={index}

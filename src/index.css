@@ -18,6 +18,162 @@ body {
     font-family: 'Urbanist';
 }
 
+
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+  /* Remove if you have custom scrollbar */
+}
+
+/* 2. GPU Acceleration for All Animated Elements */
+.animated-element,
+[class*="animate"],
+[class*="transition"],
+.card,
+.hero-section,
+.navbar {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform, opacity;
+}
+
+/* 3. Optimize Images - Add to all image containers */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  transform: translateZ(0);
+}
+
+/* 4. Fix for Fixed/Sticky Elements */
+.navbar,
+.fixed-header,
+.sticky-sidebar,
+[class*="fixed"],
+[class*="sticky"] {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+/* 5. Smooth Transitions */
+.transition,
+.hover-effect,
+button,
+a {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 6. Container Optimization */
+.container,
+.section,
+.wrapper {
+  transform: translate3d(0, 0, 0);
+}
+
+/* 7. Remove Jank from Parallax/Scroll Effects */
+.parallax,
+.scroll-effect {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* ============================================
+   REMOVE PROBLEMATIC ANIMATIONS
+   ============================================ */
+
+/* If you have these, they might cause jank */
+/* Remove or optimize them */
+
+/* Bad - causes reflow */
+/* 
+.bad-animation {
+  animation: moveWidth 1s infinite;
+}
+@keyframes moveWidth {
+  from { width: 100px; }
+  to { width: 200px; }
+}
+*/
+
+/* Good - uses transform */
+.good-animation {
+  animation: moveTransform 1s infinite;
+}
+@keyframes moveTransform {
+  from { transform: translateX(0); }
+  to { transform: translateX(100px); }
+}
+
+/* ============================================
+   TAILWIND SPECIFIC FIXES
+   ============================================ */
+
+/* If using Tailwind, add these to your tailwind.config.js 
+   or global CSS */
+
+.smooth-scroll {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Optimize backdrop blur if you're using it */
+.backdrop-blur-sm,
+.backdrop-blur-md,
+.backdrop-blur-lg {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  will-change: backdrop-filter;
+}
+
+/* ============================================
+   RESPONSIVE OPTIMIZATION
+   ============================================ */
+
+/* Disable animations on low-end devices */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Mobile specific optimizations */
+@media (max-width: 768px) {
+  * {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+}
+
+
+/* Animation classes */
+.animate-shimmer { animation: shimmer 4s ease-in-out infinite; }
+.animate-shimmerReverse { animation: shimmerReverse 5s ease-in-out infinite; }
+.animate-rotate { animation: rotate 8s linear infinite; }
+.animate-ripple { animation: ripple 1.5s ease-out infinite; }
+.animate-floating1 { animation: floating1 4s ease-in-out infinite; }
+.animate-floating2 { animation: floating2 5s ease-in-out infinite; }
+.animate-floating3 { animation: floating3 6s ease-in-out infinite; }
+.animate-floating4 { animation: floating4 6s ease-in-out infinite; }
+.animate-floating5 { animation: floating5 7s ease-in-out infinite; }
+
+
+
 @theme {
   --color-headingBlack: #171C35;
   --color-subHeadingBlack: #111A2D;

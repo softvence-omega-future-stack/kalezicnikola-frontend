@@ -7,26 +7,38 @@ import img3 from '../assets/svgIcon/interface3.svg'
 
 import img6 from '../assets/svgIcon/interface6.svg'
 import './buttom.css'
+import SectionHeader from "./SectionHeader";
 
 const Functions = () => {
   return (
-    <section  style={{ fontFamily: 'Urbanist, sans-serif' }} className="xl:mt-[180px] lg:mt-[180px] mt-19 ">
-      <div className=" px-4 sm:px-6 lg:px-8 mx-10">
+    <section  style={{ fontFamily: 'Urbanist, sans-serif' }} className="xl:mt-[180px] lg:mt-[180px] mt-24 ">
+      <div className="  ">
 
-     <div className="text-start mb-16 ">
+     {/* <div className="text-start mb-16 ">
         <div className="relative inline-flex glass items-center gap-2 pr-5 pl-2.5 py-2   mb-4">
           <img src={icon} alt="" />
           <span className="text-[#171C35] text-sm font-medium">Our Core Functions</span>
-
-        
   
         </div>
 
-        <h2 className="text-4xl sm:text-5xl lg:text-5xl font-semibold text-[#171c35] mb-12">
+        <h2 className="text-[42px] sm:text-[52px] lg:text-[54px] xl:text-[64px] font-semibold text-[#171C35] leading-snug lg:leading-19">
            Everything you need to ease <br /> the burden on your practice
         </h2>
-      </div>
-
+      </div> */}
+      <div className="">
+       <SectionHeader
+          badgeIcon={icon}
+          badgeText=" Our Core Functions"
+          heading={
+            <>
+              Everything you need to ease <br /> the burden on your practice
+            </>
+          }
+          
+          align="left"
+          
+        />
+       </div>
         {/* Features Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           
