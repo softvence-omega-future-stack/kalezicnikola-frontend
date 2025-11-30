@@ -74,7 +74,7 @@ const TestimonialSection: React.FC = () => {
             What Practice Owners <br /> Say About Docline
           </h2>
         </div> */}
-        
+
 
          <SectionHeader
           badgeIcon={icon}
@@ -90,7 +90,7 @@ const TestimonialSection: React.FC = () => {
         />
 
         {/* Testimonial Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch mb-12 bg-white rounded-2xl md:rounded-3xl max-[767px]:px-2.5 max-[767px]:pt-5 md:p-2.5 ">
+        <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch mb-12 bg-white rounded-2xl md:rounded-3xl max-[767px]:px-2.5 max-[767px]:pt-5 md:p-2.5">
           
           {/* Left - Image */}
           <div className="lg:col-span-4 flex justify-center lg:justify-start h-full items-center lg:pl-0 pb-2 md:pb-4 lg:pb-0">

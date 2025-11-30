@@ -21,7 +21,7 @@ const DashboardSlide: React.FC<{
 }> = ({ bgColor, label, title, subtitle, list, img, isActive }) => {
   return (
     <div
-      className={`p-4 sm:p-6 md:p-8 ${bgColor} rounded-3xl shadow-xl relative overflow-hidden 
+      className={`px-4 pt-4 md:px-8 md:pt-8 ${bgColor} rounded-3xl relative overflow-hidden 
       flex flex-col transition-all duration-700 transform
       ${isActive ? "scale-100 opacity-100" : "scale-95 opacity-90"}
       mx-auto w-full min-h-[420px] sm:min-h-[520px] md:min-h-[600px]`}
@@ -51,13 +51,13 @@ const DashboardSlide: React.FC<{
 
       {/* Image Section */}
       <div
-        className="relative z-10 rounded-xl overflow-hidden shadow-md mt-auto 
+        className="relative z-10 rounded-t-xl overflow-hidden mt-auto 
         h-[180px] sm:h-[260px] md:h-[330px] lg:h-[400px] w-full"
       >
         <img
           src={img}
           alt={title}
-          className="w-full h-full object-cover rounded-xl"
+          className="w-full h-full rounded-t-xl object-cover"
         />
       </div>
     </div>
@@ -131,7 +131,7 @@ const Slider = () => {
   ];
 
   return (
-    <section className="mt-12 md:mt-[120px] max-[767px]:px-4">
+    <section className="mt-12 md:mt-[120px] max-[767px]:px-4 ">
       <div>
         {/* Header */}
         <div
@@ -141,10 +141,6 @@ const Slider = () => {
           <div>
             <div
             style={{
-          boxShadow: `1px 1px 4px 0 rgba(0, 0, 0, 0.05) inset, 
-                -6px -11px 18px 0 rgba(255, 255, 255, 0.16) inset, 
-                1px 1px 0 -0.4px #FFF inset, 
-                -1px -1px 0 -0.5px #FFF inset`,
           padding: "10px 20px 10px 20px",
           backdropFilter: "blur(5px)",
         }}
@@ -178,7 +174,7 @@ const Slider = () => {
           grabCursor={true}
           centeredSlides={true}
           loop={true}
-          spaceBetween={50}
+          spaceBetween={30}
           slidesPerView={"auto"}
           autoplay={
             isMobile
