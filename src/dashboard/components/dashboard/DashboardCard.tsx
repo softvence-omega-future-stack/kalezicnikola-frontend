@@ -220,7 +220,7 @@ const categories = [
     title: "Requires a call back",
     bgColor: "#FADACA",
     mainNumber: 7,
-   path: "/dashboard/call_logs",    
+   path: "/dashboard/tasks",    
   },
 ];
 

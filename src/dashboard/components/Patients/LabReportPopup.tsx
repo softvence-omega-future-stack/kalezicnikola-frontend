@@ -30,7 +30,7 @@ export const LabReport: React.FC<LabReportProps> = ({ reportId, onClose }) => {
   ];
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center rounded-2xl justify-center z-50 p-4 overflow-auto">
+    <div   onClick={onClose} className="fixed inset-0 bg-black/50 flex items-center rounded-2xl justify-center z-50 p-4 overflow-auto">
       <div className="bg-gray-200 w-full max-w-3xl rounded-2xl  flex flex-col max-h-[90vh] p-3">
         {/* Header */}
         <div className=" px-6 py-4 flex items-center justify-between flex-shrink-0">

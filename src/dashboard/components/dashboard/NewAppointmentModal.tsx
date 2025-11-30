@@ -37,7 +37,7 @@ const NewAppointmentModal: React.FC<NewAppointmentModalProps> = ({ onClose }) =>
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[9999] p-2 sm:p-4">
+    <div   onClick={onClose} className="fixed inset-0 bg-black/50 flex items-center justify-center z-[9999] p-2 sm:p-4">
       <div className="bg-gray-100 rounded-2xl w-full max-w-lg mx-auto shadow-xl animate-fadeIn max-h-[90vh] flex flex-col">
         {/* Header */}
         <div className="p-4 sm:p-6 pb-3 sm:pb-4 border-b border-gray-300 flex-shrink-0">

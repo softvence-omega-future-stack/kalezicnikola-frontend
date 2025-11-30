@@ -52,7 +52,7 @@ export default function PatientsView() {
   }, [dropdownOpen]);
 
   return (
-    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="min-h-screen p-4 md:mt-[30px]">
+    <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="min-h-screen p-4 md:mt-[10px]">
       {/* Breadcrumb */}
       <div className="">
         <div className='flex items-center gap-2 px-2 md:px-0 text-sm text-gray-600 mb-6'>

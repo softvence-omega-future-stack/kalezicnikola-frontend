@@ -136,7 +136,7 @@ interface UpgradeCardProps {
 const UpgradeCard: React.FC<UpgradeCardProps> = ({ collapsed }) => {
     const subscriptionTotalMinutes = 1535;
     const [usedMinutes, setUsedMinutes] = useState(1035);
-    const remainingMinutes = subscriptionTotalMinutes - usedMinutes;
+    //const remainingMinutes = subscriptionTotalMinutes - usedMinutes;
     const percentage = (usedMinutes / subscriptionTotalMinutes) * 100;
     const navigate = useNavigate();
 
@@ -174,9 +174,12 @@ const UpgradeCard: React.FC<UpgradeCardProps> = ({ collapsed }) => {
                 </div>
                 <button
                     className="w-full bg-subHeadingBlack text-white text-xs font-semibold py-2 sm:py-2 rounded-lg cursor-pointer hover:bg-gray-900 transition-colors mt-2"
-                    onClick={() => navigate('/dashboard/settings?tab=Subscription')}
+    //    onClick={() =>
+    //     navigate('/dashboard/settings?tab=Subscription', { state: { subscriptionTab: 'manage' } })
+    // }
+    onClick={() => navigate('/dashboard/settings?tab=Subscription&subtab=manage')}
                 >
-                    {remainingMinutes} Minutes left
+                    {/* {remainingMinutes}  */} Upgrade
                 </button>
             </div>
         </div>

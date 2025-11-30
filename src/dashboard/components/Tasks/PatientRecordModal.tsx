@@ -17,7 +17,7 @@ export const PatientRecordsModal: React.FC<ModalProps> = ({ task , onClose}) => 
   if (!task) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 bg-opacity-40">
+    <div   onClick={onClose} className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 bg-opacity-40">
       <div className="bg-[#F3F6F6] p-10 rounded-[32px]  w-full  max-w-2xl max-h-[646px] overflow-hidden">
         {/* Header */}
         <div className=" pb-4 relative">

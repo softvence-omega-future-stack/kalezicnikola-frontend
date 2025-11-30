@@ -185,7 +185,7 @@ const SoftwareCard: React.FC = () => (
 // --- 7. CustomizationCard ---
 const CustomizationCard: React.FC = () => (
   <div
-    className="p-4 sm:p-6 lg:p-8 rounded-2xl h-full sm:h-[327px] sm:rounded-[30px] sm:relative"
+    className="p-4 sm:p-6 lg:p-8 rounded-2xl h-full 2xl:w-full sm:h-[327px] sm:rounded-[30px] sm:relative"
     style={{
       border: "1px solid #FFF",
       background: `
