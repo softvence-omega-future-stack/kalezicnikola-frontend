@@ -236,9 +236,6 @@ const ExampleSection: React.FC = () => {
                 <div key={index} className="relative overflow-visible">
                   <div
                     className="absolute inset-0 rounded-3xl pointer-events-none"
-                    style={{
-                      boxShadow: "0 -20px 50px rgba(147, 170, 189, 0.3)",
-                    }}
                   ></div>
 
                   {/* Menu Content Card */}

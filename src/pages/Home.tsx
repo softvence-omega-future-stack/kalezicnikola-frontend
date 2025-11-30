@@ -1,9 +1,4 @@
-
-
 import CTABanner from "@/Teamplate/CTABanner";
-
-
-
 import ExampleSection from "@/Teamplate/ExamplesSection";
 import FAQSection from "@/Teamplate/FAQSection";
 import DoclineFeaturesSection from "@/Teamplate/FeatureSection";
@@ -26,7 +21,7 @@ const Home = () => {
   <DoclineHero />
 
   {/* content wrapper */}
-  <div className="mx-4 lg:px-[75px]">
+  <div className="">
     <div id="features">
       <DoclineFeaturesSection />
     </div>
