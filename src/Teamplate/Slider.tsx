@@ -24,7 +24,7 @@ const DashboardSlide: React.FC<{
       className={`px-4 pt-4 md:px-8 md:pt-8 ${bgColor} rounded-3xl relative overflow-hidden 
       flex flex-col transition-all duration-700 transform
       ${isActive ? "scale-100 opacity-100" : "scale-95 opacity-90"}
-      mx-auto w-full min-h-[420px] md:min-h-[500px]`}
+      mx-auto w-full min-h-[420px] md:min-h-[400px]`}
     >
       {/* Text Section */}
       <div className="relative z-10 shrink-0 mb-4 sm:mb-10 flex flex-col sm:flex-row items-center justify-between w-full">
@@ -51,7 +51,7 @@ const DashboardSlide: React.FC<{
 
       {/* Image Section */}
       <div
-        className="h-[180px] sm:h-[260px] md:h-fit w-full"
+        className="h-[180px] sm:h-[260px] md:h-[350px] w-full"
       >
         <img
           src={img}
