@@ -208,16 +208,19 @@ const categories = [
     bgColor: "#E5DFF5",
     avatars: [unredview1, unredview2, unredview3],
     extraCount: "6+",
+     path: "/dashboard/call_logs",
   },
   {
     title: "Task",
     bgColor: "#D0E1F5",
     mainNumber: 12,
+    path: "/dashboard/tasks",  
   },
   {
     title: "Requires a call back",
     bgColor: "#FADACA",
     mainNumber: 7,
+   path: "/dashboard/call_logs",    
   },
 ];
 
@@ -367,7 +370,7 @@ const Card = ({
   {/* Arrow button - Bottom-right corner e */}
   <div className="absolute bottom-0 right-0">
     <div 
-      onClick={() => navigate('/dashboard/tasks')} 
+     onClick={() => navigate(category.path)}
       className="h-8 w-8 bg-gray-900 rounded-full flex items-center justify-center cursor-pointer"
     >
       <img src={arrowRight} alt="" />

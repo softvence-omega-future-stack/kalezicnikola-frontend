@@ -86,7 +86,7 @@ export default function CalendarHeader() {
   }, []);
 
   return (
-    <div className="flex items-center gap-3 w-full sm:w-auto relative">
+    <div className="flex items-center  w-full sm:w-auto relative">
       {/* Prev Month */}
       <button onClick={handlePrevMonth} className="p-1 hover:bg-gray-100 rounded">
         <ChevronLeft size={20} className="text-gray-600 cursor-pointer" />
@@ -171,7 +171,7 @@ export default function CalendarHeader() {
       )}
 
       {/* Next Month */}
-      <button onClick={handleNextMonth} className="p-1 hover:bg-gray-100 rounded">
+      <button onClick={handleNextMonth} className=" hover:bg-gray-100 rounded">
         <ChevronRight size={20} className="text-gray-600 cursor-pointer" />
       </button>
     </div>
