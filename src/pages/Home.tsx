@@ -1,9 +1,4 @@
-
-
 import CTABanner from "@/Teamplate/CTABanner";
-
-
-
 import ExampleSection from "@/Teamplate/ExamplesSection";
 import FAQSection from "@/Teamplate/FAQSection";
 import DoclineFeaturesSection from "@/Teamplate/FeatureSection";

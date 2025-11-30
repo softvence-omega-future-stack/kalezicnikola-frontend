@@ -84,7 +84,6 @@ const TestimonialSection: React.FC = () => {
               What Practice Owners <br /> Say About Docline
             </>
           }
-          //subText="Your patients will hardly notice the difference. Easily adapt the AI assistant's voice to your practice's style. Choose a confident male or female voice. This ensures a smooth and professional reception for every call."
           align="center"
        
         />
