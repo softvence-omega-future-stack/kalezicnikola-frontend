@@ -5,7 +5,7 @@ import { Autoplay, EffectCoverflow } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 
-import img1 from "../assets/svgIcon/workflowSlider1.svg";
+import img1 from "../assets/img/slide1.png";
 import img2 from "../assets/svgIcon/workflowSlider2.svg";
 import img3 from "../assets/svgIcon/wrokflowSlider3.svg";
 import img4 from "../assets/svgIcon/workflowSlider4.svg";
@@ -24,7 +24,7 @@ const DashboardSlide: React.FC<{
       className={`px-4 pt-4 md:px-8 md:pt-8 ${bgColor} rounded-3xl relative overflow-hidden 
       flex flex-col transition-all duration-700 transform
       ${isActive ? "scale-100 opacity-100" : "scale-95 opacity-90"}
-      mx-auto w-full min-h-[420px] sm:min-h-[520px] md:min-h-[600px]`}
+      mx-auto w-full min-h-[420px] md:min-h-[500px]`}
     >
       {/* Text Section */}
       <div className="relative z-10 shrink-0 mb-4 sm:mb-10 flex flex-col sm:flex-row items-center justify-between w-full">
@@ -51,13 +51,12 @@ const DashboardSlide: React.FC<{
 
       {/* Image Section */}
       <div
-        className="relative z-10 rounded-t-xl overflow-hidden mt-auto 
-        h-[180px] sm:h-[260px] md:h-[330px] lg:h-[400px] w-full"
+        className="h-[180px] sm:h-[260px] md:h-fit w-full"
       >
         <img
           src={img}
           alt={title}
-          className="w-full h-full rounded-t-xl object-cover"
+          className="w-full h-full rounded-t-xl bottom-0"
         />
       </div>
     </div>
