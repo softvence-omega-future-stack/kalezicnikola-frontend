@@ -26,7 +26,7 @@ const Home = () => {
   <DoclineHero />
 
   {/* content wrapper */}
-  <div className="mx-4 lg:px-[75px]">
+  <div className="">
     <div id="features">
       <DoclineFeaturesSection />
     </div>
