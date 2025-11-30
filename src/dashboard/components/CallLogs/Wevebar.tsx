@@ -73,7 +73,7 @@ const WaveBar: React.FC<WaveBarProps> = ({ onPlayingChange, onMessageChange }) =
         {/* Waveform Container */}
         <div className="relative bg-[#526FFF80] p-2 rounded-full mb-6 w-full h-16">
           <div className="flex items-center justify-between  w-full relative h-full"> 
-            {waveSegments.map((segment, i) => {
+            {waveSegments.map((_, i) => {
               const isActive = i === currentBar && isPlaying;
 
               return (
