@@ -40,7 +40,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex relative bg-[#F3F6F6] ">
+    <div className="flex min-h-screen relative bg-[#F3F6F6] ">
       {/* Left Side - Image */}
       <div className="hidden lg:block lg:w-1/2 p-[10px] rounded-[16px] relative">
         <img

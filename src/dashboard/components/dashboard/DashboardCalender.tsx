@@ -85,38 +85,45 @@ const DashboardCalendar: React.FC<DashboardCalendarProps> = ({ onHeightChange })
       </div>
 
       {/* Top Navigation */}
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-3">
-          <CalendarHeader />
-          <div className="ml-3 relative">
-            <select
-              value={viewType}
-              onChange={(e) =>
-                handleViewChange(e.target.value as 'day' | 'week' | 'month')
-              }
-              className="appearance-none rounded-[8px] px-3 py-1 text-sm text-gray-700 cursor-pointer focus:outline-none focus:ring-1 focus:ring-indigo-500 pr-8"
-            >
-              <option value="day">Day</option>
-              <option value="week">Week</option>
-              <option value="month">Month</option>
-            </select>
+      <div className="flex  items-center justify-between mb-4">
+       <div className="flex flex-col sm:flex-row sm:items-center gap-3 w-full relative z-100">
+  <CalendarHeader />
 
-            <div className="pointer-events-none absolute inset-y-0 right-2 flex items-center">
-              <svg
-                className="w-4 h-4 text-gray-500"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </div>
-          </div>
-        </div>
+  <div className="relative w-full sm:w-auto"> {/* এখানে w-full দিয়েছি mobile এর জন্য */}
+    <select
+      value={viewType}
+      onChange={(e) =>
+        handleViewChange(e.target.value as 'day' | 'week' | 'month')
+      }
+      className="appearance-none rounded-[8px] w-full px-3 py-2 text-sm text-gray-700 cursor-pointer focus:outline-none focus:ring-1 focus:ring-indigo-500 pr-8"
+    >
+      <option value="day">Day</option>
+      <option value="week">Week</option>
+      <option value="month">Month</option>
+    </select>
+
+    <div className="pointer-events-none absolute inset-y-0 right-2 flex items-center">
+      <svg
+        className="w-4 h-4 text-gray-500"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M19 9l-7 7-7-7"
+        />
+      </svg>
+    </div>
+  </div>
+</div>
+
       </div>
 
       {/* Calendar Content */}
-      <div ref={calendarRef} className="overflow-x-auto">
+      <div ref={calendarRef} className="overflow-x-auto z-10">
         {viewType === 'day' && <DayView />}
         {viewType === 'week' && <WeeklyCalendar />}
         {viewType === 'month' && <CalendarMonthView />}

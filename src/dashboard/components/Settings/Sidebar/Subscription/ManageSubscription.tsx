@@ -99,7 +99,7 @@ export default function ManageSubscription({ setActiveTab }: ManageSubscriptionP
 
 
         {/* Pricing Cards */}
-        <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6">
           {plans.map((plan, i) => (
             <div
               key={i}

@@ -79,12 +79,14 @@ export default function TaskList() {
   const [showAddModal, setShowAddModal] = useState(false);
   const [editingTask, setEditingTask] = useState<Task | null>(null);
   const [currentColumnId, setCurrentColumnId] = useState<string>('todo');
-  const [selectedTask, setSelectedTask] = useState<{ task: Task, columnId: string } | null>(null);
+  
+  // Multi-select state
+  const [selectedTaskIds, setSelectedTaskIds] = useState<number[]>([]);
+  
   const [showRecordModal, setShowRecordModal] = useState(false);
   const [modalTask, setModalTask] = useState<{ task: Task, columnId: string } | null>(null);
 
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
-  const [taskToDelete, setTaskToDelete] = useState<{ taskId: number, columnId: string } | null>(null);
   const [showDeleteSuccess, setShowDeleteSuccess] = useState(false);
 
   const handleAddTask = (task: Omit<Task, 'id' | 'completed' | 'time'> & { status: string }) => {
@@ -118,74 +120,99 @@ export default function TaskList() {
 
     setEditingTask(null);
     setShowAddModal(false);
-    setSelectedTask(null);
+    setSelectedTaskIds([]);
   };
 
   const openAddModal = (columnId: string) => {
     setEditingTask(null);
     setCurrentColumnId(columnId);
     setShowAddModal(true);
-    setSelectedTask(null);
+    setSelectedTaskIds([]);
   };
 
-  const openEditModal = (task: Task, columnId: string) => {
-    setEditingTask(task);
-    setCurrentColumnId(columnId);
-    setShowAddModal(true);
-    setSelectedTask(null);
+  const openEditModal = () => {
+    if (selectedTaskIds.length !== 1) return;
+    
+    const taskId = selectedTaskIds[0];
+    let foundTask: Task | null = null;
+    let foundColumnId = '';
+
+    for (const col of columns) {
+      const task = col.tasks.find(t => t.id === taskId);
+      if (task) {
+        foundTask = task;
+        foundColumnId = col.id;
+        break;
+      }
+    }
+
+    if (foundTask) {
+      setEditingTask(foundTask);
+      setCurrentColumnId(foundColumnId);
+      setShowAddModal(true);
+    }
   };
 
-  const triggerDeleteTask = (taskId: number, columnId: string) => {
-    setTaskToDelete({ taskId, columnId });
+  const triggerDeleteTasks = () => {
+    if (selectedTaskIds.length === 0) return;
     setShowDeleteConfirm(true);
   };
 
-  const confirmDeleteTask = () => {
-    if (!taskToDelete) return;
-
+  const confirmDeleteTasks = () => {
     setColumns(prevColumns =>
       prevColumns.map(col => {
-        if (col.id === taskToDelete.columnId) {
-          const updatedTasks = col.tasks.filter(task => task.id !== taskToDelete.taskId);
-          return { ...col, tasks: updatedTasks, count: updatedTasks.length };
-        }
-        return col;
+        const updatedTasks = col.tasks.filter(task => !selectedTaskIds.includes(task.id));
+        return { ...col, tasks: updatedTasks, count: updatedTasks.length };
       })
     );
 
     setShowDeleteConfirm(false);
     setShowDeleteSuccess(true);
-
     setTimeout(() => setShowDeleteSuccess(false), 2000);
-
-    setSelectedTask(null);
-    setTaskToDelete(null);
+    setSelectedTaskIds([]);
   };
 
   const cancelDeleteTask = () => {
-    setTaskToDelete(null);
     setShowDeleteConfirm(false);
   };
 
+  const toggleTaskSelection = (taskId: number) => {
+    setSelectedTaskIds(prev => {
+      if (prev.includes(taskId)) {
+        return prev.filter(id => id !== taskId);
+      } else {
+        return [...prev, taskId];
+      }
+    });
+  };
+
   const onDragStart = (e: React.DragEvent<HTMLDivElement>, taskId: number, sourceColumnId: string) => {
-    e.dataTransfer.setData('taskId', taskId.toString());
+    if (selectedTaskIds.includes(taskId) && selectedTaskIds.length > 1) {
+      e.dataTransfer.setData('taskIds', JSON.stringify(selectedTaskIds));
+    } else {
+      e.dataTransfer.setData('taskIds', JSON.stringify([taskId]));
+    }
     e.dataTransfer.setData('sourceColumnId', sourceColumnId);
   };
 
   const onDragOver = (e: React.DragEvent<HTMLDivElement>) => e.preventDefault();
 
   const onDrop = (e: React.DragEvent<HTMLDivElement>, targetColumnId: string) => {
-    const taskId = Number(e.dataTransfer.getData('taskId'));
+    const taskIdsStr = e.dataTransfer.getData('taskIds');
     const sourceColumnId = e.dataTransfer.getData('sourceColumnId');
-    if (!taskId || !sourceColumnId) return;
+    
+    if (!taskIdsStr || !sourceColumnId) return;
+    
+    const taskIds: number[] = JSON.parse(taskIdsStr);
 
     setColumns(prevColumns => {
-      let movedTask: Task | null = null;
+      const movedTasks: Task[] = [];
+      
       const newColumns = prevColumns.map(col => {
         if (col.id === sourceColumnId) {
           const remainingTasks = col.tasks.filter(task => {
-            if (task.id === taskId) {
-              movedTask = task;
+            if (taskIds.includes(task.id)) {
+              movedTasks.push(task);
               return false;
             }
             return true;
@@ -196,17 +223,21 @@ export default function TaskList() {
       });
 
       return newColumns.map(col => {
-        if (col.id === targetColumnId && movedTask) {
-          return { ...col, tasks: [movedTask, ...col.tasks], count: col.tasks.length + 1 };
+        if (col.id === targetColumnId && movedTasks.length > 0) {
+          return { ...col, tasks: [...movedTasks, ...col.tasks], count: col.tasks.length + movedTasks.length };
         }
         return col;
       });
     });
-    setSelectedTask(null);
+    
+    setSelectedTaskIds([]);
   };
 
+  const hasSelectedTasks = selectedTaskIds.length > 0;
+  const hasMultipleSelected = selectedTaskIds.length > 1;
+
   return (
-    <div className="mt-[30px]" onClick={() => setSelectedTask(null)}>
+    <div className="mt-2.5 md:mt-[30px]" onClick={() => setSelectedTaskIds([])}>
       {/* Header */}
       <div className="pb-4">
         {/* Breadcrumb */}
@@ -234,11 +265,12 @@ export default function TaskList() {
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row w-full sm:w-auto items-center gap-3">
-            <div className="w-full sm:w-auto">
+          {/* Dropdowns with isolation */}
+          <div className="flex flex-col sm:flex-row w-full sm:w-auto items-center gap-3 relative z-10" >
+            <div className="w-full sm:w-auto relative z-20" >
               <StatusDropdown />
             </div>
-            <div className="w-full sm:w-auto">
+            <div className="w-full sm:w-auto relative z-30" style={{ zIndex: 11 }}>
               <PriorityDropdown />
             </div>
             <button
@@ -252,7 +284,7 @@ export default function TaskList() {
       </div>
 
       {/* Columns */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+      <div  style={{ zIndex: 16 }} className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
         {columns.map(column => (
           <div key={column.id} className="bg-white rounded-2xl" onDragOver={onDragOver} onDrop={(e) => onDrop(e, column.id)}>
             <div className="flex items-center justify-between px-4 py-3">
@@ -260,33 +292,57 @@ export default function TaskList() {
                 <h2 className="text-sm sm:text-xl font-medium sm:font-semibold text-[#171c35]">{column.title}</h2>
                 <span className="text-sm text-gray-500">({column.count})</span>
               </div>
+              
+              {/* Action Buttons */}
               <div className="flex items-center gap-1">
-                <button onClick={() => openAddModal(column.id)} className="p-1 hover:bg-gray-100 rounded" title={`Add Task to ${column.title}`}>
-                  <Plus className="w-4 h-4 text-[#111A2D]" />
-                </button>
-                <button
-                  onClick={() => selectedTask && openEditModal(selectedTask.task, selectedTask.columnId)}
-                  className="p-1 hover:bg-gray-100 rounded cursor-pointer"
-                  title="Edit Task"
-                  disabled={!selectedTask}
-                >
-                  <Edit className="w-4 h-4 text-[#111A2D]" />
-                </button>
-                <button
-                  onClick={() => selectedTask && triggerDeleteTask(selectedTask.task.id, selectedTask.columnId)}
-                  className="p-1 hover:bg-gray-100 rounded cursor-pointer"
-                  title="Delete Task"
-                  disabled={!selectedTask}
-                >
-                  <Trash2 className="w-4 h-4 text-[#111A2D]" />
-                </button>
+                {/* Show + icon only if no tasks selected */}
+                {!hasSelectedTasks && (
+                  <button 
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      openAddModal(column.id);
+                    }} 
+                    className="p-1 hover:bg-gray-100 rounded cursor-pointer" 
+                    title={`Add Task to ${column.title}`}
+                  >
+                    <Plus className="w-4 h-4 text-[#111A2D]" />
+                  </button>
+                )}
+                
+                {/* Show Edit only if single task selected */}
+                {hasSelectedTasks && !hasMultipleSelected && (
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      openEditModal();
+                    }}
+                    className="p-1 hover:bg-gray-100 rounded cursor-pointer"
+                    title="Edit Task"
+                  >
+                    <Edit className="w-4 h-4 text-[#111A2D]" />
+                  </button>
+                )}
+                
+                {/* Show Delete if any task selected */}
+                {hasSelectedTasks && (
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      triggerDeleteTasks();
+                    }}
+                    className="p-1 hover:bg-gray-100 rounded cursor-pointer"
+                    title={hasMultipleSelected ? "Delete Selected Tasks" : "Delete Task"}
+                  >
+                    <Trash2 className="w-4 h-4 text-[#111A2D]" />
+                  </button>
+                )}
               </div>
             </div>
 
             {/* Tasks */}
             <div className="p-3 space-y-3 overflow-y-auto">
               {column.tasks.map(task => {
-                const isSelected = selectedTask?.task.id === task.id;
+                const isSelected = selectedTaskIds.includes(task.id);
 
                 return (
                   <div
@@ -296,25 +352,23 @@ export default function TaskList() {
                     className={`rounded-2xl p-3 ${isSelected ? "bg-[#DDE2FF]" : "bg-[#F3F6F6] hover:bg-[#E8ECFF]"}`}
                   >
                     <div className="flex items-start gap-3">
-                      {/* Checkbox - Select for Edit/Delete */}
+                      {/* Checkbox */}
                       <input
                         type="checkbox"
                         className="w-4 h-4 mt-1 cursor-pointer accent-[#526fff]"
                         checked={isSelected}
                         onClick={(e) => e.stopPropagation()}
                         onChange={(e) => {
-                          if (e.target.checked) {
-                            setSelectedTask({ task, columnId: column.id });
-                          } else {
-                            setSelectedTask(null);
-                          }
+                          e.stopPropagation();
+                          toggleTaskSelection(task.id);
                         }}
                       />
 
-                      {/* Task Content - Click to open modal */}
+                      {/* Task Content */}
                       <div
                         className="flex-1 min-w-0 cursor-pointer"
-                        onClick={() => {
+                        onClick={(e) => {
+                          e.stopPropagation();
                           setModalTask({ task, columnId: column.id });
                           setShowRecordModal(true);
                         }}
@@ -353,39 +407,79 @@ export default function TaskList() {
         ))}
       </div>
 
-      {/* Add Task Modal */}
-      {showAddModal && (
-        <AddTaskModal
-          onClose={() => {
-            setShowAddModal(false);
-            setEditingTask(null);
-            setSelectedTask(null);
-          }}
-          onAddTask={handleAddTask}
-          initialTask={
-            editingTask
-              ? { ...editingTask, status: columns.find(c => c.id === currentColumnId)?.title || 'To Do' }
-              : { status: columns.find(c => c.id === currentColumnId)?.title || 'To Do' }
-          }
-        />
-      )}
+      {/* Add Task Modal - FIXED for mobile */}
+{/* Add Task Modal - FIXED for all devices */}
+{showAddModal && (
+  <div 
+    className="fixed inset-0 bg-black/40 flex items-center justify-center z-[9999] p-2 sm:p-4 overflow-auto"
+    onClick={() => {
+      setShowAddModal(false);
+      setEditingTask(null);
+      setSelectedTaskIds([]);
+    }}
+  >
+    <div 
+      className="w-full max-w-[95%] sm:max-w-[672px] bg-gray-200 rounded-2xl shadow-2xl overflow-auto max-h-[95vh]"
+      onClick={(e) => e.stopPropagation()}
+    >
+      <AddTaskModal
+        onClose={() => {
+          setShowAddModal(false);
+          setEditingTask(null);
+          setSelectedTaskIds([]);
+        }}
+        onAddTask={handleAddTask}
+        initialTask={
+          editingTask
+            ? { ...editingTask, status: columns.find(c => c.id === currentColumnId)?.title || 'To Do' }
+            : { status: columns.find(c => c.id === currentColumnId)?.title || 'To Do' }
+        }
+      />
+    </div>
+  </div>
+)}
+
+
 
       {/* Patient Records Modal */}
       {showRecordModal && modalTask && (
-        <PatientRecordsModal task={modalTask.task} onClose={() => setShowRecordModal(false)} />
+        <div 
+          className="fixed inset-0 bg-black/40 flex items-center justify-center z-[9999] p-4 overflow-y-auto"
+          onClick={() => setShowRecordModal(false)}
+        >
+          <div 
+            className="my-auto max-h-[90vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <PatientRecordsModal 
+              task={modalTask.task} 
+              onClose={() => setShowRecordModal(false)} 
+            />
+          </div>
+        </div>
       )}
 
       {/* Delete Confirmation */}
       {showDeleteConfirm && (
-        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-2xl w-[320px] sm:w-[400px] text-center">
+        <div 
+          className="fixed inset-0 bg-black/40 flex items-center justify-center z-[9999] p-4"
+          onClick={cancelDeleteTask}
+        >
+          <div 
+            className="bg-white p-6 rounded-2xl w-[320px] sm:w-[400px] text-center"
+            onClick={(e) => e.stopPropagation()}
+          >
             <h3 className="text-lg font-semibold text-[#171C35] mb-4">Are you sure?</h3>
-            <p className="text-sm text-gray-600 mb-6">Do you really want to delete this task? This action cannot be undone.</p>
+            <p className="text-sm text-gray-600 mb-6">
+              {hasMultipleSelected 
+                ? `Do you really want to delete ${selectedTaskIds.length} tasks? This action cannot be undone.`
+                : 'Do you really want to delete this task? This action cannot be undone.'}
+            </p>
             <div className="flex justify-center gap-4">
               <button onClick={cancelDeleteTask} className="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 cursor-pointer">
                 No
               </button>
-              <button onClick={confirmDeleteTask} className="px-4 py-2 rounded-lg bg-[#FF3D3D] text-white hover:bg-red-600 cursor-pointer">
+              <button onClick={confirmDeleteTasks} className="px-4 py-2 rounded-lg bg-[#FF3D3D] text-white hover:bg-red-600 cursor-pointer">
                 Yes
               </button>
             </div>
@@ -395,8 +489,8 @@ export default function TaskList() {
 
       {/* Delete Success Message */}
       {showDeleteSuccess && (
-        <div className="fixed top-5 right-5 bg-green-500 text-white px-4 py-3 rounded-lg shadow-lg z-50">
-          Task deleted successfully!
+        <div className="fixed top-5 right-5 bg-green-500 text-white px-4 py-3 rounded-lg shadow-lg z-[9999]">
+          {hasMultipleSelected ? `${selectedTaskIds.length} tasks` : 'Task'} deleted successfully!
         </div>
       )}
     </div>

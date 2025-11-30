@@ -156,7 +156,7 @@ const statsCards = [
 const cutoutWidth = 42;
 const cutoutHeight = 46;
 const curveRadius = 20;
-const smallCurveRadius = 15;
+const smallCurveRadius = 20;
 
 const StatsCard = ({ card }: { card: (typeof statsCards)[0] }) => {
   return (

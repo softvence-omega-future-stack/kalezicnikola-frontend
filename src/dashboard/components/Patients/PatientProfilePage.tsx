@@ -43,7 +43,7 @@ const PatientProfilePage: React.FC = () => {
           <span onClick={()=> navigate('/dashboard')} className="text-gray-600 cursor-pointer">Dashboard</span>
 
           <img src={chevronIcon} alt="" className="text-gray-400" />
-          <span onClick={()=> navigate('/dashboard/patients')} className="text-gray-600 cursor-pointer">Patients</span>
+          <span onClick={()=> navigate('/dashboard/patients')} className="text-gray-600 cursor-pointer ">Patients</span>
 
           <img src={chevronIcon} alt="" className="text-gray-400" />
           <span  className="text-[#171C35] font-medium">Patient Profile</span>

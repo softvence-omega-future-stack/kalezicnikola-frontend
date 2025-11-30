@@ -88,7 +88,7 @@ const Dashboard: React.FC = () => {
       });
     }
 
-    // Interval দিয়ে continuously check করি (যদি calendar view change হয়)
+  
     const interval = setInterval(updateHeight, 500);
 
     return () => {

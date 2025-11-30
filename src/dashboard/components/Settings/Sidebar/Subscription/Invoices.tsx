@@ -22,9 +22,9 @@ export default function Invoices() {
 
   return (
     <div className="  bg-white">
-      <div className="">
+      <div className="relative z-10">
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex flex-col md:flex-row gap-2 items-center justify-between mb-8 relative z-20">
           <h1 className="text-xl font-semibold text-[#171c35]">Transaction Overview</h1>
          <DateRange/> 
         </div>

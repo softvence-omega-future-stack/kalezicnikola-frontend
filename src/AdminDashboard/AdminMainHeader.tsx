@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { createPortal } from "react-dom";
 import karennix from "../assets/svgIcon/karen.svg";
 import search from "../assets/svgIcon/search.svg";
 import notification from "../assets/svgIcon/notification.svg";
@@ -23,7 +24,7 @@ const AdminMainHeader: React.FC<HeaderProps> = ({ onMobileMenuOpen }) => {
   return (
     <div className="flex flex-col w-full">
       <header className="w-full h-16 sm:h-20 flex justify-between items-center gap-2 px-3 sm:px-6 md:px-8 lg:px-10
-        bg-[#F3F6F6]  top-0 left-0  border-b border-[#D0D5DD]">
+        bg-[#F3F6F6] top-0 left-0 border-b border-[#D0D5DD]">
 
         {/* Mobile Menu */}
         <button onClick={onMobileMenuOpen} className="md:hidden p-1.5 rounded-md border border-gray-300 mr-2">
@@ -51,7 +52,7 @@ const AdminMainHeader: React.FC<HeaderProps> = ({ onMobileMenuOpen }) => {
           </div>
 
           {/* Notification Desktop */}
-          <div className="hidden sm:flex items-center border-l  border-r border-gray-200 p-3 h-10">
+          <div className="hidden sm:flex items-center border-l border-r border-gray-200 p-3 h-10">
             <button onClick={() => setShowNotification(true)} className="relative p-2 text-[#111A2D] focus:outline-none cursor-pointer">
               <img src={notification} alt="" className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
@@ -78,14 +79,18 @@ const AdminMainHeader: React.FC<HeaderProps> = ({ onMobileMenuOpen }) => {
         </div>
       </header>
 
-      {showNotification && <NotificationsModal onClose={() => setShowNotification(false)} />}
+      {/* Notification Modal Portal */}
+      {showNotification && createPortal(
+        <div style={{ zIndex: 99999 }}>
+          <NotificationsModal onClose={() => setShowNotification(false)} />
+        </div>,
+        document.body
+      )}
     </div>
   );
 };
 
 export default AdminMainHeader;
-
-
 
 
 

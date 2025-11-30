@@ -50,7 +50,7 @@ const DashboardTopSection: React.FC = () => {
   const navigate = useNavigate()
 
   return (
-    <div className=" mt-2  bg-[#F3F6F6]">
+    <div className=" md:mt-2 z-auto  bg-[#F3F6F6]">
       {/* Date Navigation */}
       <div className="flex items-center justify-center -pl-1   md:justify-start text-[#111A2D] text-sm sm:text-base font-medium pt-6  gap-2">
         {/* <button className="p-2 sm:p-1 rounded-full transition-colors hover:bg-gray-200">

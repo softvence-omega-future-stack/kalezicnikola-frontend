@@ -1,53 +1,44 @@
 
-
-// import { useNavigate } from 'react-router-dom';
-import './bnnarButon.css'
-// e
-
-//import { useNavigate } from 'react-router-dom';
-// import LiquidGlassButton from './LequiedGlassBtn';
-
-
-//import { useNavigate } from 'react-router-dom';
-// import LiquidGlassButton from './LequiedGlassBtn';
-
-// import { useNavigate } from 'react-router-dom';
-
 import React from "react";
-import img from "@/assets/img/steigern.png";
-import AppleGlassButton from "@/dashboard/components/AppleGlassButton";
+import img from "@/assets/img/glass.png";
+// import AppleGlassButton from "@/components/AppleGlassButton";
+// import LiquidGlass from 'liquid-glass-react'
+import './bnnarButon.css'
+import { useNavigate } from "react-router-dom";
 
 
 const CTABanner: React.FC = () => {
-  // const navigate = useNavigate();
-  // const [isHovered, setIsHovered] = useState(false);
-  // const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
-  //  const [isPressed, setIsPressed] = useState(false);
-
-
-  //  const [isPressed, setIsPressed] = useState(false);
-
-
-
-  // const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
-  //   const rect = e.currentTarget.getBoundingClientRect();
-  //   setMousePos({
-  //     x: e.clientX - rect.left,
-  //     y: e.clientY - rect.top,
-  //   });
-  // };
-
-  
-
-
+  const navigate = useNavigate()
   return (
-    <div  className="w-full  mt-19 md:mt-[180px] lg:mt-[180px] xl:mt-[180px]">
+    <div
+      style={{ fontFamily: 'Urbanist, sans-serif' }}
+      className="w-full px-4 mt-9 md:mt-[180px] lg:mt-[180px] xl:mt-[180px] relative"
+    >
       <div className="">
-        <div className="bg-[#526FFF] rounded-[40px]  p-6 sm:p-8 md:p-10 lg:p-12 xl:p-16 shadow-2xl">
+        <div className="bg-[#526FFF] rounded-3xl sm:rounded-[2.5rem] md:rounded-[40px] p-6 sm:p-8 md:p-10 lg:p-[85px] relative overflow-hidden">
+
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 sm:gap-8">
+  {/* Left Content */}
+  <div className="flex-1 max-w-full lg:max-w-3xl">
+    <h2 className="text-2xl sm:text-3xl md:text-5xl font-semibold text-white leading-tight mb-4 sm:mb-5 md:mb-6">
+      Boost your team's satisfaction <br /> & productivity today.
+    </h2>
+    <p className="text-sm sm:text-base md:text-lg text-blue-50">
+      Phone stress consumes valuable time and leads to overload. Free up your staff and enjoy smooth operations from the very first minute. Let our AI handle your calls while your team focuses on patient care.
+    </p>
+  </div>
+
+  {/* Button */}
+  <div className="w-full lg:w-auto mt-4 lg:mt-0 flex justify-center">
+    <button onClick={()=> navigate('/login')} className="btn w-full lg:w-[218px] py-4 rounded-full cursor-pointer text-white bg-white/10">
+      Start Now
+    </button>
+  </div>
+</div>
+
+          {/* <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 sm:gap-8">
             
-            {/* Left Content */}
+
             <div className="flex-1 max-w-3xl">
               <h2 className="text-2xl sm:text-3xl md:text-5xl font-semibold text-white leading-tight mb-4 sm:mb-5 md:mb-6">
                 Boost your team's satisfaction <br /> & productivity today.
@@ -57,11 +48,35 @@ const CTABanner: React.FC = () => {
               </p>
             </div>
 
-            {/* Button */}
+            <div className="w-full lg:w-auto">
+              <button className="btn py-4 px-8 h-[64px] w-[218px] rounded-full text-white bg-white/10">click me</button>
+            </div>
+
+           
             <div>
-              <AppleGlassButton>
+              {/* <AppleGlassButton>
                 Jetzt starten
-              </AppleGlassButton>
+              </AppleGlassButton> */}
+         {/* <LiquidGlass
+  displacementScale={60}
+  blurAmount={0.15}
+  saturation={120}
+  aberrationIntensity={1.5}
+  elasticity={0.4}
+  cornerRadius={80}
+  padding="20px 60px"   // height 64px, width 218px
+  style={{
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    cursor: "pointer",
+  }}
+>
+  <span className="text-white font-semibold text-lg">
+    Start Now
+  </span>
+</LiquidGlass>
+
             </div>
           </div>
 
@@ -75,18 +90,16 @@ const CTABanner: React.FC = () => {
               bottom: 0,
               width: 'auto',
               height: 'auto',
-              maxHeight: '100%', // limits image to 3/4 of container height
+              maxHeight: '100%', 
               objectFit: 'contain',
               pointerEvents: 'none',
             }}
           />
         </div>
-      </div>
+      </div> 
     </div>
-  );
-};
-  
   );
 };
 
 export default CTABanner;
+

@@ -213,7 +213,7 @@ import { useNavigate } from "react-router-dom";
 import logo from "../assets/svgIcon/logo.svg";
 import logoText from "../assets/svgIcon/textLogo.svg";
 import ShadowBox from "./ShadowBox";
-
+import './bnnarButon.css'
 const DoclineHeader: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
@@ -255,10 +255,10 @@ const DoclineHeader: React.FC = () => {
   ];
 
   return (
-    <header ref={headerRef} className="w-full fixed top-0 left-0 right-0 z-[9999] pt-5 px-2 sm:px-4">
+    <header ref={headerRef} className="w-full  fixed inset-0  z-[9999] pt-5 px-2 sm:px-4">
       <div className="relative">
         <div
-          className="bg-white/10 mx-auto backdrop-blur-md border-2 border-white rounded-[100px] flex items-center justify-between relative w-[93%] z-[9999]"
+          className="btn-header bg-white/10  mx-auto  flex items-center justify-between relative w-[93%] z-[9999]"
           style={{
             padding: "10px 10px 10px 30px",
           }}
@@ -270,8 +270,8 @@ const DoclineHeader: React.FC = () => {
             onClick={() => navigate("/")}
           >
             <img src={logo} alt="Docline Logo" className="" /> 
-            <span className="text-2xl sm:text-3xl font-semibold text-[#171C35] whitespace-nowrap">
-              <img src={logoText} alt="Docline" className="" /> 
+            <span className="font-semibold text-[#171C35] whitespace-nowrap">
+              <img src={logoText} alt="Docline" className="hidden sm:block" /> 
             </span>
           </div>
 
@@ -313,25 +313,30 @@ const DoclineHeader: React.FC = () => {
           </div>
           
           {/* Mobile Menu Toggle */}
-          <div className="flex lg:ml-5 items-center gap-2 lg:hidden"> 
-            <LanguageSelector />
-            <button
-              onClick={() => navigate("/login")}
-              className="px-4 py-2 text-sm font-medium text-[#171C35] bg-white rounded-full hover:text-blue-600 transition cursor-pointer whitespace-nowrap"
-            >
-              Login
-            </button>
-            <button
-              className="p-2 rounded-lg hover:bg-white/50 transition cursor-pointer"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              {mobileMenuOpen ? (
-                <X className="w-6 h-6 text-[#171C35]" />
-              ) : (
-                <Menu className="w-6 h-6 text-[#171C35]" />
-              )}
-            </button>
-          </div>
+          {/* Mobile Menu Toggle */}
+<div className="flex items-center justify-between lg:hidden w-full px-4">
+
+
+  {/* Language Selector */}
+  <LanguageSelector />
+
+  {/* Login Button */}
+  <button
+    onClick={() => navigate("/login")}
+    className="px-4 py-2 text-sm font-medium text-[#171C35] bg-white rounded-full hover:text-blue-600 transition cursor-pointer"
+  >
+    Login
+  </button>
+
+  {/* Menu Icon */}
+  <button
+    className="p-2 rounded-lg hover:bg-white/50 transition cursor-pointer"
+    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+  >
+    {mobileMenuOpen ? <X className="w-6 h-6 text-[#171C35]" /> : <Menu className="w-6 h-6 text-[#171C35]" />}
+  </button>
+</div>
+
         </div>
 
         {/* Mobile Menu Dropdown - Now outside the main nav bar */}

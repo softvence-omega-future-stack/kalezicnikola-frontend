@@ -154,6 +154,31 @@
 } */
 
 
+.btn{
+
+  border-radius: 100px;
+background: rgba(255, 255, 255, 0.05);
+box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.05) inset, -6px -11px 18px 0 rgba(255, 255, 255, 0.08) inset, 1px 1px 0 -0.6px #FFF inset, -1px -1px 0 -0.6px #FFF inset;
+backdrop-filter: blur(5px);
+}
+
+.btn-header {
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.1);
+  
+  /* Banner button এর exact same effect */
+  box-shadow: 
+    1px 1px 4px 0 rgba(0, 0, 0, 0.05) inset, 
+    -6px -11px 18px 0 rgba(255, 255, 255, 0.08) inset, 
+    1px 1px 0 -0.6px #FFF inset, 
+    -1px -1px 0 -0.6px #FFF inset;
+  
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+
+
 
 
 

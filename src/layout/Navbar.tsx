@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import logo from "../assets/svgIcon/logo.svg";
 import logoText from "../assets/svgIcon/textLogo.svg";
 import ShadowBox from "@/Teamplate/ShadowBox";
+// import './nav.css'
 
 
 const Navbar: React.FC = () => {
