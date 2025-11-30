@@ -9,7 +9,7 @@ import LanguageSelector from './LanguageSelector';
 
 const userData = {
     name: 'Keren nix',
-    role: 'Anaesthesia',
+    role: 'D.',
     avatarUrl: karennix,
 };
 
@@ -146,8 +146,8 @@ useEffect(() => {
                                 className="h-8 w-8 sm:h-10 sm:w-10 rounded-xl object-cover"
                             />
                             <div className="hidden md:block ml-2">
-                                <p className="text-lg font-semibold text-[#171C35] leading-none">{userData.name}</p>
-                                <p className="text-sm text-[#171C35] leading-none mt-1">{userData.role}</p>
+                                <p className="text-lg font-semibold text-[#171C35]  leading-4.5">{userData.name}</p>
+                                <p className="text-lg font-semibold text-[#171C35] leading-none mt-1">{userData.role}</p>
                             </div>
                         </div>
                     </div>

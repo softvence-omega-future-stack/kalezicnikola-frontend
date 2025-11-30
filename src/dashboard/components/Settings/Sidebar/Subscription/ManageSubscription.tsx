@@ -19,10 +19,12 @@ export default function ManageSubscription({
       monthly: 399,
       yearly: 339,
       features: [
-        "Average of 2-5 easy to follow trade alerts",
-        "Average of 2-5 easy to follow trade alerts",
-        "Average of 2-5 easy to follow trade alerts",
-        "Average of 2-5 easy to follow trade alerts",
+         "AI voice bot creation & setup",
+  "24/7 availability & call logging",
+  "Intelligent triage & task creation",
+  "2000 call minutes included per month",
+  "€0.35 per extra minute",
+  "Email support"
         // '€0.35 per extra minute',
         // 'Email Support',
       ],
@@ -34,10 +36,13 @@ export default function ManageSubscription({
       monthly: 899,
       yearly: 765,
       features: [
-        "Average of 2-5 easy to follow trade alerts",
-        "Average of 2-5 easy to follow trade",
-        "Average of 2-5 easy to follow trade alerts per week",
-        "Average of 2-5 easy to follow",
+        "AI voice bot creation & setup",
+  "24/7 availability & call logging",
+  "Intelligent triage & task creation",
+  "4000 call minutes included per month",
+  "€0.30 per extra minute",
+  "Multilingual (25+ languages)",
+  "Prioritized email and live chat support"
         // '€0.30 per extra minute',
         // 'Multilingual (25+ languages)',
         // 'Prioritized email and live chat support',
@@ -53,10 +58,13 @@ export default function ManageSubscription({
         // 'AI Voicebot setup & configuration',
         // '24/7 availability & call handling',
         // 'Intelligent triage & task creation',
-        "Average of 2-5 easy to follow trade alerts",
-        "Average of 2-5 easy to follow trade alerts",
-        "Average of 2-5 easy to follow",
-        "Average of 2-5 easy to follow trade alerts",
+  "AI voice bot creation & setup",
+  "24/7 availability & call logging",
+  "Intelligent triage & task creation",
+  "8000 call minutes included per month",
+  "€0.25 per extra minute",
+  "Multilingual (25+ languages)",
+  "24/7 premium support"
       ],
       color: "#526FFF",
       isPremium: false,
@@ -70,30 +78,26 @@ export default function ManageSubscription({
     >
       <div className="relative z-10">
         {/* Billing Toggle */}
-        <div className="flex justify-center mb-8 md:mb-12">
-          <div className="inline-flex bg-white w-[266px] rounded-full p-1 border border-[#EAECF0] shadow-sm">
-            {/* Monthly Button */}
+       <div className="flex justify-center mb-8 md:mb-12">
+          <div className="inline-flex bg-white rounded-full p-1 w-fit border border-[#EAECF0] shadow-lg">
             <button
-              onClick={() => setBillingCycle("monthly")}
-              className={`px-6 py-2.5 w-[131px] text-sm font-normal rounded-full transition-colors cursor-pointer
-        ${
-          billingCycle === "monthly"
-            ? "bg-[#526FFF] text-white font-medium shadow-md"
-            : "text-[#171c35] hover:bg-gray-50"
-        }`}
+              onClick={() => setBillingCycle('monthly')}
+              className={`px-6 py-2.5 text-sm font-normal w-[131px] rounded-full transition-all duration-300 cursor-pointer ${
+                billingCycle === 'monthly'
+                  ? 'bg-[#526FFF] text-white font-medium shadow-md'
+                  : 'text-[#171c35] hover:bg-gray-50'
+              }`}
             >
               Monthly
             </button>
 
-            {/* Yearly Button */}
             <button
-              onClick={() => setBillingCycle("annually")}
-              className={`px-6 py-2.5 text-sm font-normal w-[131px] rounded-full transition-colors cursor-pointer
-        ${
-          billingCycle === "annually"
-            ? "bg-[#526FFF] text-white font-medium shadow-md"
-            : "text-[#171c35] hover:bg-gray-50"
-        }`}
+              onClick={() => setBillingCycle('annually')}
+              className={`px-6 py-2.5 text-sm font-normal w-[131px] rounded-full transition-all duration-300 cursor-pointer ${
+                billingCycle === 'annually'
+                  ? 'bg-[#526FFF] text-white font-medium shadow-md'
+                  : 'text-[#171c35] hover:bg-gray-50'
+              }`}
             >
               Yearly
             </button>

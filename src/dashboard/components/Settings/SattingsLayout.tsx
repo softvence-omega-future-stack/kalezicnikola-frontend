@@ -55,7 +55,7 @@ const tab = searchParams.get("tab");
 
 
       {/* Main Layout */}
-      <div className="flex flex-col xl:flex-row w-full gap-2  items-stretch">
+      <div className="flex flex-col gap-y-2 lg:flex-row w-full   items-stretch">
   {/* Sidebar */}
   <div className="w-full lg:w-[240px] md:px-4 bg-white rounded-xl flex flex-col h-full">
     <h2 className="text-headingBlack font-semibold text-xl pl-3 leading-5 pt-6">

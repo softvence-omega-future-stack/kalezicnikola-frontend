@@ -159,12 +159,12 @@ export default function SecuritySettings() {
         </div>
 
         {/* Password Policy Section */}
-        <div className="mb-8">
+        {/* <div className="mb-8">
           <h2 className="text-lg font-semibold text-[#171C35] mb-4">Password Policy</h2>
           <ToggleRow field="passwordPolicy" label="Enable Password Policy" />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-            {/* Password Expiry */}
+          
             <div>
               <label className="block text-base  font-medium text-[#171c35] mb-2">Password Expiry</label>
               <CustomDropdown
@@ -179,7 +179,7 @@ export default function SecuritySettings() {
               />
             </div>
 
-            {/* Minimum Password Length */}
+          
             <div>
               <label className="block text-base font-medium text-[#171c35] mb-2">
                 Minimum Password Length
@@ -197,7 +197,7 @@ export default function SecuritySettings() {
             </div>
           </div>
 
-          {/* Password Requirements */}
+    
           <div className="space-y-3">
             <div className="flex items-center gap-2">
               <img src={tickcircl} alt="" />
@@ -212,7 +212,7 @@ export default function SecuritySettings() {
               <span className="text-sm font-semibold text-[#111A2D]">Require special characters (Default)</span>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Login Security Section */}
         <div className="mb-8">
@@ -224,69 +224,82 @@ export default function SecuritySettings() {
             <span className="text-sm font-semibold text-[#111A2D]">Enforce two-factor authentication (Default)</span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Session Timeout */}
-            <div>
-              <label className="block text-base font-medium text-[#171C35] mb-2">Session Timeout</label>
-              <CustomDropdown
-                value={settings.sessionTimeout}
-                onChange={(val) => setSettings({ ...settings, sessionTimeout: val })}
-                options={[
-                  { value: "15", label: "15 minutes" },
-                  { value: "30", label: "30 minutes" },
-                  { value: "60", label: "60 minutes" },
-                ]}
-                placeholder="Select session timeout"
-              />
-            </div>
+         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+  {/* Session Timeout */}
+  <div>
+    <label className="block text-base font-medium text-[#171C35] mb-2">
+      Session Timeout
+    </label>
+    <CustomDropdown
+      value={settings.sessionTimeout}
+      onChange={(val) => setSettings({ ...settings, sessionTimeout: val })}
+      options={[
+        { value: "7", label: "7 days" },
+        { value: "14", label: "14 days" },
+        { value: "21", label: "21 days" },
+      ]}
+      placeholder="Select session timeout"
+    />
+  </div>
 
-            {/* Max Login Attempts */}
-            <div>
-              <label className="block text-base font-medium text-[#171C35] mb-2">Maximum Login Attempts</label>
-              <CustomDropdown
-                value={settings.maxLoginAttempts}
-                onChange={(val) => setSettings({ ...settings, maxLoginAttempts: val })}
-                options={[
-                  { value: "3", label: "3 attempts" },
-                  { value: "5", label: "5 attempts" },
-                  { value: "10", label: "10 attempts" },
-                ]}
-                placeholder="Select max attempts"
-              />
-            </div>
-          </div>
-        </div>
+  {/* Max Login Attempts */}
+  <div>
+    <label className="block text-base font-medium text-[#171C35] mb-2">
+      Maximum Login Attempts
+    </label>
+    <input
+      type="number"
+      className="py-3 px-6 w-full border border-gray-300 rounded-lg"
+      value={settings.maxLoginAttempts}
+      onChange={(e) =>
+        setSettings({ ...settings, maxLoginAttempts: e.target.value })
+      }
+      placeholder="Enter max attempts"
+    />
+  </div>
 
-        {/* Data Protection Section */}
-        <div className="mb-8">
-          <h2 className="text-lg font-semibold text-[#171c35] mb-4">Data Protection</h2>
-          <ToggleRow field="dataProtection" label="Enable Data Protection" />
+  {/* Empty div for spacing or future use */}
+  <div></div>
 
-          <div className="space-y-3">
-            <div className="flex items-center gap-2">
-              <img src={tickcircl} alt="" />
-              <span className="text-sm font-semibold text-[#111A2D]">Encrypt sensitive data (Default)</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <img src={tickcircl} alt="" />
-              <span className="text-sm font-semibold text-[#111A2D]">Enable audit logs (Default)</span>
-            </div>
-          </div>
-        </div>
+  {/* Data Protection Section */}
+  <div className="mb-8 col-span-1 md:col-span-2">
+    <h2 className="text-lg font-semibold text-[#171c35] mb-4">
+      Data Protection
+    </h2>
+    <ToggleRow field="dataProtection" label="Enable Data Protection" />
 
-        {/* Action Buttons */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <button className="w-full px-6 py-3.5 text-sm font-medium text-[#111c35] bg-white border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors">
-            Cancel
-          </button>
-          <button
-            onClick={handleSaveChanges}
-            className="w-full px-6 py-3.5 text-sm font-medium text-white bg-[#526FFF] rounded-xl hover:bg-[#4158D9] transition-colors"
-          >
-            Save Changes
-          </button>
-        </div>
+    <div className="space-y-3 mt-3">
+      <div className="flex items-center gap-2">
+        <img src={tickcircl} alt="" />
+        <span className="text-sm font-semibold text-[#111A2D]">
+          Encrypt sensitive data (Default)
+        </span>
       </div>
+      <div className="flex items-center gap-2">
+        <img src={tickcircl} alt="" />
+        <span className="text-sm font-semibold text-[#111A2D]">
+          Enable audit logs (Default)
+        </span>
+      </div>
+    </div>
+  </div>
+
+  {/* Action Buttons */}
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 col-span-1 md:col-span-2">
+    <button className="w-full px-6 py-3.5 text-sm font-medium text-[#111c35] bg-white border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors">
+      Cancel
+    </button>
+    <button
+      onClick={handleSaveChanges}
+      className="w-full px-6 py-3.5 text-sm font-medium text-white bg-[#526FFF] rounded-xl hover:bg-[#4158D9] transition-colors"
+    >
+      Save Changes
+    </button>
+  </div>
+</div>
+
+    </div>
+    </div>
     </div>
   );
 }

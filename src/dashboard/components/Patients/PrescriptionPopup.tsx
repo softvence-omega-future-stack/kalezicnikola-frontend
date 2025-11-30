@@ -10,7 +10,7 @@ export default function PrescriptionPopup({
   prescriptionId,
 }: PrescriptionPopupProps) {
   return (
-    <div className="fixed inset-0 bg-black/50 bg-opacity-80 p-4 mt-30 md:mt-0 flex items-center justify-center z-50">
+    <div   onClick={onClose} className="fixed inset-0 bg-black/50 bg-opacity-80 p-4 mt-30 md:mt-0 flex items-center justify-center z-50">
       <div className="w-full max-w-2xl bg-gray-100 rounded-2xl shadow-2xl overflow-hidden">
         {/* Header */}
         <div className="bg-gray-100 px-6 py-2 md:py-4 flex items-center justify-between border-b border-gray-300">

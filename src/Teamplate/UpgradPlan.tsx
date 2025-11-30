@@ -224,7 +224,7 @@ const plans = [
       '24/7 Erreichbarkeit & Anrufprotokollierung',
       'Intelligente Triage & Aufgaben-Erstellung',
       '4000 Anrufminuten / Monat inkludiert',
-      '0,35 € pro Überminute',
+      '0,30 € pro Überminute',
       'Multilingual (25+ languages)',
       'Prioritized email and live chat support',
     ],
