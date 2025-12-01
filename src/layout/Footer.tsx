@@ -49,14 +49,14 @@ const Footer: React.FC = () => {
                 >
                     {/* LOGO + CONTACT */}
                     <div className="text-center mb-8 relative z-10">
-                        <div className="flex items-center justify-center gap-2 mb-4">
+                        <div className="flex items-center justify-center  mb-4">
                             <img src={logo} alt="Docline Logo" className="h-8 w-8" />
                             <span className="text-2xl font-semibold text-[#171C35]">
                                 Docline
                             </span>
                         </div>
 
-                        <p className="text-base text-gray-700 mb-2">
+                        <p className="text-base text-gray-700 mb-4">
                             Wir schaffen stressfreie Praxen
                         </p>
 
@@ -69,11 +69,11 @@ const Footer: React.FC = () => {
                     </div>
 
                     {/* NAVIGATION LINKS – FULLY RESPONSIVE */}
-                    <nav className="relative z-10">
+                    <nav className="relative z-10 ">
                         <ul className="
                             flex flex-wrap 
                             items-center justify-center 
-                            gap-x-4 gap-y-3 
+                            gap-x-8 gap-y-3 
                             text-center
                         ">
                             {navigationLinks.map((link, index) => (

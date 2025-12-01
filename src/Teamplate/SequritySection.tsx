@@ -90,11 +90,11 @@ const SecuritySection: React.FC = () => {
 
 
         {/* Features Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[30px] lg:gap-[30px">
           {features.map((feature, index) => (
             <div
               key={index}
-              className="rounded-2xl sm:rounded-[30px] p-4 md:p-8 transition-all bg-white/5 hover:bg-white/10 backdrop-blur-sm group"
+              className="rounded-2xl sm:rounded-[30px]  transition-all bg-white/5 hover:bg-white/10 backdrop-blur-sm group"
             >
               {/* Icon container */}
               <div
@@ -107,7 +107,7 @@ const SecuritySection: React.FC = () => {
     backdropFilter: "blur(5px)",
   }}
                 className="flex justify-center items-center 
-                           w-[56px] h-[56px] rounded-[16px]  p-[8px_10px] mb-4 md:mb-6
+                           w-[56px] h-[56px] rounded-[16px]  p-[8px_10px] mb-4 md:mb-[30px]
                            text-[#171C35] group-hover:text-[#526FFF] transition-colors duration-300"
               >
                 {React.cloneElement(feature.icon, {
@@ -116,12 +116,12 @@ const SecuritySection: React.FC = () => {
               </div>
 
               {/* Title */}
-              <h3 className="text-lg md:text-2xl font-semibold mb-2 md:mb-4 text-[#171C35] group-hover:text-[#526FFF] transition-colors duration-300">
+              <h3 className="text-lg md:text-2xl font-semibold mb-2 md:mb-11 leading-6 text-[#171C35] group-hover:text-[#526FFF] transition-colors duration-300">
                 {feature.title}
               </h3>
 
               {/* Description */}
-              <p className="text-[#171C35] text-sm md:text-base leading-relaxed mb-4">
+              <p className="text-[#171C35] text-sm md:text-base leading-relaxed mb-5">
                 {feature.description}
               </p>
 

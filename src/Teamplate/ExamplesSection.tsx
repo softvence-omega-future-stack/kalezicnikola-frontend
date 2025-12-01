@@ -242,7 +242,7 @@ const ExampleSection: React.FC = () => {
 
                   {/* Menu Content Card */}
                   <div
-                    className="w-full flex flex-col items-start gap-6 p-4 sm:p-6 rounded-xl md:rounded-3xl border border-white bg-white shadow-[0_-20px_50px_rgba(147,170,189,0.30)] hover:shadow-lg transition-shadow relative cursor-pointer"
+                    className="w-full flex flex-col items-start gap-6 p-4 sm:p-6 rounded-xl md:rounded-3xl border border-white bg-white shadow-[0_-20px_50px_rgba(147,170,189,0.30)]  transition-shadow relative cursor-pointer"
                     onClick={() => handlePlayListItem(index)}
                   >
                     <div className="text-left flex-1">

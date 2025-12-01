@@ -114,7 +114,7 @@ const Functions = () => {
           </div>
 
           {/* Feature 3 - Multilingual */}
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-5">
             {/* Feature 3 - Multilingual */}
             <div
               className="relative flex flex-col justify-between h-[350px] p-4 sm:p-8 rounded-2xl sm:rounded-[30px]"

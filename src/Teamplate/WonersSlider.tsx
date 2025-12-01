@@ -94,7 +94,7 @@ const TestimonialSection: React.FC = () => {
           {/* Left - Image */}
           <div className="lg:col-span-4 flex justify-center lg:justify-start h-full items-center lg:pl-0 pb-2 md:pb-4 lg:pb-0">
             <div className="relative">
-              <div className="w-full h-full md:w-80 lg:h-full bg-gray-800 rounded-2xl md:rounded-3xl overflow-hidden ">
+              <div className="w-full h-full md:w-[420px] lg:h-full bg-gray-800 rounded-2xl md:rounded-3xl overflow-hidden ">
                 <img 
                   src={testimonials[activeSlide].image} 
                   alt={testimonials[activeSlide].name}
@@ -124,7 +124,7 @@ const TestimonialSection: React.FC = () => {
           <div className="lg:col-span-3 flex flex-col gap-4 px-4 lg:pl-4 h-full justify-center max-[767px]:pb-5 pt-4 lg:pt-0">
             {/* Time Saved Card */}
             <div className="rounded-2xl p-4 text-center border border-gray-100 lg:border-none">
-              <div className="text-5xl sm:text-7xl lg:text-[128px] text-gray-900 mb-1 leading-none">
+              <div className="text-5xl sm:text-7xl font-light lg:text-[128px] text-gray-900 mb-1 leading-none">
                 {testimonials[activeSlide].stats.timeSaved}
               </div>
               <p className="text-[#171C35] text-xl font-medium">
@@ -134,7 +134,7 @@ const TestimonialSection: React.FC = () => {
 
             {/* Acceptance Card */}
             <div className="rounded-2xl p-4 text-center border border-gray-100 lg:border-none">
-              <div className="text-5xl sm:text-7xl lg:text-[128px] text-[#111A2D] mb-1 leading-none">
+              <div className="text-5xl font-light sm:text-7xl lg:text-[128px] text-[#111A2D] mb-1 leading-none">
                 {testimonials[activeSlide].stats.acceptance}
               </div>
               <p className="text-[#171C35] text-xl font-medium">

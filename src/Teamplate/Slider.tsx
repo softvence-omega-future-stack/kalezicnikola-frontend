@@ -5,10 +5,10 @@ import { Autoplay, EffectCoverflow } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 
-import img1 from "../assets/img/slide1.png";
-import img2 from "../assets/svgIcon/workflowSlider2.svg";
-import img3 from "../assets/svgIcon/wrokflowSlider3.svg";
-import img4 from "../assets/svgIcon/workflowSlider4.svg";
+import img1 from "../assets/svgIcon/slider1.svg";
+import img2 from "../assets/svgIcon/slider2.svg";
+import img3 from "../assets/svgIcon/slider3.svg";
+import img4 from "../assets/svgIcon/slider4.svg";
 
 const DashboardSlide: React.FC<{
   bgColor: string;
@@ -51,12 +51,12 @@ const DashboardSlide: React.FC<{
 
       {/* Image Section */}
       <div
-        className="h-[180px] sm:h-[260px] md:h-[350px] w-full"
+        className="h-[180px] sm:h-[260px] md:h-[360px] w-full"
       >
         <img
           src={img}
           alt={title}
-          className="w-full h-full rounded-t-xl bottom-0"
+          className="w-full h-full object-top rounded-t-xl"
         />
       </div>
     </div>
@@ -198,7 +198,7 @@ const Slider = () => {
               {({ isActive }) => (
                 <div
                   className={`transition-all duration-700 ${
-                    isActive ? "scale-100" : "scale-90 "
+                    isActive ? "scale-100" : "scale-95 "
                   }`}
                 >
                   <DashboardSlide {...slide} isActive={isActive} />
