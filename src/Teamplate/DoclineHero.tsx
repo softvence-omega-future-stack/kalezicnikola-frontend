@@ -102,10 +102,9 @@ const DoclineHero: React.FC = () => {
             {/* Badge */}
             <div
               style={{
-                boxShadow: `1px 1px 4px 0 rgba(0, 0, 0, 0.05) inset, 
-                -6px -11px 18px 0 rgba(255, 255, 255, 0.16) inset, 
-                  1px 1px 0 -0.4px #FFF inset, 
-                  -1px -1px 0 -0.5px #FFF inset`,
+                boxShadow: `-6px -11px 18px 0 rgba(255, 255, 255, 0.16) inset, 
+                1.2px 1.2px 0 -0.4px #FFF inset, 
+                -1.2px -1.2px 0 -0.5px #FFF inset`,
                 padding: "10px 20px",
                 backdropFilter: "blur(5px)",
                 fontFamily: "Urbanist, sans-serif",
@@ -139,11 +138,11 @@ const DoclineHero: React.FC = () => {
           <div className="flex flex-col md:flex-row w-full items-center gap-3">
             <button
               onClick={() => navigate("/login")}
-              className="w-full md:w-auto py-2 px-6 md:py-5 md:px-12 rounded-[25px] sm:rounded-[12px] text-base font-semibold bg-[#526FFF] text-white cursor-pointer"
+              className="w-full md:w-auto py-4 px-6 md:py-5 leading-4 md:px-12 rounded-[25px] sm:rounded-[12px] text-base font-semibold bg-[#526FFF] text-white cursor-pointer"
             >
               Get Started
             </button>
-            <button className="w-full md:w-auto py-2 px-6 md:py-5 md:px-12 rounded-[25px] sm:rounded-[12px] text-base font-semibold border border-[#526FFF] text-[#526FFF] bg-[rgba(82,111,255,0.1)] cursor-pointer">
+            <button className="w-full md:w-auto py-3 px-6 leading-4 md:py-5 md:px-12 rounded-[25px] sm:rounded-[12px] text-base font-semibold border border-[#526FFF] text-[#526FFF] bg-[rgba(82,111,255,0.1)] cursor-pointer">
               Book Demo
             </button>
           </div>

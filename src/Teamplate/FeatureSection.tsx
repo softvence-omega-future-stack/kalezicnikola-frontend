@@ -235,7 +235,7 @@ const FeatureSection: React.FC = () => {
         align="center"
       />
       <p className="text-center -mt-4 mb-10 md:mb-[60px] text-sm md:text-xl">
-        The Docline AI assistant solves the biggest challenges in daily practice
+        The Docline AI assistant solves the <br /> biggest challenges in daily practice
       </p>
 
       {/* Row 1 */}

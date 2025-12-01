@@ -230,6 +230,9 @@ const Slider = () => {
               style={{
                 padding: "10px 20px 10px 20px",
                 backdropFilter: "blur(5px)",
+                    boxShadow: `-6px -11px 18px 0 rgba(255, 255, 255, 0.16) inset, 
+                1.2px 1.2px 0 -0.4px #FFF inset, 
+                -1.2px -1.2px 0 -0.5px #FFF inset`,
               }}
               className="inline-flex items-center py-2 px-4 mb-3 bg-gray-200/20 rounded-full"
             >

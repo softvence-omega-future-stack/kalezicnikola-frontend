@@ -121,7 +121,7 @@ const SecuritySection: React.FC = () => {
               </h3>
 
               {/* Description */}
-              <p className="text-[#171C35] text-sm md:text-base leading-relaxed mb-5">
+              <p className="text-[#171C35] text-sm md:text-base leading-[22px] mb-5">
                 {feature.description}
               </p>
 

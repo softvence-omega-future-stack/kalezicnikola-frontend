@@ -347,7 +347,7 @@ const UpgradPlan = () => {
     >
       {/* Background blur fixed (no lag) */}
       <div
-        className="absolute -top-32 -left-64 z-0 opacity-70 blur-[150px] bg-[#2b8eff4d] w-[680px] h-[400px] rounded-full"
+        className="absolute -top-32 -left-64 z-0 opacity-70 blur-[150px] bg-[#2B8EFF4D] w-[680px] h-[400px] rounded-full"
       ></div>
 
       <div

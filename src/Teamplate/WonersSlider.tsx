@@ -46,16 +46,13 @@ const TestimonialSection: React.FC = () => {
     }
   ];
 
-
   useEffect(() => {
     const interval = setInterval(() => {
-    
       setActiveSlide((currentSlide) => 
         (currentSlide + 1) % testimonials.length
       );
     }, 4000); 
 
-   
     return () => clearInterval(interval);
   }, [testimonials.length]); 
 
@@ -63,20 +60,7 @@ const TestimonialSection: React.FC = () => {
     <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="mt-12 md:mt-[120px]">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        {/* <div className="text-center mb-16">
-          <div className="relative inline-flex items-center glass gap-2 pr-5 pl-2.5 py-2  border border-t-2 border-l-2 border-white bg-white/10  rounded-full mb-4">
-            <img src={icon} alt="Docline logo" />
-            <span className="text-[#171C35] text-sm font-medium">What Our Users Say</span>
-
-          </div>
-
-          <h2 className="text-4xl sm:text-5xl lg:text-5xl font-semibold text-[#171c35] mb-15">
-            What Practice Owners <br /> Say About Docline
-          </h2>
-        </div> */}
-
-
-         <SectionHeader
+        <SectionHeader
           badgeIcon={icon}
           badgeText="What Our Users Say"
           heading={
@@ -85,59 +69,85 @@ const TestimonialSection: React.FC = () => {
             </>
           }
           align="center"
-       
         />
 
         {/* Testimonial Content */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 items-stretch mb-12 gap-[30px] bg-white rounded-2xl md:rounded-3xl max-[767px]:px-2.5 max-[767px]:pt-5 md:p-2.5">
+        <div className="mb-12 bg-white rounded-2xl md:rounded-3xl max-[767px]:px-2.5 max-[767px]:pt-5 md:p-2.5">
           
-          {/* Left - Image */}
-          <div className="lg:col-span-4 flex justify-center lg:justify-start h-full items-center lg:pl-0 pb-2 md:pb-4 lg:pb-0">
-            <div className="relative">
-              <div className="w-full h-full md:w-[320px] xl:w-[400px] lg:h-[432px]  rounded-2xl md:rounded-3xl overflow-hidden ">
-                <img 
-                  src={testimonials[activeSlide].image} 
-                  alt={testimonials[activeSlide].name}
-                  className="w-full h-full object-top"
-                />
+          {/* Top Section: Image + Quote (side by side on tablet/md) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 items-stretch mb-0 md:mb-4 lg:mb-0">
+            
+            {/* Left - Image */}
+            <div className="col-span-1 md:col-span-1 lg:col-span-4 flex justify-center lg:justify-start h-full items-center pb-2 md:pb-0">
+              <div className="relative">
+                <div className="w-full h-full md:w-[300px] xl:w-[400px] lg:h-[432px]  bg-gray-800 rounded-2xl md:rounded-3xl overflow-hidden">
+                  <img 
+                    src={testimonials[activeSlide].image} 
+                    alt={testimonials[activeSlide].name}
+                    className="w-full h-full object-cover lg:object-top"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Middle - Quote */}
+            <div className="col-span-1 md:col-span-1 lg:col-span-5 flex flex-col justify-center h-full lg:border-r border-gray-100 px-4 lg:px-4 py-4 lg:py-0">
+              <blockquote className="text-[#111A2D] text-lg w-[428px] md:text-2xl font-medium leading-[34px] mb-8 md:mb-16">
+                {testimonials[activeSlide].quote}
+              </blockquote>
+              
+              <div>
+                <p className="text-gray-900 font-bold text-lg mb-4">
+                  {testimonials[activeSlide].name}
+                </p>
+                <p className="text-[#111A2D] text-base tracking-wide">
+                  {testimonials[activeSlide].title}
+                </p>
+              </div>
+            </div>
+
+            {/* Right - Stats (only visible on lg+) */}
+            <div className="hidden lg:flex lg:col-span-3 flex-col gap-4 px-4 lg:pl-4 h-full justify-center">
+              {/* Time Saved Card */}
+              <div className="rounded-2xl p-4 text-center">
+                <div className="text-5xl sm:text-7xl font-light lg:text-[128px] text-gray-900 mb-1 leading-none">
+                  {testimonials[activeSlide].stats.timeSaved}
+                </div>
+                <p className="text-[#171C35] text-xl font-medium">
+                  {testimonials[activeSlide].stats.timeSavedLabel}
+                </p>
+              </div>
+
+              {/* Acceptance Card */}
+              <div className="rounded-2xl p-4 text-center">
+                <div className="text-5xl font-light sm:text-7xl lg:text-[128px] text-[#111A2D] mb-1 leading-none">
+                  {testimonials[activeSlide].stats.acceptance}
+                </div>
+                <p className="text-[#171C35] text-xl font-medium">
+                  {testimonials[activeSlide].stats.acceptanceLabel}
+                </p>
               </div>
             </div>
           </div>
 
-          {/* Middle - Quote */}
-          <div className="lg:col-span-5 flex flex-col justify-center h-full  border-r border-gray-100 px-4 lg:px-4 py-4 lg:py-0">
-            <blockquote className="text-[#111A2D] text-lg md:text-2xl font-medium leading-relaxed mb-8 md:mb-16">
-              {testimonials[activeSlide].quote}
-            </blockquote>
-            
-            <div>
-              <p className="text-gray-900 font-bold text-lg mb-4">
-                {testimonials[activeSlide].name}
-              </p>
-              <p className="text-[#111A2D] text-base tracking-wide">
-                {testimonials[activeSlide].title}
-              </p>
-            </div>
-          </div>
-
-          {/* Right - Stats */}
-          <div className="col-span-2 lg:col-span-3 flex flex-col sm:flex-row lg:flex-col gap-4 px-4 lg:pl-4 h-full justify-between lg:justify-center max-[767px]:pb-5 pt-4 lg:pt-0">
+          {/* Bottom Section: Stats (visible on mobile + tablet, hidden on lg+) */}
+          <div className="grid grid-cols-2 gap-4 px-4 pt-4 pb-5 lg:hidden">
             {/* Time Saved Card */}
             <div className="rounded-2xl p-4 text-center ">
-              <div className="text-5xl sm:text-7xl font-light lg:text-[128px] text-gray-900 mb-1 leading-none">
+              <div className="text-5xl sm:text-6xl md:text-7xl font-light text-gray-900 mb-1 leading-none">
                 {testimonials[activeSlide].stats.timeSaved}
               </div>
-              <p className="text-[#171C35] text-xl font-medium">
+              <p className="text-[#171C35] text-sm md:text-xl font-medium">
                 {testimonials[activeSlide].stats.timeSavedLabel}
               </p>
             </div>
 
             {/* Acceptance Card */}
             <div className="rounded-2xl p-4 text-center ">
-              <div className="text-5xl font-light sm:text-7xl lg:text-[128px] text-[#111A2D] mb-1 leading-none">
+              <div className="text-5xl sm:text-6xl md:text-7xl font-light text-[#111A2D] mb-1 leading-none">
                 {testimonials[activeSlide].stats.acceptance}
               </div>
-              <p className="text-[#171C35] text-xl font-medium">
+              <p className="text-[#171C35] text-sm md:text-xl font-medium">
                 {testimonials[activeSlide].stats.acceptanceLabel}
               </p>
             </div>

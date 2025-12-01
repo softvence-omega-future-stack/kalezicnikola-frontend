@@ -37,10 +37,9 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
       {/* Badge: Always center on mobile/sm */}
       <div
         style={{
-          boxShadow: `1px 1px 4px 0 rgba(0, 0, 0, 0.05) inset, 
-                -6px -11px 18px 0 rgba(255, 255, 255, 0.16) inset, 
-                1px 1px 0 -0.4px #FFF inset, 
-                -1px -1px 0 -0.5px #FFF inset`,
+          boxShadow: `-6px -11px 18px 0 rgba(255, 255, 255, 0.16) inset, 
+                1.2px 1.2px 0 -0.4px #FFF inset, 
+                -1.2px -1.2px 0 -0.5px #FFF inset`,
           padding: "10px 20px 10px 20px",
           backdropFilter: "blur(5px)",
         }}

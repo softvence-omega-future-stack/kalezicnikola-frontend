@@ -1,7 +1,7 @@
 import React from 'react';
 import ShadowBox from "../Teamplate/ShadowBox";
 
-import logo from '../assets/svgIcon/logo.svg';
+import logoText from '../assets/svgIcon/textLogo.svg';
 import { Link } from 'react-router-dom';
 // import { BsLinkedin } from "react-icons/bs";
 // import { FaFacebook } from "react-icons/fa";
@@ -57,11 +57,11 @@ const Footer: React.FC = () => {
                 >
                     {/* LOGO + CONTACT */}
                     <div className="text-center mb-8 relative z-10">
-                        <div className="flex items-center justify-center  mb-4">
-                            <img src={logo} alt="Docline Logo" className="h-8 w-8" />
-                            <span className="text-2xl font-semibold text-[#171C35]">
-                                Docline
-                            </span>
+                        <div className="flex items-center justify-center gap-2  mb-4">
+                            <svg width="20" height="40" viewBox="0 0 20 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M0.55283 5.94131C1.32579 14.3341 2.96819 17.1604 8.16982 19.0512L12.5171 20.6304L8.42714 21.8369C3.4959 23.2906 1.39615 26.6904 0.570922 34.5611L0 40L3.4185 39.2751C25.5257 34.5878 25.5277 5.32522 3.42151 0.712997L0.00502572 0L0.55283 5.94131Z" fill="#526FFF"/>
+</svg>
+                           <img src={logoText} alt="" />
                         </div>
 
                         <p className="text-base text-gray-700 mb-4">

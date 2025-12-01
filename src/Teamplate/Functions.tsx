@@ -41,7 +41,7 @@ const Functions = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-6 ">
           {/* Feature 1 - Reduzierte Telefonlast */}
           <div
-            className="relative  p-4 sm:p-8 rounded-2xl sm:rounded-[30px]"
+            className="relative   p-4 sm:p-8 rounded-2xl sm:rounded-[30px]"
             style={{
               border: "1px solid #FFF",
               background: `

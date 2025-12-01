@@ -100,12 +100,12 @@ const Navbar: React.FC = () => {
             <div className="flex items-center gap-3 ml-2">
               <LanguageSelector />
               <div className="flex items-center gap-3">
-                <button className="px-5 py-3.5 rounded-full text-base font-medium text-[#171C35] border border-[#171C35] transition whitespace-nowrap">
+                <button className="px-5 py-3.5 rounded-full leading-4 text-base font-medium text-[#171C35] border border-[#171C35] transition whitespace-nowrap">
                   Demo buchen
                 </button>
                 <button
                   onClick={() => navigate("/login")}
-                  className="px-5 py-3.5 text-base font-medium text-[#171C35] bg-white rounded-full transition cursor-pointer whitespace-nowrap shadow-md"
+                  className="px-5 py-3.5 text-base font-medium leading-4 text-[#171C35] bg-white rounded-full transition cursor-pointer whitespace-nowrap shadow-md"
                 >
                   Login
                 </button>
