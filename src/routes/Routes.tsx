@@ -31,6 +31,8 @@ import SettingPage from "@/pages/Admin/Settings/Settingpage";
 import SupportPage from "@/pages/Admin/Supports/SupportPage";
 import Home from "@/pages/Home";
 import AddPatientForm from "@/dashboard/components/Patients/Addpatient";
+import Impressum from "@/Teamplate/Impressum ";
+import Datenschutz from "@/Teamplate/Datenschutz";
 // import AddPatientForm from "@/dashboard/components/Patients/Addpatient";
 
 
@@ -50,6 +52,14 @@ const routes = createBrowserRouter([
     path: "/",
     element: <Home />, 
   },
+       {
+        path: "/impressum",
+        element: <Impressum />
+      },
+      {
+        path: "/datenschutz",
+        element: <Datenschutz />
+      },
    
      {
         path:'/login',

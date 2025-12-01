@@ -58,7 +58,7 @@ export default function SignupPage() {
                    padding: "10px 10px 10px 30px",
     backdropFilter: "blur(5px)",
   }}
-        className="fixed top-8 left-0 right-0 z-20 w-[95%] border border-white bg-white/10 backdrop-blur-sm rounded-full px-9 py-4 flex items-center justify-between mx-auto">
+        className="fixed top-8 left-0 right-0 z-20 w-[95%]  bg-white/10 backdrop-blur-sm rounded-full px-9 py-4 flex items-center justify-between mx-auto">
           <div className="flex items-center gap-2">
               <img src={icon} alt="Logo" />
             <img src={logo} alt="" />

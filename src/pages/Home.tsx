@@ -9,15 +9,15 @@ import SecuritySection from "@/Teamplate/SequritySection";
 
 import UpgradPlan from "@/Teamplate/UpgradPlan";
 import TestimonialSection from "@/Teamplate/WonersSlider";
-import Footer from "@/layout/Footer";
+// import Footer from "@/layout/Footer";
 import Slider from "@/Teamplate/Slider";
-import Navbar from "@/layout/Navbar";
+// import Navbar from "@/layout/Navbar";
 
 
 const Home = () => {
   return (
  <div className="bg-[#F3F6F6] ">
-<Navbar/>
+
   <DoclineHero />
 
   {/* content wrapper */}
@@ -47,7 +47,7 @@ const Home = () => {
     {/* <LequidButton/> */}
    
   </div>
-   <Footer />
+
 </div>
 
   );

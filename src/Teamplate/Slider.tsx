@@ -10,71 +10,162 @@ import img2 from "../assets/svgIcon/slider2.svg";
 import img3 from "../assets/svgIcon/slider3.svg";
 import img4 from "../assets/svgIcon/slider4.svg";
 
-const DashboardSlide: React.FC<{
-  bgColor: string;
+// ========================================
+// TYPES & INTERFACES
+// ========================================
+interface SlideData {
+  id: number;
   label: string;
   title: string;
   subtitle: string;
   list: string[];
   img: string;
+  bgColor: string;
+}
+
+interface DashboardSlideProps extends SlideData {
   isActive?: boolean;
-}> = ({ bgColor, label, title, subtitle, list, img, isActive }) => {
+}
+
+// ========================================
+// SLIDE COMPONENT
+// 
+// SPECIFICATIONS:
+// Desktop (1024px+):
+//   - Active slide: 1040px × 530px, Image: 954px × 320px
+//   - Side slide: 936px × 438px (via 0.9 scale), Image: 800px × 242px (via scale)
+// Tablet (768px - 1023px):
+//   - All slides: 600px × 420px, Image: 560px × 175px
+// Mobile (< 768px):
+//   - All slides: 343px × 600px, Image: full width
+// ========================================
+const DashboardSlide: React.FC<DashboardSlideProps> = ({
+  bgColor,
+  label,
+  title,
+  subtitle,
+  list,
+  img,
+  isActive,
+}) => {
   return (
     <div
-      className={`px-4 pt-4 md:px-8 md:pt-8 ${bgColor} rounded-3xl relative overflow-hidden 
-      flex flex-col transition-all duration-700 transform
-      ${isActive ? "scale-100 opacity-100" : "scale-95 opacity-90"}
-      mx-auto w-full min-h-[420px] md:min-h-[400px]`}
+      className={`
+        ${bgColor} 
+        rounded-3xl 
+        relative 
+        overflow-hidden 
+        flex 
+        flex-col 
+        transition-all 
+        duration-700 
+        transform
+        mx-auto 
+        w-full
+        
+        ${isActive ? "opacity-100" : "opacity-90"}
+        
+        /* Mobile: 343px wide × 360px tall (reduced for better spacing) */
+        h-[360px]
+        
+        /* Tablet: 600px wide × 420px tall */
+        md:h-[420px]
+        
+        /* Desktop: 530px tall for active */
+        lg:h-[530px]
+        
+        /* Padding */
+        px-4 pt-4 pb-0
+        md:px-6 md:pt-6
+        lg:px-8 lg:pt-8
+      `}
     >
-      {/* Text Section */}
-      <div className="relative z-10 shrink-0 mb-4 sm:mb-10 flex flex-col sm:flex-row items-center justify-between w-full">
-        <div>
-          <div
-            className="flex w-fit items-center text-xs sm:text-sm font-medium text-[#3B82F6]
-        mb-3 rounded-full py-1.5 px-3 border border-[#3B82F6] gap-2"
-          >
-            <img src={icon} alt="" className="w-4 h-4 sm:w-5 sm:h-5" />
+      {/* CONTENT SECTION */}
+      <div
+        className="
+          relative 
+          z-10 
+          shrink-0 
+          flex 
+          flex-col 
+          lg:flex-row 
+          items-start
+          justify-between 
+          w-full
+          gap-4
+          
+          mb-2
+          md:mb-5
+          lg:mb-6
+        "
+      >
+        {/* Left Content */}
+        <div className="flex-1">
+          {/* Label Badge */}
+          <div className="flex w-fit items-center text-xs font-medium text-[#3B82F6] mb-3 rounded-full py-2 px-2.5 border border-[#3B82F6] gap-2">
+            <img src={icon} alt="" className="w-4 h-4" />
             {label}
           </div>
-          <h2 className="text-xl md:text-3xl font-bold text-gray-900 mb-2 sm:mb-5">
+
+    
+          
+
+    <div className="flex flex-col md:flex-row justify-between ">
+         <div>
+                {/* Title */}
+           <h2 className="text-lg md:text-xl lg:text-[32px] font-medium text-[#171C35] leading-normal mb-4">
             {title}
           </h2>
-          <p className="text-headingBlack text-xs sm:text-sm mb-4 sm:mb-0">{subtitle}</p>
-        </div>
+             {/* Subtitle */}
+          <p className="text-headingBlack text-sm md:text-base font-normal leading-normal mb-3 md:mb-0">
+            {subtitle}
+          </p>
+         
+          </div>
+      
 
-        <ul className="list-disc max-[767px]:pl-4 text-xs sm:text-sm  text-headingBlack space-y-2 sm:space-y-4">
+        {/* Right Content - Feature List */}
+        <ul className="list-disc pl-4 text-xs md:text-sm font-normal text-headingBlack space-y-4 flex-shrink-0">
           {list.map((item, i) => (
             <li key={i}>{item}</li>
           ))}
         </ul>
+    </div>
+      </div>
       </div>
 
-      {/* Image Section */}
-      <div
-        className="h-[180px] sm:h-[260px] md:h-[360px] w-full"
-      >
+      {/* IMAGE SECTION */}
+      <div className="relative flex-1 w-full mt-auto flex items-end justify-center overflow-hidden">
         <img
           src={img}
           alt={title}
-          className="w-full h-full object-top rounded-t-xl"
+          className="
+            w-full
+            md:w-[560px] md:h-[175px]
+            lg:w-[954px] lg:h-[320px]
+            object-contain object-bottom
+          "
         />
       </div>
     </div>
   );
 };
 
+// ========================================
+// MAIN SLIDER COMPONENT
+// ========================================
 const Slider = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
-  // Detect mobile on mount
   useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
-  const slides = [
+
+  const slides: SlideData[] = [
     {
       id: 1,
       label: "Task",
@@ -130,21 +221,17 @@ const Slider = () => {
   ];
 
   return (
-    <section className="mt-12 md:mt-[120px] max-[767px]:px-4 ">
+    <section className="mt-12 md:mt-[120px] max-[767px]:px-4">
       <div>
-        {/* Header */}
-        <div
-          className="mb-4 md:mb-6 flex flex-col md:flex-row items-center px-4 lg:px-[75px] 
-        lg:justify-between gap-0 md:gap-8 text-center md:text-left"
-        >
+        {/* SECTION HEADER */}
+        <div className="mb-4 md:mb-6 flex flex-col md:flex-row items-center px-4 lg:px-[75px] lg:justify-between gap-0 md:gap-8 text-center md:text-left">
           <div>
             <div
-            style={{
-          padding: "10px 20px 10px 20px",
-          backdropFilter: "blur(5px)",
-        }}
-              className="inline-flex items-center py-2 px-4 mb-3 bg-gray-200/20 
-            rounded-full"
+              style={{
+                padding: "10px 20px 10px 20px",
+                backdropFilter: "blur(5px)",
+              }}
+              className="inline-flex items-center py-2 px-4 mb-3 bg-gray-200/20 rounded-full"
             >
               <img src={icon} alt="" className="w-4 h-4 sm:w-5 sm:h-5" />
               <span className="text-gray-800 text-xs sm:text-sm font-medium">
@@ -152,10 +239,7 @@ const Slider = () => {
               </span>
             </div>
 
-            <h2
-              className="text-[22px] sm:text-[32px] md:text-[46px] lg:text-[54px] xl:text-[64px]
-              font-semibold text-gray-900 leading-tight mb-4"
-            >
+            <h2 className="text-[22px] sm:text-[32px] md:text-[46px] lg:text-[54px] xl:text-[64px] font-semibold text-gray-900 leading-tight mb-4">
               The Modern Workflow
               <span className="block">Your Team Will Love</span>
             </h2>
@@ -166,20 +250,27 @@ const Slider = () => {
             smarter together.
           </p>
         </div>
-        {/* Swiper */}
+
+        {/* SWIPER CAROUSEL */}
         <Swiper
           modules={[Autoplay, EffectCoverflow]}
           effect="coverflow"
           grabCursor={true}
           centeredSlides={true}
           loop={true}
-          spaceBetween={30}
           slidesPerView={"auto"}
           autoplay={
-            isMobile
-              ? false // ❌ Mobile autoplay disabled
-              : { delay: 5000, disableOnInteraction: false } // ✔️ Desktop autoplay
+            isMobile ? false : { delay: 5000, disableOnInteraction: false }
           }
+          spaceBetween={30}
+          breakpoints={{
+            768: {
+              spaceBetween: 40,
+            },
+            1024: {
+              spaceBetween: 50,
+            },
+          }}
           coverflowEffect={{
             rotate: 0,
             stretch: -50,
@@ -193,13 +284,23 @@ const Slider = () => {
           {slides.map((slide) => (
             <SwiperSlide
               key={slide.id}
-              className="!w-full sm:!w-[60%] md:!w-[70%] pt-5 pb-8 md:pt-5 md:pb-10 transition-transform duration-700"
+              className="
+                !w-[343px]
+                md:!w-[600px]
+                lg:!w-[1040px]
+                pt-5 pb-8 md:pt-5 md:pb-10 
+                transition-transform duration-700
+              "
             >
               {({ isActive }) => (
                 <div
-                  className={`transition-all duration-700 ${
-                    isActive ? "scale-100" : "scale-95 "
-                  }`}
+                  className={`
+                    transition-all duration-700
+                    ${isActive ? "scale-100" : "scale-90 lg:scale-[0.9]"}
+                  `}
+                  style={{
+                    transformOrigin: "center center",
+                  }}
                 >
                   <DashboardSlide {...slide} isActive={isActive} />
                 </div>
@@ -208,15 +309,15 @@ const Slider = () => {
           ))}
         </Swiper>
 
-        {/* Pagination Dots */}
+        {/* PAGINATION DOTS */}
         <div className="flex justify-center gap-3">
           {slides.map((_, index) => (
             <button
               key={index}
               onClick={() => setActiveIndex(index)}
-              className={`h-2.5 rounded-full transition-all duration-500 ${
-                index === activeIndex ? "w-8 bg-black" : "w-2.5 bg-[#D0D5DD]"
-              }`}
+              aria-label={`Go to slide ${index + 1}`}
+              className={`h-2.5 rounded-full transition-all duration-500 ${index === activeIndex ? "w-8 bg-black" : "w-2.5 bg-[#D0D5DD]"
+                }`}
             />
           ))}
         </div>
@@ -226,6 +327,7 @@ const Slider = () => {
 };
 
 export default Slider;
+
 
 // import React from "react";
 // import { Swiper, SwiperSlide } from "swiper/react";
