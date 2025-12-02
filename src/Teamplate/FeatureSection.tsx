@@ -11,7 +11,7 @@ import SectionHeader from "./SectionHeader";
 const ReliefCard: React.FC = () => (
   <div className="p-4 sm:p-6 md:p-[30px] w-full md:w-[28%] bg-headingBlack rounded-2xl sm:rounded-[30px] flex flex-col justify-between text-white">
     <div>
-      <p className="text-3xl sm:text-5xl md:text-[96px] mb-8 md:mb-10 font-extralight font-urbanist text-white">
+      <p className="text-3xl sm:text-5xl md:text-6xl lg:text-[96px] mb-8 md:mb-10 font-extralight font-urbanist text-white">
         75%
       </p>
       <div className="space-y-2 md:space-y-2.5 leading-[120%]">
@@ -105,7 +105,7 @@ const AvailabilityCard: React.FC = () => (
       backdropFilter: "blur(50px)",
     }}
   >
-    <p className="text-2xl sm:text-4xl md:text-[96px] mb-8 md:mb-20 font-extralight font-urbanist text-white">
+    <p className="text-2xl sm:text-4xl md:text-6xl lg:text-[96px] mb-8 md:mb-20 font-extralight font-urbanist text-white">
       24/7
     </p>
 

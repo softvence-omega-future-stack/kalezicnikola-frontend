@@ -72,6 +72,7 @@
 
 import React from "react";
 import heroImg from "../assets/svgIcon/heroImg.svg";
+import tabImg from "../assets/svgIcon/Hero tab.png";
 import herologo from "../assets/svgIcon/herologo.svg";
 // import SectionHeader from "./SectionHeader";
 import { useNavigate } from "react-router-dom";
@@ -117,7 +118,7 @@ const DoclineHero: React.FC = () => {
             </div>
 
             {/* Heading */}
-            <h1 className="mb-4 text-2xl sm:text-[32px] md:leading-[120%] md:text-[64px] font-semibold text-[#171C35]">
+            <h1 className="mb-4 text-2xl sm:text-[32px] md:leading-[120%] md:text-[64px] sm:pr-5 md:pr-0 font-semibold text-[#171C35]">
               24/7 Availability for Your Patients. Zero Phone Stress for Your
               Team.
             </h1>
@@ -128,14 +129,14 @@ const DoclineHero: React.FC = () => {
                 fontFamily: "Urbanist, sans-serif",
                 color: "#171C35",
               }}
-              className="max-w-lg leading-7 text-sm md:text-lg text-center md:text-left"
+              className="max-w-lg leading-7 text-sm md:text-lg text-center sm:pl-15 md:pl-0 md:text-left"
             >
               Our intelligent AI assistant handles all phone calls around the clock. It schedules appointments, answers questions, automatically creates tasks, and relieves your team.
             </p>
           </div>
 
           {/* Buttons */}
-          <div className="flex flex-col md:flex-row w-full items-center gap-3">
+          <div className="flex flex-col md:flex-row w-full items-center gap-3 sm:pr-5 md:pr-0">
             <button
               onClick={() => navigate("/login")}
               className="w-full md:w-auto py-4 px-6 md:py-5 leading-4 md:px-12 rounded-[25px] sm:rounded-[12px] text-base font-semibold bg-[#526FFF] text-white cursor-pointer"
@@ -164,12 +165,28 @@ const DoclineHero: React.FC = () => {
 </div> */}
 
         {/* Right Image */}
-        <div className="w-full lg:w-1/2 -mt-5" >
+        <div className="w-full lg:w-1/2 -mt-5  lg:-mb-50 md:-mb-40 sm:-mb-20 " >
           <img
-            src={heroImg}
-            alt="Hero Illustration"
-            className="w-full sm:w-[85%] md:w-full h-full xl:w-full object-contain"
-          />
+      /* Mobile Image (0–639px) */
+  
+    src={heroImg}
+    alt="Hero Mobile"
+    className="block sm:hidden w-full object-contain"
+  />
+
+  {/* Tablet Image (640–767px) */}
+  <img
+    src={tabImg}
+    alt="Hero Tablet"
+    className="hidden sm:block md:hidden w-full object-contain"
+  />
+
+  {/* Desktop Image (768px+) */}
+  <img
+    src={heroImg}
+    alt="Hero Desktop"
+    className="hidden md:block w-full object-contain"
+  />
         </div>
       </div>
     </section>
