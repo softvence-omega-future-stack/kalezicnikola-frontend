@@ -108,7 +108,7 @@ const SecuritySection: React.FC = () => {
   }}
                 className="flex justify-center items-center 
                            w-[56px] h-[56px] rounded-[16px]  p-[8px_10px] mb-4 md:mb-[30px]
-                           text-[#171C35] group-hover:text-[#526FFF] transition-colors duration-300"
+                           text-headingBlack group-hover:text-[#526FFF] transition-colors duration-300"
               >
                 {React.cloneElement(feature.icon, {
                   className: "w-8 h-8",
@@ -116,17 +116,17 @@ const SecuritySection: React.FC = () => {
               </div>
 
               {/* Title */}
-              <h3 className="text-lg md:text-2xl font-semibold mb-2 md:mb-11 leading-6 text-[#171C35] group-hover:text-[#526FFF] transition-colors duration-300">
+              <h3 className="text-lg md:text-2xl font-semibold mb-2 md:mb-11 leading-6 text-headingBlack group-hover:text-[#526FFF] transition-colors duration-300">
                 {feature.title}
               </h3>
 
               {/* Description */}
-              <p className="text-[#171C35] text-sm md:text-base leading-[22px] mb-5">
+              <p className="text-headingBlack text-sm md:text-base font-normal leading-[22px] mb-5">
                 {feature.description}
               </p>
 
               {/* Sub Description */}
-              <p className="text-[#171C35] text-base leading-relaxed">
+              <p className="text-headingBlack text-sm :text-base font-normal leading-[22px]">
                 {feature.subDescription}
               </p>
             </div>

@@ -242,13 +242,13 @@ const Slider = () => {
               </span>
             </div>
 
-            <h2 className="text-[22px] sm:text-[32px] md:text-[46px] lg:text-[54px] xl:text-[64px] font-semibold text-gray-900 leading-tight mb-4">
+            <h2 className="text-[22px] sm:text-[32px] md:text-5xl  font-semibold text-gray-900 leading-[120%] mb-4">
               The Modern Workflow
               <span className="block">Your Team Will Love</span>
             </h2>
           </div>
 
-          <p className="text-sm md:text-xl text-subHeadingBlack max-w-sm md:max-w-md text-center md:text-left">
+          <p className="text-sm md:text-lg font-normal text-subHeadingBlack max-w-sm md:max-w-md text-center md:text-left">
             The key to a practice that doesn't just respond but also works
             smarter together.
           </p>

@@ -2,14 +2,14 @@ import React from "react";
 
 import img1 from "../assets/img/doc.png";
 import img2 from "../assets/svgIcon/featureImg2.svg";
-import img3 from "../assets/img/important.png";
+import img3 from "../assets/svgIcon/section2image3.svg";
 import icon from "../assets/svgIcon/herologo.svg";
 import "./buttom.css";
 import SectionHeader from "./SectionHeader";
 
 // --- 1. ReliefCard ---
 const ReliefCard: React.FC = () => (
-  <div className="p-4 sm:p-6 md:p-[30px] md:w-[27.75%] bg-headingBlack rounded-2xl sm:rounded-[30px] flex flex-col justify-between text-white">
+  <div className="p-4 sm:p-6 md:p-[30px] w-full md:w-[28%] bg-headingBlack rounded-2xl sm:rounded-[30px] flex flex-col justify-between text-white">
     <div>
       <p className="text-3xl sm:text-5xl md:text-[96px] mb-8 md:mb-10 font-extralight font-urbanist text-white">
         75%
@@ -32,7 +32,7 @@ const ReliefCard: React.FC = () => (
 // --- 2. ConversationCard ---
 const ConversationCard: React.FC = () => (
   <div
-    className="p-4 sm:p-6 md:p-[30px] md:w-[70%] rounded-2xl sm:rounded-[30px] flex flex-col justify-between"
+    className="p-4 sm:p-6 md:p-[30px] w-full md:w-[72%] rounded-2xl sm:rounded-[30px] flex flex-col justify-between"
     style={{
       border: "1px solid #FFF",
       fontFamily: "Urbanist, sans-serif",
@@ -68,7 +68,7 @@ const ConversationCard: React.FC = () => (
 // --- 3. TriadeCard ---
 const TriadeCard: React.FC = () => (
   <div
-    className="p-4 sm:p-6 md:p-[30px] md:w-[43.08%] rounded-2xl sm:rounded-[30px] flex flex-col justify-between"
+    className="p-4 sm:p-6 md:p-[30px] w-full md:w-[43%] rounded-2xl sm:rounded-[30px] flex flex-col justify-between"
     style={{
       border: "1px solid #FFF",
       fontFamily: "Urbanist, sans-serif",
@@ -80,7 +80,7 @@ const TriadeCard: React.FC = () => (
       backdropFilter: "blur(50px)",
     }}
   >
-    <div className="">
+    <div>
       <h3 className="text-lg sm:text-xl md:text-2xl font-semibold leading-[120%] text-headingBlack">
         Smart Triage & Call Forwarding
       </h3>
@@ -97,7 +97,7 @@ const TriadeCard: React.FC = () => (
 // --- 4. AvailabilityCard ---
 const AvailabilityCard: React.FC = () => (
   <div
-    className="p-4 sm:p-6 md:p-[30px] md:w-[30%] rounded-2xl sm:rounded-[30px]"
+    className="p-4 sm:p-6 md:p-[30px] w-full md:w-[28.5%] rounded-2xl sm:rounded-[30px]"
     style={{
       border: "1px solid #FFF",
       background: "#526FFF",
@@ -118,27 +118,13 @@ const AvailabilityCard: React.FC = () => (
         regardless of holidays, illness,
       </p>
     </div>
-
-    {/* <div>
-      <h3
-        className="text-lg sm:text-xl lg:text-2xl leading-7 mb-3"
-        style={{ ...titleStyle, color: "white", marginBottom: "12px" }}
-      >
-       
-      </h3>
-      <p className="mt-3 mb-2 text-sm sm:text-base text-white">
-        Your practice is reachable 365 days a year. The AI answers all calls —
-        regardless of holidays, illness,
-        <br className="hidden lg:block" /> or staff shortage.
-      </p>
-    </div> */}
   </div>
 );
 
 // --- 5. IntegrationCard ---
 const IntegrationCard: React.FC = () => (
   <div
-    className="p-4 sm:p-6 md:p-[30px] md:w-[26.67%] rounded-2xl sm:rounded-[30px]"
+    className="p-4 sm:p-6 md:p-[30px] w-full md:w-[28.5%] rounded-2xl sm:rounded-[30px]"
     style={{
       border: "1px solid #FFF",
       background: `
@@ -154,15 +140,14 @@ const IntegrationCard: React.FC = () => (
     </h3>
     <p className="mt-3.5 text-sm sm:text-base text-subHeadingBlack leading-[140%] text-left">
       No system change or IT stress. The integration with your existing phone setup is quick and easy by our onboarding team.
-
     </p>
   </div>
 );
 
 // --- 6. SoftwareCard ---
 const SoftwareCard: React.FC = () => (
-   <div
-    className="p-4 sm:p-6 md:p-[30px] md:w-[30%] rounded-2xl sm:rounded-[30px]"
+  <div
+    className="p-4 sm:p-6 md:p-[30px] w-full md:w-[30%] rounded-2xl sm:rounded-[30px]"
     style={{
       border: "1px solid #FFF",
       background: `
@@ -173,11 +158,12 @@ const SoftwareCard: React.FC = () => (
       backdropFilter: "blur(50px)",
     }}
   >
-    <h3 className="text-lg sm:text-xl md:text-2xl font-semibold leading-[120%] text-headingBlack md:whitespace-nowrap">
-      No additional software or <br /> hardware required
+    <h3 className="text-lg sm:text-xl md:text-2xl font-semibold leading-[120%] text-headingBlack break-words">
+      No additional software or <br className="hidden md:block" /> hardware required
     </h3>
-    <p className="mt-3.5 text-sm sm:text-base text-subHeadingBlack leading-[140%] text-justify md:text-left">
-     Docline runs fully in the cloud. You save on physical devices, maintenance, and gain flexibility in your workflow.
+
+    <p className="mt-3.5 text-sm sm:text-base text-subHeadingBlack leading-[140%] text-justify md:text-left break-words">
+      Docline runs fully in the cloud. You save on physical devices, maintenance, and gain flexibility in your workflow.
     </p>
   </div>
 );
@@ -185,7 +171,7 @@ const SoftwareCard: React.FC = () => (
 // --- 7. CustomizationCard ---
 const CustomizationCard: React.FC = () => (
   <div
-    className="p-4 sm:p-6 lg:p-8 rounded-2xl h-full 2xl:w-full sm:h-[327px] sm:rounded-[30px] sm:relative"
+    className="p-4 sm:p-6 lg:p-8 rounded-2xl h-full w-full md:w-[70%] sm:h-[327px] sm:rounded-[30px] sm:relative"
     style={{
       border: "1px solid #FFF",
       background: `
@@ -208,22 +194,22 @@ const CustomizationCard: React.FC = () => (
           an AI.
         </p>
         <div
-          className="flex flex-col items-end sm:w-[43%] h-full justify-center md:justify-end sm:absolute sm:bottom-[30px] right-[30px]"
+          className="flex flex-col items-end sm:w-[43%]  h-full  justify-center md:justify-end sm:absolute sm:bottom-[30px] right-[30px]"
           style={{
             filter: "drop-shadow(0 9.756px 95.122px rgba(99, 120, 225, 0.31))",
           }}
         >
-          <img src={img3} alt="customization feature" className="" />
+          <img src={img3} alt="customization feature" className=" lg:-mb-10 lg:-mr-10 md:-mb-5 md:-mr-5" />
         </div>
       </div>
     </div>
   </div>
 );
 
-// --- Main Flex Layout with Equal Height ---
+// --- Main Layout ---
 const FeatureSection: React.FC = () => {
   return (
-    <div className="px-4 sm:px-8 lg:px-16">
+    <div className="px-4 sm:px-8 lg:px-16 mt-12 md:mt-[120px]">
       <SectionHeader
         badgeIcon={icon}
         badgeText="Peace on the phone"
@@ -234,25 +220,25 @@ const FeatureSection: React.FC = () => {
         }
         align="center"
       />
-      <p className="text-center -mt-4 mb-10 md:mb-[60px] text-sm md:text-xl">
-        The Docline AI assistant solves the <br /> biggest challenges in daily practice
+      <p className="text-center -mt-4 mb-10 md:mb-[60px] text-sm md:text-xl text-subHeadingBlack">
+        The Docline AI assistant solves the biggest challenges in daily practice
       </p>
 
       {/* Row 1 */}
-      <div className="flex flex-col md:flex-row  gap-4 md:gap-7 mb-4 md:mb-7">
+      <div className="flex flex-col md:flex-row gap-4 sm:gap-6 md:gap-7 mb-4 sm:mb-6 md:mb-7">
         <ReliefCard />
         <ConversationCard />
       </div>
 
       {/* Row 2 */}
-      <div className="flex flex-col md:flex-row  gap-4 md:gap-7 mb-4 md:mb-7">
+      <div className="flex flex-col md:flex-row gap-4 sm:gap-6 md:gap-7 mb-4 sm:mb-6 md:mb-7">
         <TriadeCard />
         <AvailabilityCard />
         <IntegrationCard />
       </div>
 
       {/* Row 3 */}
-      <div className="flex flex-col md:flex-row gap-4 md:gap-7 mb-4 md:mb-7">
+      <div className="flex flex-col md:flex-row gap-4 sm:gap-6 md:gap-7">
         <SoftwareCard />
         <CustomizationCard />
       </div>
@@ -261,7 +247,6 @@ const FeatureSection: React.FC = () => {
 };
 
 export default FeatureSection;
-
 
 
 

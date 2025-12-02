@@ -1,6 +1,6 @@
 import icon from "../assets/svgIcon/herologo.svg";
 import img1 from "../assets/svgIcon/Interface1.svg";
-import img2 from "../assets/img/feature.png";
+import img2 from "../assets/svgIcon/functionscard.svg";
 // import img3 from "../assets/svgIcon/interface3.svg";
 
 import img6 from "../assets/svgIcon/interface6.svg";
@@ -38,10 +38,10 @@ const Functions = () => {
           />
         </div>
         {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-6 ">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-[21px] ">
           {/* Feature 1 - Reduzierte Telefonlast */}
           <div
-            className="relative   p-4 sm:p-8 rounded-2xl sm:rounded-[30px]"
+            className="relative   p-4 sm:p-[30px] rounded-2xl sm:rounded-[30px]"
             style={{
               border: "1px solid #FFF",
               background: `
@@ -54,10 +54,10 @@ const Functions = () => {
                  height: "538px"
             }}
           >
-            <h3 className="text-2xl sm:text-[32px] font-semibold text-[#171C35] mb-4">
+            <h3 className="text-2xl sm:text-[32px] leading-8 font-semibold text-[#171C35] mb-5">
               Reduzierte Telefonlast
             </h3>
-            <p className="text-sm sm:text-base text-[#171c35] mb-6 leading-relaxed">
+            <p className="text-sm sm:text-base text-[#171c35] mb-6 leading-[140%] font-normal">
               Befreien Sie Ihr Personal von Routineanfragen. Unser KI-Voicebot
               übernimmt Terminbuchungen, Rezept- und Routinefragen 24/7, damit
               Ihr Team auf die Patienten konzentrieren kann.
@@ -74,13 +74,13 @@ const Functions = () => {
                 overflow: "hidden",
               }}
             >
-              <img src={img1} alt="" className="block w-full h-auto" />
+              <img src={img1} alt="" className="block w-full h-auto xl:h-[443px]" />
             </div>
           </div>
 
           {/* Feature 2 - Menschliche KI-Kommunikation */}
         <div
-  className="relative rounded-2xl sm:rounded-[30px]"
+  className="relative rounded-2xl sm:rounded-[30px] p-4 sm:p-[30px]"
   style={{
     border: "1px solid #FFF",
     background: "#FFF",
@@ -90,11 +90,11 @@ const Functions = () => {
     height: "538px", // fixed height
   }}
 >
-  <div className="p-4 sm:p-8 relative z-10">
-    <h3 className="text-2xl sm:text-[32px] font-semibold text-[#171C35] mb-4">
+  <div className=" relative z-10">
+    <h3 className="text-2xl sm:text-[32px] leading-8 font-semibold text-[#171C35] mb-5">
       Menschliche KI-Kommunikation
     </h3>
-    <p className="text-sm sm:text-base text-[#171c35] mb-6 leading-relaxed">
+    <p className="text-sm sm:text-base text-[#171c35] mb-12 xl:mb-20 leading-[140%] font-normal ">
       Docline ist die nächste Generation in der Patientenkommunikation.
       Er versteht Kontext, Sprachen und Dringlichkeit und verarbeitet
       Anliegen mit menschlicher Präzision.
@@ -105,22 +105,22 @@ const Functions = () => {
   <img
     src={img2}
     alt=""
-    className="absolute w-full  h-auto"
+    className="absolute w-full  h-auto "
     style={{
       width: "auto",
       minWidth: "100%", // ensures image stretches beyond card if needed
-      objectFit: "cover",
+      
     }}
   />
 </div>
 
 
           {/* Feature 3 - Multilingual */}
-        <div className="flex flex-col sm:flex-row col-span-1 sm:col-span-2 lg:col-span-1 lg:flex-col gap-6">
+        <div className="flex flex-col sm:flex-row col-span-1 sm:col-span-2 lg:col-span-1 lg:flex-col gap-5">
 
   {/* Feature 3 - Multilingual */}
   <div
-    className="relative flex flex-col justify-between w-full sm:w-1/2 lg:w-full h-[259px] p-4 sm:p-8 rounded-2xl sm:rounded-[30px]"
+    className="relative flex flex-col justify-between w-full sm:w-1/2 lg:w-full h-[259px] p-4 sm:p-[30px] rounded-2xl sm:rounded-[30px]"
     style={{
       border: "1px solid #FFF",
       background: "#FFF",
@@ -130,10 +130,10 @@ const Functions = () => {
     }}
   >
     <div>
-      <h3 className="text-2xl sm:text-[32px] font-semibold text-[#171C35] mb-2">
+      <h3 className="text-2xl sm:text-[32px] leading-8 font-semibold text-[#171C35] mb-2.5">
         Multilingual
       </h3>
-      <p className="text-sm sm:text-base text-[#171c35] leading-relaxed pb-[143px]">
+      <p className="text-sm sm:text-base text-[#171c35] leading-[140%] font-normal pb-[143px]">
         Unser Voicebot kommuniziert fließend in über 25 Fremdsprachen.
       </p>
     </div>
@@ -175,7 +175,7 @@ const Functions = () => {
 
   {/* Feature 4 - DSGVO */}
   <div
-    className="relative flex flex-col justify-between w-full sm:w-1/2 lg:w-full h-[259px] p-4 sm:p-8 rounded-2xl sm:rounded-[30px]"
+    className="relative flex flex-col justify-between w-full sm:w-1/2 lg:w-full h-[259px] p-4 sm:p-[30px] rounded-2xl sm:rounded-[30px]"
     style={{
       border: "1px solid #FFF",
       background: "#FFF",
@@ -185,10 +185,10 @@ const Functions = () => {
     }}
   >
     <div>
-      <h3 className="text-2xl sm:text-[32px] font-semibold text-[#171C35] mb-2">
+      <h3 className="text-2xl sm:text-[32px] leading-8 font-semibold text-[#171C35] mb-2.5">
         DSGVO-konform
       </h3>
-      <p className="text-sm sm:text-base text-[#171c35] leading-relaxed">
+      <p className="text-sm sm:text-base text-[#171c35] leading-[140%] font-normal">
         Ihre Sicherheit hat höchste Priorität.
       </p>
     </div>

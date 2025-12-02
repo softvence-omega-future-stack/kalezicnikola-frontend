@@ -128,7 +128,7 @@ const DoclineHero: React.FC = () => {
                 fontFamily: "Urbanist, sans-serif",
                 color: "#171C35",
               }}
-              className="max-w-lg leading-7 text-sm md:text-xl xl:text-xl text-center md:text-left"
+              className="max-w-lg leading-7 text-sm md:text-lg text-center md:text-left"
             >
               Our intelligent AI assistant handles all phone calls around the clock. It schedules appointments, answers questions, automatically creates tasks, and relieves your team.
             </p>

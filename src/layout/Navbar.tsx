@@ -97,9 +97,9 @@ const Navbar: React.FC = () => {
               ))}
             </nav>
 
-            <div className="flex items-center gap-3 ml-2">
+            <div className="flex items-center gap-3 ml-12">
               <LanguageSelector />
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 ">
                 <button className="px-5 py-3.5 rounded-full leading-4 text-base font-medium text-[#171C35] border border-[#171C35] transition whitespace-nowrap">
                   Demo buchen
                 </button>

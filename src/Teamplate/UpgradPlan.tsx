@@ -181,10 +181,6 @@ import { useNavigate } from 'react-router-dom';
 import './buttom.css';
 import SectionHeader from './SectionHeader';
 
-// ------------------
-//  PLANS STATIC (NO RERENDER)
-// ------------------
-
 interface PricingCardProps {
   plan: {
     name: string;
@@ -197,7 +193,6 @@ interface PricingCardProps {
   billingCycle: string;
   navigate: (path: string) => void;
 }
-
 
 const plans = [
   {
@@ -236,7 +231,7 @@ const plans = [
     monthly: 1299,
     yearly: 1105,
     features: [
-       'KI-Voicebot-Erstellung & Setup',
+      'KI-Voicebot-Erstellung & Setup',
       '24/7 Erreichbarkeit & Anrufprotokollierung',
       'Intelligente Triage & Aufgaben-Erstellung',
       '8000 Anrufminuten / Monat inkludiert',
@@ -249,9 +244,7 @@ const plans = [
   },
 ];
 
-
 const PricingCard = memo(({ plan, billingCycle, navigate }: PricingCardProps) => {
-
   return (
     <div
       className={`${
@@ -270,7 +263,7 @@ const PricingCard = memo(({ plan, billingCycle, navigate }: PricingCardProps) =>
         <div className="mb-4 md:mb-8">
           <div className="flex items-baseline gap-1 mb-1">
             <span
-              className={ ` text-3xl md:text-[48px] font-medium ${
+              className={`text-3xl md:text-[48px] font-medium ${
                 plan.isPremium ? 'text-white' : `text-[${plan.color}]`
               }`}
             >
@@ -278,8 +271,8 @@ const PricingCard = memo(({ plan, billingCycle, navigate }: PricingCardProps) =>
             </span>
 
             <span
-              className={`text-sm ${
-                plan.isPremium ? 'text-gray-300' : 'text-[#526FFF]'
+              className={`text-base font-normal ${
+                plan.isPremium ? 'text-white' : 'text-[#526FFF]'
               }`}
             >
               /month
@@ -287,8 +280,7 @@ const PricingCard = memo(({ plan, billingCycle, navigate }: PricingCardProps) =>
 
             {billingCycle === 'annually' && (
               <span
-              
-                className={`ml-2 text-xs font-semibold px-2 py-0.5 rounded-full ${
+                className={`ml-2 text-sm font-semibold px-2 py-0.5 rounded-full ${
                   plan.isPremium
                     ? 'bg-white text-[#171C35]'
                     : 'bg-blue-100 text-[#526FFF]'
@@ -307,7 +299,7 @@ const PricingCard = memo(({ plan, billingCycle, navigate }: PricingCardProps) =>
             <img src={plan.isPremium ? tricjcirclewhite : tricjcircle} alt="" />
             <span
               className={
-                plan.isPremium ? 'text-white text-sm' : 'text-[#171c35] text-sm'
+                plan.isPremium ? 'text-white text-sm font-normal' : 'text-[#171c35] text-sm font-normal'
               }
             >
               {text}
@@ -318,7 +310,7 @@ const PricingCard = memo(({ plan, billingCycle, navigate }: PricingCardProps) =>
 
       <button
         onClick={() => navigate('/signup')}
-        className={`w-full py-3 text-base font-medium rounded-full transition-colors shadow-lg border-2 cursor-pointer ${
+        className={`w-full py-3 text-base fontsemibold leading-6 rounded-full transition-colors shadow-lg border-2 cursor-pointer ${
           plan.isPremium
             ? 'text-white bg-[#526FFF] border-[#526FFF]'
             : `text-[${plan.color}] bg-white border-[${plan.color}]`
@@ -330,28 +322,38 @@ const PricingCard = memo(({ plan, billingCycle, navigate }: PricingCardProps) =>
   );
 });
 
-// ------------------
-//  Main Component
-// ------------------
 const UpgradPlan = () => {
   const [billingCycle, setBillingCycle] = useState('monthly');
   const navigate = useNavigate();
 
   return (
     <div
-      className="relative mt-12 md:mt-[120px]  rounded-2xl md:rounded-[30px] overflow-hidden"
+      className="relative mt-12 md:mt-[120px] rounded-2xl md:rounded-[30px] overflow-hidden bg-white"
       style={{
         boxShadow: '0 20px 50px rgba(0, 0, 0, 0.05)',
         fontFamily: 'Urbanist, sans-serif',
       }}
     >
-      {/* Background blur fixed (no lag) */}
+      {/* Left side blue blur - Gradient fade */}
       <div
-        className="absolute -top-32 -left-64 z-0 opacity-70 blur-[150px] bg-[#2B8EFF4D] w-[680px] h-[400px] rounded-full"
+        className="absolute -left-[20%] md:-left-[25%] z-0 blur-[120px]  w-[60%] md:w-[55%] rounded-full"
+        style={{
+          top: '150px',
+          height: 'calc(100% - 300px)',
+          background: 'linear-gradient(90deg, rgba(43, 142, 255, 0.6) 0%, rgba(43, 142, 255, 0.35) 35%, rgba(43, 142, 255, 0.15) 60%, rgba(43, 142, 255, 0) 100%)',
+          filter: "blur(200px)"
+        }}
       ></div>
 
+      {/* Right side purple blur - Gradient fade */}
       <div
-        className="absolute top-32 right-[-80px] z-0 opacity-50 blur-[150px] bg-[#472bff33] w-[654px] h-[400px] rounded-full"
+        className="absolute -right-[20%] md:-right-[25%] z-0 blur-[120px]  w-[60%] md:w-[55%] rounded-full"
+        style={{
+          top: '150px',
+          height: 'calc(100% - 300px)',
+          background: ' rgba(71, 43, 255, 0.20)',
+          filter: "blur(200px)"
+        }}
       ></div>
 
       <div className="relative z-10 p-4 mt-5 md:mt-0 px-[10px] py-6 md:py-[47px]">
@@ -369,10 +371,15 @@ const UpgradPlan = () => {
 
         {/* Billing Toggle */}
         <div className="flex justify-center mb-8 md:mb-12">
-          <div className="inline-flex bg-white rounded-full p-1 w-fit border border-[#EAECF0] shadow-lg">
+          <div 
+            style={{
+              boxShadow: "0 12px 16px -4px rgba(16, 24, 40, 0.08), 0 4px 6px -2px rgba(16, 24, 40, 0.03)"
+            }}
+            className="inline-flex bg-white rounded-full p-1 w-fit border border-[#EAECF0] shadow-lg"
+          >
             <button
               onClick={() => setBillingCycle('monthly')}
-              className={`px-6 py-2.5 text-sm font-normal w-[131px] rounded-full transition-all duration-300 cursor-pointer ${
+              className={`px-6 py-2.5 text-sm font-normal leading-3.5 w-[131px] rounded-full transition-all duration-300 cursor-pointer ${
                 billingCycle === 'monthly'
                   ? 'bg-[#526FFF] text-white font-medium shadow-md'
                   : 'text-[#171c35] hover:bg-gray-50'
@@ -397,7 +404,7 @@ const UpgradPlan = () => {
         {/* Pricing Cards */}
         <div
           style={{ fontFamily: 'Urbanist, sans-serif' }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:px-[103px] gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:px-[60px] gap-6"
         >
           {plans.map((plan, i) => (
             <PricingCard

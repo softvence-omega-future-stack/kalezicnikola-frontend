@@ -148,18 +148,18 @@ const TestimonialSection: React.FC = () => {
                 <blockquote className="
                   text-[#111A2D] 
                   font-medium 
-                  leading-relaxed 
+                  leading-[34px]
                   mb-6 md:mb-8 lg:mb-8
-                  text-base sm:text-lg md:text-xl lg:text-xl
+                  text-base sm:text-lg md:text-xl lg:text-2xl
                 ">
                   {currentTestimonial.quote}
                 </blockquote>
 
                 <div>
-                  <p className="text-gray-900 font-bold text-base md:text-lg mb-1">
+                  <p className="text-[#171C35] leading-[100%] font-semibold uppercase text-base md:text-xl mb-1">
                     {currentTestimonial.name}
                   </p>
-                  <p className="text-[#111A2D] text-sm md:text-base tracking-wide">
+                  <p className="text-[#111A2D] leading-4 text-sm md:text-base font-medium ">
                     {currentTestimonial.title}
                   </p>
                 </div>
@@ -183,22 +183,18 @@ const TestimonialSection: React.FC = () => {
                 <div className="text-center flex-1">
                   <div className="
                     font-light
-                    leading-none
+                    leading-[100%]
                     mb-2
                     text-[#111A2D]
                   ">
                     <span className="
                       text-6xl sm:text-7xl md:text-8xl lg:text-[80px] xl:text-[96px]
                     ">
-                      {currentTestimonial.stats.timeSaved.replace(/[^0-9]/g, '')}
+                      {currentTestimonial.stats.timeSaved.replace(/[^0-9]/g, '')}h
                     </span>
-                    <span className="
-                      text-4xl sm:text-5xl md:text-6xl lg:text-[50px] xl:text-[60px]
-                    ">
-                      h
-                    </span>
+                   
                   </div>
-                  <p className="text-[#171C35] text-sm md:text-base lg:text-lg font-medium">
+                  <p className="text-[#171C35] text-sm md:text-base lg:text-xl leading-5 font-medium">
                     {currentTestimonial.stats.timeSavedLabel}
                   </p>
                 </div>
@@ -207,7 +203,7 @@ const TestimonialSection: React.FC = () => {
                 <div className="text-center flex-1">
                   <div className="
                     font-light
-                    leading-none
+                    leading-[100%]
                     mb-2
                     text-[#111A2D]
                   ">
@@ -222,7 +218,7 @@ const TestimonialSection: React.FC = () => {
                       %
                     </span>
                   </div>
-                  <p className="text-[#171C35] text-sm md:text-base lg:text-lg font-medium">
+                  <p className="text-[#171C35] text-sm md:text-base lg:text-xl leading-5 font-medium">
                     {currentTestimonial.stats.acceptanceLabel}
                   </p>
                 </div>

@@ -58,7 +58,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
       {subText && (
         <p
           style={descStyle}
-          className={`max-w-lg   leading-7 text-sm md:text-base xl:text-xl ${subTextClass}`}
+          className={`max-w-lg   leading-7 text-sm md:text-lg font-normal mb-10 ${subTextClass}`}
         >
           {subText}
         </p>

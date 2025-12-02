@@ -17,10 +17,10 @@ const CTABanner: React.FC = () => {
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 sm:gap-8">
             {/* Left Content */}
             <div className="flex-1 max-w-full lg:max-w-3xl">
-              <h2 className="text-xl sm:text-2xl md:text-5xl font-semibold text-white leading-tight mb-4 sm:mb-5 md:mb-6">
+              <h2 className="text-xl sm:text-2xl md:text-5xl font-semibold text-white leading-[120%] mb-4 sm:mb-5 md:mb-7">
                 Boost your team's satisfaction <br /> & productivity today.
               </h2>
-              <p className="text-sm sm:text-base md:text-lg text-blue-50">
+              <p className="text-sm sm:text-base md:text-lg font-normal leading-[140%] text-blue-50">
                 Phone stress consumes valuable time and leads to overload. Free
                 up your staff and enjoy smooth operations from the very first
                 minute. Let our AI handle your calls while your team focuses on
@@ -32,7 +32,7 @@ const CTABanner: React.FC = () => {
             <div className="w-full lg:w-auto mt-4 lg:mt-0 flex justify-center">
               <button
                 onClick={() => navigate("/login")}
-                className="btn w-full lg:w-[218px] py-4 rounded-full cursor-pointer text-white bg-white/10"
+                className="btn w-full lg:w-[218px] py-4 text-base leading-4 font-semibold rounded-full cursor-pointer text-white bg-white/10"
               >
                 Start Now
               </button>
