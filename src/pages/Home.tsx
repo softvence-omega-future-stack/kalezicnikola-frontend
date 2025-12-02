@@ -21,7 +21,7 @@ const Home = () => {
   <DoclineHero />
 
   {/* content wrapper */}
-  <div className=" w-[93%] mx-auto">
+  <div className=" w-[92%] mx-auto">
     <div id="features">
       <DoclineFeaturesSection />
     </div>
@@ -30,7 +30,7 @@ const Home = () => {
   {/* Slider full width */}
   < Slider/>
 
-  <div className=" w-[93%] mx-auto">
+  <div className=" w-[92%] mx-auto">
     <div id="examples">
       <ExampleSection />
     </div>

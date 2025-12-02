@@ -135,7 +135,7 @@ const IntegrationCard: React.FC = () => (
       backdropFilter: "blur(50px)",
     }}
   >
-    <h3 className="text-lg sm:text-xl md:text-2xl font-semibold leading-[120%] text-headingBlack">
+    <h3 className="text-lg sm:text-xl md:text-[22px] font-semibold leading-[120%] text-headingBlack">
       Easy connection to your phone system
     </h3>
     <p className="mt-3.5 text-sm sm:text-base text-subHeadingBlack leading-[140%] text-left">
@@ -158,7 +158,7 @@ const SoftwareCard: React.FC = () => (
       backdropFilter: "blur(50px)",
     }}
   >
-    <h3 className="text-lg sm:text-xl md:text-2xl font-semibold leading-[120%] text-headingBlack break-words">
+    <h3 className="text-lg sm:text-xl md:text-[22px] font-semibold leading-[120%] text-headingBlack break-words">
       No additional software or <br className="hidden md:block" /> hardware required
     </h3>
 
@@ -209,7 +209,7 @@ const CustomizationCard: React.FC = () => (
 // --- Main Layout ---
 const FeatureSection: React.FC = () => {
   return (
-    <div className="px-4 sm:px-8 lg:px-16 mt-12 md:mt-[120px]">
+    <div className=" mt-12 md:mt-[120px]">
       <SectionHeader
         badgeIcon={icon}
         badgeText="Peace on the phone"

@@ -47,7 +47,7 @@ const Navbar: React.FC = () => {
   ];
 
   return (
-    <header ref={headerRef} className="w-full fixed top-5 left-0 right-0 z-[9999] px-2 sm:px-4">
+    <header ref={headerRef} className="w-full fixed top-5 left-0 right-0 z-[9999] ">
       <div className="relative">
         <div
           style={{
