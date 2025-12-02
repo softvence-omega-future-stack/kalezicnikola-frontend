@@ -70,7 +70,7 @@ const FAQSection: React.FC = () => {
             <span className="text-headingBlack text-sm font-medium">FAQ</span>
           </div>
 
-          <h2 className="text-[24px] sm:text-[32px] md:text-5xl font-semibold text-[#171C35] leading-[120%]">
+          <h2 className="text-[32px] sm:text-[42px] md:text-5xl font-semibold text-[#171C35] leading-[120%]">
             Frequently Asked Questions
           </h2>
 

@@ -50,7 +50,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
       </div>
 
       {/* Heading */}
-      <h1 className="mb-4 md:mb-[30px] md:leading-[120%] text-2xl sm:text-[32px] md:text-5xl font-semibold text-headingBlack">
+      <h1 className="mb-4 md:mb-[30px] leading-[120%] text-[32px] sm:text-[42px] md:text-5xl font-semibold text-headingBlack">
         {heading}
       </h1>
 
@@ -58,7 +58,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
       {subText && (
         <p
           style={descStyle}
-          className={`max-w-lg   leading-7 text-sm md:text-lg font-normal mb-10 ${subTextClass}`}
+          className={`max-w-lg   leading-[140%] text-base sm:text-base md:text-lg font-normal mb-10 ${subTextClass}`}
         >
           {subText}
         </p>
