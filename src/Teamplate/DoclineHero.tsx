@@ -118,7 +118,7 @@ const DoclineHero: React.FC = () => {
             </div>
 
             {/* Heading */}
-            <h1 className="mb-4 text-2xl sm:text-[32px] md:leading-[120%] md:text-[64px] sm:pr-5 md:pr-0 font-semibold text-[#171C35]">
+            <h1 className="mb-4 text-2xl sm:text-[32px] md:leading-[120%] md:text-5xl lg:text-[64px]  sm:pr-5 md:pr-0 font-semibold text-[#171C35]">
               24/7 Availability for Your Patients. Zero Phone Stress for Your
               Team.
             </h1>
@@ -129,9 +129,9 @@ const DoclineHero: React.FC = () => {
                 fontFamily: "Urbanist, sans-serif",
                 color: "#171C35",
               }}
-              className="max-w-lg leading-7 text-sm md:text-lg text-center sm:pl-15 md:pl-0 md:text-left"
+              className=" max-w-lg mx-auto md:mx-0  leading-7 text-sm md:text-lg text-center  md:text-left"
             >
-              Our intelligent AI assistant handles all phone calls around the clock. It schedules appointments, answers questions, automatically creates tasks, and relieves your team.
+              Our intelligent AI assistant handles all phone calls around the clock. It schedules appoin  tments, answers questions, automatically creates tasks, and relieves your team.
             </p>
           </div>
 
