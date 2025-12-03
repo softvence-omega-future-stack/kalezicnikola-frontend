@@ -172,79 +172,46 @@
 
 
 
+import React, { useState, memo } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import icon from '../assets/svgIcon/herologo.svg';
 import tricjcircle from '../assets/svgIcon/tickcircle.svg';
 import tricjcirclewhite from '../assets/svgIcon/tick-circle-white.svg';
-import { useState, memo } from 'react';
-import { useNavigate } from 'react-router-dom';
 import './buttom.css';
 import SectionHeader from './SectionHeader';
 
+// -----------------------------------------------------------
+// 1. Types for i18n Data
+// -----------------------------------------------------------
+
+interface PlanData {
+  name: string;
+  monthly: number;
+  yearly: number;
+  features: string[]; // This array is now loaded from i18n and contains translated strings
+  color: string;
+  isPremium: boolean;
+}
+
 interface PricingCardProps {
-  plan: {
-    name: string;
-    monthly: number;
-    yearly: number;
-    features: string[];
-    color: string;
-    isPremium: boolean;
-  };
+  plan: PlanData;
   billingCycle: string;
   navigate: (path: string) => void;
 }
 
-const plans = [
-  {
-    name: 'Standard',
-    monthly: 399,
-    yearly: 339,
-    features: [
-      'KI-Voicebot-Erstellung & Setup',
-      '24/7 Erreichbarkeit & Anrufprotokollierung',
-      'Intelligente Triage & Aufgaben-Erstellung',
-      '2000 Anrufminuten / Monat inkludiert',
-      '0,35 € pro Überminute',
-      'E-Mail Support',
-    ],
-    color: '#526FFF',
-    isPremium: false,
-  },
-  {
-    name: 'Premium',
-    monthly: 899,
-    yearly: 765,
-    features: [
-      'KI-Voicebot-Erstellung & Setup',
-      '24/7 Erreichbarkeit & Anrufprotokollierung',
-      'Intelligente Triage & Aufgaben-Erstellung',
-      '4000 Anrufminuten / Monat inkludiert',
-      '0,30 € pro Überminute',
-      'Multilingual (25+ languages)',
-      'Prioritized email and live chat support',
-    ],
-    color: '#171C35',
-    isPremium: true,
-  },
-  {
-    name: 'Enterprise',
-    monthly: 1299,
-    yearly: 1105,
-    features: [
-      'KI-Voicebot-Erstellung & Setup',
-      '24/7 Erreichbarkeit & Anrufprotokollierung',
-      'Intelligente Triage & Aufgaben-Erstellung',
-      '8000 Anrufminuten / Monat inkludiert',
-      '0,25 € pro Überminute',
-      'Multilingual (25+ languages)',
-      '24/7 Premium-Support',
-    ],
-    color: '#526FFF',
-    isPremium: false,
-  },
-];
+// -----------------------------------------------------------
+// 2. PricingCard Component (Updated with i18n)
+// -----------------------------------------------------------
 
 const PricingCard = memo(({ plan, billingCycle, navigate }: PricingCardProps) => {
+  const { t } = useTranslation();
+
+  const saveLabel = t('pricingSection.billingToggle.saveLabel');
+  //const buttonText = t('pricingSection.buttonText');
+  const billingSuffix = t('pricingSection.billingSuffix', { defaultValue: '/month' });
+
   return (
     <div
       className={`${
@@ -275,7 +242,7 @@ const PricingCard = memo(({ plan, billingCycle, navigate }: PricingCardProps) =>
                 plan.isPremium ? 'text-white' : 'text-[#526FFF]'
               }`}
             >
-              /month
+              {billingSuffix}
             </span>
 
             {billingCycle === 'annually' && (
@@ -286,7 +253,7 @@ const PricingCard = memo(({ plan, billingCycle, navigate }: PricingCardProps) =>
                     : 'bg-blue-100 text-[#526FFF]'
                 }`}
               >
-                Save 15%
+                {saveLabel}
               </span>
             )}
           </div>
@@ -294,6 +261,7 @@ const PricingCard = memo(({ plan, billingCycle, navigate }: PricingCardProps) =>
       </div>
 
       <div className="space-y-4 mb-8 flex-1">
+        {/* Features are mapped directly. The translation is handled by i18n loading the entire plan object. */}
         {plan.features.map((text: string, i: number) => (
           <div key={i} className="flex items-start gap-3">
             <img src={plan.isPremium ? tricjcirclewhite : tricjcircle} alt="" />
@@ -302,7 +270,8 @@ const PricingCard = memo(({ plan, billingCycle, navigate }: PricingCardProps) =>
                 plan.isPremium ? 'text-white text-sm font-normal' : 'text-[#171c35] text-sm font-normal'
               }
             >
-              {text}
+              {/* This text is already translated because it was loaded from the i18n JSON object */}
+              {text} 
             </span>
           </div>
         ))}
@@ -316,15 +285,32 @@ const PricingCard = memo(({ plan, billingCycle, navigate }: PricingCardProps) =>
             : `text-[${plan.color}] bg-white border-[${plan.color}]`
         }`}
       >
-        GET STARTED
+        Get Started
+        {/* {(buttonText)} */}
       </button>
     </div>
   );
 });
 
+// -----------------------------------------------------------
+// 3. UpgradPlan Component (Updated with i18n)
+// -----------------------------------------------------------
+
 const UpgradPlan = () => {
+  const { t } = useTranslation();
   const [billingCycle, setBillingCycle] = useState('monthly');
   const navigate = useNavigate();
+
+  // Load ALL plans data (including all translated features) from i18n JSON
+  // If the current language is German, features will be German. If English, features will be English.
+  const plans = t('pricingSection.plans', { returnObjects: true }) as PlanData[];
+
+  // Load remaining texts
+  const badgeText = t('pricingSection.badgeText');
+  const headingText = t('pricingSection.heading');
+  const monthlyLabel = t('pricingSection.billingToggle.monthly');
+  const annuallyLabel = t('pricingSection.billingToggle.annually');
+
 
   return (
     <div
@@ -336,7 +322,7 @@ const UpgradPlan = () => {
     >
       {/* Left side blue blur - Gradient fade */}
       <div
-        className="absolute -left-[20%] md:-left-[25%] z-0 blur-[120px]  w-[60%] md:w-[55%] rounded-full"
+        className="absolute -left-[20%] md:-left-[25%] z-0 blur-[120px]  w-[60%] md:w-[55%] rounded-full"
         style={{
           top: '150px',
           height: 'calc(100% - 300px)',
@@ -347,7 +333,7 @@ const UpgradPlan = () => {
 
       {/* Right side purple blur - Gradient fade */}
       <div
-        className="absolute -right-[20%] md:-right-[25%] z-0 blur-[120px]  w-[60%] md:w-[55%] rounded-full"
+        className="absolute -right-[20%] md:-right-[25%] z-0 blur-[120px]  w-[60%] md:w-[55%] rounded-full"
         style={{
           top: '150px',
           height: 'calc(100% - 300px)',
@@ -359,13 +345,8 @@ const UpgradPlan = () => {
       <div className="relative z-10 p-4 mt-5 md:mt-0 px-[10px] py-6 md:py-[47px]">
         <SectionHeader
           badgeIcon={icon}
-          badgeText=" Transparent pricing"
-          heading={
-            <div className='max-[767px]:mt-2'>
-              Choose the right plan
-              <br /> for your practice
-            </div>
-          }
+          badgeText={badgeText}
+          heading={<div className='max-[767px]:mt-2'>{headingText.split('\n').map((line, index) => <React.Fragment key={index}>{line}<br/></React.Fragment>)}</div>}
           align="center"
         />
 
@@ -385,7 +366,7 @@ const UpgradPlan = () => {
                   : 'text-[#171c35] hover:bg-gray-50'
               }`}
             >
-              Monthly
+              {monthlyLabel}
             </button>
 
             <button
@@ -396,7 +377,7 @@ const UpgradPlan = () => {
                   : 'text-[#171c35] hover:bg-gray-50'
               }`}
             >
-              Yearly
+              {annuallyLabel}
             </button>
           </div>
         </div>

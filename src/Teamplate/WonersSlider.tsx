@@ -3,6 +3,7 @@ import woner from '../assets/svgIcon/woner.svg';
 import icon from '../assets/svgIcon/herologo.svg';
 import './buttom.css';
 import SectionHeader from './SectionHeader';
+import { useTranslation } from 'react-i18next';
 
 // ========================================
 // TYPES
@@ -24,46 +25,27 @@ interface TestimonialData {
 // TESTIMONIAL SECTION COMPONENT
 // ========================================
 const TestimonialSection: React.FC = () => {
+  const { t } = useTranslation();
   const [activeSlide, setActiveSlide] = useState(0);
 
-  const testimonials: TestimonialData[] = [
-    {
-      image: woner,
-      quote: 'Since using Docline, we know that our patients can always reach us while our team works stress-free. The solution not only transformed our phone accessibility but also significantly improved team morale. A real relief in daily practice.',
-      name: 'DR. MAGDALENA S.',
-      title: 'DERMATOLOGIST',
-      stats: {
-        timeSaved: '11h',
-        timeSavedLabel: 'Time saved per week',
-        acceptance: '88%',
-        acceptanceLabel: 'Call acceptance'
-      }
-    },
-    {
-      image: woner,
-      quote: 'The implementation of Docline was seamless and the results exceeded our expectations. Our patients appreciate constant accessibility.',
-      name: 'DR. THOMAS M.',
-      title: 'GENERAL PRACTITIONER',
-      stats: {
-        timeSaved: '15h',
-        timeSavedLabel: 'Time saved per week',
-        acceptance: '92%',
-        acceptanceLabel: 'Call acceptance'
-      }
-    },
-    {
-      image: woner,
-      quote: 'Docline revolutionized our practice. The team can finally focus on important tasks while patients are well taken care of.',
-      name: 'DR. SARAH K.',
-      title: 'DENTIST',
-      stats: {
-        timeSaved: '13h',
-        timeSavedLabel: 'Time saved per week',
-        acceptance: '90%',
-        acceptanceLabel: 'Call acceptance'
-      }
-    }
-  ];
+  // ✅ Get testimonials from translation
+  const testimonialsData = t('testimonialSection.testimonials', { returnObjects: true }) as Array<{
+    quote: string;
+    name: string;
+    title: string;
+    stats: {
+      timeSaved: string;
+      timeSavedLabel: string;
+      acceptance: string;
+      acceptanceLabel: string;
+    };
+  }>;
+
+  // Add image to each testimonial
+  const testimonials: TestimonialData[] = testimonialsData.map(item => ({
+    ...item,
+    image: woner
+  }));
 
   // Auto-advance slides
   useEffect(() => {
@@ -84,12 +66,8 @@ const TestimonialSection: React.FC = () => {
         {/* SECTION HEADER */}
         <SectionHeader
           badgeIcon={icon}
-          badgeText="What Our Users Say"
-          heading={
-            <>
-              What Practice Owners <br /> Say About Docline
-            </>
-          }
+          badgeText={t('testimonialSection.badgeText')}
+          heading={t('testimonialSection.heading')}
           align="center"
         />
 
@@ -159,7 +137,7 @@ const TestimonialSection: React.FC = () => {
                   <p className="text-[#171C35] leading-[100%] font-semibold uppercase text-base md:text-xl mb-1">
                     {currentTestimonial.name}
                   </p>
-                  <p className="text-[#111A2D] leading-4 text-sm md:text-base font-medium ">
+                  <p className="text-[#111A2D] leading-4 text-sm md:text-base font-medium">
                     {currentTestimonial.title}
                   </p>
                 </div>
@@ -192,7 +170,6 @@ const TestimonialSection: React.FC = () => {
                     ">
                       {currentTestimonial.stats.timeSaved.replace(/[^0-9]/g, '')}h
                     </span>
-                   
                   </div>
                   <p className="text-[#171C35] text-sm md:text-base lg:text-xl leading-5 font-medium">
                     {currentTestimonial.stats.timeSavedLabel}
@@ -250,7 +227,6 @@ const TestimonialSection: React.FC = () => {
 };
 
 export default TestimonialSection;
-
 
 
 // import React, { useState, useEffect } from 'react'; 

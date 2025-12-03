@@ -1,0 +1,322 @@
+{
+  "navigation": {
+    "features": "Funktionen",
+    "examples": "Beispiele",
+    "testimonials": "Referenzen",
+    "pricing": "Preise",
+    "demo": "Demo buchen",
+    "login": "Anmelden"
+
+  },
+  "hero": {
+    "badge": "Nie wieder Telefonstress",
+    "heading": "24/7 Verfügbarkeit für Ihre Patienten. Null Telefonstress für Ihr Team.",
+    "subText": "Unser intelligenter KI-Assistent erledigt alle Anrufe rund um die Uhr. Er plant Termine, beantwortet Fragen, erstellt automatisch Aufgaben und entlastet Ihr Team.",
+  "getStarted": "Loslegen",
+  "bookDemo": "Demo buchen"
+  },
+  "features": {
+    "badge": "Ruhig am Telefon",
+    "heading": "Die Entlastung, ||| die Ihr Team verdient" ,
+    "subText": "Der Docline KI-Assistent löst die  größten Herausforderungen im Praxisalltag",
+
+       "relief": {
+      "percent": "75%",
+      "title": "Entlastung",
+      "line1": "Der KI-Assistent bearbeitet im Schnitt 75% der Routine-Anrufe komplett selbstständig. ",
+      "line2": "Ihr Team gewinnt diese Zeit für mehr Patientenzuwendung zurück.."
+    },
+    "conversation": {
+      "title": "Docline bearbeitet 20 Anrufe gleichzeitig",
+      "text": "Nie wieder Besetztzeichen oder Warteschleifen. Die KI beantwortet alle eingehenden Anrufe parallel, sodass jeder Patient sofort gehört wird."
+    },
+
+    "triage": {
+      "title": "Intelligente Triage & Weiterleitung",
+      "text1": "Die KI erkennt Notfälle. Komplexe Anfragen werden ",
+      "text2": "priorisiert und direkt an das zuständige MFA durchgestellt."
+    },
+
+    "availability": {
+      "percent": "24/7%",
+      "title": "Erreichbarkeit",
+      "text": "Ihre Praxis ist 365 Tage im Jahr erreichbar. Die KI fängt alle Anrufe ab – unabhängig von Urlaub, Krankheit oder Fachkräftemangel."
+    },
+
+    "integration": {
+      "title": "Einfache Verbindung mit Ihrem Telefonsystem",
+      "text": "Kein Wechsel, kein IT-Stress. Die Anbindung an Ihre bestehende Telefon-Infrastruktur erfolgt unkompliziert und schnell durch unser Onboarding-Team."
+    },
+
+    "software": {
+      "title": "Keine zusätzliche Software oder Hardware notwendig",
+      "text": "Docline läuft vollständig in der Cloud. Sie sparen sich physische Geräte, IT-Wartung und können Ihre Abläufe flexibel gestalten."
+    },
+
+    "customization": {
+      "title": "Individuell auf Ihre Praxis zugeschnitten",
+      "text": "Tonfall, Regeln und Formulierungen werden individuell angepasst. Viele Patienten merken nicht einmal, dass sie mit einer KI sprechen."
+    }
+  },
+  "slider": {
+    "badge": "Intuitiv & modern",
+    "heading": "Der moderne Workflow, den ||| Ihr Team lieben wird",
+    "subText": "Der Schlüssel zu einer Praxis, die nicht nur reagiert, sondern auch intelligenter zusammenarbeitet.",
+   "slides": [
+  {
+    "id": 1,
+    "title": "Klarer Überblick. Mehr Effizienz",
+    "subtitle": "Das Dashboard, das das Management einfacher und schneller macht.",
+    "list": [
+      "Alle wichtigen Kennzahlen, Patienten und Termine auf einen Blick sehen.",
+      "Unerledigte Anrufe und offene Aufgaben klar hervorgehoben.",
+      "Einfach zu navigieren und schnell zu meistern."
+    ],
+    "img": "slider1.svg",
+    "bgColor": "bg-[#FADACA]"
+  },
+  {
+    "id": 2,
+    "title": "Optimierter Arbeitsablauf",
+    "subtitle": "Integriertes Aufgabenmanagement sorgt für Effizienz.",
+    "list": [
+      "Offene Anfragen werden sofort als Aufgaben zugewiesen.",
+      "Aufgaben kategorisieren: Offen - In Bearbeitung - Abgeschlossen.",
+      "Manuelle Erstellung von Aufgaben für interne Verwaltung."
+    ],
+    "img": "Slider02.svg",
+    "bgColor": "bg-[#DBECFF]"
+  },
+  {
+    "id": 3,
+    "title": "Patienten- & Daten-Insights",
+    "subtitle": "Erhalten Sie einen vollständigen Überblick über Leistungsdaten.",
+    "list": [
+      "Tägliche, wöchentliche und monatliche Berichte einfach verfolgen.",
+      "Analysen vergleichen, um die Produktivität zu messen.",
+      "Einblicke generieren, um bessere Entscheidungen zu treffen."
+    ],
+    "img": "slider3.svg",
+    "bgColor": "bg-[#F5DFF1]"
+  },
+  {
+    "id": 4,
+    "title": "Kollaboratives Dashboard",
+    "subtitle": "In Echtzeit zusammenarbeiten.",
+    "list": [
+      "Sofortige Team-Updates und gemeinsame Aufgabenverwaltung.",
+      "Intelligente Benachrichtigungen für schnelle Kommunikation.",
+      "Alle Teamdaten in einem Arbeitsbereich vereinheitlicht."
+    ],
+    "img": "slider4.svg",
+    "bgColor": "bg-[#CACDFA]"
+  }
+]
+
+  },
+ 
+ 
+  "exampleSection": {
+    "badge": "Echte Beispiele",
+    "heading": "So klingt Docline ||| in der Praxis",
+    "subText": "Ihre Patienten werden kaum einen Unterschied bemerken. Passen Sie die Stimme des KI-Assistenten einfach an den Stil Ihrer Praxis an. Wählen Sie eine selbstbewusste männliche oder weibliche Stimme. Dies sorgt für einen reibungslosen und professionellen Empfang bei jedem Anruf.",
+    "menuItems": [
+      {
+        "title": "Vorträge & Schulungen",
+        "subtitle": "Orthopädie Dr. Gruber"
+      },
+      {
+        "title": "Terminverschiebung/-absage",
+        "subtitle": "Zahnarztpraxis Dr. Meier"
+      },
+      {
+        "title": "Versicherungsfragen",
+        "subtitle": "Physiotherapie Dr. Fuchs"
+      },
+      {
+        "title": "Buchung eines Vorsorgetermins",
+        "subtitle": "Hausarztpraxis Dr. Koch"
+      },
+      {
+        "title": "Anfrage für Überweisungen",
+        "subtitle": "Dermatologie Dr. Wagner"
+      }
+    ]
+  },
+
+
+  "functions": {
+    "badge": "Unsere Kernfunktionen",
+    "heading": "Alles, was Sie zur Entlastung ||| Ihrer Praxis benötigen",
+    "feature1": {
+      "title": "Reduzierte Telefonlast",
+      "description": "Befreien Sie Ihr Personal von Routineanfragen. Unser KI-Voicebot übernimmt Terminbuchungen, Rezept- und Routinefragen 24/7, damit Ihr Team auf die Patienten konzentrieren kann."
+    },
+    "feature2": {
+      "title": "Menschliche KI-Kommunikation",
+      "description": "Docline ist die nächste Generation in der Patientenkommunikation. Er versteht Kontext, Sprachen und Dringlichkeit und verarbeitet Anliegen mit menschlicher Präzision."
+    },
+    "feature3": {
+      "title": "Multilingual",
+      "description": "Unser Voicebot kommuniziert fließend in über 25 Fremdsprachen.",
+      "buttonText": "25+ Sprachen"
+    },
+    "feature4": {
+      "title": "DSGVO-konform",
+      "description": "Ihre Sicherheit hat höchste Priorität."
+    }
+  },
+
+
+
+
+
+
+  "security": {
+    "badge": "Compliance & Sicherheit",
+    "heading": "Maximale Sicherheit ||| 100% DSGVO-konform",
+    "features": [
+      {
+        "title": "Server in der EU",
+        "description": "Wir garantieren, dass alle Ihre Patientendaten ausschließlich in zertifizierten Hochsicherheits-Rechenzentren innerhalb der EU gespeichert werden.",
+        "subDescription": "Dies stellt sicher, dass Ihre Daten optimal geschützt sind, auch vor Drittzugriffen."
+      },
+      {
+        "title": "Rechtliche Konformität",
+        "description": "Die gesetzlich vorgeschriebene Datenverarbeitungsvereinbarung (DPA) ist ein integraler und transparenter Bestandteil Ihres Docline-Vertrags.",
+        "subDescription": "Sie regelt alle Verantwortlichkeiten rechtlich und gibt Ihnen sofortige Compliance-Sicherheit, ohne dass Sie die rechtlichen Details selbst prüfen müssen."
+      },
+      {
+        "title": "Umfassende Protokollierung",
+        "description": "Jeder Zugriff, jede Änderung und jede administrative Aktion innerhalb von Docline wird umfassend und manipulationssicher protokolliert.",
+        "subDescription": "Das Audit-Protokoll garantiert volle Transparenz und ermöglicht es Ihnen, jederzeit die Einhaltung der Vertraulichkeitsstandards nachzuweisen.",
+        "highlight": true
+      },
+      {
+        "title": "End-to-End-Verschlüsselung",
+        "description": "Alle vom Voicebot erfassten Daten werden Ende-zu-Ende verschlüsselt (sowohl während der Übertragung als auch im Ruhezustand).",
+        "subDescription": "Wir erfüllen die strengsten Anforderungen an die Vertraulichkeit Ihrer sensiblen Patientendaten."
+      }
+    ]
+  },
+
+
+ 
+  "testimonialSection": {
+    "badgeText": "Was unsere Nutzer sagen",
+    "heading": "Was Praxisinhaber |||  Innen über Docline sagen",
+    "testimonials": [
+      {
+        "image": "woner.svg",
+        "quote": "Seit der Nutzung von Docline wissen wir, dass unsere Patienten uns jederzeit erreichen können, während unser Team stressfrei arbeitet. Die Lösung hat nicht nur unsere Telefonerreichbarkeit verbessert, sondern auch die Teamstimmung erheblich gesteigert. Eine echte Erleichterung im Praxisalltag.",
+        "name": "DR. MAGDALENA S.",
+        "title": "DERMATOLOGIN",
+        "stats": {
+          "timeSaved": "11h",
+          "timeSavedLabel": "Pro Woche eingesparte Zeit",
+          "acceptance": "88%",
+          "acceptanceLabel": "Anrufannahme"
+        }
+      },
+      {
+        "image": "woner.svg",
+        "quote": "Die Implementierung von Docline verlief reibungslos und die Ergebnisse übertrafen unsere Erwartungen. Unsere Patienten schätzen die ständige Erreichbarkeit.",
+        "name": "DR. THOMAS M.",
+        "title": "ALLGEMEINMEDIZINER",
+        "stats": {
+          "timeSaved": "15h",
+          "timeSavedLabel": "Pro Woche eingesparte Zeit",
+          "acceptance": "92%",
+          "acceptanceLabel": "Anrufannahme"
+        }
+      },
+      {
+        "image": "woner.svg",
+        "quote": "Docline hat unsere Praxis revolutioniert. Das Team kann sich endlich auf wichtige Aufgaben konzentrieren, während die Patienten gut versorgt sind.",
+        "name": "DR. SARAH K.",
+        "title": "ZAHNÄRZTIN",
+        "stats": {
+          "timeSaved": "13h",
+          "timeSavedLabel": "Pro Woche eingesparte Zeit",
+          "acceptance": "90%",
+          "acceptanceLabel": "Anrufannahme"
+        }
+      }
+    ]
+  },
+
+
+
+  "pricingSection": {
+    "badgeText": "Transparente Preisgestaltung",
+    "heading": "Wählen Sie den richtigen Plan\nfür Ihre Praxis",
+    "billingToggle": {
+      "monthly": "Monatlich",
+      "annually": "Jährlich",
+      "saveLabel": "Sparen Sie 15%",
+      "buttonText": "Jetzt starten"
+    },
+    "plans": [
+      {
+        "name": "Standard",
+        "monthly": 399,
+        "yearly": 339,
+        "features": [
+          "KI-Voicebot-Erstellung & Setup",
+          "24/7 Erreichbarkeit & Anrufprotokollierung",
+          "Intelligente Triage & Aufgaben-Erstellung",
+          "2000 Anrufminuten / Monat inkludiert",
+          "0,35 € pro Überminute",
+          "E-Mail Support"
+        ],
+        "color": "#526FFF",
+        "isPremium": false,
+         "buttonText": "Jetzt starten"
+      },
+      {
+        "name": "Premium",
+        "monthly": 899,
+        "yearly": 765,
+        "features": [
+          "KI-Voicebot-Erstellung & Setup",
+          "24/7 Erreichbarkeit & Anrufprotokollierung",
+          "Intelligente Triage & Aufgaben-Erstellung",
+          "4000 Anrufminuten / Monat inkludiert",
+          "0,30 € pro Überminute",
+          "Mehrsprachig (25+ Sprachen)",
+          "Priorisierter E-Mail- und Live-Chat-Support"
+        ],
+        "color": "#171C35",
+        "isPremium": true,
+          "buttonText": "Jetzt starten"
+      },
+      {
+        "name": "Enterprise",
+        "monthly": 1299,
+        "yearly": 1105,
+        "features": [
+          "KI-Voicebot-Erstellung & Setup",
+          "24/7 Erreichbarkeit & Anrufprotokollierung",
+          "Intelligente Triage & Aufgaben-Erstellung",
+          "8000 Anrufminuten / Monat inkludiert",
+          "0,25 € pro Überminute",
+          "Mehrsprachig (25+ Sprachen)",
+          "24/7 Premium-Support"
+        ],
+        "color": "#526FFF",
+        "isPremium": false,
+          "buttonText": "Jetzt starten"
+      }
+    ]
+  },
+
+
+  "faq": {
+    "badge": "FAQ",
+    "heading": "Häufig gestellte Fragen",
+    "subText": null,
+    "align": "center",
+    "subAlign": "center",
+    "layout": "vertical"
+  }
+}

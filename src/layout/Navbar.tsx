@@ -5,8 +5,11 @@ import { useNavigate } from "react-router-dom";
 import logo from "../assets/svgIcon/logo.svg";
 import logoText from "../assets/svgIcon/textLogo.svg";
 import ShadowBox from "@/Teamplate/ShadowBox";
+import { useTranslation } from "react-i18next";
 
 const Navbar: React.FC = () => {
+
+    const { t } = useTranslation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
   const [activeItem, setActiveItem] = useState("Preise"); 
@@ -39,12 +42,13 @@ const Navbar: React.FC = () => {
     };
   }, [mobileMenuOpen]);
 
-  const menuItems = [
-    { name: "Funktionen", id: "features" },
-    { name: "Beispiele", id: "examples" },
-    { name: "Testimonials", id: "testimonials" },
-    { name: "Preise", id: "pricing" },
-  ];
+const menuItems = [
+  { name: t("navigation.features"), id: "features" },
+  { name: t("navigation.examples"), id: "examples" },
+  { name: t("navigation.testimonials"), id: "testimonials" },
+  { name: t("navigation.pricing"), id: "pricing" },
+];
+
 
   return (
     <header ref={headerRef} className="w-full fixed top-5 left-0 right-0 z-[9999] ">
@@ -101,13 +105,13 @@ const Navbar: React.FC = () => {
               <LanguageSelector />
               <div className="flex items-center gap-3 ">
                 <button className="px-5 py-3.5 rounded-full leading-4 text-base font-medium text-[#171C35] border border-[#171C35] transition whitespace-nowrap">
-                  Demo buchen
+                 {  t("navigation.demo")}
                 </button>
                 <button
                   onClick={() => navigate("/login")}
                   className="px-5 py-3.5 text-base font-medium leading-4 text-[#171C35] bg-white rounded-full transition cursor-pointer whitespace-nowrap shadow-md"
                 >
-                  Login
+                 {t("navigation.login")}
                 </button>
               </div>
             </div>

@@ -1,4 +1,6 @@
 
+import "./i18n/i18n"; 
+
 
 import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "@/layout/Navbar";
@@ -7,7 +9,7 @@ import Footer from "@/layout/Footer";
 const App = () => {
   const location = useLocation();
 
-  // যেসব route-এ navbar & footer দেখাবে না
+ 
   const authRoutes = [
     "/login",
     "/signup",
@@ -21,11 +23,11 @@ const App = () => {
 
   return (
     <div className="bg-[#F3F6F6] min-h-screen">
-      {!hideLayout && <Navbar />}   {/* Auth page ছাড়া বাকি সব পেজে navbar */}
+      {!hideLayout && <Navbar />}   
 
       <Outlet />
 
-      {!hideLayout && <Footer />}   {/* Auth page ছাড়া বাকি সব পেজে footer */}
+      {!hideLayout && <Footer />}  
     </div>
   );
 };

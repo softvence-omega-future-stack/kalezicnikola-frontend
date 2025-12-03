@@ -1,11 +1,14 @@
 import icon from "../assets/svgIcon/herologo.svg";
-import img1 from "../assets/svgIcon/Interface1.svg";
+import img1 from "../assets/svgIcon/image1.png";
 import img2 from "../assets/svgIcon/functionscard.svg";
 import img6 from "../assets/svgIcon/interface6.svg";
 import "./buttom.css";
 import SectionHeader from "./SectionHeader";
+import { useTranslation } from "react-i18next";
 
 const Functions = () => {
+  const { t } = useTranslation();
+
   return (
     <section
       style={{ fontFamily: "Urbanist, sans-serif" }}
@@ -15,12 +18,8 @@ const Functions = () => {
         <div className="md:mb-5">
           <SectionHeader
             badgeIcon={icon}
-            badgeText=" Our Core Functions"
-            heading={
-              <>
-                Everything you need to ease <br /> the burden on your practice
-              </>
-            }
+            badgeText={t("functions.badge")}
+            heading={t("functions.heading")}
             align="left"
           />
         </div>
@@ -43,12 +42,10 @@ const Functions = () => {
             }}
           >
             <h3 className="text-[32px] leading-8 font-semibold text-[#171C35] mb-5">
-              Reduzierte Telefonlast
+              {t("functions.feature1.title")}
             </h3>
             <p className="text-base text-[#171c35] mb-6 leading-[140%] font-normal">
-              Befreien Sie Ihr Personal von Routineanfragen. Unser KI-Voicebot
-              übernimmt Terminbuchungen, Rezept- und Routinefragen 24/7, damit
-              Ihr Team auf die Patienten konzentrieren kann.
+              {t("functions.feature1.description")}
             </p>
 
             <div
@@ -61,7 +58,7 @@ const Functions = () => {
                 overflow: "hidden",
               }}
             >
-              <img src={img1} alt="" className="block w-full h-auto" />
+              <img src={img1} alt="" className="block w-full h-auto " />
             </div>
           </div>
 
@@ -79,12 +76,10 @@ const Functions = () => {
           >
             <div className="relative z-10">
               <h3 className="text-[32px] leading-8 font-semibold text-[#171C35] mb-5">
-                Menschliche KI-Kommunikation
+                {t("functions.feature2.title")}
               </h3>
               <p className="text-base text-[#171c35] mb-20 leading-[140%] font-normal">
-                Docline ist die nächste Generation in der Patientenkommunikation.
-                Er versteht Kontext, Sprachen und Dringlichkeit und verarbeitet
-                Anliegen mit menschlicher Präzision.
+                {t("functions.feature2.description")}
               </p>
             </div>
 
@@ -114,10 +109,10 @@ const Functions = () => {
             >
               <div>
                 <h3 className="text-[32px] leading-8 font-semibold text-[#171C35] mb-2.5">
-                  Multilingual
+                  {t("functions.feature3.title")}
                 </h3>
                 <p className="text-base text-[#171c35] leading-[140%] font-normal pb-[143px]">
-                  Unser Voicebot kommuniziert fließend in über 25 Fremdsprachen.
+                  {t("functions.feature3.description")}
                 </p>
               </div>
 
@@ -148,7 +143,7 @@ const Functions = () => {
                       fontSize: "24px",
                     }}
                   >
-                    25+ Sprachen
+                    {t("functions.feature3.buttonText")}
                   </span>
                 </button>
               </div>
@@ -167,10 +162,10 @@ const Functions = () => {
             >
               <div>
                 <h3 className="text-[32px] leading-8 font-semibold text-[#171C35] mb-2.5">
-                  DSGVO-konform
+                  {t("functions.feature4.title")}
                 </h3>
                 <p className="text-base text-[#171c35] leading-[140%] font-normal">
-                  Ihre Sicherheit hat höchste Priorität.
+                  {t("functions.feature4.description")}
                 </p>
               </div>
 
@@ -201,12 +196,10 @@ const Functions = () => {
               }}
             >
               <h3 className="text-2xl sm:text-[32px] leading-8 font-semibold text-[#171C35] mb-5">
-                Reduzierte Telefonlast
+                {t("functions.feature1.title")}
               </h3>
               <p className="text-sm sm:text-base text-[#171c35] mb-6 leading-[140%] font-normal">
-                Befreien Sie Ihr Personal von Routineanfragen. Unser KI-Voicebot
-                übernimmt Terminbuchungen, Rezept- und Routinefragen 24/7, damit
-                Ihr Team auf die Patienten konzentrieren kann.
+                {t("functions.feature1.description")}
               </p>
 
               <div
@@ -237,12 +230,10 @@ const Functions = () => {
             >
               <div className="relative z-10">
                 <h3 className="text-2xl sm:text-[32px] leading-8 font-semibold text-[#171C35] mb-5">
-                  Menschliche KI-Kommunikation
+                  {t("functions.feature2.title")}
                 </h3>
                 <p className="text-sm sm:text-base text-[#171c35] mb-12 sm:mb-20 leading-[140%] font-normal">
-                  Docline ist die nächste Generation in der Patientenkommunikation.
-                  Er versteht Kontext, Sprachen und Dringlichkeit und verarbeitet
-                  Anliegen mit menschlicher Präzision.
+                  {t("functions.feature2.description")}
                 </p>
               </div>
 
@@ -273,10 +264,10 @@ const Functions = () => {
             >
               <div>
                 <h3 className="text-2xl sm:text-[32px] leading-8 font-semibold text-[#171C35] mb-2.5">
-                  Multilingual
+                  {t("functions.feature3.title")}
                 </h3>
                 <p className="text-sm sm:text-base text-[#171c35] leading-[140%] font-normal pb-[143px]">
-                  Unser Voicebot kommuniziert fließend in über 25 Fremdsprachen.
+                  {t("functions.feature3.description")}
                 </p>
               </div>
 
@@ -307,7 +298,7 @@ const Functions = () => {
                       fontSize: "24px",
                     }}
                   >
-                    25+ Sprachen
+                    {t("functions.feature3.buttonText")}
                   </span>
                 </button>
               </div>
@@ -326,10 +317,10 @@ const Functions = () => {
             >
               <div>
                 <h3 className="text-2xl sm:text-[32px] leading-8 font-semibold text-[#171C35] mb-2.5">
-                  DSGVO-konform
+                  {t("functions.feature4.title")}
                 </h3>
                 <p className="text-sm sm:text-base text-[#171c35] leading-[140%] font-normal">
-                  Ihre Sicherheit hat höchste Priorität.
+                  {t("functions.feature4.description")}
                 </p>
               </div>
 

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import icon from "../assets/svgIcon/herologo.svg";
 import "./buttom.css";
+import SectionHeader from "./SectionHeader";
 
 interface FAQItem {
   question: string;
@@ -56,7 +57,14 @@ const FAQSection: React.FC = () => {
       <div className="relative px-2 overflow-hidden">
         {/* Header Section */}
         <div className="relative text-center mb-12">
-          <div
+              <SectionHeader
+  badgeIcon={icon}
+  badgeText="FAQ" // i18n key
+  heading={<>    Frequently Asked Questions</>}
+
+  align="center"
+/>
+          {/* <div
             style={{
                 boxShadow: `-6px -11px 18px 0 rgba(255, 255, 255, 0.16) inset, 
                 1.2px 1.2px 0 -0.4px #FFF inset, 
@@ -72,7 +80,7 @@ const FAQSection: React.FC = () => {
 
           <h2 className="text-[32px] sm:text-[42px] md:text-5xl font-semibold text-[#171C35] leading-[120%]">
             Frequently Asked Questions
-          </h2>
+          </h2> */}
 
           <div
             style={{
@@ -88,7 +96,7 @@ const FAQSection: React.FC = () => {
         </div>
 
         {/* FAQ Accordion Wrapper */}
-        <div className="-mt-[500px] max-w-7xl mx-auto space-y-4 overflow-hidden">
+        <div className="-mt-[560px] max-w-7xl mx-auto space-y-4 overflow-hidden">
           <div className="relative z-10 space-y-1">
             {faqData.map((faq, index) => (
               <div
