@@ -3,21 +3,24 @@ import ShadowBox from "../Teamplate/ShadowBox";
 
 import logoText from '../assets/svgIcon/textLogo.svg';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const Footer: React.FC = () => {
+    const { t } = useTranslation();
+    
     const navigationLinks = [
-        { label: 'Home', href: '#' },
-        { label: 'Features', href: '#' },
-        { label: 'Who it work', href: '#' },
-        { label: 'Case study', href: '#' },
-        { label: 'Pricing', href: '#' },
-        { label: 'Terms and Condition', href: '#' },
-        { label: 'Privacy Policy', href: '#' }
+        { label: t('landingPage.footer.navigation.home'), href: '#' },
+        { label: t('landingPage.footer.navigation.features'), href: '#' },
+        { label: t('landingPage.footer.navigation.howItWorks'), href: '#' },
+        { label: t('landingPage.footer.navigation.caseStudy'), href: '#' },
+        { label: t('landingPage.footer.navigation.pricing'), href: '#' },
+        { label: t('landingPage.footer.navigation.termsAndConditions'), href: '#' },
+        { label: t('landingPage.footer.navigation.privacyPolicy'), href: '#' }
     ];
 
     const legalLinks = [
-        { label: 'Impressum', href: '/impressum' },
-        { label: 'Datenschutz', href: '/datenschutz' }
+        { label: t('landingPage.footer.legal.impressum'), href: '/impressum' },
+        { label: t('landingPage.footer.legal.datenschutz'), href: '/datenschutz' }
     ];
 
     const socialLinks = [
@@ -28,7 +31,7 @@ const Footer: React.FC = () => {
                 </svg>
             ),
             href: 'https://www.linkedin.com/company/107365420/admin/dashboard/',
-            label: 'LinkedIn'
+            label: t('landingPage.footer.social.linkedin')
         },
         {
             icon: (
@@ -37,7 +40,7 @@ const Footer: React.FC = () => {
                 </svg>
             ),
             href: 'https://www.facebook.com/doclineai',
-            label: 'Facebook'
+            label: t('landingPage.footer.social.facebook')
         },
         {
             icon: (
@@ -46,7 +49,7 @@ const Footer: React.FC = () => {
                 </svg>
             ),
             href: 'https://www.instagram.com/docline.ai',
-            label: 'Instagram'
+            label: t('landingPage.footer.social.instagram')
         }
     ];
 
@@ -71,8 +74,8 @@ const Footer: React.FC = () => {
                             </svg>
                             <img src={logoText} alt="" />
                         </div>
-                        <p className="text-base text-gray-700 mb-4">Wir schaffen stressfreie Praxen</p>
-                        <a href="mailto:info@docline.ai" className="text-lg text-[#526FFF] font-medium hover:text-blue-600 transition-colors">info@docline.ai</a>
+                        <p className="text-base text-gray-700 mb-4">{t('landingPage.footer.tagline')}</p>
+                        <a href={`mailto:${t('landingPage.footer.email')}`} className="text-lg text-[#526FFF] font-medium hover:text-blue-600 transition-colors">{t('landingPage.footer.email')}</a>
                     </div>
 
                     <nav className="relative z-10">
@@ -96,7 +99,7 @@ const Footer: React.FC = () => {
                 <div className="pt-6 border-t border-gray-300 relative z-10 mt-">
                     <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0 text-center sm:text-left">
                         <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8">
-                            <div className="text-sm text-[#111A2D] whitespace-nowrap">© 2025 Docline. Alle Rechte vorbehalten.</div>
+                            <div className="text-sm text-[#111A2D] whitespace-nowrap">{t('landingPage.footer.copyright')}</div>
                             <div className="flex items-center gap-4">
                                 {legalLinks.map((link, index) => (
                                     <Link key={index} to={link.href} className="text-sm text-[#171C35] hover:text-blue-600 transition-colors whitespace-nowrap">{link.label}</Link>
@@ -119,7 +122,3 @@ const Footer: React.FC = () => {
 };
 
 export default Footer;
-
-
-
-

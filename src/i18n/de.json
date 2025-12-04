@@ -1,4 +1,5 @@
 {
+  "landingPage":{
   "navigation": {
     "features": "Funktionen",
     "examples": "Beispiele",
@@ -253,9 +254,10 @@
     "billingToggle": {
       "monthly": "Monatlich",
       "annually": "Jährlich",
-      "saveLabel": "Sparen Sie 15%",
-      "buttonText": "Jetzt starten"
+      "saveLabel": "Sparen Sie 15%"
+    
     },
+        "commonButtonText": "Jetzt starten",
     "plans": [
       {
         "name": "Standard",
@@ -311,12 +313,75 @@
   },
 
 
-  "faq": {
-    "badge": "FAQ",
+  
+  "faqSection": {
+    "badgeText": "FAQ",
     "heading": "Häufig gestellte Fragen",
-    "subText": null,
-    "align": "center",
-    "subAlign": "center",
-    "layout": "vertical"
+    "items": [
+      {
+        "question": "Was ist Docline?",
+        "answer": "Docline ist eine moderne, cloudbasierte Praxissoftware. Die Hauptfunktion ist der KI-Voicebot..."
+      },
+      {
+        "question": "Wie genau funktioniert Docline?",
+        "answer": "Docline nutzt fortschrittliche KI-Technologie, um Anrufe in Echtzeit zu verarbeiten..."
+      },
+      {
+        "question": "Trainiert Docline mit meinen Patientendaten?",
+        "answer": "Nein, Docline trainiert nicht mit Ihren Patientendaten. Alle Daten werden vollständig DSGVO-konform verarbeitet..."
+      },
+      {
+        "question": "Was ist ein \"KI-Agent\"?",
+        "answer": "Ein KI-Agent ist eine intelligente Software, die Aufgaben selbstständig ausführen kann..."
+      },
+      {
+        "question": "Sind meine Daten bei Docline sicher?",
+        "answer": "Ja, Ihre Daten sind bei uns vollständig sicher. Wir verwenden Ende-zu-Ende-Verschlüsselung..."
+      },
+      {
+        "question": "Benötige ich neue Hardware für Docline?",
+        "answer": "Nein, Sie benötigen keine neue Hardware. Docline ist eine cloudbasierte Lösung..."
+      }
+    ]
+  },
+  
+  "ctaBanner": {
+    "heading": "Steigern Sie noch heute die Zufriedenheit & Produktivität Ihres Teams.",
+    "description": "Telefonstress kostet wertvolle Zeit und führt zu Überlastung. Entlasten Sie Ihr Team und sorgen Sie vom ersten Moment an für reibungslose Abläufe. Lassen Sie unsere KI Ihre Anrufe übernehmen, während sich Ihr Team auf die Patientenversorgung konzentriert.",
+    "buttonText": "Jetzt starten"
+  },
+  
+
+  "footer": {
+    "tagline": "Wir schaffen stressfreie Praxen",
+    "email": "info@docline.ai",
+
+    "navigation": {
+      "home": "Startseite",
+      "features": "Funktionen",
+      "howItWorks": "So funktioniert’s",
+      "caseStudy": "Fallstudie",
+      "pricing": "Preise",
+      "termsAndConditions": "AGB",
+      "privacyPolicy": "Datenschutzrichtlinie"
+    },
+
+    "legal": {
+      "impressum": "Impressum",
+      "datenschutz": "Datenschutz"
+    },
+
+    "copyright": "© 2025 Docline. Alle Rechte vorbehalten.",
+
+    "social": {
+      "linkedin": "LinkedIn",
+      "facebook": "Facebook",
+      "instagram": "Instagram"
+    }
   }
+
+
+
+  }
+
 }

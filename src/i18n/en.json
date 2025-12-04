@@ -1,4 +1,5 @@
 {
+  "landingPage": {
   "navigation": {
     "features": "Features",
     "examples": "Examples",
@@ -311,14 +312,73 @@
   },
 
 
-  "faq": {
-    "badge": "FAQ",
+
+  "faqSection": {
+    "badgeText": "FAQ",
     "heading": "Frequently Asked Questions",
-    "subText": null,
-    "align": "center",
-    "subAlign": "center",
-    "layout": "vertical"
+    "items": [
+      {
+        "question": "What is Docline?",
+        "answer": "Docline is a modern, cloud-based practice software. Its core feature is the AI Voicebot..."
+      },
+      {
+        "question": "How exactly does Docline work?",
+        "answer": "Docline uses advanced AI technology to process calls in real time..."
+      },
+      {
+        "question": "Does Docline train with my patient data?",
+        "answer": "No, Docline does not train with your patient data. All data is processed in compliance..."
+      },
+      {
+        "question": "What is an \"AI Agent\"?",
+        "answer": "An AI Agent is intelligent software capable of performing tasks autonomously..."
+      },
+      {
+        "question": "Is my data safe with Docline?",
+        "answer": "Yes, your data is completely secure with us. We use end-to-end encryption..."
+      },
+      {
+        "question": "Do I need new hardware for Docline?",
+        "answer": "No, you do not need any new hardware. Docline is a cloud-based solution..."
+      }
+    ]
+  },
+
+  "ctaBanner": {
+    "heading": "Boost your team's satisfaction \n& productivity today.",
+    "description": "Phone stress consumes valuable time and leads to overload. Free up your staff and enjoy smooth operations from the very first minute. Let our AI handle your calls while your team focuses on patient care.",
+    "buttonText": "Start Now"
+  },
+
+  "footer": {
+    "tagline": "We create stress-free practices",
+    "email": "info@docline.ai",
+
+    "navigation": {
+      "home": "Home",
+      "features": "Features",
+      "howItWorks": "How it works",
+      "caseStudy": "Case study",
+      "pricing": "Pricing",
+      "termsAndConditions": "Terms and Condition",
+      "privacyPolicy": "Privacy Policy"
+    },
+
+    "legal": {
+      "impressum": "Impressum",
+      "datenschutz": "Privacy Policy"
+    },
+
+    "copyright": "© 2025 Docline. All rights reserved.",
+
+    "social": {
+      "linkedin": "LinkedIn",
+      "facebook": "Facebook",
+      "instagram": "Instagram"
+    }
   }
+}
+
 }
 
 

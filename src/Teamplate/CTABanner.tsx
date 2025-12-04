@@ -1,12 +1,13 @@
 import React from "react";
 import img from "@/assets/img/glass.png";
-// import AppleGlassButton from "@/components/AppleGlassButton";
-// import LiquidGlass from 'liquid-glass-react'
+
 import "./bnnarButon.css";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const CTABanner: React.FC = () => {
   const navigate = useNavigate();
+  const {t} = useTranslation()
   return (
     <div
       style={{ fontFamily: "Urbanist, sans-serif" }}
@@ -18,13 +19,10 @@ const CTABanner: React.FC = () => {
             {/* Left Content */}
             <div className="flex-1 max-w-full lg:max-w-3xl">
               <h2 className="text-xl sm:text-2xl md:text-5xl font-semibold text-white leading-[120%] mb-4 sm:mb-5 md:mb-7">
-                Boost your team's satisfaction <br /> & productivity today.
+                {t("landingPage.ctaBanner.heading")}
               </h2>
               <p className="text-sm sm:text-base md:text-lg font-normal leading-[140%] text-blue-50">
-                Phone stress consumes valuable time and leads to overload. Free
-                up your staff and enjoy smooth operations from the very first
-                minute. Let our AI handle your calls while your team focuses on
-                patient care.
+               {t("landingPage.ctaBanner.description")}
               </p>
             </div>
 
@@ -34,54 +32,12 @@ const CTABanner: React.FC = () => {
                 onClick={() => navigate("/login")}
                 className="btn w-full lg:w-[218px] py-4 text-base leading-4 font-semibold rounded-full cursor-pointer text-white bg-white/10"
               >
-                Start Now
+                {t("landingPage.ctaBanner.buttonText")}
               </button>
             </div>
           </div>
 
-          {/* <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 sm:gap-8">
-            
-
-            <div className="flex-1 max-w-3xl">
-              <h2 className="text-2xl sm:text-3xl md:text-5xl font-semibold text-white leading-tight mb-4 sm:mb-5 md:mb-6">
-                Boost your team's satisfaction <br /> & productivity today.
-              </h2>
-              <p className="text-sm sm:text-base md:text-lg text-blue-50">
-                Phone stress consumes valuable time and leads to overload. Free up your staff and enjoy smooth operations from the very first minute. Let our AI handle your calls while your team focuses on patient care.
-              </p>
-            </div>
-
-            <div className="w-full lg:w-auto">
-              <button className="btn py-4 px-8 h-[64px] w-[218px] rounded-full text-white bg-white/10">click me</button>
-            </div>
-
-           
-            <div>
-              {/* <AppleGlassButton>
-                Jetzt starten
-              </AppleGlassButton> */}
-          {/* <LiquidGlass
-  displacementScale={60}
-  blurAmount={0.15}
-  saturation={120}
-  aberrationIntensity={1.5}
-  elasticity={0.4}
-  cornerRadius={80}
-  padding="20px 60px"   // height 64px, width 218px
-  style={{
-    display: "inline-flex",
-    alignItems: "center",
-    justifyContent: "center",
-    cursor: "pointer",
-  }}
->
-  <span className="text-white font-semibold text-lg">
-    Start Now
-  </span>
-</LiquidGlass>
-
-            </div>
-          </div>
+      
 
           {/* Right-bottom image */}
           <img
@@ -106,215 +62,3 @@ const CTABanner: React.FC = () => {
 
 export default CTABanner;
 
-// import React, { } from 'react';
-
-// // import { useNavigate } from 'react-router-dom';
-// import './bnnarButon.css'
-// // e
-
-// //import { useNavigate } from 'react-router-dom';
-// // import LiquidGlassButton from './LequiedGlassBtn';
-
-// //import { useNavigate } from 'react-router-dom';
-// // import LiquidGlassButton from './LequiedGlassBtn';
-
-// // import { useNavigate } from 'react-router-dom';
-
-// const CTABanner: React.FC = () => {
-//   // const navigate = useNavigate();
-//   // const [isHovered, setIsHovered] = useState(false);
-//   // const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
-//   //  const [isPressed, setIsPressed] = useState(false);
-
-//   //  const [isPressed, setIsPressed] = useState(false);
-
-//   // const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
-//   //   const rect = e.currentTarget.getBoundingClientRect();
-//   //   setMousePos({
-//   //     x: e.clientX - rect.left,
-//   //     y: e.clientY - rect.top,
-//   //   });
-//   // };
-
-//   return (
-//     <div  className="w-full  mt-19 md:mt-[180px] lg:mt-[180px] xl:mt-[180px]">
-//       <div className="">
-//         <div className="bg-[#526FFF] rounded-[40px]  p-6 sm:p-8 md:p-10 lg:p-12 xl:p-16 shadow-2xl">
-//           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 sm:gap-8">
-//             {/* Left Content */}
-//             <div className="flex-1 max-w-3xl">
-//               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-white leading-tight mb-4 sm:mb-5 md:mb-6">
-//                 Boost your team's satisfaction <br /> & productivity today.
-//               </h2>
-//               <p className="text-sm sm:text-base md:text-lg lg:text-xl text-blue-50 leading-relaxed">
-//                 Phone stress consumes valuable time and leads to overload. Free up your staff and enjoy smooth operations from the very first minute. Let our AI handle your calls while your team focuses on patient care.
-//               </p>
-//             </div>
-
-//              {/* <div>
-//               <LiquidGlassButton/>
-//              </div> */}
-
-//              <div className=''>
-//               <button
-//   className="flex justify-center items-center gap-3 px-2 py-2 w-full md:w-[218px] h-[64px]
-//              rounded-[100px] border border-white/100
-//              bg-[rgba(255,255,255,0.10)] backdrop-blur-[7.5px]
-//              relative overflow-hidden"
-//   style={{
-//     background: "rgba(255, 255, 255, 0.10)",
-//     border: "0.8px solid #FFFFFF",
-//     backdropFilter: "blur(7.5px)",
-//   }}
-// >
-//   <span className="text-white font-medium text-lg">Start Now</span>
-// </button>
-//     {/* <LequidGlassBtn/> */}
-
-// {/* <div className="container">
-//     <button className="apple-liquid-glass">Start Now</button>
-// </div> */}
-//              </div>
-
-//             {/* Right Button with Liquid Glass Effect */}
-//             {/* <div className="relative">
-//               <button
-//                 onClick={() => navigate('/signup')}
-//                 onMouseEnter={() => setIsHovered(true)}
-//                 onMouseLeave={() => setIsHovered(false)}
-//                 onMouseMove={handleMouseMove}
-//                 className="relative z-10 text-white font-semibold px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5
-//                            rounded-full sm:rounded-2xl transition-all duration-300 overflow-hidden
-//                            active:scale-95 text-sm sm:text-base md:text-lg lg:text-xl
-//                            whitespace-nowrap cursor-pointer"
-//                 style={{
-//                   background: 'rgba(255, 255, 255, 0.10)',
-//                   backdropFilter: 'blur(20px)',
-//                   WebkitBackdropFilter: 'blur(20px)',
-//                   border: '1px solid rgba(255, 255, 255, 0.5)',
-//                   boxShadow: isHovered
-//                     ? '0 20px 60px rgba(255, 255, 255, 0.3), 0 0 80px rgba(255, 255, 255, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.4)'
-//                     : '',
-//                   transform: isHovered ? 'scale(1.05)' : 'scale(1)',
-//                 }}
-//               >
-//                 Start Now
-//                 </button>
-
-//                 <div
-//                   className="absolute inset-0 transition-opacity duration-300 pointer-events-none"
-//                   style={{
-//                     background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%)',
-//                     opacity: isHovered ? 1 : 0,
-//                   }}
-//                 />
-
-//                 {isHovered && (
-//                   <div
-//                     className="absolute rounded-full pointer-events-none transition-all duration-500 ease-out"
-//                     style={{
-//                       width: '250px',
-//                       height: '250px',
-//                       left: `${mousePos.x}px`,
-//                       top: `${mousePos.y}px`,
-//                       transform: 'translate(-50%, -50%)',
-//                       background: 'radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 70%)',
-//                       filter: 'blur(25px)',
-//                     }}
-//                   />
-//                 )}
-
-//                 <div
-//                   className="absolute inset-0 opacity-30 pointer-events-none"
-//                   style={{
-//                     background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, transparent 60%)',
-//                   }}
-//                 />
-
-// <<<<<<< HEAD
-
-// =======
-
-//                 {isHovered && (
-//                   <div
-//                     className="absolute inset-0 rounded-full sm:rounded-2xl pointer-events-none"
-//                     style={{
-//                       background: 'rgba(255, 255, 255, 0.2)',
-//                       filter: 'blur(30px)',
-//                       transform: 'scale(1.15)',
-//                       zIndex: -1,
-//                       animation: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-//                     }}
-//                   />
-//                 )}
-
-// <<<<<<< HEAD
-
-//           </div> */}
-
-// {/*
-//           <div className='relative'>
-//             <button className='glass-card px-6 py-3 text-white'>Start Now</button> */}
-
-//             {/* <button className="px-5 py-2.5 rounded-2xl text-white
-// bg-white/15 backdrop-blur-xl
-// shadow-[inset_0_0_0_1px_rgba(255,255,255,0.25)]
-// ">
-//   Start Now
-// </button> */}
-
-// {/* <button
-
-//   className="relative overflow-hidden"
-//   style={{
-//     width: '218px',
-//     height: '64px',
-//     borderRadius: '32px',
-//     background: 'rgba(255, 255, 255, 0.10)',
-//     backdropFilter: 'blur(20px) saturate(180%)',
-//     WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-
-//     border: '1px solid rgba(255, 255, 255, 0.2)',
-
-//     transform: 'scale(1)',
-//     transition: 'none',
-
-//     boxShadow: '0 1px 0 rgba(255, 255, 255, 0.15) inset',
-//     cursor: 'default'
-//   }}
-// >
-//  <div
-//     className="absolute top-0 left-0 right-0"
-//     style={{
-//       height: '50%',
-//       background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%)',
-//       pointerEvents: 'none',
-//       borderRadius: '32px 32px 0 0'
-//     }}
-//   />
-
-//   <div className="relative z-10 flex items-center justify-center h-full">
-//     <span
-//       className="font-semibold text-xl tracking-wide"
-//       style={{
-//         color: 'rgba(255, 255, 255, 0.98)',
-//         textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
-//         transition: 'all 0.2s ease'
-//       }}
-//     >
-//       Jetzt starten
-//     </span>
-//   </div>
-// </button> */}
-//           </div>
-
-//           </div>
-
-//         </div>
-//       </div>
-
-//   );
-// };
-
-// export default CTABanner;

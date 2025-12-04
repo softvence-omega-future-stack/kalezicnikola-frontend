@@ -72,7 +72,7 @@ const ExampleSection: React.FC = () => {
   const totalDuration = 100;
 
   // ✅ Translation fix: assert type to MenuItem[]
-  const menuItems: MenuItem[] = t("exampleSection.menuItems", { returnObjects: true }) as MenuItem[];
+  const menuItems: MenuItem[] = t("landingPage.exampleSection.menuItems", { returnObjects: true }) as MenuItem[];
 
   // Handle card click
   const handleCardClick = (index: number) => {
@@ -117,9 +117,9 @@ const ExampleSection: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 sm:gap-8">
         <SectionHeader
           badgeIcon={icon}
-          badgeText={t("exampleSection.badge")}
-          heading={t("exampleSection.heading")}
-          subText={t("exampleSection.subText")}
+          badgeText={t("landingPage.exampleSection.badge")}
+          heading={t("landingPage.exampleSection.heading")}
+          subText={t("landingPage.exampleSection.subText")}
           align="left"
           subAlign="left"
         />

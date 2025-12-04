@@ -8,7 +8,7 @@ const SecuritySection: React.FC = () => {
   const { t } = useTranslation();
 
   // ✅ Get features from translation with proper type assertion
-  const features = t('security.features', { returnObjects: true }) as Array<{
+  const features = t('landingPage.security.features', { returnObjects: true }) as Array<{
     title: string;
     description: string;
     subDescription: string;
@@ -41,8 +41,8 @@ const SecuritySection: React.FC = () => {
       <div>
         <SectionHeader
           badgeIcon={icon}
-          badgeText={t('security.badge')}
-          heading={t('security.heading')}
+          badgeText={t('landingPage.security.badge')}
+          heading={t('landingPage.security.heading')}
           align="center"
         />
 

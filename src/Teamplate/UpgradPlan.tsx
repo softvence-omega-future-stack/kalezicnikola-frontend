@@ -179,20 +179,19 @@ import { useTranslation } from 'react-i18next';
 import icon from '../assets/svgIcon/herologo.svg';
 import tricjcircle from '../assets/svgIcon/tickcircle.svg';
 import tricjcirclewhite from '../assets/svgIcon/tick-circle-white.svg';
-import './buttom.css';
+
 import SectionHeader from './SectionHeader';
 
-// -----------------------------------------------------------
-// 1. Types for i18n Data
-// -----------------------------------------------------------
+// -------------------- Types --------------------
 
 interface PlanData {
   name: string;
   monthly: number;
   yearly: number;
-  features: string[]; // This array is now loaded from i18n and contains translated strings
+  features: string[];
   color: string;
   isPremium: boolean;
+  buttonText: string;
 }
 
 interface PricingCardProps {
@@ -201,56 +200,46 @@ interface PricingCardProps {
   navigate: (path: string) => void;
 }
 
-// -----------------------------------------------------------
-// 2. PricingCard Component (Updated with i18n)
-// -----------------------------------------------------------
+// -------------------- PricingCard --------------------
 
 const PricingCard = memo(({ plan, billingCycle, navigate }: PricingCardProps) => {
   const { t } = useTranslation();
-
-  const saveLabel = t('pricingSection.billingToggle.saveLabel');
-  //const buttonText = t('pricingSection.buttonText');
+  const saveLabel = t('landingPage.pricingSection.billingToggle.saveLabel');
   const billingSuffix = t('pricingSection.billingSuffix', { defaultValue: '/month' });
 
   return (
     <div
       className={`${
         plan.isPremium ? 'bg-[#171C35] border-[#3C4263]' : 'bg-white border-gray-100'
-      } rounded-3xl p-8 border flex flex-col justify-between`}
+      } rounded-3xl p-8 border flex flex-col justify-between `}
     >
+      {/* Plan Name & Price */}
       <div>
         <h2
-          className={`text-2xl font-semibold mb-2 md:mb-8 ${
+          className={`text-2xl font-semibold mb-4 md:mb-8 ${
             plan.isPremium ? 'text-white' : 'text-[#526FFF]'
           }`}
         >
           {plan.name}
         </h2>
 
-        <div className="mb-4 md:mb-8">
+        <div className="mb-4 md:mb-6">
           <div className="flex items-baseline gap-1 mb-1">
             <span
               className={`text-3xl md:text-[48px] font-medium ${
-                plan.isPremium ? 'text-white' : `text-[${plan.color}]`
+                plan.isPremium ? 'text-white' : plan.color
               }`}
             >
               {billingCycle === 'monthly' ? plan.monthly : plan.yearly}€
             </span>
-
-            <span
-              className={`text-base font-normal ${
-                plan.isPremium ? 'text-white' : 'text-[#526FFF]'
-              }`}
-            >
+            <span className={`text-base font-normal ${plan.isPremium ? 'text-white' : 'text-[#526FFF]'}`}>
               {billingSuffix}
             </span>
 
             {billingCycle === 'annually' && (
               <span
                 className={`ml-2 text-sm font-semibold px-2 py-0.5 rounded-full ${
-                  plan.isPremium
-                    ? 'bg-white text-[#171C35]'
-                    : 'bg-blue-100 text-[#526FFF]'
+                  plan.isPremium ? 'bg-white text-[#171C35]' : 'bg-blue-100 text-[#526FFF]'
                 }`}
               >
                 {saveLabel}
@@ -260,121 +249,101 @@ const PricingCard = memo(({ plan, billingCycle, navigate }: PricingCardProps) =>
         </div>
       </div>
 
-      <div className="space-y-4 mb-8 flex-1">
-        {/* Features are mapped directly. The translation is handled by i18n loading the entire plan object. */}
-        {plan.features.map((text: string, i: number) => (
-          <div key={i} className="flex items-start gap-3">
+      {/* Features List */}
+      <div className="space-y-4 mb-6 flex-1">
+        {plan.features.map((text, idx) => (
+          <div key={idx} className="flex items-start gap-3">
             <img src={plan.isPremium ? tricjcirclewhite : tricjcircle} alt="" />
-            <span
-              className={
-                plan.isPremium ? 'text-white text-sm font-normal' : 'text-[#171c35] text-sm font-normal'
-              }
-            >
-              {/* This text is already translated because it was loaded from the i18n JSON object */}
-              {text} 
+            <span className={`${plan.isPremium ? 'text-white' : 'text-[#171c35]'} text-sm font-normal`}>
+              {text}
             </span>
           </div>
         ))}
       </div>
 
+      {/* Action Button */}
       <button
         onClick={() => navigate('/signup')}
-        className={`w-full py-3 text-base fontsemibold leading-6 rounded-full transition-colors shadow-lg border-2 cursor-pointer ${
+        className={`w-full py-3 text-base font-semibold leading-6 rounded-full transition-colors shadow-lg border-2 cursor-pointer ${
           plan.isPremium
             ? 'text-white bg-[#526FFF] border-[#526FFF]'
             : `text-[${plan.color}] bg-white border-[${plan.color}]`
         }`}
       >
-        Get Started
-        {/* {(buttonText)} */}
+        {plan.buttonText}
       </button>
     </div>
   );
 });
 
-// -----------------------------------------------------------
-// 3. UpgradPlan Component (Updated with i18n)
-// -----------------------------------------------------------
+// -------------------- UpgradPlan --------------------
 
 const UpgradPlan = () => {
   const { t } = useTranslation();
   const [billingCycle, setBillingCycle] = useState('monthly');
   const navigate = useNavigate();
 
-  // Load ALL plans data (including all translated features) from i18n JSON
-  // If the current language is German, features will be German. If English, features will be English.
-  const plans = t('pricingSection.plans', { returnObjects: true }) as PlanData[];
+  // Load plans from i18n JSON
+  const plans = t('landingPage.pricingSection.plans', { returnObjects: true }) as PlanData[];
 
-  // Load remaining texts
-  const badgeText = t('pricingSection.badgeText');
-  const headingText = t('pricingSection.heading');
-  const monthlyLabel = t('pricingSection.billingToggle.monthly');
-  const annuallyLabel = t('pricingSection.billingToggle.annually');
-
+  const badgeText = t('landingPage.pricingSection.badgeText');
+  const headingText = t('landingPage.pricingSection.heading');
+  const monthlyLabel = t('landingPage.pricingSection.billingToggle.monthly');
+  const annuallyLabel = t('landingPage.pricingSection.billingToggle.annually');
 
   return (
-    <div
-      className="relative mt-12 md:mt-[120px] rounded-2xl md:rounded-[30px] overflow-hidden bg-white"
-      style={{
-        boxShadow: '0 20px 50px rgba(0, 0, 0, 0.05)',
-        fontFamily: 'Urbanist, sans-serif',
-      }}
-    >
-      {/* Left side blue blur - Gradient fade */}
+    <div className="relative mt-12 md:mt-[120px] rounded-2xl overflow-hidden bg-white shadow-sm">
+      {/* Background Blurs */}
       <div
-        className="absolute -left-[20%] md:-left-[25%] z-0 blur-[120px]  w-[60%] md:w-[55%] rounded-full"
+        className="absolute -left-[25%] w-[60%] rounded-full blur-[200px]"
         style={{
           top: '150px',
           height: 'calc(100% - 300px)',
-          background: 'linear-gradient(90deg, rgba(43, 142, 255, 0.6) 0%, rgba(43, 142, 255, 0.35) 35%, rgba(43, 142, 255, 0.15) 60%, rgba(43, 142, 255, 0) 100%)',
-          filter: "blur(200px)"
+          background: 'linear-gradient(90deg, rgba(43,142,255,0.6) 0%, rgba(43,142,255,0.35) 35%, rgba(43,142,255,0.15) 60%, rgba(43,142,255,0) 100%)',
         }}
       ></div>
-
-      {/* Right side purple blur - Gradient fade */}
       <div
-        className="absolute -right-[20%] md:-right-[25%] z-0 blur-[120px]  w-[60%] md:w-[55%] rounded-full"
+        className="absolute -right-[25%] w-[60%] rounded-full blur-[200px]"
         style={{
           top: '150px',
           height: 'calc(100% - 300px)',
-          background: ' rgba(71, 43, 255, 0.20)',
-          filter: "blur(200px)"
+          background: 'rgba(71,43,255,0.2)',
         }}
       ></div>
 
-      <div className="relative z-10 p-4 mt-5 md:mt-0 px-[10px] py-6 md:py-[47px]">
+      <div className="relative z-10 px-4 py-6 md:py-[47px]">
+        {/* Section Header */}
         <SectionHeader
           badgeIcon={icon}
           badgeText={badgeText}
-          heading={<div className='max-[767px]:mt-2'>{headingText.split('\n').map((line, index) => <React.Fragment key={index}>{line}<br/></React.Fragment>)}</div>}
+          heading={
+            <div className="max-[767px]:mt-2">
+              {headingText.split('\n').map((line, idx) => (
+                <React.Fragment key={idx}>
+                  {line}
+                  <br />
+                </React.Fragment>
+              ))}
+            </div>
+          }
           align="center"
         />
 
         {/* Billing Toggle */}
         <div className="flex justify-center mb-8 md:mb-12">
-          <div 
-            style={{
-              boxShadow: "0 12px 16px -4px rgba(16, 24, 40, 0.08), 0 4px 6px -2px rgba(16, 24, 40, 0.03)"
-            }}
-            className="inline-flex bg-white rounded-full p-1 w-fit border border-[#EAECF0] shadow-lg"
-          >
+          <div className="inline-flex bg-white rounded-full p-1 border border-[#EAECF0] shadow-lg">
             <button
               onClick={() => setBillingCycle('monthly')}
-              className={`px-6 py-2.5 text-sm font-normal leading-3.5 w-[131px] rounded-full transition-all duration-300 cursor-pointer ${
-                billingCycle === 'monthly'
-                  ? 'bg-[#526FFF] text-white font-medium shadow-md'
-                  : 'text-[#171c35] hover:bg-gray-50'
+              className={`px-6 py-2.5 w-[131px] rounded-full text-sm transition-all duration-300 cursor-pointer ${
+                billingCycle === 'monthly' ? 'bg-[#526FFF] text-white font-medium shadow-md' : 'text-[#171c35] hover:bg-gray-50'
               }`}
             >
               {monthlyLabel}
             </button>
-
             <button
               onClick={() => setBillingCycle('annually')}
-              className={`px-6 py-2.5 text-sm font-normal w-[131px] rounded-full transition-all duration-300 cursor-pointer ${
-                billingCycle === 'annually'
-                  ? 'bg-[#526FFF] text-white font-medium shadow-md'
-                  : 'text-[#171c35] hover:bg-gray-50'
+              className={`px-6 py-2.5 w-[131px] rounded-full text-sm transition-all duration-300 cursor-pointer ${
+                billingCycle === 'annually' ? 'bg-[#526FFF] text-white font-medium shadow-md' : 'text-[#171c35] hover:bg-gray-50'
               }`}
             >
               {annuallyLabel}
@@ -382,18 +351,10 @@ const UpgradPlan = () => {
           </div>
         </div>
 
-        {/* Pricing Cards */}
-        <div
-          style={{ fontFamily: 'Urbanist, sans-serif' }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:px-[60px] gap-6"
-        >
-          {plans.map((plan, i) => (
-            <PricingCard
-              key={i}
-              plan={plan}
-              billingCycle={billingCycle}
-              navigate={navigate}
-            />
+        {/* Pricing Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 xl:px-[60px]">
+          {plans.map((plan, idx) => (
+            <PricingCard key={idx} plan={plan} billingCycle={billingCycle} navigate={navigate} />
           ))}
         </div>
       </div>

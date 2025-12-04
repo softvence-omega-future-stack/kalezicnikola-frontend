@@ -3,6 +3,7 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 import icon from "../assets/svgIcon/herologo.svg";
 import "./buttom.css";
 import SectionHeader from "./SectionHeader";
+import { useTranslation } from "react-i18next";
 
 interface FAQItem {
   question: string;
@@ -11,39 +12,44 @@ interface FAQItem {
 
 const FAQSection: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const { t } = useTranslation();
 
-  const faqData: FAQItem[] = [
-    {
-      question: "What is Docline?",
-      answer:
-        "Docline is a modern, cloud-based practice software. Its core feature is the AI Voicebot...",
-    },
-    {
-      question: "How exactly does Docline work?",
-      answer:
-        "Docline uses advanced AI technology to process calls in real time...",
-    },
-    {
-      question: "Does Docline train with my patient data?",
-      answer:
-        "No, Docline does not train with your patient data. All data is processed in compliance...",
-    },
-    {
-      question: 'What is an "AI Agent"?',
-      answer:
-        "An AI Agent is intelligent software capable of performing tasks autonomously...",
-    },
-    {
-      question: "Is my data safe with Docline?",
-      answer:
-        "Yes, your data is completely secure with us. We use end-to-end encryption...",
-    },
-    {
-      question: "Do I need new hardware for Docline?",
-      answer:
-        "No, you do not need any new hardware. Docline is a cloud-based solution...",
-    },
-  ];
+const faqData = t("landingPage.faqSection.items", {
+  returnObjects: true,
+}) as FAQItem[];
+
+
+  //   {
+  //     question: "What is Docline?",
+  //     answer:
+  //       "Docline is a modern, cloud-based practice software. Its core feature is the AI Voicebot...",
+  //   },
+  //   {
+  //     question: "How exactly does Docline work?",
+  //     answer:
+  //       "Docline uses advanced AI technology to process calls in real time...",
+  //   },
+  //   {
+  //     question: "Does Docline train with my patient data?",
+  //     answer:
+  //       "No, Docline does not train with your patient data. All data is processed in compliance...",
+  //   },
+  //   {
+  //     question: 'What is an "AI Agent"?',
+  //     answer:
+  //       "An AI Agent is intelligent software capable of performing tasks autonomously...",
+  //   },
+  //   {
+  //     question: "Is my data safe with Docline?",
+  //     answer:
+  //       "Yes, your data is completely secure with us. We use end-to-end encryption...",
+  //   },
+  //   {
+  //     question: "Do I need new hardware for Docline?",
+  //     answer:
+  //       "No, you do not need any new hardware. Docline is a cloud-based solution...",
+  //   },
+  // ];
 
   const toggleAccordion = (index: number) => {
     setOpenIndex((prev) => (prev === index ? null : index));
@@ -59,8 +65,8 @@ const FAQSection: React.FC = () => {
         <div className="relative text-center mb-12">
               <SectionHeader
   badgeIcon={icon}
-  badgeText="FAQ" // i18n key
-  heading={<>    Frequently Asked Questions</>}
+  badgeText={t("landingPage.faqSection.badgeText")} // i18n key
+  heading={t("landingPage.faqSection.heading")}
 
   align="center"
 />

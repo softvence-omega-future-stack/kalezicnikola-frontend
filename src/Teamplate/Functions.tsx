@@ -18,8 +18,8 @@ const Functions = () => {
         <div className="md:mb-5">
           <SectionHeader
             badgeIcon={icon}
-            badgeText={t("functions.badge")}
-            heading={t("functions.heading")}
+            badgeText={t("landingPage.functions.badge")}
+            heading={t("landingPage.functions.heading")}
             align="left"
           />
         </div>
@@ -42,10 +42,10 @@ const Functions = () => {
             }}
           >
             <h3 className="text-[32px] leading-8 font-semibold text-[#171C35] mb-5">
-              {t("functions.feature1.title")}
+              {t("landingPage.functions.feature1.title")}
             </h3>
             <p className="text-base text-[#171c35] mb-6 leading-[140%] font-normal">
-              {t("functions.feature1.description")}
+              {t("landingPage.functions.feature1.description")}
             </p>
 
             <div
@@ -76,10 +76,10 @@ const Functions = () => {
           >
             <div className="relative z-10">
               <h3 className="text-[32px] leading-8 font-semibold text-[#171C35] mb-5">
-                {t("functions.feature2.title")}
+                {t("landingPage.functions.feature2.title")}
               </h3>
               <p className="text-base text-[#171c35] mb-20 leading-[140%] font-normal">
-                {t("functions.feature2.description")}
+                {t("landingPage.functions.feature2.description")}
               </p>
             </div>
 
@@ -109,10 +109,10 @@ const Functions = () => {
             >
               <div>
                 <h3 className="text-[32px] leading-8 font-semibold text-[#171C35] mb-2.5">
-                  {t("functions.feature3.title")}
+                  {t("landingPage.functions.feature3.title")}
                 </h3>
                 <p className="text-base text-[#171c35] leading-[140%] font-normal pb-[143px]">
-                  {t("functions.feature3.description")}
+                  {t("landingPage.functions.feature3.description")}
                 </p>
               </div>
 
@@ -143,7 +143,7 @@ const Functions = () => {
                       fontSize: "24px",
                     }}
                   >
-                    {t("functions.feature3.buttonText")}
+                    {t("landingPage.functions.feature3.buttonText")}
                   </span>
                 </button>
               </div>
@@ -162,10 +162,10 @@ const Functions = () => {
             >
               <div>
                 <h3 className="text-[32px] leading-8 font-semibold text-[#171C35] mb-2.5">
-                  {t("functions.feature4.title")}
+                  {t("landingPage.functions.feature4.title")}
                 </h3>
                 <p className="text-base text-[#171c35] leading-[140%] font-normal">
-                  {t("functions.feature4.description")}
+                  {t("landingPage.functions.feature4.description")}
                 </p>
               </div>
 
@@ -196,10 +196,10 @@ const Functions = () => {
               }}
             >
               <h3 className="text-2xl sm:text-[32px] leading-8 font-semibold text-[#171C35] mb-5">
-                {t("functions.feature1.title")}
+                {t("landingPage.functions.feature1.title")}
               </h3>
               <p className="text-sm sm:text-base text-[#171c35] mb-6 leading-[140%] font-normal">
-                {t("functions.feature1.description")}
+                {t("landingPage.functions.feature1.description")}
               </p>
 
               <div
@@ -230,10 +230,10 @@ const Functions = () => {
             >
               <div className="relative z-10">
                 <h3 className="text-2xl sm:text-[32px] leading-8 font-semibold text-[#171C35] mb-5">
-                  {t("functions.feature2.title")}
+                  {t("landingPage.functions.feature2.title")}
                 </h3>
                 <p className="text-sm sm:text-base text-[#171c35] mb-12 sm:mb-20 leading-[140%] font-normal">
-                  {t("functions.feature2.description")}
+                  {t("landingPage.functions.feature2.description")}
                 </p>
               </div>
 
@@ -264,10 +264,10 @@ const Functions = () => {
             >
               <div>
                 <h3 className="text-2xl sm:text-[32px] leading-8 font-semibold text-[#171C35] mb-2.5">
-                  {t("functions.feature3.title")}
+                  {t("landingPage.functions.feature3.title")}
                 </h3>
                 <p className="text-sm sm:text-base text-[#171c35] leading-[140%] font-normal pb-[143px]">
-                  {t("functions.feature3.description")}
+                  {t("landingPage.functions.feature3.description")}
                 </p>
               </div>
 
@@ -298,7 +298,7 @@ const Functions = () => {
                       fontSize: "24px",
                     }}
                   >
-                    {t("functions.feature3.buttonText")}
+                    {t("landingPage.functions.feature3.buttonText")}
                   </span>
                 </button>
               </div>

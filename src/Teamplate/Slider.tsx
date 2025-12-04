@@ -56,7 +56,7 @@ const DashboardSlide: React.FC<DashboardSlideProps> = ({
           {/* Label */}
           <div className="flex w-fit items-center text-xs font-medium text-[#3B82F6] mb-3 rounded-full py-2 px-2.5 border border-[#3B82F6] gap-2">
             <img src={icon} alt="" className="w-4 h-4" />
-            {t("slider.badge")}
+            {t("landingPage.slider.badge")}
           </div>
 
           {/* Title & Subtitle */}
@@ -110,7 +110,7 @@ const Slider: React.FC = () => {
   // -----------------------------
   // Get slides from i18n
   // -----------------------------
-  const slides: SlideData[] = (t("slider.slides", { returnObjects: true }) as SlideData[]).map(
+  const slides: SlideData[] = (t("landingPage.slider.slides", { returnObjects: true }) as SlideData[]).map(
     (slide) => ({
       ...slide,
       img:
@@ -132,13 +132,13 @@ const Slider: React.FC = () => {
       <div className="flex flex-col md:flex-row items-center justify-center md:justify-between w-[92%] mx-auto mb-6">
         <SectionHeader
           badgeIcon={icon}
-          badgeText={t("slider.badge")}
-          heading={t("slider.heading")}
+          badgeText={t("landingPage.slider.badge")}
+          heading={t("landingPage.slider.heading")}
           align="left"
           subAlign="right"
         />
         <p className="text-base leading-[140%] md:text-lg font-normal text-subHeadingBlack max-w-sm md:max-w-md text-center md:text-left mt-2 md:mt-0">
-          {t("slider.subText")}
+          {t("landingPage.slider.subText")}
         </p>
       </div>
 

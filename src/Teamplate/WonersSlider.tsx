@@ -29,7 +29,7 @@ const TestimonialSection: React.FC = () => {
   const [activeSlide, setActiveSlide] = useState(0);
 
   // ✅ Get testimonials from translation
-  const testimonialsData = t('testimonialSection.testimonials', { returnObjects: true }) as Array<{
+  const testimonialsData = t('landingPage.testimonialSection.testimonials', { returnObjects: true }) as Array<{
     quote: string;
     name: string;
     title: string;
@@ -66,8 +66,8 @@ const TestimonialSection: React.FC = () => {
         {/* SECTION HEADER */}
         <SectionHeader
           badgeIcon={icon}
-          badgeText={t('testimonialSection.badgeText')}
-          heading={t('testimonialSection.heading')}
+          badgeText={t('landingPage.testimonialSection.badgeText')}
+          heading={t('landingPage.testimonialSection.heading')}
           align="center"
         />
 

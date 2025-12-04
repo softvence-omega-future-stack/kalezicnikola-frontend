@@ -16,20 +16,20 @@ const ReliefCard: React.FC = () => {
     <div className="p-4 sm:p-6 md:p-[30px] w-full md:w-[28%] bg-headingBlack rounded-2xl sm:rounded-[30px] flex flex-col justify-between text-white">
       <div>
         <p className="text-3xl sm:text-5xl md:text-6xl lg:text-[96px] mb-8 md:mb-10 font-extralight font-urbanist text-white">
-          {t("features.relief.percent")}
+          {t("landingPage.features.relief.percent")}
         </p>
 
         <div className="space-y-2 md:space-y-2.5 leading-[120%]">
           <h3 className="text-lg sm:text-xl md:text-2xl font-medium leading-[120%]">
-            {t("features.relief.title")}
+            {t("landingPage.features.relief.title")}
           </h3>
 
           <p className="text-xs sm:text-sm text-white">
-            {t("features.relief.line1")}
+            {t("landingPage.features.relief.line1")}
           </p>
 
           <span className="text-xs sm:text-sm text-white">
-            {t("features.relief.line2")}
+            {t("landingPage.features.relief.line2")}
           </span>
         </div>
       </div>
@@ -58,11 +58,11 @@ const ConversationCard: React.FC = () => {
     >
       <div>
         <h3 className="text-lg sm:text-xl md:text-2xl font-medium leading-[120%] text-headingBlack">
-          {t("features.conversation.title")}
+          {t("landingPage.features.conversation.title")}
         </h3>
 
         <p className="mt-3.5 text-sm sm:text-base text-subHeadingBlack leading-[140%] max-w-md">
-          {t("features.conversation.text")}
+          {t("landingPage.features.conversation.text")}
         </p>
       </div>
 
@@ -98,12 +98,12 @@ const TriadeCard: React.FC = () => {
     >
       <div>
         <h3 className="text-lg sm:text-xl md:text-2xl font-medium leading-[120%] text-headingBlack">
-          {t("features.triage.title")}
+          {t("landingPage.features.triage.title")}
         </h3>
 
         <p className="mt-3.5 text-sm sm:text-base text-subHeadingBlack leading-[140%]">
-          {t("features.triage.text1")} <br />
-          {t("features.triage.text2")}
+          {t("landingPage.features.triage.text1")} <br />
+          {t("landingPage.features.triage.text2")}
         </p>
      
       </div>
@@ -129,16 +129,16 @@ const AvailabilityCard: React.FC = () => {
       }}
     >
       <p className="text-2xl sm:text-4xl md:text-6xl lg:text-[96px] mb-8 md:mb-20 font-extralight font-urbanist text-white">
-        {t("features.availability.percent")}
+        {t("landingPage.features.availability.percent")}
       </p>
 
       <div className="space-y-2 md:space-y-2.5 leading-[120%]">
         <h3 className="text-lg sm:text-xl md:text-2xl text-white font-medium leading-[120%]">
-          {t("features.availability.title")}
+          {t("landingPage.features.availability.title")}
         </h3>
 
         <p className="text-xs sm:text-sm text-white leading-[150%]">
-          {t("features.availability.text")}
+          {t("landingPage.features.availability.text")}
           {/* <br className="hidden md:block" />
           {t("features.availability.text2")} */}
         </p>
@@ -165,10 +165,10 @@ const IntegrationCard: React.FC = () => {
       }}
     >
       <h3 className="text-lg sm:text-xl md:text-2xl font-medium leading-[120%] text-headingBlack">
-        {t("features.integration.title")}
+        {t("landingPage.features.integration.title")}
       </h3>
       <p className="mt-3.5 text-sm sm:text-base text-subHeadingBlack leading-[140%] text-left">
-        {t("features.integration.text")}
+        {t("landingPage.features.integration.text")}
       </p>
     </div>
   );
@@ -193,11 +193,11 @@ const SoftwareCard: React.FC = () => {
       }}
     >
       <h3 className="text-lg sm:text-xl md:text-2xl font-medium leading-[120%] text-headingBlack break-words">
-        {t("features.software.title")}
+        {t("landingPage.features.software.title")}
       </h3>
 
       <p className="mt-3.5 text-sm sm:text-base text-subHeadingBlack leading-[140%] text-justify md:text-left break-words">
-        {t("features.software.text")}
+        {t("landingPage.features.software.text")}
       </p>
     </div>
   );
@@ -225,11 +225,11 @@ const CustomizationCard: React.FC = () => {
     >
       <div>
         <h3 className="text-lg sm:text-xl lg:text-2xl font-medium">
-          {t("features.customization.title")}
+          {t("landingPage.features.customization.title")}
         </h3>
         <div className="flex flex-col md:flex-row items-start justify-between gap-4 w-full">
           <p className="mt-3.5 text-sm sm:text-base text-subHeadingBlack sm:w-[57%]">
-            {t("features.customization.text")}
+            {t("landingPage.features.customization.text")}
           </p>
           <div
             className="flex flex-col items-end sm:w-[43%] h-full justify-center md:justify-end sm:absolute sm:bottom-[30px] right-[30px]"
@@ -259,8 +259,8 @@ const FeatureSection: React.FC = () => {
 <div className="">
   <SectionHeader
           badgeIcon={icon}
-          badgeText={t("features.badge")}
-          heading={t("features.heading")}
+          badgeText={t("landingPage.features.badge")}
+          heading={t("landingPage.features.heading")}
          
           align="center"
       
@@ -268,7 +268,7 @@ const FeatureSection: React.FC = () => {
         />
 
       <p className="text-center -mt-7  mb-10 md:mb-[60px] text-sm md:text-lg text-subHeadingBlack">
-        {t("features.subText")}
+        {t("landingPage.features.subText")}
       </p>
 </div>
       {/* Row 1 */}
