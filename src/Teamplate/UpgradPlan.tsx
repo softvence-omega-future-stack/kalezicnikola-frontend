@@ -171,7 +171,6 @@
 
 
 
-
 import React, { useState, memo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -205,7 +204,11 @@ interface PricingCardProps {
 const PricingCard = memo(({ plan, billingCycle, navigate }: PricingCardProps) => {
   const { t } = useTranslation();
   const saveLabel = t('landingPage.pricingSection.billingToggle.saveLabel');
-  const billingSuffix = t('pricingSection.billingSuffix', { defaultValue: '/month' });
+  
+  // Dynamic billing suffix based on cycle
+  const billingSuffix = billingCycle === 'monthly' 
+    ? t('landingPage.pricingSection.billingSuffix.monthly')
+    : t('landingPage.pricingSection.billingSuffix.annually');
 
   return (
     <div

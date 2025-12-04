@@ -1,8 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export default function CalendarHeader() {
+  const { t } = useTranslation();
   const [currentDate, setCurrentDate] = useState(new Date());
   const [monthDropdownOpen, setMonthDropdownOpen] = useState(false);
   const [yearDropdownOpen, setYearDropdownOpen] = useState(false);
@@ -13,8 +15,18 @@ export default function CalendarHeader() {
   const yearRef = useRef<HTMLDivElement>(null);
 
   const months = [
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
+    t('dashboard.routes.dashboard.calendar.months.january'),
+    t('dashboard.routes.dashboard.calendar.months.february'),
+    t('dashboard.routes.dashboard.calendar.months.march'),
+    t('dashboard.routes.dashboard.calendar.months.april'),
+    t('dashboard.routes.dashboard.calendar.months.may'),
+    t('dashboard.routes.dashboard.calendar.months.june'),
+    t('dashboard.routes.dashboard.calendar.months.july'),
+    t('dashboard.routes.dashboard.calendar.months.august'),
+    t('dashboard.routes.dashboard.calendar.months.september'),
+    t('dashboard.routes.dashboard.calendar.months.october'),
+    t('dashboard.routes.dashboard.calendar.months.november'),
+    t('dashboard.routes.dashboard.calendar.months.december')
   ];
 
   const years = Array.from({ length: 31 }, (_, i) => 2000 + i); // 2000-2030
@@ -86,7 +98,7 @@ export default function CalendarHeader() {
   }, []);
 
   return (
-    <div className="flex items-center  w-full sm:w-auto relative">
+    <div className="flex items-center w-full sm:w-auto relative">
       {/* Prev Month */}
       <button onClick={handlePrevMonth} className="p-1 hover:bg-gray-100 rounded">
         <ChevronLeft size={20} className="text-gray-600 cursor-pointer" />
@@ -171,7 +183,7 @@ export default function CalendarHeader() {
       )}
 
       {/* Next Month */}
-      <button onClick={handleNextMonth} className=" hover:bg-gray-100 rounded">
+      <button onClick={handleNextMonth} className="hover:bg-gray-100 rounded">
         <ChevronRight size={20} className="text-gray-600 cursor-pointer" />
       </button>
     </div>

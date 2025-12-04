@@ -105,9 +105,21 @@
 
 
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 const CalendarMonthView: React.FC = () => {
+  const { t } = useTranslation();
   const eventColors = ["bg-purple-50", "bg-green-50", "bg-orange-50"];
+
+  const weekDays = [
+    t('dashboard.routes.dashboard.calendar.weekDaysFull.monday'),
+    t('dashboard.routes.dashboard.calendar.weekDaysFull.tuesday'),
+    t('dashboard.routes.dashboard.calendar.weekDaysFull.wednesday'),
+    t('dashboard.routes.dashboard.calendar.weekDaysFull.thursday'),
+    t('dashboard.routes.dashboard.calendar.weekDaysFull.friday'),
+    t('dashboard.routes.dashboard.calendar.weekDaysFull.saturday'),
+    t('dashboard.routes.dashboard.calendar.weekDaysFull.sunday')
+  ];
 
   const calendarDays = [
     { date: 29, month: "prev" },
@@ -152,7 +164,7 @@ const CalendarMonthView: React.FC = () => {
         <div className="border border-[#E8E8E8] rounded-2xl overflow-hidden">
           <div className="grid grid-cols-7"> 
             {/* Day Headers */}
-            {["MON", "TUE", "WED", "THUR", "FRI", "SAT", "SUN"].map((day, index) => (
+            {weekDays.map((day, index) => (
               <div
                 key={day}
                 className={`bg-white py-2 px-1 text-xs font-medium text-[#667085] text-center md:py-3 md:px-4 md:text-base border-b border-[#E8E8E8] ${
@@ -203,7 +215,6 @@ const CalendarMonthView: React.FC = () => {
 };
 
 export default CalendarMonthView;
-
 
 
 

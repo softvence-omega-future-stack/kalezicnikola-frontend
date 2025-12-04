@@ -9,8 +9,10 @@ import chevronIcon from '../../../assets/svgIcon/chevronnRight.svg';
 import NewAppointmentModal from '../dashboard/NewAppointmentModal';
 import CalendarHeader from './CalendarHeader';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const CalendarView: React.FC = () => {
+  const { t } = useTranslation();
   const [viewType, setViewType] = useState<'day' | 'week' | 'month'>('day');
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -20,16 +22,15 @@ const CalendarView: React.FC = () => {
   const dropdownRef = useRef<HTMLButtonElement>(null);
 
   const options = [
-    { label: "Day", value: "day" },
-    { label: "Week", value: "week" },
-    { label: "Month", value: "month" },
+    { label: t('dashboard.routes.calendar.views.day'), value: 'day' },
+    { label: t('dashboard.routes.calendar.views.week'), value: 'week' },
+    { label: t('dashboard.routes.calendar.views.month'), value: 'month' },
   ];
 
   const handleViewChange = (type: 'day' | 'week' | 'month') => {
     setViewType(type);
   };
 
-  // Update dropdown position when opened
   useEffect(() => {
     if (open && dropdownRef.current) {
       const rect = dropdownRef.current.getBoundingClientRect();
@@ -41,7 +42,6 @@ const CalendarView: React.FC = () => {
     }
   }, [open]);
 
-  // Close menu on outside click
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
@@ -64,19 +64,18 @@ const CalendarView: React.FC = () => {
         <div className="flex items-center gap-2 text-sm text-gray-500 flex-wrap">
           <img src={homeIcon} alt="" className="w-4 h-4" />
           <img src={chevronIcon} alt="" />
-          <span onClick={() => navigate('/dashboard')} className='cursor-pointer'>Dashboard</span>
+          <span onClick={() => navigate('/dashboard')} className='cursor-pointer'>{t('dashboard.routes.calendar.breadcrumb.dashboard')}</span>
           <img src={chevronIcon} alt="" />
-          <span className="text-[#171C35] text-sm font-semibold">Calendar</span>
+          <span className="text-[#171C35] text-sm font-semibold">{t('dashboard.routes.calendar.breadcrumb.calendar')}</span>
         </div>
       </div>
 
       {/* Main Content */}
       <div className="pt-3.5">
-        <h1 className="text-xl md:text-xl font-semibold text-[#171C35] mb-4 sm:mb-6">Calendar</h1>
+        <h1 className="text-xl md:text-xl font-semibold text-[#171C35] mb-4 sm:mb-6">{t('dashboard.routes.calendar.header')}</h1>
 
         {/* Top Controls */}
         <div className="rounded-lg pt-6 mb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-
           <div>
             <CalendarHeader />
           </div>
@@ -106,7 +105,7 @@ const CalendarView: React.FC = () => {
                 w-full sm:w-auto justify-center cursor-pointer"
             >
               <Plus size={16} />
-              Appointment
+              {t('dashboard.routes.calendar.appointment')}
             </button>
           </div>
         </div>

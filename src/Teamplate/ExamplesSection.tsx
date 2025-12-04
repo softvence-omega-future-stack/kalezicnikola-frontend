@@ -161,7 +161,7 @@ const ExampleSection: React.FC = () => {
                     <div className={`transition-all duration-500 ease-in-out overflow-hidden ${isActive ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0"}`}>
                       {/* Waveform */}
                       <div className="relative mb-6 overflow-hidden">
-                        <div className="flex items-center justify-between gap-2 h-28 w-full relative">
+                        <div className="flex items-center justify-between  h-28 w-full relative">
                           {Array.from({ length: 6 }).map((_, i) => {
                             const currentBar = Math.floor((currentTime / totalDuration) * 6);
                             const isBarActive = i === currentBar && isPlaying;

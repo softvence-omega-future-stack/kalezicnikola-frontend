@@ -11,15 +11,15 @@
   },
   "hero": {
     "badge": "Nie wieder Telefonstress",
-    "heading": "24/7 Verfügbarkeit für Ihre Patienten. Null Telefonstress für Ihr Team.",
+    "heading": "24/7 Verfügbarkeit für  Ihre Patienten.|||  Null Telefonstress für Ihr Team.",
     "subText": "Unser intelligenter KI-Assistent erledigt alle Anrufe rund um die Uhr. Er plant Termine, beantwortet Fragen, erstellt automatisch Aufgaben und entlastet Ihr Team.",
-  "getStarted": "Loslegen",
+  "getStarted": "Jetzt starten",
   "bookDemo": "Demo buchen"
   },
   "features": {
-    "badge": "Ruhig am Telefon",
+    "badge": "Ruhe am Telefon",
     "heading": "Die Entlastung, ||| die Ihr Team verdient" ,
-    "subText": "Der Docline KI-Assistent löst die  größten Herausforderungen im Praxisalltag",
+    "subText": "Der Docline KI-Assistent löst die größten Herausforderungen im Praxisalltag.",
 
        "relief": {
       "percent": "75%",
@@ -39,7 +39,7 @@
     },
 
     "availability": {
-      "percent": "24/7%",
+      "percent": "24/7",
       "title": "Erreichbarkeit",
       "text": "Ihre Praxis ist 365 Tage im Jahr erreichbar. Die KI fängt alle Anrufe ab – unabhängig von Urlaub, Krankheit oder Fachkräftemangel."
     },
@@ -56,7 +56,7 @@
 
     "customization": {
       "title": "Individuell auf Ihre Praxis zugeschnitten",
-      "text": "Tonfall, Regeln und Formulierungen werden individuell angepasst. Viele Patienten merken nicht einmal, dass sie mit einer KI sprechen."
+      "text": "Stimme, Wortwahl und Regeln der KI werden exakt an den Stil Ihrer Praxis angepasst. Patienten bemerken oft nicht, dass sie mit einer KI sprechen."
     }
   },
   "slider": {
@@ -66,48 +66,52 @@
    "slides": [
   {
     "id": 1,
-    "title": "Klarer Überblick. Mehr Effizienz",
-    "subtitle": "Das Dashboard, das das Management einfacher und schneller macht.",
+     "cardBadge": "Task",
+    "title": "Ihr Workflow. Optimiert",
+    "subtitle": "Verabschieden Sie sich von Zetteln und Unklarheit. Das integrierte Task-Management sorgt für eine transparente und effiziente Abarbeitung aller Praxis-Aufgaben.",
     "list": [
-      "Alle wichtigen Kennzahlen, Patienten und Termine auf einen Blick sehen.",
-      "Unerledigte Anrufe und offene Aufgaben klar hervorgehoben.",
-      "Einfach zu navigieren und schnell zu meistern."
+      "Unerledigte Anliegen werden sofort zur Aufgabe.",
+      "Unterteilen Sie Aufgaben in: Offen - In Arbeit - Erledigt.",
+      "Manuelle Task-Erstellung für die interne Administration"
     ],
     "img": "slider1.svg",
     "bgColor": "bg-[#FADACA]"
   },
   {
     "id": 2,
-    "title": "Optimierter Arbeitsablauf",
-    "subtitle": "Integriertes Aufgabenmanagement sorgt für Effizienz.",
+    "cardBadge": "Anrufprotokolle, Transkription & Audio",
+    "title": "Jeder Anruf, vollständig erfasst",
+    "subtitle": "Docline protokolliert jedes Gespräch. Es erstellt präzise Transkripte, liefert eine klare KI-gestützte Zusammenfassung und archiviert die Original-Audiospur.",
     "list": [
-      "Offene Anfragen werden sofort als Aufgaben zugewiesen.",
-      "Aufgaben kategorisieren: Offen - In Bearbeitung - Abgeschlossen.",
-      "Manuelle Erstellung von Aufgaben für interne Verwaltung."
+      "Präzise Transkription. Wort für Wort.",
+      "KI-Zusammenfassung. Der Kern des Anrufs, sofort erfasst.",
+      "Original-Audio. Für volle Nachvollziehbarkeit."
     ],
     "img": "Slider02.svg",
     "bgColor": "bg-[#DBECFF]"
   },
   {
     "id": 3,
-    "title": "Patienten- & Daten-Insights",
-    "subtitle": "Erhalten Sie einen vollständigen Überblick über Leistungsdaten.",
+        "cardBadge": "Kalendar & Patientenkartei",
+    "title": "Intelligenter Kalender & Patienten-Kartei",
+    "subtitle": "Fehlerfreie Terminverwaltung durch KI-Eintragung.",
     "list": [
-      "Tägliche, wöchentliche und monatliche Berichte einfach verfolgen.",
-      "Analysen vergleichen, um die Produktivität zu messen.",
-      "Einblicke generieren, um bessere Entscheidungen zu treffen."
+      "Der Kalender. Vom Voicebot automatisch aktualisiert.",
+      "Die Patientenakte. Jeder relevante Fakt. Sofort verfügbar."
+
     ],
     "img": "slider3.svg",
     "bgColor": "bg-[#F5DFF1]"
   },
   {
     "id": 4,
-    "title": "Kollaboratives Dashboard",
-    "subtitle": "In Echtzeit zusammenarbeiten.",
+        "cardBadge": "Dashboard",
+    "title": "Klare Übersicht. Mehr Effizienz",
+    "subtitle": "Das Dashboard, das Freude macht..",
     "list": [
-      "Sofortige Team-Updates und gemeinsame Aufgabenverwaltung.",
-      "Intelligente Benachrichtigungen für schnelle Kommunikation.",
-      "Alle Teamdaten in einem Arbeitsbereich vereinheitlicht."
+      "Alle Kennzahlen, Patienten und Termine auf einen Blick.",
+      "Unbearbeitete Anrufe und Aufgaben, klar hervorgehoben.",
+      "Einfach zu navigieren. Schnell zu beherrschen.."
     ],
     "img": "slider4.svg",
     "bgColor": "bg-[#CACDFA]"
@@ -119,16 +123,16 @@
  
   "exampleSection": {
     "badge": "Echte Beispiele",
-    "heading": "So klingt Docline ||| in der Praxis",
-    "subText": "Ihre Patienten werden kaum einen Unterschied bemerken. Passen Sie die Stimme des KI-Assistenten einfach an den Stil Ihrer Praxis an. Wählen Sie eine selbstbewusste männliche oder weibliche Stimme. Dies sorgt für einen reibungslosen und professionellen Empfang bei jedem Anruf.",
+    "heading": "So klingt Docline |||im Praxisalltag",
+    "subText": "Ihre Patienten werden den Unterschied kaum bemerken. Passen Sie die Stimme des KI-Assistenten nahtlos an den Stil Ihrer Praxis an. Wählen Sie ein souveränes männliches oder weibliches Sprachprofil. So sichern Sie einen gleichbleibend angenehmen und professionellen Empfang für jeden Anruf.",
     "menuItems": [
       {
-        "title": "Vorträge & Schulungen",
+        "title": "Vortriage & Weiterleitung",
         "subtitle": "Orthopädie Dr. Gruber"
       },
       {
         "title": "Terminverschiebung/-absage",
-        "subtitle": "Zahnarztpraxis Dr. Meier"
+        "subtitle": "Zahnarztpraxis Dr. Maier"
       },
       {
         "title": "Versicherungsfragen",
@@ -136,7 +140,7 @@
       },
       {
         "title": "Buchung eines Vorsorgetermins",
-        "subtitle": "Hausarztpraxis Dr. Koch"
+        "subtitle": "Hausarztpraxis Dr. Koca"
       },
       {
         "title": "Anfrage für Überweisungen",
@@ -151,7 +155,7 @@
     "heading": "Alles, was Sie zur Entlastung ||| Ihrer Praxis benötigen",
     "feature1": {
       "title": "Reduzierte Telefonlast",
-      "description": "Befreien Sie Ihr Personal von Routineanfragen. Unser KI-Voicebot übernimmt Terminbuchungen, Rezept- und Routinefragen 24/7, damit Ihr Team auf die Patienten konzentrieren kann."
+      "description": "Befreien Sie Ihr Personal von Routineanfragen. Unser KI-Voicebot übernimmt Terminbuchungen, Rezept- und Routinefragen 24/7, damit sich Ihr Team auf die Patienten konzentrieren kann."
     },
     "feature2": {
       "title": "Menschliche KI-Kommunikation",
@@ -179,23 +183,23 @@
     "features": [
       {
         "title": "Server in der EU",
-        "description": "Wir garantieren, dass alle Ihre Patientendaten ausschließlich in zertifizierten Hochsicherheits-Rechenzentren innerhalb der EU gespeichert werden.",
-        "subDescription": "Dies stellt sicher, dass Ihre Daten optimal geschützt sind, auch vor Drittzugriffen."
+        "description": "Wir garantieren die Speicherung all Ihrer Patientendaten ausschließlich in zertifizierten Hochsicherheits-Rechenzentren innerhalb der EU.",
+        "subDescription": "So sind Ihre Daten optimal geschützt, auch gegen Zugriffe Dritter.."
       },
       {
         "title": "Rechtliche Konformität",
-        "description": "Die gesetzlich vorgeschriebene Datenverarbeitungsvereinbarung (DPA) ist ein integraler und transparenter Bestandteil Ihres Docline-Vertrags.",
-        "subDescription": "Sie regelt alle Verantwortlichkeiten rechtlich und gibt Ihnen sofortige Compliance-Sicherheit, ohne dass Sie die rechtlichen Details selbst prüfen müssen."
+        "description": "Der gesetzlich vorgeschriebene Auftragsverarbeitungsvertrag (AVV) ist fester und transparenter Bestandteil Ihres Docline-Vertrags. ",
+        "subDescription": "Dies regelt alle Verantwortlichkeiten rechtssicher und gibt Ihnen sofortige Compliance-Garantie, ohne dass Sie juristische Details selbst prüfen müssen."
       },
       {
         "title": "Umfassende Protokollierung",
-        "description": "Jeder Zugriff, jede Änderung und jede administrative Aktion innerhalb von Docline wird umfassend und manipulationssicher protokolliert.",
-        "subDescription": "Das Audit-Protokoll garantiert volle Transparenz und ermöglicht es Ihnen, jederzeit die Einhaltung der Vertraulichkeitsstandards nachzuweisen.",
+        "description": "Jeder Zugriff, jede Änderung und jeder administrative Vorgang innerhalb von DocLine wird lückenlos und fälschungssicher protokolliert. ",
+        "subDescription": "Das Audit-Protokoll garantiert volle Transparenz und ermöglicht Ihnen jederzeit den Nachweis der Einhaltung der Vertraulichkeitsstandards.",
         "highlight": true
       },
       {
-        "title": "End-to-End-Verschlüsselung",
-        "description": "Alle vom Voicebot erfassten Daten werden Ende-zu-Ende verschlüsselt (sowohl während der Übertragung als auch im Ruhezustand).",
+        "title": "Ende-zu-Ende-Verschlüsselung",
+        "description": "Alle über den Voicebot erfassten Daten sind Ende-zu-Ende verschlüsselt (sowohl aktiv als auch im Ruhezustand)..",
         "subDescription": "Wir erfüllen die strengsten Anforderungen an die Vertraulichkeit Ihrer sensiblen Patientendaten."
       }
     ]
@@ -249,68 +253,71 @@
 
 
   "pricingSection": {
-    "badgeText": "Transparente Preisgestaltung",
-    "heading": "Wählen Sie den richtigen Plan\nfür Ihre Praxis",
-    "billingToggle": {
-      "monthly": "Monatlich",
-      "annually": "Jährlich",
-      "saveLabel": "Sparen Sie 15%"
-    
-    },
-        "commonButtonText": "Jetzt starten",
-    "plans": [
-      {
-        "name": "Standard",
-        "monthly": 399,
-        "yearly": 339,
-        "features": [
-          "KI-Voicebot-Erstellung & Setup",
-          "24/7 Erreichbarkeit & Anrufprotokollierung",
-          "Intelligente Triage & Aufgaben-Erstellung",
-          "2000 Anrufminuten / Monat inkludiert",
-          "0,35 € pro Überminute",
-          "E-Mail Support"
-        ],
-        "color": "#526FFF",
-        "isPremium": false,
-         "buttonText": "Jetzt starten"
-      },
-      {
-        "name": "Premium",
-        "monthly": 899,
-        "yearly": 765,
-        "features": [
-          "KI-Voicebot-Erstellung & Setup",
-          "24/7 Erreichbarkeit & Anrufprotokollierung",
-          "Intelligente Triage & Aufgaben-Erstellung",
-          "4000 Anrufminuten / Monat inkludiert",
-          "0,30 € pro Überminute",
-          "Mehrsprachig (25+ Sprachen)",
-          "Priorisierter E-Mail- und Live-Chat-Support"
-        ],
-        "color": "#171C35",
-        "isPremium": true,
-          "buttonText": "Jetzt starten"
-      },
-      {
-        "name": "Enterprise",
-        "monthly": 1299,
-        "yearly": 1105,
-        "features": [
-          "KI-Voicebot-Erstellung & Setup",
-          "24/7 Erreichbarkeit & Anrufprotokollierung",
-          "Intelligente Triage & Aufgaben-Erstellung",
-          "8000 Anrufminuten / Monat inkludiert",
-          "0,25 € pro Überminute",
-          "Mehrsprachig (25+ Sprachen)",
-          "24/7 Premium-Support"
-        ],
-        "color": "#526FFF",
-        "isPremium": false,
-          "buttonText": "Jetzt starten"
-      }
-    ]
+  "badgeText": "Transparente Preisgestaltung",
+  "heading": "Wählen Sie den richtigen Plan\nfür Ihre Praxis",
+  "billingToggle": {
+    "monthly": "Monatlich",
+    "annually": "Jährlich",
+    "saveLabel": "Sparen Sie 15%"
   },
+  "billingSuffix": {
+    "monthly": "/Monat",
+    "annually": "/Jahr"
+  },
+  "commonButtonText": "Jetzt starten",
+  "plans": [
+    {
+      "name": "Standard",
+      "monthly": 399,
+      "yearly": 339,
+      "features": [
+        "KI-Voicebot-Erstellung & Setup",
+        "24/7 Erreichbarkeit & Anrufprotokollierung",
+        "Intelligente Triage & Aufgaben-Erstellung",
+        "2000 Anrufminuten / Monat inkludiert",
+        "0,35 € pro Überminute",
+        "E-Mail Support"
+      ],
+      "color": "#526FFF",
+      "isPremium": false,
+      "buttonText": "Jetzt starten"
+    },
+    {
+      "name": "Premium",
+      "monthly": 899,
+      "yearly": 765,
+      "features": [
+        "KI-Voicebot-Erstellung & Setup",
+        "24/7 Erreichbarkeit & Anrufprotokollierung",
+        "Intelligente Triage & Aufgaben-Erstellung",
+        "4000 Anrufminuten / Monat inkludiert",
+        "0,30 € pro Überminute",
+        "Mehrsprachig (25+ Sprachen)",
+        "Priorisierter E-Mail- und Live-Chat-Support"
+      ],
+      "color": "#171C35",
+      "isPremium": true,
+      "buttonText": "Jetzt starten"
+    },
+    {
+      "name": "Enterprise",
+      "monthly": 1299,
+      "yearly": 1105,
+      "features": [
+        "KI-Voicebot-Erstellung & Setup",
+        "24/7 Erreichbarkeit & Anrufprotokollierung",
+        "Intelligente Triage & Aufgaben-Erstellung",
+        "8000 Anrufminuten / Monat inkludiert",
+        "0,25 € pro Überminute",
+        "Mehrsprachig (25+ Sprachen)",
+        "24/7 Premium-Support"
+      ],
+      "color": "#526FFF",
+      "isPremium": false,
+      "buttonText": "Jetzt starten"
+    }
+  ]
+},
 
 
   
@@ -379,9 +386,370 @@
       "instagram": "Instagram"
     }
   }
+},
 
 
-
+  "dashboard": {
+    "sidebar": {
+      "navigation": {
+        "dashboard": "Instrumententafel",
+        "callLogs": "Anrufprotokolle",
+        "calendar": "Kalender",
+        "patients": "Patienten",
+        "tasks": "Aufgaben",
+        "supports": "unterstützt",
+        "settings": "Einstellungen",
+        "logout": "Abmelden"
+      },
+      "upgradeCard": {
+        "upgradeTo": "Upgrade zu",
+        "proBadge": "PRO",
+        "currentPlan": "Basis",
+        "minutesUsed": "Verwendete Minuten",
+        "upgradeButton": "Upgrade"
+      }
+    },
+    "routes": {
+      "dashboard":{
+      "topSection": {
+  "welcome": "Willkommen, {{firstName}} {{lastName}}",
+  "todayIncomingCalls": "Heutige eingehende Anrufe",
+  "successfulCalls": "Erfolgreiche Anrufe",
+  "averageCallDuration": "Durchschnittliche Anrufdauer",
+  "subscriptionButtonLabel": "Abonnement anzeigen"
+},
+"appointments": {
+  "newBadge": "Neu",
+  "diagnosis": "Diagnose",
+  "time": "Zeit",
+  "patients": "{{count}} Patienten",
+  "dateFormat": "Sonntag, 11."
+},
+"cards": {
+  "unreviewedCalls": {
+    "title": "Unüberprüfte Anrufe",
+    "description": "Lorem Ipsum ist einfach ein Platzhaltertext aus der Druckerei"
+  },
+  "tasks": {
+    "title": "Aufgabe"
+  },
+  "callBack": {
+    "title": "Rückruf erforderlich"
   }
+}
+,
+"calendar": {
+  "months": {
+  "january": "Januar",
+  "february": "Februar",
+  "march": "März",
+  "april": "April",
+  "may": "Mai",
+  "june": "Juni",
+  "july": "Juli",
+  "august": "August",
+  "september": "September",
+  "october": "Oktober",
+  "november": "November",
+  "december": "Dezember"
+}
+,
+  "title": "Kalender",
+  "addAppointment": "Termin",
+  "viewTypes": {
+    "day": "Tag",
+    "week": "Woche",
+    "month": "Monat"
+  },
+  "weekDays": {
+    "sun": "SO",
+    "mon": "MO",
+    "tue": "DI",
+    "wed": "MI",
+    "thu": "DO",
+    "fri": "FR",
+    "sat": "SA"
+  },
+  "weekDaysFull": {
+    "monday": "Montag",
+    "tuesday": "Dienstag",
+    "wednesday": "Mittwoch",
+    "thursday": "Donnerstag",
+    "friday": "Freitag",
+    "saturday": "Samstag",
+    "sunday": "Sonntag"
+  },
+  "timeZone": "GMT+06"
+}
+
+
+
+      },
+      "callLogs": {
+  "title": "Anrufprotokolle",
+  "breadcrumb": {
+    "dashboard": "Dashboard",
+    "callLogs": "Anrufprotokolle"
+  },
+  "header": "Anrufprotokolle",
+"dateRangePicker": {
+  "selectDateRange": "Datumsbereich auswählen",
+  "title": "Datumsbereich auswählen",
+  "startDate": "Anfangsdatum",
+  "endDate": "Enddatum",
+  "cancel": "Abbrechen",
+  "apply": "Anwenden"
+},
+
+
+  "table": {
+    "patientName": "Patientenname",
+    "phoneNumber": "Telefonnummer",
+    "status": "Status"
+  },
+  "status": {
+    "successful": "Erfolgreich",
+    "missed": "Verpasst"
+  },
+  "actions": {
+    "play": "Abspielen",
+    "viewProfile": "Profil anzeigen"
+  },
+    "modal": {
+    "title": "Patienten-Transkript",
+    "aiSummary": "KI-Zusammenfassung",
+    "showMore": "Mehr anzeigen",
+    "hide": "Verbergen",
+    "patientInfoTitle": "Informationen werden zusammengefasst",
+    "patientName": "Name",
+    "insuranceId": "Versicherungs-ID",
+    "reason": "Grund des Anrufs",
+    "patientsTranscript": "Patienten-Transkript",
+    "copied": "Kopiert",
+
+      "transcriptChat": {
+    "title": "Transkript",
+    "copied": "Kopiert",
+    "allCopied": "Alle Nachrichten kopiert!",
+    "userLabel": "Benutzer",
+    "floydLabel": "Floyd Miles"
+  }
+  }
+},
+
+"calendar": {
+  "breadcrumb": {
+    "dashboard": "Instrumententafel",
+    "calendar": "Kalender"
+  },
+  "header": "Kalender",
+  "appointment": "Termin",
+  "views": {
+    "day": "Tag",
+    "week": "Woche",
+    "month": "Monat"
+  },
+
+  "appointmentModal": {
+  "title": "Neuen Termin hinzufügen",
+  "subtitle": "Vervollständigen Sie alle Informationen",
+  "insuranceId": "Versicherungs-ID",
+  "firstName": "Vorname",
+  "lastName": "Nachname",
+  "email": "E-Mail",
+  "phoneNumber": "Telefonnummer",
+  "dateOfBirth": "Geburtsdatum",
+  "gender": "Geschlecht",
+  "bloodGroup": "Blutgruppe",
+  "selectBloodGroup": "Blutgruppe auswählen",
+  "schedule": "Zeitplan",
+  "appointmentDetails": "Termin-Details",
+  "address": "Adresse",
+  "placeholder": {
+    "insuranceId": "Versicherungs-ID...",
+    "firstName": "Vorname eingeben...",
+    "lastName": "Nachname eingeben...",
+    "email": "E-Mail eingeben...",
+    "phoneNumber": "Telefonnummer eingeben...",
+    "gender": "Geschlecht eingeben...",
+    "appointmentDetails": "Details...",
+    "address": "Adresse"
+  },
+  "submit": "Absenden"
+}
+
+},
+"patients": {
+  "breadcrumb": {
+    "dashboard": "Instrumententafel",
+    "patients": "Patienten"
+  },
+  "buttons": {
+    "addPatient": "Patient hinzufügen",
+    "list": "Liste",
+    "grid": "Raster"
+  },
+  "totalPatients": "Insgesamt {{count}} Patienten",
+    "listView":{
+  
+         "table": {
+          "insuranceId": "Versicherungs-ID",
+          "name": "Name",
+          "phone": "Telefonnummer",
+          "date": "Datum",
+          "profile": "Profil",
+          "view": "Ansehen"
+        }
+      },
+          "gridView": {
+      "profileImageAlt": "Patientenprofilbild",
+      "name": "Name",
+      "insuranceId": "Versicherungs-ID",
+      "telephoneNumber": "Telefonnummer",
+      "email": "E-Mail",
+      "birthday": "Geburtstag",
+      "address": "Adresse",
+      "viewButton": "Ansehen"
+    },
+    
+  "patientProfile": {
+    "breadcrumb": {
+      "dashboard": "Instrumententafel",
+      "patients": "Patienten",
+      "profile": "Patientenprofil"
+    },
+
+    "title": "Zur Patientenakte",
+
+    "header": {
+  "treatmentPhase": "Behandlungsphase",
+  "treatmentPhaseValue": "Erste Untersuchung",
+  "diagnosis": "Diagnose",
+  "diagnosisValue": "Chronische Kopfschmerzen",
+  "bloodSugar": "Blutzucker",
+  "bloodSugarUnit": "mg/dl",
+  "lastVisited": "Zuletzt besucht",
+  "lastVisitedValue": "30. Apr 2025",
+  "phone": "Telefon",
+  "phoneValue": "+1 54546 45648",
+  "email": "E-Mail",
+  "emailValue": "username@gmail.com"
+},
+
+
+    "cards": {
+      "esr": "ESR",
+      "esrCritical": "(Kritisch)",
+      "inflammation": "Entzündung (25% Anstieg)",
+
+      "vitaminD": "Vitamin D",
+      "vitaminMinor": "(Geringfügig)",
+      "vitaminStable": "Stabil, aber abnehmend (15% Rückgang)",
+
+      "overallStatus": "Gesamtstatus",
+      "overallStable": "Alle Marker stabil",
+      "overallNoAlerts": "Derzeit keine Warnungen generiert"
+    },
+
+    "historyTitle": "{{name}}, Verlauf",
+
+    "tabs": {
+      "personalInfo": "Persönliche Informationen",
+      "patientSummary": "Patientenzusammenfassung",
+      "appointment": "Termin",
+      "prescriptions": "Rezepte",
+      "labResults": "Laborergebnisse"
+    },
+  "tabsvalue": {
+  "personalInfo": {
+    "personalInfoTitle": "Persönliche Informationen",
+    "dateOfBirth": "Geburtsdatum:",
+    "phone": "Telefon:",
+    "email": "E-Mail:",
+    "address": "Adresse:",
+    "medicalInfoTitle": "Medizinische Informationen",
+    "bloodType": "Blutgruppe:",
+    "allergies": "Allergien:",
+    "conditions": "Krankheiten:",
+    "doctor": "Arzt:",
+    "emergencyContactTitle": "Notfallkontakt",
+    "emergencyName": "Name:",
+    "relationship": "Beziehung:",
+    "emergencyPhone": "Telefon:"
+  },
+
+   "patientSummary": {
+    "title": "Patientenzusammenfassung",
+    "description": "Übersicht über den Gesundheitszustand und die jüngsten Aktivitäten des Patienten.",
+    
+    "summaryCards": {
+      "nextAppointment": {
+        "title": "Nächster Termin",
+        "detailTime": "1:30 PM - Check-up",
+        "date": "20. April 2024"
+      },
+      "activeMedications": {
+        "title": "Aktive Medikamente",
+        "count": "3 aktive Rezepte",
+        "lastUpdated": "Zuletzt aktualisiert: 3. Feb 2024"
+      },
+      "recentLabResults": {
+        "title": "Neueste Laborergebnisse",
+        "type": "Umfassendes metabolisches Panel",
+        "date": "20. Januar 2024"
+      },
+      "recentCall": {
+        "title": "Letzter Anruf",
+        "callType": "Anruftyp: Nachverfolgung",
+        "callDuration": "Dauer: 01h 45min"
+      }
+    },
+
+    "appointments": {
+      "title": "Termine",
+      "list": [
+        { "type": "UnteUntersuchung", "date": "27-09-2025", "time": "01:00 AM", "status": "Bevorstehend" },
+        { "type": "Nachverfolgen", "date": "27-09-2025", "time": "01:00 AM", "status": "Abgeschlossen" },
+        { "type": "Untersuchung", "date": "27-09-2025", "time": "01:00 AM", "status": "Abgeschlossen" },
+        { "type": "Untersuchung", "date": "27-09-2025", "time": "01:00 AM", "status": "Abgeschlossen" },
+        { "type": "Untersuchung", "date": "27-09-2025", "time": "01:00 AM", "status": "Abgeschlossen" }
+      ]
+    },
+
+          "prescriptions": {
+                "title": "Rezepte",
+                "addButton": "Rezept hinzufügen",
+                "viewButton": "Rezept ansehen",
+                "list": [
+                  { "id": 1, "date": "07-Okt-2025" },
+                  { "id": 2, "date": "06-Sep-2025" },
+                  { "id": 3, "date": "06-Sep-2025" },
+                  { "id": 4, "date": "06-Sep-2025" }
+                ]
+              },
+
+                     "labResults": {
+                "title": "Laborergebnisse",
+                "addButton": "Neuen Labortest hinzufügen",
+                "viewButton": "Laborauswertung ansehen",
+                "list": [
+                  { "id": 1, "testName": "Blutbild", "date": "14-Jul-2023" },
+                  { "id": 2, "testName": "Lipidprofil", "date": "14-Jul-2023" },
+                  { "id": 3, "testName": "Umfassendes Stoffwechselpanel", "date": "14-Jul-2023" }
+                ]
+              }
+  }
+}
+
+
 
 }
+
+
+    }
+  }
+
+
+}
+}
+

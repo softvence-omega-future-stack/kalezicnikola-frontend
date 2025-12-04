@@ -24,11 +24,11 @@ const ReliefCard: React.FC = () => {
             {t("landingPage.features.relief.title")}
           </h3>
 
-          <p className="text-xs sm:text-sm text-white">
+          <p className="text-xs sm:text-sm font-normal text-white">
             {t("landingPage.features.relief.line1")}
           </p>
 
-          <span className="text-xs sm:text-sm text-white">
+          <span className="text-xs sm:text-sm font-normal text-white">
             {t("landingPage.features.relief.line2")}
           </span>
         </div>
@@ -61,7 +61,7 @@ const ConversationCard: React.FC = () => {
           {t("landingPage.features.conversation.title")}
         </h3>
 
-        <p className="mt-3.5 text-sm sm:text-base text-subHeadingBlack leading-[140%] max-w-md">
+        <p className="mt-3.5 text-sm sm:text-base font-normal text-subHeadingBlack leading-[140%] max-w-md">
           {t("landingPage.features.conversation.text")}
         </p>
       </div>
@@ -101,7 +101,7 @@ const TriadeCard: React.FC = () => {
           {t("landingPage.features.triage.title")}
         </h3>
 
-        <p className="mt-3.5 text-sm sm:text-base text-subHeadingBlack leading-[140%]">
+        <p className="mt-3.5 text-sm sm:text-base font-normal text-subHeadingBlack leading-[140%]">
           {t("landingPage.features.triage.text1")} <br />
           {t("landingPage.features.triage.text2")}
         </p>
@@ -137,7 +137,7 @@ const AvailabilityCard: React.FC = () => {
           {t("landingPage.features.availability.title")}
         </h3>
 
-        <p className="text-xs sm:text-sm text-white leading-[150%]">
+        <p className="text-xs sm:text-sm text-white font-normal leading-[150%]">
           {t("landingPage.features.availability.text")}
           {/* <br className="hidden md:block" />
           {t("features.availability.text2")} */}
@@ -167,7 +167,7 @@ const IntegrationCard: React.FC = () => {
       <h3 className="text-lg sm:text-xl md:text-2xl font-medium leading-[120%] text-headingBlack">
         {t("landingPage.features.integration.title")}
       </h3>
-      <p className="mt-3.5 text-sm sm:text-base text-subHeadingBlack leading-[140%] text-left">
+      <p className="mt-3.5 text-sm sm:text-base font-normal text-subHeadingBlack leading-[140%] text-left">
         {t("landingPage.features.integration.text")}
       </p>
     </div>
@@ -196,7 +196,7 @@ const SoftwareCard: React.FC = () => {
         {t("landingPage.features.software.title")}
       </h3>
 
-      <p className="mt-3.5 text-sm sm:text-base text-subHeadingBlack leading-[140%] text-justify md:text-left break-words">
+      <p className="mt-3.5 text-sm sm:text-base font-normal text-subHeadingBlack leading-[140%] text-justify md:text-left break-words">
         {t("landingPage.features.software.text")}
       </p>
     </div>
@@ -228,7 +228,7 @@ const CustomizationCard: React.FC = () => {
           {t("landingPage.features.customization.title")}
         </h3>
         <div className="flex flex-col md:flex-row items-start justify-between gap-4 w-full">
-          <p className="mt-3.5 text-sm sm:text-base text-subHeadingBlack sm:w-[57%]">
+          <p className="mt-3.5 text-sm sm:text-base font-normal text-subHeadingBlack sm:w-[57%]">
             {t("landingPage.features.customization.text")}
           </p>
           <div

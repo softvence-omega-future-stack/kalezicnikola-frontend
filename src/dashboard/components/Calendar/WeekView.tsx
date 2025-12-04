@@ -100,18 +100,22 @@
 
 
 
+import { useTranslation } from 'react-i18next';
+
 export default function WeeklyCalendar() {
+  const { t } = useTranslation();
+  
   const days = [
-    { day: 'SUN', date: '28' },
-    { day: 'MON', date: '29' },
-    { day: 'TUE', date: '30' },
-    { day: 'WED', date: '1' },
-    { day: 'THU', date: '2' },
-    { day: 'FRI', date: '3' },
-    { day: 'SAT', date: '4' }
+    { day: t('dashboard.routes.dashboard.calendar.weekDays.sun'), date: '28' },
+    { day: t('dashboard.routes.dashboard.calendar.weekDays.mon'), date: '29' },
+    { day: t('dashboard.routes.dashboard.calendar.weekDays.tue'), date: '30' },
+    { day: t('dashboard.routes.dashboard.calendar.weekDays.wed'), date: '1' },
+    { day: t('dashboard.routes.dashboard.calendar.weekDays.thu'), date: '2' },
+    { day: t('dashboard.routes.dashboard.calendar.weekDays.fri'), date: '3' },
+    { day: t('dashboard.routes.dashboard.calendar.weekDays.sat'), date: '4' }
   ];
 
-  const timeSlots = ['GTM+06', '9 AM', '10 AM', '11 AM', '12 AM', '1 PM'];
+  const timeSlots = [t('dashboard.routes.dashboard.calendar.timeZone'), '9 AM', '10 AM', '11 AM', '12 AM', '1 PM'];
 
   const appointments = [
     { day: 0, time: 1, name: 'Floyd Miles', hour: '9:00 AM', color: 'bg-[#EDF9F5]', borderColor: 'border-teal-500' },

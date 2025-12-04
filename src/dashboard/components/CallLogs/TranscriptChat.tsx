@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import copy from '../../../assets/svgIcon/copy2.svg';
 import avatar from '../../../assets/img/avatar2.svg';
+import { useTranslation } from 'react-i18next';
 
 
 interface Message {
@@ -22,6 +23,7 @@ const TranscriptChat: React.FC<TranscriptChatProps> = ({
 }) => {
   const [copiedId, setCopiedId] = useState<number | null>(null);
     const [allCopied, setAllCopied] = useState(false);
+   const {t} = useTranslation()
 
   const messages: Message[] = [
     { id: 1, sender: 'Floyd Miles', userId: '000032', text: 'Hello this is Floyd from USA. How are you doing?' },
@@ -49,7 +51,7 @@ const TranscriptChat: React.FC<TranscriptChatProps> = ({
     <div>
       <div>
         <div className='flex items-center justify-between cursor-pointer mb-6'>
-          <h1 className="text-2xl font-semibold text-[#171C35]">Transcript</h1>
+          <h1 className="text-2xl font-semibold text-[#171C35]">{t("dashboard.routes.callLogs.modal.transcriptChat.title")}</h1>
               <div className="relative">
         <button onClick={copyAllMessages} className='p-2 cursor-pointer'>
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
@@ -59,7 +61,7 @@ const TranscriptChat: React.FC<TranscriptChatProps> = ({
 
           {allCopied && (
             <span className="absolute  right-8 top-0 bg-black text-white text-xs w-32 px-2 py-1.5 rounded-full shadow-lg z-10">
-              All messages copied!
+              {t("dashboard.routes.callLogs.modal.transcriptChat.allCopied")}
             </span>
           )}
         </div>
@@ -138,7 +140,7 @@ const TranscriptChat: React.FC<TranscriptChatProps> = ({
                     {/* Copied message bubble */}
                     {copiedId === msg.id && (
                       <span className="absolute -top-10 right-0 bg-black text-white text-xs px-3 py-1.5 rounded-full shadow-lg z-10">
-                        Copied
+                       {t("dashboard.routes.callLogs.modal.transcriptChat.copied")}
                       </span>
                     )}
                   </div>

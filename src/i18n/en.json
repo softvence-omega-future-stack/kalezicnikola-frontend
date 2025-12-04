@@ -249,67 +249,71 @@
 
 
 
-  "pricingSection": {
-    "badgeText": "Transparent pricing",
-    "heading": "Choose the right plan\nfor your practice",
-    "billingToggle": {
-      "monthly": "Monthly",
-      "annually": "Yearly",
-      "saveLabel": "Save 15%"
-    },
-    "plans": [
-      {
-        "name": "Standard",
-        "monthly": 399,
-        "yearly": 339,
-        "features": [
-          "KI-Voicebot creation & setup",
-          "24/7 availability & call logging",
-          "Intelligent triage & task creation",
-          "2000 call minutes / month included",
-          "0.35 € per extra minute",
-          "Email support"
-        ],
-        "color": "#526FFF",
-        "isPremium": false,
-          "buttonText": "Get Started"
-      },
-      {
-        "name": "Premium",
-        "monthly": 899,
-        "yearly": 765,
-        "features": [
-          "KI-Voicebot creation & setup",
-          "24/7 availability & call logging",
-          "Intelligent triage & task creation",
-          "4000 call minutes / month included",
-          "0.30 € per extra minute",
-          "Multilingual (25+ languages)",
-          "Prioritized email and live chat support"
-        ],
-        "color": "#171C35",
-        "isPremium": true,
-         "buttonText": "Get Started"
-      },
-      {
-        "name": "Enterprise",
-        "monthly": 1299,
-        "yearly": 1105,
-        "features": [
-          "KI-Voicebot creation & setup",
-          "24/7 availability & call logging",
-          "Intelligent triage & task creation",
-          "8000 call minutes / month included",
-          "0.25 € per extra minute",
-          "Multilingual (25+ languages)",
-          "24/7 Premium support"
-        ],
-        "color": "#526FFF",
-        "isPremium": false,
-         "buttonText": "Get Started"
-      }
-    ]
+ "pricingSection": {
+  "badgeText": "Transparent pricing",
+  "heading": "Choose the right plan\nfor your practice",
+  "billingToggle": {
+    "monthly": "Monthly",
+    "annually": "Yearly",
+    "saveLabel": "Save 15%"
   },
+  "billingSuffix": {
+    "monthly": "/month",
+    "annually": "/year"
+  },
+  "plans": [
+    {
+      "name": "Standard",
+      "monthly": 399,
+      "yearly": 339,
+      "features": [
+        "AI Voicebot creation & setup",
+        "24/7 availability & call logging",
+        "Intelligent triage & task creation",
+        "2000 call minutes / month included",
+        "€0.35 per extra minute",
+        "Email support"
+      ],
+      "color": "#526FFF",
+      "isPremium": false,
+      "buttonText": "Get Started"
+    },
+    {
+      "name": "Premium",
+      "monthly": 899,
+      "yearly": 765,
+      "features": [
+        "AI Voicebot creation & setup",
+        "24/7 availability & call logging",
+        "Intelligent triage & task creation",
+        "4000 call minutes / month included",
+        "€0.30 per extra minute",
+        "Multilingual (25+ languages)",
+        "Prioritized email and live chat support"
+      ],
+      "color": "#171C35",
+      "isPremium": true,
+      "buttonText": "Get Started"
+    },
+    {
+      "name": "Enterprise",
+      "monthly": 1299,
+      "yearly": 1105,
+      "features": [
+        "AI Voicebot creation & setup",
+        "24/7 availability & call logging",
+        "Intelligent triage & task creation",
+        "8000 call minutes / month included",
+        "€0.25 per extra minute",
+        "Multilingual (25+ languages)",
+        "24/7 Premium support"
+      ],
+      "color": "#526FFF",
+      "isPremium": false,
+      "buttonText": "Get Started"
+    }
+  ]
+},
 
 
 
@@ -377,8 +381,376 @@
       "instagram": "Instagram"
     }
   }
+},
+"dashboard":{
+ "sidebar": {
+    "navigation": {
+      "dashboard": "Dashboard",
+      "callLogs": "Call Logs",
+      "calendar": "Calendar",
+      "patients": "Patients",
+      "tasks": "Tasks",
+      "supports": "Supports",
+      "settings": "Settings",
+      "logout": "Logout"
+    },
+    "upgradeCard": {
+      "upgradeTo": "Upgrade to",
+      "proBadge": "PRO",
+      "currentPlan": "Basic",
+      "minutesUsed": "Minutes Used",
+      "upgradeButton": "Upgrade"
+    }
+  },
+  "routes":{
+    "dashboard":{
+     "topSection": {
+          "welcome": "Welcome, {{firstName}} {{lastName}}",
+          "todayIncomingCalls": "Today Incoming Calls",
+          "successfulCalls": "Successful Calls",
+          "averageCallDuration": "Average Call Duration",
+          "subscriptionButtonLabel": "View Subscription"
+        },
+         "appointments": {
+          "newBadge": "New",
+          "diagnosis": "Diagnosis",
+          "time": "Time",
+          "patients": "{{count}} patients",
+          "dateFormat": "Sunday, 11th"
+        },
+        "cards": {
+  "unreviewedCalls": {
+    "title": "Unreviewed calls",
+    "description": "Lorem Ipsum is simply dummy text of the printing"
+  },
+  "tasks": {
+    "title": "Task"
+  },
+  "callBack": {
+    "title": "Requires a call back"
+  }
+},
+
+        "calendar": {
+          "months": {
+  "january": "January",
+  "february": "February",
+  "march": "March",
+  "april": "April",
+  "may": "May",
+  "june": "June",
+  "july": "July",
+  "august": "August",
+  "september": "September",
+  "october": "October",
+  "november": "November",
+  "december": "December"
+},
+  "title": "Calendar",
+  "addAppointment": "Appointment",
+
+  "viewTypes": {
+    "day": "Day",
+    "week": "Week",
+    "month": "Month"
+  },
+  "weekDays": {
+    "sun": "SUN",
+    "mon": "MON",
+    "tue": "TUE",
+    "wed": "WED",
+    "thu": "THU",
+    "fri": "FRI",
+    "sat": "SAT"
+  },
+  "weekDaysFull": {
+    "monday": "MON",
+    "tuesday": "TUE",
+    "wednesday": "WED",
+    "thursday": "THUR",
+    "friday": "FRI",
+    "saturday": "SAT",
+    "sunday": "SUN"
+  },
+  "timeZone": "GTM+06"
+}
+  },
+  "callLogs": {
+  "title": "Call Logs",
+  "breadcrumb": {
+    "dashboard": "Dashboard",
+    "callLogs": "Call Logs"
+  },
+  "header": "Call Logs",
+  "dateRangePicker": {
+  "selectDateRange": "Select date range",
+  "title": "Select Date Range",
+  "startDate": "Start Date",
+  "endDate": "End Date",
+  "cancel": "Cancel",
+  "apply": "Apply"
+},
+
+  "table": {
+    "patientName": "Patient Name",
+    "timestamp": "Timestamp",
+    "phoneNumber": "Phone Number",
+    "status": "Status",
+    "duration": "Duration",
+    "transcript": "Transcript",
+    "profile": "Profile"
+  },
+  "status": {
+    "successful": "Successful",
+    "unsuccessful": "Unsuccessful",
+    "transferred": "Transferred",
+    "missed": "Missed"
+  },
+  "actions": {
+    "play": "Play",
+    "viewProfile": "View Profile"
+  },
+    "modal": {
+    "title": "Patient Transcript",
+    "aiSummary": "AI Summary",
+    "showMore": "Show more",
+    "hide": "Hide",
+    "patientInfoTitle": "Information is Summarized",
+    "patientName": "Name",
+    "insuranceId": "Insurance ID",
+    "reason": "Reason for calling",
+    "patientsTranscript": "Patient Transcript",
+    "copied": "Copied",
+
+    "transcriptChat": {
+    "title": "Transcript",
+    "copied": "Copied",
+    "allCopied": "All messages copied!",
+    "userLabel": "User",
+    "floydLabel": "Floyd Miles"
+  }
+  }
+
+},
+
+"calendar": {
+  "breadcrumb": {
+    "dashboard": "Dashboard",
+    "calendar": "Calendar"
+  },
+  "header": "Calendar",
+  "appointment": "Appointment",
+  "views": {
+    "day": "Day",
+    "week": "Week",
+    "month": "Month"
+  },
+  "appointmentModal": {
+  "title": "Add New Appointment",
+  "subtitle": "Complete all information",
+  "insuranceId": "Insurance ID",
+  "firstName": "First Name",
+  "lastName": "Last Name",
+  "email": "Email",
+  "phoneNumber": "Phone Number",
+  "dateOfBirth": "Date of Birth",
+  "gender": "Gender",
+  "bloodGroup": "Blood Group",
+  "selectBloodGroup": "Select blood group",
+  "schedule": "Schedule",
+  "appointmentDetails": "Appointment Details",
+  "address": "Address",
+  "placeholder": {
+    "insuranceId": "Insurance ID...",
+    "firstName": "Enter first name...",
+    "lastName": "Enter last name...",
+    "email": "Enter your email...",
+    "phoneNumber": "Enter your phone number...",
+    "gender": "Enter gender...",
+    "appointmentDetails": "Details...",
+    "address": "Address"
+  },
+  "submit": "Submit"
+}
+
+},
+
+"patients": {
+  "breadcrumb": {
+    "dashboard": "Dashboard",
+    "patients": "Patients"
+  },
+  "buttons": {
+    "addPatient": "Add Patient",
+    "list": "List",
+    "grid": "Grid"
+  },
+  "totalPatients": "Total {{count}} Patients",
+  "listView":{
+  
+       "table": {
+          "insuranceId": "Insurance ID",
+          "name": "Name",
+          "phone": "Phone Number",
+          "date": "Date",
+          "profile": "Profile",
+          "view": "View"
+        }
+      },
+
+         "gridView": {
+      "profileImageAlt": "Patient profile picture",
+      "name": "Name",
+      "insuranceId": "Insurance ID",
+      "telephoneNumber": "Telephone Number",
+      "email": "Email",
+      "birthday": "Birthday",
+      "address": "Address",
+      "viewButton": "View"
+    },
+
+    
+
+
+
+ 
+  "patientProfile": {
+    "breadcrumb": {
+      "dashboard": "Dashboard",
+      "patients": "Patients",
+      "profile": "Patient Profile"
+    },
+    "title": "Patient Record",
+    "header": {
+      "treatmentPhase": "Treatment Phase",
+      "treatmentPhaseValue": "Initial Inspection",
+      "diagnosis": "Diagnosis",
+      "diagnosisValue": "Chronic Headache",
+      "bloodSugar": "Blood Sugar",
+      "bloodSugarUnit": "mg/dl",
+      "lastVisited": "Last Visited",
+      "lastVisitedValue": "30 Apr 2025",
+      "phone": "Phone",
+      "phoneValue": "+1 54546 45648",
+      "email": "Email",
+      "emailValue": "username@gmail.com"
+    },
+    "cards": {
+      "esr": "ESR",
+      "esrCritical": "(Critical)",
+      "inflammation": "Inflammation (25% Increase)",
+      "vitaminD": "Vitamin D",
+      "vitaminMinor": "(Minor)",
+      "vitaminStable": "Stable but declining (15% Drop)",
+      "overallStatus": "Overall Status",
+      "overallStable": "All Markers Stable",
+      "overallNoAlerts": "No alerts generated at this time"
+    },
+    "historyTitle": "{{name}}, History",
+    "tabs": {
+      "personalInfo": "Personal Info",
+      "patientSummary": "Patient Summary",
+      "appointment": "Appointment",
+      "prescriptions": "Prescriptions",
+      "labResults": "Lab Results"
+    },
+
+         "tabsvalue": {
+            "personalInfo": {
+              "personalInfoTitle": "Personal Information",
+              "dateOfBirth": "Date of Birth:",
+              "phone": "Phone:",
+              "email": "Email:",
+              "address": "Address:",
+              "medicalInfoTitle": "Medical Information",
+              "bloodType": "Blood Type:",
+              "allergies": "Allergies:",
+              "conditions": "Conditions:",
+              "doctor": "Doctor:",
+              "emergencyContactTitle": "Emergency Contact",
+              "emergencyName": "Name:",
+              "relationship": "Relationship:",
+              "emergencyPhone": "Phone:"
+            },
+
+            "patientSummary": {
+  "title": "Patient Summary",
+  "description": "Overview of the patient's health status and recent activities.",
+  
+  "summaryCards": {
+    "nextAppointment": {
+      "title": "Next Appointment",
+      "detailTime": "1:30 PM - Check-up",
+      "date": "April 20, 2024"
+    },
+    "activeMedications": {
+      "title": "Active Medications",
+      "count": "3 Active Prescriptions",
+      "lastUpdated": "Last updated: Feb 3, 2024"
+    },
+    "recentLabResults": {
+      "title": "Recent Lab Results",
+      "type": "Comprehensive Metabolic Panel",
+      "date": "January 20, 2024"
+    },
+    "recentCall": {
+      "title": "Recent Call",
+      "callType": "Call Type: Follow-up",
+      "callDuration": "Duration: 01h 45min"
+    }
+  },
+
+  "appointments": {
+    "title": "Appointments",
+    "list": [
+      { "type": "Check-up", "date": "27-09-2025", "time": "01:00 AM", "status": "Upcoming" },
+      { "type": "Follow-up", "date": "27-09-2025", "time": "01:00 AM", "status": "Complete" },
+      { "type": "Check-up", "date": "27-09-2025", "time": "01:00 AM", "status": "Complete" },
+      { "type": "Check-up", "date": "27-09-2025", "time": "01:00 AM", "status": "Complete" },
+      { "type": "Check-up", "date": "27-09-2025", "time": "01:00 AM", "status": "Complete" }
+    ]
+  },
+
+            "prescriptions": {
+                "title": "Prescriptions",
+                "addButton": "Add Prescription",
+                "viewButton": "View Prescription",
+                "list": [
+                  { "id": 1, "date": "07-Oct-2025" },
+                  { "id": 2, "date": "06-Sep-2025" },
+                  { "id": 3, "date": "06-Sep-2025" },
+                  { "id": 4, "date": "06-Sep-2025" }
+                ]
+              },
+              "labResults": {
+  "title": "Lab Results",
+  "addButton": "Add New Lab Test",
+  "viewButton": "View Lab Report",
+  "dateLabel": "Date",
+  "list": [
+    { "id": 1, "testName": "Blood Panel", "date": "2023-07-14" },
+    { "id": 2, "testName": "Lipid Panel", "date": "2023-07-14" },
+    { "id": 3, "testName": "Comprehensive Metabolic Panel", "date": "2023-07-14" }
+  ]
+}
+            }
+
+}
+
+          }
+  }
+
+
+
+
 }
 
 }
+
+
+}
+
+
+
 
 

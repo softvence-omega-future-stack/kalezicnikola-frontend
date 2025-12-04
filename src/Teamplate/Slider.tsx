@@ -19,6 +19,7 @@ interface SlideData {
   id: number;
   title: string;
   subtitle: string;
+  cardBadge: string;
   list: string[];
   img: string;
   bgColor: string;
@@ -34,6 +35,7 @@ interface DashboardSlideProps extends SlideData {
 const DashboardSlide: React.FC<DashboardSlideProps> = ({
   bgColor,
   title,
+  cardBadge,
   subtitle,
   list,
   img,
@@ -56,7 +58,7 @@ const DashboardSlide: React.FC<DashboardSlideProps> = ({
           {/* Label */}
           <div className="flex w-fit items-center text-xs font-medium text-[#3B82F6] mb-3 rounded-full py-2 px-2.5 border border-[#3B82F6] gap-2">
             <img src={icon} alt="" className="w-4 h-4" />
-            {t("landingPage.slider.badge")}
+            {t(cardBadge)} {/* <-- Fixed */}
           </div>
 
           {/* Title & Subtitle */}

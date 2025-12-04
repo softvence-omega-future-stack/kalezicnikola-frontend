@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import homeIcon from '../../../assets/svgIcon/homeIcon.svg';
 import chevronIcon from '../../../assets/svgIcon/chevronnRight.svg';
 import listIcon from '../../../assets/svgIcon/listIcon.svg';
+import { useTranslation } from 'react-i18next';
 
 type ViewMode = 'list' | 'grid';
 
@@ -16,10 +17,11 @@ export default function PatientsView() {
   const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0, width: 0 });
   const dropdownButtonRef = useRef<HTMLButtonElement>(null);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const views: { type: ViewMode; label: string; icon: React.ReactNode }[] = [
-    { type: 'list', label: 'List', icon: <List className="w-5 h-5" /> },
-    { type: 'grid', label: 'Grid', icon: <Grid className="w-5 h-5" /> },
+    { type: 'list', label: t('dashboard.routes.patients.buttons.list'), icon: <List className="w-5 h-5" /> },
+    { type: 'grid', label: t('dashboard.routes.patients.buttons.grid'), icon: <Grid className="w-5 h-5" /> },
   ];
 
   // Update dropdown position when opened
@@ -58,9 +60,13 @@ export default function PatientsView() {
         <div className='flex items-center gap-2 px-2 md:px-0 text-sm text-gray-600 mb-6'>
           <img src={homeIcon} alt="" className="w-4 h-4" />
           <img src={chevronIcon} alt="" />
-          <span onClick={() => navigate('/dashboard')} className='cursor-pointer'>Dashboard</span>
+          <span onClick={() => navigate('/dashboard')} className='cursor-pointer'>
+            {t('dashboard.routes.patients.breadcrumb.dashboard')}
+          </span>
           <img src={chevronIcon} alt="" />
-          <span className="font-semibold text-sm text-[#171C35]">Patients</span>
+          <span className="font-semibold text-sm text-[#171C35]">
+            {t('dashboard.routes.patients.breadcrumb.patients')}
+          </span>
         </div>
       </div>
 
@@ -69,7 +75,9 @@ export default function PatientsView() {
         <div className="p-6 mb-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 w-full">
             {/* Title */}
-            <h1 className="text-xl font-semibold text-[#171C35]">Total 60 Patients</h1>
+            <h1 className="text-xl font-semibold text-[#171C35]">
+              {t('dashboard.routes.patients.totalPatients', { count: 60 })}
+            </h1>
 
             {/* Button Group */}
             <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
@@ -81,7 +89,7 @@ export default function PatientsView() {
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
                   <path d="M6.66634 0.833008V12.4997M0.833008 6.66634H12.4997" stroke="#171C35" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
-                <span>Add Patient</span>
+                <span>{t('dashboard.routes.patients.buttons.addPatient')}</span>
               </button>
 
               {/* List/Grid Dropdown */}
@@ -92,7 +100,7 @@ export default function PatientsView() {
                   className="w-full sm:w-auto flex items-center gap-2 px-4 py-2.5 bg-white border border-[#D0D5DD] rounded-[8px] text-gray-700 font-medium hover:bg-gray-50 transition-colors cursor-pointer justify-center"
                 >
                   {viewMode === 'list' ? <img src={listIcon} alt="" className="cursor-pointer" /> : <Grid />}
-                  <span>{viewMode === 'list' ? 'List' : 'Grid'}</span>
+                  <span>{viewMode === 'list' ? t('dashboard.routes.patients.buttons.list') : t('dashboard.routes.patients.buttons.grid')}</span>
                   <ChevronDown className="w-4 h-4" />
                 </button>
               </div>

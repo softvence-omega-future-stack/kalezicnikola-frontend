@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { X } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface NewAppointmentModalProps {
   onClose: () => void;
 }
 
 const NewAppointmentModal: React.FC<NewAppointmentModalProps> = ({ onClose }) => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     insuranceId: "",
     firstName: "",
@@ -37,22 +39,22 @@ const NewAppointmentModal: React.FC<NewAppointmentModalProps> = ({ onClose }) =>
   };
 
   return (
-    <div   onClick={onClose} className="fixed inset-0 bg-black/50 flex items-center justify-center z-[9999] p-2 sm:p-4">
-      <div className="bg-gray-100 rounded-2xl w-full max-w-lg mx-auto shadow-xl animate-fadeIn max-h-[90vh] flex flex-col">
+    <div onClick={onClose} className="fixed inset-0 bg-black/50 flex items-center justify-center z-[9999] p-2 sm:p-4">
+      <div onClick={e => e.stopPropagation()} className="bg-gray-100 rounded-2xl w-full max-w-lg mx-auto shadow-xl animate-fadeIn max-h-[90vh] flex flex-col">
         {/* Header */}
         <div className="p-4 sm:p-6 pb-3 sm:pb-4 border-b border-gray-300 flex-shrink-0">
           <div className="flex justify-between items-start">
             <div className="flex-1 min-w-0">
               <h2 className="text-xl sm:text-2xl font-semibold text-[#171C35] truncate">
-                Add New Appointment
+                {t('dashboard.routes.calendar.appointmentModal.title')}
               </h2>
               <p className="text-sm text-[#667085] mt-1 sm:mt-0.5">
-                Complete all information
+                {t('dashboard.routes.calendar.appointmentModal.subtitle')}
               </p>
             </div>
             <button
               onClick={onClose}
-              className="text-gray-600 hover:text-gray-800 ml-2 flex-shrink-0"
+              className="text-gray-600 hover:text-gray-800 ml-2 cursor-pointer flex-shrink-0"
             >
               <X size={20} />
             </button>
@@ -61,76 +63,74 @@ const NewAppointmentModal: React.FC<NewAppointmentModalProps> = ({ onClose }) =>
 
         {/* Form */}
         <div className="px-4 sm:px-6 pb-4 sm:pb-6 mt-4 sm:mt-6 flex-1 overflow-y-auto">
-          {/* Insurance ID */}
           <div className="mb-3 sm:mb-4">
             <label className="block text-sm font-medium text-[#171C35] mb-1 sm:mb-2">
-              Insurance ID
+              {t('dashboard.routes.calendar.appointmentModal.insuranceId')}
             </label>
             <input
               type="text"
               name="insuranceId"
               value={formData.insuranceId}
               onChange={handleChange}
-              placeholder="Insurance ID..."
+              placeholder={t('dashboard.routes.calendar.appointmentModal.placeholder.insuranceId')}
               className="w-full px-3 sm:px-4 py-3 sm:py-4 bg-white rounded-[8px] text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
-          {/* First Name and Last Name */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-3 sm:mb-4">
             <div>
               <label className="block text-sm font-medium text-[#171C35] mb-1 sm:mb-2">
-                First name
+                {t('dashboard.routes.calendar.appointmentModal.firstName')}
               </label>
               <input
                 type="text"
                 name="firstName"
                 value={formData.firstName}
                 onChange={handleChange}
-                placeholder="Enter first name..."
+                placeholder={t('dashboard.routes.calendar.appointmentModal.placeholder.firstName')}
                 className="w-full px-3 sm:px-4 py-3 sm:py-4 bg-white rounded-[8px] text-sm text-[#526FFF] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
             <div>
               <label className="block text-sm font-medium text-[#171C35] mb-1 sm:mb-2">
-                Last Name
+                {t('dashboard.routes.calendar.appointmentModal.lastName')}
               </label>
               <input
                 type="text"
                 name="lastName"
                 value={formData.lastName}
                 onChange={handleChange}
-                placeholder="Enter last name..."
+                placeholder={t('dashboard.routes.calendar.appointmentModal.placeholder.lastName')}
                 className="w-full px-3 sm:px-4 py-3 sm:py-4 bg-white rounded-[8px] text-sm text-[#526FFF] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
           </div>
 
-          {/* Email and Phone */}
+          {/* Email & Phone */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-3 sm:mb-4">
             <div>
               <label className="block text-sm font-medium text-[#171C35] mb-1 sm:mb-2">
-                Email
+                {t('dashboard.routes.calendar.appointmentModal.email')}
               </label>
               <input
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                placeholder="Enter your email..."
+                placeholder={t('dashboard.routes.calendar.appointmentModal.placeholder.email')}
                 className="w-full px-3 sm:px-4 py-3 sm:py-4 bg-white rounded-[8px] text-sm text-[#526FFF] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
             <div>
               <label className="block text-sm font-medium text-[#171C35] mb-1 sm:mb-2">
-                Phone Number
+                {t('dashboard.routes.calendar.appointmentModal.phoneNumber')}
               </label>
               <input
                 type="tel"
                 name="phoneNumber"
                 value={formData.phoneNumber}
                 onChange={handleChange}
-                placeholder="Enter your phone number..."
+                placeholder={t('dashboard.routes.calendar.appointmentModal.placeholder.phoneNumber')}
                 className="w-full px-3 sm:px-4 py-3 sm:py-4 bg-white rounded-[8px] text-sm text-[#526FFF] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
@@ -140,28 +140,26 @@ const NewAppointmentModal: React.FC<NewAppointmentModalProps> = ({ onClose }) =>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-3 sm:mb-4">
             <div>
               <label className="block text-sm font-medium text-[#171C35] mb-1 sm:mb-2">
-                Date of Birth
+                {t('dashboard.routes.calendar.appointmentModal.dateOfBirth')}
               </label>
-              <div className="relative">
-                <input
-                  type="date"
-                  name="dateOfBirth"
-                  value={formData.dateOfBirth}
-                  onChange={handleChange}
-                  className="w-full px-3 sm:px-4 py-3 sm:py-4 bg-white rounded-[8px] text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#526FFF] appearance-none"
-                />
-              </div>
+              <input
+                type="date"
+                name="dateOfBirth"
+                value={formData.dateOfBirth}
+                onChange={handleChange}
+                className="w-full px-3 sm:px-4 py-3 sm:py-4 bg-white rounded-[8px] text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#526FFF] appearance-none"
+              />
             </div>
             <div>
               <label className="block text-sm font-medium text-[#171C35] mb-1 sm:mb-2">
-                Gender
+                {t('dashboard.routes.calendar.appointmentModal.gender')}
               </label>
               <input
                 type="text"
                 name="gender"
                 value={formData.gender}
                 onChange={handleChange}
-                placeholder="Enter gender..."
+                placeholder={t('dashboard.routes.calendar.appointmentModal.placeholder.gender')}
                 className="w-full px-3 sm:px-4 py-3 sm:py-4 bg-white rounded-[8px] text-sm text-[#526FFF] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
@@ -171,7 +169,7 @@ const NewAppointmentModal: React.FC<NewAppointmentModalProps> = ({ onClose }) =>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-3 sm:mb-4">
             <div>
               <label className="block text-sm font-medium text-[#171C35] mb-1 sm:mb-2">
-                Blood Group
+                {t('dashboard.routes.calendar.appointmentModal.bloodGroup')}
               </label>
               <select
                 name="bloodGroup"
@@ -179,7 +177,7 @@ const NewAppointmentModal: React.FC<NewAppointmentModalProps> = ({ onClose }) =>
                 onChange={handleChange}
                 className="w-full px-3 sm:px-4 py-3 bg-white rounded-[8px] text-sm text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none"
               >
-                <option value="">Select blood group</option>
+                <option value="">{t('dashboard.routes.calendar.appointmentModal.selectBloodGroup')}</option>
                 {["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"].map(
                   (group) => (
                     <option key={group} value={group}>
@@ -191,30 +189,28 @@ const NewAppointmentModal: React.FC<NewAppointmentModalProps> = ({ onClose }) =>
             </div>
             <div>
               <label className="block text-sm font-medium text-[#171C35] mb-1 sm:mb-2">
-                Schedule
+                {t('dashboard.routes.calendar.appointmentModal.schedule')}
               </label>
-              <div className="relative text-[#111A2D]">
-                <input
-                  type="datetime-local"
-                  name="schedule"
-                  value={formData.schedule}
-                  onChange={handleChange}
-                  className="w-full px-3 sm:px-4 py-3 sm:py-4 appearance-none bg-white rounded-[8px] text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
+              <input
+                type="datetime-local"
+                name="schedule"
+                value={formData.schedule}
+                onChange={handleChange}
+                className="w-full px-3 sm:px-4 py-3 sm:py-4 appearance-none bg-white rounded-[8px] text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
             </div>
           </div>
 
           {/* Appointment Details */}
           <div className="mb-3 sm:mb-4 relative">
             <label className="block text-sm font-medium text-[#171C35] mb-1 sm:mb-2">
-              Appointment details
+              {t('dashboard.routes.calendar.appointmentModal.appointmentDetails')}
             </label>
             <textarea
               name="appointmentDetails"
               value={formData.appointmentDetails}
               onChange={handleChange}
-              placeholder="Details..."
+              placeholder={t('dashboard.routes.calendar.appointmentModal.placeholder.appointmentDetails')}
               rows={3}
               className="w-full px-3 sm:px-4 py-3 sm:py-4 bg-white rounded-[8px] text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
             />
@@ -223,24 +219,23 @@ const NewAppointmentModal: React.FC<NewAppointmentModalProps> = ({ onClose }) =>
           {/* Address */}
           <div className="mb-4 sm:mb-6">
             <label className="block text-sm font-medium text-[#171C35] mb-1 sm:mb-2">
-              Address
+              {t('dashboard.routes.calendar.appointmentModal.address')}
             </label>
             <input
               type="text"
               name="address"
               value={formData.address}
               onChange={handleChange}
-              placeholder="Address"
+              placeholder={t('dashboard.routes.calendar.appointmentModal.placeholder.address')}
               className="w-full px-3 sm:px-4 py-3 sm:py-4 bg-white rounded-[8px] text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
-          {/* Submit */}
           <button
             onClick={handleSubmit}
-            className="w-full bg-[#526FFF] text-white font-medium py-3 sm:py-4 rounded-[8px] transition-colors hover:bg-[#425CE0]"
+            className="w-full bg-[#526FFF] text-white font-medium py-3 sm:py-4 cursor-pointer rounded-[8px] transition-colors hover:bg-[#425CE0]"
           >
-            Submit
+            {t('dashboard.routes.calendar.appointmentModal.submit')}
           </button>
         </div>
       </div>
