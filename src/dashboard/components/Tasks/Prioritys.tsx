@@ -1,48 +1,37 @@
 import { useEffect, useRef, useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const PriorityDropdown = () => {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState("All Priority");
+  const [selected, setSelected] = useState(t("dashboard.routes.taskList.priority.all"));
   const [dropUp, setDropUp] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const priorities = ["High", "Medium", "Low"];
+  const priorities = ["high", "medium", "low"];
 
-  const handleSelect = (priority: string) => {
-    setSelected(priority);
+  const handleSelect = (priorityKey: string) => {
+    setSelected(t(`dashboard.routes.taskList.priority.${priorityKey}`));
     setIsOpen(false);
   };
 
-  // Check if dropdown should open upward
   useEffect(() => {
     if (isOpen && dropdownRef.current) {
       const rect = dropdownRef.current.getBoundingClientRect();
       const spaceBelow = window.innerHeight - rect.bottom;
       const spaceAbove = rect.top;
-      
-      // If not enough space below (less than 200px) and more space above, open upward
       setDropUp(spaceBelow < 200 && spaceAbove > spaceBelow);
     }
   }, [isOpen]);
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsOpen(false);
       }
     };
-
-    if (isOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    if (isOpen) document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isOpen]);
 
   return (
@@ -53,9 +42,7 @@ const PriorityDropdown = () => {
       >
         <span>{selected}</span>
         <ChevronDown 
-          className={`w-4 h-4 transition-transform duration-200 ${
-            isOpen ? "rotate-180" : ""
-          }`}
+          className={`w-4 h-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
         />
       </button>
 
@@ -68,9 +55,9 @@ const PriorityDropdown = () => {
         >
           <li
             className="px-4 py-2 cursor-pointer hover:bg-gray-100 text-sm text-[#111a2d] first:rounded-t-xl transition-colors"
-            onClick={() => handleSelect("All Priority")}
+            onClick={() => handleSelect("all")}
           >
-            All Priority
+            {t("dashboard.routes.taskList.priority.all")}
           </li>
           {priorities.map((priority) => (
             <li
@@ -78,7 +65,7 @@ const PriorityDropdown = () => {
               className="px-4 py-2 cursor-pointer hover:bg-gray-100 text-sm text-[#111a2d] last:rounded-b-xl transition-colors"
               onClick={() => handleSelect(priority)}
             >
-              {priority}
+              {t(`dashboard.routes.taskList.priority.${priority}`)}
             </li>
           ))}
         </ul>

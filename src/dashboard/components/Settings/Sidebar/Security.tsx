@@ -2,7 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { ChevronDown } from "lucide-react";
 import tickcircl from '../../../../assets/svgIcon/checkcircle.svg';
-import Toggle from "@/common/Toggle"; // ✅ import your Toggle component
+import Toggle from "@/common/Toggle";
+import { useTranslation } from "react-i18next";
 
 interface Settings {
   passwordPolicy: boolean;
@@ -114,6 +115,8 @@ function CustomDropdown({
 }
 
 export default function SecuritySettings() {
+  const { t } = useTranslation();
+
   const [settings, setSettings] = useState<Settings>({
     passwordPolicy: true,
     passwordExpiry: "",
@@ -136,7 +139,7 @@ export default function SecuritySettings() {
 
   const handleSaveChanges = () => {
     console.log("Saved Security Settings:", settings);
-    alert("Your changes have been saved!");
+    alert(t("dashboard.routes.settings.settingsSidebar.tabs.security.alertSaved"));
   };
 
   // ✅ Reusable Toggle Row
@@ -152,154 +155,104 @@ export default function SecuritySettings() {
       <div className="bg-white rounded-2xl p-6 md:p-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-xl font-semibold text-[#171C35] mb-1">Security Settings</h1>
+          <h1 className="text-xl font-semibold text-[#171C35] mb-1">{t("dashboard.routes.settings.settingsSidebar.tabs.security.title")}</h1>
           <p className="text-sm font-medium text-[#111A2D]">
-            Configure security and privacy settings for your clinic
+            {t("dashboard.routes.settings.settingsSidebar.tabs.security.description")}
           </p>
         </div>
 
-        {/* Password Policy Section */}
-        {/* <div className="mb-8">
-          <h2 className="text-lg font-semibold text-[#171C35] mb-4">Password Policy</h2>
-          <ToggleRow field="passwordPolicy" label="Enable Password Policy" />
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-          
-            <div>
-              <label className="block text-base  font-medium text-[#171c35] mb-2">Password Expiry</label>
-              <CustomDropdown
-                value={settings.passwordExpiry}
-                onChange={(val) => setSettings({ ...settings, passwordExpiry: val })}
-                options={[
-                  { value: "30", label: "30 days" },
-                  { value: "60", label: "60 days" },
-                  { value: "90", label: "90 days" },
-                ]}
-                placeholder="Select days"
-              />
-            </div>
-
-          
-            <div>
-              <label className="block text-base font-medium text-[#171c35] mb-2">
-                Minimum Password Length
-              </label>
-              <CustomDropdown
-                value={settings.minPasswordLength}
-                onChange={(val) => setSettings({ ...settings, minPasswordLength: val })}
-                options={[
-                  { value: "8", label: "8 characters" },
-                  { value: "12", label: "12 characters" },
-                  { value: "16", label: "16 characters" },
-                ]}
-                placeholder="Select minimum password length"
-              />
-            </div>
-          </div>
-
-    
-          <div className="space-y-3">
-            <div className="flex items-center gap-2">
-              <img src={tickcircl} alt="" />
-              <span className="text-sm font-semibold text-[#111A2D]">Require uppercase & lowercase letters (Default)</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <img src={tickcircl} alt="" />
-              <span className="text-sm font-semibold text-[#111A2D]">Require numbers (Default)</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <img src={tickcircl} alt="" />
-              <span className="text-sm font-semibold text-[#111A2D]">Require special characters (Default)</span>
-            </div>
-          </div>
-        </div> */}
-
         {/* Login Security Section */}
         <div className="mb-8">
-          <h2 className="text-lg font-semibold text-[#171c35] mb-4">Login Security</h2>
-          <ToggleRow field="loginSecurity" label="Enable Login Security" />
+          <h2 className="text-lg font-semibold text-[#171c35] mb-4">
+            {t("dashboard.routes.settings.settingsSidebar.tabs.security.sections.loginSecurity.title")}
+          </h2>
+          <ToggleRow
+            field="loginSecurity"
+            label={t("dashboard.routes.settings.settingsSidebar.tabs.security.sections.loginSecurity.enableLoginSecurity")}
+          />
 
           <div className="flex items-center mb-6 gap-2">
             <img src={tickcircl} alt="" />
-            <span className="text-sm font-semibold text-[#111A2D]">Enforce two-factor authentication (Default)</span>
+            <span className="text-sm font-semibold text-[#111A2D]">
+              {t("dashboard.routes.settings.settingsSidebar.tabs.security.sections.loginSecurity.twoFactorAuth")}
+            </span>
           </div>
 
-         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-  {/* Session Timeout */}
-  <div>
-    <label className="block text-base font-medium text-[#171C35] mb-2">
-      Session Timeout
-    </label>
-    <CustomDropdown
-      value={settings.sessionTimeout}
-      onChange={(val) => setSettings({ ...settings, sessionTimeout: val })}
-      options={[
-        { value: "7", label: "7 days" },
-        { value: "14", label: "14 days" },
-        { value: "21", label: "21 days" },
-      ]}
-      placeholder="Select session timeout"
-    />
-  </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Session Timeout */}
+            <div>
+              <label className="block text-base font-medium text-[#171C35] mb-2">
+                {t("dashboard.routes.settings.settingsSidebar.tabs.security.sections.loginSecurity.sessionTimeout")}
+              </label>
+              <CustomDropdown
+                value={settings.sessionTimeout}
+                onChange={(val) => setSettings({ ...settings, sessionTimeout: val })}
+                options={[
+                  { value: "7", label: "7 days" },
+                  { value: "14", label: "14 days" },
+                  { value: "21", label: "21 days" },
+                ]}
+                placeholder={t("dashboard.routes.settings.settingsSidebar.tabs.security.sections.loginSecurity.sessionTimeout")}
+              />
+            </div>
 
-  {/* Max Login Attempts */}
-  <div>
-    <label className="block text-base font-medium text-[#171C35] mb-2">
-      Maximum Login Attempts
-    </label>
-    <input
-      type="number"
-      className="py-3 px-6 w-full border border-gray-300 rounded-lg"
-      value={settings.maxLoginAttempts}
-      onChange={(e) =>
-        setSettings({ ...settings, maxLoginAttempts: e.target.value })
-      }
-      placeholder="Enter max attempts"
-    />
-  </div>
+            {/* Max Login Attempts */}
+            <div>
+              <label className="block text-base font-medium text-[#171C35] mb-2">
+                {t("dashboard.routes.settings.settingsSidebar.tabs.security.sections.loginSecurity.maxLoginAttempts")}
+              </label>
+              <input
+                type="number"
+                className="py-3 px-6 w-full border border-gray-300 rounded-lg"
+                value={settings.maxLoginAttempts}
+                onChange={(e) =>
+                  setSettings({ ...settings, maxLoginAttempts: e.target.value })
+                }
+                placeholder={t("dashboard.routes.settings.settingsSidebar.tabs.security.sections.loginSecurity.maxLoginAttempts")}
+              />
+            </div>
+          </div>
 
-  {/* Empty div for spacing or future use */}
-  <div></div>
+          {/* Data Protection Section */}
+          <div className="mb-8 col-span-1 md:col-span-2 mt-8">
+            <h2 className="text-lg font-semibold text-[#171c35] mb-4">
+              {t("dashboard.routes.settings.settingsSidebar.tabs.security.sections.dataProtection.title")}
+            </h2>
+            <ToggleRow
+              field="dataProtection"
+              label={t("dashboard.routes.settings.settingsSidebar.tabs.security.sections.dataProtection.enableDataProtection")}
+            />
 
-  {/* Data Protection Section */}
-  <div className="mb-8 col-span-1 md:col-span-2">
-    <h2 className="text-lg font-semibold text-[#171c35] mb-4">
-      Data Protection
-    </h2>
-    <ToggleRow field="dataProtection" label="Enable Data Protection" />
+            <div className="space-y-3 mt-3">
+              <div className="flex items-center gap-2">
+                <img src={tickcircl} alt="" />
+                <span className="text-sm font-semibold text-[#111A2D]">
+                  {t("dashboard.routes.settings.settingsSidebar.tabs.security.sections.dataProtection.encryptData")}
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <img src={tickcircl} alt="" />
+                <span className="text-sm font-semibold text-[#111A2D]">
+                  {t("dashboard.routes.settings.settingsSidebar.tabs.security.sections.dataProtection.auditLogs")}
+                </span>
+              </div>
+            </div>
+          </div>
 
-    <div className="space-y-3 mt-3">
-      <div className="flex items-center gap-2">
-        <img src={tickcircl} alt="" />
-        <span className="text-sm font-semibold text-[#111A2D]">
-          Encrypt sensitive data (Default)
-        </span>
+          {/* Action Buttons */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 col-span-1 md:col-span-2 mt-6">
+            <button className="w-full px-6 py-3.5 text-sm font-medium text-[#111c35] bg-white border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors">
+              {t("dashboard.routes.settings.settingsSidebar.tabs.security.buttons.cancel")}
+            </button>
+            <button
+              onClick={handleSaveChanges}
+              className="w-full px-6 py-3.5 text-sm font-medium text-white bg-[#526FFF] rounded-xl hover:bg-[#4158D9] transition-colors"
+            >
+              {t("dashboard.routes.settings.settingsSidebar.tabs.security.buttons.saveChanges")}
+            </button>
+          </div>
+        </div>
       </div>
-      <div className="flex items-center gap-2">
-        <img src={tickcircl} alt="" />
-        <span className="text-sm font-semibold text-[#111A2D]">
-          Enable audit logs (Default)
-        </span>
-      </div>
-    </div>
-  </div>
-
-  {/* Action Buttons */}
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 col-span-1 md:col-span-2">
-    <button className="w-full px-6 py-3.5 text-sm font-medium text-[#111c35] bg-white border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors">
-      Cancel
-    </button>
-    <button
-      onClick={handleSaveChanges}
-      className="w-full px-6 py-3.5 text-sm font-medium text-white bg-[#526FFF] rounded-xl hover:bg-[#4158D9] transition-colors"
-    >
-      Save Changes
-    </button>
-  </div>
-</div>
-
-    </div>
-    </div>
     </div>
   );
 }

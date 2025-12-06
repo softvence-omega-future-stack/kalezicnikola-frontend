@@ -102,7 +102,7 @@ const faqData = t("landingPage.faqSection.items", {
         </div>
 
         {/* FAQ Accordion Wrapper */}
-        <div className="-mt-[560px] max-w-7xl mx-auto space-y-4 overflow-hidden">
+        <div className="-mt-[560px] lg:px-[108px] space-y-4 overflow-hidden">
           <div className="relative z-10 space-y-1">
             {faqData.map((faq, index) => (
               <div

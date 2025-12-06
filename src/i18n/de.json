@@ -262,7 +262,7 @@
   },
   "billingSuffix": {
     "monthly": "/Monat",
-    "annually": "/Jahr"
+    "annually": "/Monat"
   },
   "commonButtonText": "Jetzt starten",
   "plans": [
@@ -390,6 +390,21 @@
 
 
   "dashboard": {
+      "mainHeader":{
+    "userDropdown": {
+    "role": "Anästhesie",
+    "menu": {
+      "profileSettings": "Profileinstellungen",
+      "support": "Support",
+      "settings": "Einstellungen",
+      "logout": "Abmelden"
+    }
+  },
+    "notificationModal":{
+    "title":"Benachrichtigungen",
+     "timeAgo": "{{time}} "
+  }
+  },
     "sidebar": {
       "navigation": {
         "dashboard": "Instrumententafel",
@@ -488,7 +503,7 @@
       "callLogs": {
   "title": "Anrufprotokolle",
   "breadcrumb": {
-    "dashboard": "Dashboard",
+    "dashboard": "Instrumententafel",
     "callLogs": "Anrufprotokolle"
   },
   "header": "Anrufprotokolle",
@@ -611,6 +626,95 @@
       "address": "Adresse",
       "viewButton": "Ansehen"
     },
+
+    
+  "addPatient": {
+    "breadcrumbs": {
+      "dashboard": "Instrumententafel",
+      "patients": "Patienten",
+      "addPatient": "Patient hinzufügen"
+    },
+
+    "title": "Neuen Patienten hinzufügen",
+
+    "sections": {
+      "personalInfo": "Persönliche Informationen",
+      "contactAddress": "Kontakt & Adresse"
+    },
+
+    "fields": {
+      "firstName": {
+        "label": "Vorname",
+        "placeholder": "Vornamen eingeben..."
+      },
+      "lastName": {
+        "label": "Nachname",
+        "placeholder": "Nachnamen eingeben..."
+      },
+      "dateOfBirth": {
+        "label": "Geburtsdatum"
+      },
+      "gender": {
+        "label": "Geschlecht",
+        "placeholder": "Geschlecht auswählen",
+        "options": {
+          "male": "Männlich",
+          "female": "Weiblich",
+          "other": "Andere"
+        }
+      },
+      "bloodGroup": {
+        "label": "Blutgruppe",
+        "placeholder": "Blutgruppe auswählen"
+      },
+      "maritalStatus": {
+        "label": "Familienstand",
+        "placeholder": "Familienstand auswählen",
+        "options": {
+          "single": "Ledig",
+          "married": "Verheiratet",
+          "divorced": "Geschieden",
+          "widowed": "Verwitwet"
+        }
+      },
+      "insuranceId": {
+        "label": "Versicherungs-ID",
+        "placeholder": "Versicherungs-ID eingeben..."
+      },
+      "email": {
+        "label": "E-Mail",
+        "placeholder": "E-Mail eingeben..."
+      },
+      "phoneNumber": {
+        "label": "Telefonnummer",
+        "placeholder": "Primäre Telefonnummer eingeben..."
+      },
+      "alternativePhone": {
+        "label": "Alternative Telefonnummer",
+        "placeholder": "Alternative Telefonnummer eingeben..."
+      },
+      "city": {
+        "label": "Stadt",
+        "placeholder": "Stadt eingeben..."
+      },
+      "address": {
+        "label": "Adresse",
+        "placeholder": "Vollständige Adresse eingeben..."
+      }
+    },
+
+    "buttons": {
+      "cancel": "Abbrechen",
+      "submit": "Patient hinzufügen"
+    },
+
+    "messages": {
+      "submitSuccess": "Patientendaten wurden erfolgreich übermittelt!",
+      "formCleared": "Formular wurde zurückgesetzt."
+    }
+  },
+
+
     
   "patientProfile": {
     "breadcrumb": {
@@ -746,10 +850,753 @@
 }
 
 
+    },
+
+    
+  "taskList": {
+    "breadcrumb": {
+      "dashboard": "Instrumententafel",
+      "task": "Aufgabe"
+    },
+    "header": {
+      "title": "Aufgabe",
+      "totalTask": "Gesamtaufgaben",
+      "addTask": "Aufgabe hinzufügen"
+    },
+    "status": {
+  "all": "Alle Status",
+  "todo": "Zu erledigen",
+  "inprogress": "In Bearbeitung",
+  "done": "Erledigt"
+},
+"priority": {
+  "all": "Alle Priorität",
+  "high": "Hoch",
+  "medium": "Mittel",
+  "low": "Niedrig"
+},
+
+
+        "addTaskModal": {
+          "titleAdd": "Aufgabe hinzufügen",
+          "titleEdit": "Aufgabe bearbeiten",
+          "subtitleAdd": "Fügen Sie eine neue Aufgabe zu Ihrer Liste hinzu, füllen Sie die Details unten aus",
+          "subtitleEdit": "Ändern Sie die Aufgabendetails unten",
+          "labels": {
+            "title": "Titel",
+            "description": "Beschreibung",
+            "status": "Status",
+            "priority": "Priorität",
+            "dueDate": "Fälligkeitsdatum"
+          },
+          "placeholders": {
+            "title": "Aufgabentitel",
+            "description": "Details..."
+          },
+          "buttons": {
+            "cancel": "Abbrechen",
+            "submit": "Einreichen",
+            "saveChanges": "Änderungen speichern"
+          },
+          "statusOptions": {
+            "todo": "Zu erledigen",
+            "inProgress": "In Bearbeitung",
+            "done": "Erledigt"
+          },
+          "priorityOptions": {
+            "high": "Hoch",
+            "medium": "Mittel",
+            "low": "Niedrig"
+          },
+        
+
+    "columns": {
+      "todo": "Zu erledigen",
+      "inprogress": "In Bearbeitung",
+      "done": "Erledigt"
+    },
+   
+    "actions": {
+      "addTaskTo": "Aufgabe hinzufügen zu",
+      "editTask": "Aufgabe bearbeiten",
+      "deleteTask": "Aufgabe löschen",
+      "deleteSelected": "Ausgewählte Aufgaben löschen"
+    },
+    "taskCard": {
+      "due": "Fällig"
+    },
+    "deleteModal": {
+      "title": "Sind Sie sicher?",
+      "messageSingle": "Möchten Sie diese Aufgabe wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
+      "messageMultiple": "Möchten Sie wirklich {{count}} Aufgaben löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
+      "no": "Nein",
+      "yes": "Ja"
+    },
+    "deleteSuccess": {
+      "single": "Aufgabe erfolgreich gelöscht!",
+      "multiple": "{{count}} Aufgaben erfolgreich gelöscht!"
+    }
+  },
+   "patientRecordsModal": {
+          "title": "Patientenakten überprüfen",
+          "subtitle": "Fügen Sie eine neue Aufgabe zu Ihrer Liste hinzu. Füllen Sie die Details unten aus.",
+          "labels": {
+            "time": "Zeit",
+            "dueDate": "Fälligkeitsdatum",
+            "description": "Beschreibung"
+          },
+          "content": {
+            "paragraph1": "Ihre Patienten werden den Unterschied kaum bemerken. Passen Sie die Stimme des KI-Assistenten nahtlos an den Stil Ihrer Praxis an. Wählen Sie ein souveränes männliches oder weibliches Sprachprofil. So sichern Sie einen gleichbleibend angenehmen und professionellen Empfang für jeden Anruf.",
+            "paragraph2": "Ihre Patienten werden den Unterschied kaum bemerken. Passen Sie die Stimme des KI-Assistenten nahtlos an den Stil Ihrer Praxis an. Wählen Sie ein souveränes männliches oder weibliches Sprachprofil. So sichern Sie einen gleichbleibend angenehmen und professionellen Empfang für.",
+            "paragraph3": "Ihre Patienten werden den Unterschied kaum bemerken. Passen Sie die Stimme des KI-Assistenten nahtlos an den Stil Ihrer Praxis an. Wählen Sie ein souveränes männliches oder weibliches Sprachprofil."
+          },
+          "close": "Schließen"
+        }
+
+
+  },
+   "supportChat": {
+        "breadcrumb": {
+          "home": "Instrunmententafel",
+          "current": "Unterstützung"
+        },
+        "title": "Unterstützung",
+        "searchPlaceholder": "suchen...",
+        "backButton": "← Zurück",
+        "chat": {
+          "lastSeen": "Zuletzt gesehen vor {{time}}",
+          "typeMessage": "Nachricht eingeben...",
+          "sendButton": "SENDEN"
+        }
+      },
+
+"settings":{
+  "breadcrumb": {
+    "dashboard": "Instrumententafel",
+    "settings": "Einstellungen"
+  },
+  "header": {
+    "title": "Einstellungen"
+},
+
+"settingsSidebar": {
+    "navItems": {
+      "personalInfo": "Persönliche Informationen",
+      "myStaff": "Mein Personal",
+      "changePassword": "Passwort ändern",
+      "notification": "Benachrichtigungen",
+      "subscription": "Abonnement",
+      "preferences": "Einstellungen",
+      "security": "Sicherheit"
+    },
+      "tabs": {
+    "personalInfo": {
+      "title": "Persönliche Informationen",
+      "profile": {
+        "namePlaceholder": "Geben Sie Ihren Namen ein",
+        "role": "Anästhesie",
+        "firstNameLabel": "Vorname",
+        "lastNameLabel": "Nachname",
+        "emailLabel": "E-Mail",
+        "phoneLabel": "Telefonnummer",
+        "addressLabel": "Adresse",
+        "dobLabel": "Geburtsdatum",
+        "genderLabel": "Geschlecht",
+        "editButton": "Bearbeiten",
+        "saveButton": "Änderungen speichern",
+        "cancelButton": "Abbrechen"
+      
+      }
+    },
+
+      "myStaff": {
+    "title": "Mitarbeiterverwaltung",
+    "addButton": "Neuen Mitarbeiter hinzufügen",
+      "addNewStaff": {
+    "header": {
+      "breadcrumb": {
+        "dashboard": "Instrumententafel",
+        "settings": "Einstellungen",
+        "myStaff": "Meine Mitarbeiter"
+      },
+      "pageTitle": "Persönliche Informationen"
+    },
+    "card": {
+      "title": "Neuen Mitarbeiter hinzufügen",
+      "description": "Erstellen Sie ein neues Mitarbeiterprofil"
+    },
+    "stafTabs": {
+      "personal": "Persönliche Daten",
+      "personalInfo": {
+    "uploadPhoto": "Foto hochladen",
+    "firstName": "Vorname",
+    "firstNamePlaceholder": "Vorname eingeben...",
+    "lastName": "Nachname",
+    "lastNamePlaceholder": "Nachname eingeben...",
+    "dateOfBirth": "Geburtsdatum",
+    "gender": "Geschlecht",
+    "genderOptions": {
+      "male": "Männlich",
+      "female": "Weiblich",
+      "other": "Andere"
+    },
+    "selectGender": "Geschlecht auswählen",
+    "email": "E-Mail-Adresse",
+    "emailPlaceholder": "E-Mail eingeben...",
+    "phone": "Telefonnummer",
+    "phonePlaceholder": "Telefonnummer eingeben",
+    "address": "Adresse",
+    "addressPlaceholder": "Adresse eingeben...",
+    "state": "Bundesland/Provinz",
+    "statePlaceholder": "Bundesland eingeben...",
+    "postalCode": "Postleitzahl",
+    "postalCodePlaceholder": "Postleitzahl eingeben...",
+    "country": "Land",
+    "selectCountry": "Land auswählen",
+    "countryOptions": {
+      "us": "Vereinigte Staaten",
+      "uk": "Vereinigtes Königreich",
+      "bd": "Deutschland",
+      "in": "Japan"
+    }
+  },
+      "employment": "Beschäftigung",
+      "employmentInfo": {
+        "employeeId": {
+  "label": "Mitarbeiter-ID",
+  "placeholder": "Mitarbeiter-ID eingeben"
+},
+    "department": {
+      "label": "Abteilung",
+      "placeholder": "Abteilung auswählen",
+      "options": [
+        { "value": "sales", "label": "Vertrieb" },
+        { "value": "marketing", "label": "Marketing" },
+        { "value": "technology", "label": "Technologie" },
+        { "value": "hr", "label": "Personalwesen" },
+        { "value": "finance", "label": "Finanzen" }
+      ]
+    },
+    "reportingTo": {
+      "label": "Berichtet an",
+      "placeholder": "Manager auswählen",
+      "options": [
+        { "value": "managerA", "label": "Manager A" },
+        { "value": "managerB", "label": "Manager B" },
+        { "value": "managerC", "label": "Manager C" }
+      ]
+    },
+    "employmentType": {
+      "label": "Beschäftigungsart",
+      "placeholder": "Art auswählen",
+      "options": [
+        { "value": "full-time", "label": "Vollzeit" },
+        { "value": "part-time", "label": "Teilzeit" },
+        { "value": "contract", "label": "Vertrag" }
+      ]
+    },
+    "workSchedule": {
+      "label": "Arbeitszeitplan",
+      "placeholder": "Plan auswählen",
+      "options": [
+        { "value": "9-5", "label": "9:00 - 17:00 Uhr" },
+        { "value": "flexible", "label": "Flexibel" },
+        { "value": "shift", "label": "Schichtarbeit" }
+      ]
+    },
+    "workHours": {
+      "label": "Arbeitsstunden (wöchentlich)",
+      "placeholder": "Stunden auswählen",
+      "options": [
+        { "value": "40", "label": "40 Stunden" },
+        { "value": "30", "label": "30 Stunden" },
+        { "value": "20", "label": "20 Stunden" }
+      ]
     }
   }
+    },
+    "buttons": {
+      "cancel": "Abbrechen",
+      "next": "Weiter",
+      "save": "Speichern"
+    }
+  },
+    "table": {
+      "columns": {
+        "name": "Mitarbeitername",
+        "joined": "Beigetreten",
+        "role": "Rolle",
+        "contact": "Kontakt",
+        "status": "Status",
+        "profile": "Profil"
+      },
+      "status": {
+        "active": "Aktiv",
+        "inactive": "Inaktiv"
+      },
+      "viewProfile": "Profil anzeigen",
+      "showing": "Zeige {{start}}-{{end}} von {{total}} Mitarbeitern"
+    },
+
+    "staffProfile": {
+  "breadcrumb": {
+    "dashboard": "Instrumententafel",
+    "settings": "Einstellungen",
+    "staffProfile": "Mitarbeiterprofil"
+  },
+  "title": "Mitarbeiterprofil",
+  "status": {
+    "active": "Aktiv"
+  },
+  "buttons": {
+    "edit": "Bearbeiten",
+    "cancel": "Abbrechen",
+    "saveChanges": "Änderungen speichern",
+    "verifyEmail": "E-Mail verifizieren",
+    "changePassword": "Passwort ändern"
+  },
+  "bio": "{{name}} ist ein staatlich geprüfter Kardiologe mit über 12 Jahren Erfahrung in der Diagnose und Behandlung kardiovaskulärer Erkrankungen. Sie ist spezialisiert auf interventionelle Kardiologie und Echokardiographie mit Schwerpunkt auf Präventivmedizin. Dr. Johnson widmet sich der mitfühlenden Versorgung.",
+  "history": {
+    "title": "{{name}}s Geschichte",
+    "fields": {
+      "name": "Name",
+      "role": "Rolle",
+      "id": "ID",
+      "gender": "Geschlecht",
+      "presentAddress": "Aktuelle Adresse",
+      "permanentAddress": "Ständige Adresse",
+      "maritalStatus": "Familienstand",
+      "dob": "Geburtsdatum",
+      "passportCountry": "Passland",
+      "nationality": "Staatsangehörigkeit",
+      "nationalId": "Nationale ID"
+    }
+  },
+  "settingsSection": {
+    "title": "Einstellungen",
+    "description": "Verwalten Sie Ihre E-Mail-Adresse, Mobilnummer und Passwort",
+    "fields": {
+      "phone": "Mobilnummer",
+      "email": "E-Mail-ID",
+      "password": "Passwort"
+    },
+    "verified": "Verifiziert"
+  },
+  "values": {
+    "gender": {
+      "male": "Männlich",
+      "female": "Weiblich",
+      "other": "Sonstiges"
+    },
+    "maritalStatus": {
+      "married": "Verheiratet",
+      "single": "Ledig",
+      "divorced": "Geschieden",
+      "widowed": "Verwitwet"
+    },
+    "roles": {
+      "receptionist": "Rezeptionist",
+      "nurse": "Krankenschwester",
+      "doctor": "Arzt",
+      "admin": "Administrator"
+    }
+  }
+},
+    "pagination": {
+      "previous": "Zurück",
+      "next": "Weiter"
+    }
+  },
+  "changePasswordForm": {
+    "title": "Passwort ändern",
+    "fields": {
+      "current": "Aktuelles Passwort",
+      "newPass": "Neues Passwort",
+      "confirm": "Passwort bestätigen"
+    },
+    "placeholders": {
+      "current": "Geben Sie das aktuelle Passwort ein",
+      "newPass": "Geben Sie ein neues Passwort ein",
+      "confirm": "Bestätigen Sie das Passwort"
+    },
+    "errors": {
+      "required": "Bitte füllen Sie alle Pflichtfelder aus.",
+      "minLength": "Das neue Passwort muss mindestens 6 Zeichen lang sein.",
+      "mismatch": "Neues Passwort und Bestätigung stimmen nicht überein."
+    },
+    "success": "✅ Passwort erfolgreich geändert!",
+    "buttons": {
+      "cancel": "Abbrechen",
+      "saveChanges": "Änderungen speichern"
+    }
+  },
+
+  "notificationSettings": {
+  "title": "Benachrichtigungen",
+  "description": "Wir können Ihnen weiterhin wichtige Benachrichtigungen zu Ihrem Konto außerhalb Ihrer Benachrichtigungseinstellungen senden.",
+  "items": {
+    "appointmentReminders": {
+      "label": "Termin-Erinnerungen",
+      "desc": "Erhalten Sie Benachrichtigungen über bevorstehende Termine und Planänderungen."
+    },
+    "patientUpdates": {
+      "label": "Patienten-Updates",
+      "desc": "Erhalten Sie Benachrichtigungen, wenn neue Patienten hinzugefügt oder Patienteninformationen aktualisiert werden."
+    },
+    "callLogs": {
+      "label": "Anrufprotokolle",
+      "desc": "Erhalten Sie Benachrichtigungen über verpasste Anrufe und neue Einträge im Anrufprotokoll."
+    },
+    "taskDeadlines": {
+      "label": "Aufgabenfristen",
+      "desc": "Erhalten Sie Erinnerungen an bevorstehende Aufgabenfristen und überfällige Aufgaben."
+    },
+    "securityAlerts": {
+      "label": "Sicherheitswarnungen",
+      "desc": "Wichtige Sicherheitsbenachrichtigungen zu Ihrem Konto und Ihrer Anmeldeaktivität."
+    },
+    "emailNotifications": {
+      "label": "E-Mail-Benachrichtigungen",
+      "desc": "Erhalten Sie E-Mail-Updates zu Ihrem Konto."
+    }
+  },
+  "buttons": {
+    "cancel": "Abbrechen",
+    "saveChanges": "Änderungen speichern"
+  }
+},
+       "subscriptionOverview": {
+              "title": "Abonnement Übersicht",
+              "subTabs": {
+                "currentPlan": "Aktueller Plan",
+                 "currentPlanTab": {
+      "title": "Aktueller Plan",
+      "badge": "Professionell",
+      "paymentMethod": "Zahlungsmethode",
+      "startedFrom": "Begonnen am",
+      "perMonth": "/Pro Monat",
+
+      "features": {
+        "voicebotSetup": "AI Voicebot Einrichtung & Konfiguration",
+        "availability": "24/7 Verfügbarkeit & Anrufbearbeitung",
+        "triage": "Intelligente Triage & Aufgabenerstellung",
+        "minutesIncluded": "4000 Gesprächsminuten / Monat enthalten",
+        "extraMinute": "€0.30 pro zusätzlicher Minute",
+        "multilingual": "Mehrsprachig (25+ Sprachen)",
+        "support": "Priorisierter E-Mail- und Live-Chat-Support"
+      },
+
+      "statusActive": "Aktiv",
+      "subscriptionEndDate": "Ablaufdatum des Abonnements:",
+      "minutesLeft": "{{count}} Minuten übrig",
+      "minutesUsed": "{{used}}/{{total}} Minuten verwendet",
+
+      "buttons": {
+        "cancelPlan": "Aktuellen Plan kündigen",
+        "upgradePlan": "Plan upgraden"
+      }
+    },
+                "manageSubscription": "Abonnement verwalten",
+                "manageSubscriptionTab": {
+  "billing": {
+    "monthly": "Monatlich",
+    "yearly": "Jährlich"
+   
+  },
+   "billingCycle": {
+         "save": "15% sparen",
+        "perMonth": "/monat",
+        "perYear": "/monat"
+      },
+  "plans": {
+    "standard": {
+      "name": "Standard",
+      "features": {
+        "setup": "Erstellung & Einrichtung des KI-Sprachbots",
+        "availability": "24/7 Verfügbarkeit & Anrufprotokollierung",
+        "triage": "Intelligentes Triage- und Aufgabenmanagement",
+        "minutes": "2000 Gesprächsminuten pro Monat inklusive",
+        "extra": "€0.35 pro zusätzlicher Minute",
+        "support": "E-Mail-Support"
+      }
+    },
+
+    "premium": {
+      "name": "Premium",
+      "features": {
+        "setup": "Erstellung & Einrichtung des KI-Sprachbots",
+        "availability": "24/7 Verfügbarkeit & Anrufprotokollierung",
+        "triage": "Intelligentes Triage- und Aufgabenmanagement",
+        "minutes": "4000 Gesprächsminuten pro Monat inklusive",
+        "extra": "€0.30 pro zusätzlicher Minute",
+        "multilingual": "Mehrsprachig (25+ Sprachen)",
+        "support": "Bevorzugter E-Mail- und Live-Chat-Support"
+      }
+    },
+
+    "enterprise": {
+      "name": "Enterprise",
+      "features": {
+        "setup": "Erstellung & Einrichtung des KI-Sprachbots",
+        "availability": "24/7 Verfügbarkeit & Anrufprotokollierung",
+        "triage": "Intelligentes Triage- und Aufgabenmanagement",
+        "minutes": "8000 Gesprächsminuten pro Monat inklusive",
+        "extra": "€0.25 pro zusätzlicher Minute",
+        "multilingual": "Mehrsprachig (25+ Sprachen)",
+        "support": "24/7 Premium-Support"
+      }
+    }
+  },
+
+  "buttons": {
+    "getStarted": "JETZT STARTEN"
+  }
+},
+
+                "invoices": "Rechnungen",
+                "invoicesTab": {
+  "title": "Transaktionsübersicht",
+  "table": {
+    "date": "Datum",
+    "name": "Name",
+    "transactionId": "Transaktions-ID",
+    "status": "Status",
+    "payAmount": "Betrag zahlen",
+    "action": "Aktion"
+  },
+  "buttons": {
+    "view": "Ansehen"
+  },
+  "status": {
+    "paid": "Bezahlt",
+    "pending": "Ausstehend"
+  }
+}
+
+              }
+            },
+
+            "performances": {
+  "regionalSettings": {
+    "title": "Regionale Einstellungen",
+    "description": "Zeit-, Datums- und Regionaleinstellungen konfigurieren",
+    "timezone": "Zeitzone",
+    "dateFormat": "Datumsformat",
+    "timeFormat": "Zeitformat",
+    "language": "Sprache",
+    "timezoneOptions": {
+      "pst": "Pacific Standard Time (PST) UTC-8",
+      "est": "Eastern Standard Time (EST) UTC-5",
+      "gmt": "Greenwich Mean Time (GMT) UTC+0",
+      "bd": "Bangladesch Standardzeit (BST) UTC+6"
+    },
+    "dateFormatOptions": {
+      "mdy": "MM/TT/JJJJ (US)",
+      "dmy": "TT/MM/JJJJ (EU)",
+      "ymd": "JJJJ-MM-TT (ISO)"
+    },
+    "timeFormatOptions": {
+      "12h": "12 Stunden (AM/PM)",
+      "24h": "24 Stunden (Militärzeit)"
+    },
+    "languageOptions": {
+      "en": "Englisch",
+      "es": "Spanisch",
+      "fr": "Französisch",
+      "bn": "বাংলা (Bengalisch)"
+    }
+  },
+  "calendarPreferences": {
+    "title": "Kalender-Einstellungen",
+    "calendarView": "Standard-Kalenderansicht",
+    "appointmentDuration": "Standardtermin-Dauer",
+    "calendarViewOptions": {
+      "Day": "Tag",
+      "Week": "Woche",
+      "Month": "Monat",
+      "Agenda": "Agenda (Liste)"
+    },
+    "appointmentDurationOptions": {
+      "15 min..": "15 Minuten",
+      "30 min..": "30 Minuten (Standard)",
+      "45 min..": "45 Minuten",
+      "60 min..": "Stündlich"
+    }
+  },
+  "onlineBookingReminders": {
+    "title": "Online-Buchung & Erinnerungen",
+    "allowOnlineBooking": "Patienten erlauben, Termine online zu buchen",
+    "requireApproval": "Manuelle Genehmigung für Online-Buchungen erforderlich",
+    "sendReminders": "Automatische Terminerinnerungen senden",
+    "reminderTime": "Erinnerungszeit",
+    "bufferTime": "Pufferzeit zwischen Terminen",
+    "reminderTimeOptions": {
+      "1 hour before": "1 Stunde vorher",
+      "4 hours before": "4 Stunden vorher",
+      "24 hours before": "24 Stunden vorher (Empfohlen)",
+      "48 hours before": "48 Stunden vorher"
+    },
+    "bufferTimeOptions": {
+      "5 minutes": "5 Minuten",
+      "10 minutes": "10 Minuten",
+      "15 minutes": "15 Minuten (Standardbereinigung)",
+      "30 minutes": "30 Minuten"
+    }
+  },
+  "buttons": {
+    "cancel": "Abbrechen",
+    "saveChanges": "Änderungen speichern"
+  },
+  "toast": {
+    "settingsSaved": "Einstellungen erfolgreich gespeichert!"
+  }
+},
+
+"security": {
+  "title": "Sicherheitseinstellungen",
+  "description": "Sicherheits- und Datenschutzeinstellungen für Ihre Klinik konfigurieren",
+  "sections": {
+    "passwordPolicy": {
+      "title": "Passwortrichtlinie",
+      "enablePolicy": "Passwortrichtlinie aktivieren",
+      "passwordExpiry": "Passwortablauf",
+      "minPasswordLength": "Minimale Passwortlänge",
+      "requireUpperLower": "Groß- & Kleinbuchstaben erforderlich (Standard)",
+      "requireNumbers": "Zahlen erforderlich (Standard)",
+      "requireSpecialChars": "Sonderzeichen erforderlich (Standard)"
+    },
+    "loginSecurity": {
+      "title": "Login-Sicherheit",
+      "enableLoginSecurity": "Login-Sicherheit aktivieren",
+      "twoFactorAuth": "Zwei-Faktor-Authentifizierung erzwingen (Standard)",
+      "sessionTimeout": "Sitzungszeitüberschreitung",
+      "maxLoginAttempts": "Maximale Anmeldeversuche"
+    },
+    "dataProtection": {
+      "title": "Datenschutz",
+      "enableDataProtection": "Datenschutz aktivieren",
+      "encryptData": "Sensible Daten verschlüsseln (Standard)",
+      "auditLogs": "Audit-Logs aktivieren (Standard)"
+    }
+  },
+  "buttons": {
+    "cancel": "Abbrechen",
+    "saveChanges": "Änderungen speichern"
+  }
+}
 
 
+    },
+    "deleteAccount": {
+      "button": "Konto löschen",
+      "modal": {
+        "title": "Konto löschen",
+        "message": "Sind Sie sicher, dass Sie Ihr Konto löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.",
+        "passwordLabel": "Geben Sie Ihr Passwort zur Bestätigung ein",
+        "cancel": "Abbrechen",
+        "confirm": "Konto löschen"
+      }
+    }
+  }
+},
+  "logoutModal": {
+    "title": "Abmelden",
+    "description": "Möchten Sie sich wirklich von Docline abmelden?",
+    "buttons": {
+      "confirm": "Ja",
+      "cancel": "Nein"
+    }
+  }
+}
+  },
+
+  "adminDashboard":{
+  "sidebar":{
+    
+  "dashboard": "Instrumententafel",
+  "customers": "Kunden",
+  "billing_subscription": "Abrechnung & Abonnement",
+  "ai_voicebot": "KI-Sprachassistent",
+  "system_health": "Systemgesundheit",
+  "security_audit": "Sicherheit & Prüfung",
+  "supports": "Unterstützung",
+  "settings": "Einstellungen",
+  "logout": "Abmelden"
+
+
+  },
+   "routes":{
+    "dashboard":{
+      "topSection":{
+  "hello": "Hallo,",
+  "welcome_back": "Willkommen zurück,",
+  "todays_summary": "Hier ist, was heute passiert"
+      },
+   "cardSection": {
+        "stats": {
+          "totalMRR": {
+            "title": "Gesamtes MRR",
+            "value": "284 $",
+            "change": "+12,5 %"
+          },
+          "newMRR": {
+            "title": "Neues MRR",
+            "value": "184 $",
+            "change": "+12,5 %"
+          },
+          "churnMRR": {
+            "title": "Churn MRR",
+            "value": "54 $",
+            "change": "+12,5 %"
+          },
+          "netExpansionMRR": {
+            "title": "Nettoerweiterung MRR",
+            "value": "284 $",
+            "change": "+12,5 %"
+          },
+          "customerChurnRate": {
+            "title": "Kunden-Churn-Rate",
+            "value": "28 $",
+            "change": "+12,5 %"
+          }
+        },
+        "lastMonth": "Letzten Monat"
+      },
+          "revenueChart": {
+          "title": "Gesamtumsatz",
+          "totalAmount": "25k",
+          "description": "Gesamtumsatz im letzten Monat"
+        },
+         "customerSection": {
+          "title": "Kundengewinnung vs Abwanderung",
+          "churn": {
+            "percentage": "50%",
+            "label": "Abwanderung"
+          },
+          "acquisition": {
+            "percentage": "90%",
+            "label": "Gewinnung"
+          },
+          "legend": {
+            "churn": "50% Abwanderung",
+            "acquisition": "90% Gewinnung"
+          }
+        },
+          "callVolumeSection": {
+          "title": "KI-Voicebot Anrufvolumen",
+          "description": "Täglicher Anrufvolumen-Trend (letzte 7 Tage)"
+        },
+        "recentDoctorsSection": {
+          "title": "Kürzlich hinzugefügter Arzt",
+          "description": "In den letzten 7 Tagen haben Sie {{count}} neue Ärzte hinzugefügt",
+          "table": {
+            "specialist": "Fachgebiet",
+            "joiningDate": "Eintrittsdatum",
+            "doctorId": "Arzt-ID"
+          }
+        }
+  }
+}
 }
 }
 

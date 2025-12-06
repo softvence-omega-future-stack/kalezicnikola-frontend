@@ -77,7 +77,7 @@ const Dashboard: React.FC = () => {
     // Window resize এ update
     window.addEventListener('resize', updateHeight);
 
-    // Content change detect করার জন্য MutationObserver
+   
     const observer = new MutationObserver(updateHeight);
     
     if (leftRef.current) {

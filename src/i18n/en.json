@@ -259,7 +259,7 @@
   },
   "billingSuffix": {
     "monthly": "/month",
-    "annually": "/year"
+    "annually": "/month"
   },
   "plans": [
     {
@@ -383,6 +383,21 @@
   }
 },
 "dashboard":{
+  "mainHeader":{
+      "userDropdown": {
+    "role": "Anaesthesia",
+    "menu": {
+      "profileSettings": "Profile settings",
+      "support": "Support",
+      "settings": "Settings",
+      "logout": "Log Out"
+    }
+  },
+  "notificationModal":{
+    "title":"Notifications",
+     "timeAgo": "{{time}} "
+  }
+  },
  "sidebar": {
     "navigation": {
       "dashboard": "Dashboard",
@@ -610,11 +625,93 @@
     },
 
     
+  "addPatient": {
+    "breadcrumbs": {
+      "dashboard": "Dashboard",
+      "patients": "Patients",
+      "addPatient": "Add Patient"
+    },
 
+    "title": "Add New Patient",
 
+    "sections": {
+      "personalInfo": "Personal Information",
+      "contactAddress": "Contact & Address"
+    },
 
- 
-  "patientProfile": {
+    "fields": {
+      "firstName": {
+        "label": "First Name",
+        "placeholder": "Enter first name..."
+      },
+      "lastName": {
+        "label": "Last Name",
+        "placeholder": "Enter last name..."
+      },
+      "dateOfBirth": {
+        "label": "Date of Birth"
+      },
+      "gender": {
+        "label": "Gender",
+        "placeholder": "Select gender",
+        "options": {
+          "male": "Male",
+          "female": "Female",
+          "other": "Other"
+        }
+      },
+      "bloodGroup": {
+        "label": "Blood Group",
+        "placeholder": "Select blood group"
+      },
+      "maritalStatus": {
+        "label": "Marital Status",
+        "placeholder": "Select marital status",
+        "options": {
+          "single": "Single",
+          "married": "Married",
+          "divorced": "Divorced",
+          "widowed": "Widowed"
+        }
+      },
+      "insuranceId": {
+        "label": "Insurance ID",
+        "placeholder": "Insurance ID..."
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Enter your email..."
+      },
+      "phoneNumber": {
+        "label": "Phone Number",
+        "placeholder": "Enter primary phone number..."
+      },
+      "alternativePhone": {
+        "label": "Alternative Phone",
+        "placeholder": "Enter alternative phone number..."
+      },
+      "city": {
+        "label": "City",
+        "placeholder": "Enter city..."
+      },
+      "address": {
+        "label": "Address",
+        "placeholder": "Full address..."
+      }
+    },
+
+    "buttons": {
+      "cancel": "Cancel",
+      "submit": "Add Patient"
+    },
+
+    "messages": {
+      "submitSuccess": "Patient data submitted!",
+      "formCleared": "Form cleared."
+    }
+  },
+
+"patientProfile": {
     "breadcrumb": {
       "dashboard": "Dashboard",
       "patients": "Patients",
@@ -738,17 +835,785 @@
 }
 
           }
+  },
+  "supportChat": {
+        "breadcrumb": {
+          "home": "Dashboard",
+          "current": "Supports"
+        },
+        "title": "Supports",
+        "searchPlaceholder": "search...",
+        "backButton": "← Back",
+        "chat": {
+          "lastSeen": "Last seen {{time}} ago",
+          "typeMessage": "Type a message...",
+          "sendButton": "SEND"
+        }
+      },
+
+  "taskList": {
+  "breadcrumb": {
+    "dashboard": "Dashboard",
+    "task": "Task"
+  },
+  "header": {
+    "title": "Task",
+    "totalTask": "Total task",
+    "addTask": "Add Task"
+  },
+    "status": {
+    "all": "All Status",
+    "todo": "To Do",
+    "inprogress": "In Progress",
+    "done": "Done"
+  },
+
+  "columns": {
+    "todo": "To Do",
+    "inprogress": "In Progress",
+    "done": "Done"
+  },
+  "priority": {
+     "all": "All Priority",
+    "high": "High",
+    "medium": "Medium",
+    "low": "Low"
+  },
+  "addTaskModal": {
+  "titleAdd": "Add Task",
+  "titleEdit": "Edit Task",
+  "subtitleAdd": "Add a new task to your list, fill in the details below",
+  "subtitleEdit": "Modify the task details below",
+  "labels": {
+    "title": "Title",
+    "description": "Description",
+    "status": "Status",
+    "priority": "Priority",
+    "dueDate": "Due Date"
+  },
+  "placeholders": {
+    "title": "Task title",
+    "description": "Details..."
+  },
+  "buttons": {
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "saveChanges": "Save Changes"
+  },
+  "statusOptions": {
+    "todo": "To Do",
+    "inProgress": "In Progress",
+    "done": "Done"
+  },
+  "priorityOptions": {
+    "high": "High",
+    "medium": "Medium",
+    "low": "Low"
+  },
+  "columns": {
+    "todo": "To Do",
+    "inprogress": "In Progress",
+    "done": "Done"
+  },
+  "actions": {
+    "addTaskTo": "Add Task To",
+    "editTask": "Edit Task",
+    "deleteTask": "Delete Task",
+    "deleteSelected": "Delete Selected Tasks"
+  },
+  "taskCard": {
+    "due": "Due"
+  },
+  "deleteModal": {
+    "title": "Are you sure?",
+    "messageSingle": "Do you really want to delete this task? This action cannot be undone.",
+    "messageMultiple": "Do you really want to delete {{count}} tasks? This action cannot be undone.",
+    "no": "No",
+    "yes": "Yes"
+  },
+  "deleteSuccess": {
+    "single": "Task deleted successfully!",
+    "multiple": "{{count}} tasks deleted successfully!"
+  }
+},
+
+  "actions": {
+    "addTaskTo": "Add Task to",
+    "editTask": "Edit Task",
+    "deleteTask": "Delete Task",
+    "deleteSelected": "Delete Selected Tasks"
+  },
+  "taskCard": {
+    "due": "Due"
+  },
+  "deleteModal": {
+    "title": "Are you sure?",
+    "messageSingle": "Do you really want to delete this task? This action cannot be undone.",
+    "messageMultiple": "Do you really want to delete {{count}} tasks? This action cannot be undone.",
+    "no": "No",
+    "yes": "Yes"
+  },
+  "deleteSuccess": {
+    "single": "Task deleted successfully!",
+    "multiple": "{{count}} tasks deleted successfully!"
+  },
+
+  "patientRecordsModal": {
+  "title": "Review Patient Records",
+  "subtitle": "Add a new task to your list. Fill in the details below.",
+  "labels": {
+    "time": "Time",
+    "dueDate": "Due Date",
+    "description": "Description"
+  },
+  "content": {
+    "paragraph1": "Your patients will hardly notice the difference. Seamlessly adjust the AI assistant's voice to match the style of your practice. Choose a confident male or female voice profile. This ensures a consistently pleasant and professional reception for every call.",
+    "paragraph2": "Your patients will hardly notice the difference. Seamlessly adjust the AI assistant's voice to match the style of your practice. Choose a confident male or female voice profile. This ensures a consistently pleasant and professional reception for.",
+    "paragraph3": "Your patients will hardly notice the difference. Seamlessly adjust the AI assistant's voice to match the style of your practice. Choose a confident male or female voice profile."
+  },
+  "close": "Close"
+}
+
+},
+
+"settings":{
+  "breadcrumb": {
+    "dashboard": "Dashboard",
+    "settings": "Settings"
+  },
+  "header": {
+    "title": "Settings"
+},
+
+"settingsSidebar": {
+    "navItems": {
+      "personalInfo": "Personal Info",
+      "myStaff": "My Staff",
+      "changePassword": "Change Password",
+      "notification": "Notification",
+      "subscription": "Subscription",
+      "preferences": "Preferences",
+      "security": "Security"
+    },
+     "tabs": {
+            "personalInfo": {
+              "title": "Personal Info",
+              "profile": {
+                "namePlaceholder": "Enter your name",
+                "role": "Anaesthesia",
+                "firstNameLabel": "First Name",
+                "lastNameLabel": "Last Name",
+                "emailLabel": "Email",
+                "phoneLabel": "Phone Number",
+                "addressLabel": "Address",
+                "dobLabel": "Date of Birth",
+                "genderLabel": "Gender",
+                "editButton": "Edit",
+                "saveButton": "Save Changes",
+                "cancelButton": "Cancel"
+              }
+               },
+
+                "myStaff": {
+        "title": "Staff Management",
+        "addButton": "Add New Staff",
+        "addNewStaff": {
+          "header": {
+            "breadcrumb": {
+              "dashboard": "Dashboard",
+              "settings": "Settings",
+              "myStaff": "My Staff"
+            },
+            "pageTitle": "Personal Information"
+          },
+          "card": {
+            "title": "Add New Staff",
+            "description": "Create a new staff member profile"
+          },
+          "stafTabs": {
+            "personal": "Personal Info",
+            "personalInfo": {
+    "uploadPhoto": "Upload Photo",
+    "firstName": "First Name",
+    "firstNamePlaceholder": "Enter first name...",
+    "lastName": "Last Name",
+    "lastNamePlaceholder": "Enter last name...",
+    "dateOfBirth": "Date of Birth",
+    "gender": "Gender",
+    "genderOptions": {
+      "male": "Male",
+      "female": "Female",
+      "other": "Other"
+    },
+    "selectGender": "Select gender",
+    "email": "Email Address",
+    "emailPlaceholder": "Enter your email...",
+    "phone": "Phone Number",
+    "phonePlaceholder": "Enter your phone number",
+    "address": "Address",
+    "addressPlaceholder": "Enter your address...",
+    "state": "State/Province",
+    "statePlaceholder": "Enter your state...",
+    "postalCode": "Postal Code",
+    "postalCodePlaceholder": "Enter postal code...",
+    "country": "Country",
+    "selectCountry": "Select country",
+    "countryOptions": {
+      "us": "United States",
+      "uk": "United Kingdom",
+      "bd": "Germany",
+      "in": "Japan"
+    }
+  },
+            "employment": "Employment",
+            "employmentInfo": {
+                 "employeeId": {
+                      "label": "Employee ID",
+                      "placeholder": "Enter employee id"
+                    },
+    "department": {
+      "label": "Department",
+      "placeholder": "Select department",
+      "options": [
+        { "value": "sales", "label": "Sales" },
+        { "value": "marketing", "label": "Marketing" },
+        { "value": "technology", "label": "Technology" },
+        { "value": "hr", "label": "HR" },
+        { "value": "finance", "label": "Finance" }
+      ]
+    },
+    "reportingTo": {
+      "label": "Reporting To",
+      "placeholder": "Select manager",
+      "options": [
+        { "value": "managerA", "label": "Manager A" },
+        { "value": "managerB", "label": "Manager B" },
+        { "value": "managerC", "label": "Manager C" }
+      ]
+    },
+    "employmentType": {
+      "label": "Employment Type",
+      "placeholder": "Select type",
+      "options": [
+        { "value": "full-time", "label": "Full-time" },
+        { "value": "part-time", "label": "Part-time" },
+        { "value": "contract", "label": "Contract" }
+      ]
+    },
+    "workSchedule": {
+      "label": "Work Schedule",
+      "placeholder": "Select schedule",
+      "options": [
+        { "value": "9-5", "label": "9:00 AM - 5:00 PM" },
+        { "value": "flexible", "label": "Flexible" },
+        { "value": "shift", "label": "Shift-based" }
+      ]
+    },
+    "workHours": {
+      "label": "Work Hours (Weekly)",
+      "placeholder": "Select hours",
+      "options": [
+        { "value": "40", "label": "40 hours" },
+        { "value": "30", "label": "30 hours" },
+        { "value": "20", "label": "20 hours" }
+      ]
+    }
+  }
+          },
+          "buttons": {
+            "cancel": "Cancel",
+            "next": "Next",
+            "save": "Save"
+          }
+        },
+
+        "table": {
+          "columns": {
+            "name": "Patient Name",
+            "joined": "Joined",
+            "role": "Role",
+            "contact": "Contact",
+            "status": "Status",
+            "profile": "Profile"
+          },
+          "status": {
+            "active": "Active",
+            "inactive": "Inactive"
+          },
+          "viewProfile": "View Profile",
+          "showing": "Showing {{start}}-{{end}} of {{total}} staff members"
+        },
+  "staffProfile": {
+  "breadcrumb": {
+    "dashboard": "Dashboard",
+    "settings": "Settings",
+    "staffProfile": "Staff Profile"
+  },
+  "title": "Staff Profile",
+  "status": {
+    "active": "Active"
+  },
+  "buttons": {
+    "edit": "Edit",
+    "cancel": "Cancel",
+    "saveChanges": "Save Changes",
+    "verifyEmail": "Verify your email",
+    "changePassword": "Change Password"
+  },
+  "bio": "{{name}} is a board-certified cardiologist with over 12 years of experience in diagnosing and treating cardiovascular conditions. She specializes in interventional cardiology and echocardiography, with a focus on preventive care. Dr. Johnson is dedicated to providing compassionate.",
+  "history": {
+    "title": "{{name}}'s History",
+    "fields": {
+      "name": "Name",
+      "role": "Role",
+      "id": "ID",
+      "gender": "Gender",
+      "presentAddress": "Present Address",
+      "permanentAddress": "Permanent Address",
+      "maritalStatus": "Marital Status",
+      "dob": "Date of Birth",
+      "passportCountry": "Passport Country",
+      "nationality": "Nationality",
+      "nationalId": "National ID"
+    }
+  },
+  "settingsSection": {
+    "title": "Settings",
+    "description": "Manage your email address, mobile number and password",
+    "fields": {
+      "phone": "Mobile number",
+      "email": "Email ID",
+      "password": "Password"
+    },
+    "verified": "Verified"
+  },
+  "values": {
+    "gender": {
+      "male": "Male",
+      "female": "Female",
+      "other": "Other"
+    },
+    "maritalStatus": {
+      "married": "Married",
+      "single": "Single",
+      "divorced": "Divorced",
+      "widowed": "Widowed"
+    },
+    "roles": {
+      "receptionist": "Receptionist",
+      "nurse": "Nurse",
+      "doctor": "Doctor",
+      "admin": "Admin"
+    }
+  }
+},
+                
+              
+            
+          
+        "pagination": {
+          "previous": "Previous",
+          "next": "Next"
+        }
+      },
+
+        "changePasswordForm": {
+    "title": "Change Password",
+    "fields": {
+      "current": "Current Password",
+      "newPass": "New Password",
+      "confirm": "Confirm Password"
+    },
+    "placeholders": {
+      "current": "Enter current password",
+      "newPass": "Enter new password",
+      "confirm": "Enter confirm password"
+    },
+    "errors": {
+      "required": "Please fill in all required fields.",
+      "minLength": "New password must be at least 6 characters long.",
+      "mismatch": "New password and confirmation do not match."
+    },
+    "success": "✅ Password changed successfully!",
+    "buttons": {
+      "cancel": "Cancel",
+      "saveChanges": "Save Changes"
+    }
+  },
+
+  "notificationSettings": {
+  "title": "Notification",
+  "description": "We may still send you important notifications about your account outside of your notification settings.",
+  "items": {
+    "appointmentReminders": {
+      "label": "Appointment Reminders",
+      "desc": "Get notified about upcoming appointments and schedule changes."
+    },
+    "patientUpdates": {
+      "label": "Patient Updates",
+      "desc": "Receive notifications when new patients are added or patient information is updated."
+    },
+    "callLogs": {
+      "label": "Call Logs",
+      "desc": "Get notified about missed calls and new call log entries."
+    },
+    "taskDeadlines": {
+      "label": "Task Deadlines",
+      "desc": "Receive reminders about upcoming task deadlines and overdue tasks."
+    },
+    "securityAlerts": {
+      "label": "Security Alerts",
+      "desc": "Important security notifications about your account and login activity."
+    },
+    "emailNotifications": {
+      "label": "Email Notifications",
+      "desc": "Receive email updates about your account."
+    }
+  },
+  "buttons": {
+    "cancel": "Cancel",
+    "saveChanges": "Save Changes"
+  }
+},
+"subscriptionOverview": {
+  "title": "Subscription Overview",
+  "subTabs": {
+    "currentPlan": "Current Plan",
+    "currentPlanTab": {
+      "title": "Current Plan",
+      "badge": "Professional",
+      "paymentMethod": "Payment method",
+      "startedFrom": "Started From",
+      "perMonth": "/Per Month",
+      "features": {
+        "voicebotSetup": "AI Voicebot setup & configuration",
+        "availability": "24/7 availability & call handling",
+        "triage": "Intelligent triage & task creation",
+        "minutesIncluded": "4000 call minutes / month included",
+        "extraMinute": "€0.30 per extra minute",
+        "multilingual": "Multilingual (25+ languages)",
+        "support": "Prioritized email and live chat support"
+      },
+      "statusActive": "Active",
+      "subscriptionEndDate": "Subscription end date:",
+      "minutesLeft": "{{count}} minutes left",
+      "minutesUsed": "{{used}}/{{total}} minutes used",
+      "buttons": {
+        "cancelPlan": "Cancel Current Plan",
+        "upgradePlan": "Upgrade Plan"
+      }
+    },
+    "manageSubscription": "Manage Subscription",
+    "manageSubscriptionTab": {
+      "billing": {
+        "monthly": "Monthly",
+        "yearly": "Yearly"
+       
+      },
+      "billingCycle": {
+         "save": "Save 15%",
+        "perMonth": "/month",
+        "perYear": "/month"
+      },
+      "plans": {
+        "standard": {
+          "name": "Standard",
+          "monthly": "399",
+          "yearly": "339",
+          "features": {
+            "voicebotSetup": "AI Voicebot setup & configuration",
+            "availability": "24/7 availability & call handling",
+            "triage": "Intelligent triage & task creation",
+            "minutesIncluded": "2000 call minutes / month included",
+            "extraMinute": "€0.35 per extra minute",
+            "support": "Email support"
+          }
+        },
+        "premium": {
+          "name": "Premium",
+          "monthly": "899",
+          "yearly": "765",
+          "features": {
+            "voicebotSetup": "AI Voicebot setup & configuration",
+            "availability": "24/7 availability & call handling",
+            "triage": "Intelligent triage & task creation",
+            "minutesIncluded": "4000 call minutes / month included",
+            "extraMinute": "€0.30 per extra minute",
+            "multilingual": "Multilingual (25+ languages)",
+            "support": "Prioritized email and live chat support"
+          }
+        },
+        "enterprise": {
+          "name": "Enterprise",
+          "monthly": "1299",
+          "yearly": "1105",
+          "features": {
+            "voicebotSetup": "AI Voicebot setup & configuration",
+            "availability": "24/7 availability & call handling",
+            "triage": "Intelligent triage & task creation",
+            "minutesIncluded": "8000 call minutes / month included",
+            "extraMinute": "€0.25 per extra minute",
+            "multilingual": "Multilingual (25+ languages)",
+            "support": "24/7 Premium support"
+          }
+        }
+      },
+      "buttons": {
+        "getStarted": "GET STARTED"
+      }
+    },
+    "invoices": "Invoices",
+                   "invoicesTab": {
+                  "title": "Transaction Overview",
+                  "table": {
+                    "date": "Date",
+                    "name": "Name",
+                    "transactionId": "Transaction ID",
+                    "status": "Status",
+                    "payAmount": "Pay Amount",
+                    "action": "Action"
+                  },
+                  "buttons": {
+                    "view": "View"
+                  },
+                  "status": {
+                    "paid": "Paid",
+                    "pending": "Pending"
+                  }
+                }
+  }
+},
+
+"performances": {
+              "regionalSettings": {
+                "title": "Regional Settings",
+                "description": "Configure time, date, and regional preferences",
+                "timezone": "Timezone",
+                "dateFormat": "Date Format",
+                "timeFormat": "Time Format",
+                "language": "Language",
+                "timezoneOptions": {
+                  "pst": "Pacific Standard Time (PST) UTC-8",
+                  "est": "Eastern Standard Time (EST) UTC-5",
+                  "gmt": "Greenwich Mean Time (GMT) UTC+0",
+                  "bd": "Bangladesh Standard Time (BST) UTC+6"
+                },
+                "dateFormatOptions": {
+                  "mdy": "MM/DD/YYYY (US)",
+                  "dmy": "DD/MM/YYYY (EU)",
+                  "ymd": "YYYY-MM-DD (ISO)"
+                },
+                "timeFormatOptions": {
+                  "12h": "12 Hour (AM/PM)",
+                  "24h": "24 Hour (Military)"
+                },
+                "languageOptions": {
+                  "en": "English",
+                  "es": "Spanish",
+                  "fr": "French",
+                  "bn": "বাংলা (Bengali)"
+                }
+              },
+              "calendarPreferences": {
+                "title": "Calendar Preferences",
+                "calendarView": "Default Calendar View",
+                "appointmentDuration": "Default Appointment Duration",
+                "calendarViewOptions": {
+                  "Day": "Day",
+                  "Week": "Week",
+                  "Month": "Month",
+                  "Agenda": "Agenda (List)"
+                },
+                "appointmentDurationOptions": {
+                  "15 min..": "15 minutes",
+                  "30 min..": "30 minutes (Standard)",
+                  "45 min..": "45 minutes",
+                  "60 min..": "Hourly"
+                }
+              },
+              "onlineBookingReminders": {
+                "title": "Online Booking & Reminders",
+                "allowOnlineBooking": "Allow patients to book appointments online",
+                "requireApproval": "Require manual approval for online bookings",
+                "sendReminders": "Send automatic appointment reminders",
+                "reminderTime": "Reminder Time",
+                "bufferTime": "Buffer Time Between Appointments",
+                "reminderTimeOptions": {
+                  "1 hour before": "1 hour before",
+                  "4 hours before": "4 hours before",
+                  "24 hours before": "24 hours before (Recommended)",
+                  "48 hours before": "48 hours before"
+                },
+                "bufferTimeOptions": {
+                  "5 minutes": "5 minutes",
+                  "10 minutes": "10 minutes",
+                  "15 minutes": "15 minutes (Standard Cleanup)",
+                  "30 minutes": "30 minutes"
+                }
+              },
+              "buttons": {
+                "cancel": "Cancel",
+                "saveChanges": "Save Changes"
+              },
+              "toast": {
+                "settingsSaved": "Settings saved successfully!"
+              }
+            },
+
+             "security": {
+              "title": "Security Settings",
+              "description": "Configure security and privacy settings for your clinic",
+              "sections": {
+                "passwordPolicy": {
+                  "title": "Password Policy",
+                  "enablePolicy": "Enable Password Policy",
+                  "passwordExpiry": "Password Expiry",
+                  "minPasswordLength": "Minimum Password Length",
+                  "requireUpperLower": "Require uppercase & lowercase letters (Default)",
+                  "requireNumbers": "Require numbers (Default)",
+                  "requireSpecialChars": "Require special characters (Default)"
+                },
+                "loginSecurity": {
+                  "title": "Login Security",
+                  "enableLoginSecurity": "Enable Login Security",
+                  "twoFactorAuth": "Enforce two-factor authentication (Default)",
+                  "sessionTimeout": "Session Timeout",
+                  "maxLoginAttempts": "Maximum Login Attempts"
+                },
+                "dataProtection": {
+                  "title": "Data Protection",
+                  "enableDataProtection": "Enable Data Protection",
+                  "encryptData": "Encrypt sensitive data (Default)",
+                  "auditLogs": "Enable audit logs (Default)"
+                }
+              },
+              "buttons": {
+                "cancel": "Cancel",
+                "saveChanges": "Save Changes"
+              }
+            }
+
+            },
+    "deleteAccount": {
+      "button": "Delete Account",
+      "modal": {
+        "title": "Delete Account",
+        "message": "Are you sure you want to delete your account? This action cannot be undone.",
+        "passwordLabel": "Enter your password to confirm",
+        "cancel": "Cancel",
+        "confirm": "Delete Account"
+      }
+    }
+
+ 
+
+}
+
+},
+  "logoutModal": {
+    "title": "Logout",
+    "description": "Are you sure you want to logout from Docline?",
+    "buttons": {
+      "confirm": "Yes",
+      "cancel": "No"
+    }
   }
 
+  }
+},
+
+"adminDashboard":{
+  "sidebar":{
+    
+  "dashboard": "Dashboard",
+  "customers": "Customers",
+  "billing_subscription": "Billing & Subscription",
+  "ai_voicebot": "AI Voicebot",
+  "system_health": "System Health",
+  "security_audit": "Security & Audit",
+  "supports": "Supports",
+  "settings": "Settings",
+  "logout": "Logout"
 
 
-
+  },
+  "routes":{
+    "dashboard":{
+      "topSection":{ 
+     "hello": "Hello,",
+  "welcome_back": "Welcome back,",
+  "todays_summary": "Here's what's happening today"
+},
+    
+  "cardSection": {
+        "stats": {
+          "totalMRR": {
+            "title": "Total MRR",
+            "value": "$284",
+            "change": "+12.5%"
+          },
+          "newMRR": {
+            "title": "New MRR",
+            "value": "$184",
+            "change": "+12.5%"
+          },
+          "churnMRR": {
+            "title": "Churn MRR",
+            "value": "$54",
+            "change": "+12.5%"
+          },
+          "netExpansionMRR": {
+            "title": "Net Expansion MRR",
+            "value": "$284",
+            "change": "+12.5%"
+          },
+          "customerChurnRate": {
+            "title": "Customer Churn Rate",
+            "value": "$28",
+            "change": "+12.5%"
+          }
+        },
+        "lastMonth": "Last month"
+      },
+        "revenueChart": {
+          "title": "Total Revenue",
+          "totalAmount": "25k",
+          "description": "Total Revenue in last month"
+        },
+        "customerSection": {
+          "title": "Customer Acquisition vs Churn",
+          "churn": {
+            "percentage": "50%",
+            "label": "Churn"
+          },
+          "acquisition": {
+            "percentage": "90%",
+            "label": "Acquisition"
+          },
+          "legend": {
+            "churn": "50% Churn",
+            "acquisition": "90% Acquisition"
+          }
+        },
+          "callVolumeSection": {
+          "title": "AI Voicebot Call Volume",
+          "description": "Daily call volume trend (last 7 days)"
+        },
+            "recentDoctorsSection": {
+          "title": "Recent Add Doctor",
+          "description": "Last 7 days you have join {{count}} New Doctor",
+          "table": {
+            "specialist": "Specialist",
+            "joiningDate": "Joining Date",
+            "doctorId": "Doctor ID"
+          }
+        }
+    }
+    }
+  
+  }
 }
 
-}
-
-
-}
 
 
 

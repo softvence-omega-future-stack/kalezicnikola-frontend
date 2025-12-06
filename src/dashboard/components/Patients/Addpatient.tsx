@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 import { Home, ChevronRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import CustomDropdown from '../Settings/Sidebar/CustomDropdown';
+import { useTranslation } from 'react-i18next';
 
 interface FormData {
   firstName: string;
   lastName: string;
   dateOfBirth: string;
-  gender: 'Male' | 'Female' | 'Other' | '';
-  bloodGroup: 'A+' | 'A-' | 'B+' | 'B-' | 'O+' | 'O-' | 'AB+' | 'AB-' | '';
-  maritalStatus: 'Single' | 'Married' | 'Divorced' | 'Widowed' | '';
+  gender: string;
+  bloodGroup: string;
+  maritalStatus: string;
   city: string;
   insuranceId: string;
   address: string;
@@ -19,6 +20,9 @@ interface FormData {
 }
 
 const AddPatientForm: React.FC = () => {
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState<FormData>({
     firstName: '',
     lastName: '',
@@ -47,8 +51,8 @@ const AddPatientForm: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Patient Data Submitted:', formData);
-    alert('Patient data submitted! Check console for details.');
+    alert(t("dashboard.routes.patients.addPatient.messages.submitSuccess"));
+    console.log(formData);
   };
 
   const handleCancel = () => {
@@ -66,104 +70,118 @@ const AddPatientForm: React.FC = () => {
       phoneNumber: '',
       alternativePhone: ''
     });
-    console.log('Form cleared/cancelled');
+    alert(t("dashboard.routes.patients.addPatient.messages.formCleared"));
   };
 
-  const inputClass = "w-full px-4 py-2.5 bg-gray-50 border border-[#D0D5DD] rounded-[8px] text-sm text-[#111A2D] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#526FFF] focus:border-transparent";
+  const inputClass = "w-full px-4 py-2.5 bg-gray-50 border border-[#D0D5DD] rounded-[8px] text-sm text-[#111A2D] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#526FFF]";
   const labelClass = "block text-base font-medium text-[#171c35] mb-2";
-
-  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen mt-6 p-6">
       <div className="py-6">
+
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-sm text-gray-600 mb-4">
           <Home className="w-4 h-4 text-gray-500" />
-          <ChevronRight size={12} className="text-gray-500"/>
-          <span onClick={()=> navigate('/dashboard')} className="text-gray-600 cursor-pointer">Dashboard</span>
-          <ChevronRight size={12} className="text-gray-500"/>
-          <span onClick={()=> navigate('/dashboard/patients')} className="text-gray-600 cursor-pointer">Patients</span>
-          <ChevronRight size={12} className="text-gray-500"/>
-          <span className="text-[#171c35] font-semibold">Add Patient</span>
+          <ChevronRight size={12} />
+          <span onClick={() => navigate('/dashboard')} className="cursor-pointer">
+            {t("dashboard.routes.patients.addPatient.breadcrumbs.dashboard")}
+          </span>
+
+          <ChevronRight size={12} />
+          <span onClick={() => navigate('/dashboard/patients')} className="cursor-pointer">
+            {t("dashboard.routes.patients.addPatient.breadcrumbs.patients")}
+          </span>
+
+          <ChevronRight size={12} />
+          <span className="text-[#171c35] font-semibold">
+            {t("dashboard.routes.patients.addPatient.breadcrumbs.addPatient")}
+          </span>
         </div>
 
         {/* Page Title */}
-        <h1 className="text-2xl font-bold text-[#171c35] mb-8">Add New Patient</h1>
+        <h1 className="text-2xl font-bold text-[#171c35] mb-8">
+          {t("dashboard.routes.patients.addPatient.title")}
+        </h1>
 
-        {/* Form - IMPORTANT: relative positioning for z-index context */}
-        <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-lg p-6 md:p-8 relative">
+        {/* MAIN FORM */}
+        <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-lg p-8">
 
           {/* Personal Info Section */}
-          <div className="mb-8 pb-4 border-b border-gray-100">
-            <h2 className="text-xl font-semibold text-[#171c35] mb-6">Personal Information</h2>
+          <div className="mb-8 pb-4 border-b border-gray-200">
+            <h2 className="text-xl font-semibold mb-6">
+              {t("dashboard.routes.patients.addPatient.sections.personalInfo")}
+            </h2>
+
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
               {/* First Name */}
-              <div className="relative z-0">
-                <label htmlFor="firstName" className={labelClass}>First Name *</label>
+              <div>
+                <label className={labelClass}>
+                  {t("dashboard.routes.patients.addPatient.fields.firstName.label")}
+                </label>
                 <input
-                  id="firstName"
-                  type="text"
                   name="firstName"
                   value={formData.firstName}
                   onChange={handleChange}
-                  placeholder="Enter first name..."
-                  required
+                  placeholder={t("dashboard.routes.patients.addPatient.fields.firstName.placeholder")}
                   className={inputClass}
                 />
               </div>
 
               {/* Last Name */}
-              <div className="relative z-0">
-                <label htmlFor="lastName" className={labelClass}>Last Name *</label>
+              <div>
+                <label className={labelClass}>
+                  {t("dashboard.routes.patients.addPatient.fields.lastName.label")}
+                </label>
                 <input
-                  id="lastName"
-                  type="text"
                   name="lastName"
                   value={formData.lastName}
                   onChange={handleChange}
-                  placeholder="Enter last name..."
-                  required
+                  placeholder={t("dashboard.routes.patients.addPatient.fields.lastName.placeholder")}
                   className={inputClass}
                 />
               </div>
 
-              {/* Date of Birth */}
-              <div className="relative z-0">
-                <label htmlFor="dateOfBirth" className={labelClass}>Date of Birth *</label>
+              {/* Date of birth */}
+              <div>
+                <label className={labelClass}>
+                  {t("dashboard.routes.patients.addPatient.fields.dateOfBirth.label")}
+                </label>
                 <input
-                  id="dateOfBirth"
                   type="date"
                   name="dateOfBirth"
                   value={formData.dateOfBirth}
                   onChange={handleChange}
-                  required
-                  className={inputClass + " appearance-none"}
+                  className={inputClass}
                 />
               </div>
 
-              {/* Gender Dropdown - Higher z-index */}
-              <div className="relative z-30">
-                <label htmlFor="gender" className={labelClass}>Gender *</label>
+              {/* Gender */}
+              <div>
+                <label className={labelClass}>
+                  {t("dashboard.routes.patients.addPatient.fields.gender.label")}
+                </label>
                 <CustomDropdown
                   value={formData.gender}
-                  onChange={(val) => handleDropdownChange("gender", val)}
+                  onChange={(v) => handleDropdownChange("gender", v)}
                   options={[
-                    { value: "Male", label: "Male" },
-                    { value: "Female", label: "Female" },
-                    { value: "Other", label: "Other" }
+                    { value: "Male", label: t("dashboard.routes.patients.addPatient.fields.gender.options.male") },
+                    { value: "Female", label: t("dashboard.routes.patients.addPatient.fields.gender.options.female") },
+                    { value: "Other", label: t("dashboard.routes.patients.addPatient.fields.gender.options.other") },
                   ]}
-                  placeholder="Select gender"
-               
+                  placeholder={t("dashboard.routes.patients.addPatient.fields.gender.placeholder")}
                 />
               </div>
 
-              {/* Blood Group Dropdown */}
-              <div className="relative z-20">
-                <label htmlFor="bloodGroup" className={labelClass}>Blood Group *</label>
+              {/* Blood Group */}
+              <div>
+                <label className={labelClass}>
+                  {t("dashboard.routes.patients.addPatient.fields.bloodGroup.label")}
+                </label>
                 <CustomDropdown
                   value={formData.bloodGroup}
-                  onChange={(val) => handleDropdownChange("bloodGroup", val)}
+                  onChange={(v) => handleDropdownChange("bloodGroup", v)}
                   options={[
                     { value: "A+", label: "A+" },
                     { value: "A-", label: "A-" },
@@ -174,133 +192,140 @@ const AddPatientForm: React.FC = () => {
                     { value: "AB+", label: "AB+" },
                     { value: "AB-", label: "AB-" },
                   ]}
-                  placeholder="Select blood group"
-               
+                  placeholder={t("dashboard.routes.patients.addPatient.fields.bloodGroup.placeholder")}
                 />
               </div>
 
-              {/* Marital Status Dropdown */}
-              <div className="relative z-10">
-                <label htmlFor="maritalStatus" className={labelClass}>Marital Status *</label>
+              {/* Marital Status */}
+              <div>
+                <label className={labelClass}>
+                  {t("dashboard.routes.patients.addPatient.fields.maritalStatus.label")}
+                </label>
                 <CustomDropdown
                   value={formData.maritalStatus}
-                  onChange={(val) => handleDropdownChange("maritalStatus", val)}
+                  onChange={(v) => handleDropdownChange("maritalStatus", v)}
                   options={[
-                    { value: "Single", label: "Single" },
-                    { value: "Married", label: "Married" },
-                    { value: "Divorced", label: "Divorced" },
-                    { value: "Widowed", label: "Widowed" }
+                    { value: "Single", label: t("dashboard.routes.patients.addPatient.fields.maritalStatus.options.single") },
+                    { value: "Married", label: t("dashboard.routes.patients.addPatient.fields.maritalStatus.options.married") },
+                    { value: "Divorced", label: t("dashboard.routes.patients.addPatient.fields.maritalStatus.options.divorced") },
+                    { value: "Widowed", label: t("dashboard.routes.patients.addPatient.fields.maritalStatus.options.widowed") },
                   ]}
-                  placeholder="Select marital status"
-                 
+                  placeholder={t("dashboard.routes.patients.addPatient.fields.maritalStatus.placeholder")}
                 />
               </div>
 
               {/* Insurance ID */}
-              <div className="relative z-0">
-                <label htmlFor="insuranceId" className={labelClass}>Insurance ID</label>
+              <div>
+                <label className={labelClass}>
+                  {t("dashboard.routes.patients.addPatient.fields.insuranceId.label")}
+                </label>
                 <input
-                  id="insuranceId"
-                  type="text"
                   name="insuranceId"
                   value={formData.insuranceId}
                   onChange={handleChange}
-                  placeholder="Insurance ID..."
+                  placeholder={t("dashboard.routes.patients.addPatient.fields.insuranceId.placeholder")}
                   className={inputClass}
                 />
               </div>
             </div>
           </div>
 
-          {/* Contact & Address Section */}
-          <div className="mb-8 pb-4 border-b border-gray-100">
-            <h2 className="text-xl font-semibold text-[#171c35] mb-6">Contact & Address</h2>
+          {/* Contact & Address */}
+          <div className="mb-8 pb-4 border-b border-gray-200">
+            <h2 className="text-xl font-semibold mb-6">
+              {t("dashboard.routes.patients.addPatient.sections.contactAddress")}
+            </h2>
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="relative z-0">
-                <label htmlFor="email" className={labelClass}>Email *</label>
+
+              {/* Email */}
+              <div>
+                <label className={labelClass}>
+                  {t("dashboard.routes.patients.addPatient.fields.email.label")}
+                </label>
                 <input
-                  id="email"
-                  type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder="Enter your email..."
-                  required
+                  placeholder={t("dashboard.routes.patients.addPatient.fields.email.placeholder")}
                   className={inputClass}
                 />
               </div>
 
-              <div className="relative z-0">
-                <label htmlFor="phoneNumber" className={labelClass}>Phone Number *</label>
+              {/* Phone */}
+              <div>
+                <label className={labelClass}>
+                  {t("dashboard.routes.patients.addPatient.fields.phoneNumber.label")}
+                </label>
                 <input
-                  id="phoneNumber"
-                  type="tel"
                   name="phoneNumber"
                   value={formData.phoneNumber}
                   onChange={handleChange}
-                  placeholder="Enter primary phone number..."
-                  required
+                  placeholder={t("dashboard.routes.patients.addPatient.fields.phoneNumber.placeholder")}
                   className={inputClass}
                 />
               </div>
 
-              <div className="relative z-0">
-                <label htmlFor="alternativePhone" className={labelClass}>Alternative Phone</label>
+              {/* Alt Phone */}
+              <div>
+                <label className={labelClass}>
+                  {t("dashboard.routes.patients.addPatient.fields.alternativePhone.label")}
+                </label>
                 <input
-                  id="alternativePhone"
-                  type="tel"
                   name="alternativePhone"
                   value={formData.alternativePhone}
                   onChange={handleChange}
-                  placeholder="Enter alternative phone number..."
+                  placeholder={t("dashboard.routes.patients.addPatient.fields.alternativePhone.placeholder")}
                   className={inputClass}
                 />
               </div>
 
-              <div className="relative z-0">
-                <label htmlFor="city" className={labelClass}>City *</label>
+              {/* City */}
+              <div>
+                <label className={labelClass}>
+                  {t("dashboard.routes.patients.addPatient.fields.city.label")}
+                </label>
                 <input
-                  id="city"
-                  type="text"
                   name="city"
                   value={formData.city}
                   onChange={handleChange}
-                  placeholder="Enter city..."
-                  required
+                  placeholder={t("dashboard.routes.patients.addPatient.fields.city.placeholder")}
                   className={inputClass}
                 />
               </div>
 
-              <div className="lg:col-span-2 relative z-0">
-                <label htmlFor="address" className={labelClass}>Address *</label>
+              {/* Address */}
+              <div className="lg:col-span-2">
+                <label className={labelClass}>
+                  {t("dashboard.routes.patients.addPatient.fields.address.label")}
+                </label>
                 <input
-                  id="address"
-                  type="text"
                   name="address"
                   value={formData.address}
                   onChange={handleChange}
-                  placeholder="Full address..."
-                  required
+                  placeholder={t("dashboard.routes.patients.addPatient.fields.address.placeholder")}
                   className={inputClass}
                 />
               </div>
+
             </div>
           </div>
 
-          {/* Action Buttons */}
-          <div className="flex gap-4 mt-8 relative z-0">
+          {/* Buttons */}
+          <div className="flex gap-4">
             <button
               type="button"
               onClick={handleCancel}
-              className="w-full px-6 py-3 bg-white border border-[#D0D5DD] rounded-[8px] text-sm font-medium text-[#111A2D] hover:bg-gray-50 transition-colors cursor-pointer"
+              className="w-full px-6 py-3 border border-gray-300 rounded-lg bg-white"
             >
-              Cancel
+              {t("dashboard.routes.patients.addPatient.buttons.cancel")}
             </button>
+
             <button
               type="submit"
-              className="w-full px-6 py-3 bg-[#526FFF] hover:bg-[#4159cc] rounded-[8px] text-sm font-medium text-white transition-colors cursor-pointer"
+              className="w-full px-6 py-3 rounded-lg bg-[#526FFF] text-white"
             >
-              Add Patient
+              {t("dashboard.routes.patients.addPatient.buttons.submit")}
             </button>
           </div>
 

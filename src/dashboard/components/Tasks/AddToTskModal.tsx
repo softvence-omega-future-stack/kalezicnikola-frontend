@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { X, ChevronDown } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 interface Task {
   id: number;
@@ -28,8 +29,9 @@ interface AddTaskModalProps {
 }
 
 export default function AddTaskModal({ onClose, onAddTask, initialTask }: AddTaskModalProps) {
-  
+  const { t } = useTranslation();
   const isEditing = initialTask && 'id' in initialTask;
+
   const initialData: FormData = {
     title: isEditing ? (initialTask as Task).title : '',
     description: isEditing ? (initialTask as Task).description : '',
@@ -42,7 +44,7 @@ export default function AddTaskModal({ onClose, onAddTask, initialTask }: AddTas
 
   useEffect(() => {
     setFormData(initialData);
-  }, [initialTask]); 
+  }, [initialTask]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -53,8 +55,8 @@ export default function AddTaskModal({ onClose, onAddTask, initialTask }: AddTas
   };
 
   const handleSubmit = () => {
-    onAddTask(formData); 
-    onClose(); 
+    onAddTask(formData);
+    onClose();
   };
 
   return (
@@ -70,10 +72,14 @@ export default function AddTaskModal({ onClose, onAddTask, initialTask }: AddTas
         <div className="bg-gray-200 px-3 sm:px-6 py-3 sm:py-4 flex items-center justify-between border-b border-gray-300 flex-shrink-0">
           <div className="flex-1 min-w-0 pr-2 sm:pr-4">
             <h2 className="text-base sm:text-lg font-semibold text-[#171C35] truncate">
-              {isEditing ? 'Edit Task' : 'Add Task'}
+              {isEditing 
+                ? t('dashboard.routes.taskList.addTaskModal.titleEdit') 
+                : t('dashboard.routes.taskList.addTaskModal.titleAdd')}
             </h2>
             <p className="text-xs sm:text-sm text-[#667085] mt-0.5">
-              {isEditing ? 'Modify the task details below' : 'Add a new task to your list, fill in the details below'}
+              {isEditing 
+                ? t('dashboard.routes.taskList.addTaskModal.subtitleEdit') 
+                : t('dashboard.routes.taskList.addTaskModal.subtitleAdd')}
             </p>
           </div>
           <button
@@ -88,11 +94,13 @@ export default function AddTaskModal({ onClose, onAddTask, initialTask }: AddTas
         <div className="p-3 sm:p-6 space-y-4 overflow-y-auto flex-1 min-h-[200px]">
           {/* Title */}
           <div>
-            <label className="block text-sm sm:text-base font-medium text-[#171C35] mb-1 sm:mb-2">Title</label>
+            <label className="block text-sm sm:text-base font-medium text-[#171C35] mb-1 sm:mb-2">
+              {t('dashboard.routes.taskList.addTaskModal.labels.title')}
+            </label>
             <input
               type="text"
               name="title"
-              placeholder="Task title"
+              placeholder={t('dashboard.routes.taskList.addTaskModal.placeholders.title')}
               value={formData.title}
               onChange={handleChange}
               className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white border border-gray-300 rounded-xl text-sm sm:text-sm text-[#171c35] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#526fff] focus:border-transparent"
@@ -101,10 +109,12 @@ export default function AddTaskModal({ onClose, onAddTask, initialTask }: AddTas
 
           {/* Description */}
           <div>
-            <label className="block text-sm sm:text-base font-medium text-[#171C35] mb-1 sm:mb-2">Description</label>
+            <label className="block text-sm sm:text-base font-medium text-[#171C35] mb-1 sm:mb-2">
+              {t('dashboard.routes.taskList.addTaskModal.labels.description')}
+            </label>
             <textarea
               name="description"
-              placeholder="Details..."
+              placeholder={t('dashboard.routes.taskList.addTaskModal.placeholders.description')}
               value={formData.description}
               onChange={handleChange}
               rows={4}
@@ -115,7 +125,9 @@ export default function AddTaskModal({ onClose, onAddTask, initialTask }: AddTas
           {/* Status and Priority */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <div>
-              <label className="block text-sm sm:text-base font-medium text-[#171c35] mb-1 sm:mb-2">Status</label>
+              <label className="block text-sm sm:text-base font-medium text-[#171c35] mb-1 sm:mb-2">
+                {t('dashboard.routes.taskList.addTaskModal.labels.status')}
+              </label>
               <div className="relative">
                 <select
                   name="status"
@@ -123,16 +135,18 @@ export default function AddTaskModal({ onClose, onAddTask, initialTask }: AddTas
                   onChange={handleChange}
                   className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white border border-gray-300 rounded-xl text-sm sm:text-sm text-[#171c35] focus:outline-none focus:ring-2 focus:ring-[#526fff] focus:border-transparent appearance-none cursor-pointer"
                 >
-                  <option>To Do</option>
-                  <option>In Progress</option>
-                  <option>Done</option>
+                  <option>{t('dashboard.routes.taskList.addTaskModal.statusOptions.todo')}</option>
+                  <option>{t('dashboard.routes.taskList.addTaskModal.statusOptions.inProgress')}</option>
+                  <option>{t('dashboard.routes.taskList.addTaskModal.statusOptions.done')}</option>
                 </select>
                 <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm sm:text-base font-medium text-[#171c35] mb-1 sm:mb-2">Priority</label>
+              <label className="block text-sm sm:text-base font-medium text-[#171c35] mb-1 sm:mb-2">
+                {t('dashboard.routes.taskList.addTaskModal.labels.priority')}
+              </label>
               <div className="relative">
                 <select
                   name="priority"
@@ -142,9 +156,9 @@ export default function AddTaskModal({ onClose, onAddTask, initialTask }: AddTas
                   }
                   className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white border border-gray-300 rounded-xl text-sm sm:text-sm text-[#171c35] focus:outline-none focus:ring-2 focus:ring-[#526fff] focus:border-transparent appearance-none cursor-pointer"
                 >
-                  <option value="Low">Low</option>
-                  <option value="Medium">Medium</option>
-                  <option value="High">High</option>
+                  <option value="Low">{t('dashboard.routes.taskList.addTaskModal.priorityOptions.low')}</option>
+                  <option value="Medium">{t('dashboard.routes.taskList.addTaskModal.priorityOptions.medium')}</option>
+                  <option value="High">{t('dashboard.routes.taskList.addTaskModal.priorityOptions.high')}</option>
                 </select>
                 <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
               </div>
@@ -153,7 +167,9 @@ export default function AddTaskModal({ onClose, onAddTask, initialTask }: AddTas
 
           {/* Due Date */}
           <div>
-            <label className="block text-sm sm:text-base font-medium text-[#171c35] mb-1 sm:mb-2">Due Date</label>
+            <label className="block text-sm sm:text-base font-medium text-[#171c35] mb-1 sm:mb-2">
+              {t('dashboard.routes.taskList.addTaskModal.labels.dueDate')}
+            </label>
             <input
               type="date"
               name="dueDate"
@@ -170,14 +186,16 @@ export default function AddTaskModal({ onClose, onAddTask, initialTask }: AddTas
               onClick={onClose}
               className="w-full sm:flex-1 px-4 py-2.5 bg-white border border-gray-300 text-[#111a2d] rounded-xl text-sm font-medium hover:bg-gray-50 transition-colors cursor-pointer"
             >
-              Cancel
+              {t('dashboard.routes.taskList.addTaskModal.buttons.cancel')}
             </button>
             <button
               type="button"
               onClick={handleSubmit}
               className="w-full sm:flex-1 px-4 py-2.5 bg-[#526FFF] text-white rounded-xl text-sm font-medium hover:bg-[#4159CC] transition-colors cursor-pointer"
             >
-              {isEditing ? 'Save Changes' : 'Submit'}
+              {isEditing 
+                ? t('dashboard.routes.taskList.addTaskModal.buttons.saveChanges') 
+                : t('dashboard.routes.taskList.addTaskModal.buttons.submit')}
             </button>
           </div>
         </div>
@@ -185,7 +203,6 @@ export default function AddTaskModal({ onClose, onAddTask, initialTask }: AddTas
     </div>
   );
 }
-
 
 
 

@@ -1,6 +1,7 @@
-import React, { } from "react";
+import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { X } from 'lucide-react';
+import { useTranslation } from "react-i18next";
 
 import icon from "../assets/svgIcon/logo.svg";
 import logo from "../assets/svgIcon/textLogo.svg";
@@ -127,6 +128,7 @@ interface AdminSidebarProps {
 }
 
 const AdminSidebar: React.FC<AdminSidebarProps> = ({ onLogoutClick, collapsed, onToggle, closeMobileMenu }) => {
+  const { t } = useTranslation();
   const sidebarWidth = collapsed ? "w-[80px]" : "w-[280px]";
 
   return (
@@ -141,21 +143,21 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ onLogoutClick, collapsed, o
           closeMobileMenu={closeMobileMenu}
         />
         <nav className="flex flex-col mt-2 gap-2">
-          <NavItem to="/admin" iconSrc={dashbord} label="Dashboard" collapsed={collapsed} closeMobileMenu={closeMobileMenu} />
-          <NavItem to="/admin/customers" iconSrc={customers} label="Customers" collapsed={collapsed} closeMobileMenu={closeMobileMenu} />
-          <NavItem to="/admin/belling_subs" iconSrc={belling} label="Billing & Subscription" collapsed={collapsed} closeMobileMenu={closeMobileMenu} />
-          <NavItem to="/admin/aivoice" iconSrc={voice} label="AI Voicebot" collapsed={collapsed} closeMobileMenu={closeMobileMenu} />
-          <NavItem to="/admin/system_health" iconSrc={systemHealth} label="System Health" collapsed={collapsed} closeMobileMenu={closeMobileMenu} />
-          <NavItem to="/admin/security" iconSrc={security} label="Security & Audit" collapsed={collapsed} closeMobileMenu={closeMobileMenu} />
-          <NavItem to="/admin/supports" iconSrc={supports} label="Supports" collapsed={collapsed} closeMobileMenu={closeMobileMenu} />
+          <NavItem to="/admin" iconSrc={dashbord} label={t("adminDashboard.sidebar.dashboard")} collapsed={collapsed} closeMobileMenu={closeMobileMenu} />
+          <NavItem to="/admin/customers" iconSrc={customers} label={t("adminDashboard.sidebar.customers")} collapsed={collapsed} closeMobileMenu={closeMobileMenu} />
+          <NavItem to="/admin/belling_subs" iconSrc={belling} label={t("adminDashboard.sidebar.billing_subscription")} collapsed={collapsed} closeMobileMenu={closeMobileMenu} />
+          <NavItem to="/admin/aivoice" iconSrc={voice} label={t("adminDashboard.sidebar.ai_voicebot")} collapsed={collapsed} closeMobileMenu={closeMobileMenu} />
+          <NavItem to="/admin/system_health" iconSrc={systemHealth} label={t("adminDashboard.sidebar.system_health")} collapsed={collapsed} closeMobileMenu={closeMobileMenu} />
+          <NavItem to="/admin/security" iconSrc={security} label={t("adminDashboard.sidebar.security_audit")} collapsed={collapsed} closeMobileMenu={closeMobileMenu} />
+          <NavItem to="/admin/supports" iconSrc={supports} label={t("adminDashboard.sidebar.supports")} collapsed={collapsed} closeMobileMenu={closeMobileMenu} />
         </nav>
       </div>
 
       <div className="flex flex-col p-4 space-y-4">
-        <NavItem to="/admin/settings" iconSrc={settings} label="Settings" collapsed={collapsed} closeMobileMenu={closeMobileMenu} />
+        <NavItem to="/admin/settings" iconSrc={settings} label={t("adminDashboard.sidebar.settings")} collapsed={collapsed} closeMobileMenu={closeMobileMenu} />
         <NavItem 
           iconSrc={logout} 
-          label="Logout" 
+          label={t("adminDashboard.sidebar.logout")} 
           onClick={onLogoutClick} 
           collapsed={collapsed} 
           closeMobileMenu={closeMobileMenu}
@@ -167,6 +169,7 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ onLogoutClick, collapsed, o
 };
 
 export default AdminSidebar;
+
 
 
 

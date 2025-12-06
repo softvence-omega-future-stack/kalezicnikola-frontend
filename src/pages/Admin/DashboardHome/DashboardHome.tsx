@@ -6,10 +6,12 @@ import RecentAddDoctors from "./RecentAddDoctors"
 import RevenueChart from "./RevenueChart"
 import TopSection from "./TopSection"
 
+
 const DashboardHome = () => {
+    const username = "Kurmisadia";
   return (
     <div className='max-[767px]:mt-6'>
-      <TopSection />
+      <TopSection  username={username} />
       <CardSection />
       <div className="flex flex-col md:flex-row gap-5">
         <RevenueChart />

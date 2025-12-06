@@ -1,8 +1,9 @@
-import { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import { createPortal } from "react-dom";
 import { ChevronDown } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
-// CustomDropdown Component with Portal
+// CustomDropdown Component
 function CustomDropdown({
   value,
   onChange,
@@ -15,12 +16,12 @@ function CustomDropdown({
   placeholder?: string;
 }) {
   const [open, setOpen] = useState(false);
-  const buttonRef = useRef<HTMLDivElement>(null);
+  const buttonRef = React.useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState({ top: 0, left: 0, width: 0 });
-  
+
   const selectedLabel = options.find((o) => o.value === value)?.label ?? "";
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (open && buttonRef.current) {
       const rect = buttonRef.current.getBoundingClientRect();
       setPosition({
@@ -31,7 +32,7 @@ function CustomDropdown({
     }
   }, [open]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (buttonRef.current && !buttonRef.current.contains(e.target as Node)) {
         const dropdown = document.getElementById(`dropdown-portal-${value}`);
@@ -41,9 +42,7 @@ function CustomDropdown({
       }
     };
 
-    if (open) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
+    if (open) document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [open, value]);
 
@@ -64,42 +63,44 @@ function CustomDropdown({
         />
       </div>
 
-      {open && createPortal(
-        <div
-          id={`dropdown-portal-${value}`}
-          style={{
-            position: 'absolute',
-            top: `${position.top}px`,
-            left: `${position.left}px`,
-            width: `${position.width}px`,
-            zIndex: 99999,
-          }}
-          className="bg-white border border-gray-200 rounded-xl shadow-xl max-h-60 overflow-y-auto"
-        >
-          {options.map((opt) => (
-            <div
-              key={opt.value}
-              onClick={() => {
-                onChange(opt.value);
-                setOpen(false);
-              }}
-              className={`px-4 py-2.5 text-sm cursor-pointer transition-colors ${
-                opt.value === value
-                  ? "bg-blue-50 text-[#526FFF] font-medium"
-                  : "text-[#111a2d] hover:bg-gray-100"
-              }`}
-            >
-              {opt.label}
-            </div>
-          ))}
-        </div>,
-        document.body
-      )}
+      {open &&
+        createPortal(
+          <div
+            id={`dropdown-portal-${value}`}
+            style={{
+              position: "absolute",
+              top: `${position.top}px`,
+              left: `${position.left}px`,
+              width: `${position.width}px`,
+              zIndex: 99999,
+            }}
+            className="bg-white border border-gray-200 rounded-xl shadow-xl max-h-60 overflow-y-auto"
+          >
+            {options.map((opt) => (
+              <div
+                key={opt.value}
+                onClick={() => {
+                  onChange(opt.value);
+                  setOpen(false);
+                }}
+                className={`px-4 py-2.5 text-sm cursor-pointer transition-colors ${
+                  opt.value === value
+                    ? "bg-blue-50 text-[#526FFF] font-medium"
+                    : "text-[#111a2d] hover:bg-gray-100"
+                }`}
+              >
+                {opt.label}
+              </div>
+            ))}
+          </div>,
+          document.body
+        )}
     </>
   );
 }
 
 export default function EmployeeDetailsForm() {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     department: "",
     reportingTo: "",
@@ -109,118 +110,138 @@ export default function EmployeeDetailsForm() {
   });
 
   const handleDropdownChange = (field: keyof typeof formData, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
+
+  // i18n options
+  const departmentOptions = t(
+    "dashboard.routes.settings.settingsSidebar.tabs.myStaff.addNewStaff.stafTabs.employmentInfo.department.options",
+    { returnObjects: true }
+  ) as { value: string; label: string }[];
+
+  const reportingToOptions = t(
+    "dashboard.routes.settings.settingsSidebar.tabs.myStaff.addNewStaff.stafTabs.employmentInfo.reportingTo.options",
+    { returnObjects: true }
+  ) as { value: string; label: string }[];
+
+  const employmentTypeOptions = t(
+    "dashboard.routes.settings.settingsSidebar.tabs.myStaff.addNewStaff.stafTabs.employmentInfo.employmentType.options",
+    { returnObjects: true }
+  ) as { value: string; label: string }[];
+
+  const workScheduleOptions = t(
+    "dashboard.routes.settings.settingsSidebar.tabs.myStaff.addNewStaff.stafTabs.employmentInfo.workSchedule.options",
+    { returnObjects: true }
+  ) as { value: string; label: string }[];
+
+  const workHoursOptions = t(
+    "dashboard.routes.settings.settingsSidebar.tabs.myStaff.addNewStaff.stafTabs.employmentInfo.workHours.options",
+    { returnObjects: true }
+  ) as { value: string; label: string }[];
 
   return (
     <div className="p-4 sm:p-8 bg-white rounded-xl space-y-8">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-8">
-
-        {/* Row 1 */}
+        {/* Employee ID */}
         <div className="flex flex-col space-y-1">
-          <label className="text-base font-medium text-[#171c35]">Employee ID</label>
-          <input 
-            type="text" 
-            placeholder="Enter employee id" 
-            className="w-full p-3 border border-gray-300 rounded-lg text-sm text-[#171c35] placeholder-[#667085] focus:ring-blue-500 focus:border-blue-500" 
+          <label className="text-base font-medium text-[#171c35]">
+            {t(
+              "dashboard.routes.settings.settingsSidebar.tabs.myStaff.addNewStaff.stafTabs.employmentInfo.employeeId.label"
+            )}
+          </label>
+          <input
+            type="text"
+            placeholder={t(
+              "dashboard.routes.settings.settingsSidebar.tabs.myStaff.addNewStaff.stafTabs.employmentInfo.employeeId.placeholder"
+            )}
+            className="w-full p-3 border border-gray-300 rounded-lg text-sm text-[#171c35] placeholder-[#667085] focus:ring-blue-500 focus:border-blue-500"
           />
         </div>
 
         {/* Department */}
         <div className="flex flex-col space-y-1">
-          <label className="text-base font-medium text-[#171c35]">Department</label>
+          <label className="text-base font-medium text-[#171c35]">
+            {t(
+              "dashboard.routes.settings.settingsSidebar.tabs.myStaff.addNewStaff.stafTabs.employmentInfo.department.label"
+            )}
+          </label>
           <CustomDropdown
             value={formData.department}
             onChange={(val) => handleDropdownChange("department", val)}
-            options={[
-              { value: "sales", label: "Sales" },
-              { value: "marketing", label: "Marketing" },
-              { value: "technology", label: "Technology" },
-              { value: "hr", label: "HR" },
-              { value: "finance", label: "Finance" },
-            ]}
-            placeholder="Select department"
-          />
-        </div>
-
-        {/* Row 2 */}
-        <div className="flex flex-col space-y-1">
-          <label className="text-base font-medium text-[#171c35]">Position/Role</label>
-          <input 
-            type="text" 
-            placeholder="Enter role" 
-            className="w-full p-3 border border-gray-300 rounded-lg text-sm text-[#171c35] placeholder-[#667085] focus:ring-blue-500 focus:border-blue-500" 
+            options={departmentOptions}
+            placeholder={t(
+              "dashboard.routes.settings.settingsSidebar.tabs.myStaff.addNewStaff.stafTabs.employmentInfo.department.placeholder"
+            )}
           />
         </div>
 
         {/* Reporting To */}
         <div className="flex flex-col space-y-1">
-          <label className="text-base font-medium text-[#171c35]">Reporting To</label>
+          <label className="text-base font-medium text-[#171c35]">
+            {t(
+              "dashboard.routes.settings.settingsSidebar.tabs.myStaff.addNewStaff.stafTabs.employmentInfo.reportingTo.label"
+            )}
+          </label>
           <CustomDropdown
             value={formData.reportingTo}
             onChange={(val) => handleDropdownChange("reportingTo", val)}
-            options={[
-              { value: "managerA", label: "Manager A" },
-              { value: "managerB", label: "Manager B" },
-              { value: "managerC", label: "Manager C" },
-            ]}
-            placeholder="Select manager"
+            options={reportingToOptions}
+            placeholder={t(
+              "dashboard.routes.settings.settingsSidebar.tabs.myStaff.addNewStaff.stafTabs.employmentInfo.reportingTo.placeholder"
+            )}
           />
         </div>
 
-        {/* Row 3 */}
+        {/* employmentInfo.Type */}
         <div className="flex flex-col space-y-1">
-          <label className="text-base font-medium text-[#171c35]">Join Date</label>
-          <input 
-            type="date" 
-            className="w-full p-3 border border-gray-300 text-sm text-[#171c35] placeholder-[#667085] rounded-lg focus:ring-blue-500 focus:border-blue-500" 
-          />
-        </div>
-
-        {/* Employment Type */}
-        <div className="flex flex-col space-y-1">
-          <label className="text-base font-medium text-[#171c35]">Employment Type</label>
+          <label className="text-base font-medium text-[#171c35]">
+            {t(
+              "dashboard.routes.settings.settingsSidebar.tabs.myStaff.addNewStaff.stafTabs.employmentInfo.employmentType.label"
+            )}
+          </label>
           <CustomDropdown
             value={formData.employmentType}
             onChange={(val) => handleDropdownChange("employmentType", val)}
-            options={[
-              { value: "full-time", label: "Full-time" },
-              { value: "part-time", label: "Part-time" },
-              { value: "contract", label: "Contract" },
-            ]}
-            placeholder="Select type"
+            options={employmentTypeOptions}
+            placeholder={t(
+              "dashboard.routes.settings.settingsSidebar.tabs.myStaff.addNewStaff.stafTabs.employmentInfo.employmentType.placeholder"
+            )}
           />
         </div>
 
-        {/* Row 4 */}
+        {/* Work Schedule */}
         <div className="flex flex-col space-y-1">
-          <label className="text-base font-medium text-[#171c35]">Work Schedule</label>
+          <label className="text-base font-medium text-[#171c35]">
+            {t(
+              "dashboard.routes.settings.settingsSidebar.tabs.myStaff.addNewStaff.stafTabs.employmentInfo.workSchedule.label"
+            )}
+          </label>
           <CustomDropdown
             value={formData.workSchedule}
             onChange={(val) => handleDropdownChange("workSchedule", val)}
-            options={[
-              { value: "9-5", label: "9:00 AM - 5:00 PM" },
-              { value: "flexible", label: "Flexible" },
-              { value: "shift", label: "Shift-based" },
-            ]}
-            placeholder="Select schedule"
+            options={workScheduleOptions}
+            placeholder={t(
+              "dashboard.routes.settings.settingsSidebar.tabs.myStaff.addNewStaff.stafTabs.employmentInfo.workSchedule.placeholder"
+            )}
           />
         </div>
 
+        {/* Work Hours */}
         <div className="flex flex-col space-y-1">
-          <label className="text-base font-medium text-[#171c35]">Work Hours (Weekly)</label>
+          <label className="text-base font-medium text-[#171c35]">
+            {t(
+              "dashboard.routes.settings.settingsSidebar.tabs.myStaff.addNewStaff.stafTabs.employmentInfo.workHours.label"
+            )}
+          </label>
           <CustomDropdown
             value={formData.workHours}
             onChange={(val) => handleDropdownChange("workHours", val)}
-            options={[
-              { value: "40", label: "40 hours" },
-              { value: "30", label: "30 hours" },
-              { value: "20", label: "20 hours" },
-            ]}
-            placeholder="Select hours"
+            options={workHoursOptions}
+            placeholder={t(
+              "dashboard.routes.settings.settingsSidebar.tabs.myStaff.addNewStaff.stafTabs.employmentInfo.workHours.placeholder"
+            )}
           />
         </div>
-
       </div>
     </div>
   );

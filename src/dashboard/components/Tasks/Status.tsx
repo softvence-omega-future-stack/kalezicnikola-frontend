@@ -1,11 +1,18 @@
 import { useEffect, useRef, useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const StatusDropdown = () => {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState("All Status");
+  const [selected, setSelected] = useState(t("dashboard.routes.taskList.status.all"));
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const statuses = ["To Do", "In Progress", "Done"];
+
+  const statuses = [
+    { id: "todo", label: t("dashboard.routes.taskList.status.todo") },
+    { id: "inprogress", label: t("dashboard.routes.taskList.status.inprogress") },
+    { id: "done", label: t("dashboard.routes.taskList.status.done") },
+  ];
 
   const handleSelect = (status: string) => {
     setSelected(status);
@@ -15,10 +22,7 @@ const StatusDropdown = () => {
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsOpen(false);
       }
     };
@@ -39,25 +43,23 @@ const StatusDropdown = () => {
         onClick={() => setIsOpen(!isOpen)}
       >
         <span>{selected}</span>
-        <ChevronDown 
-          className={`w-4 h-4 transition-transform duration-200 ${
-            isOpen ? "rotate-180" : ""
-          }`}
+        <ChevronDown
+          className={`w-4 h-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
         />
       </button>
 
       {isOpen && (
-        <ul 
+        <ul
           className="absolute mt-1 w-full bg-white border border-gray-300 rounded-xl shadow-lg"
           style={{ position: 'absolute', zIndex: 9999 }}
         >
           {statuses.map((status) => (
             <li
-              key={status}
+              key={status.id}
               className="px-4 py-2 cursor-pointer hover:bg-gray-100 text-sm text-[#111a2d] first:rounded-t-xl last:rounded-b-xl transition-colors"
-              onClick={() => handleSelect(status)}
+              onClick={() => handleSelect(status.label)}
             >
-              {status}
+              {status.label}
             </li>
           ))}
         </ul>

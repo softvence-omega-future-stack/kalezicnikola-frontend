@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Edit, PencilLine } from "lucide-react";
 import karen from '../../../../assets/svgIcon/karenNix.svg';
 
@@ -43,6 +44,7 @@ const InputField: React.FC<InputFieldProps> = ({
 );
 
 const PersonalInfoForm: React.FC = () => {
+  const { t } = useTranslation();
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
@@ -61,15 +63,11 @@ const PersonalInfoForm: React.FC = () => {
   };
 
   const handleEdit = () => setIsEditing(true);
-  
   const handleSave = () => {
     setIsEditing(false);
-    alert("✅ Information saved successfully!");
+    alert(t("dashboard.routes.settings.settingsSidebar.tabs.personalInfo.profile.saveSuccess") || "Information saved successfully!");
   };
-  
-  const handleCancel = () => {
-    setIsEditing(false);
-  };
+  const handleCancel = () => setIsEditing(false);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -81,17 +79,21 @@ const PersonalInfoForm: React.FC = () => {
 
   return (
     <section className="min-h-screen bg-white rounded-2xl">
-      <div className=" rounded-xl md:rounded-3xl p-4 md:p-6">
+      <div className="rounded-xl md:rounded-3xl p-4 md:p-6">
         {/* Header */}
         <header className="flex justify-between items-center mb-4 md:mb-6">
-          <h2 className="text-lg md:text-xl font-semibold text-[#171C35]">Personal Info</h2>
+          <h2 className="text-lg md:text-xl font-semibold text-[#171C35]">
+            {t("dashboard.routes.settings.settingsSidebar.tabs.personalInfo.title")}
+          </h2>
           {!isEditing && (
             <button
               onClick={handleEdit}
               className="flex items-center gap-1 md:gap-2 text-xs md:text-sm font-semibold px-3 py-2 md:px-4 md:py-2 rounded-lg cursor-pointer border border-[#111A2D] hover:bg-gray-50 transition-colors"
             >
               <PencilLine className="w-4 h-4 md:w-5 md:h-5 text-black" />
-              <span className="text-black">Edit</span>
+              <span className="text-black">
+                {t("dashboard.routes.settings.settingsSidebar.tabs.personalInfo.profile.editButton")}
+              </span>
             </button>
           )}
         </header>
@@ -124,9 +126,12 @@ const PersonalInfoForm: React.FC = () => {
           </div>
           <div className="min-w-0 flex-1">
             <h2 className="text-sm md:text-base font-semibold text-[#042435] truncate">
-              {formData.firstName || "Enter your name"} {formData.lastName}
+              {formData.firstName || t("dashboard.routes.settings.settingsSidebar.tabs.personalInfo.profile.namePlaceholder")}{" "}
+              {formData.lastName}
             </h2>
-            <p className="text-xs md:text-sm text-[#111A2D] truncate">Anaesthesia</p>
+            <p className="text-xs md:text-sm text-[#111A2D] truncate">
+              {t("dashboard.routes.settings.settingsSidebar.tabs.personalInfo.profile.role")}
+            </p>
           </div>
         </div>
 
@@ -134,18 +139,18 @@ const PersonalInfoForm: React.FC = () => {
         <div className="space-y-4 md:space-y-5">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
             <InputField
-              label="First name"
+              label={t("dashboard.routes.settings.settingsSidebar.tabs.personalInfo.profile.firstNameLabel")}
               name="firstName"
               value={formData.firstName}
-              placeholder="Enter your first name"
+              placeholder={t("dashboard.routes.settings.settingsSidebar.tabs.personalInfo.profile.namePlaceholder")}
               isEditing={isEditing}
               onChange={handleChange}
             />
             <InputField
-              label="Last name"
+              label={t("dashboard.routes.settings.settingsSidebar.tabs.personalInfo.profile.lastNameLabel")}
               name="lastName"
               value={formData.lastName}
-              placeholder="Enter your last name"
+              placeholder={t("dashboard.routes.settings.settingsSidebar.tabs.personalInfo.profile.lastNameLabel")}
               isEditing={isEditing}
               onChange={handleChange}
             />
@@ -153,20 +158,20 @@ const PersonalInfoForm: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
             <InputField
-              label="Email"
+              label={t("dashboard.routes.settings.settingsSidebar.tabs.personalInfo.profile.emailLabel")}
               name="email"
               type="email"
               value={formData.email}
-              placeholder="Enter your email"
+              placeholder={t("dashboard.routes.settings.settingsSidebar.tabs.personalInfo.profile.emailLabel")}
               isEditing={isEditing}
               onChange={handleChange}
             />
             <InputField
-              label="Phone Number"
+              label={t("dashboard.routes.settings.settingsSidebar.tabs.personalInfo.profile.phoneLabel")}
               name="phoneNumber"
               type="tel"
               value={formData.phoneNumber}
-              placeholder="Enter your phone number"
+              placeholder={t("dashboard.routes.settings.settingsSidebar.tabs.personalInfo.profile.phoneLabel")}
               isEditing={isEditing}
               onChange={handleChange}
             />
@@ -174,10 +179,10 @@ const PersonalInfoForm: React.FC = () => {
 
           <div>
             <InputField
-              label="Address"
+              label={t("dashboard.routes.settings.settingsSidebar.tabs.personalInfo.profile.addressLabel")}
               name="address"
               value={formData.address}
-              placeholder="Enter your address"
+              placeholder={t("dashboard.routes.settings.settingsSidebar.tabs.personalInfo.profile.addressLabel")}
               isEditing={isEditing}
               onChange={handleChange}
             />
@@ -186,7 +191,7 @@ const PersonalInfoForm: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
             <div className="flex flex-col space-y-2">
               <label htmlFor="dob" className="text-sm md:text-base font-medium text-[#171C35]">
-                Date of Birth
+                {t("dashboard.routes.settings.settingsSidebar.tabs.personalInfo.profile.dobLabel")}
               </label>
               <input
                 id="dob"
@@ -205,30 +210,30 @@ const PersonalInfoForm: React.FC = () => {
               />
             </div>
             <InputField
-              label="Gender"
+              label={t("dashboard.routes.settings.settingsSidebar.tabs.personalInfo.profile.genderLabel")}
               name="gender"
               value={formData.gender}
-              placeholder="Enter your gender"
+              placeholder={t("dashboard.routes.settings.settingsSidebar.tabs.personalInfo.profile.genderLabel")}
               isEditing={isEditing}
               onChange={handleChange}
             />
           </div>
         </div>
 
-        {/* Buttons - Only show in edit mode */}
+        {/* Buttons */}
         {isEditing && (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 mt-6 md:mt-8">
             <button
               onClick={handleCancel}
               className="w-full px-4 py-3 md:px-6 md:py-3 border border-gray-200 rounded-lg text-sm font-semibold text-[#171C35] hover:bg-gray-50 transition-colors cursor-pointer"
             >
-              Cancel
+              {t("dashboard.routes.settings.settingsSidebar.tabs.personalInfo.profile.cancelButton")}
             </button>
             <button
               onClick={handleSave}
               className="w-full px-4 py-3 md:px-6 md:py-3 bg-[#526FFF] rounded-xl text-sm md:text-base font-semibold text-white hover:bg-[#425CE0] transition-colors cursor-pointer"
             >
-              Save Changes
+              {t("dashboard.routes.settings.settingsSidebar.tabs.personalInfo.profile.saveButton")}
             </button>
           </div>
         )}

@@ -1,27 +1,34 @@
-const TopSection = () => {
+import React from "react";
+import { useTranslation } from "react-i18next";
+
+interface TopSectionProps {
+  username: string;
+}
+
+const TopSection: React.FC<TopSectionProps> = ({ username }) => {
+  const { t } = useTranslation();
+
   return (
     <div className="w-full">
-
-      {/* Wrapper: column on mobile, row on md+ */}
       <div className="flex flex-col md:flex-row items-start md:items-center gap-1 md:gap-12">
 
         {/* Left Side */}
         <div className="flex flex-col">
           <h1 className="text-xl sm:text-2xl md:text-3xl font-semibold text-headingBlack">
-            Hello,
+            {t("adminDashboard.routes.dashboard.topSection.hello")}
           </h1>
           <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-headingBlack mb-1">
-            Keren nix
+            {username} 
           </h2>
         </div>
 
         {/* Right Side */}
         <div className="flex flex-col">
           <p className="text-sm sm:text-base text-subHeadingBlack">
-            Welcome back,
+            {t("adminDashboard.routes.dashboard.topSection.welcome_back")}
           </p>
           <p className="text-sm sm:text-base text-subHeadingBlack">
-            Here's what's happening today
+            {t("adminDashboard.routes.dashboard.topSection.todays_summary")}
           </p>
         </div>
       </div>
@@ -30,6 +37,7 @@ const TopSection = () => {
 };
 
 export default TopSection;
+
 
 
 
