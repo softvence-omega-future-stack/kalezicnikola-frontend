@@ -29,28 +29,18 @@ const Logo: React.FC<LogoProps> = ({ collapsed, onToggle, closeMobileMenu }) => 
       style={{ fontFamily: "Urbanist" }}
     >
       {collapsed ? (
-        <button
-          onClick={() => onToggle(false)}
-          className="cursor-pointer p-1"
-        >
-          <img
-            src={icon}
-            alt="Logo"
-            className="h-8 w-8 object-contain transition-transform duration-100"
-          />
+        <button onClick={() => onToggle(false)} className="cursor-pointer p-1">
+          <img src={icon} alt="Logo" className="h-8 w-8 object-contain transition-transform duration-100" />
         </button>
       ) : (
         <>
-          <div className="flex items-center ">
+          <div className="flex items-center gap-2">
             <img src={icon} alt="Logo" className="h-8 w-8" />
             <img src={logo} alt="Docline" className="hidden md:block" />
           </div>
 
           <div className="flex items-center gap-2">
-            <button 
-              onClick={() => onToggle(true)} 
-              className="cursor-pointer hidden md:block"
-            >
+            <button onClick={() => onToggle(true)} className="cursor-pointer hidden md:block">
               <img src={sidelogo} alt="Close Menu" className="h-8 w-8" />
             </button>
             
@@ -81,26 +71,27 @@ interface NavItemProps {
 
 const NavItem: React.FC<NavItemProps> = ({ to, label, iconSrc, onClick, collapsed, closeMobileMenu, className }) => {
   const location = useLocation();
-  
+
   const baseClasses = collapsed
     ? "flex items-center justify-center py-3 mx-2 rounded-lg transition-colors font-semibold"
-    : "flex items-center gap-3 py-3 px-4 mr-6 ml-2 rounded-lg transition-colors font-semibold flex-1";
+    : "flex items-center gap-3 py-3 px-4 mr-6 ml-2 rounded-lg transition-colors font-semibold flex-1 min-w-0";
 
   const handleClick = () => {
     if (onClick) onClick();
     if (closeMobileMenu) closeMobileMenu();
   };
 
-  const finalClasses = `${baseClasses} ${className || ""}`;
   const isActive = to ? location.pathname === to : false;
+
+  const finalClasses = `${baseClasses} ${className || ""} ${isActive ? "bg-[#DFE2E2] text-[#171C35]" : "text-[#667085] hover:bg-[#DFE2E2]"}`;
 
   if (onClick) {
     return (
-      <button onClick={handleClick} className={`${finalClasses} hover:bg-[#DFE2E2] relative`}>
-        <div className="relative flex items-center gap-3">
+      <button onClick={handleClick} className={`${finalClasses} relative`}>
+        <div className="relative flex items-center gap-3 min-w-0">
           <img src={iconSrc} alt={label} className="h-5 w-5 sm:h-6 sm:w-6 object-contain shrink-0" />
+          {!collapsed && <span className="flex-1 text-sm md:text-base text-left truncate">{label}</span>}
         </div>
-        {!collapsed && <span className="flex-1 text-sm md:text-base text-left whitespace-nowrap">{label}</span>}
       </button>
     );
   }
@@ -110,12 +101,12 @@ const NavItem: React.FC<NavItemProps> = ({ to, label, iconSrc, onClick, collapse
       to={to!}
       end
       onClick={handleClick}
-      className={`${finalClasses} relative ${isActive ? "bg-[#DFE2E2] text-[#171C35]" : "text-[#667085] hover:bg-[#DFE2E2]"}`}
+      className={finalClasses}
     >
-      <div className="relative flex items-center gap-3">
+      <div className="relative flex items-center gap-3 min-w-0">
         <img src={iconSrc} alt={label} className="h-5 w-5 sm:h-6 sm:w-6 object-contain shrink-0" />
+        {!collapsed && <span className="flex-1 text-sm md:text-base text-left truncate">{label}</span>}
       </div>
-      {!collapsed && <span className="flex-1 text-sm md:text-base text-left whitespace-nowrap">{label}</span>}
     </NavLink>
   );
 };
@@ -137,11 +128,7 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ onLogoutClick, collapsed, o
       style={{ fontFamily: "Urbanist, sans-serif" }}
     >
       <div>
-        <Logo 
-          collapsed={collapsed} 
-          onToggle={onToggle} 
-          closeMobileMenu={closeMobileMenu}
-        />
+        <Logo collapsed={collapsed} onToggle={onToggle} closeMobileMenu={closeMobileMenu} />
         <nav className="flex flex-col mt-2 gap-2">
           <NavItem to="/admin" iconSrc={dashbord} label={t("adminDashboard.sidebar.dashboard")} collapsed={collapsed} closeMobileMenu={closeMobileMenu} />
           <NavItem to="/admin/customers" iconSrc={customers} label={t("adminDashboard.sidebar.customers")} collapsed={collapsed} closeMobileMenu={closeMobileMenu} />
@@ -169,6 +156,7 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ onLogoutClick, collapsed, o
 };
 
 export default AdminSidebar;
+
 
 
 

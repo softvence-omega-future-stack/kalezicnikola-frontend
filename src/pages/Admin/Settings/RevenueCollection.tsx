@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface RevenueSettings {
   retryFailedPayments: boolean;
@@ -7,6 +8,7 @@ interface RevenueSettings {
 }
 
 const RevenueCollection: React.FC = () => {
+  const {t} = useTranslation()
   const [settings, setSettings] = useState<RevenueSettings>({
     retryFailedPayments: false,
     gracePeriod: false,
@@ -25,10 +27,10 @@ const RevenueCollection: React.FC = () => {
       {/* Header */}
       <div className="mb-6">
         <h1 className="text-lg sm:text-xl font-semibold text-headingBlack">
-          Revenue Collection
+           {t('adminDashboard.routes.settings.tabs.billing.revenueCollection.title')}
         </h1>
         <p className="text-sm sm:text-base text-subHeadingBlack">
-          Configure how payments are collected from customers
+          {t('adminDashboard.routes.settings.tabs.billing.revenueCollection.description')}
         </p>
       </div>
 
@@ -40,10 +42,10 @@ const RevenueCollection: React.FC = () => {
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
             <div className="flex-1">
               <h3 className="text-sm sm:text-lg font-semibold text-headingBlack">
-                Retry failed payments
+               {t('adminDashboard.routes.settings.tabs.billing.revenueCollection.retryFailedPayments.label')}
               </h3>
               <p className="text-xs sm:text-base text-subHeadingBlack">
-                Automatically retry failed subscription payments
+             {t('adminDashboard.routes.settings.tabs.billing.revenueCollection.retryFailedPayments.description')}
               </p>
             </div>
             <button
@@ -66,10 +68,10 @@ const RevenueCollection: React.FC = () => {
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
             <div className="flex-1">
               <h3 className="text-sm sm:text-lg font-semibold text-headingBlack">
-                Grace period
+                {t('adminDashboard.routes.settings.tabs.billing.revenueCollection.gracePeriod.description')}
               </h3>
               <p className="text-xs sm:text-base text-subHeadingBlack">
-                Allow 3 days before suspending service
+                {t('adminDashboard.routes.settings.tabs.billing.revenueCollection.gracePeriod.description')}
               </p>
             </div>
             <button
@@ -92,10 +94,10 @@ const RevenueCollection: React.FC = () => {
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
             <div className="flex-1">
               <h3 className="text-sm sm:text-lg font-semibold text-headingBlack">
-                Proration
+             {t('adminDashboard.routes.settings.tabs.billing.revenueCollection.proration.label')}
               </h3>
               <p className="text-xs sm:text-base text-subHeadingBlack">
-                Prorate charges when customers upgrade/downgrade
+                {t('adminDashboard.routes.settings.tabs.billing.revenueCollection.proration.description')}
               </p>
             </div>
             <button

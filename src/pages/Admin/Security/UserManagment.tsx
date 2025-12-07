@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
-import { X, User, SquarePen, UserRoundX } from 'lucide-react';
+import { SquarePen, Trash2 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import profile from "../../../assets/svgIcon/userProfile.svg";
+import EditUserModal from './EditUserModal';
+import DeleteUserModal from './DeleteUserModal';
+
 
 interface User {
   id: number;
@@ -13,6 +17,8 @@ interface User {
 }
 
 const UserManagement: React.FC = () => {
+  const { t } = useTranslation("");
+  
   const [users, setUsers] = useState<User[]>([
     { id: 1, name: 'Alex', avatar: profile, role: 'Super Admin', status: 'Active', twoFA: 'Enable', lastLogin: '01-09-2025' },
     { id: 2, name: 'Sarah', avatar: profile, role: 'Support', status: 'Active', twoFA: 'Disable', lastLogin: '01-09-2025' },
@@ -22,82 +28,125 @@ const UserManagement: React.FC = () => {
     { id: 6, name: 'Cody Fisher', avatar: profile, role: 'Doctor', status: 'Active', twoFA: 'Enable', lastLogin: '01-09-2025' },
   ]);
 
-  //const [selectedUsers, setSelectedUsers] = useState<number[]>([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
 
-  // Check if all users are selected
- // const allSelected = selectedUsers.length === users.length && users.length > 0;
-  
-  // Check if some (but not all) users are selected
-  //const someSelected = selectedUsers.length > 0 && selectedUsers.length < users.length;
-
-  // Handle select all checkbox
-  // const handleSelectAll = () => {
-  //   if (allSelected) {
-  //     setSelectedUsers([]);
-  //   } else {
-  //     setSelectedUsers(users.map(u => u.id));
-  //   }
-  // };
-
-  // Handle individual checkbox
-  // const handleSelectUser = (userId: number) => {
-  //   if (selectedUsers.includes(userId)) {
-  //     setSelectedUsers(selectedUsers.filter(id => id !== userId));
-  //   } else {
-  //     setSelectedUsers([...selectedUsers, userId]);
-  //   }
-  // };
-
-  const handleEditClick = (user: User) => {
-    setSelectedUser(user);
-    setIsModalOpen(true);
+  // Toast notification handler
+  const showToast = (message: string, type: 'success' | 'error' = 'success') => {
+    setToast({ message, type });
+    setTimeout(() => setToast(null), 3000);
   };
 
+  // Open edit modal
+  const handleEditClick = (user: User) => {
+    setSelectedUser(user);
+    setIsEditModalOpen(true);
+  };
+
+  // Open delete modal
+  const handleDeleteClick = (user: User) => {
+    setSelectedUser(user);
+    setIsDeleteModalOpen(true);
+  };
+
+  // Handle input change in edit modal
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     if (selectedUser) {
       setSelectedUser({ ...selectedUser, [e.target.name]: e.target.value });
     }
   };
 
+  // Save edited user
   const handleSave = () => {
     if (selectedUser) {
+      // TODO: Replace with API call
+      // Example: 
+      // const response = await fetch(`/api/users/${selectedUser.id}`, {
+      //   method: 'PUT',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify(selectedUser)
+      // });
+      // const data = await response.json();
+      
       setUsers(users.map(u => u.id === selectedUser.id ? selectedUser : u));
-      setIsModalOpen(false);
+      setIsEditModalOpen(false);
+      showToast(t("adminDashboard.routes.securityAudit.userManagement.toast.updateSuccess"));
     }
+  };
+
+  // Delete user
+  const handleDelete = () => {
+    if (selectedUser) {
+      // TODO: Replace with API call
+      // Example:
+      // await fetch(`/api/users/${selectedUser.id}`, {
+      //   method: 'DELETE'
+      // });
+      
+      setUsers(users.filter(u => u.id !== selectedUser.id));
+      showToast(t("adminDashboard.routes.securityAudit.userManagement.toast.deleteSuccess"));
+      setSelectedUser(null);
+    }
+  };
+
+  // Translate status
+  const translateStatus = (status: string) => {
+    return status === 'Active' 
+      ? t("adminDashboard.routes.securityAudit.userManagement.status.active")
+      : t("adminDashboard.routes.securityAudit.userManagement.status.inactive");
+  };
+
+  // Translate 2FA
+  const translateTwoFA = (twoFA: string) => {
+    return twoFA === 'Enable' 
+      ? t("adminDashboard.routes.securityAudit.userManagement.twoFA.enable")
+      : t("adminDashboard.routes.securityAudit.userManagement.twoFA.disable");
   };
 
   return (
     <div className="bg-white p-4 md:p-6 rounded-xl md:rounded-3xl mt-4">
+      {/* Toast Notification */}
+      {toast && (
+        <div className="fixed top-4 right-4 z-50 animate-slide-in">
+          <div className={`px-6 py-3 rounded-lg shadow-lg ${
+            toast.type === 'success' ? 'bg-green-500' : 'bg-red-500'
+          } text-white font-medium`}>
+            {toast.message}
+          </div>
+        </div>
+      )}
+
       <div className="">
         <div className="mb-4">
-          <h1 className="text-xl md:text-2xl font-semibold text-headingBlack pb-1 md:pb-3">User Management</h1>
+          <h1 className="text-xl md:text-2xl font-semibold text-headingBlack pb-1 md:pb-3">
+            {t("adminDashboard.routes.securityAudit.userManagement.title")}
+          </h1>
         </div>
 
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead className="bg-gray-50">
               <tr className='text-sm md:text-base font-semibold text-headingBlack whitespace-nowrap'>
-                {/* <th className="px-4 py-4 text-left w-12">
-                  <input
-                    type="checkbox"
-                    checked={allSelected}
-                    ref={input => {
-                      if (input) {
-                        input.indeterminate = someSelected;
-                      }
-                    }}
-                    onChange={handleSelectAll}
-                    className="w-4 h-4 rounded-[6px] border border-[#D0D5DD] text-blue-600 focus:ring-blue-500 cursor-pointer"
-                  />
-                </th> */}
-                <th className="px-4 py-4 text-left">User</th>
-                <th className="px-4 py-4 text-left">Role</th>
-                <th className="px-4 py-4 text-left">Status</th>
-                <th className="px-4 py-4 text-left">2FA</th>
-                <th className="px-4 py-4 text-left">Last Login</th>
-                <th className="px-4 py-4 text-left">Actions</th>
+                <th className="px-4 py-4 text-left">
+                  {t("adminDashboard.routes.securityAudit.userManagement.table.user")}
+                </th>
+                <th className="px-4 py-4 text-left">
+                  {t("adminDashboard.routes.securityAudit.userManagement.table.role")}
+                </th>
+                <th className="px-4 py-4 text-left">
+                  {t("adminDashboard.routes.securityAudit.userManagement.table.status")}
+                </th>
+                <th className="px-4 py-4 text-left">
+                  {t("adminDashboard.routes.securityAudit.userManagement.table.twoFA")}
+                </th>
+                <th className="px-4 py-4 text-left">
+                  {t("adminDashboard.routes.securityAudit.userManagement.table.lastLogin")}
+                </th>
+                <th className="px-4 py-4 text-left">
+                  {t("adminDashboard.routes.securityAudit.userManagement.table.actions")}
+                </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
@@ -106,15 +155,6 @@ const UserManagement: React.FC = () => {
                   key={user.id} 
                   className="hover:bg-gray-50 transition-colors"
                 >
-                  {/* <td className="px-4 py-4">
-                    <input
-                      type="checkbox"
-                      checked={selectedUsers.includes(user.id)}
-                      onChange={() => handleSelectUser(user.id)}
-                      className="w-4 h-4 rounded-[6px] border border-[#D0D5DD] text-blue-600 focus:ring-blue-500 cursor-pointer"
-                    />
-                  </td> */}
-                  
                   <td className="px-4 py-4">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden">
@@ -141,7 +181,7 @@ const UserManagement: React.FC = () => {
                       <span className={`w-1.5 h-1.5 rounded-full ${
                         user.status === 'Active' ? 'bg-[#008933]' : 'bg-gray-600'
                       }`}></span>
-                      {user.status}
+                      {translateStatus(user.status)}
                     </span>
                   </td>
                   
@@ -151,7 +191,7 @@ const UserManagement: React.FC = () => {
                         ? 'bg-blue-50 text-blue-600' 
                         : 'bg-red-50 text-red-600'
                     }`}>
-                      {user.twoFA}
+                      {translateTwoFA(user.twoFA)}
                     </span>
                   </td>
                   
@@ -164,15 +204,16 @@ const UserManagement: React.FC = () => {
                       <button 
                         onClick={() => handleEditClick(user)} 
                         className="p-2 rounded-lg hover:bg-gray-100 cursor-pointer"
-                        title="Edit user"
+                        title={t("adminDashboard.routes.securityAudit.userManagement.tooltips.edit")}
                       >
-                        <SquarePen className="text-black h-4 w-4 sm:h-5 sm:w-5 " />
+                        <SquarePen className="text-black h-4 w-4 sm:h-5 sm:w-5" />
                       </button>
                       <button 
-                        className="p-2 rounded-lg hover:bg-gray-100 cursor-pointer"
-                        title="View user"
+                        onClick={() => handleDeleteClick(user)}
+                        className="p-2 rounded-lg hover:bg-red-50 cursor-pointer"
+                        title={t("adminDashboard.routes.securityAudit.userManagement.tooltips.delete")}
                       >
-                        <UserRoundX size={20} className="text-black h-4 w-4 sm:h-5 sm:w-5 " />
+                        <Trash2 className="text-red-600 h-4 w-4 sm:h-5 sm:w-5" />
                       </button>
                     </div>
                   </td>
@@ -184,83 +225,26 @@ const UserManagement: React.FC = () => {
       </div>
 
       {/* Edit Modal */}
-      {isModalOpen && selectedUser && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-          <div className="bg-white rounded-2xl p-6 w-full max-w-md relative shadow-xl">
-            <button
-              onClick={() => setIsModalOpen(false)}
-              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
-            >
-              <X size={20} />
-            </button>
-            
-            <h2 className="text-xl font-semibold mb-6 text-gray-900">Edit User</h2>
+      <EditUserModal
+        isOpen={isEditModalOpen}
+        onClose={() => setIsEditModalOpen(false)}
+        onSave={handleSave}
+        user={selectedUser}
+        onInputChange={handleInputChange}
+      />
 
-            <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
-                <input
-                  type="text"
-                  name="name"
-                  value={selectedUser.name}
-                  onChange={handleInputChange}
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Role</label>
-                <input
-                  type="text"
-                  name="role"
-                  value={selectedUser.role}
-                  onChange={handleInputChange}
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
-                <select
-                  name="status"
-                  value={selectedUser.status}
-                  onChange={handleInputChange}
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                >
-                  <option value="Active">Active</option>
-                  <option value="Inactive">Inactive</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">2FA</label>
-                <select
-                  name="twoFA"
-                  value={selectedUser.twoFA}
-                  onChange={handleInputChange}
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                >
-                  <option value="Enable">Enable</option>
-                  <option value="Disable">Disable</option>
-                </select>
-              </div>
-            </div>
-
-            <button
-              onClick={handleSave}
-              className="mt-6 w-full bg-blue-600 text-white py-2.5 rounded-lg font-medium hover:bg-blue-700 transition-colors"
-            >
-              Save Changes
-            </button>
-          </div>
-        </div>
-      )}
+      {/* Delete Modal */}
+      <DeleteUserModal
+        isOpen={isDeleteModalOpen}
+        onClose={() => setIsDeleteModalOpen(false)}
+        onConfirm={handleDelete}
+        userName={selectedUser?.name || ''}
+      />
     </div>
   );
 };
 
 export default UserManagement;
-
 
 
 

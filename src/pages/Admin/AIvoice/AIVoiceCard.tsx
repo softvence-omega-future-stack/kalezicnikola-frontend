@@ -117,170 +117,73 @@
 
 
 
+import React from 'react';
+import { useTranslation } from 'react-i18next';
 import arrow from '../../../assets/svgIcon/arrowRight.svg';
 
-// CommonSpace Component
 const CommonSpace = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
-  return (
-    <div className={`w-full py-6 ${className}`}>
-      {children}
-    </div>
-  );
+  return <div className={`w-full py-6 ${className}`}>{children}</div>;
 };
 
-const statsCards = [
-  {
-    title: "Total Calls Handled",
-    value: "3847",
-    lastMonth: "Last month +18.4%",
-    bgColor: "#E1DCF4",
-  },
-  {
-    title: "Appointment Success Rate",
-    value: "47.3%",
-    lastMonth: "Last month +18.4%",
-    bgColor: "#D0E1F5",
-  },
-  {
-    title: "Avg Call Duration",
-    value: "2.8m",
-    lastMonth: "Last month +18.4%",
-    bgColor: "#FADACA",
-  },
-  {
-    title: "Escalation Rate",
-    value: "8.4%",
-    lastMonth: "Last month -12.5%",
-    bgColor: "#CACDFA",
-  },
-];
+interface StatCard {
+  title: string;
+  value: string;
+  lastMonth: string;
+}
 
-// FIXED cutout dimensions
 const cutoutWidth = 42;
 const cutoutHeight = 46;
 const curveRadius = 20;
 const smallCurveRadius = 20;
 
-const StatsCard = ({ card }: { card: (typeof statsCards)[0] }) => {
+const StatsCard = ({ card }: { card: StatCard }) => {
   return (
     <div className="relative w-full" style={{ height: '150px' }}>
-      {/* Background with fixed cutout */}
-      <div 
-        className="absolute inset-0 rounded-[16px]"
-        style={{ backgroundColor: card.bgColor }}
-      >
-        {/* Fixed size cutout container */}
-        <div 
-          className="absolute bottom-0 right-0"
-          style={{
-            width: cutoutWidth + curveRadius,
-            height: cutoutHeight + curveRadius,
-          }}
-        >
-          {/* Main cutout */}
-          <div 
-            className="absolute bottom-0 right-0 bg-[#F3F6F6]"
-            style={{
-              width: cutoutWidth,
-              height: cutoutHeight,
-              borderTopLeftRadius: curveRadius,
-            }}
-          />
-          
-          {/* Top curve connector */}
-          <div 
-            className="absolute right-0 bg-[#F3F6F6]"
-            style={{
-              width: smallCurveRadius,
-              height: smallCurveRadius,
-              bottom: cutoutHeight,
-            }}
-          />
-          <div 
-            className="absolute right-0"
-            style={{
-              width: smallCurveRadius,
-              height: smallCurveRadius,
-              bottom: cutoutHeight,
-              backgroundColor: card.bgColor,
-              borderBottomRightRadius: smallCurveRadius,
-            }}
-          />
-          
-          {/* Left curve connector */}
-          <div 
-            className="absolute bottom-0 bg-[#F3F6F6]"
-            style={{
-              width: smallCurveRadius,
-              height: smallCurveRadius,
-              right: cutoutWidth,
-            }}
-          />
-          <div 
-            className="absolute bottom-0"
-            style={{
-              width: smallCurveRadius,
-              height: smallCurveRadius,
-              right: cutoutWidth,
-              backgroundColor: card.bgColor,
-              borderBottomRightRadius: smallCurveRadius,
-            }}
-          />
+      <div className="absolute inset-0 rounded-[16px]" style={{ backgroundColor: '#E1DCF4' }}>
+        <div className="absolute bottom-0 right-0" style={{ width: cutoutWidth + curveRadius, height: cutoutHeight + curveRadius }}>
+          <div className="absolute bottom-0 right-0 bg-[#F3F6F6]" style={{ width: cutoutWidth, height: cutoutHeight, borderTopLeftRadius: curveRadius }} />
+          <div className="absolute right-0 bg-[#F3F6F6]" style={{ width: smallCurveRadius, height: smallCurveRadius, bottom: cutoutHeight }} />
+          <div className="absolute right-0" style={{ width: smallCurveRadius, height: smallCurveRadius, bottom: cutoutHeight, backgroundColor: '#E1DCF4', borderBottomRightRadius: smallCurveRadius }} />
+          <div className="absolute bottom-0 bg-[#F3F6F6]" style={{ width: smallCurveRadius, height: smallCurveRadius, right: cutoutWidth }} />
+          <div className="absolute bottom-0" style={{ width: smallCurveRadius, height: smallCurveRadius, right: cutoutWidth, backgroundColor: '#E1DCF4', borderBottomRightRadius: smallCurveRadius }} />
         </div>
       </div>
 
-      {/* Content overlay */}
       <div className="relative w-full h-full p-4 flex flex-col justify-between">
         <div>
           <h3 className="text-lg font-semibold text-[#171C35] mb-1">{card.title}</h3>
         </div>
 
-        
-        
         <div>
-            <span className="text-3xl font-medium text-[#171C35]">{card.value}</span>
+          <span className="text-3xl font-medium text-[#171C35]">{card.value}</span>
           <p className="text-sm text-[#111A2D] opacity-70">{card.lastMonth}</p>
         </div>
 
-
-        {/* Bottom-right arrow button */}
-        <div className="">
-          {/* <button className="h-9 w-9 bg-gray-900 rounded-full flex items-center justify-center cursor-pointer">
-            <ArrowDownRight className=" text-white" />
-          </button> */}
-
-
-        {/* FIXED position arrow button */}
-        <div
-          className="absolute"
-          style={{
-            bottom: 5,
-            right: 5,
-          }}
-        >
+        <div className="absolute bottom-2 right-1">
           <div className="h-8 w-8 bg-gray-900 rounded-full flex items-center justify-center">
-            <img src={arrow} alt="" />
+            <img src={arrow} alt="Pfeil" />
           </div>
-
         </div>
       </div>
-    </div>
     </div>
   );
 };
 
 const AIVoiceCard = () => {
+  const { t } = useTranslation();
+
+   const statsCards = t('adminDashboard.routes.aiVoice.aiVoiceCard.statsCards', { returnObjects: true }) as StatCard[];
+
   return (
-    <CommonSpace className="">
-      <div className="">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4  gap-5">
-          {statsCards.map((card, index) => (
-            <StatsCard key={index} card={card} />
-          ))}
-        </div>
+    <CommonSpace>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-5">
+        {statsCards.map((card, index) => (
+          <StatsCard key={index} card={card} />
+        ))}
       </div>
     </CommonSpace>
   );
 };
 
 export default AIVoiceCard;
+

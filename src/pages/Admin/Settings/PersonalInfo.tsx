@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import keren from '../../../assets/svgIcon/karen.svg';
 import { Edit, PencilLine } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 interface PersonalInfo {
   firstName: string;
@@ -25,6 +26,7 @@ const PersonalInfoFormAdmin: React.FC = () => {
 
   const [profilePic, setProfilePic] = useState<string>(keren);
   const [isEditingForm, setIsEditingForm] = useState(false);
+  const { t } = useTranslation();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -44,7 +46,7 @@ const PersonalInfoFormAdmin: React.FC = () => {
 
   const handleSave = () => {
     setIsEditingForm(false);
-    alert('✅ Admin: Changes saved successfully!');
+    alert(`✅ ${t("adminDashboard.routes.settings.tabs.personalInfo.saveChanges")}`);
     console.log('Admin saved changes:', formData);
   };
 
@@ -66,15 +68,19 @@ const PersonalInfoFormAdmin: React.FC = () => {
 
   return (
     <div className="bg-[#FAFAFA] rounded-xl md:rounded-3xl p-4 md:p-6 md:mx-0">
-      {/* Header with Edit button for admin */}
+      {/* Header */}
       <div className="flex justify-between items-center mb-4 md:mb-6">
-        <h1 className="text-lg md:text-xl font-semibold text-headingBlack">Personal Info</h1>
+        <h1 className="text-lg md:text-xl font-semibold text-headingBlack">
+          {t("adminDashboard.routes.settings.tabs.personalInfo.title")}
+        </h1>
         <button
           onClick={handleEditForm}
           className="flex items-center gap-1 md:gap-2 text-xs md:text-sm font-semibold px-3 py-2 md:px-4 md:py-2 rounded-lg cursor-pointer border border-subHeadingBlack hover:bg-gray-50 transition-colors"
         >
           <PencilLine className='w-4 h-4 md:w-5 md:h-5 text-black' />
-          <span className="text-black">Edit</span>
+          <span className="text-black">
+            {t("adminDashboard.routes.settings.tabs.personalInfo.edit")}
+          </span>
         </button>
       </div>
 
@@ -86,7 +92,6 @@ const PersonalInfoFormAdmin: React.FC = () => {
             alt="Profile"
             className="w-16 h-16 md:w-20 md:h-20 lg:h-[100px] lg:w-[100px] rounded-full object-cover"
           />
-          {/* Profile Picture Edit */}
           <input
             type="file"
             accept="image/*"
@@ -103,104 +108,113 @@ const PersonalInfoFormAdmin: React.FC = () => {
         </div>
         <div className="min-w-0 flex-1">
           <h2 className="text-sm md:text-base font-semibold text-[#042435] truncate">
-            {formData.firstName || 'Karen'} {formData.lastName}
+            {formData.firstName || t("adminDashboard.routes.settings.tabs.personalInfo.defaultName")} {formData.lastName}
           </h2>
-          <p className="text-xs md:text-sm text-subHeadingBlack truncate">Anaesthesia</p>
+          <p className="text-xs md:text-sm text-subHeadingBlack truncate">
+            {t("adminDashboard.routes.settings.tabs.personalInfo.department")}
+          </p>
         </div>
       </div>
 
       {/* Form Fields */}
       <div className="space-y-4 md:space-y-5">
+        {/* First & Last Name */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
           <div>
-            <label className="block text-sm md:text-base font-medium text-[#171c35] mb-1 md:mb-2">First name</label>
+            <label className="block text-sm md:text-base font-medium text-[#171c35] mb-1 md:mb-2">
+              {t("adminDashboard.routes.settings.tabs.personalInfo.firstName")}
+            </label>
             <input
               type="text"
               name="firstName"
               value={formData.firstName}
               onChange={handleChange}
-              placeholder="Enter first name..."
+              placeholder={t("adminDashboard.routes.settings.tabs.personalInfo.firstNamePlaceholder")}
               readOnly={!isEditingForm}
               className={`w-full px-3 py-3 md:px-4 md:py-4 border rounded-lg text-xs md:text-sm text-[#171c35] placeholder-[#667085] ${
-                isEditingForm 
-                  ? 'border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent' 
-                  : 'bg-gray-100 cursor-not-allowed border-transparent'
+                isEditingForm ? 'border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent' : 'bg-gray-100 cursor-not-allowed border-transparent'
               }`}
             />
           </div>
+
           <div>
-            <label className="block text-sm md:text-base font-medium text-[#171c35] mb-1 md:mb-2">Last Name</label>
+            <label className="block text-sm md:text-base font-medium text-[#171c35] mb-1 md:mb-2">
+              {t("adminDashboard.routes.settings.tabs.personalInfo.lastName")}
+            </label>
             <input
               type="text"
               name="lastName"
               value={formData.lastName}
               onChange={handleChange}
-              placeholder="Enter last name..."
+              placeholder={t("adminDashboard.routes.settings.tabs.personalInfo.lastNamePlaceholder")}
               readOnly={!isEditingForm}
               className={`w-full px-3 py-3 md:px-4 md:py-4 border rounded-lg text-xs md:text-sm text-[#171c35] placeholder-[#667085] ${
-                isEditingForm 
-                  ? 'border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent' 
-                  : 'bg-gray-100 cursor-not-allowed border-transparent'
+                isEditingForm ? 'border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent' : 'bg-gray-100 cursor-not-allowed border-transparent'
               }`}
             />
           </div>
         </div>
 
+        {/* Email & Phone */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
           <div>
-            <label className="block text-sm md:text-base font-medium text-[#171c35] mb-1 md:mb-2">Email</label>
+            <label className="block text-sm md:text-base font-medium text-[#171c35] mb-1 md:mb-2">
+              {t("adminDashboard.routes.settings.tabs.personalInfo.email")}
+            </label>
             <input
               type="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
-              placeholder="Enter your email..."
+              placeholder={t("adminDashboard.routes.settings.tabs.personalInfo.emailPlaceholder")}
               readOnly={!isEditingForm}
               className={`w-full px-3 py-3 md:px-4 md:py-4 border rounded-lg text-xs md:text-sm text-[#171c35] placeholder-[#667085] ${
-                isEditingForm 
-                  ? 'border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent' 
-                  : 'bg-gray-100 cursor-not-allowed border-transparent'
+                isEditingForm ? 'border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent' : 'bg-gray-100 cursor-not-allowed border-transparent'
               }`}
             />
           </div>
           <div>
-            <label className="block text-sm md:text-base font-medium text-[#171c35] mb-1 md:mb-2">Phone Number</label>
+            <label className="block text-sm md:text-base font-medium text-[#171c35] mb-1 md:mb-2">
+              {t("adminDashboard.routes.settings.tabs.personalInfo.phoneNumber")}
+            </label>
             <input
               type="tel"
               name="phoneNumber"
               value={formData.phoneNumber}
               onChange={handleChange}
-              placeholder="Enter your phone number..."
+              placeholder={t("adminDashboard.routes.settings.tabs.personalInfo.phoneNumberPlaceholder")}
               readOnly={!isEditingForm}
               className={`w-full px-3 py-3 md:px-4 md:py-4 border rounded-lg text-xs md:text-sm text-[#171c35] placeholder-[#667085] ${
-                isEditingForm 
-                  ? 'border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent' 
-                  : 'bg-gray-100 cursor-not-allowed border-transparent'
+                isEditingForm ? 'border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent' : 'bg-gray-100 cursor-not-allowed border-transparent'
               }`}
             />
           </div>
         </div>
 
+        {/* Address */}
         <div>
-          <label className="block text-sm md:text-base font-medium text-[#171c35] mb-1 md:mb-2">Address</label>
+          <label className="block text-sm md:text-base font-medium text-[#171c35] mb-1 md:mb-2">
+            {t("adminDashboard.routes.settings.tabs.personalInfo.address")}
+          </label>
           <input
             type="text"
             name="address"
             value={formData.address}
             onChange={handleChange}
-            placeholder="Enter your address..."
+            placeholder={t("adminDashboard.routes.settings.tabs.personalInfo.addressPlaceholder")}
             readOnly={!isEditingForm}
             className={`w-full px-3 py-3 md:px-4 md:py-4 border rounded-lg text-xs md:text-sm text-[#171c35] placeholder-[#667085] ${
-              isEditingForm 
-                ? 'border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent' 
-                : 'bg-gray-100 cursor-not-allowed border-transparent'
+              isEditingForm ? 'border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent' : 'bg-gray-100 cursor-not-allowed border-transparent'
             }`}
           />
         </div>
 
+        {/* DOB & Gender */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
           <div>
-            <label className="block text-sm md:text-base font-medium text-[#171c35] mb-1 md:mb-2">Date of Birth</label>
+            <label className="block text-sm md:text-base font-medium text-[#171c35] mb-1 md:mb-2">
+              {t("adminDashboard.routes.settings.tabs.personalInfo.dateOfBirth")}
+            </label>
             <input
               type="date"
               name="dateOfBirth"
@@ -208,25 +222,24 @@ const PersonalInfoFormAdmin: React.FC = () => {
               onChange={handleChange}
               readOnly={!isEditingForm}
               className={`w-full px-3 py-3 md:px-4 md:py-4 border rounded-lg text-xs md:text-sm text-[#171c35] ${
-                isEditingForm 
-                  ? 'border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent' 
-                  : 'bg-gray-100 cursor-not-allowed border-transparent'
+                isEditingForm ? 'border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent' : 'bg-gray-100 cursor-not-allowed border-transparent'
               }`}
             />
           </div>
+
           <div>
-            <label className="block text-sm md:text-base font-medium text-[#171c35] mb-1 md:mb-2">Gender</label>
+            <label className="block text-sm md:text-base font-medium text-[#171c35] mb-1 md:mb-2">
+              {t("adminDashboard.routes.settings.tabs.personalInfo.gender")}
+            </label>
             <input
               type="text"
               name="gender"
               value={formData.gender}
               onChange={handleChange}
-              placeholder="Enter your gender..."
+              placeholder={t("adminDashboard.routes.settings.tabs.personalInfo.genderPlaceholder")}
               readOnly={!isEditingForm}
               className={`w-full px-3 py-3 md:px-4 md:py-4 border rounded-lg text-xs md:text-sm text-[#171c35] placeholder-[#667085] ${
-                isEditingForm 
-                  ? 'border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent' 
-                  : 'bg-gray-100 cursor-not-allowed border-transparent'
+                isEditingForm ? 'border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent' : 'bg-gray-100 cursor-not-allowed border-transparent'
               }`}
             />
           </div>
@@ -240,13 +253,13 @@ const PersonalInfoFormAdmin: React.FC = () => {
             onClick={handleCancel}
             className="w-full px-4 py-3 md:px-6 md:py-3 border border-gray-200 rounded-lg text-sm font-semibold text-[#171c35] hover:bg-gray-50 transition-colors cursor-pointer"
           >
-            Cancel
+            {t("adminDashboard.routes.settings.tabs.personalInfo.cancel")}
           </button>
           <button
             onClick={handleSave}
             className="w-full px-4 py-3 md:px-6 md:py-3 bg-[#526FFF] rounded-xl text-sm md:text-base font-semibold text-white hover:bg-[#425CE0] transition-colors cursor-pointer"
           >
-            Save Changes
+            {t("adminDashboard.routes.settings.tabs.personalInfo.saveChanges")}
           </button>
         </div>
       )}

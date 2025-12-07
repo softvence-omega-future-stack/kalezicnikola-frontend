@@ -77,6 +77,7 @@
 
 
 
+import { useTranslation } from "react-i18next";
 import {
   AreaChart,
   Area,
@@ -94,19 +95,20 @@ const data = [
   { day: "Wed", value: 60 },
   { day: "Thu", value: 65 },
   { day: "Fri", value: 90 },
-  { day: "Sat", value: 85 },
-
+  { day: "Sat", value: 85 }
 ];
 
 const AIVoiceCall = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="bg-white p-4 md:p-6 rounded-xl md:rounded-3xl mt-4">
       <div className="mb-4">
         <h1 className="text-xl md:text-2xl font-semibold text-headingBlack pb-1 md:pb-3">
-          AI Voicebot Call Volume
+          {t("adminDashboard.routes.aiVoice.callVolume.title")}
         </h1>
-        <p className='text-[#667085] text-sm md:text-base '>
-          Daily call volume trend (last 7 days)
+        <p className="text-[#667085] text-sm md:text-base">
+          {t("adminDashboard.routes.aiVoice.callVolume.description")}
         </p>
       </div>
 
@@ -123,12 +125,7 @@ const AIVoiceCall = () => {
               </linearGradient>
             </defs>
 
-            {/* শুধুমাত্র horizontal dashed border */}
-            <CartesianGrid
-
-              vertical={false}
-              stroke="#E6EDEE"
-            />
+            <CartesianGrid vertical={false} stroke="#E6EDEE" />
 
             <XAxis
               dataKey="day"
@@ -168,3 +165,4 @@ const AIVoiceCall = () => {
 };
 
 export default AIVoiceCall;
+

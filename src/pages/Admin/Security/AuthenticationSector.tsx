@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const AuthenticationSector = () => {
+  const { t } = useTranslation();
   const [twoFAEnabled, setTwoFAEnabled] = useState(false);
 
   return (
@@ -9,7 +11,7 @@ const AuthenticationSector = () => {
 
         {/* Header */}
         <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-headingBlack">
-          Two-Factor Authentication
+          {t("adminDashboard.routes.securityAudit.authenticationSector.title")}
         </h2>
 
         {/* Toggle Section */}
@@ -18,10 +20,10 @@ const AuthenticationSector = () => {
           {/* Text Content */}
           <div className="flex-1 space-y-1 sm:space-y-2">
             <p className="text-base sm:text-lg font-semibold text-headingBlack">
-              Enable 2FA for Your Account
+              {t("adminDashboard.routes.securityAudit.authenticationSector.enableTitle")}
             </p>
             <p className="text-sm sm:text-base text-subHeadingBlack leading-relaxed">
-              Add an extra layer of security to your admin account
+              {t("adminDashboard.routes.securityAudit.authenticationSector.description")}
             </p>
           </div>
 
@@ -30,7 +32,7 @@ const AuthenticationSector = () => {
             onClick={() => setTwoFAEnabled(!twoFAEnabled)}
             className={`relative inline-flex h-6 w-11 sm:h-7 sm:w-12 items-center rounded-full transition-colors cursor-pointer
               ${twoFAEnabled ? "bg-[#526FFF]" : "bg-gray-300"}`}
-            aria-label={`Two-factor authentication is ${twoFAEnabled ? "enabled" : "disabled"}`}
+            aria-label={twoFAEnabled ? t("adminDashboard.routes.securityAudit.authenticationSector.ariaEnabled") : t("adminDashboard.routes.securityAudit.authenticationSector.ariaDisabled")}
             aria-pressed={twoFAEnabled}
           >
             <span

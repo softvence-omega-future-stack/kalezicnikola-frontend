@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 // --- Notification Settings Component ---
 const NotificationSettings: React.FC = () => {
+  const { t } = useTranslation();
+
   // State with proper type
   const [settings, setSettings] = useState({
     emailNotifications: false, // 2nd - active
     callLogs: false,           // 3rd - active
     taskDeadlines: false,      // 4th - active
-    securityAlerts: false,    // 5th - inactive
+    securityAlerts: false,     // 5th - inactive
   });
 
   type SettingKey = keyof typeof settings;
@@ -18,16 +21,18 @@ const NotificationSettings: React.FC = () => {
 
   // List of notification items
   const items: { key?: SettingKey; label: string; desc: string }[] = [
-    { label: 'Notification Preferences', desc: 'Add an extra layer of security to your admin account.' }, // No key
-    { key: 'emailNotifications', label: 'Email Notifications', desc: 'Receive email updates about your account' },
-    { key: 'callLogs', label: 'Security Alerts', desc: 'Get notified about security events' },
-    { key: 'taskDeadlines', label: 'System Updates', desc: 'Notifications about system maintenance' },
-    { key: 'securityAlerts', label: 'Marketing Emails', desc: 'Receive product updates and tips' },
+    { label: t('adminDashboard.routes.settings.tabs.notifications.title'), desc: t('adminDashboard.routes.settings.tabs.notifications.description') }, // No key
+    { key: 'emailNotifications', label: t('adminDashboard.routes.settings.tabs.notifications.emailNotifications.label'), desc: t('adminDashboard.routes.settings.tabs.notifications.emailNotifications.desc') },
+    { key: 'callLogs', label: t('adminDashboard.routes.settings.tabs.notifications.callLogs.label'), desc: t('adminDashboard.routes.settings.tabs.notifications.callLogs.desc') },
+    { key: 'taskDeadlines', label: t('adminDashboard.routes.settings.tabs.notifications.taskDeadlines.label'), desc: t('adminDashboard.routes.settings.tabs.notifications.taskDeadlines.desc') },
+    { key: 'securityAlerts', label: t('adminDashboard.routes.settings.tabs.notifications.securityAlerts.label'), desc: t('adminDashboard.routes.settings.tabs.notifications.securityAlerts.desc') },
   ];
 
   return (
     <div className="bg-[#FAFAFA] rounded-xl md:rounded-3xl p-4 md:p-6 md:mx-0">
-      <h2 className="text-lg md:text-2xl font-semibold text-headingBlack mb-4">Notification</h2>
+      <h2 className="text-lg md:text-2xl font-semibold text-headingBlack mb-4">
+        {t('adminDashboard.routes.settings.tabs.notifications.header')}
+      </h2>
 
       <div className="gap-y-3 flex flex-col">
         {items.map(({ key, label, desc }) => (

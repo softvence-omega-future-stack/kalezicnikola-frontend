@@ -1,10 +1,9 @@
 import { useState, useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
+import { ChevronLeft, Paperclip, Smile, Send } from 'lucide-react';
+import EmojiPicker from "emoji-picker-react";
+
 import kurmisadia from '../../../assets/svgIcon/kurmisadia.svg';
-// import call from '../../../assets/svgIcon/callLogs.svg';
-// import vediocal from '../../../assets/svgIcon/videoCall.svg';
-import send from '../../../assets/svgIcon/send.svg';
-import doc from '../../../assets/svgIcon/document.svg';
-import react from '../../../assets/svgIcon/react.svg';
 
 interface Message {
   id: number;
@@ -22,8 +21,9 @@ interface Friend {
   online?: boolean;
 }
 
-interface SupportRightProps {
+interface AdminSupportRightProps {
   selectedFriend: Friend;
+  onBack: () => void;
 }
 
 // Dr. Keren nix er fixed conversation
@@ -62,10 +62,13 @@ const karenNixConversation: Message[] = [
   }
 ];
 
-const SupportRight = ({ selectedFriend }: SupportRightProps) => {
+const SupportRight = ({ selectedFriend, onBack }: AdminSupportRightProps) => {
+  const { t } = useTranslation();
   const [messageText, setMessageText] = useState('');
   const [messages, setMessages] = useState<Message[]>([]);
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -80,13 +83,11 @@ const SupportRight = ({ selectedFriend }: SupportRightProps) => {
     let initialMessages: Message[];
     
     if (selectedFriend.name === 'Dr. Keren nix') {
-      // Karen Nix er fixed conversation
       initialMessages = karenNixConversation.map(msg => ({
         ...msg,
         avatar: msg.isOwn ? kurmisadia : selectedFriend.avatar
       }));
     } else {
-      // Other friends er dynamic conversation
       initialMessages = [
         {
           id: 1,
@@ -113,6 +114,7 @@ const SupportRight = ({ selectedFriend }: SupportRightProps) => {
     
     setMessages(initialMessages);
     setMessageText('');
+    setShowEmojiPicker(false);
   }, [selectedFriend.id, selectedFriend.avatar, selectedFriend.name]);
 
   const handleSendMessage = () => {
@@ -161,6 +163,16 @@ const SupportRight = ({ selectedFriend }: SupportRightProps) => {
   return (
     <div className="h-full">
       <div className="bg-white rounded-xl md:rounded-3xl pb-2 md:pb-4 overflow-hidden flex flex-col h-[calc(100vh-200px)] md:h-[calc(100vh-140px)]">
+        
+        {/* Mobile Back Button */}
+        <button
+          className="lg:hidden p-4 text-blue-600 font-semibold text-left flex items-center gap-2 border-b"
+          onClick={onBack}
+        >
+          <ChevronLeft className="w-5 h-5" />
+          Back to Contacts
+        </button>
+
         {/* Chat Header */}
         <div className="p-3 md:p-5 m-2 md:m-4 bg-[#F3F6F6] rounded-xl md:rounded-2xl flex items-center justify-between">
           <div className="flex items-center gap-2 md:gap-3 flex-1 min-w-0">
@@ -175,27 +187,28 @@ const SupportRight = ({ selectedFriend }: SupportRightProps) => {
               )}
             </div>
             <div className="min-w-0 flex-1">
-              <h3 className="font-semibold text-sm md:text-xl text-headingBlack mb-1 truncate">{selectedFriend.name}</h3>
+              <h3 className="font-semibold text-sm md:text-xl text-headingBlack mb-1 truncate">
+                {selectedFriend.name}
+              </h3>
               <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-8 text-xs md:text-sm text-subHeadingBlack">
-                <span className="truncate">{selectedFriend.online ? 'Online' : 'Last seen 2 hours ago'}</span>
-                <span className="hidden md:inline truncate">Local time: {new Date().toLocaleString('en-US', { 
-                  month: 'short', 
-                  day: 'numeric', 
-                  year: 'numeric', 
-                  hour: 'numeric', 
-                  minute: 'numeric', 
-                  hour12: true 
-                })}</span>
+                <span className="truncate">
+                  {selectedFriend.online 
+                    ? t("adminDashboard.routes.support.chat.online")
+                    : t("adminDashboard.routes.support.chat.lastSeen", { time: "2 hours" })
+                  }
+                </span>
+                <span className="hidden md:inline truncate">
+                  {t("adminDashboard.routes.support.chat.localTime")} {new Date().toLocaleString('en-US', { 
+                    month: 'short', 
+                    day: 'numeric', 
+                    year: 'numeric', 
+                    hour: 'numeric', 
+                    minute: 'numeric', 
+                    hour12: true 
+                  })}
+                </span>
               </div>
             </div>
-          </div>
-          <div className="flex items-center gap-1 md:gap-2 shrink-0">
-            <button className="p-1.5 md:p-2 hover:bg-gray-100 rounded-lg transition-colors">
-              {/* <img src={vediocal} alt="Video Call" className="w-4 h-4 md:w-6 md:h-6" /> */}
-            </button>
-            <button className="p-1.5 md:p-2 hover:bg-gray-100 rounded-lg transition-colors">
-              {/* <img src={call} alt="Call" className="w-4 h-4 md:w-6 md:h-6" /> */}
-            </button>
           </div>
         </div>
 
@@ -212,7 +225,9 @@ const SupportRight = ({ selectedFriend }: SupportRightProps) => {
               />
               <div className={`flex-1 min-w-0 ${message.isOwn ? 'text-right' : ''}`}>
                 <div className={`flex ${message.isOwn ? 'flex-row-reverse' : ''} items-baseline gap-1 md:gap-2 mb-1 flex-wrap`}>
-                  <h4 className="font-semibold text-headingBlack text-xs md:text-base truncate">{message.sender}</h4>
+                  <h4 className="font-semibold text-headingBlack text-xs md:text-base truncate">
+                    {message.sender}
+                  </h4>
                   <span className="text-xs text-subHeadingBlack shrink-0">{message.timestamp}</span>
                 </div>
                 <div className={`inline-block px-3 md:px-4 py-2 md:py-2.5 rounded-xl md:rounded-2xl max-w-full md:max-w-lg ${
@@ -220,7 +235,9 @@ const SupportRight = ({ selectedFriend }: SupportRightProps) => {
                     ? 'bg-[#526FFF] text-white' 
                     : 'bg-[#F3F6F6] text-headingBlack'
                 }`}>
-                  <p className="text-xs md:text-sm font-medium leading-relaxed break-all">{message.content}</p>
+                  <p className="text-xs md:text-sm font-medium leading-relaxed break-words">
+                    {message.content}
+                  </p>
                 </div>
               </div>
             </div>
@@ -229,22 +246,43 @@ const SupportRight = ({ selectedFriend }: SupportRightProps) => {
         </div>
 
         {/* Message Input */}
-        <div className="p-2 md:p-4 bg-[#F3F6F6] m-2 md:m-3 rounded-xl md:rounded-3xl">
+        <div className="p-2 md:p-4 bg-[#F3F6F6] m-2 md:m-3 rounded-xl md:rounded-3xl relative">
+          {showEmojiPicker && (
+            <div className="absolute bottom-16 left-4 z-50">
+              <EmojiPicker
+                onEmojiClick={(emojiData) => {
+                  setMessageText(prev => prev + emojiData.emoji);
+                  setShowEmojiPicker(false);
+                }}
+              />
+            </div>
+          )}
+
           <div className="flex items-center gap-2 md:gap-3">
-            <button className="transition-colors shrink-0">
-              <img src={doc} alt="Attach" className='p-2 bg-white h-8 w-8 md:h-10 md:w-10 rounded-full' />
+            <button 
+              onClick={() => fileInputRef.current?.click()}
+              className="transition-colors shrink-0 p-2 bg-white rounded-full hover:bg-gray-100"
+            >
+              <Paperclip className="w-4 h-4 md:w-5 md:h-5 text-gray-600" />
             </button>
-            <button className="transition-colors shrink-0">
-              <img src={react} alt="React" className='p-2 bg-white h-8 w-8 md:h-10 md:w-10 rounded-full' />
+            <input type="file" ref={fileInputRef} className="hidden" />
+
+            <button 
+              onClick={() => setShowEmojiPicker(!showEmojiPicker)}
+              className="transition-colors shrink-0 p-2 bg-white rounded-full hover:bg-gray-100"
+            >
+              <Smile className="w-4 h-4 md:w-5 md:h-5 text-gray-600" />
             </button>
+
             <input
               type="text"
-              placeholder="Type a message..."
+              placeholder={t("adminDashboard.routes.support.chat.typeMessage")}
               value={messageText}
               onChange={(e) => setMessageText(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
               className="flex-1 px-3 md:px-4 py-2 md:py-3 bg-white border border-gray-50 rounded-xl md:rounded-3xl placeholder:text-subHeadingBlack text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent min-w-0"
             />
+
             <button
               onClick={handleSendMessage}
               disabled={!messageText.trim()}
@@ -254,8 +292,8 @@ const SupportRight = ({ selectedFriend }: SupportRightProps) => {
                   : 'bg-gray-300 text-gray-500 cursor-not-allowed'
               }`}
             >
-              SEND
-              <img src={send} alt="Send" className="w-4 h-4 md:w-5 md:h-5" />
+              {t("adminDashboard.routes.support.chat.sendButton")}
+              <Send className="w-3 h-3 md:w-4 md:h-4" />
             </button>
           </div>
         </div>

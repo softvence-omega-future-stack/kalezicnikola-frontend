@@ -19,7 +19,8 @@
   "features": {
     "badge": "Ruhe am Telefon",
     "heading": "Die Entlastung, ||| die Ihr Team verdient" ,
-    "subText": "Der Docline KI-Assistent löst die größten Herausforderungen im Praxisalltag.",
+   "subText": "Der Docline KI-Assistent löst die größten\nHerausforderungen im Praxisalltag.",
+
 
        "relief": {
       "percent": "75%",
@@ -387,7 +388,73 @@
     }
   }
 },
-
+"auth":{
+"loginPage": {
+    "title": "Anmelden",
+    "welcomeMessage": "Willkommen! Melden Sie sich an, um auf Ihr Dashboard zuzugreifen",
+    "email": "E-Mail",
+    "emailPlaceholder": "Geben Sie Ihre E-Mail oder Telefonnummer ein",
+    "password": "Passwort",
+    "passwordPlaceholder": "············",
+    "rememberMe": "Angemeldet bleiben",
+    "forgotPassword": "Passwort vergessen?",
+    "signIn": "Anmelden",
+    "twoFA": "Geschützt durch Zwei-Faktor-Authentifizierung (2FA) für Ihre Datensicherheit",
+    "signupMessage": "Sie haben noch kein Konto?",
+    "signup": "Registrieren!"
+  },
+  "signupPage": {
+    "title": "Registrieren",
+    "subtitle": "Melden Sie sich an, um zu starten",
+    "firstName": "Vorname",
+    "firstNamePlaceholder": "z.B. John",
+    "lastName": "Nachname",
+    "lastNamePlaceholder": "z.B. Doe",
+    "email": "E-Mail",
+    "emailPlaceholder": "Geben Sie Ihre E-Mail ein",
+    "choosePassword": "Passwort wählen",
+    "confirmPassword": "Passwort bestätigen",
+    "passwordPlaceholder": "••••••••••••",
+    "agreeTerms": "Durch die Erstellung eines Kontos stimmen Sie den Nutzungsbedingungen und der Datenschutzrichtlinie von Docline zu.",
+    "signUpButton": "Registrieren",
+    "alreadyAccount": "Sie haben bereits ein Konto?",
+    "signIn": "Anmelden!"
+  },
+   "forgetPasswordPage": {
+    "title": "Passwort vergessen",
+    "subtitle": "Geben Sie Ihre registrierte E-Mail-Adresse oder Telefonnummer ein. Wir senden Ihnen einen Bestätigungscode, um Ihr Passwort zurückzusetzen.",
+    "email": "E-Mail",
+    "emailPlaceholder": "Geben Sie Ihre E-Mail oder Telefonnummer ein",
+    "sendVerification": "Bestätigungscode senden",
+    "login": "Anmelden"
+  },
+  "otpPage": {
+    "title": "Einmalpasswort (OTP)",
+    "subtitle": "Bitte geben Sie das sechsstellige Einmalpasswort ein, das wir an Ihre E-Mail gesendet haben.",
+    "otpLabel": "OTP",
+    "submitButton": "OTP senden",
+    "didNotReceive": "OTP nicht erhalten?",
+    "resendButton": "OTP erneut senden",
+    "successMessage": "OTP erfolgreich verifiziert!",
+    "errorMessage": "Ungültiges OTP. Bitte erneut versuchen.",
+    "login": "Anmelden"
+  },
+  "createNewPasswordPage": {
+    "title": "Neues Passwort erstellen",
+    "subtitle": "Bitte geben Sie den sechsstelligen Einmalpasscode ein, den wir an Ihre E-Mail gesendet haben, um Ihre Identität zu bestätigen.",
+    "passwordLabel": "Neues Passwort erstellen",
+    "confirmPasswordLabel": "Passwort bestätigen",
+    "saveButton": "Neues Passwort speichern",
+    "login": "Anmelden",
+    "placeholder": "••••••••••••"
+  },
+    "successfullNewPasswordPage": {
+    "title": "Passwort erfolgreich zurückgesetzt",
+    "subtitle": "Ihr Passwort wurde erfolgreich geändert. Sie können sich nun mit Ihren neuen Zugangsdaten anmelden.",
+    "backToLoginButton": "Zurück zur Anmeldung",
+    "login": "Anmelden"
+  }
+},
 
   "dashboard": {
       "mainHeader":{
@@ -400,11 +467,69 @@
       "logout": "Abmelden"
     }
   },
+
+  
     "notificationModal":{
     "title":"Benachrichtigungen",
      "timeAgo": "{{time}} "
   }
   },
+
+  "doctorProfile": {
+  "breadcrumb": {
+    "dashboard": "Instrumententafel",
+    "doctor": "Arzt",
+    "profile": "Arztprofil"
+  },
+  "pageTitle": "Arztprofil",
+  "tabs": {
+    "allAppointments": "Alle Termine",
+    "allAppointment": {
+    "title": "Terminhistorie",
+    "types": {
+      "checkup": "Untersuchung",
+      "followup": "Nachkontrolle"
+    },
+    "status": {
+      "upcoming": "Bevorstehend",
+      "complete": "Abgeschlossen"
+    },
+    "labels": {
+      "type": "Art",
+      "date": "Datum",
+      "time": "Uhrzeit"
+    }
+  },
+    "patients": "Patienten",
+      "patientHistory": {
+    "title": "Patientenhistorie",
+    "addButton": "Patient hinzufügen",
+    "tableHeaders": {
+      "id": "Versicherungs-ID",
+      "name": "Name",
+      "phone": "Telefonnummer",
+      "date": "Datum",
+      "history": "Verlauf",
+      "aiSummary": "KI-Zusammenfassung"
+    },
+    "buttons": {
+      "viewHistory": "Verlauf anzeigen",
+      "view": "Ansehen"
+    }
+  }
+  },
+  "profile": {
+    "name": "Keren Nix",
+    "degree": "MBBS, M.D. Kardiologie",
+    "edit": "Bearbeiten",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "experience": "Erfahrung",
+    "years": "Jahre",
+    "address": "Adresse"
+  }
+},
+
     "sidebar": {
       "navigation": {
         "dashboard": "Instrumententafel",
@@ -1595,6 +1720,461 @@
             "doctorId": "Arzt-ID"
           }
         }
+  },
+      "customers":{
+        "topSection":{
+            "title": "Kundenverwaltung",
+             "desc": "Verwalten Sie Arztabonnements und Kundenbeziehungen"
+
+        },
+            "customerCards": {
+      "totalCustomers": "Gesamte Kunden",
+      "active": "Aktiv",
+      "trial": "Probe",
+      "activeMRR": "Aktives MRR",
+
+      "manageDoctorSubscription": "Arztabonnement verwalten"
+    },
+
+    "doctorDatabase": {
+  "title": "Ärztedatenbank",
+  "allStatus": "Alle Status",
+  "search": "Suchen...",
+  "noData": "Keine Ärzte gefunden.",
+  "status": {
+    "active": "Aktiv",
+    "trial": "Testphase",
+    "suspended": "Gesperrt"
+  },
+  "payment": {
+    "paid": "Bezahlt",
+    "pending": "Ausstehend",
+    "overdue": "Überfällig"
+  },
+  "table": {
+    "name": "Name des Arztes",
+    "id": "Arzt-ID",
+    "plan": "Plan",
+    "status": "Status",
+    "payment": "Zahlung",
+    "mrr": "MRR",
+    "actions": "Aktionen",
+    "view": "Ansehen"
+  }
+}
+
+    },
+    "bellingSubs": {
+  "topSection": {
+    "title": "Abrechnung & Abonnements",
+    "desc": "Verwalten Sie Abonnementpläne, Rechnungen und Zahlungsabwicklung"
+  },
+
+                 "bellingCards": {
+
+   "statsCards": [
+      {
+        "title": "Gesamtumsatz",
+        "value": "$1,847,320",
+        "lastMonth": "Letzten Monat +18,4%"
+      },
+      {
+        "title": "Monatlich wiederkehrender Umsatz",
+        "value": "$1,457,320",
+        "lastMonth": "Letzten Monat +18,4%"
+      },
+      {
+        "title": "Aktive Abonnements",
+        "value": "$1,455,320",
+        "lastMonth": "Letzten Monat +18,4%"
+      },
+      {
+        "title": "Ausstehende Rechnungen",
+        "value": "51",
+        "lastMonth": "Letzten Monat -12,5%"
+      }
+    ]
+  
+    },
+
+     "subscriptionPlans": [
+    {
+      "name": "Basisplan",
+      "price": "$147",
+      "billing": "/Monat",
+      "billingNote": "Jährlich abgerechnet",
+      "features": [
+        "Durchschnittlich 2-5 leicht zu befolgende Handelssignale",
+        "Durchschnittlich 2-5 leicht zu befolgende Handelssignale pro Woche",
+        "Durchschnittlich 2-5 leicht zu befolgende",
+        "Durchschnittlich 2-5 leicht zu befolgende Handelssignale"
+      ],
+      "button": "Aktive Nutzer 89",
+      "bgColor": "#F5F6FF",
+      "textColor": "#526FFF",
+      "buttonBg": "white",
+      "buttonTextColor": "#526FFF"
+    },
+    {
+      "name": "Professionell",
+      "price": "$899",
+      "billing": "/Monat",
+      "billingNote": "Vollpreis",
+      "features": [
+        "Durchschnittlich 2-5 leicht zu befolgende Handelssignale",
+        "Durchschnittlich 2-5 leicht zu befolgende Handelsaktionen",
+        "Durchschnittlich 2-5 leicht zu befolgende Handelssignale pro Woche",
+        "Durchschnittlich 2-5 leicht zu befolgende",
+        "Durchschnittlich 2-5 leicht zu befolgende Handelssignale",
+        "Durchschnittlich 2-5 leicht zu befolgende"
+      ],
+      "button": "Aktive Nutzer 102",
+      "bgColor": "#1F1F29",
+      "textColor": "white",
+      "buttonBg": "#526FFF",
+      "buttonTextColor": "white"
+    },
+    {
+      "name": "Unternehmen",
+      "price": "$1299",
+      "billing": "/Monat",
+      "billingNote": "Vollpreis",
+      "features": [
+        "Durchschnittlich 2-5 leicht zu befolgende Handelssignale",
+        "Durchschnittlich 2-5 leicht zu befolgende Handelssignale",
+        "Durchschnittlich 2-5 leicht zu befolgende",
+        "Durchschnittlich 2-5 leicht zu befolgende Handelssignale",
+        "Durchschnittlich 2-5 leicht zu befolgende Handelssignale",
+        "Durchschnittlich 2-5 leicht zu befolgende Handelssignale pro Woche"
+      ],
+      "button": "Aktive Nutzer 89",
+      "bgColor": "#F5F6FF",
+      "textColor": "#171c35",
+      "buttonBg": "white",
+      "buttonTextColor": "#526FFF"
+    }
+  ]
+},
+
+    "aiVoice":{
+      "topSection":{
+         "title": "Leistung des KI-Sprachbots",
+"desc": "Überwachen Sie die Anrufmetriken und Erfolgsraten des KI-Sprachbots"
+
+        },
+         "aiVoiceCard": {
+        "statsCards": [
+          {
+            "title": "Gesamt bearbeitete Anrufe",
+            "value": "3847",
+            "lastMonth": "Letzten Monat +18,4%"
+          },
+          {
+            "title": "Termin-Erfolgsquote",
+            "value": "47,3%",
+            "lastMonth": "Letzten Monat +18,4%"
+          },
+          {
+            "title": "Durchschnittliche Gesprächsdauer",
+            "value": "2,8m",
+            "lastMonth": "Letzten Monat +18,4%"
+          },
+          {
+            "title": "Eskaltionsrate",
+            "value": "8,4%",
+            "lastMonth": "Letzten Monat -12,5%"
+          }
+        ]
+      },
+      "callVolume": {
+  "title": "Anrufvolumen des KI-Sprachbots",
+  "description": "Täglicher Anrufvolumentrend (letzte 7 Tage)"
+},
+"recentBotInteractions": {
+          "title": "Neueste Bot-Interaktionen",
+          "tableHeaders": {
+            "timestamp": "Zeitstempel",
+            "doctorID": "Arzt-ID",
+            "outcome": "Ergebnis",
+            "duration": "Dauer",
+            "sentiment": "Stimmung"
+          },
+          "outcomes": {
+            "appointmentbook": "Termin gebucht",
+            "escalated": "Eskaliert",
+            "error": "Fehler",
+            "other": "Andere"
+          },
+          "sentiments": {
+            "positive": "Positiv",
+            "negative": "Negativ",
+            "neutral": "Neutral"
+          }
+        }
+
+    },
+    "systemHealth":{
+      "topSection":{
+        "title": "Systemzustand",
+"desc": "Überwachen Sie die Infrastruktur- und Service-Status"
+
+        }
+    },
+    
+    "securityAudit":{
+    "securityCard": {
+     "statsCards": [
+      {
+        "title": "Gesamtaktionen (24 Std.)",
+        "lastMonth": "Alle protokollierten Aktionen"
+      },
+      {
+        "title": "2FA aktiviert",
+        "lastMonth": "Alle Benutzer"
+      },
+      {
+        "title": "DSGVO-Anfragen",
+        "lastMonth": "Alle verarbeitet"
+      },
+      {
+        "title": "Fehlgeschlagene Logins",
+        "lastMonth": "Letzte 24 Stunden"
+      }
+    ]
+  },
+   "userManagement": {
+          "title": "Benutzerverwaltung",
+          "table": {
+            "user": "Benutzer",
+            "role": "Rolle",
+            "status": "Status",
+            "twoFA": "2FA",
+            "lastLogin": "Letzte Anmeldung",
+            "actions": "Aktionen"
+          },
+          "status": {
+            "active": "Aktiv",
+            "inactive": "Inaktiv"
+          },
+          "twoFA": {
+            "enable": "Aktivieren",
+            "disable": "Deaktivieren"
+          },
+          "editModal": {
+            "title": "Benutzer bearbeiten",
+            "name": "Name",
+            "role": "Rolle",
+            "status": "Status",
+            "twoFA": "2FA",
+            "saveButton": "Änderungen speichern"
+          },
+          "deleteModal": {
+            "title": "Benutzer löschen",
+            "message": "Sind Sie sicher, dass Sie diesen Benutzer löschen möchten?",
+            "warning": "Diese Aktion kann nicht rückgängig gemacht werden.",
+            "confirmButton": "Ja, löschen",
+            "cancelButton": "Nein, abbrechen"
+          },
+          "toast": {
+            "deleteSuccess": "Benutzer erfolgreich gelöscht!",
+            "updateSuccess": "Benutzer erfolgreich aktualisiert!"
+          },
+          "tooltips": {
+            "edit": "Benutzer bearbeiten",
+            "delete": "Benutzer löschen"
+          }
+        },
+
+        "authenticationSector": {
+    "title": "Zwei-Faktor-Authentifizierung",
+    "enableTitle": "Aktiviere 2FA für dein Konto",
+    "description": "Füge deinem Admin-Konto eine zusätzliche Sicherheitsebene hinzu",
+    "ariaEnabled": "Zwei-Faktor-Authentifizierung ist aktiviert",
+    "ariaDisabled": "Zwei-Faktor-Authentifizierung ist deaktiviert"
+  },
+
+  "botInteractions": {
+    "title": "Kürzliche Bot-Interaktionen",
+    "table": {
+      "timestamp": "Zeitstempel",
+      "user": "Benutzer",
+      "action": "Aktion",
+      "details": "Details",
+      "severity": "Schwere"
+    },
+    "mobile": {
+      "actionLabel": "Aktion",
+      "detailsLabel": "Details",
+      "showMore": "Weitere Interaktionen anzeigen"
+    },
+    "severity": {
+      "high": "Hoch",
+      "medium": "Mittel"
+    }
+  }
+  },
+  "support": {
+  "breadcrumb": {
+    "dashboard": "Instrumententafel",
+    "support": "Unterstützung"
+  },
+  "title": "Unterstützung",
+  "searchPlaceholder": "Suchen...",
+  "selectFriend": "Wählen Sie einen Freund, um den Chat zu starten",
+  "chat": {
+    "online": "Online",
+    "lastSeen": "Zuletzt gesehen vor {{time}}",
+    "localTime": "Ortszeit:",
+    "typeMessage": "Geben Sie eine Nachricht ein...",
+    "sendButton": "SENDEN"
+  }
+},
+
+
+    "settings":{
+    "tabs":{
+  "personalInfo": {
+    "title": "Persönliche Informationen",
+    "edit": "Bearbeiten",
+    "firstName": "Vorname",
+    "firstNamePlaceholder": "Vornamen eingeben...",
+    "lastName": "Nachname",
+    "lastNamePlaceholder": "Nachnamen eingeben...",
+    "email": "E-Mail",
+    "emailPlaceholder": "Geben Sie Ihre E-Mail ein...",
+    "phoneNumber": "Telefonnummer",
+    "phoneNumberPlaceholder": "Telefonnummer eingeben...",
+    "address": "Adresse",
+    "addressPlaceholder": "Geben Sie Ihre Adresse ein...",
+    "dateOfBirth": "Geburtsdatum",
+    "gender": "Geschlecht",
+    "genderPlaceholder": "Geben Sie Ihr Geschlecht ein...",
+    "cancel": "Abbrechen",
+    "saveChanges": "Änderungen speichern",
+    "defaultName": "Karen",
+    "defaultSpeciality": "Anästhesie",
+    "saveSuccess": "Änderungen erfolgreich gespeichert!"
+  },
+   "notifications": {
+      "header": "Benachrichtigungen",
+      "title": "Benachrichtigungseinstellungen",
+      "description": "Fügen Sie Ihrem Admin-Konto eine zusätzliche Sicherheitsebene hinzu.",
+      "emailNotifications": {
+        "label": "E-Mail-Benachrichtigungen",
+        "desc": "Erhalten Sie E-Mail-Updates zu Ihrem Konto"
+      },
+      "callLogs": {
+        "label": "Sicherheitswarnungen",
+        "desc": "Werden Sie über Sicherheitsereignisse benachrichtigt"
+      },
+      "taskDeadlines": {
+        "label": "Systemupdates",
+        "desc": "Benachrichtigungen über Systemwartungen"
+      },
+      "securityAlerts": {
+        "label": "Marketing-E-Mails",
+        "desc": "Erhalten Sie Produktaktualisierungen und Tipps"
+      }
+    },
+        "security": {
+      "changePassword": {
+        "title": "Passwort ändern",
+        "description": "Aktualisieren Sie Ihr Passwort, um Ihr Konto zu sichern",
+        "currentPassword": {
+          "label": "Aktuelles Passwort",
+          "placeholder": "Geben Sie das aktuelle Passwort ein"
+        },
+        "newPassword": {
+          "label": "Neues Passwort",
+          "placeholder": "Geben Sie ein neues Passwort ein..."
+        },
+        "confirmPassword": {
+          "label": "Neues Passwort bestätigen",
+          "placeholder": "Neues Passwort bestätigen..."
+        },
+        "updateButton": "Passwort aktualisieren",
+        "mismatchAlert": "Neue Passwörter stimmen nicht überein!",
+        "successAlert": "Passwort erfolgreich aktualisiert!"
+      },
+      "twoFA": {
+        "title": "Zwei-Faktor-Authentifizierung",
+        "enable2FA": {
+          "label": "2FA für Ihr Konto aktivieren",
+          "description": "Fügen Sie Ihrem Admin-Konto eine zusätzliche Sicherheitsebene hinzu"
+        }
+      }
+    },
+
+     "billing": {
+      "title": "Plattform-Abrechnungskonfiguration",
+      "description": "Verwalten Sie Zahlungs-Gateway- und Abrechnungseinstellungen",
+      "paymentGateway": {
+        "title": "Zahlungs-Gateway",
+        "stripe": {
+          "name": "Stripe",
+          "status": "Verbunden und aktiv",
+          "configureButton": "Konfigurieren",
+          "activeBadge": "Aktiv"
+        }
+      },
+      "invoiceSettings": {
+        "title": "Rechnungseinstellungen",
+        "autoGenerate": {
+          "label": "Rechnungen automatisch erstellen",
+          "description": "Rechnungen für Abonnements automatisch erstellen"
+        },
+        "sendEmails": {
+          "label": "Rechnungen per E-Mail senden",
+          "description": "Rechnungen automatisch an Kunden senden"
+        }
+      },
+      "supportEmail": {
+        "title": "E-Mail für Abrechnungsunterstützung",
+        "placeholder": "billing@saas.com",
+        "description": "Rechnungen automatisch per E-Mail an Kunden senden"
+      },
+      "saveButton": "Abrechnungseinstellungen speichern",
+
+         "revenueCollection": {
+      "title": "Einnahmensammlung",
+      "description": "Konfigurieren Sie, wie Zahlungen von Kunden eingezogen werden",
+      "retryFailedPayments": {
+        "label": "Fehlgeschlagene Zahlungen erneut versuchen",
+        "description": "Automatisch fehlgeschlagene Abonnementzahlungen erneut versuchen"
+      },
+      "gracePeriod": {
+        "label": "Kulanzzeit",
+        "description": "Erlauben Sie 3 Tage, bevor der Service ausgesetzt wird"
+      },
+      "proration": {
+        "label": "Anteilsberechnung",
+        "description": "Berechnen Sie anteilige Gebühren, wenn Kunden ein Upgrade oder Downgrade durchführen"
+      }
+    }
+    },
+    "checkout": {
+    "title": "Anfrage",
+    "description": "Insgesamt 6 Checkout-Anfragen",
+    "tableHeaders": {
+      "name": "Name",
+      "doctorId": "Arzt-ID",
+      "plan": "Plan",
+      "request": "Anfrage",
+      "actions": "Aktionen"
+    },
+    "status": {
+      "accept": "Akzeptieren",
+      "pending": "Ausstehend",
+      "reject": "Ablehnen",
+      "acceptedButton": "Akzeptiert",
+      "approveButton": "Genehmigen",
+      "rejectButton": "Ablehnen"
+    },
+    "planLabel": "Plan",
+    "requestLabel": "Anfrage"
+  }
+
+}
   }
 }
 }

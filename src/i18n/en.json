@@ -18,7 +18,8 @@
  "features": {
   "badge": "Calm on the Phone",
   "heading": "The relief ||| your team deserves",
-  "subText": "The Docline AI assistant solves the biggest challenges in everyday practice",
+"subText": "The Docline AI assistant solves the\nbiggest challenges in everyday practice",
+
 
   "relief": {
     "percent": "75%",
@@ -382,6 +383,76 @@
     }
   }
 },
+"auth":{
+  "loginPage": {
+    "title": "Log In",
+    "welcomeMessage": "Welcome! Login to access your dashboard",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email or phone",
+    "password": "Password",
+    "passwordPlaceholder": "············",
+    "rememberMe": "Remember Me",
+    "forgotPassword": "Forgot Password?",
+    "signIn": "Sign In",
+    "twoFA": "Protected by 2-Factor Authentication (2FA) for your data security",
+    "signupMessage": "Don't have an account?",
+    "signup": "Sign Up!"
+  },
+  
+  "signupPage": {
+    "title": "Sign Up",
+    "subtitle": "Sign Up to get started",
+    "firstName": "First Name",
+    "firstNamePlaceholder": "eg. John",
+    "lastName": "Last Name",
+    "lastNamePlaceholder": "eg. Doe",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email",
+    "choosePassword": "Choose Password",
+    "confirmPassword": "Confirm Password",
+    "passwordPlaceholder": "••••••••••••",
+    "agreeTerms": "By creating an account, you agree to Docline's Terms of Service and Privacy Policy.",
+    "signUpButton": "Sign Up",
+    "alreadyAccount": "Already have an account?",
+    "signIn": "Sign In!"
+  },
+  "forgetPasswordPage": {
+    "title": "Forget Password",
+    "subtitle": "Enter your registered email or phone number. We’ll send you a verification code to reset your password.",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email or phone",
+    "sendVerification": "Send Verification Code",
+    "login": "Login"
+  },
+  "otpPage":{
+  "title": "One-Time Password (OTP)",
+  "subtitle": "Please enter the six-digit one-time password that we sent to your email.",
+  "otpLabel": "OTP",
+  "submitButton": "Submit OTP",
+  "didNotReceive": "Didn't receive OTP?",
+  "resendButton": "Resend OTP",
+  "successMessage": "OTP verified successfully!",
+  "errorMessage": "Invalid OTP. Please try again.",
+  "login": "Login"
+  },
+  "createNewPasswordPage": {
+  "title": "Create New Password",
+  "subtitle": "Please enter the six-digit one-time code we sent to your email to verify your identity.",
+  "passwordLabel": "Create New Password",
+  "confirmPasswordLabel": "Confirm Password",
+  "saveButton": "Save New Password",
+  "login": "Login",
+  "placeholder": "••••••••••••"
+},
+"successfullNewPasswordPage": {
+  "title": "Password Reset Successful",
+  "subtitle": "Your password has been successfully changed. You can now log in with your new credentials.",
+  "backToLoginButton": "Back to Login",
+  "login": "Login"
+}
+
+
+},
 "dashboard":{
   "mainHeader":{
       "userDropdown": {
@@ -397,6 +468,60 @@
     "title":"Notifications",
      "timeAgo": "{{time}} "
   }
+  },
+   "doctorProfile": {
+    "breadcrumb": {
+      "dashboard": "Dashboard",
+      "doctor": "Doctor",
+      "profile": "Doctor Profile"
+    },
+    "pageTitle": "Doctor Profile",
+    "tabs": {
+      "allAppointments": "All Appointment",
+      "allAppointment": {
+    "title": "Appointment History",
+       "types": {
+      "checkup": "Check-up",
+      "followup": "Follow-up"
+    },
+    "status": {
+      "upcoming": "Upcoming",
+      "complete": "Complete"
+    },
+    "labels": {
+      "type": "Type",
+      "date": "Date",
+      "time": "Time"
+    }
+  },
+      "patients": "Patients",
+      "patientHistory": {
+    "title": "Patients History",
+    "addButton": "Add Patient",
+    "tableHeaders": {
+      "id": "Insurance ID",
+      "name": "Name",
+      "phone": "Phone Number",
+      "date": "Date",
+      "history": "History",
+      "aiSummary": "AI Summary"
+    },
+    "buttons": {
+      "viewHistory": "View History",
+      "view": "View"
+    }
+  }
+    },
+    "profile": {
+      "name": "Keren nix",
+      "degree": "MBBS, M.D. Cardiology",
+      "edit": "Edit",
+      "email": "Email",
+      "phone": "Phone",
+      "experience": "Experience",
+      "years": "years",
+      "address": "Address"
+    }
   },
  "sidebar": {
     "navigation": {
@@ -1608,7 +1733,498 @@
             "doctorId": "Doctor ID"
           }
         }
+    },
+    "customers":{
+        "topSection":{
+          "title": "Customer Management",
+          "desc": "Manage Doctor subscriptions and customer relationships"
+        },
+            "customerCards": {
+      "totalCustomers": "Total Customers",
+      "active": "Active",
+      "trial": "Trial",
+      "activeMRR": "Active MRR",
+
+      "manageDoctorSubscription": "Manage Doctor subscription"
+    },
+
+ "doctorDatabase": {
+            "title": "Doctor Database",
+            "allStatus": "All Status",
+            "search": "Search...",
+            "noData": "No doctors found.",
+            "status": {
+              "active": "Active",
+              "trial": "Trial",
+              "suspended": "Suspended"
+            },
+            "payment": {
+              "paid": "Paid",
+              "pending": "Pending",
+              "overdue": "Overdue"
+            },
+            "table": {
+              "name": "Doctor Name",
+              "id": "Doctor ID",
+              "plan": "Plan",
+              "status": "Status",
+              "payment": "Payment",
+              "mrr": "MRR",
+              "actions": "Actions",
+              "view": "View"
+            }
+          }
+    },
+
+    "bellingSubs":{
+       "topSection":{
+          "title": "Billing & Subscriptions",
+          "desc": "Manage subscription plans, invoices, and payment processing"
+        },
+                 "bellingCards": {
+
+    "statsCards": [
+      {
+        "title": "Total Revenue",
+        "value": "$1,847,320",
+        "lastMonth": "Last month +18.4%"
+      },
+      {
+        "title": "Monthly Recurring Revenue",
+        "value": "$1,457,320",
+        "lastMonth": "Last month +18.4%"
+      },
+      {
+        "title": "Active Subscriptions",
+        "value": "$1,455,320",
+        "lastMonth": "Last month +18.4%"
+      },
+      {
+        "title": "Pending Invoices",
+        "value": "51",
+        "lastMonth": "Last month -12.5%"
+      }
+    ]
+  
+    },
+
+    "subscriptionPlans": [
+    {
+      "name": "Basic Plan",
+      "price": "$147",
+      "billing": "/month",
+      "billingNote": "Billed annually",
+      "features": [
+        "Average of 2-5 easy to follow trade alerts",
+        "Average of 2-5 easy to follow trade alerts per week",
+        "Average of 2-5 easy to follow",
+        "Average of 2-5 easy to follow trade alerts"
+      ],
+      "button": "Active user 89",
+      "bgColor": "#F5F6FF",
+      "textColor": "#526FFF",
+      "buttonBg": "white",
+      "buttonTextColor": "#526FFF"
+    },
+    {
+      "name": "Professional",
+      "price": "$899",
+      "billing": "/month",
+      "billingNote": "Full Price",
+      "features": [
+        "Average of 2-5 easy to follow trade alerts",
+        "Average of 2-5 easy to follow trade",
+        "Average of 2-5 easy to follow trade alerts per week",
+        "Average of 2-5 easy to follow",
+        "Average of 2-5 easy to follow trade alerts",
+        "Average of 2-5 easy to follow"
+      ],
+      "button": "Active user 102",
+      "bgColor": "#1F1F29",
+      "textColor": "white",
+      "buttonBg": "#526FFF",
+      "buttonTextColor": "white"
+    },
+    {
+      "name": "Enterprise",
+      "price": "$1299",
+      "billing": "/month",
+      "billingNote": "Full Price",
+      "features": [
+        "Average of 2-5 easy to follow trade alerts",
+        "Average of 2-5 easy to follow trade alerts",
+        "Average of 2-5 easy to follow",
+        "Average of 2-5 easy to follow trade alerts",
+        "Average of 2-5 easy to follow trade alerts",
+        "Average of 2-5 easy to follow trade alerts per week"
+      ],
+      "button": "Active user 89",
+      "bgColor": "#F5F6FF",
+      "textColor": "#171c35",
+      "buttonBg": "white",
+      "buttonTextColor": "#526FFF"
     }
+  ]
+    },
+
+    "aiVoice":{
+      "topSection":{
+          "title": "AI Voicebot Performance",
+          "desc": "Monitor AI voicebot call metrics and success rates"
+        },
+              "aiVoiceCard": {
+        "statsCards": [
+          {
+            "title": "Total Calls Handled",
+            "value": "3847",
+            "lastMonth": "Last month +18.4%"
+          },
+          {
+            "title": "Appointment Success Rate",
+            "value": "47.3%",
+            "lastMonth": "Last month +18.4%"
+          },
+          {
+            "title": "Avg Call Duration",
+            "value": "2.8m",
+            "lastMonth": "Last month +18.4%"
+          },
+          {
+            "title": "Escalation Rate",
+            "value": "8.4%",
+            "lastMonth": "Last month -12.5%"
+          }
+        ]
+      },
+       "callVolume": {
+          "title": "AI Voicebot Call Volume",
+          "description": "Daily call volume trend (last 7 days)"
+        },
+          "recentBotInteractions": {
+          "title": "Recent Bot Interactions",
+          "tableHeaders": {
+            "timestamp": "Timestamp",
+            "doctorID": "Doctor ID",
+            "outcome": "Outcome",
+            "duration": "Duration",
+            "sentiment": "Sentiment"
+          },
+          "outcomes": {
+            "appointmentbook": "Appointment Book",
+            "escalated": "Escalated",
+            "error": "Error",
+            "other": "Other"
+          },
+          "sentiments": {
+            "positive": "Positive",
+            "negative": "Negative",
+            "neutral": "Neutral"
+          }
+        }
+
+    },
+    "systemHealth":{
+       "topSection":{
+          "title": "System Health",
+          "desc": "Monitor infrastructure and service status"
+        },
+         "systemCards": [
+          {
+            "title": "CPU Usage",
+            "title_de": "CPU-Auslastung",
+            "value": "42%",
+            "lastMonth": "Last month +18.4%",
+            "lastMonth_de": "Letzten Monat +18,4%",
+            "bgColor": "#E1DCF4"
+          },
+          {
+            "title": "Memory Usage",
+            "title_de": "Speicherauslastung",
+            "value": "68%",
+            "lastMonth": "Last month +18.4%",
+            "lastMonth_de": "Letzten Monat +18,4%",
+            "bgColor": "#D0E1F5"
+          },
+          {
+            "title": "Disk Usage",
+            "title_de": "Festplattennutzung",
+            "value": "2.8m",
+            "lastMonth": "Last month +18.4%",
+            "lastMonth_de": "Letzten Monat +18,4%",
+            "bgColor": "#FADACA"
+          },
+          {
+            "title": "Network I/O",
+            "title_de": "Netzwerk I/O",
+            "value": "1.2 GB/s",
+            "lastMonth": "Last month -12.5%",
+            "lastMonth_de": "Letzten Monat -12,5%",
+            "bgColor": "#CACDFA"
+          }
+        ]
+    },
+
+  "securityAudit":{
+    "securityCard": {
+    "statsCards": [
+      {
+        "title": "Total Events (24h)",
+        "lastMonth": "All logged actions"
+      },
+      {
+        "title": "2FA Enabled",
+        "lastMonth": "All Users"
+      },
+      {
+        "title": "GDPR Requests",
+        "lastMonth": "All processed"
+      },
+      {
+        "title": "Failed Logins",
+        "lastMonth": "Last 24 hours"
+      }
+    ]
+  },
+   "userManagement": {
+          "title": "User Management",
+          "table": {
+            "user": "User",
+            "role": "Role",
+            "status": "Status",
+            "twoFA": "2FA",
+            "lastLogin": "Last Login",
+            "actions": "Actions"
+          },
+          "status": {
+            "active": "Active",
+            "inactive": "Inactive"
+          },
+          "twoFA": {
+            "enable": "Enable",
+            "disable": "Disable"
+          },
+          "editModal": {
+            "title": "Edit User",
+            "name": "Name",
+            "role": "Role",
+            "status": "Status",
+            "twoFA": "2FA",
+            "saveButton": "Save Changes"
+          },
+          "deleteModal": {
+            "title": "Delete User",
+            "message": "Are you sure you want to delete this user?",
+            "warning": "This action cannot be undone.",
+            "confirmButton": "Yes, Delete",
+            "cancelButton": "No, Cancel"
+          },
+          "toast": {
+            "deleteSuccess": "User deleted successfully!",
+            "updateSuccess": "User updated successfully!"
+          },
+          "tooltips": {
+            "edit": "Edit user",
+            "delete": "Delete user"
+          }
+        },
+        
+  "authenticationSector": {
+    "title": "Two-Factor Authentication",
+    "enableTitle": "Enable 2FA for Your Account",
+    "description": "Add an extra layer of security to your admin account",
+    "ariaEnabled": "Two-factor authentication is enabled",
+    "ariaDisabled": "Two-factor authentication is disabled"
+  
+},
+
+"botInteractions": {
+    "title": "Recent Bot Interactions",
+    "table": {
+      "timestamp": "Timestamp",
+      "user": "User",
+      "action": "Action",
+      "details": "Details",
+      "severity": "Severity"
+    },
+    "mobile": {
+      "actionLabel": "Action",
+      "detailsLabel": "Details",
+      "showMore": "Show More Interactions"
+    },
+    "severity": {
+      "high": "High",
+      "medium": "Medium"
+    }
+  }
+
+  },
+   "support": {
+        "breadcrumb": {
+          "dashboard": "Dashboard",
+          "support": "Supports"
+        },
+        "title": "Supports",
+        "searchPlaceholder": "Search...",
+        "selectFriend": "Select a friend to start chatting",
+        "chat": {
+          "online": "Online",
+          "lastSeen": "Last seen {{time}} ago",
+          "localTime": "Local time:",
+          "typeMessage": "Type a message...",
+          "sendButton": "SEND"
+        }
+      },
+
+  "settings":{
+    "tabs":{
+    "personalInfo": {
+    "title": "Personal Info",
+    "edit": "Edit",
+    "department":"Dr",
+    "firstName": "First name",
+    "firstNamePlaceholder": "Enter first name...",
+    "lastName": "Last Name",
+    "lastNamePlaceholder": "Enter last name...",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email...",
+    "phoneNumber": "Phone Number",
+    "phoneNumberPlaceholder": "Enter your phone number...",
+    "address": "Address",
+    "addressPlaceholder": "Enter your address...",
+    "dateOfBirth": "Date of Birth",
+    "gender": "Gender",
+    "genderPlaceholder": "Enter your gender...",
+    "cancel": "Cancel",
+    "saveChanges": "Save Changes",
+    "defaultName": "Karen",
+    "defaultSpeciality": "Anaesthesia",
+    "saveSuccess": "Changes saved successfully!"
+  },
+   "notifications": {
+      "header": "Notification",
+      "title": "Notification Preferences",
+      "description": "Add an extra layer of security to your admin account.",
+      "emailNotifications": {
+        "label": "Email Notifications",
+        "desc": "Receive email updates about your account"
+      },
+      "callLogs": {
+        "label": "Security Alerts",
+        "desc": "Get notified about security events"
+      },
+      "taskDeadlines": {
+        "label": "System Updates",
+        "desc": "Notifications about system maintenance"
+      },
+      "securityAlerts": {
+        "label": "Marketing Emails",
+        "desc": "Receive product updates and tips"
+      }
+    },
+
+     "security": {
+      "changePassword": {
+        "title": "Change Password",
+        "description": "Update your password to keep your account secure",
+        "currentPassword": {
+          "label": "Current Password",
+          "placeholder": "Enter current password"
+        },
+        "newPassword": {
+          "label": "New Password",
+          "placeholder": "Enter new password..."
+        },
+        "confirmPassword": {
+          "label": "Confirm New Password",
+          "placeholder": "Confirm new password..."
+        },
+        "updateButton": "Update Password",
+        "mismatchAlert": "New passwords do not match!",
+        "successAlert": "Password updated successfully!"
+      },
+      "twoFA": {
+        "title": "Two-Factor Authentication",
+        "enable2FA": {
+          "label": "Enable 2FA for Your Account",
+          "description": "Add an extra layer of security to your admin account"
+        }
+      }
+    },
+
+     "billing": {
+      "title": "Platform Billing Configuration",
+      "description": "Manage payment gateway and billing settings",
+      "paymentGateway": {
+        "title": "Payment Gateway",
+        "stripe": {
+          "name": "Stripe",
+          "status": "Connected and active",
+          "configureButton": "Configure",
+          "activeBadge": "Active"
+        }
+      },
+      "invoiceSettings": {
+        "title": "Invoice Setting",
+        "autoGenerate": {
+          "label": "Auto-generate invoices",
+          "description": "Automatically create invoices for subscriptions"
+        },
+        "sendEmails": {
+          "label": "Send invoice emails",
+          "description": "Email invoices to customers automatically"
+        }
+      },
+      "supportEmail": {
+        "title": "Billing Support Email",
+        "placeholder": "billing@saas.com",
+        "description": "Email invoices to customers automatically"
+      },
+      "saveButton": "Save Billing Setting",
+
+      "revenueCollection": {
+  "title": "Revenue Collection",
+  "description": "Configure how payments are collected from customers",
+  "retryFailedPayments": {
+    "label": "Retry failed payments",
+    "description": "Automatically retry failed subscription payments"
+  },
+  "gracePeriod": {
+    "label": "Grace period",
+    "description": "Allow 3 days before suspending service"
+  },
+  "proration": {
+    "label": "Proration",
+    "description": "Prorate charges when customers upgrade/downgrade"
+  }
+}
+
+    },
+    "checkout": {
+    "title": "Request",
+    "description": "Total 6 checkout request",
+    "tableHeaders": {
+      "name": "Name",
+      "doctorId": "Doctor ID",
+      "plan": "Plan",
+      "request": "Request",
+      "actions": "Actions"
+    },
+    "status": {
+      "accept": "Accept",
+      "pending": "Pending",
+      "reject": "Reject",
+      "acceptedButton": "Accepted",
+      "approveButton": "Approved",
+      "rejectButton": "Reject"
+    },
+    "planLabel": "Plan",
+    "requestLabel": "Request"
+  }
+}
+  }
+
+
+
     }
   
   }

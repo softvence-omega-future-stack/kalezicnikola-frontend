@@ -267,9 +267,10 @@ const FeatureSection: React.FC = () => {
        
         />
 
-      <p className="text-center -mt-7  mb-10 md:mb-[60px] text-sm md:text-lg text-subHeadingBlack">
-        {t("landingPage.features.subText")}
-      </p>
+    <p className="text-center -mt-7 mb-10 md:mb-[60px] text-sm md:text-lg text-subHeadingBlack whitespace-pre-line">
+  {t("landingPage.features.subText")}
+</p>
+
 </div>
       {/* Row 1 */}
       <div className="flex flex-col md:flex-row gap-4 sm:gap-6 md:gap-7 mb-4 sm:mb-6 md:mb-7">

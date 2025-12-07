@@ -82,7 +82,9 @@ const UserDropdown: React.FC<UserDropdownProps> = ({ onClose }) => {
           <img src={profile} alt={t('dashboard.mainHeader.userDropdown.name')} className="w-full h-full object-cover" />
         </div>
         <div>
-          <h2 className="text-lg font-semibold text-[#171C35]">{t('dashboard.mainHeader.userDropdown.name')}</h2>
+          <h2 className="text-lg font-semibold text-[#171C35]">
+            {/* {t('dashboard.mainHeader.userDropdown.name')} */} Keren Nix
+            </h2>
           <p className="text-md text-[#171C35]">{t('dashboard.mainHeader.userDropdown.role')}</p>
         </div>
       </div>

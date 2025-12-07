@@ -114,7 +114,9 @@
 
 
 
+import React from "react";
 import arrow from '../../../assets/svgIcon/arrowRight.svg';
+import { useTranslation } from "react-i18next";
 
 // CommonSpace Component
 const CommonSpace = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
@@ -125,31 +127,40 @@ const CommonSpace = ({ children, className = "" }: { children: React.ReactNode; 
   );
 };
 
-const statsCards = [
+// Example JSON data (import from your JSON file in real use)
+const systemCards = [
   {
     title: "CPU Usage",
+    title_de: "CPU-Auslastung",
     value: "42%",
     lastMonth: "Last month +18.4%",
-    bgColor: "#E1DCF4",
+    lastMonth_de: "Letzten Monat +18,4%",
+    bgColor: "#E1DCF4"
   },
   {
     title: "Memory Usage",
+    title_de: "Speicherauslastung",
     value: "68%",
     lastMonth: "Last month +18.4%",
-    bgColor: "#D0E1F5",
+    lastMonth_de: "Letzten Monat +18,4%",
+    bgColor: "#D0E1F5"
   },
   {
     title: "Disk Usage",
+    title_de: "Festplattennutzung",
     value: "2.8m",
     lastMonth: "Last month +18.4%",
-    bgColor: "#FADACA",
+    lastMonth_de: "Letzten Monat +18,4%",
+    bgColor: "#FADACA"
   },
   {
     title: "Network I/O",
+    title_de: "Netzwerk I/O",
     value: "1.2 GB/s",
     lastMonth: "Last month -12.5%",
-    bgColor: "#CACDFA",
-  },
+    lastMonth_de: "Letzten Monat -12,5%",
+    bgColor: "#CACDFA"
+  }
 ];
 
 // FIXED cutout dimensions
@@ -158,15 +169,15 @@ const cutoutHeight = 46;
 const curveRadius = 20;
 const smallCurveRadius = 20;
 
-const StatsCard = ({ card }: { card: (typeof statsCards)[0] }) => {
+const StatsCard = ({ card }: { card: typeof systemCards[0] }) => {
+  const {  i18n } = useTranslation();
+  const title = i18n.language === 'de' ? card.title_de : card.title;
+  const lastMonth = i18n.language === 'de' ? card.lastMonth_de : card.lastMonth;
+
   return (
     <div className="relative w-full" style={{ height: '150px' }}>
       {/* Background with fixed cutout */}
-      <div 
-        className="absolute inset-0 rounded-[16px]"
-        style={{ backgroundColor: card.bgColor }}
-      >
-        {/* Fixed size cutout container */}
+      <div className="absolute inset-0 rounded-[16px]" style={{ backgroundColor: card.bgColor }}>
         <div 
           className="absolute bottom-0 right-0"
           style={{
@@ -174,79 +185,24 @@ const StatsCard = ({ card }: { card: (typeof statsCards)[0] }) => {
             height: cutoutHeight + curveRadius,
           }}
         >
-          {/* Main cutout */}
-          <div 
-            className="absolute bottom-0 right-0 bg-[#F3F6F6]"
-            style={{
-              width: cutoutWidth,
-              height: cutoutHeight,
-              borderTopLeftRadius: curveRadius,
-            }}
-          />
-          
-          {/* Top curve connector */}
-          <div 
-            className="absolute right-0 bg-[#F3F6F6]"
-            style={{
-              width: smallCurveRadius,
-              height: smallCurveRadius,
-              bottom: cutoutHeight,
-            }}
-          />
-          <div 
-            className="absolute right-0"
-            style={{
-              width: smallCurveRadius,
-              height: smallCurveRadius,
-              bottom: cutoutHeight,
-              backgroundColor: card.bgColor,
-              borderBottomRightRadius: smallCurveRadius,
-            }}
-          />
-          
-          {/* Left curve connector */}
-          <div 
-            className="absolute bottom-0 bg-[#F3F6F6]"
-            style={{
-              width: smallCurveRadius,
-              height: smallCurveRadius,
-              right: cutoutWidth,
-            }}
-          />
-          <div 
-            className="absolute bottom-0"
-            style={{
-              width: smallCurveRadius,
-              height: smallCurveRadius,
-              right: cutoutWidth,
-              backgroundColor: card.bgColor,
-              borderBottomRightRadius: smallCurveRadius,
-            }}
-          />
+          <div className="absolute bottom-0 right-0 bg-[#F3F6F6]" style={{ width: cutoutWidth, height: cutoutHeight, borderTopLeftRadius: curveRadius }} />
+          <div className="absolute right-0 bg-[#F3F6F6]" style={{ width: smallCurveRadius, height: smallCurveRadius, bottom: cutoutHeight }} />
+          <div className="absolute right-0" style={{ width: smallCurveRadius, height: smallCurveRadius, bottom: cutoutHeight, backgroundColor: card.bgColor, borderBottomRightRadius: smallCurveRadius }} />
+          <div className="absolute bottom-0 bg-[#F3F6F6]" style={{ width: smallCurveRadius, height: smallCurveRadius, right: cutoutWidth }} />
+          <div className="absolute bottom-0" style={{ width: smallCurveRadius, height: smallCurveRadius, right: cutoutWidth, backgroundColor: card.bgColor, borderBottomRightRadius: smallCurveRadius }} />
         </div>
       </div>
 
       {/* Content overlay */}
       <div className="relative w-full h-full p-4 flex flex-col justify-between">
         <div>
-          <h3 className="text-lg font-semibold text-[#171C35] mb-1">{card.title}</h3>
+          <h3 className="text-lg font-semibold text-[#171C35] mb-1">{title}</h3>
         </div>
-
-     
-        
         <div>
           <span className="text-3xl font-medium text-[#171C35]">{card.value}</span>
-          <p className="text-sm text-[#111A2D] opacity-70">{card.lastMonth}</p>
+          <p className="text-sm text-[#111A2D] opacity-70">{lastMonth}</p>
         </div>
-
-        {/* FIXED position arrow button */}
-        <div
-          className="absolute"
-          style={{
-            bottom: 5,
-            right: 5,
-          }}
-        >
+        <div className="absolute bottom-2 right-1">
           <div className="h-8 w-8 bg-gray-900 rounded-full flex items-center justify-center">
             <img src={arrow} alt="" />
           </div>
@@ -258,13 +214,11 @@ const StatsCard = ({ card }: { card: (typeof statsCards)[0] }) => {
 
 const SystemHealthCard = () => {
   return (
-    <CommonSpace className="">
-      <div className="">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-          {statsCards.map((card, index) => (
-            <StatsCard key={index} card={card} />
-          ))}
-        </div>
+    <CommonSpace>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        {systemCards.map((card, index) => (
+          <StatsCard key={index} card={card} />
+        ))}
       </div>
     </CommonSpace>
   );
