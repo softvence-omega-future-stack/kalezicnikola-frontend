@@ -8,7 +8,7 @@ import DoclineHero from "@/Teamplate/DoclineHero";
 import SecuritySection from "@/Teamplate/SequritySection";
 
 import UpgradPlan from "@/Teamplate/UpgradPlan";
-import TestimonialSection from "@/Teamplate/WonersSlider";
+import TestimonialSection from "@/Teamplate/Testimonials";
 // import Footer from "@/layout/Footer";
 import Slider from "@/Teamplate/Slider";
 // import Navbar from "@/layout/Navbar";

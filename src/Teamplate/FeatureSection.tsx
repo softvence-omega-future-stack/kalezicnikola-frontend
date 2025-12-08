@@ -261,11 +261,9 @@ const FeatureSection: React.FC = () => {
           badgeIcon={icon}
           badgeText={t("landingPage.features.badge")}
           heading={t("landingPage.features.heading")}
-         
           align="center"
-      
-       
-        />
+         />
+    
 
     <p className="text-center -mt-7 mb-10 md:mb-[60px] text-sm md:text-lg text-subHeadingBlack whitespace-pre-line">
   {t("landingPage.features.subText")}

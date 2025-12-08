@@ -150,7 +150,7 @@ const ExampleSection: React.FC = () => {
                       {!isActive && (
                         <button
                           onClick={(e) => { e.stopPropagation(); handleCardClick(index); }}
-                          className="w-12 h-12 bg-gray-200 hover:bg-[#526FFF] cursor-pointer rounded-full flex items-center justify-center hover:scale-105 transition-all duration-300 ease-in-out shadow-lg flex-shrink-0"
+                          className="w-12 h-12 bg-gray-200 hover:bg-[#526FFF] cursor-pointer rounded-full flex items-center justify-center  transition-all duration-300 ease-in-out shadow-lg flex-shrink-0"
                         >
                           <SvgPlayIcon size={24} fill="#FFFFFF" />
                         </button>

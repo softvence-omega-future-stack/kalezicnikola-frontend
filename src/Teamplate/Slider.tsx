@@ -7,8 +7,8 @@ import "swiper/css/effect-coverflow";
 import { useTranslation } from "react-i18next";
 import SectionHeader from "./SectionHeader";
 import icon from "../assets/svgIcon/herologo.svg";
-import img1 from "../assets/svgIcon/slider1.svg";
-import img2 from "../assets/svgIcon/Slider02.svg";
+import img1 from "../assets/svgIcon/taskSlider.svg";
+import img2 from "../assets/svgIcon/callogsSlider.svg";
 import img3 from "../assets/svgIcon/slider3.svg";
 import img4 from "../assets/svgIcon/slider4.svg";
 
@@ -48,32 +48,32 @@ const DashboardSlide: React.FC<DashboardSlideProps> = ({
       className={`
         ${bgColor} rounded-3xl relative overflow-hidden flex flex-col transition-all duration-700 transform mx-auto w-full
         ${isActive ? "opacity-100" : "opacity-90"}
-        h-[360px] md:h-[420px] lg:h-[530px]
-        px-4 pt-4 pb-0 md:px-6 md:pt-6 lg:px-8 lg:pt-8
+        min-h-[420px] md:min-h-[500px] lg:min-h-[530px]
+        px-4 pt-4 pb-2 md:px-6 md:pt-6 md:pb-4 lg:px-8 lg:pt-8 lg:pb-0
       `}
     >
       {/* CONTENT */}
-      <div className="relative z-10 shrink-0 flex flex-col lg:flex-row items-start justify-between w-full gap-4 mb-2 md:mb-5 lg:mb-6">
+      <div className="relative z-10 shrink-0 flex flex-col lg:flex-row items-start justify-between w-full gap-3 mb-2 md:mb-4 lg:mb-6">
         <div className="flex-1">
           {/* Label */}
-          <div className="flex w-fit items-center text-xs font-medium text-[#3B82F6] mb-3 rounded-full py-2 px-2.5 border border-[#3B82F6] gap-2">
+          <div className="flex w-fit items-center text-xs font-medium text-[#3B82F6] mb-2 rounded-full py-1.5 px-2.5 border border-[#3B82F6] gap-2">
             <img src={icon} alt="" className="w-4 h-4" />
-            {t(cardBadge)} {/* <-- Fixed */}
+            {t(cardBadge)}
           </div>
 
           {/* Title & Subtitle */}
-          <div className="flex flex-col md:flex-row justify-between">
+          <div className="flex flex-col lg:flex-row gap-y-1.5 justify-between">
             <div>
-              <h2 className="text-lg md:text-xl lg:text-2xl font-medium text-[#171C35] leading-normal mb-4">
+              <h2 className="text-base md:text-xl lg:text-2xl font-medium text-[#171C35] leading-tight mb-1.5 md:mb-4">
                 {t(title)}
               </h2>
-              <p className="text-headingBlack text-sm md:text-base font-normal leading-normal mb-3 md:mb-0">
+              <p className="text-headingBlack text-xs md:text-base font-normal leading-normal mb-1.5 md:mb-0">
                 {t(subtitle)}
               </p>
             </div>
 
             {/* Feature List */}
-            <ul className="list-disc pl-4 text-xs md:text-sm font-normal text-headingBlack space-y-4 flex-shrink-0">
+            <ul className="list-disc pl-4 text-[11px] md:text-sm font-normal text-headingBlack space-y-0.5 md:space-y-4 flex-shrink-0">
               {list.map((item, i) => (
                 <li key={i}>{t(item)}</li>
               ))}
@@ -83,11 +83,12 @@ const DashboardSlide: React.FC<DashboardSlideProps> = ({
       </div>
 
       {/* IMAGE */}
-      <div className="relative flex-1 w-full mt-auto flex items-end justify-center overflow-hidden">
+      <div className="relative flex-1 w-full h-full mt-auto flex items-end justify-center overflow-hidden">
         <img
           src={img}
           alt={t(title)}
-          className="w-full md:w-[560px] md:h-[175px] lg:w-[954px] lg:h-[320px] object-contain object-bottom"
+          className="w-full h-auto max-h-[440px] md:max-h-[260px] lg:max-h-[320px] object-contain object-bottom select-none"
+          style={{ imageRendering: 'crisp-edges' }}
         />
       </div>
     </div>
@@ -139,7 +140,7 @@ const Slider: React.FC = () => {
           align="left"
           subAlign="right"
         />
-        <p className="text-base leading-[140%] md:text-lg font-normal text-subHeadingBlack max-w-sm md:max-w-md text-center md:text-left mt-2 md:mt-0">
+        <p className="text-base leading-[140%] md:text-lg font-normal text-subHeadingBlack max-w-sm text-center md:text-left -mt-8 md:mt-0">
           {t("landingPage.slider.subText")}
         </p>
       </div>

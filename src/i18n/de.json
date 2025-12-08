@@ -29,12 +29,12 @@
       "line2": "Ihr Team gewinnt diese Zeit für mehr Patientenzuwendung zurück.."
     },
     "conversation": {
-      "title": "Docline bearbeitet 20 Anrufe gleichzeitig",
+      "title": "Docline führt 20 Gespräche gleichzeitig",
       "text": "Nie wieder Besetztzeichen oder Warteschleifen. Die KI beantwortet alle eingehenden Anrufe parallel, sodass jeder Patient sofort gehört wird."
     },
 
     "triage": {
-      "title": "Intelligente Triage & Weiterleitung",
+      "title": "Intelligente Triage & Rufweiterleitung",
       "text1": "Die KI erkennt Notfälle. Komplexe Anfragen werden ",
       "text2": "priorisiert und direkt an das zuständige MFA durchgestellt."
     },
@@ -46,7 +46,7 @@
     },
 
     "integration": {
-      "title": "Einfache Verbindung mit Ihrem Telefonsystem",
+      "title": "Einfache Anbindung an Ihre Telefonanlage",
       "text": "Kein Wechsel, kein IT-Stress. Die Anbindung an Ihre bestehende Telefon-Infrastruktur erfolgt unkompliziert und schnell durch unser Onboarding-Team."
     },
 
@@ -63,7 +63,7 @@
   "slider": {
     "badge": "Intuitiv & modern",
     "heading": "Der moderne Workflow, den ||| Ihr Team lieben wird",
-    "subText": "Der Schlüssel zu einer Praxis, die nicht nur reagiert, sondern auch intelligenter zusammenarbeitet.",
+    "subText": "Der Schlüssel zu einer Praxis, die nicht nur entspannter, sondern auch intelligenter arbeitet",
    "slides": [
   {
     "id": 1,
@@ -80,7 +80,20 @@
   },
   {
     "id": 2,
-    "cardBadge": "Anrufprotokolle, Transkription & Audio",
+               "cardBadge": "Dashboard",
+    "title": "Klare Übersicht. Mehr Effizienz",
+    "subtitle": "Das Dashboard, das Freude macht..",
+    "list": [
+      "Alle Kennzahlen, Patienten und Termine auf einen Blick.",
+      "Unbearbeitete Anrufe und Aufgaben, klar hervorgehoben.",
+      "Einfach zu navigieren. Schnell zu beherrschen.."
+    ],
+    "img": "slider4.svg",
+    "bgColor": "bg-[#DBECFF]"
+  },
+  {
+    "id": 3,
+            "cardBadge": "Anrufprotokolle, Transkription & Audio",
     "title": "Jeder Anruf, vollständig erfasst",
     "subtitle": "Docline protokolliert jedes Gespräch. Es erstellt präzise Transkripte, liefert eine klare KI-gestützte Zusammenfassung und archiviert die Original-Audiospur.",
     "list": [
@@ -89,10 +102,11 @@
       "Original-Audio. Für volle Nachvollziehbarkeit."
     ],
     "img": "Slider02.svg",
-    "bgColor": "bg-[#DBECFF]"
+
+    "bgColor": "bg-[#F5DFF1]"
   },
   {
-    "id": 3,
+    "id": 4,
         "cardBadge": "Kalendar & Patientenkartei",
     "title": "Intelligenter Kalender & Patienten-Kartei",
     "subtitle": "Fehlerfreie Terminverwaltung durch KI-Eintragung.",
@@ -102,19 +116,7 @@
 
     ],
     "img": "slider3.svg",
-    "bgColor": "bg-[#F5DFF1]"
-  },
-  {
-    "id": 4,
-        "cardBadge": "Dashboard",
-    "title": "Klare Übersicht. Mehr Effizienz",
-    "subtitle": "Das Dashboard, das Freude macht..",
-    "list": [
-      "Alle Kennzahlen, Patienten und Termine auf einen Blick.",
-      "Unbearbeitete Anrufe und Aufgaben, klar hervorgehoben.",
-      "Einfach zu navigieren. Schnell zu beherrschen.."
-    ],
-    "img": "slider4.svg",
+
     "bgColor": "bg-[#CACDFA]"
   }
 ]
@@ -127,6 +129,10 @@
     "heading": "So klingt Docline |||im Praxisalltag",
     "subText": "Ihre Patienten werden den Unterschied kaum bemerken. Passen Sie die Stimme des KI-Assistenten nahtlos an den Stil Ihrer Praxis an. Wählen Sie ein souveränes männliches oder weibliches Sprachprofil. So sichern Sie einen gleichbleibend angenehmen und professionellen Empfang für jeden Anruf.",
     "menuItems": [
+      {
+        "title": "Terminbuchung zur Blutabnahme",
+        "subtitle": "Hausarztpraxis Dr. Schmidt & Kollegen"
+      },
       {
         "title": "Vortriage & Weiterleitung",
         "subtitle": "Orthopädie Dr. Gruber"
@@ -188,12 +194,12 @@
         "subDescription": "So sind Ihre Daten optimal geschützt, auch gegen Zugriffe Dritter.."
       },
       {
-        "title": "Rechtliche Konformität",
+        "title": "Rechtssicherheit",
         "description": "Der gesetzlich vorgeschriebene Auftragsverarbeitungsvertrag (AVV) ist fester und transparenter Bestandteil Ihres Docline-Vertrags. ",
         "subDescription": "Dies regelt alle Verantwortlichkeiten rechtssicher und gibt Ihnen sofortige Compliance-Garantie, ohne dass Sie juristische Details selbst prüfen müssen."
       },
       {
-        "title": "Umfassende Protokollierung",
+        "title": "Lückenlose Protokollierung",
         "description": "Jeder Zugriff, jede Änderung und jeder administrative Vorgang innerhalb von DocLine wird lückenlos und fälschungssicher protokolliert. ",
         "subDescription": "Das Audit-Protokoll garantiert volle Transparenz und ermöglicht Ihnen jederzeit den Nachweis der Einhaltung der Vertraulichkeitsstandards.",
         "highlight": true
@@ -209,17 +215,17 @@
 
  
   "testimonialSection": {
-    "badgeText": "Was unsere Nutzer sagen",
-    "heading": "Was Praxisinhaber |||  Innen über Docline sagen",
+    "badgeText": "Stimmen unserer NutzerInnen",
+    "heading": "Was PraxisinhaberInnen |||  über Docline sagen",
     "testimonials": [
       {
         "image": "woner.svg",
-        "quote": "Seit der Nutzung von Docline wissen wir, dass unsere Patienten uns jederzeit erreichen können, während unser Team stressfrei arbeitet. Die Lösung hat nicht nur unsere Telefonerreichbarkeit verbessert, sondern auch die Teamstimmung erheblich gesteigert. Eine echte Erleichterung im Praxisalltag.",
+        "quote": "Seit Docline wissen wir, dass uns unsere Patienten  immer erreichen und unser Team trotzdem stressfrei arbeitet. Die Lösung hat nicht nur unsere telefonische Erreichbarkeit transformiert, sondern auch die Arbeitsmoral des Teams deutlich verbessert. Eine echte Entlastung im Praxisalltag.",
         "name": "DR. MAGDALENA S.",
-        "title": "DERMATOLOGIN",
+        "title": "Hautärztin",
         "stats": {
           "timeSaved": "11h",
-          "timeSavedLabel": "Pro Woche eingesparte Zeit",
+          "timeSavedLabel": "Zeitersparniss pro Woche",
           "acceptance": "88%",
           "acceptanceLabel": "Anrufannahme"
         }
@@ -231,7 +237,7 @@
         "title": "ALLGEMEINMEDIZINER",
         "stats": {
           "timeSaved": "15h",
-          "timeSavedLabel": "Pro Woche eingesparte Zeit",
+          "timeSavedLabel": "Zeitersparniss pro Woche",
           "acceptance": "92%",
           "acceptanceLabel": "Anrufannahme"
         }
@@ -243,7 +249,7 @@
         "title": "ZAHNÄRZTIN",
         "stats": {
           "timeSaved": "13h",
-          "timeSavedLabel": "Pro Woche eingesparte Zeit",
+          "timeSavedLabel": "Zeitersparniss pro Woche",
           "acceptance": "90%",
           "acceptanceLabel": "Anrufannahme"
         }
@@ -328,10 +334,10 @@
     "items": [
       {
         "question": "Was ist Docline?",
-        "answer": "Docline ist eine moderne, cloudbasierte Praxissoftware. Die Hauptfunktion ist der KI-Voicebot..."
+        "answer": "Docline ist eine moderne, cloudbasierte Praxissoftware. Ihr Herzstück ist der KI-Voicebot, der eingehende Patientenanrufe automatisiert annimmt und Routineaufgaben (Termine, Rezepte) selbstständig erledigt."
       },
       {
-        "question": "Wie genau funktioniert Docline?",
+        "question": "Wie funktioniert Docline genau?",
         "answer": "Docline nutzt fortschrittliche KI-Technologie, um Anrufe in Echtzeit zu verarbeiten..."
       },
       {
@@ -355,7 +361,7 @@
   
   "ctaBanner": {
     "heading": "Steigern Sie noch heute die Zufriedenheit & Produktivität Ihres Teams.",
-    "description": "Telefonstress kostet wertvolle Zeit und führt zu Überlastung. Entlasten Sie Ihr Team und sorgen Sie vom ersten Moment an für reibungslose Abläufe. Lassen Sie unsere KI Ihre Anrufe übernehmen, während sich Ihr Team auf die Patientenversorgung konzentriert.",
+    "description": "Der Telefonstress bindet wertvolle Zeit und führt zu Überlastung. Befreien Sie Ihre MFAs und erleben Sie eine spürbare Entlastung ab der ersten Minute. Lassen Sie unsere KI Ihre Anrufe managen, während sich Ihr Team auf die Patientenbetreuung konzentriert.",
     "buttonText": "Jetzt starten"
   },
   

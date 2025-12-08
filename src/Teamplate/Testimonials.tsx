@@ -134,7 +134,7 @@ const TestimonialSection: React.FC = () => {
                 </blockquote>
 
                 <div>
-                  <p className="text-[#171C35] leading-[100%] font-semibold uppercase text-base md:text-xl mb-1">
+                  <p className="text-[#171C35] leading-[100%] font-semibold uppercase text-base md:text-xl mb-4">
                     {currentTestimonial.name}
                   </p>
                   <p className="text-[#111A2D] leading-4 text-sm md:text-base font-medium">

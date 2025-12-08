@@ -68,6 +68,7 @@
     "slides": [
       {
         "id": 1,
+         "cardBadge": "Task",
         "title": "Clear Overview. More Efficiency",
         "subtitle": "The dashboard that makes management easier and faster.",
         "list": [
@@ -80,18 +81,21 @@
       },
       {
         "id": 2,
-        "title": "Optimized Workflow",
-        "subtitle": "Integrated task management ensures efficiency.",
+              "cardBadge": "Dashboard",
+        "title": "Collaborative Dashboard",
+        "subtitle": "Work together in real time.",
         "list": [
-          "Pending requests are instantly assigned as tasks.",
-          "Categorize tasks: Open - In Progress - Completed.",
-          "Manual task creation for internal administration."
+          "Instant team updates and task sharing.",
+          "Smart notifications for quick communication.",
+          "All team data unified in one workspace."
         ],
-        "img": "Slider02.svg",
+        "img": "slider4.svg",
+        
         "bgColor": "bg-[#DBECFF]"
       },
       {
         "id": 3,
+         "cardBadge": "Calendar & Patient Card",
         "title": "Patient & Data Insights",
         "subtitle": "Get a complete view of performance data.",
         "list": [
@@ -104,14 +108,15 @@
       },
       {
         "id": 4,
-        "title": "Collaborative Dashboard",
-        "subtitle": "Work together in real time.",
+      "cardBadge": "Call logs, transcription & audio",
+        "title": "Optimized Workflow",
+        "subtitle": "Integrated task management ensures efficiency.",
         "list": [
-          "Instant team updates and task sharing.",
-          "Smart notifications for quick communication.",
-          "All team data unified in one workspace."
+          "Pending requests are instantly assigned as tasks.",
+          "Categorize tasks: Open - In Progress - Completed.",
+          "Manual task creation for internal administration."
         ],
-        "img": "slider4.svg",
+        "img": "Slider02.svg",
         "bgColor": "bg-[#CACDFA]"
       }
     ]
