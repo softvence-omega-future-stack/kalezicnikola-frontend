@@ -67,7 +67,7 @@ const DashboardSlide: React.FC<DashboardSlideProps> = ({
               <h2 className="text-base md:text-xl lg:text-2xl font-medium text-[#171C35] leading-tight mb-1.5 md:mb-4">
                 {t(title)}
               </h2>
-              <p className="text-headingBlack text-xs md:text-base font-normal leading-normal mb-1.5 md:mb-0">
+              <p className="text-headingBlack text-xs max-w-md md:text-base font-normal leading-normal mb-1.5 md:mb-0">
                 {t(subtitle)}
               </p>
             </div>
