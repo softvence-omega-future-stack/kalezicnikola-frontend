@@ -273,7 +273,7 @@
       "monthly": 399,
       "yearly": 339,
       "features": [
-        "AI Voicebot creation & setup",
+        "AI Agent creation & setup",
         "24/7 availability & call logging",
         "Intelligent triage & task creation",
         "2000 call minutes / month included",
@@ -289,7 +289,7 @@
       "monthly": 899,
       "yearly": 765,
       "features": [
-        "AI Voicebot creation & setup",
+        "AI Agent creation & setup",
         "24/7 availability & call logging",
         "Intelligent triage & task creation",
         "4000 call minutes / month included",
@@ -306,7 +306,7 @@
       "monthly": 1299,
       "yearly": 1105,
       "features": [
-        "AI Voicebot creation & setup",
+        "AI Agent creation & setup",
         "24/7 availability & call logging",
         "Intelligent triage & task creation",
         "8000 call minutes / month included",
@@ -333,23 +333,23 @@
       },
       {
         "question": "How exactly does Docline work?",
-        "answer": "Docline uses advanced AI technology to process calls in real time..."
+        "answer": "The KI-Voicebot recognizes the caller's request. The software automatically converts this information into a digital task and files it in the Docline-Dashboard for final processing. No request is lost; everything is fully protocolled."
       },
       {
         "question": "Does Docline train with my patient data?",
-        "answer": "No, Docline does not train with your patient data. All data is processed in compliance..."
+        "answer": "No. Docline is designed to protect your patients' privacy. The AI speech models are trained with anonymized and synthetic data. Your sensitive patient data remains with you."
       },
       {
         "question": "What is an \"AI Agent\"?",
-        "answer": "An AI Agent is intelligent software capable of performing tasks autonomously..."
+        "answer": "The KI-Agent (Voicebot) is the speech-controlled unit of Docline. It functions like a protected, virtual MFA. It understands natural language, conducts dialogues, and makes decisions based on your practice rules."
       },
       {
         "question": "Is my data safe with Docline?",
-        "answer": "Yes, your data is completely secure with us. We use end-to-end encryption..."
+        "answer": "Absolutely. Docline is 100% GDPR-compliant. All data is end-to-end encrypted and is stored exclusively in certified EU data centers (Protection against Cloud Act)."
       },
       {
         "question": "Do I need new hardware for Docline?",
-        "answer": "No, you do not need any new hardware. Docline is a cloud-based solution..."
+        "answer": "No. Docline is a cloud-based solution and works in every modern browser. There is no need to install it on local servers or buy new phones. You start immediately."
       }
     ]
   },
@@ -1009,6 +1009,136 @@
     "medium": "Medium",
     "low": "Low"
   },
+
+   "staticTasks": {
+            "todo": [
+              {
+                "title": "Review patient records",
+                "description": "Go through the latest patient records and update the system",
+                "priority": "High",
+                "time": "9:00 AM",
+                "dueDate": "Sep 30, 2025",
+                "completed": false
+              },
+              {
+                "title": "Schedule follow-ups",
+                "description": "Contact patients for their next appointments.",
+                "priority": "Medium",
+                "time": "10:00 AM",
+                "dueDate": "Oct 01, 2025",
+                "completed": false
+              },
+              {
+                "title": "Prepare discharge summaries",
+                "description": "Draft summaries for patients leaving today.",
+                "priority": "Low",
+                "time": "11:00 AM",
+                "dueDate": "Sep 30, 2025",
+                "completed": false
+              },
+              {
+                "title": "Order supplies",
+                "description": "Check inventory and order necessary medical supplies.",
+                "priority": "High",
+                "time": "1:00 PM",
+                "dueDate": "Sep 29, 2025",
+                "completed": false
+              },
+              {
+                "title": "Update internal wiki",
+                "description": "Document new procedures for patient admission.",
+                "priority": "Low",
+                "time": "2:00 PM",
+                "dueDate": "Oct 05, 2025",
+                "completed": false
+              }
+            ],
+            "inprogress": [
+              {
+                "title": "Conduct Q.A. check",
+                "description": "Verify data entry accuracy in the new EHR system.",
+                "priority": "High",
+                "time": "9:00 AM",
+                "dueDate": "Sep 30, 2025",
+                "completed": false
+              },
+              {
+                "title": "System maintenance",
+                "description": "Applying the latest security patches to all servers.",
+                "priority": "Medium",
+                "time": "10:00 AM",
+                "dueDate": "Oct 02, 2025",
+                "completed": false
+              },
+              {
+                "title": "Staff training module",
+                "description": "Developing a new module on patient confidentiality.",
+                "priority": "Low",
+                "time": "11:00 AM",
+                "dueDate": "Oct 07, 2025",
+                "completed": false
+              },
+              {
+                "title": "Financial audit preparation",
+                "description": "Gathering quarterly financial reports and invoices.",
+                "priority": "High",
+                "time": "1:00 PM",
+                "dueDate": "Sep 28, 2025",
+                "completed": false
+              },
+              {
+                "title": "Design marketing flyers",
+                "description": "Creating promotional material for the new clinic service.",
+                "priority": "Low",
+                "time": "2:00 PM",
+                "dueDate": "Oct 10, 2025",
+                "completed": false
+              }
+            ],
+            "done": [
+              {
+                "title": "Completed server backup",
+                "description": "Full backup of all critical systems performed.",
+                "priority": "High",
+                "time": "9:00 AM",
+                "dueDate": "Sep 27, 2025",
+                "completed": true
+              },
+              {
+                "title": "Handled emergency calls",
+                "description": "Resolved 5 high-priority support tickets.",
+                "priority": "Medium",
+                "time": "10:00 AM",
+                "dueDate": "Sep 26, 2025",
+                "completed": true
+              },
+              {
+                "title": "Monthly report finalized",
+                "description": "Sent the performance report to the management team.",
+                "priority": "High",
+                "time": "11:00 AM",
+                "dueDate": "Sep 25, 2025",
+                "completed": true
+              },
+              {
+                "title": "Office cleanup schedule",
+                "description": "Updated and distributed the cleaning rotation schedule.",
+                "priority": "Low",
+                "time": "1:00 PM",
+                "dueDate": "Sep 24, 2025",
+                "completed": true
+              },
+              {
+                "title": "New policy draft",
+                "description": "Drafted the new remote work policy.",
+                "priority": "Medium",
+                "time": "2:00 PM",
+                "dueDate": "Sep 23, 2025",
+                "completed": true
+              }
+            ]
+          },
+
   "addTaskModal": {
   "titleAdd": "Add Task",
   "titleEdit": "Edit Task",

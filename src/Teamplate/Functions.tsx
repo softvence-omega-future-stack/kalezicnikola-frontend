@@ -240,7 +240,7 @@ const Functions = () => {
               <img
                 src={img2}
                 alt=""
-                className="absolute w-full h-auto"
+                className="absolute w-full h-auto 2xl:h-[200px]"
                 style={{
                   width: "auto",
                   minWidth: "100%",

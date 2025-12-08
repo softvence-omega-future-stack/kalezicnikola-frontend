@@ -11,7 +11,7 @@
   },
   "hero": {
     "badge": "Nie wieder Telefonstress",
-    "heading": "24/7 Verfügbarkeit für  Ihre Patienten.|||  Null Telefonstress für Ihr Team.",
+    "heading": "24/7 Erreichbarkeit für Ihre Patienten.||| Null Telefonstress für Ihr Team.",
     "subText": "Unser intelligenter KI-Assistent erledigt alle Anrufe rund um die Uhr. Er plant Termine, beantwortet Fragen, erstellt automatisch Aufgaben und entlastet Ihr Team.",
   "getStarted": "Jetzt starten",
   "bookDemo": "Demo buchen"
@@ -150,7 +150,7 @@
         "subtitle": "Hausarztpraxis Dr. Koca"
       },
       {
-        "title": "Anfrage für Überweisungen",
+        "title": "Anfrage nach Überweisungen",
         "subtitle": "Dermatologie Dr. Wagner"
       }
     ]
@@ -162,7 +162,7 @@
     "heading": "Alles, was Sie zur Entlastung ||| Ihrer Praxis benötigen",
     "feature1": {
       "title": "Reduzierte Telefonlast",
-      "description": "Befreien Sie Ihr Personal von Routineanfragen. Unser KI-Voicebot übernimmt Terminbuchungen, Rezept- und Routinefragen 24/7, damit sich Ihr Team auf die Patienten konzentrieren kann."
+      "description": "Befreien Sie Ihr Personal von Routineanfragen. Unser KI-Agent übernimmt Terminbuchungen, Rezept- und Routinefragen 24/7, damit sich Ihr Team auf die Patienten konzentrieren kann."
     },
     "feature2": {
       "title": "Menschliche KI-Kommunikation",
@@ -191,7 +191,7 @@
       {
         "title": "Server in der EU",
         "description": "Wir garantieren die Speicherung all Ihrer Patientendaten ausschließlich in zertifizierten Hochsicherheits-Rechenzentren innerhalb der EU.",
-        "subDescription": "So sind Ihre Daten optimal geschützt, auch gegen Zugriffe Dritter.."
+        "subDescription": "So sind Ihre Daten optimal geschützt, auch gegen Zugriffe Dritter."
       },
       {
         "title": "Rechtssicherheit",
@@ -200,7 +200,7 @@
       },
       {
         "title": "Lückenlose Protokollierung",
-        "description": "Jeder Zugriff, jede Änderung und jeder administrative Vorgang innerhalb von DocLine wird lückenlos und fälschungssicher protokolliert. ",
+        "description": "Jeder Zugriff, jede Änderung und jeder administrative Vorgang innerhalb von Docline wird lückenlos und fälschungssicher protokolliert. ",
         "subDescription": "Das Audit-Protokoll garantiert volle Transparenz und ermöglicht Ihnen jederzeit den Nachweis der Einhaltung der Vertraulichkeitsstandards.",
         "highlight": true
       },
@@ -278,7 +278,7 @@
       "monthly": 399,
       "yearly": 339,
       "features": [
-        "KI-Voicebot-Erstellung & Setup",
+        "KI-Agent-Erstellung & Setup",
         "24/7 Erreichbarkeit & Anrufprotokollierung",
         "Intelligente Triage & Aufgaben-Erstellung",
         "2000 Anrufminuten / Monat inkludiert",
@@ -294,7 +294,7 @@
       "monthly": 899,
       "yearly": 765,
       "features": [
-        "KI-Voicebot-Erstellung & Setup",
+        "KI-Agent-Erstellung & Setup",
         "24/7 Erreichbarkeit & Anrufprotokollierung",
         "Intelligente Triage & Aufgaben-Erstellung",
         "4000 Anrufminuten / Monat inkludiert",
@@ -311,7 +311,7 @@
       "monthly": 1299,
       "yearly": 1105,
       "features": [
-        "KI-Voicebot-Erstellung & Setup",
+        "KI-Agent-Erstellung & Setup",
         "24/7 Erreichbarkeit & Anrufprotokollierung",
         "Intelligente Triage & Aufgaben-Erstellung",
         "8000 Anrufminuten / Monat inkludiert",
@@ -338,29 +338,29 @@
       },
       {
         "question": "Wie funktioniert Docline genau?",
-        "answer": "Docline nutzt fortschrittliche KI-Technologie, um Anrufe in Echtzeit zu verarbeiten..."
+        "answer": "Der KI-Voicebot erkennt das Anliegen des Anrufers. Die Software wandelt diese Information automatisch in einen digitalen Task um und legt ihn im Docline-Dashboard zur finalen Bearbeitung ab. Kein Anliegen geht verloren, alles ist lückenlos protokolliert."
       },
       {
         "question": "Trainiert Docline mit meinen Patientendaten?",
-        "answer": "Nein, Docline trainiert nicht mit Ihren Patientendaten. Alle Daten werden vollständig DSGVO-konform verarbeitet..."
+        "answer": "Nein. Docline ist darauf ausgelegt, die Privatsphäre Ihrer Patienten zu schützen. Die KI-Sprachmodelle werden mit anonymisierten und synthetischen Daten trainiert. Ihre sensiblen Patientendaten bleiben bei Ihnen."
       },
       {
-        "question": "Was ist ein \"KI-Agent\"?",
-        "answer": "Ein KI-Agent ist eine intelligente Software, die Aufgaben selbstständig ausführen kann..."
+        "question": "Was ist ein 'KI-Agent'? ",
+        "answer": "Der KI-Agent (Voicebot) ist die sprachgesteuerte Einheit von Docline. Er fungiert wie ein geschütztes, virtuelles MFA. Er versteht natürliche Sprache, führt Dialoge und trifft Entscheidungen basierend auf Ihren Praxisregeln."
       },
       {
         "question": "Sind meine Daten bei Docline sicher?",
-        "answer": "Ja, Ihre Daten sind bei uns vollständig sicher. Wir verwenden Ende-zu-Ende-Verschlüsselung..."
+        "answer": "Absolut. Docline ist 100% DSGVO-konform. Alle Daten sind Ende-zu-Ende verschlüsselt und werden ausschließlich in zertifizierten EU-Rechenzentren gespeichert (Schutz vor Cloud Act)."
       },
       {
         "question": "Benötige ich neue Hardware für Docline?",
-        "answer": "Nein, Sie benötigen keine neue Hardware. Docline ist eine cloudbasierte Lösung..."
+        "answer": "Nein. Docline ist eine cloudbasierte Lösung und funktioniert in jedem modernen Browser. Es ist keine Installation auf lokalen Servern oder der Kauf neuer Telefone nötig. Sie starten sofort."
       }
     ]
   },
   
   "ctaBanner": {
-    "heading": "Steigern Sie noch heute die Zufriedenheit & Produktivität Ihres Teams.",
+    "heading": "Steigern Sie jetzt die Zufriedenheit & Produktivität Ihres Teams.",
     "description": "Der Telefonstress bindet wertvolle Zeit und führt zu Überlastung. Befreien Sie Ihre MFAs und erleben Sie eine spürbare Entlastung ab der ersten Minute. Lassen Sie unsere KI Ihre Anrufe managen, während sich Ihr Team auf die Patientenbetreuung konzentriert.",
     "buttonText": "Jetzt starten"
   },
@@ -574,13 +574,13 @@
 "cards": {
   "unreviewedCalls": {
     "title": "Unüberprüfte Anrufe",
-    "description": "Lorem Ipsum ist einfach ein Platzhaltertext aus der Druckerei"
+    "description": "Erfordert Ihre Aufmerksamkeit"
   },
   "tasks": {
-    "title": "Aufgabe"
+    "title": "Aufgaben"
   },
   "callBack": {
-    "title": "Rückruf erforderlich"
+    "title": "Benötigteinen Rückruf"
   }
 }
 ,
@@ -1006,6 +1006,138 @@
   "medium": "Mittel",
   "low": "Niedrig"
 },
+
+
+  "staticTasks": {
+    "todo": [
+      {
+        "title": "Patientenakten überprüfen",
+        "description": "Durchsuchen Sie die neuesten Patientenakten und aktualisieren Sie das System",
+        "priority": "High",
+        "time": "9:00 AM",
+        "dueDate": "Sep 30, 2025",
+        "completed": false
+      },
+      {
+        "title": "Folgetermine planen",
+        "description": "Kontaktieren Sie Patienten für ihre nächsten Termine.",
+        "priority": "Medium",
+        "time": "10:00 AM",
+        "dueDate": "Oct 01, 2025",
+        "completed": false
+      },
+      {
+        "title": "Entlassungsberichte vorbereiten",
+        "description": "Erstellen Sie Berichte für Patienten, die heute entlassen werden.",
+        "priority": "Low",
+        "time": "11:00 AM",
+        "dueDate": "Sep 30, 2025",
+        "completed": false
+      },
+      {
+        "title": "Materialbestellungen aufgeben",
+        "description": "Überprüfen Sie den Bestand und bestellen Sie notwendige medizinische Materialien.",
+        "priority": "High",
+        "time": "1:00 PM",
+        "dueDate": "Sep 29, 2025",
+        "completed": false
+      },
+      {
+        "title": "Internes Wiki aktualisieren",
+        "description": "Dokumentieren Sie neue Verfahren für die Patientenaufnahme.",
+        "priority": "Low",
+        "time": "2:00 PM",
+        "dueDate": "Oct 05, 2025",
+        "completed": false
+      }
+    ],
+    "inprogress": [
+      {
+        "title": "Q.A.-Überprüfung durchführen",
+        "description": "Überprüfen Sie die Datenrichtigkeit im neuen EHR-System.",
+        "priority": "High",
+        "time": "9:00 AM",
+        "dueDate": "Sep 30, 2025",
+        "completed": false
+      },
+      {
+        "title": "Systemwartung",
+        "description": "Die neuesten Sicherheitsupdates auf allen Servern anwenden.",
+        "priority": "Medium",
+        "time": "10:00 AM",
+        "dueDate": "Oct 02, 2025",
+        "completed": false
+      },
+      {
+        "title": "Mitarbeiterschulung",
+        "description": "Ein neues Modul zur Patientengeheimhaltung entwickeln.",
+        "priority": "Low",
+        "time": "11:00 AM",
+        "dueDate": "Oct 07, 2025",
+        "completed": false
+      },
+      {
+        "title": "Finanzprüfung vorbereiten",
+        "description": "Quartalsberichte und Rechnungen sammeln.",
+        "priority": "High",
+        "time": "1:00 PM",
+        "dueDate": "Sep 28, 2025",
+        "completed": false
+      },
+      {
+        "title": "Marketingflyer entwerfen",
+        "description": "Werbematerial für den neuen Klinikservice erstellen.",
+        "priority": "Low",
+        "time": "2:00 PM",
+        "dueDate": "Oct 10, 2025",
+        "completed": false
+      }
+    ],
+    "done": [
+      {
+        "title": "Server-Backup abgeschlossen",
+        "description": "Vollständige Sicherung aller kritischen Systeme durchgeführt.",
+        "priority": "High",
+        "time": "9:00 AM",
+        "dueDate": "Sep 27, 2025",
+        "completed": true
+      },
+      {
+        "title": "Notrufe bearbeitet",
+        "description": "5 hochprioritäre Supporttickets gelöst.",
+        "priority": "Medium",
+        "time": "10:00 AM",
+        "dueDate": "Sep 26, 2025",
+        "completed": true
+      },
+      {
+        "title": "Monatsbericht abgeschlossen",
+        "description": "Leistungsbericht an das Managementteam gesendet.",
+        "priority": "High",
+        "time": "11:00 AM",
+        "dueDate": "Sep 25, 2025",
+        "completed": true
+      },
+      {
+        "title": "Büroreinigungsplan",
+        "description": "Reinigungsrotation aktualisiert und verteilt.",
+        "priority": "Low",
+        "time": "1:00 PM",
+        "dueDate": "Sep 24, 2025",
+        "completed": true
+      },
+      {
+        "title": "Neuer Richtlinienentwurf",
+        "description": "Entwurf der neuen Homeoffice-Richtlinie erstellt.",
+        "priority": "Medium",
+        "time": "2:00 PM",
+        "dueDate": "Sep 23, 2025",
+        "completed": true
+      }
+    ]
+  },
+
+
 
 
         "addTaskModal": {

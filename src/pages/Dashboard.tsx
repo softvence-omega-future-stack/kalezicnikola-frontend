@@ -99,7 +99,7 @@ const Dashboard: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen  p-6 ">
+    <div className="  p-6 ">
       <div className="mb-8">
         <div className="mb-6">
           <DashboardTopSection />

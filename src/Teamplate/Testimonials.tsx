@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import woner from '../assets/svgIcon/woner.svg';
+import woner2 from '../assets/svgIcon/testimonials2.jpg';
+import woner3 from '../assets/svgIcon/testimonials3.jpg';
 import icon from '../assets/svgIcon/herologo.svg';
 import './buttom.css';
 import SectionHeader from './SectionHeader';
@@ -42,10 +44,13 @@ const TestimonialSection: React.FC = () => {
   }>;
 
   // Add image to each testimonial
-  const testimonials: TestimonialData[] = testimonialsData.map(item => ({
-    ...item,
-    image: woner
-  }));
+const testimonialImages = [woner, woner2, woner3];
+
+const testimonials: TestimonialData[] = testimonialsData.map((item, index) => ({
+  ...item,
+  image: testimonialImages[index] || woner   // fallback image
+}));
+
 
   // Auto-advance slides
   useEffect(() => {
