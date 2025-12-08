@@ -1,82 +1,85 @@
 import { useNavigate } from "react-router-dom";
 
 interface Patient {
-  id: string;
-  name: string;
+  insuranceId: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  dob: string;
   phone: string;
-  date: string;
+  address: string;
+  createdAt: string;
+}
+interface GridViewProps {
+  patients: Patient[];
+  loading: boolean;
+  error: string | null;
 }
 
-const GridView: React.FC = () => {
-      const navigate = useNavigate(); 
-   const patients: Patient[] = [
-    { id: 'SRN-10101', name: 'Floyd Miles', phone: '+88234565', date: '24-06-2024' },
-    { id: 'SRN-10101', name: 'Floyd Miles', phone: '+88234565', date: '24-06-2024' },
-    { id: 'SRN-10101', name: 'Floyd Miles', phone: '+88234565', date: '24-06-2024' },
-    { id: 'SRN-10101', name: 'Floyd Miles', phone: '+88234565', date: '24-06-2024' },
-    { id: 'SRN-10101', name: 'Floyd Miles', phone: '+88234565', date: '24-06-2024' },
-    { id: 'SRN-10101', name: 'Floyd Miles', phone: '+88234565', date: '24-06-2024' },
-    { id: 'SRN-10101', name: 'Floyd Miles', phone: '+88234565', date: '24-06-2024' },
-    { id: 'SRN-10101', name: 'Floyd Miles', phone: '+88234565', date: '24-06-2024' },
-    { id: 'SRN-10101', name: 'Floyd Miles', phone: '+88234565', date: '24-06-2024' },
-    { id: 'SRN-10101', name: 'Floyd Miles', phone: '+88234565', date: '24-06-2024' }
-  ];
+const GridView = ({patients,loading,error}:GridViewProps) => {
+  const navigate = useNavigate();
+  const formatDate = (iso: string) => {
+    const d = new Date(iso);
+    const day = String(d.getDate()).padStart(2, "0");
+    const month = String(d.getMonth() + 1).padStart(2, "0");
+    const year = d.getFullYear();
+    return `${day}-${month}-${year}`;
+  };
+
+  if (loading) return <p className="p-4 text-center">Loading...</p>;
+  if (error) return <p className="p-4 text-red-600">{error}</p>;
   return (
     <div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 p-5 ">
-            {patients.map((patient, index) => (
-              <div key={index} className=" rounded-[16px]  p-6 bg-[#F8F8F8]  ">
-                {/* Profile Section */}
-                <div className="flex items-start gap-4 mb-6">
-                  <div className=""> <img className="h-14 w-14 rounded-full" src="https://i.ibb.co.com/wh1X6vJn/Screenshot-2025-10-26-144913.png" alt="" /></div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-base font-semibold text-[#171C35] mb-0.5">Floyd Miles</h3>
-                    <p className="text-sm text-[#111A2D] font-medium">SRN-10101</p>
-                  </div>
-                </div>
-
-         <div   className={`p-3 rounded-[16px] ${
-     'hover:bg-[#EEF1FF]'
-  }`}>
-                 {/* Contact Info */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-4 mb-6">
-                  <div>
-                    <p className="text-xs font-medium text-[#111A2D] mb-1">Telephone Number</p>
-                    <p className="text-base font-semibold text-[#171C35]">+880 1234 56 78</p>
-                  </div>
-                  <div>
-                    <p className="text-xs font-medium text-[#111A2D] mb-1">Email</p>
-                    <p className="text-base font-semibold text-[#171C35] truncate">username@gmail.com</p>
-                  </div>
-                </div>
-
-                {/* Birthday */}
-                <div className="mb-6">
-                  <p className="text-xs font-medium text-[#111A2D] mb-1">Birthday</p>
-                  <p className="text-base font-normal text-[#171C35]">01-09-2025 at 10:01 AM</p>
-                </div>
-
-                {/* Address */}
-                <div className="mb-6">
-                  <p className="text-xs font-medium text-[#111A2D] mb-1">Address</p>
-                  <p className="text-base font-normal text-[#171C35]">A-103, shyam gokul flats, Mahatma</p>
-                </div>
-         </div>
-
-                {/* View Button */}
-                <button        onClick={() => navigate(`/dashboard/patients/${patient.id}`)}
-                  className={`w-full py-3 rounded-full border border-gray-300 mt-4 font-medium transition-colors cursor-pointer ${
-                  
-                     
-                       ' border border-gray-300 text-[#171C35] hover:bg-[#526FFF] hover:text-white'
-                  }`}
-                >
-                  View
-                </button>
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 p-5 ">
+        {patients.map((patient, index) => (
+          <div key={index} className=" rounded-[16px]  p-6 bg-[#F8F8F8]  ">
+            {/* Profile Section */}
+            <div className="flex items-start gap-4 mb-6">
+              <div className=""> <img className="h-14 w-14 rounded-full" src="https://i.ibb.co.com/wh1X6vJn/Screenshot-2025-10-26-144913.png" alt="" /></div>
+              <div className="flex-1 min-w-0">
+                <h3 className="text-base font-semibold text-[#171C35] mb-0.5">{patient.firstName} {patient.lastName}</h3>
+                <p className="text-sm text-[#111A2D] font-medium">{patient.insuranceId}</p>
               </div>
-            ))}
+            </div>
+
+            <div className={`p-3 rounded-[16px] ${'hover:bg-[#EEF1FF]'
+              }`}>
+              {/* Contact Info */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-4 mb-6">
+                <div>
+                  <p className="text-xs font-medium text-[#111A2D] mb-1">Telephone Number</p>
+                  <p className="text-base font-semibold text-[#171C35]">{patient.phone}</p>
+                </div>
+                <div>
+                  <p className="text-xs font-medium text-[#111A2D] mb-1">Email</p>
+                  <p className="text-base font-semibold text-[#171C35] truncate">{patient.email}</p>
+                </div>
+              </div>
+
+              {/* Birthday */}
+              <div className="mb-6">
+                <p className="text-xs font-medium text-[#111A2D] mb-1">Birthday</p>
+                <p className="text-base font-normal text-[#171C35]">{formatDate(patient.dob)}</p>
+              </div>
+
+              {/* Address */}
+              <div className="mb-6">
+                <p className="text-xs font-medium text-[#111A2D] mb-1">Address</p>
+                <p className="text-base font-normal text-[#171C35]">{patient.address}</p>
+              </div>
+            </div>
+
+            {/* View Button */}
+            <button onClick={() => navigate(`/dashboard/patients/${patient.insuranceId}`)}
+              className={`w-full py-3 rounded-full border border-gray-300 mt-4 font-medium transition-colors cursor-pointer ${' border border-gray-300 text-[#171C35] hover:bg-[#526FFF] hover:text-white'
+                }`}
+            >
+              View
+            </button>
           </div>
-        
+        ))}
+      </div>
+
     </div>
   )
 }

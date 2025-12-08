@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import homeIcon from '../../../assets/svgIcon/homeIcon.svg';
 import chevronIcon from '../../../assets/svgIcon/chevronnRight.svg';
 import listIcon from '../../../assets/svgIcon/listIcon.svg';
+import axios from 'axios';
 
 type ViewMode = 'list' | 'grid';
 
@@ -21,6 +22,35 @@ export default function PatientsView() {
     { type: 'list', label: 'List', icon: <List className="w-5 h-5" /> },
     { type: 'grid', label: 'Grid', icon: <Grid className="w-5 h-5" /> },
   ];
+  const [patients, setPatients] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchPatients = async () => {
+      try {
+        setLoading(true);
+        const token = localStorage.getItem("accessToken");
+
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/doctor/patient/all`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+
+        setPatients(response.data.data.patients);
+      } catch (error) {
+        console.log(error);
+        setError("Failed to load patients");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPatients();
+  }, []);
+
 
   // Update dropdown position when opened
   useEffect(() => {
@@ -79,7 +109,7 @@ export default function PatientsView() {
                 className="w-full sm:w-auto flex items-center gap-2 px-4 py-2.5 bg-[#DCE2FF] text-[#171C35] rounded-[8px] font-medium transition-colors cursor-pointer justify-center"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <path d="M6.66634 0.833008V12.4997M0.833008 6.66634H12.4997" stroke="#171C35" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M6.66634 0.833008V12.4997M0.833008 6.66634H12.4997" stroke="#171C35" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
                 <span>Add Patient</span>
               </button>
@@ -102,7 +132,10 @@ export default function PatientsView() {
 
         {/* Content */}
         <div>
-          {viewMode === 'list' ? <ListView /> : <GridView />}
+          {viewMode === 'list'
+            ? <ListView patients={patients} loading={loading} error={error} />
+            : <GridView patients={patients} loading={loading} error={error} />
+          }
         </div>
       </div>
 
@@ -127,9 +160,8 @@ export default function PatientsView() {
                 setViewMode(v.type);
                 setDropdownOpen(false);
               }}
-              className={`w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center justify-between cursor-pointer ${
-                viewMode === v.type ? 'font-semibold' : ''
-              }`}
+              className={`w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center justify-between cursor-pointer ${viewMode === v.type ? 'font-semibold' : ''
+                }`}
             >
               <div className="flex items-center gap-2">
                 {v.icon}
