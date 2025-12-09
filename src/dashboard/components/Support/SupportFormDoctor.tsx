@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import EmojiPicker from "emoji-picker-react";
 import { useTranslation } from "react-i18next";
@@ -96,8 +96,30 @@ const SupportChat: React.FC = () => {
     (msg) => msg.contactId === selectedContact
   );
 
+ const emojiPickerRef = useRef<HTMLDivElement>(null);
+
+  // Add this useEffect to handle click outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        emojiPickerRef.current && 
+        !emojiPickerRef.current.contains(event.target as Node)
+      ) {
+        setShowEmojiPicker(false);
+      }
+    };
+
+    if (showEmojiPicker) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showEmojiPicker]);
+
   return (
-    <div className="bg-[#F3F6F6] md:mt-[30px] font-sans min-h-screen">
+    <div className="bg-[#F3F6F6] md:mt-[30px] ">
 
       {/* Desktop Header */}
       {!showChat && (
@@ -121,11 +143,11 @@ const SupportChat: React.FC = () => {
 
       {/* Main Grid */}
       <div className="py-6">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 min-h-[calc(100vh-180px)]">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 h-[calc(100vh-180px)]">
 
           {/* LEFT CONTACT LIST */}
-          <div className={`bg-white rounded-2xl flex flex-col overflow-hidden ${showChat ? 'hidden lg:flex' : 'flex'}`}>
-            <div className="p-5 border-b">
+          <div className={`bg-white rounded-2xl flex flex-col overflow-hidden h-full ${showChat ? 'hidden lg:flex' : 'flex'}`}>
+            <div className="p-5 border-b flex-shrink-0">
               <div className="flex items-center gap-3 mb-4">
                 <div className="relative">
                   <img src="https://i.ibb.co.com/tM6Sb5kF/KarenNix.png" className="w-12 h-12 rounded-full" />
@@ -188,18 +210,18 @@ const SupportChat: React.FC = () => {
 
           {/* RIGHT CHAT AREA */}
           {showChat && selectedContact && (
-            <div className="fixed inset-0 lg:static z-50 bg-white rounded-2xl flex flex-col justify-start cursor-pointer overflow-hidden lg:col-span-2">
+            <div className="fixed inset-0 lg:static z-50 bg-white rounded-2xl flex flex-col overflow-hidden lg:col-span-2 h-full">
               
               {/* Mobile Back Button */}
               <button
-                className="lg:hidden p-4 text-[#526FFF] font-semibold text-left"
+                className="lg:hidden p-4 text-[#526FFF] font-semibold text-left flex-shrink-0"
                 onClick={() => setShowChat(false)}
               >
                 {t("dashboard.routes.supportChat.backButton")}
               </button>
 
               {/* Chat Header */}
-              <div className="p-5 m-4 bg-[#F3F6F6] rounded-2xl flex items-center gap-3 justify-between">
+              <div className="p-5 m-4 bg-[#F3F6F6] rounded-2xl flex items-center gap-3 justify-between flex-shrink-0">
                 <div className="flex items-center gap-3">
                   <div className="relative">
                     <img src={karennix} className="w-12 h-12 rounded-full" />
@@ -233,8 +255,8 @@ const SupportChat: React.FC = () => {
               </div>
 
               {/* Input Box */}
-              <div className="p-5 bg-[#F3F6F6] m-2 rounded-[20px] relative">
-                <div className="flex flex-wrap items-center gap-2">
+              <div className="p-5 bg-[#F3F6F6] m-2 rounded-[20px] relative flex-shrink-0">
+                <div ref={emojiPickerRef} className="flex flex-wrap items-center gap-2">
                   <button onClick={() => fileInputRef.current?.click()}>
                     <img src={doc} className="p-1.5 bg-white h-8 w-8 rounded-full min-w-max" />
                   </button>
