@@ -38,7 +38,7 @@ const DateRangePicker = () => {
   }, [showCalendar]);
 
   return (
-    <div className="relative w-full max-w-[300px]">
+    <div className="relative w-full max-w-[230px]">
       {/* Date Display Button */}
       <div
         ref={buttonRef}
@@ -59,7 +59,7 @@ const DateRangePicker = () => {
       {showCalendar && (
         <div
           ref={dropdownRef}
-          className="absolute top-full left-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg p-6 z-50 min-w-[220px]"
+          className="absolute top-full left-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg p-6 z-50 min-w-[230px]"
         >
           <h3 className="text-sm font-semibold text-gray-700 mb-4">{t('dashboard.routes.callLogs.dateRangePicker.title')}</h3>
 

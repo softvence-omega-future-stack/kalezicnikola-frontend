@@ -173,12 +173,12 @@ const UpgradeCard: React.FC<UpgradeCardProps> = ({ collapsed }) => {
                         style={{ width: `${percentage}%` }}
                     />
                 </div>
-                <button
-                    className="w-full bg-subHeadingBlack text-white text-xs font-semibold py-2 sm:py-2 rounded-lg cursor-pointer hover:bg-gray-900 transition-colors mt-2"
-                    onClick={() => navigate('/dashboard/settings?tab=Subscription&subtab=manage')}
-                >
-                    {t('dashboard.sidebar.upgradeCard.upgradeButton')}
-                </button>
+              <button
+    className="w-full bg-subHeadingBlack text-white text-xs font-semibold py-2 sm:py-2 rounded-lg cursor-pointer hover:bg-gray-900 transition-colors mt-2"
+    onClick={() => navigate('/dashboard/settings?tab=subscription&subtab=manage')}
+>
+    {t('dashboard.sidebar.upgradeCard.upgradeButton')}
+</button>
             </div>
         </div>
     );

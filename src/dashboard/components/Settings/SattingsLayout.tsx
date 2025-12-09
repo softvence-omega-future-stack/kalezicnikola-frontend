@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { Sidebar } from "./Sidebar/SettingSidebar";
 import PersonalInfoForm from "./Sidebar/PersonalInfoForm";
@@ -14,7 +15,7 @@ import home from '../../../assets/svgIcon/homeIcon.svg'
 import { useTranslation } from "react-i18next";
 
 export const SettingsLayout: React.FC = () => {
-  const [activeItem, setActiveItem] = useState("personalInfo"); // key name use korbo
+  const [activeItem, setActiveItem] = useState("personalInfo"); 
   const navigate = useNavigate()
   const [searchParams] = useSearchParams(); 
   const tab = searchParams.get("tab");  
@@ -82,3 +83,4 @@ export const SettingsLayout: React.FC = () => {
     </div>
   );
 };
+

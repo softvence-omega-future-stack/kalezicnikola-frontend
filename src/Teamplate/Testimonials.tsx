@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import woner from '../assets/svgIcon/woner.svg';
 import woner2 from '../assets/svgIcon/testimonials2.jpg';
-import woner3 from '../assets/svgIcon/testimonials3.jpg';
+import woner3 from '../assets/img/testimonials3.jpg';
 import icon from '../assets/svgIcon/herologo.svg';
 import './buttom.css';
 import SectionHeader from './SectionHeader';

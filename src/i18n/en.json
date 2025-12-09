@@ -329,7 +329,7 @@
     "items": [
       {
         "question": "What is Docline?",
-        "answer": "Docline is a modern, cloud-based practice software. Its core feature is the AI Voicebot..."
+        "answer": "Docline is a modern, cloud-based practice management software. At its core is the AI ​​voicebot, which automatically answers incoming patient calls and independently handles routine tasks (appointments, prescriptions)."
       },
       {
         "question": "How exactly does Docline work?",
@@ -461,7 +461,7 @@
 "dashboard":{
   "mainHeader":{
       "userDropdown": {
-    "role": "Anaesthesia",
+    "role": "D.",
     "menu": {
       "profileSettings": "Profile settings",
       "support": "Support",

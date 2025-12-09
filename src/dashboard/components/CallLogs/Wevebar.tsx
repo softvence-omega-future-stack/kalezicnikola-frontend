@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Pause } from "lucide-react";
 
 import roundactiveImg from "../../../assets/svgIcon/activerecord.svg";
@@ -9,35 +9,103 @@ interface WaveBarProps {
   onMessageChange?: (messageId: number) => void;
 }
 
+// Playback properties
+const totalDuration = 100; // Total duration in *units* for simulation (0 to 100)
+const totalSeconds = 165; // Actual total duration in *seconds*
+const totalMessages = 5; // Total number of messages
+const skipSeconds = 10; // Amount to skip forward/backward in seconds
+
+// Calculate how many simulation units one second represents
+const unitsPerSecond = totalDuration / totalSeconds;
+// Calculate the interval step size to simulate real time (0.01s interval -> 0.01 * unitsPerSecond step)
+const intervalStep = 0.01 * unitsPerSecond; // Step for a 10ms interval
+
 const WaveBar: React.FC<WaveBarProps> = ({ onPlayingChange, onMessageChange }) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [currentTime, setCurrentTime] = useState(0);
-  const totalDuration = 100;
-  const totalSeconds = 165;
-  const totalMessages = 5; // Total number of messages 
+  const [currentTime, setCurrentTime] = useState(0); // Current time in simulation units (0 to 100)
 
+  // Memoize time formatting functions
+  const formatTime = useCallback((timeUnit: number) => {
+    // Calculate actual elapsed seconds from simulation unit
+    const elapsedSeconds = Math.round((timeUnit / totalDuration) * totalSeconds);
+    const minutes = Math.floor(elapsedSeconds / 60);
+    const seconds = elapsedSeconds % 60;
+    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+  }, []);
+
+  const getRemainingTimeString = useCallback((timeUnit: number) => {
+    const elapsedSeconds = Math.round((timeUnit / totalDuration) * totalSeconds);
+    const remainingSeconds = totalSeconds - elapsedSeconds;
+    const minutes = Math.floor(remainingSeconds / 60);
+    const seconds = remainingSeconds % 60;
+    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+  }, []);
+
+  // Playback Interval Effect
   useEffect(() => {
+    let interval: NodeJS.Timeout;
+
     if (isPlaying) {
-      const interval = setInterval(() => {
+      interval = setInterval(() => {
         setCurrentTime((prev) => {
-          if (prev >= totalDuration) {
+          const newTime = prev + intervalStep;
+
+          if (newTime >= totalDuration) {
+            // Stop and reset when done
             setIsPlaying(false);
             onPlayingChange?.(false);
-            return 0;
+            onMessageChange?.(totalMessages); // Ensure the last message is active on stop
+            return 0; // Reset to start
           }
-          const newTime = prev + 0.5;
           
           // Calculate which message should be active based on time
-          const messageId = Math.floor((newTime / totalDuration) * totalMessages) + 1;
+          // Clamp to ensure it's between 1 and totalMessages
+          const messageId = Math.min(
+            Math.floor((newTime / totalDuration) * totalMessages) + 1,
+            totalMessages
+          );
           onMessageChange?.(messageId);
           
           return newTime;
         });
-      }, 100);
-      return () => clearInterval(interval);
+      }, 10); // Run every 10ms for smooth simulation
     }
-  }, [isPlaying, onPlayingChange, onMessageChange, totalDuration, totalMessages]);
+    return () => clearInterval(interval);
+  }, [isPlaying, onPlayingChange, onMessageChange]);
 
+  // Skip functionality
+  const skipTime = (amount: number) => {
+    // Convert skip seconds to simulation units
+    const skipUnits = amount * unitsPerSecond;
+
+    setCurrentTime((prevTime) => {
+      let newTime = prevTime + skipUnits;
+      
+      // Clamp the time between 0 and totalDuration
+      newTime = Math.max(0, Math.min(newTime, totalDuration));
+
+      // Update message ID after skipping
+      const messageId = Math.min(
+          Math.floor((newTime / totalDuration) * totalMessages) + 1,
+          totalMessages
+      );
+      onMessageChange?.(messageId);
+
+      // Stop playing if skipped past the end
+      if (newTime >= totalDuration) {
+          setIsPlaying(false);
+          onPlayingChange?.(false);
+          return 0; // Reset to start
+      }
+
+      return newTime;
+    });
+  };
+
+  const skipBack = () => skipTime(-skipSeconds);
+  const skipForward = () => skipTime(skipSeconds);
+
+  // Data for the visual segments
   const waveSegments = [
     { height: 40, time: "0:00" },
     { height: 40, time: "0:30" },
@@ -50,21 +118,10 @@ const WaveBar: React.FC<WaveBarProps> = ({ onPlayingChange, onMessageChange }) =
     { height: 40, time: "4:00" },
   ];
 
-  // Calculate current bar outside of map to prevent recalculation
-  const currentBar = Math.floor((currentTime / totalDuration) * waveSegments.length);
-
-  const formatTime = (timeUnit: number) => {
-    const elapsedSeconds = Math.round((timeUnit / totalDuration) * totalSeconds);
-    const minutes = Math.floor(elapsedSeconds / 60);
-    const seconds = elapsedSeconds % 60;
-    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
-  };
-
-  const remainingTimeUnits = totalDuration - currentTime;
-  const remainingSeconds = Math.round((remainingTimeUnits / totalDuration) * totalSeconds); 
-  const remainingMinutes = Math.floor(remainingSeconds / 60);
-  const remainingSecs = remainingSeconds % 60;
-  const remainingTimeString = `${remainingMinutes}:${remainingSecs.toString().padStart(2, '0')}`;
+  // Calculate current bar based on percentage of time
+  const currentBarIndex = Math.floor((currentTime / totalDuration) * waveSegments.length);
+  // Calculate playhead position in percentage
+  const playheadPosition = (currentTime / totalDuration) * 100;
 
   return (
     <div>
@@ -72,9 +129,10 @@ const WaveBar: React.FC<WaveBarProps> = ({ onPlayingChange, onMessageChange }) =
         
         {/* Waveform Container */}
         <div className="relative bg-[#526FFF80] p-2 rounded-full mb-6 w-full h-16">
-          <div className="flex items-center justify-between  w-full relative h-full"> 
+          <div className="flex items-center justify-between w-full relative h-full"> 
             {waveSegments.map((_, i) => {
-              const isActive = i === currentBar && isPlaying;
+              // A bar is active if the playhead has passed its position
+              const isActive = i < currentBarIndex || (i === currentBarIndex && isPlaying);
 
               return (
                 <div key={i} className="flex-1 flex items-center justify-center">
@@ -83,6 +141,7 @@ const WaveBar: React.FC<WaveBarProps> = ({ onPlayingChange, onMessageChange }) =
                     style={{ height: '40px', minHeight: '40px', maxHeight: '40px' }}
                   >
                     <img src={roundImg} alt="" className="absolute inset-0 w-full h-full object-cover pointer-events-none" />
+                    {/* Use isActive to determine which image to show */}
                     {isActive && <img src={roundactiveImg} alt="" className="absolute inset-0 w-full h-full object-cover z-10 pointer-events-none" />}
                   </div>
                 </div>
@@ -90,11 +149,11 @@ const WaveBar: React.FC<WaveBarProps> = ({ onPlayingChange, onMessageChange }) =
             })}
 
             {/* Vertical moving line with icon (Playhead) */}
-            {isPlaying && (
+            {(isPlaying || currentTime > 0) && ( // Show playhead when playing or after starting
               <div
                 className="absolute flex flex-col items-center z-20 pointer-events-none"
                 style={{
-                  left: `${(currentTime / totalDuration) * 100}%`,
+                  left: `${playheadPosition}%`,
                   transform: 'translateX(-50%)',
                   height: 'calc(100% + 10px)',
                   top: '-5px',
@@ -112,74 +171,89 @@ const WaveBar: React.FC<WaveBarProps> = ({ onPlayingChange, onMessageChange }) =
 
         {/* Controls */}
         <div className="grid grid-cols-3 w-full gap-4 px-2">
-          {/* Current Time - Fixed width to prevent shifting */}
+          {/* Current Time / Remaining Time */}
           <div className="min-w-[100px] flex items-center justify-start">
             <span className="text-black text-sm font-medium">{formatTime(currentTime)}</span> / 
-            <span className="text-black text-sm font-medium">{remainingTimeString}</span>
+            <span className="text-black text-sm font-medium">{getRemainingTimeString(currentTime)}</span>
           </div>
 
-          {/* Play controls - Fixed width */}
+          {/* Play controls */}
           <div className="flex items-center justify-center gap-2.5 ">
-            <button className="h-10 w-10 flex items-center justify-center flex-shrink-0">
+            {/* Skip Back Button */}
+            <button 
+              onClick={skipBack}
+              className="h-10 w-10 flex items-center justify-center flex-shrink-0 cursor-pointer"
+              aria-label={`Skip back ${skipSeconds} seconds`}
+            >
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
                 <path d="M5 19V5M16.4005 6.07961L10.5617 10.7506C10.0279 11.1777 9.76097 11.3912 9.66433 11.6492C9.5796 11.8754 9.5796 12.1246 9.66433 12.3508C9.76097 12.6088 10.0279 12.8223 10.5617 13.2494L16.4005 17.9204C17.2327 18.5861 17.6487 18.919 17.9989 18.9194C18.3035 18.9197 18.5916 18.7812 18.7815 18.5432C19 18.2695 19 17.7367 19 16.671V7.329C19 6.2633 19 5.73045 18.7815 5.45677C18.5916 5.21876 18.3035 5.0803 17.9989 5.08063C17.6487 5.081 17.2327 5.41387 16.4005 6.07961Z" stroke="#111A2D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </button>
 
-            {/* Play/Pause Button - Fixed size */}
+            {/* Play/Pause Button */}
             <button 
             style={{
-          boxShadow: `1px 1px 4px 0 rgba(0, 0, 0, 0.05) inset, 
+              boxShadow: `1px 1px 4px 0 rgba(0, 0, 0, 0.05) inset, 
                 -6px -11px 18px 0 rgba(255, 255, 255, 0.16) inset, 
                 1px 1px 0 -0.4px #FFF inset, 
                 -1px -1px 0 -0.5px #FFF inset`,
-                
-          backdropFilter: "blur(5px)",
-        }}
+              backdropFilter: "blur(5px)",
+            }}
               onClick={() => {
                 const newPlayingState = !isPlaying;
                 setIsPlaying(newPlayingState);
                 onPlayingChange?.(newPlayingState);
+                // If it was at the end and we press play, start from 0
+                if (currentTime >= totalDuration) {
+                    setCurrentTime(0);
+                    onMessageChange?.(1);
+                }
               }} 
               className="cursor-pointer rounded-full bg-[#526FFF30] w-10 h-10 flex items-center justify-center flex-shrink-0"
+              aria-label={isPlaying ? "Pause" : "Play"}
             >
               {isPlaying ? (
                 <div className="w-10 h-10 rounded-4xl flex items-center justify-center">
                   <Pause size={20} className="text-[#526FFF]" fill="#526FFF" />
                 </div>
               ) : (
-
-               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-  <path d="M17 11.7321C18.3333 10.9623 18.3333 9.03775 17 8.26795L8 3.0718C6.66667 2.302 5 3.26425 5 4.80385L5 15.1962C5 16.7358 6.66667 17.698 8 16.9282L17 11.7321Z" fill="#526FFF"/>
-</svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M17 11.7321C18.3333 10.9623 18.3333 9.03775 17 8.26795L8 3.0718C6.66667 2.302 5 3.26425 5 4.80385L5 15.1962C5 16.7358 6.66667 17.698 8 16.9282L17 11.7321Z" fill="#526FFF"/>
+                </svg>
               )}
             </button>
 
-            <button className="transition-transform h-10 w-10 flex items-center justify-center">
+            {/* Skip Forward Button */}
+            <button 
+              onClick={skipForward}
+              className="transition-transform h-10 w-10 flex items-center justify-center cursor-pointer"
+              aria-label={`Skip forward ${skipSeconds} seconds`}
+            >
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
                 <path d="M19 19V5M7.59951 6.07961L13.4383 10.7506C13.9721 11.1777 14.239 11.3912 14.3357 11.6492C14.4204 11.8754 14.4204 12.1246 14.3357 12.3508C14.239 12.6088 13.9721 12.8223 13.4383 13.2494L7.59951 17.9204C6.76734 18.5861 6.35125 18.919 6.00108 18.9194C5.69654 18.9197 5.40845 18.7812 5.21846 18.5432C5 18.2695 5 17.7367 5 16.671V7.329C5 6.2633 5 5.73045 5.21846 5.45677C5.40845 5.21876 5.69654 5.0803 6.00108 5.08063C6.35125 5.081 6.76734 5.41387 7.59951 6.07961Z" stroke="#111A2D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </button>
           </div>
 
-          {/* Remaining Time + Volume + Download */}
-         <div className="flex items-center justify-end">
-           <div className="flex bg-[#0000000D] h-10 w-auto py-1 px-1 rounded-full items-center gap-1 ">
-            <button className="transition-transform h-9 w-10 cursor-pointer flex items-center justify-center">
-             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-  <path d="M16.4569 4.16693C17.638 5.8088 18.3337 7.82329 18.3337 10.0003C18.3337 12.1772 17.638 14.1917 16.4569 15.8336M13.1214 6.66693C13.7805 7.61179 14.167 8.76089 14.167 10.0003C14.167 11.2396 13.7805 12.3887 13.1214 13.3336M8.02892 4.47167L5.39085 7.10974C5.24672 7.25387 5.17466 7.32593 5.09056 7.37746C5.016 7.42316 4.93472 7.45683 4.84969 7.47724C4.75378 7.50026 4.65187 7.50026 4.44804 7.50026H3.00033C2.53362 7.50026 2.30026 7.50026 2.122 7.59109C1.9652 7.67099 1.83771 7.79847 1.75782 7.95527C1.66699 8.13353 1.66699 8.36689 1.66699 8.8336V11.1669C1.66699 11.6336 1.66699 11.867 1.75782 12.0453C1.83771 12.2021 1.9652 12.3295 2.122 12.4094C2.30026 12.5003 2.53362 12.5003 3.00033 12.5003H4.44804C4.65187 12.5003 4.75378 12.5003 4.84969 12.5233C4.93472 12.5437 5.016 12.5774 5.09056 12.6231C5.17466 12.6746 5.24672 12.7467 5.39085 12.8908L8.02892 15.5289C8.3859 15.8858 8.56439 16.0643 8.71763 16.0764C8.8506 16.0869 8.98054 16.033 9.06716 15.9316C9.16699 15.8147 9.16699 15.5623 9.16699 15.0575V4.94307C9.16699 4.43823 9.16699 4.1858 9.06716 4.06892C8.98054 3.9675 8.8506 3.91367 8.71763 3.92414C8.56439 3.9362 8.3859 4.11469 8.02892 4.47167Z" stroke="#111A2D" stroke-width="1.39167" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-            </button>
+          {/* Volume + Download */}
+          <div className="flex items-center justify-end">
+            <div className="flex bg-[#0000000D] h-10 w-auto py-1 px-1 rounded-full items-center gap-1 ">
+              <button className="transition-transform h-9 w-10 cursor-pointer flex items-center justify-center" aria-label="Volume">
+                {/* Volume SVG */}
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M16.4569 4.16693C17.638 5.8088 18.3337 7.82329 18.3337 10.0003C18.3337 12.1772 17.638 14.1917 16.4569 15.8336M13.1214 6.66693C13.7805 7.61179 14.167 8.76089 14.167 10.0003C14.167 11.2396 13.7805 12.3887 13.1214 13.3336M8.02892 4.47167L5.39085 7.10974C5.24672 7.25387 5.17466 7.32593 5.09056 7.37746C5.016 7.42316 4.93472 7.45683 4.84969 7.47724C4.75378 7.50026 4.65187 7.50026 4.44804 7.50026H3.00033C2.53362 7.50026 2.30026 7.50026 2.122 7.59109C1.9652 7.67099 1.83771 7.79847 1.75782 7.95527C1.66699 8.13353 1.66699 8.36689 1.66699 8.8336V11.1669C1.66699 11.6336 1.66699 11.867 1.75782 12.0453C1.83771 12.2021 1.9652 12.3295 2.122 12.4094C2.30026 12.5003 2.53362 12.5003 3.00033 12.5003H4.44804C4.65187 12.5003 4.75378 12.5003 4.84969 12.5233C4.93472 12.5437 5.016 12.5774 5.09056 12.6231C5.17466 12.6746 5.24672 12.7467 5.39085 12.8908L8.02892 15.5289C8.3859 15.8858 8.56439 16.0643 8.71763 16.0764C8.8506 16.0869 8.98054 16.033 9.06716 15.9316C9.16699 15.8147 9.16699 15.5623 9.16699 15.0575V4.94307C9.16699 4.43823 9.16699 4.1858 9.06716 4.06892C8.98054 3.9675 8.8506 3.91367 8.71763 3.92414C8.56439 3.9362 8.3859 4.11469 8.02892 4.47167Z" stroke="#111A2D" stroke-width="1.39167" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
 
-            <button className="transition-transform h-10 w-10 cursor-pointer flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-  <path d="M17.5 12.5V13.5C17.5 14.9001 17.5 15.6002 17.2275 16.135C16.9878 16.6054 16.6054 16.9878 16.135 17.2275C15.6002 17.5 14.9001 17.5 13.5 17.5H6.5C5.09987 17.5 4.3998 17.5 3.86502 17.2275C3.39462 16.9878 3.01217 16.6054 2.77248 16.135C2.5 15.6002 2.5 14.9001 2.5 13.5V12.5M14.1667 8.33333L10 12.5M10 12.5L5.83333 8.33333M10 12.5V2.5" stroke="#111A2D" stroke-width="1.39167" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-            </button>
+              <button className="transition-transform h-10 w-10 cursor-pointer flex items-center justify-center" aria-label="Download">
+                {/* Download SVG */}
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M17.5 12.5V13.5C17.5 14.9001 17.5 15.6002 17.2275 16.135C16.9878 16.6054 16.6054 16.9878 16.135 17.2275C15.6002 17.5 14.9001 17.5 13.5 17.5H6.5C5.09987 17.5 4.3998 17.5 3.86502 17.2275C3.39462 16.9878 3.01217 16.6054 2.77248 16.135C2.5 15.6002 2.5 14.9001 2.5 13.5V12.5M14.1667 8.33333L10 12.5M10 12.5L5.83333 8.33333M10 12.5V2.5" stroke="#111A2D" stroke-width="1.39167" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
           </div>
-         </div>
         </div>
-
       </div>
     </div>
   );

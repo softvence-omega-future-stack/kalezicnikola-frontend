@@ -9,7 +9,7 @@ interface SummaryCard {
   type?: string;
   detail: string;
   bgColor: string;
-  tab?: string;
+  tabKey?: string; // Changed from 'tab' to 'tabKey' for clarity
   route?: string;
   navigationType: "tab" | "route";
 }
@@ -35,7 +35,7 @@ export default function PatientSummary() {
       date: safeT("dashboard.routes.patients.patientProfile.tabsvalue.patientSummary.summaryCards.nextAppointment.date"),
       detail: safeT("dashboard.routes.patients.patientProfile.tabsvalue.patientSummary.summaryCards.nextAppointment.detailTime"),
       bgColor: "#EDF0FF",
-      tab: "Appointment",
+      tabKey: "appointment", // Using the correct key from parent component
       navigationType: "tab",
     },
     {
@@ -43,7 +43,7 @@ export default function PatientSummary() {
       count: safeT("dashboard.routes.patients.patientProfile.tabsvalue.patientSummary.summaryCards.activeMedications.count"),
       detail: safeT("dashboard.routes.patients.patientProfile.tabsvalue.patientSummary.summaryCards.activeMedications.lastUpdated"),
       bgColor: "#EDF0FF",
-      tab: "Prescriptions",
+      tabKey: "prescriptions", // Using the correct key from parent component
       navigationType: "tab",
     },
     {
@@ -51,7 +51,7 @@ export default function PatientSummary() {
       type: safeT("dashboard.routes.patients.patientProfile.tabsvalue.patientSummary.summaryCards.recentLabResults.type"),
       detail: safeT("dashboard.routes.patients.patientProfile.tabsvalue.patientSummary.summaryCards.recentLabResults.date"),
       bgColor: "#EDF0FF",
-      tab: "Lab Results",
+      tabKey: "labResults", // Using the correct key from parent component
       navigationType: "tab",
     },
     {
@@ -73,10 +73,9 @@ export default function PatientSummary() {
   const handleCardClick = (card: SummaryCard) => {
     if (card.navigationType === "route" && card.route) {
       navigate(card.route);
-    } else if (card.navigationType === "tab" && card.tab) {
-      // This was the issue - URL encoding spaces properly
-      const tabParam = card.tab.replace(/\s+/g, '%20');
-      navigate(`/dashboard/patients/${id}?tab=${tabParam}`, { replace: false });
+    } else if (card.navigationType === "tab" && card.tabKey) {
+      // Navigate to the patient profile page with the correct tab key
+      navigate(`/dashboard/patients/${id}?tab=${card.tabKey}`);
     }
   };
 

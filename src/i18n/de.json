@@ -26,7 +26,7 @@
       "percent": "75%",
       "title": "Entlastung",
       "line1": "Der KI-Assistent bearbeitet im Schnitt 75% der Routine-Anrufe komplett selbstständig. ",
-      "line2": "Ihr Team gewinnt diese Zeit für mehr Patientenzuwendung zurück.."
+      "line2": "Ihr Team gewinnt diese Zeit für mehr Patientenzuwendung zurück."
     },
     "conversation": {
       "title": "Docline führt 20 Gespräche gleichzeitig",
@@ -180,10 +180,6 @@
   },
 
 
-
-
-
-
   "security": {
     "badge": "Compliance & Sicherheit",
     "heading": "Maximale Sicherheit ||| 100% DSGVO-konform",
@@ -256,8 +252,6 @@
       }
     ]
   },
-
-
 
   "pricingSection": {
   "badgeText": "Transparente Preisgestaltung",
@@ -465,10 +459,10 @@
   "dashboard": {
       "mainHeader":{
     "userDropdown": {
-    "role": "Anästhesie",
+    "role": "D.",
     "menu": {
       "profileSettings": "Profileinstellungen",
-      "support": "Support",
+      "support": "Unterstützung",
       "settings": "Einstellungen",
       "logout": "Abmelden"
     }
@@ -543,7 +537,7 @@
         "calendar": "Kalender",
         "patients": "Patienten",
         "tasks": "Aufgaben",
-        "supports": "unterstützt",
+        "supports": "Unterstützung",
         "settings": "Einstellungen",
         "logout": "Abmelden"
       },
@@ -998,7 +992,7 @@
   "all": "Alle Status",
   "todo": "Zu erledigen",
   "inprogress": "In Bearbeitung",
-  "done": "Erledigt"
+  "done": "Erledigt" 
 },
 "priority": {
   "all": "Alle Priorität",
@@ -1170,8 +1164,8 @@
             "high": "Hoch",
             "medium": "Mittel",
             "low": "Niedrig"
-          },
-        
+          }
+        },
 
     "columns": {
       "todo": "Zu erledigen",
@@ -1198,8 +1192,8 @@
     "deleteSuccess": {
       "single": "Aufgabe erfolgreich gelöscht!",
       "multiple": "{{count}} Aufgaben erfolgreich gelöscht!"
-    }
-  },
+    },
+  
    "patientRecordsModal": {
           "title": "Patientenakten überprüfen",
           "subtitle": "Fügen Sie eine neue Aufgabe zu Ihrer Liste hinzu. Füllen Sie die Details unten aus.",
@@ -1218,6 +1212,7 @@
 
 
   },
+  
    "supportChat": {
         "breadcrumb": {
           "home": "Instrunmententafel",

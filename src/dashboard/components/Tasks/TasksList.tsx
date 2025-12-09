@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Plus, Edit, Trash2 } from 'lucide-react';
 import AddTaskModal from './AddToTskModal';
 import homeIcon from '../../../assets/svgIcon/homeIcon.svg';
@@ -32,44 +32,96 @@ export default function TaskList() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   
+  // Interface for translated task
+  interface TranslatedTask {
+    title: string;
+    description: string;
+    priority: string;
+    time: string;
+    dueDate: string;
+    completed: boolean;
+  }
+
+  // Get translated static tasks from i18n
+  const getInitialTasks = useMemo(() => {
+    const todoTasks = t("dashboard.routes.taskList.staticTasks.todo", { returnObjects: true }) as TranslatedTask[];
+    const inprogressTasks = t("dashboard.routes.taskList.staticTasks.inprogress", { returnObjects: true }) as TranslatedTask[];
+    const doneTasks = t("dashboard.routes.taskList.staticTasks.done", { returnObjects: true }) as TranslatedTask[];
+
+    return {
+      todo: todoTasks.map((task, index) => ({
+        id: index + 1,
+        title: task.title,
+        description: task.description,
+        priority: task.priority as 'High' | 'Medium' | 'Low',
+        time: task.time,
+        dueDate: task.dueDate,
+        completed: task.completed
+      })),
+      inprogress: inprogressTasks.map((task, index) => ({
+        id: index + 6,
+        title: task.title,
+        description: task.description,
+        priority: task.priority as 'High' | 'Medium' | 'Low',
+        time: task.time,
+        dueDate: task.dueDate,
+        completed: task.completed
+      })),
+      done: doneTasks.map((task, index) => ({
+        id: index + 11,
+        title: task.title,
+        description: task.description,
+        priority: task.priority as 'High' | 'Medium' | 'Low',
+        time: task.time,
+        dueDate: task.dueDate,
+        completed: task.completed
+      }))
+    };
+  }, [t]);
+
   const [columns, setColumns] = useState<Column[]>([
     {
       id: 'todo',
       title: t("dashboard.routes.taskList.columns.todo"),
       count: 5,
-      tasks: [
-        { id: 1, title: 'Review patient records', description: 'Go through the latest patient records and update the system', priority: 'High', time: '9:00 AM', dueDate: 'Sep 30, 2025', completed: false },
-        { id: 2, title: 'Schedule follow-ups', description: 'Contact patients for their next appointments.', priority: 'Medium', time: '10:00 AM', dueDate: 'Oct 01, 2025', completed: false },
-        { id: 3, title: 'Prepare discharge summaries', description: 'Draft summaries for patients leaving today.', priority: 'Low', time: '11:00 AM', dueDate: 'Sep 30, 2025', completed: false },
-        { id: 4, title: 'Order supplies', description: 'Check inventory and order necessary medical supplies.', priority: 'High', time: '1:00 PM', dueDate: 'Sep 29, 2025', completed: false },
-        { id: 5, title: 'Update internal wiki', description: 'Document new procedures for patient admission.', priority: 'Low', time: '2:00 PM', dueDate: 'Oct 05, 2025', completed: false },
-      ],
+      tasks: getInitialTasks.todo,
     },
     {
       id: 'inprogress',
       title: t("dashboard.routes.taskList.columns.inprogress"),
       count: 5,
-      tasks: [
-        { id: 6, title: 'Conduct Q.A. check', description: 'Verify data entry accuracy in the new EHR system.', priority: 'High', time: '9:00 AM', dueDate: 'Sep 30, 2025', completed: false },
-        { id: 7, title: 'System maintenance', description: 'Applying the latest security patches to all servers.', priority: 'Medium', time: '10:00 AM', dueDate: 'Oct 02, 2025', completed: false },
-        { id: 8, title: 'Staff training module', description: 'Developing a new module on patient confidentiality.', priority: 'Low', time: '11:00 AM', dueDate: 'Oct 07, 2025', completed: false },
-        { id: 9, title: 'Financial audit preparation', description: 'Gathering quarterly financial reports and invoices.', priority: 'High', time: '1:00 PM', dueDate: 'Sep 28, 2025', completed: false },
-        { id: 10, title: 'Design marketing flyers', description: 'Creating promotional material for the new clinic service.', priority: 'Low', time: '2:00 PM', dueDate: 'Oct 10, 2025', completed: false },
-      ],
+      tasks: getInitialTasks.inprogress,
     },
     {
       id: 'done',
       title: t("dashboard.routes.taskList.columns.done"),
       count: 5,
-      tasks: [
-        { id: 11, title: 'Completed server backup', description: 'Full backup of all critical systems performed.', priority: 'High', time: '9:00 AM', dueDate: 'Sep 27, 2025', completed: true },
-        { id: 12, title: 'Handled emergency calls', description: 'Resolved 5 high-priority support tickets.', priority: 'Medium', time: '10:00 AM', dueDate: 'Sep 26, 2025', completed: true },
-        { id: 13, title: 'Monthly report finalized', description: 'Sent the performance report to the management team.', priority: 'High', time: '11:00 AM', dueDate: 'Sep 25, 2025', completed: true },
-        { id: 14, title: 'Office cleanup schedule', description: 'Updated and distributed the cleaning rotation schedule.', priority: 'Low', time: '1:00 PM', dueDate: 'Sep 24, 2025', completed: true },
-        { id: 15, title: 'New policy draft', description: 'Drafted the new remote work policy.', priority: 'Medium', time: '2:00 PM', dueDate: 'Sep 23, 2025', completed: true },
-      ],
+      tasks: getInitialTasks.done,
     },
   ]);
+
+  // Update columns when language changes
+  useEffect(() => {
+    setColumns(prev => prev.map(col => ({
+      ...col,
+      title: t(`dashboard.routes.taskList.columns.${col.id}`),
+      tasks: col.tasks.map(task => {
+        // Find the corresponding translated task
+        const initialTasks = getInitialTasks[col.id as keyof typeof getInitialTasks];
+        const translatedTask = initialTasks?.find(t => t.id === task.id);
+        
+        // If found in initial tasks, use translated version, otherwise keep user-added task as is
+        if (translatedTask) {
+          return {
+            ...task,
+            title: translatedTask.title,
+            description: translatedTask.description
+          };
+        }
+        return task;
+      })
+    })));
+  }, [t, getInitialTasks]);
 
   const getPriorityColor = (priority: Task['priority']) => {
     switch (priority) {
@@ -298,7 +350,7 @@ export default function TaskList() {
             <div className="flex items-center justify-between px-4 py-3">
               <div className="flex items-center gap-2">
                 <h2 className="text-sm sm:text-xl font-medium sm:font-semibold text-[#171c35]">
-                  {column.title}
+                  {t(`dashboard.routes.taskList.columns.${column.id}`)}
                 </h2>
                 <span className="text-sm text-gray-500">({column.count})</span>
               </div>
