@@ -57,6 +57,9 @@ export default function AddTaskModal({ onClose, onAddTask, initialTask }: AddTas
     onClose(); 
   };
 
+  // const labelClass = "block text-base font-medium text-[#171c35] mb-2";
+
+
   return (
     <div 
       className="fixed inset-0 bg-black/50 flex items-center justify-center z-[99999] p-2 sm:p-4 overflow-auto"
@@ -150,17 +153,20 @@ export default function AddTaskModal({ onClose, onAddTask, initialTask }: AddTas
               </div>
             </div>
           </div>
-
-          {/* Due Date */}
-          <div>
-            <label className="block text-sm sm:text-base font-medium text-[#171c35] mb-1 sm:mb-2">Due Date</label>
-            <input
-              type="date"
-              name="dueDate"
-              value={formData.dueDate}
-              onChange={handleChange}
-              className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white border border-gray-300 rounded-xl text-sm sm:text-sm text-[#171c35] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#526fff] focus:border-transparent"
-            />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+            {/* Patient ID */}
+            
+            {/* Due Date */}
+            <div>
+              <label className="block text-sm sm:text-base font-medium text-[#171c35] mb-1 sm:mb-2">Due Date</label>
+              <input
+                type="date"
+                name="dueDate"
+                value={formData.dueDate}
+                onChange={handleChange}
+                className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white border border-gray-300 rounded-xl text-sm sm:text-sm text-[#171c35] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#526fff] focus:border-transparent"
+              />
+            </div>
           </div>
 
           {/* Buttons */}

@@ -8,12 +8,70 @@ import LabResultsPage from "./LabResults";
 
 import homeIcon from "../../../assets/svgIcon/homeIcon.svg";
 import chevronIcon from "../../../assets/svgIcon/chevronnRight.svg";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
+
+interface Patient {
+  id: string;
+  firstName: string;
+  lastName: string;
+  photo: string | null;
+  phone: string;
+  alternativePhone: string | null;
+  email: string;
+  insuranceId: string | null;
+  address: string | null;
+  emergencyContact: string | null;
+  dob: string | null;
+  maritalStatus: string | null;
+  city: string | null;
+  gender: string | null;
+  bloodGroup: string | null;
+  conditionName: string | null;
+  diagnosedDate: string | null;
+  severity: string | null;
+  status: string;
+  retentionExpiresAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+  deletedAt: string | null;
+  emergencyContactName: string | null;
+  emergencyContactPhone: string | null;
+  emergencyContactRelationship: string | null;
+}
+
 
 const PatientProfilePage: React.FC = () => {
+   const data = useParams();
+   const id = data.id;
   const [activeTab, setActiveTab] = useState("Personal Info");
   const navigate = useNavigate()
   const location = useLocation();
+  const [patient, setPatient] = useState<Patient | null>(null);
+
+  useEffect(() => {
+   
+    const fetchPatient = async () => {
+      try {
+ 
+        const token = localStorage.getItem("accessToken");
+
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/doctor/patient/${id}`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+
+        console.log(response.data.data.patient);
+        setPatient(response.data.data.patient);
+      } catch (error) {
+        console.log(error);
+      } 
+    };
+
+    fetchPatient();
+  }, []);
 
   useEffect(() => {
     // query param থেকে tab set করা
@@ -52,7 +110,7 @@ const PatientProfilePage: React.FC = () => {
 
       <div className=" pt-4">
         <h1 className="text-2xl font-semibold text-[#171C35] mb-5 sm:mb-15">
-          Zur Patientenakte
+          {patient?.firstName} {patient?.lastName}
         </h1>
 
         {/* Profile Section START */}
@@ -67,10 +125,10 @@ const PatientProfilePage: React.FC = () => {
     {/* Top */}
     <div className="mb-10"> {/* gap between Top and Middle */}
       <h2 className="text-xl sm:text-2xl font-semibold text-[#171C35] mb-1">
-        Jonathon Sanders
+        {patient?.firstName} {patient?.lastName}
       </h2>
       <p className="text-sm font-medium text-[#171C35]">
-        Insurance ID: #P170025
+        Insurance ID: {patient?.insuranceId}
       </p>
     </div>
 
@@ -100,11 +158,11 @@ const PatientProfilePage: React.FC = () => {
       </div>
       <div>
         <div className="text-sm text-[#111A2D]">Phone</div>
-        <div className="font-semibold text-[#171C35]">+1 54546 45648</div>
+        <div className="font-semibold text-[#171C35]">{patient?.phone}</div>
       </div>
       <div>
         <div className="text-sm text-[#111A2D]">Email</div>
-        <div className="font-semibold text-[#171C35]">username@gmail.com</div>
+        <div className="font-semibold text-[#171C35]">{patient?.email}</div>
       </div>
     </div>
 
