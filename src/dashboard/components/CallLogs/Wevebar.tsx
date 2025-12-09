@@ -130,23 +130,36 @@ const WaveBar: React.FC<WaveBarProps> = ({ onPlayingChange, onMessageChange }) =
         {/* Waveform Container */}
         <div className="relative bg-[#526FFF80] p-2 rounded-full mb-6 w-full h-16">
           <div className="flex items-center justify-between w-full relative h-full"> 
-            {waveSegments.map((_, i) => {
-              // A bar is active if the playhead has passed its position
-              const isActive = i < currentBarIndex || (i === currentBarIndex && isPlaying);
+         {waveSegments.map((_, i) => {
+  // Only current active bar stays active
+  const isActive = i === currentBarIndex;
 
-              return (
-                <div key={i} className="flex-1 flex items-center justify-center">
-                  <div
-                    className="w-full rounded-full bg-white overflow-hidden flex items-center justify-center relative"
-                    style={{ height: '40px', minHeight: '40px', maxHeight: '40px' }}
-                  >
-                    <img src={roundImg} alt="" className="absolute inset-0 w-full h-full object-cover pointer-events-none" />
-                    {/* Use isActive to determine which image to show */}
-                    {isActive && <img src={roundactiveImg} alt="" className="absolute inset-0 w-full h-full object-cover z-10 pointer-events-none" />}
-                  </div>
-                </div>
-              );
-            })}
+  return (
+    <div key={i} className="flex-1 flex items-center justify-center">
+      <div
+        className="w-full rounded-full bg-white overflow-hidden flex items-center justify-center relative"
+        style={{ height: '40px', minHeight: '40px', maxHeight: '40px' }}
+      >
+        {/* Default round image */}
+        <img
+          src={roundImg}
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+        />
+
+        {/* Only ONE active — the current index */}
+        {isActive && (
+          <img
+            src={roundactiveImg}
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover z-10 pointer-events-none"
+          />
+        )}
+      </div>
+    </div>
+  );
+})}
+
 
             {/* Vertical moving line with icon (Playhead) */}
             {(isPlaying || currentTime > 0) && ( // Show playhead when playing or after starting

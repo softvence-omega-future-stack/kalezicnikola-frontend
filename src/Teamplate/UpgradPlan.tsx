@@ -295,7 +295,7 @@ const UpgradPlan = () => {
   const annuallyLabel = t('landingPage.pricingSection.billingToggle.annually');
 
   return (
-    <div className="relative mt-12 md:mt-[120px] rounded-2xl overflow-hidden bg-white shadow-sm">
+    <div className="relative mt-12 md:mt-[120px] rounded-2xl overflow-hidden bg-white ">
       {/* Background Blurs */}
       <div
         className="absolute -left-[25%] w-[60%] rounded-full blur-[200px]"
