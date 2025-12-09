@@ -36,9 +36,6 @@ import GuestRoute from "./GuestRoute";
 // import AddPatientForm from "@/dashboard/components/Patients/Addpatient";
 
 
-
-
-
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -106,7 +103,6 @@ const routes = createBrowserRouter([
   ],
 },
 
-
   {
     path: "/admin",
     element: <AdminDashboardLayout />,
@@ -119,7 +115,6 @@ const routes = createBrowserRouter([
       { path: "security", element: <SecurityPage /> },
       { path: "settings", element: <SettingPage /> },
       { path: "supports", element: <SupportPage /> },
-      
     ],
   }
 ]);

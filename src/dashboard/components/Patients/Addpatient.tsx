@@ -479,6 +479,7 @@ import { useNavigate } from 'react-router-dom';
 import CustomDropdown from '../Settings/Sidebar/CustomDropdown';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { useAppSelector } from '@/store/hook';
 
 interface FormData {
   firstName: string;
@@ -505,6 +506,7 @@ interface FormErrors {
 
 const AddPatientForm: React.FC = () => {
   const navigate = useNavigate();
+  const { accessToken } = useAppSelector((state) => state.auth)
   const [allPatients, setAllPatients] = useState<FormData[]>([]); // store fetched patients
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -537,10 +539,9 @@ const AddPatientForm: React.FC = () => {
    useEffect(() => {
     const getAllPatients = async () => {
       try {
-        const token = localStorage.getItem("accessToken"); // If API needs auth
         const res = await axios.get(`${import.meta.env.VITE_API_URL}/doctor/patient/all`, {
           headers: {
-            Authorization: token ? `Bearer ${token}` : '',
+            Authorization: accessToken ? `Bearer ${accessToken}` : '',
           },
         });
       setAllPatients(res.data.data.patients || []);
@@ -614,14 +615,12 @@ const AddPatientForm: React.FC = () => {
     e.preventDefault();
     if (!validate()) return;
 
-    const token = localStorage.getItem("accessToken");
-
     try {
       setLoading(true)
       const response = await axios.post(
         "https://1x5kkm9k-5000.asse.devtunnels.ms/api/v1/doctor/patient/add",
         formData,
-        { headers: { Authorization: `Bearer ${token}` } }
+        { headers: { Authorization: `Bearer ${accessToken}` } }
       );
       toast.success(response.data.message || "Patient added successfully");
       navigate("/dashboard/patients");

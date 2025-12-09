@@ -8,10 +8,12 @@ import homeIcon from '../../../assets/svgIcon/homeIcon.svg';
 import chevronIcon from '../../../assets/svgIcon/chevronnRight.svg';
 import listIcon from '../../../assets/svgIcon/listIcon.svg';
 import axios from 'axios';
+import { useAppSelector } from '@/store/hook';
 
 type ViewMode = 'list' | 'grid';
 
 export default function PatientsView() {
+  const { accessToken } = useAppSelector((state) => state.auth);
   const [viewMode, setViewMode] = useState<ViewMode>('list');
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0, width: 0 });
@@ -30,12 +32,11 @@ export default function PatientsView() {
     const fetchPatients = async () => {
       try {
         setLoading(true);
-        const token = localStorage.getItem("accessToken");
 
         const response = await axios.get(
           `${import.meta.env.VITE_API_URL}/doctor/patient/all`,
           {
-            headers: { Authorization: `Bearer ${token}` },
+            headers: { Authorization: `Bearer ${accessToken}` },
           }
         );
 
