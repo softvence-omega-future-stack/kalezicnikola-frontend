@@ -1,23 +1,46 @@
 import { useState, useEffect } from 'react';
 import { X, ChevronDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { useAppSelector } from '@/store/hook';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 interface Task {
-  id: number;
+  id: string;
   title: string;
   description: string;
+  patient: {
+    id: string;
+    insuranceId: string;
+    firstName: string;
+    lastName: string;
+    photo?: string | null;
+  } | null;
   priority: 'High' | 'Medium' | 'Low';
   time: string;
   dueDate: string;
   completed: boolean;
 }
 
+type Status = 'TODO' | 'IN_PROGRESS' | 'DONE';
+type Priority = 'LOW' | 'MEDIUM' | 'HIGH';
+
 interface FormData {
   title: string;
   description: string;
-  status: string;
-  priority: 'High' | 'Medium' | 'Low';
+  status: Status;
+  priority: Priority;
   dueDate: string;
+  patientId: string;
+}
+
+interface TaskFormErrors {
+  title?: string;
+  description?: string;
+  status?: string;
+  priority?: string;
+  dueDate?: string;
+  patientId?: string;
 }
 
 type TaskOutput = FormData;
@@ -28,23 +51,57 @@ interface AddTaskModalProps {
   initialTask?: (Task & { status: string }) | { status: string }; 
 }
 
+
 export default function AddTaskModal({ onClose, onAddTask, initialTask }: AddTaskModalProps) {
   const { t } = useTranslation();
+  const { accessToken } = useAppSelector((state) => state.auth);
+  const [patient, setPatient] = useState<any[]>([]);
+  const [loading,setLoading] = useState<boolean>(false)
   const isEditing = initialTask && 'id' in initialTask;
 
   const initialData: FormData = {
     title: isEditing ? (initialTask as Task).title : '',
     description: isEditing ? (initialTask as Task).description : '',
-    status: initialTask?.status || 'To Do',
-    priority: isEditing ? (initialTask as Task).priority : 'Medium',
-    dueDate: isEditing ? (initialTask as Task).dueDate : '',
-  };
+    patientId: isEditing ? initialTask.patient?.id || "" : "",
+    status: (initialTask?.status?.toUpperCase() as Status) || 'TODO',
+    priority: isEditing
+      ? ((initialTask as Task).priority.toUpperCase() as Priority)
+      : 'LOW',
+    dueDate: isEditing
+    ? new Date((initialTask as Task).dueDate).toISOString().split('T')[0]
+    : '',  };
 
   const [formData, setFormData] = useState<FormData>(initialData);
+  const [errors, setErrors] = useState<TaskFormErrors>({});
 
   useEffect(() => {
     setFormData(initialData);
   }, [initialTask]);
+
+  useEffect(() => {
+    const fetchPatients = async () => {
+      setLoading(true);
+      try {
+
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/doctor/patient/all`,
+          {
+            headers: { Authorization: `Bearer ${accessToken}` },
+            withCredentials:true
+          }
+        );
+
+        setPatient(response.data.data.patients);
+        // console.log(response.data.data.patients)
+      } catch (error) {
+        console.log(error);
+      } finally{
+        setLoading(false)
+      }
+    };
+
+    fetchPatients();
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -53,11 +110,81 @@ export default function AddTaskModal({ onClose, onAddTask, initialTask }: AddTas
       [name]: value,
     }));
   };
+  
+const validateTask = (): boolean => {
+  const newErrors: TaskFormErrors = {};
 
-  const handleSubmit = () => {
-    onAddTask(formData);
-    onClose();
+  // Title
+  if (!formData.title.trim()) newErrors.title = "Title is required";
+
+  // Description
+  if (!formData.description.trim()) newErrors.description = "Description is required";
+
+  // Status
+  if (!formData.status) newErrors.status = "Status is required";
+
+  // Priority
+  if (!formData.priority) newErrors.priority = "Priority is required";
+
+  // Due Date
+  if (!formData.dueDate) newErrors.dueDate = "Due date is required";
+
+  // Patient
+  // if (!formData.patientId) newErrors.patientId = "Patient ID is required";
+
+  setErrors(newErrors);
+  return Object.keys(newErrors).length === 0;
+};
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  if (!validateTask()) return;
+
+  const payload = {
+    title: formData.title,
+    description: formData.description,
+    status: formData.status,
+    priority: formData.priority,
+    dueDate: formData.dueDate,
+    patientId: formData.patientId,
   };
+
+  try {
+    setLoading(true)
+    let response;
+
+    if (isEditing && initialTask?.id) {
+      // PATCH = Update Task
+      response = await axios.patch(
+        `${import.meta.env.VITE_API_URL}/doctor/task/update/${initialTask.id}`,
+        payload,
+        { headers: { Authorization: `Bearer ${accessToken}` } }
+      );
+    } else {
+      // 🔥 POST = Create Task
+      response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/doctor/task/create`,
+        payload,
+        { headers: { Authorization: `Bearer ${accessToken}` } }
+      );
+    }
+    
+    toast.success(response.data.message || "Task saved successfully");
+    
+    // Update parent list
+    onAddTask(response.data.data.task);
+    onClose();
+    setLoading(true)
+  } catch (error: any) {
+    if (axios.isAxiosError(error) && error.response) {
+      alert(error.response.data.message || "Server error");
+    } else {
+      alert("An unexpected error occurred");
+    }
+  }finally{
+    setLoading(false)
+  }
+};
+
 
   return (
     <div 
@@ -105,6 +232,11 @@ export default function AddTaskModal({ onClose, onAddTask, initialTask }: AddTas
               onChange={handleChange}
               className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white border border-gray-300 rounded-xl text-sm sm:text-sm text-[#171c35] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#526fff] focus:border-transparent"
             />
+            {errors.title && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.title}
+                </p>
+            )}
           </div>
 
           {/* Description */}
@@ -120,7 +252,38 @@ export default function AddTaskModal({ onClose, onAddTask, initialTask }: AddTas
               rows={4}
               className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white border border-gray-300 rounded-xl text-sm sm:text-sm text-[#171c35] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#526fff] focus:border-transparent resize-none"
             />
+            {errors.description && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.description}
+                </p>
+            )}
           </div>
+
+          {/* Patient Id */}
+
+          <div>
+            <label className="block text-sm sm:text-base font-medium text-[#171c35] mb-1 sm:mb-2">Patient ID</label>
+            <div className="relative">
+              <select
+                name="patientId"
+                value={formData.patientId}
+                onChange={handleChange}
+                className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white border border-gray-300 rounded-xl text-sm sm:text-sm text-[#171c35] focus:outline-none focus:ring-2 focus:ring-[#526fff] focus:border-transparent appearance-none cursor-pointer"
+              >
+                <option value="">Select Patient ID</option>
+
+                {patient.map((p: any) => (
+                  <option key={p.id} value={p.id}>  
+                    {p.insuranceId} — {p.firstName} {p.lastName}
+                  </option>
+                ))}
+
+              </select>
+              
+              <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
+            </div>
+          </div>
+
 
           {/* Status and Priority */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
@@ -132,13 +295,18 @@ export default function AddTaskModal({ onClose, onAddTask, initialTask }: AddTas
                 <select
                   name="status"
                   value={formData.status}
-                  onChange={handleChange}
+                  onChange={e => setFormData({ ...formData, status: e.target.value as Status })}
                   className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white border border-gray-300 rounded-xl text-sm sm:text-sm text-[#171c35] focus:outline-none focus:ring-2 focus:ring-[#526fff] focus:border-transparent appearance-none cursor-pointer"
                 >
-                  <option>{t('dashboard.routes.taskList.addTaskModal.statusOptions.todo')}</option>
-                  <option>{t('dashboard.routes.taskList.addTaskModal.statusOptions.inProgress')}</option>
-                  <option>{t('dashboard.routes.taskList.addTaskModal.statusOptions.done')}</option>
+                  <option value="TODO">{t('dashboard.routes.taskList.addTaskModal.statusOptions.todo')}</option>
+                  <option value="IN_PROGRESS">{t('dashboard.routes.taskList.addTaskModal.statusOptions.inProgress')}</option>
+                  <option value="DONE">{t('dashboard.routes.taskList.addTaskModal.statusOptions.done')}</option>
                 </select>
+                {errors.status && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.status}
+                </p>
+            )}
                 <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
               </div>
             </div>
@@ -151,15 +319,18 @@ export default function AddTaskModal({ onClose, onAddTask, initialTask }: AddTas
                 <select
                   name="priority"
                   value={formData.priority}
-                  onChange={(e) =>
-                    setFormData({ ...formData, priority: e.target.value as 'High' | 'Medium' | 'Low' })
-                  }
+                  onChange={e => setFormData({ ...formData, priority: e.target.value as Priority })}
                   className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white border border-gray-300 rounded-xl text-sm sm:text-sm text-[#171c35] focus:outline-none focus:ring-2 focus:ring-[#526fff] focus:border-transparent appearance-none cursor-pointer"
                 >
-                  <option value="Low">{t('dashboard.routes.taskList.addTaskModal.priorityOptions.low')}</option>
-                  <option value="Medium">{t('dashboard.routes.taskList.addTaskModal.priorityOptions.medium')}</option>
-                  <option value="High">{t('dashboard.routes.taskList.addTaskModal.priorityOptions.high')}</option>
+                  <option value="LOW">{t('dashboard.routes.taskList.addTaskModal.priorityOptions.low')}</option>
+                  <option value="MEDIUM">{t('dashboard.routes.taskList.addTaskModal.priorityOptions.medium')}</option>
+                  <option value="HIGH">{t('dashboard.routes.taskList.addTaskModal.priorityOptions.high')}</option>
                 </select>
+                {errors.priority && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.priority}
+                </p>
+            )}
                 <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
               </div>
             </div>
@@ -177,6 +348,11 @@ export default function AddTaskModal({ onClose, onAddTask, initialTask }: AddTas
               onChange={handleChange}
               className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white border border-gray-300 rounded-xl text-sm sm:text-sm text-[#171c35] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#526fff] focus:border-transparent"
             />
+            {errors.dueDate && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.dueDate}
+                </p>
+            )}
           </div>
 
           {/* Buttons */}
@@ -193,9 +369,10 @@ export default function AddTaskModal({ onClose, onAddTask, initialTask }: AddTas
               onClick={handleSubmit}
               className="w-full sm:flex-1 px-4 py-2.5 bg-[#526FFF] text-white rounded-xl text-sm font-medium hover:bg-[#4159CC] transition-colors cursor-pointer"
             >
-              {isEditing 
-                ? t('dashboard.routes.taskList.addTaskModal.buttons.saveChanges') 
-                : t('dashboard.routes.taskList.addTaskModal.buttons.submit')}
+              {loading ? 'Submitting...' :
+                isEditing 
+                  ? t('dashboard.routes.taskList.addTaskModal.buttons.saveChanges') 
+                  : t('dashboard.routes.taskList.addTaskModal.buttons.submit')}
             </button>
           </div>
         </div>

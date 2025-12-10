@@ -1,33 +1,77 @@
 import { useState } from 'react';
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useForm } from "react-hook-form";
+
 import eye from '../assets/svgIcon/Eye.svg';
 import eyeof from '../assets/svgIcon/EyeOff.svg';
 import logiImg from '../assets/svgIcon/authImg.svg';
 import icon from '../assets/svgIcon/logo.svg';
 import logo from '../assets/svgIcon/textLogo.svg';
+import { useRegisterUserMutation } from "@/store/features/auth/auth.api";
+import { toast } from "react-toastify";
+
+const signupSchema = z
+.object({
+  firstName: z.string().min(2,"First name is required"),
+  lastName: z.string().min(2,"Last name is required"),
+  email: z.string().email("Invalid email address"),
+  password: z.string().min(6,"Password must be at least 6 characters"),
+  confirmPassword: z.string().min(1,"Please confirm your password"),
+  agreeTerms : z.boolean().refine(val => val === true,{ message:"You must agree to terms" }),
+})
+.refine((data)=> data.password === data.confirmPassword,{
+  message:"Passwords do not match",
+  path:["confirmPassword"]
+})
+
+type SignupFormInputs = z.infer<typeof signupSchema>;
 
 export default function SignupPage() {
   const { t } = useTranslation();
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [loading,setLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [agreeTerms, setAgreeTerms] = useState(false);
+  const [registerUser] = useRegisterUserMutation();
   const navigate = useNavigate();
 
-  const handleSubmit = () => {
-    if (password !== confirmPassword) {
-      alert("Passwords do not match!");
-      return;
-    }
-    if (email && password) {
-      navigate("/dashboard");
-    } else {
-      alert("Please enter valid credentials");
+  const { register, handleSubmit, formState: { errors } } = useForm<SignupFormInputs>({
+    resolver: zodResolver(signupSchema)
+  });
+
+  // const handleSubmit = () => {
+  //   if (password !== confirmPassword) {
+  //     alert("Passwords do not match!");
+  //     return;
+  //   }
+  //   if (email && password) {
+  //     navigate("/dashboard");
+  //   } else {
+  //     alert("Please enter valid credentials");
+  //   }
+  // };
+   const onSubmit = async (data: SignupFormInputs) => {
+    try {
+      setLoading(true)
+      const result = await registerUser({
+        email: data.email,
+        password: data.password,
+        firstName: data.firstName,
+        lastName: data.lastName
+      }).unwrap();
+
+      if (result.success) {
+        // toast.success(result.message);
+        localStorage.setItem("setVerificationEmail", data.email);
+        navigate("/login");
+      }
+    } catch (err: any) {
+      toast.error(err?.data?.message || err?.message || "Something went wrong");
+      console.error(err);
+    }finally{
+      setLoading(false)
     }
   };
 
@@ -62,27 +106,28 @@ export default function SignupPage() {
               <p className="text-[#111A2D] text-base">{t('auth.signupPage.subtitle')}</p>
             </div>
 
-            <div className="space-y-5">
+          <form className="space-y-5" onSubmit={handleSubmit(onSubmit)}>
               <div className="grid grid-cols-1 items-center md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-[#111A2D] mb-2">{t('auth.signupPage.firstName')}</label>
                   <input
                     type="text"
                     placeholder={t('auth.signupPage.firstNamePlaceholder')}
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
+                    {...register("firstName")}
                     className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
                   />
+                  {errors.firstName && <p className="text-red-500 text-xs mt-1">{errors.firstName.message}</p>}
+
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-[#111A2D] mb-2">{t('auth.signupPage.lastName')}</label>
                   <input
                     type="text"
                     placeholder={t('auth.signupPage.lastNamePlaceholder')}
-                    value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
+                    {...register("lastName")}
                     className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
                   />
+                  {errors.lastName && <p className="text-red-500 text-xs mt-1">{errors.lastName.message}</p>}
                 </div>
               </div>
 
@@ -91,10 +136,11 @@ export default function SignupPage() {
                 <input
                   type="email"
                   placeholder={t('auth.signupPage.emailPlaceholder')}
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  {...register("email")}
                   className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
                 />
+                {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
+
               </div>
 
               {/* Password */}
@@ -104,8 +150,7 @@ export default function SignupPage() {
                   <input
                     type={showPassword ? "text" : "password"}
                     placeholder={t('auth.signupPage.passwordPlaceholder')}
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    {...register("password")}
                     className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm pr-12"
                   />
                   <button
@@ -116,6 +161,8 @@ export default function SignupPage() {
                     {showPassword ? <img src={eye} alt="" /> : <img src={eyeof} alt="visible" />}
                   </button>
                 </div>
+                {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>}
+
               </div>
 
               {/* Confirm Password */}
@@ -125,8 +172,7 @@ export default function SignupPage() {
                   <input
                     type={showConfirmPassword ? "text" : "password"}
                     placeholder={t('auth.signupPage.passwordPlaceholder')}
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    {...register("confirmPassword")}
                     className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm pr-12"
                   />
                   <button
@@ -143,8 +189,7 @@ export default function SignupPage() {
               <div className="flex items-start gap-2">
                 <input
                   type="checkbox"
-                  checked={agreeTerms}
-                  onChange={(e) => setAgreeTerms(e.target.checked)}
+                  {...register("agreeTerms")}
                   className="w-4 h-4 mt-0.5 text-blue-600 focus:ring-blue-500 cursor-pointer"
                 />
                 <label className="text-sm text-gray-600">{t('auth.signupPage.agreeTerms')}</label>
@@ -152,10 +197,10 @@ export default function SignupPage() {
 
               {/* Button */}
               <button
-                onClick={handleSubmit}
+                type='submit'
                 className="w-full py-3 bg-[#526FFF] text-white rounded-xl font-medium transition-colors shadow-sm hover:bg-blue-700 cursor-pointer"
               >
-                {t('auth.signupPage.signUpButton')}
+                {loading? "Signing Up...":t('auth.signupPage.signUpButton')}
               </button>
 
               {/* Sign In */}
@@ -163,9 +208,10 @@ export default function SignupPage() {
                 {t('auth.signupPage.alreadyAccount')}{" "}
                 <Link to="/login" className="text-[#526FFF] font-medium">{t('auth.signupPage.signIn')}</Link>
               </p>
-            </div>
-          </div>
+            {/* </div> */}
+          </form>
         </div>
+      </div>
       </div>
     </div>
   );

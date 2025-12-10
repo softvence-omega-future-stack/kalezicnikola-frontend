@@ -33,6 +33,7 @@ import Home from "@/pages/Home";
 import AddPatientForm from "@/dashboard/components/Patients/Addpatient";
 import Impressum from "@/Teamplate/Impressum ";
 import Datenschutz from "@/Teamplate/Datenschutz";
+import GuestRoute from "./GuestRoute";
 // import AddPatientForm from "@/dashboard/components/Patients/Addpatient";
 
 
@@ -42,7 +43,7 @@ import Datenschutz from "@/Teamplate/Datenschutz";
 const routes = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+     element:(<GuestRoute><App /></GuestRoute> ),
     children: [
            {
         index: true,
@@ -94,7 +95,11 @@ const routes = createBrowserRouter([
   },
     {
     path: "/dashboard",
-    element: <DashboardLayout />,
+    element: (
+    // <ProtectedRoute role="doctor">
+      <DashboardLayout />
+    // </ProtectedRoute>
+  ),
     children: [
       { index: true, element: <Dashboard /> },
       { path: "call_logs", element: <CallLogs /> },
