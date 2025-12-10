@@ -362,7 +362,7 @@ const Impressum: React.FC = () => {
           {impressumData.imageCredits.para2[lang]}
         </p>
 
-        <ul className="list-disc pl-5 space-y-2 mb-4">
+        <ul className="list-disc pl-5 text-xl space-y-2 mb-4">
           <li className="text-base sm:text-lg md:text-xl font-semibold leading-[140%] text-subHeadingBlack">Docline</li>
           <li className="text-base sm:text-lg md:text-xl font-semibold leading-[140%] text-subHeadingBlack">
             <a
