@@ -215,7 +215,7 @@
     "heading": "What Practice Owners |||Say About Docline",
     "testimonials": [
       {
-        "image": "woner.svg",
+        
         "quote": "Since using Docline, we know that our patients can always reach us while our team works stress-free. The solution not only transformed our phone accessibility but also significantly improved team morale. A real relief in daily practice.",
         "name": "DR. MAGDALENA S.",
         "title": "DERMATOLOGIST",
@@ -227,7 +227,7 @@
         }
       },
       {
-        "image": "woner.svg",
+        
         "quote": "The implementation of Docline was seamless and the results exceeded our expectations. Our patients appreciate constant accessibility.",
         "name": "DR. THOMAS M.",
         "title": "GENERAL PRACTITIONER",
@@ -239,7 +239,7 @@
         }
       },
       {
-        "image": "woner.svg",
+       
         "quote": "Docline revolutionized our practice. The team can finally focus on important tasks while patients are well taken care of.",
         "name": "DR. SARAH K.",
         "title": "DENTIST",

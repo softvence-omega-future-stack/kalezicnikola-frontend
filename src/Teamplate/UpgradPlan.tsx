@@ -269,8 +269,8 @@ const PricingCard = memo(({ plan, billingCycle, navigate }: PricingCardProps) =>
         onClick={() => navigate('/signup')}
         className={`w-full py-3 text-base font-semibold leading-6 rounded-full transition-colors shadow-lg border-2 cursor-pointer ${
           plan.isPremium
-            ? 'text-white bg-[#526FFF] border-[#526FFF]'
-            : `text-[${plan.color}] bg-white border-[${plan.color}]`
+            ? 'text-white bg-[#526FFF] hover:bg-[#536dec] border-[#526FFF]'
+            : `text-[${plan.color}] bg-white hover:bg-blue-50 border-[${plan.color}]`
         }`}
       >
         {plan.buttonText}
