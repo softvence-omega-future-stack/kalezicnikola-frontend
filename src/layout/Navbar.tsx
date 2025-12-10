@@ -104,7 +104,7 @@ const menuItems = [
             <div className="flex items-center gap-3 ml-12">
               <LanguageSelector />
               <div className="flex items-center gap-3 ">
-                <button className="px-5 py-3.5 rounded-full leading-4 text-base font-medium text-[#171C35] border border-[#171C35] transition whitespace-nowrap">
+                <button onClick={()=> navigate("/dashboard/calendar?openModal=true")} className="px-5 py-3.5 rounded-full leading-4 text-base font-medium text-[#171C35] border border-[#171C35] transition whitespace-nowrap">
                  {  t("landingPage.navigation.demo")}
                 </button>
                 <button
@@ -151,7 +151,7 @@ const menuItems = [
 
               {/* Move Login + Demo buttons below the slider */}
               <div className="pt-4 border-t border-gray-200 flex flex-col gap-3 mt-4">
-                <button className="px-5 py-2 rounded-full text-base font-medium text-[#171C35] border border-[#171C35] transition cursor-pointer">
+                <button onClick={()=> navigate("/dashboard/calendar?openModal=true")} className="px-5 py-2 rounded-full text-base font-medium text-[#171C35] border border-[#171C35] transition cursor-pointer">
                   {  t("landingPage.navigation.demo")}
                 </button>
                 <button

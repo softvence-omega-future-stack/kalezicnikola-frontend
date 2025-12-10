@@ -74,7 +74,7 @@ const DoclineHero: React.FC = () => {
             >
               {t("landingPage.hero.getStarted")}
             </button>
-            <button className="w-full md:w-auto py-3 px-6 leading-4 md:py-5 md:px-12 rounded-[25px] sm:rounded-[12px] text-base font-semibold border border-[#526FFF] text-[#526FFF] bg-[rgba(82,111,255,0.1)] cursor-pointer">
+            <button onClick={()=> navigate("/dashboard/calendar?openModal=true")} className="w-full md:w-auto py-3 px-6 leading-4 md:py-5 md:px-12 rounded-[25px] sm:rounded-[12px] text-base font-semibold border border-[#526FFF] text-[#526FFF] bg-[rgba(82,111,255,0.1)] cursor-pointer">
               {t("landingPage.hero.bookDemo")}
             </button>
           </div>

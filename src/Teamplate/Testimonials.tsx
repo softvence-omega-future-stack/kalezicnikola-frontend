@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import woner from '../assets/svgIcon/woner.svg';
-import woner2 from '../assets/svgIcon/testimonials2.jpg';
+import woner from '../assets/img/testimolials1.jpg';
+import woner2 from '../assets/img/testimonials2.jpg';
 import woner3 from '../assets/img/testimonials3.jpg';
 import icon from '../assets/svgIcon/herologo.svg';
 import './buttom.css';
@@ -29,6 +29,9 @@ interface TestimonialData {
 const TestimonialSection: React.FC = () => {
   const { t } = useTranslation();
   const [activeSlide, setActiveSlide] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [dragOffset, setDragOffset] = useState(0);
 
   // ✅ Get testimonials from translation
   const testimonialsData = t('landingPage.testimonialSection.testimonials', { returnObjects: true }) as Array<{
@@ -44,24 +47,92 @@ const TestimonialSection: React.FC = () => {
   }>;
 
   // Add image to each testimonial
-const testimonialImages = [woner, woner2, woner3];
+  const testimonialImages = [woner, woner2, woner3];
 
-const testimonials: TestimonialData[] = testimonialsData.map((item, index) => ({
-  ...item,
-  image: testimonialImages[index] || woner   // fallback image
-}));
-
+  const testimonials: TestimonialData[] = testimonialsData.map((item, index) => ({
+    ...item,
+    image: testimonialImages[index] || woner   // fallback image
+  }));
 
   // Auto-advance slides
   useEffect(() => {
+    if (isDragging) return;
+    
     const interval = setInterval(() => {
       setActiveSlide((currentSlide) =>
         (currentSlide + 1) % testimonials.length
       );
-    }, 4000);
+    }, 1000);
 
     return () => clearInterval(interval);
-  }, [testimonials.length]);
+  }, [testimonials.length, isDragging]);
+
+  // Mouse/Touch drag handlers
+  const handleDragStart = (clientX: number) => {
+    setIsDragging(true);
+    setStartX(clientX);
+  };
+
+  const handleDragMove = (clientX: number) => {
+    if (!isDragging) return;
+    const diff = clientX - startX;
+    setDragOffset(diff);
+  };
+
+  const handleDragEnd = () => {
+    if (!isDragging) return;
+    
+    const threshold = 50;
+
+    if (dragOffset > threshold) {
+      // Dragged right - go to previous slide
+      setActiveSlide((prev) => 
+        prev === 0 ? testimonials.length - 1 : prev - 1
+      );
+    } else if (dragOffset < -threshold) {
+      // Dragged left - go to next slide
+      setActiveSlide((prev) => 
+        (prev + 1) % testimonials.length
+      );
+    }
+
+    setIsDragging(false);
+    setStartX(0);
+    setDragOffset(0);
+  };
+
+  // Mouse events
+  const handleMouseDown = (e: React.MouseEvent) => {
+    e.preventDefault();
+    handleDragStart(e.clientX);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    handleDragMove(e.clientX);
+  };
+
+  const handleMouseUp = () => {
+    handleDragEnd();
+  };
+
+  const handleMouseLeave = () => {
+    if (isDragging) {
+      handleDragEnd();
+    }
+  };
+
+  // Touch events
+  const handleTouchStart = (e: React.TouchEvent) => {
+    handleDragStart(e.touches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    handleDragMove(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    handleDragEnd();
+  };
 
   const currentTestimonial = testimonials[activeSlide];
 
@@ -85,7 +156,16 @@ const testimonials: TestimonialData[] = testimonialsData.map((item, index) => ({
             
             Image uses object-cover with object-top for headshots
             ======================================== */}
-        <div className="bg-white rounded-2xl md:rounded-3xl overflow-hidden mb-8 md:mb-12 lg:max-h-[460px]">
+        <div 
+          className="bg-white rounded-2xl md:rounded-3xl overflow-hidden mb-8 md:mb-12 lg:max-h-[460px] cursor-grab active:cursor-grabbing select-none"
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseLeave}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
 
           {/* GRID LAYOUT */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 items-center lg:h-[460px]">
@@ -142,7 +222,7 @@ const testimonials: TestimonialData[] = testimonialsData.map((item, index) => ({
                   <p className="text-[#171C35] leading-[100%] font-semibold uppercase text-base md:text-xl mb-4">
                     {currentTestimonial.name}
                   </p>
-                  <p className="text-[#111A2D] leading-4 text-sm md:text-base font-medium">
+                  <p className="text-[#111A2D] leading-4 text-sm md:text-base font-medium uppercase">
                     {currentTestimonial.title}
                   </p>
                 </div>

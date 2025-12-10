@@ -215,10 +215,10 @@
     "heading": "Was PraxisinhaberInnen |||  über Docline sagen",
     "testimonials": [
       {
-        "image": "woner.svg",
+       
         "quote": "Seit Docline wissen wir, dass uns unsere Patienten  immer erreichen und unser Team trotzdem stressfrei arbeitet. Die Lösung hat nicht nur unsere telefonische Erreichbarkeit transformiert, sondern auch die Arbeitsmoral des Teams deutlich verbessert. Eine echte Entlastung im Praxisalltag.",
-        "name": "DR. MAGDALENA S.",
-        "title": "Hautärztin",
+        "name": "Barbara S.",
+        "title": "Allgemeinmedizinerin",
         "stats": {
           "timeSaved": "11h",
           "timeSavedLabel": "Zeitersparniss pro Woche",
@@ -227,7 +227,7 @@
         }
       },
       {
-        "image": "woner.svg",
+        
         "quote": "Die Implementierung von Docline verlief reibungslos und die Ergebnisse übertrafen unsere Erwartungen. Unsere Patienten schätzen die ständige Erreichbarkeit.",
         "name": "DR. THOMAS M.",
         "title": "ALLGEMEINMEDIZINER",
@@ -239,7 +239,7 @@
         }
       },
       {
-        "image": "woner.svg",
+        
         "quote": "Docline hat unsere Praxis revolutioniert. Das Team kann sich endlich auf wichtige Aufgaben konzentrieren, während die Patienten gut versorgt sind.",
         "name": "DR. SARAH K.",
         "title": "ZAHNÄRZTIN",

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Play, Pause } from "lucide-react";
 import icon from "../assets/svgIcon/herologo.svg";
 import skipleft from "../assets/svgIcon/voiceskipLeft.svg";
@@ -7,6 +7,10 @@ import speaker from "../assets/svgIcon/speaker.svg";
 import borderIcon from "../assets/svgIcon/BorderPlay.svg";
 import roundactiveImg from "../assets/svgIcon/activerecord.svg";
 import roundImg from "../assets/svgIcon/recordbtnborder.svg";
+// Import audio files
+import audio1 from "../assets/audio/dr_coconut.mp3";
+// import audio2 from "../assets/audio/audio2.mp3";
+// import audio3 from "../assets/audio/audio3.mp3";
 import './buttom.css';
 import SectionHeader from "./SectionHeader";
 import { useTranslation } from "react-i18next";
@@ -20,7 +24,7 @@ interface MenuItem {
 }
 
 // ========================================
-// SVG PLAY ICON COMPONENT
+// SVG PLAY ICON
 // ========================================
 const SvgPlayIcon = ({ fill = "#526FFF", size = 20, className = "" }) => (
   <svg
@@ -62,55 +66,95 @@ const SvgPlayIcon = ({ fill = "#526FFF", size = 20, className = "" }) => (
 );
 
 // ========================================
+// Format time helper
+// ========================================
+const formatTime = (seconds: number): string => {
+  if (!seconds || isNaN(seconds)) return "0:00";
+  const mins = Math.floor(seconds / 60);
+  const secs = Math.floor(seconds % 60);
+  return `${mins}:${secs.toString().padStart(2, '0')}`;
+};
+
+// ========================================
 // MAIN COMPONENT
 // ========================================
 const ExampleSection: React.FC = () => {
   const { t } = useTranslation();
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
   const [activeAudioIndex, setActiveAudioIndex] = useState(0);
-  const totalDuration = 100;
+  const audioRef = useRef<HTMLAudioElement>(null);
 
-  // ✅ Translation fix: assert type to MenuItem[]
+  // Audio files array - add more as needed
+  const audioFiles = [audio1];
+
   const menuItems: MenuItem[] = t("landingPage.exampleSection.menuItems", { returnObjects: true }) as MenuItem[];
+
+  // Audio event handlers
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    const updateTime = () => setCurrentTime(audio.currentTime);
+    const updateDuration = () => setDuration(audio.duration);
+    const handleEnd = () => {
+      setIsPlaying(false);
+      setCurrentTime(0);
+    };
+
+    audio.addEventListener('timeupdate', updateTime);
+    audio.addEventListener('loadedmetadata', updateDuration);
+    audio.addEventListener('ended', handleEnd);
+
+    return () => {
+      audio.removeEventListener('timeupdate', updateTime);
+      audio.removeEventListener('loadedmetadata', updateDuration);
+      audio.removeEventListener('ended', handleEnd);
+    };
+  }, []);
 
   // Handle card click
   const handleCardClick = (index: number) => {
     if (activeAudioIndex === index) {
-      setIsPlaying(prev => !prev);
+      setIsPlaying(!isPlaying);
     } else {
       setActiveAudioIndex(index);
-      setIsPlaying(true);
       setCurrentTime(0);
+      setIsPlaying(true);
     }
   };
 
   const handlePrevious = () => {
     setActiveAudioIndex(prev => (prev > 0 ? prev - 1 : menuItems.length - 1));
-    setIsPlaying(true);
     setCurrentTime(0);
+    setIsPlaying(true);
   };
 
   const handleNext = () => {
     setActiveAudioIndex(prev => (prev < menuItems.length - 1 ? prev + 1 : 0));
-    setIsPlaying(true);
     setCurrentTime(0);
+    setIsPlaying(true);
   };
 
-  // Audio playback simulation
+  const togglePlay = () => {
+    setIsPlaying(!isPlaying);
+  };
+
+  // Play/Pause control
   useEffect(() => {
-    if (!isPlaying) return;
-    const interval = setInterval(() => {
-      setCurrentTime(prev => {
-        if (prev >= totalDuration) {
-          setIsPlaying(false);
-          return 0;
-        }
-        return prev + 0.5;
-      });
-    }, 100);
-    return () => clearInterval(interval);
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    if (isPlaying) {
+      audio.play().catch(err => console.error('Play error:', err));
+    } else {
+      audio.pause();
+    }
   }, [isPlaying]);
+
+  const remainingTime = duration - currentTime;
+  const progress = duration > 0 ? currentTime / duration : 0;
 
   return (
     <div style={{ fontFamily: "Urbanist, sans-serif" }} className="mt-12 md:mt-[120px]">
@@ -122,6 +166,13 @@ const ExampleSection: React.FC = () => {
           subText={t("landingPage.exampleSection.subText")}
           align="left"
           subAlign="left"
+        />
+
+        {/* Hidden audio element */}
+        <audio 
+          ref={audioRef} 
+          src={audioFiles[activeAudioIndex]} 
+          preload="metadata"
         />
 
         {/* Right Section - Audio Cards */}
@@ -150,7 +201,7 @@ const ExampleSection: React.FC = () => {
                       {!isActive && (
                         <button
                           onClick={(e) => { e.stopPropagation(); handleCardClick(index); }}
-                          className="w-12 h-12 bg-gray-200 hover:bg-[#526FFF] cursor-pointer rounded-full flex items-center justify-center  transition-all duration-300 ease-in-out shadow-lg flex-shrink-0"
+                          className="w-12 h-12 bg-gray-200 hover:bg-[#526FFF] cursor-pointer rounded-full flex items-center justify-center transition-all duration-300 ease-in-out shadow-lg flex-shrink-0"
                         >
                           <SvgPlayIcon size={24} fill="#FFFFFF" />
                         </button>
@@ -161,9 +212,9 @@ const ExampleSection: React.FC = () => {
                     <div className={`transition-all duration-500 ease-in-out overflow-hidden ${isActive ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0"}`}>
                       {/* Waveform */}
                       <div className="relative mb-6 overflow-hidden">
-                        <div className="flex items-center justify-between  h-28 w-full relative">
+                        <div className="flex items-center justify-between h-28 w-full relative">
                           {Array.from({ length: 6 }).map((_, i) => {
-                            const currentBar = Math.floor((currentTime / totalDuration) * 6);
+                            const currentBar = Math.floor(progress * 6);
                             const isBarActive = i === currentBar && isPlaying;
 
                             return (
@@ -180,8 +231,8 @@ const ExampleSection: React.FC = () => {
                           })}
 
                           <div
-                            className="absolute top-3 flex flex-col gap-1 items-center"
-                            style={{ left: `${(currentTime / totalDuration) * 100}%`, height: "100px" }}
+                            className="absolute top-3 flex flex-col gap-1 items-center transition-all duration-100"
+                            style={{ left: `${progress * 100}%`, height: "100px" }}
                           >
                             <div className="w-0.5 h-full bg-white"></div>
                             <img src={borderIcon} alt="cursor-icon" className="self-stretch" />
@@ -191,27 +242,40 @@ const ExampleSection: React.FC = () => {
 
                       {/* Controls */}
                       <div className="flex items-center justify-between gap-4 flex-wrap">
-                        <span className="text-white text-sm">0:30</span>
+                        <span className="text-white text-sm">{formatTime(currentTime)}</span>
+                        
                         <div className="flex items-center gap-3">
-                          <button onClick={(e) => { e.stopPropagation(); handlePrevious(); }} className="hover:scale-110 transition-transform">
+                          <button 
+                            onClick={(e) => { e.stopPropagation(); handlePrevious(); }} 
+                            className="hover:scale-110 transition-transform"
+                          >
                             <img src={skipleft} alt="skip left" />
                           </button>
 
                           <button
-                            style={{ boxShadow: `1px 1px 4px 0 rgba(0,0,0,0.05) inset,-6px -11px 18px 0 rgba(255,255,255,0.16) inset,1px 1px 0 -0.4px #FFF inset,-1px -1px 0 -0.5px #FFF inset`, backdropFilter: "blur(5px)" }}
-                            onClick={(e) => { e.stopPropagation(); setIsPlaying(!isPlaying); }}
+                            style={{ 
+                              boxShadow: `1px 1px 4px 0 rgba(0,0,0,0.05) inset,-6px -11px 18px 0 rgba(255,255,255,0.16) inset,1px 1px 0 -0.4px #FFF inset,-1px -1px 0 -0.5px #FFF inset`, 
+                              backdropFilter: "blur(5px)" 
+                            }}
+                            onClick={(e) => { e.stopPropagation(); togglePlay(); }}
                             className="w-12 h-12 backdrop-blur-xl rounded-full flex items-center justify-center hover:scale-105 transition-transform cursor-pointer shadow-lg"
                           >
-                            {isPlaying ? <Pause size={20} className="text-white" /> : <Play size={20} className="text-white ml-1" />}
+                            {isPlaying ? 
+                              <Pause size={20} className="text-white" /> : 
+                              <Play size={20} className="text-white ml-1" />
+                            }
                           </button>
 
-                          <button onClick={(e) => { e.stopPropagation(); handleNext(); }} className="hover:scale-110 transition-transform">
+                          <button 
+                            onClick={(e) => { e.stopPropagation(); handleNext(); }} 
+                            className="hover:scale-110 transition-transform"
+                          >
                             <img src={skipRight} alt="skip right" />
                           </button>
                         </div>
 
                         <div className="flex items-center gap-2">
-                          <span className="text-white text-sm">-1:23</span>
+                          <span className="text-white text-sm">-{formatTime(remainingTime)}</span>
                           <img src={speaker} alt="speaker" />
                         </div>
                       </div>
