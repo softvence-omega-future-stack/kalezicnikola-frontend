@@ -2,29 +2,35 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 interface Patient {
-  id: string;
-  name: string;
+  insuranceId: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  dob: string;
   phone: string;
-  date: string;
+  address: string;
+  createdAt: string;
+}
+interface GridViewProps {
+  patients: Patient[];
+  loading: boolean;
+  error: string | null;
 }
 
-const GridView: React.FC = () => {
+const GridView = ({patients,loading,error}:GridViewProps) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const formatDate = (iso: string) => {
+    const d = new Date(iso);
+    const day = String(d.getDate()).padStart(2, "0");
+    const month = String(d.getMonth() + 1).padStart(2, "0");
+    const year = d.getFullYear();
+    return `${day}-${month}-${year}`;
+  };
 
-  const patients: Patient[] = [
-  
-      { id: 'SRN-10101', name: 'Floyd Miles', phone: '+88234565', date: '24-06-2024' },
-    { id: 'SRN-10101', name: 'Floyd Miles', phone: '+88234565', date: '24-06-2024' },
-    { id: 'SRN-10101', name: 'Floyd Miles', phone: '+88234565', date: '24-06-2024' },
-    { id: 'SRN-10101', name: 'Floyd Miles', phone: '+88234565', date: '24-06-2024' },
-    { id: 'SRN-10101', name: 'Floyd Miles', phone: '+88234565', date: '24-06-2024' },
-    { id: 'SRN-10101', name: 'Floyd Miles', phone: '+88234565', date: '24-06-2024' },
-    { id: 'SRN-10101', name: 'Floyd Miles', phone: '+88234565', date: '24-06-2024' },
-    { id: 'SRN-10101', name: 'Floyd Miles', phone: '+88234565', date: '24-06-2024' },
-    { id: 'SRN-10101', name: 'Floyd Miles', phone: '+88234565', date: '24-06-2024' },
-    { id: 'SRN-10101', name: 'Floyd Miles', phone: '+88234565', date: '24-06-2024' }
-  ];
+  if (loading) return <p className="p-4 text-center">Loading...</p>;
+  if (error) return <p className="p-4 text-red-600">{error}</p>;
+
 
   return (
     <div>
@@ -40,9 +46,9 @@ const GridView: React.FC = () => {
               />
               <div className="flex-1 min-w-0">
                 <h3 className="text-base font-semibold text-[#171C35] mb-0.5">
-                  {patient.name}
+                  {patient.firstName} {patient.lastName}
                 </h3>
-                <p className="text-sm text-[#111A2D] font-medium">{patient.id}</p>
+                <p className="text-sm text-[#111A2D] font-medium">{patient.insuranceId}</p>
               </div>
             </div>
 
@@ -61,7 +67,7 @@ const GridView: React.FC = () => {
                     {t("dashboard.routes.patients.gridView.email")}
                   </p>
                   <p className="text-base font-semibold text-[#171C35] truncate">
-                    username@gmail.com
+                    {patient.email}
                   </p>
                 </div>
               </div>
@@ -72,7 +78,7 @@ const GridView: React.FC = () => {
                   {t("dashboard.routes.patients.gridView.birthday")}
                 </p>
                 <p className="text-base font-normal text-[#171C35]">
-                  01-09-2025 at 10:01 AM
+                  {formatDate(patient.dob)}
                 </p>
               </div>
 
@@ -82,14 +88,14 @@ const GridView: React.FC = () => {
                   {t("dashboard.routes.patients.gridView.address")}
                 </p>
                 <p className="text-base font-normal text-[#171C35]">
-                  A-103, shyam gokul flats, Mahatma
+                  {patient.address}
                 </p>
               </div>
             </div>
 
             {/* View Button */}
             <button
-              onClick={() => navigate(`/dashboard/patients/${patient.id}`)}
+              onClick={() => navigate(`/dashboard/patients/${patient.insuranceId}`)}
               className="w-full py-3 rounded-full border border-gray-300 mt-4 font-medium transition-colors cursor-pointer border-gray-300 text-[#171C35] hover:bg-[#526FFF] hover:text-white"
             >
               {t("dashboard.routes.patients.gridView.viewButton")}

@@ -8,10 +8,13 @@ import homeIcon from '../../../assets/svgIcon/homeIcon.svg';
 import chevronIcon from '../../../assets/svgIcon/chevronnRight.svg';
 import listIcon from '../../../assets/svgIcon/listIcon.svg';
 import { useTranslation } from 'react-i18next';
+import { useAppSelector } from '@/store/hook';
+import axios from 'axios';
 
 type ViewMode = 'list' | 'grid';
 
 export default function PatientsView() {
+  const { accessToken } = useAppSelector((state) => state.auth);
   const [viewMode, setViewMode] = useState<ViewMode>('list');
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0, width: 0 });
@@ -23,6 +26,34 @@ export default function PatientsView() {
     { type: 'list', label: t('dashboard.routes.patients.buttons.list'), icon: <List className="w-5 h-5" /> },
     { type: 'grid', label: t('dashboard.routes.patients.buttons.grid'), icon: <Grid className="w-5 h-5" /> },
   ];
+
+  const [patients, setPatients] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchPatients = async () => {
+      try {
+        setLoading(true);
+
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/doctor/patient/all`,
+          {
+            headers: { Authorization: `Bearer ${accessToken}` },
+          }
+        );
+
+        setPatients(response.data.data.patients);
+      } catch (error) {
+        console.log(error);
+        setError("Failed to load patients");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPatients();
+  }, []);
 
   // Update dropdown position when opened
   useEffect(() => {
@@ -110,7 +141,10 @@ export default function PatientsView() {
 
         {/* Content */}
         <div>
-          {viewMode === 'list' ? <ListView /> : <GridView />}
+          {viewMode === 'list'
+            ? <ListView patients={patients} loading={loading} error={error} />
+            : <GridView patients={patients} loading={loading} error={error} />
+          }
         </div>
       </div>
 

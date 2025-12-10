@@ -2,22 +2,25 @@ import { ArrowUpRight } from 'lucide-react'
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-const ListView = () => {
+interface Patient {
+  id: string;
+  insuranceId: string;
+  firstName: string;
+  lastName: string;
+  phone: string;
+  createdAt: string;
+}
+interface ListViewProps {
+  patients: Patient[];
+  loading: boolean;
+  error: string | null;
+}
+const ListView = ({ patients, loading, error }: ListViewProps) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  const patients = [
-    { id: 'SRN-10101', name: 'Floyd Miles', phone: '+88234565', date: '24-06-2024' },
-    { id: 'SRN-10101', name: 'Floyd Miles', phone: '+88234565', date: '24-06-2024' },
-    { id: 'SRN-10101', name: 'Floyd Miles', phone: '+88234565', date: '24-06-2024' },
-    { id: 'SRN-10101', name: 'Floyd Miles', phone: '+88234565', date: '24-06-2024' },
-    { id: 'SRN-10101', name: 'Floyd Miles', phone: '+88234565', date: '24-06-2024' },
-    { id: 'SRN-10101', name: 'Floyd Miles', phone: '+88234565', date: '24-06-2024' },
-    { id: 'SRN-10101', name: 'Floyd Miles', phone: '+88234565', date: '24-06-2024' },
-    { id: 'SRN-10101', name: 'Floyd Miles', phone: '+88234565', date: '24-06-2024' },
-    { id: 'SRN-10101', name: 'Floyd Miles', phone: '+88234565', date: '24-06-2024' },
-    { id: 'SRN-10101', name: 'Floyd Miles', phone: '+88234565', date: '24-06-2024' }
-  ];
+  if (loading) return <p className="p-4 text-center">Loading...</p>;
+  if (error) return <p className="p-4 text-red-600">{error}</p>;
 
   return (
     <div>
@@ -46,12 +49,12 @@ const ListView = () => {
             </thead>
 
             <tbody className="divide-y divide-gray-200">
-              {patients.map((patient, index) => (
-                <tr key={index}>
-                  <td className="px-6 py-4 text-sm">{patient.id}</td>
+              {patients.map((patient) => (
+                <tr key={patient.id} className=" transition-colors">
+                  <td className="px-6 py-4 text-sm">{patient.insuranceId}</td>
 
                   <td className="px-6 py-4 text-sm text-[#171C35]">
-                    {patient.name}
+                    {patient.firstName} {patient.lastName}
                   </td>
 
                   <td className="px-6 py-4 text-sm text-[#171C35]">
@@ -59,7 +62,7 @@ const ListView = () => {
                   </td>
 
                   <td className="px-6 py-4 text-sm text-[#171C35]">
-                    {patient.date}
+                    {patient.createdAt.split("T")[0]}
                   </td>
 
                   <td className="px-6 py-4">

@@ -10,16 +10,26 @@ import { useNavigate } from 'react-router-dom';
 import { PatientRecordsModal } from './PatientRecordModal';
 import { DeleteConfirmModal, DeleteSuccessMessage } from './DeleteModal';
 import { useTranslation } from 'react-i18next';
+import { useAppSelector } from '@/store/hook';
+import axios from 'axios';
 
 interface Task {
-  id: number;
+  id: string | any;
   title: string;
   description: string;
-  priority: 'High' | 'Medium' | 'Low';
-  time: string;
+  priority: 'HIGH' | 'MEDIUM' | 'LOW';
+  time: string | null;
   dueDate: string;
-  completed: boolean;
+  completed?: boolean; 
+  status: 'TODO' | 'IN_PROGRESS' | 'DONE';
+  patient?: {
+    id: string;
+    firstName: string;
+    lastName: string;
+    photo: string | null;
+  } | null;
 }
+
 
 interface Column {
   id: string;
@@ -28,9 +38,13 @@ interface Column {
   tasks: Task[];
 }
 
+
 export default function TaskList() {
   const { t } = useTranslation();
+  const { accessToken } = useAppSelector((state) => state.auth);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  
   
   // Interface for translated task
   interface TranslatedTask {
@@ -78,27 +92,63 @@ export default function TaskList() {
       }))
     };
   }, [t]);
+    const [columns, setColumns] = useState<Column[]>([
+  { id: 'todo', title: 'To Do', count: 0, tasks: [] },
+  { id: 'inprogress', title: 'In Progress', count: 0, tasks: [] },
+  { id: 'done', title: 'Done', count: 0, tasks: [] },
+]);
+useEffect(() => {
+  const fetchTasks = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.get(
+      'https://1x5kkm9k-5000.asse.devtunnels.ms/api/v1/doctor/task/all?page=1&limit=100',
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      console.log(response)
 
-  const [columns, setColumns] = useState<Column[]>([
-    {
-      id: 'todo',
-      title: t("dashboard.routes.taskList.columns.todo"),
-      count: 5,
-      tasks: getInitialTasks.todo,
-    },
-    {
-      id: 'inprogress',
-      title: t("dashboard.routes.taskList.columns.inprogress"),
-      count: 5,
-      tasks: getInitialTasks.inprogress,
-    },
-    {
-      id: 'done',
-      title: t("dashboard.routes.taskList.columns.done"),
-      count: 5,
-      tasks: getInitialTasks.done,
-    },
-  ]);
+      const tasks: Task[] = response.data.data.tasks; 
+      console.log(tasks)
+      setColumns(prevCols =>
+        prevCols.map(col => ({
+          ...col,
+          tasks: tasks.filter(task => {
+            if (col.id === 'todo') return task.status === 'TODO';
+            if (col.id === 'inprogress') return task.status === 'IN_PROGRESS';
+            if (col.id === 'done') return task.status === 'DONE';
+            return false;
+          }),
+          count: tasks.filter(task => {
+            if (col.id === 'todo') return task.status === 'TODO';
+            if (col.id === 'inprogress') return task.status === 'IN_PROGRESS';
+            if (col.id === 'done') return task.status === 'DONE';
+            return false;
+          }).length
+        }))
+      );
+    } catch (error) {
+      console.error('Error fetching tasks:', error);
+    }finally{
+      setLoading(false);
+    }
+  };
+
+  fetchTasks();
+}, []);
+console.log(columns)
+  const getPriorityColor = (priority: Task['priority']) => {
+  switch (priority) {
+    case 'HIGH': return 'bg-[#FF3D3D] text-white';
+    case 'MEDIUM': return 'bg-[#FF883D] text-white';
+    case 'LOW': return 'bg-[#88BFFF] text-white';
+    default: return 'bg-gray-400 text-white';
+  }
+};
+
+
 
   // Update columns when language changes
   useEffect(() => {
@@ -123,21 +173,13 @@ export default function TaskList() {
     })));
   }, [t, getInitialTasks]);
 
-  const getPriorityColor = (priority: Task['priority']) => {
-    switch (priority) {
-      case 'High': return 'bg-[#FF3D3D] text-white';
-      case 'Medium': return 'bg-[#FF883D] text-white';
-      case 'Low': return 'bg-[#88BFFF] text-white';
-      default: return 'bg-gray-400 text-white';
-    }
-  };
 
   // Translate priority
   const translatePriority = (priority: Task['priority']) => {
     const priorityMap: Record<string, string> = {
-      'High': t("dashboard.routes.taskList.priority.high"),
-      'Medium': t("dashboard.routes.taskList.priority.medium"),
-      'Low': t("dashboard.routes.taskList.priority.low"),
+      'HIGH': t("dashboard.routes.taskList.priority.high"),
+      'MEDIUM': t("dashboard.routes.taskList.priority.medium"),
+      'LOW': t("dashboard.routes.taskList.priority.low"),
     };
     return priorityMap[priority] || priority;
   };
@@ -145,45 +187,66 @@ export default function TaskList() {
   const [showAddModal, setShowAddModal] = useState(false);
   const [editingTask, setEditingTask] = useState<Task | null>(null);
   const [currentColumnId, setCurrentColumnId] = useState<string>('todo');
-  const [selectedTaskIds, setSelectedTaskIds] = useState<number[]>([]);
+const [selectedTaskIds, setSelectedTaskIds] = useState<string[]>([]);
   const [showRecordModal, setShowRecordModal] = useState(false);
   const [modalTask, setModalTask] = useState<{ task: Task, columnId: string } | null>(null);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [showDeleteSuccess, setShowDeleteSuccess] = useState(false);
 
+    const getStatusFromColumnId = (columnId: string): Task['status'] => {
+  switch (columnId) {
+    case 'todo':
+      return 'TODO';
+    case 'inprogress':
+      return 'IN_PROGRESS';
+    case 'done':
+      return 'DONE';
+    default:
+      throw new Error('Invalid column id');
+  }
+};
+
   const handleAddTask = (task: Omit<Task, 'id' | 'completed' | 'time'> & { status: string }) => {
-    const columnId = task.status.toLowerCase().replace(/\s/g, '');
-    const targetColumn = columns.find(col => col.id === columnId);
-    if (!targetColumn) return;
+  const columnId = task.status.toLowerCase().replace(/\s/g, '');
+  const targetColumn = columns.find(col => col.id === columnId);
+  if (!targetColumn) return;
 
-    if (editingTask) {
-      setColumns(prev =>
-        prev.map(col => {
-          const isTarget = col.id === targetColumn.id;
-          let updatedTasks = col.tasks.filter(t => t.id !== editingTask.id);
-          if (isTarget) updatedTasks = [{ ...editingTask, ...task, priority: task.priority }, ...updatedTasks];
-          return { ...col, tasks: updatedTasks, count: updatedTasks.length };
-        })
-      );
-    } else {
-      const newTask: Task = {
-        id: Date.now(),
-        completed: false,
-        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        title: task.title,
-        description: task.description,
-        priority: task.priority as Task['priority'],
-        dueDate: task.dueDate,
-      };
-      setColumns(prev =>
-        prev.map(col => col.id === targetColumn.id ? { ...col, tasks: [newTask, ...col.tasks], count: col.tasks.length + 1 } : col)
-      );
-    }
+  if (editingTask) {
+    // Editing existing task
+    setColumns(prev =>
+      prev.map(col => {
+        const isTarget = col.id === targetColumn.id;
+        let updatedTasks = col.tasks.filter(t => t.id !== editingTask.id);
+        if (isTarget) updatedTasks = [{ ...editingTask, ...task, priority: task.priority, status: getStatusFromColumnId(columnId) }, ...updatedTasks];
+        return { ...col, tasks: updatedTasks, count: updatedTasks.length };
+      })
+    );
+  } else {
+    // Adding new task
+    const newTask: Task = {
+      id: Date.now().toString(), // better: uuid
+      completed: false,
+      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      title: task.title,
+      description: task.description,
+      status: getStatusFromColumnId(columnId), // ✅ correct
+      priority: task.priority as Task['priority'],
+      dueDate: task.dueDate,
+    };
 
-    setEditingTask(null);
-    setShowAddModal(false);
-    setSelectedTaskIds([]);
-  };
+    setColumns(prev =>
+      prev.map(col =>
+        col.id === targetColumn.id
+          ? { ...col, tasks: [newTask, ...col.tasks], count: [newTask, ...col.tasks].length }
+          : col
+      )
+    );
+  }
+
+  setEditingTask(null);
+  setShowAddModal(false);
+  setSelectedTaskIds([]);
+};
 
   const openAddModal = (columnId: string) => {
     setEditingTask(null);
@@ -220,7 +283,23 @@ export default function TaskList() {
     setShowDeleteConfirm(true);
   };
 
-  const confirmDeleteTasks = () => {
+  const confirmDeleteTasks = async () => {
+  if (selectedTaskIds.length === 0) return;
+
+  try {
+    setLoading(true);
+
+    // Send delete requests for each selected task
+    await Promise.all(
+      selectedTaskIds.map(taskId =>
+        axios.delete(
+          `${import.meta.env.VITE_API_URL}/doctor/task/delete/${taskId}`,
+          { headers: { Authorization: `Bearer ${accessToken}` } }
+        )
+      )
+    );
+
+    // Update frontend after successful delete
     setColumns(prevColumns =>
       prevColumns.map(col => {
         const updatedTasks = col.tasks.filter(task => !selectedTaskIds.includes(task.id));
@@ -232,74 +311,92 @@ export default function TaskList() {
     setShowDeleteSuccess(true);
     setTimeout(() => setShowDeleteSuccess(false), 2000);
     setSelectedTaskIds([]);
-  };
+  } catch (error) {
+    console.error('Failed to delete tasks', error);
+    alert('Failed to delete task(s). Please try again.');
+  } finally {
+    setLoading(false);
+  }
+};
 
   const cancelDeleteTask = () => {
     setShowDeleteConfirm(false);
   };
 
-  const toggleTaskSelection = (taskId: number) => {
-    setSelectedTaskIds(prev => {
-      if (prev.includes(taskId)) {
-        return prev.filter(id => id !== taskId);
-      } else {
-        return [...prev, taskId];
-      }
-    });
-  };
+  const toggleTaskSelection = (taskId: string) => {
+  setSelectedTaskIds(prev =>
+    prev.includes(taskId) ? prev.filter(id => id !== taskId) : [...prev, taskId]
+  );
+};
 
-  const onDragStart = (e: React.DragEvent<HTMLDivElement>, taskId: number, sourceColumnId: string) => {
-    if (selectedTaskIds.includes(taskId) && selectedTaskIds.length > 1) {
-      e.dataTransfer.setData('taskIds', JSON.stringify(selectedTaskIds));
-    } else {
-      e.dataTransfer.setData('taskIds', JSON.stringify([taskId]));
-    }
-    e.dataTransfer.setData('sourceColumnId', sourceColumnId);
-  };
+  const onDragStart = (e: React.DragEvent<HTMLDivElement>, taskId: string, sourceColumnId: string) => {
+  const taskIdsToDrag = selectedTaskIds.includes(taskId) ? selectedTaskIds : [taskId];
+  e.dataTransfer.setData('taskIds', JSON.stringify(taskIdsToDrag));
+  e.dataTransfer.setData('sourceColumnId', sourceColumnId);
+};
 
   const onDragOver = (e: React.DragEvent<HTMLDivElement>) => e.preventDefault();
 
-  const onDrop = (e: React.DragEvent<HTMLDivElement>, targetColumnId: string) => {
-    const taskIdsStr = e.dataTransfer.getData('taskIds');
-    const sourceColumnId = e.dataTransfer.getData('sourceColumnId');
-    
-    if (!taskIdsStr || !sourceColumnId) return;
-    
-    const taskIds: number[] = JSON.parse(taskIdsStr);
+const onDrop = async (e: React.DragEvent<HTMLDivElement>, targetColumnId: string) => {
+  e.preventDefault();
+  const taskIdsStr = e.dataTransfer.getData('taskIds');
+  const sourceColumnId = e.dataTransfer.getData('sourceColumnId');
+  if (!taskIdsStr || !sourceColumnId) return;
 
-    setColumns(prevColumns => {
-      const movedTasks: Task[] = [];
-      
-      const newColumns = prevColumns.map(col => {
-        if (col.id === sourceColumnId) {
-          const remainingTasks = col.tasks.filter(task => {
-            if (taskIds.includes(task.id)) {
-              movedTasks.push(task);
-              return false;
-            }
-            return true;
-          });
-          return { ...col, tasks: remainingTasks, count: remainingTasks.length };
-        }
-        return col;
-      });
+  const taskIds: string[] = JSON.parse(taskIdsStr);
+  let movedTasks: Task[] = [];
 
-      return newColumns.map(col => {
-        if (col.id === targetColumnId && movedTasks.length > 0) {
-          return { ...col, tasks: [...movedTasks, ...col.tasks], count: col.tasks.length + movedTasks.length };
-        }
-        return col;
-      });
-    });
-    
+  // Show loader
+  setLoading(true);
+
+  // Prepare tasks to move
+  const sourceColumn = columns.find(col => col.id === sourceColumnId);
+  if (!sourceColumn) return;
+  movedTasks = sourceColumn.tasks.filter(task => taskIds.includes(task.id));
+
+  // API call first
+  try {
+    await Promise.all(
+      movedTasks.map(task =>
+        axios.patch(
+          `${import.meta.env.VITE_API_URL}/doctor/task/update/${task.id}`,
+          { status: getStatusFromColumnId(targetColumnId) },
+          { headers: { Authorization: `Bearer ${accessToken}` } }
+        )
+      )
+    );
+
+    // Only update frontend after successful backend update
+    setColumns(prevColumns => prevColumns.map(col => {
+      if (col.id === sourceColumnId) {
+        const remainingTasks = col.tasks.filter(task => !taskIds.includes(task.id));
+        return { ...col, tasks: remainingTasks, count: remainingTasks.length };
+      }
+      if (col.id === targetColumnId) {
+        return { ...col, tasks: [...movedTasks, ...col.tasks], count: col.tasks.length + movedTasks.length };
+      }
+      return col;
+    }));
+
     setSelectedTaskIds([]);
-  };
-
+  } catch (err) {
+    console.error('Failed to update tasks', err);
+    alert('Failed to move task. Please try again.');
+  } finally {
+    setLoading(false);
+  }
+};
   const hasSelectedTasks = selectedTaskIds.length > 0;
   const hasMultipleSelected = selectedTaskIds.length > 1;
 
   return (
     <div className="mt-2.5 md:mt-[30px]" onClick={() => setSelectedTaskIds([])}>
+      {loading && (
+          <div className="fixed inset-0 bg-black opacity-60 flex items-center justify-center z-[9999]">
+            <div className="loader border-4 border-blue-500 border-t-transparent rounded-full w-12 h-12 animate-spin"></div>
+          </div>
+      )}
+
       {/* Header */}
       <div className="pb-4">
         <div className="flex items-center gap-2 text-sm text-gray-600 mb-4">
