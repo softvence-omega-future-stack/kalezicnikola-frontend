@@ -1,37 +1,67 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import copy from '../../../assets/svgIcon/copy2.svg';
 // import avatar from '../../../assets/img/avatar2.svg';
 import { useTranslation } from 'react-i18next';
 
-
 interface Message {
   id: number;
-  sender: 'Floyd Miles' | 'user';
-  userId: string;
+  sender: string;
   text: string;
   avatar?: string;
 }
 
 interface TranscriptChatProps {
-  currentMessageId?: number; // Currently playing message ID
-  isPlaying?: boolean; // Is audio playing
+  currentMessageId?: number;
+  isPlaying?: boolean;
+  transcription?: string; // NEW: the text to display
 }
+
 
 const TranscriptChat: React.FC<TranscriptChatProps> = ({ 
   currentMessageId = 1, 
-  isPlaying = false 
+  isPlaying = false,
+  transcription = ""  
 }) => {
   const [copiedId, setCopiedId] = useState<number | null>(null);
     const [allCopied, setAllCopied] = useState(false);
-   const {t} = useTranslation()
+   const {t} = useTranslation();
+     const [messages, setMessages] = useState<Message[]>([]);
 
-  const messages: Message[] = [
-    { id: 1, sender: 'Floyd Miles', userId: '000032', text: 'Fall möglich, bitte am 28.10 um 14:00 Uhr' },
-    { id: 2, sender: 'user', userId: '', text: 'An Welchen Tag und um welche Uhrzeit möchten Sie einen Termin haben?' },
-    { id: 3, sender: 'Floyd Miles', userId: '000032', text: ' ich benötige einen Termin zur Blutabnahme. ', avatar: 'https://i.ibb.co/XZV3J9Gd/tabler-list.png' },
-    { id: 4, sender: 'user', userId: '', text: 'Willkommen in der Praxis Dr. Meier, mein Name ist Sarah. Wie kann ich Ihnen helfen?' },
-    { id: 5, sender: 'Floyd Miles', userId: '000032', text: ' ich benötige einen Termin zur Blutabnahme.' }
-  ];
+      // Parse backend transcription into messages
+  useEffect(() => {
+    if (!transcription) return;
+
+    const parsedMessages = transcription
+      .split('\n')
+      .filter(Boolean)
+      .map((line, index) => {
+        const [senderRaw, ...rest] = line.split(':');
+        return {
+          id: index + 1,
+          sender: senderRaw.trim(), // AI or User
+          text: rest.join(':').trim(),
+        };
+      });
+
+    setMessages(parsedMessages);
+  }, [transcription]);
+
+  // const messages: Message[] = [
+  //   { id: 1, sender: 'Floyd Miles', userId: '000032', text: 'Fall möglich, bitte am 28.10 um 14:00 Uhr' },
+  //   { id: 2, sender: 'user', userId: '', text: 'An Welchen Tag und um welche Uhrzeit möchten Sie einen Termin haben?' },
+  //   { id: 3, sender: 'Floyd Miles', userId: '000032', text: ' ich benötige einen Termin zur Blutabnahme. ', avatar: 'https://i.ibb.co/XZV3J9Gd/tabler-list.png' },
+  //   { id: 4, sender: 'user', userId: '', text: 'Willkommen in der Praxis Dr. Meier, mein Name ist Sarah. Wie kann ich Ihnen helfen?' },
+  //   { id: 5, sender: 'Floyd Miles', userId: '000032', text: ' ich benötige einen Termin zur Blutabnahme.' }
+  // ];
+  // Split transcript into lines for messages
+  // const messages: Message[] = transcription
+  //   ? transcript.split("\n").map((line, index) => ({
+  //       id: index + 1,
+  //       sender: index % 2 === 0 ? 'Floyd Miles' : 'user', // Optional: alternate for demo
+  //       userId: index % 2 === 0 ? '000032' : '',
+  //       text: line,
+  //     }))
+  //   : [];
 
   const copyMessage = (id: number, text: string) => {
     navigator.clipboard.writeText(text);
@@ -70,13 +100,13 @@ const TranscriptChat: React.FC<TranscriptChatProps> = ({
 
         <div className="flex flex-col gap-3">
           {messages.map((msg) => {
-            const isFloyd = msg.sender === 'Floyd Miles';
-            const isActive = isPlaying && msg.id === currentMessageId;
+          const isAI = msg.sender === 'AI';
+          const isActive = isPlaying && msg.id === currentMessageId;
 
             return (
-              <div key={msg.id} className={`flex ${isFloyd ? 'justify-start' : 'justify-end'} gap-3 items-start`}>
+              <div key={msg.id} className={`flex ${isAI ? 'justify-start' : 'justify-end'} gap-3 items-start`}>
                 {/* Left Side - Floyd Avatar */}
-                {isFloyd && (
+                {isAI && (
                   <div className="w-10 h-10 sm:w-12 sm:h-12 border border-gray-100 rounded-full flex items-center justify-center flex-shrink-0">
                     {msg.avatar ? (
                       // <img src={msg.avatar} alt="avatar" className="w-full h-full rounded-full object-cover" />
@@ -111,19 +141,19 @@ const TranscriptChat: React.FC<TranscriptChatProps> = ({
                 )}
 
                 {/* Message Box */}
-                <div className={`relative group ${isFloyd ? '' : 'ml-auto'}`}>
+                <div className={`relative group ${isAI ? '' : 'ml-auto'}`}>
                   <div 
                     className={`inline-block px-4 py-3 rounded-3xl transition-all duration-300 max-w-[600px] ${
                       isActive 
                         ? 'bg-white border border-[#526FFF]' 
-                        : isFloyd 
+                        : isAI 
                           ? 'bg-[#F5F5F5] border border-white'
                           : 'bg-[#EDEFF6] border border-white'
                     }`}
                   >
                     <div className="flex items-start gap-2">
                       {/* Copy icon for Floyd (left side of text) */}
-                      {isFloyd && (
+                      {isAI && (
                         <button
                           onClick={() => copyMessage(msg.id, msg.text)}
                           className="p-1 rounded transition-opacity opacity-0 group-hover:opacity-100 shrink-0 cursor-pointer hover:bg-gray-100"
@@ -133,12 +163,12 @@ const TranscriptChat: React.FC<TranscriptChatProps> = ({
                         </button>
                       )}
 
-                      <p className={`text-[#171C35] text-sm leading-relaxed flex-1 ${isFloyd ? 'text-left' : 'text-left'}`}>
+                      <p className={`text-[#171C35] text-sm leading-relaxed flex-1 ${isAI ? 'text-left' : 'text-left'}`}>
                         {msg.text}
                       </p>
 
                       {/* Copy icon for User (right side of text) */}
-                      {!isFloyd && (
+                      {!isAI && (
                         <button
                           onClick={() => copyMessage(msg.id, msg.text)}
                           className="p-1 rounded transition-opacity opacity-0 group-hover:opacity-100 shrink-0 cursor-pointer hover:bg-gray-100"
@@ -159,7 +189,7 @@ const TranscriptChat: React.FC<TranscriptChatProps> = ({
                 </div>
 
                 {/* Right Side - Blue Icon for User Messages */}
-                {!isFloyd && (
+                {!isAI && (
                   <div className=" flex items-center justify-center flex-shrink-0">
                     <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
   <rect width="48" height="48" rx="24" fill="#526FFF"/>

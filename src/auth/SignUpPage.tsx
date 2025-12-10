@@ -63,8 +63,8 @@ export default function SignupPage() {
       }).unwrap();
 
       if (result.success) {
-        // toast.success(result.message);
-        localStorage.setItem("setVerificationEmail", data.email);
+        toast.success(result.message);
+        // localStorage.setItem("setVerificationEmail", data.email);
         navigate("/login");
       }
     } catch (err: any) {
@@ -193,7 +193,9 @@ export default function SignupPage() {
                   className="w-4 h-4 mt-0.5 text-blue-600 focus:ring-blue-500 cursor-pointer"
                 />
                 <label className="text-sm text-gray-600">{t('auth.signupPage.agreeTerms')}</label>
+
               </div>
+                {errors.agreeTerms && <p className="text-red-500 text-xs mt-1">{errors.agreeTerms.message}</p>}
 
               {/* Button */}
               <button

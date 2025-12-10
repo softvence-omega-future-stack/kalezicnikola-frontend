@@ -59,11 +59,25 @@ export default function AddTaskModal({ onClose, onAddTask, initialTask }: AddTas
   const [loading,setLoading] = useState<boolean>(false)
   const isEditing = initialTask && 'id' in initialTask;
 
+  const normalizeStatus = (status: string): Status => {
+  const cleaned = status.replace(/\s/g, "").toUpperCase();
+
+  if (cleaned === "TODO") return "TODO";
+  if (cleaned === "INPROGRESS") return "IN_PROGRESS";
+  if (cleaned === "DONE") return "DONE";
+
+  return "TODO"; // fallback
+};
+
+
+
   const initialData: FormData = {
     title: isEditing ? (initialTask as Task).title : '',
     description: isEditing ? (initialTask as Task).description : '',
     patientId: isEditing ? initialTask.patient?.id || "" : "",
-    status: (initialTask?.status?.toUpperCase() as Status) || 'TODO',
+    status: initialTask?.status ? normalizeStatus(initialTask.status) : "TODO",
+
+
     priority: isEditing
       ? ((initialTask as Task).priority.toUpperCase() as Priority)
       : 'LOW',
@@ -80,9 +94,8 @@ export default function AddTaskModal({ onClose, onAddTask, initialTask }: AddTas
 
   useEffect(() => {
     const fetchPatients = async () => {
-      setLoading(true);
       try {
-
+        setLoading(true);
         const response = await axios.get(
           `${import.meta.env.VITE_API_URL}/doctor/patient/all`,
           {
@@ -147,6 +160,7 @@ const handleSubmit = async (e: React.FormEvent) => {
     dueDate: formData.dueDate,
     patientId: formData.patientId,
   };
+  console.log(payload)
 
   try {
     setLoading(true)
@@ -160,7 +174,7 @@ const handleSubmit = async (e: React.FormEvent) => {
         { headers: { Authorization: `Bearer ${accessToken}` } }
       );
     } else {
-      // 🔥 POST = Create Task
+      // POST = Create Task
       response = await axios.post(
         `${import.meta.env.VITE_API_URL}/doctor/task/create`,
         payload,
@@ -173,12 +187,12 @@ const handleSubmit = async (e: React.FormEvent) => {
     // Update parent list
     onAddTask(response.data.data.task);
     onClose();
-    setLoading(true)
+    // setLoading(true);
   } catch (error: any) {
     if (axios.isAxiosError(error) && error.response) {
-      alert(error.response.data.message || "Server error");
+      toast.error(error.response.data.message || "Server error");
     } else {
-      alert("An unexpected error occurred");
+      toast.error("An unexpected error occurred");
     }
   }finally{
     setLoading(false)

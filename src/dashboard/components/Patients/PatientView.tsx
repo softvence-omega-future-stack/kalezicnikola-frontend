@@ -107,7 +107,7 @@ export default function PatientsView() {
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 w-full">
             {/* Title */}
             <h1 className="text-xl font-semibold text-[#171C35]">
-              {t('dashboard.routes.patients.totalPatients', { count: 60 })}
+              {t('dashboard.routes.patients.totalPatients', { count: patients.length })}
             </h1>
 
             {/* Button Group */}
