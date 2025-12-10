@@ -109,7 +109,7 @@ const menuItems = [
                 </button>
                 <button
                   onClick={() => navigate("/login")}
-                  className="px-5 py-3.5 text-base font-medium leading-4 text-[#171C35] bg-white rounded-full transition cursor-pointer whitespace-nowrap shadow-md"
+                  className="px-5 py-3.5 text-base font-medium leading-4 text-[#171C35] bg-white rounded-full transition cursor-pointer whitespace-nowrap "
                 >
                  {t("landingPage.navigation.login")}
                 </button>
