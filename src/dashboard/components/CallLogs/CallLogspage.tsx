@@ -51,7 +51,7 @@ const CallLogsPage: React.FC = () => {
 const [callData, setCallData] = useState<CallHistoryItem[]>([]);
   const { accessToken } = useAppSelector((state) => state.auth);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [, setError] = useState(null);
   const modalRef = useRef<HTMLDivElement>(null);
   const statuses = ['Successful', 'Unsuccessful', 'Transferred', 'Missed'] as const;
 
