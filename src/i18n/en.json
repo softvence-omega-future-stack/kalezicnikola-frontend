@@ -68,20 +68,7 @@
     "slides": [
       {
         "id": 1,
-         "cardBadge": "Task",
-        "title": "Clear Overview. More Efficiency",
-        "subtitle": "The dashboard that makes management easier and faster.",
-        "list": [
-          "See all key metrics, patients, and appointments in one view.",
-          "Unanswered calls and pending tasks clearly highlighted.",
-          "Easy to navigate and quick to master."
-        ],
-        "img": "slider1.svg",
-        "bgColor": "bg-[#FADACA]"
-      },
-      {
-        "id": 2,
-              "cardBadge": "Dashboard",
+          "cardBadge": "Dashboard",
         "title": "Collaborative Dashboard",
         "subtitle": "Work together in real time.",
         "list": [
@@ -94,21 +81,9 @@
         "bgColor": "bg-[#DBECFF]"
       },
       {
-        "id": 3,
-         "cardBadge": "Calendar & Patient Card",
-        "title": "Patient & Data Insights",
-        "subtitle": "Get a complete view of performance data.",
-        "list": [
-          "Track daily, weekly, and monthly reports easily.",
-          "Compare analytics to measure productivity.",
-          "Generate insights for better decisions."
-        ],
-        "img": "slider3.svg",
-        "bgColor": "bg-[#F5DFF1]"
-      },
-      {
-        "id": 4,
-      "cardBadge": "Call logs, transcription & audio",
+        "id": 2,
+  
+                  "cardBadge": "Call logs, transcription & audio",
         "title": "Optimized Workflow",
         "subtitle": "Integrated task management ensures efficiency.",
         "list": [
@@ -118,6 +93,37 @@
         ],
         "img": "Slider02.svg",
         "bgColor": "bg-[#CACDFA]"
+      },
+      {
+        "id": 3,
+               "cardBadge": "Calendar & Patient Card",
+        "title": "Patient & Data Insights",
+        "subtitle": "Get a complete view of performance data.",
+        "list": [
+          "Track daily, weekly, and monthly reports easily.",
+          "Compare analytics to measure productivity.",
+          "Generate insights for better decisions."
+        ],
+        "img": "slider3.svg",
+        "bgColor": "bg-[#F5DFF1]"
+   
+
+        
+      },
+      {
+        "id": 4,
+            "cardBadge": "Task",
+        "title": "Clear Overview. More Efficiency",
+        "subtitle": "The dashboard that makes management easier and faster.",
+        "list": [
+          "See all key metrics, patients, and appointments in one view.",
+          "Unanswered calls and pending tasks clearly highlighted.",
+          "Easy to navigate and quick to master."
+        ],
+        "img": "slider1.svg",
+        "bgColor": "bg-[#FADACA]"
+
+  
       }
     ]
   
@@ -217,8 +223,8 @@
       {
         
         "quote": "Since using Docline, we know that our patients can always reach us while our team works stress-free. The solution not only transformed our phone accessibility but also significantly improved team morale. A real relief in daily practice.",
-        "name": "DR. MAGDALENA S.",
-        "title": "DERMATOLOGIST",
+        "name": "Barbara S.",
+        "title": "General Practitioner",
         "stats": {
           "timeSaved": "11h",
           "timeSavedLabel": "Time saved per week",
@@ -229,8 +235,8 @@
       {
         
         "quote": "The implementation of Docline was seamless and the results exceeded our expectations. Our patients appreciate constant accessibility.",
-        "name": "DR. THOMAS M.",
-        "title": "GENERAL PRACTITIONER",
+        "name": "Alejandro H",
+        "title": "Dentist",
         "stats": {
           "timeSaved": "15h",
           "timeSavedLabel": "Time saved per week",
@@ -241,8 +247,8 @@
       {
        
         "quote": "Docline revolutionized our practice. The team can finally focus on important tasks while patients are well taken care of.",
-        "name": "DR. SARAH K.",
-        "title": "DENTIST",
+        "name": "Michael S.",
+        "title": "Radiologist",
         "stats": {
           "timeSaved": "13h",
           "timeSavedLabel": "Time saved per week",

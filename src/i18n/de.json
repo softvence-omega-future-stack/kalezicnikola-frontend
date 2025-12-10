@@ -12,7 +12,7 @@
   "hero": {
     "badge": "Nie wieder Telefonstress",
     "heading": "24/7 Erreichbarkeit für Ihre Patienten.||| Null Telefonstress für Ihr Team.",
-    "subText": "Unser intelligenter KI-Assistent erledigt alle Anrufe rund um die Uhr. Er plant Termine, beantwortet Fragen, erstellt automatisch Aufgaben und entlastet Ihr Team.",
+    "subText": "Unser intelligenter KI-Assistent übernimmt alle Telefonate rund um die Uhr. Er vereinbart Termine, beantwortet Fragen, erstellt automatisiert Aufgaben und entlastet Ihr Team.",
   "getStarted": "Jetzt starten",
   "bookDemo": "Demo buchen"
   },
@@ -36,7 +36,7 @@
     "triage": {
       "title": "Intelligente Triage & Rufweiterleitung",
       "text1": "Die KI erkennt Notfälle. Komplexe Anfragen werden ",
-      "text2": "priorisiert und direkt an das zuständige MFA durchgestellt."
+      "text2": "priorisiert und direkt an die zuständige MFA durchgestellt."
     },
 
     "availability": {
@@ -67,20 +67,7 @@
    "slides": [
   {
     "id": 1,
-     "cardBadge": "Task",
-    "title": "Ihr Workflow. Optimiert",
-    "subtitle": "Verabschieden Sie sich von Zetteln und Unklarheit. Das integrierte Task-Management sorgt für eine transparente und effiziente Abarbeitung aller Praxis-Aufgaben.",
-    "list": [
-      "Unerledigte Anliegen werden sofort zur Aufgabe.",
-      "Unterteilen Sie Aufgaben in: Offen - In Arbeit - Erledigt.",
-      "Manuelle Task-Erstellung für die interne Administration"
-    ],
-    "img": "slider1.svg",
-    "bgColor": "bg-[#FADACA]"
-  },
-  {
-    "id": 2,
-               "cardBadge": "Dashboard",
+                "cardBadge": "Dashboard",
     "title": "Klare Übersicht. Mehr Effizienz",
     "subtitle": "Das Dashboard, das Freude macht..",
     "list": [
@@ -92,8 +79,9 @@
     "bgColor": "bg-[#DBECFF]"
   },
   {
-    "id": 3,
-            "cardBadge": "Anrufprotokolle, Transkription & Audio",
+    "id": 2,
+  
+      "cardBadge": "Anrufprotokolle, Transkription & Audio",
     "title": "Jeder Anruf, vollständig erfasst",
     "subtitle": "Docline protokolliert jedes Gespräch. Es erstellt präzise Transkripte, liefert eine klare KI-gestützte Zusammenfassung und archiviert die Original-Audiospur.",
     "list": [
@@ -106,8 +94,9 @@
     "bgColor": "bg-[#F5DFF1]"
   },
   {
-    "id": 4,
-        "cardBadge": "Kalendar & Patientenkartei",
+    "id": 3,
+          
+           "cardBadge": "Kalendar & Patientenkartei",
     "title": "Intelligenter Kalender & Patienten-Kartei",
     "subtitle": "Fehlerfreie Terminverwaltung durch KI-Eintragung.",
     "list": [
@@ -118,6 +107,21 @@
     "img": "slider3.svg",
 
     "bgColor": "bg-[#CACDFA]"
+  },
+  {
+    "id": 4,
+      "cardBadge": "Task",
+    "title": "Ihr Workflow. Optimiert",
+    "subtitle": "Verabschieden Sie sich von Zetteln und Unklarheit. Das integrierte Task-Management sorgt für eine transparente und effiziente Abarbeitung aller Praxis-Aufgaben.",
+    "list": [
+      "Unerledigte Anliegen werden sofort zur Aufgabe.",
+      "Unterteilen Sie Aufgaben in: Offen - In Arbeit - Erledigt.",
+      "Manuelle Task-Erstellung für die interne Administration"
+    ],
+    "img": "slider1.svg",
+    "bgColor": "bg-[#FADACA]"
+
+ 
   }
 ]
 
@@ -229,8 +233,8 @@
       {
         
         "quote": "Die Implementierung von Docline verlief reibungslos und die Ergebnisse übertrafen unsere Erwartungen. Unsere Patienten schätzen die ständige Erreichbarkeit.",
-        "name": "DR. THOMAS M.",
-        "title": "ALLGEMEINMEDIZINER",
+        "name": "Alejandro H.",
+        "title": "Zahnarzt",
         "stats": {
           "timeSaved": "15h",
           "timeSavedLabel": "Zeitersparniss pro Woche",
@@ -241,8 +245,8 @@
       {
         
         "quote": "Docline hat unsere Praxis revolutioniert. Das Team kann sich endlich auf wichtige Aufgaben konzentrieren, während die Patienten gut versorgt sind.",
-        "name": "DR. SARAH K.",
-        "title": "ZAHNÄRZTIN",
+        "name": "Michael S..",
+        "title": "Radiologe",
         "stats": {
           "timeSaved": "13h",
           "timeSavedLabel": "Zeitersparniss pro Woche",
