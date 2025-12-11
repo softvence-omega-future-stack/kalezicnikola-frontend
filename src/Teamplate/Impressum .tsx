@@ -169,7 +169,7 @@ const Impressum: React.FC = () => {
   const lang = i18n.language as 'en' | 'de';
 
   return (
-    <div className="container w-[93%] mx-auto mt-24 p-4 sm:p-6 lg:p-10  text-gray-800 leading-relaxed">
+    <div className="container w-[93%] mx-auto mt-24  p-4 sm:p-6 lg:p-10  text-gray-800 leading-relaxed">
 
       {/* --------------------------- IMPRESSUM --------------------------- */}
       <section>
