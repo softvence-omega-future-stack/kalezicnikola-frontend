@@ -1,248 +1,413 @@
+import React, { useEffect } from "react";
+import { useTranslation } from 'react-i18next';
 
-// import Head from 'next/head';
+const impressumData = {
+  title: {
+    en: "Legal Notice",
+    de: "Impressum"
+  },
+  subtitle: {
+    en: "Information obligation according to § 5 E-Commerce Act, § 14 Commercial Code, § 63 Trade Regulation and disclosure obligation according to § 25 Media Act.",
+    de: "Informationspflicht laut § 5 E-Commerce Gesetz, § 14 Unternehmensgesetzbuch, § 63 Gewerbeordnung und Offenlegungspflicht laut § 25 Mediengesetz."
+  },
+  companyInfo: {
+    berufsbezeichnung: {
+      label: {
+        en: "Professional Designation:",
+        de: "Berufsbezeichnung:"
+      },
+      value: {
+        en: "Services in automatic data processing and information technology",
+        de: "Dienstleistungen in der automatischen Datenverarbeitung und Informationstechnik"
+      }
+    },
+    uid: {
+      label: {
+        en: "UID Number:",
+        de: "UID-Nummer:"
+      },
+      value: {
+        en: "Will be submitted",
+        de: "Wird nachgereicht"
+      }
+    },
+    firmensitz: {
+      label: {
+        en: "Company Headquarters:",
+        de: "Firmensitz:"
+      },
+      value: "6460 Imst"
+    },
+    mail: {
+      label: {
+        en: "Email:",
+        de: "Mail:"
+      },
+      value: "info@docline.ai"
+    },
+    web: {
+      label: "Web:",
+      value: "www.docline.ai"
+    },
+    mitglied: {
+      label: {
+        en: "Member of:",
+        de: "Mitglied bei:"
+      },
+      value: "WKO Tirol"
+    },
+    berufsrecht: {
+      label: {
+        en: "Professional Law:",
+        de: "Berufsrecht:"
+      },
+      value: {
+        en: "Trade Regulation (www.ris.bka.gv.at)",
+        de: "Gewerbeordnung (www.ris.bka.gv.at)"
+      }
+    },
+    aufsicht: {
+      label: {
+        en: "Supervisory Authority:",
+        de: "Aufsichtsbehörde:"
+      },
+      value: "Bezirkshauptmannschaft Imst"
+    },
+    unternehmens: {
+      label: {
+        en: "Business Purpose:",
+        de: "Unternehmensgegenstand:"
+      },
+      value: {
+        en: "Operation of a cloud-based software solution (SaaS) for the medical sector.",
+        de: "Betrieb einer cloudbasierten Softwarelösung (SaaS) für den medizinischen Bereich."
+      }
+    },
+    verleihung: {
+      label: {
+        en: "Country of Award:",
+        de: "Verleihungsstaat:"
+      },
+      value: {
+        en: "Austria",
+        de: "Österreich"
+      }
+    }
+  },
+  euDispute: {
+    title: {
+      en: "EU Dispute Resolution",
+      de: "EU-Streitschlichtung"
+    },
+    para1: {
+      en: "In accordance with the Regulation on Online Dispute Resolution in Consumer Matters (ODR Regulation), we would like to inform you about the Online Dispute Resolution Platform (OS Platform).",
+      de: "Gemäß Verordnung über Online-Streitbeilegung in Verbraucherangelegenheiten (ODR-Verordnung) möchten wir Sie über die Online-Streitbeilegungsplattform (OS-Plattform) informieren."
+    },
+    para2: {
+      en: "Consumers have the opportunity to submit complaints to the Online Dispute Resolution platform of the European Commission at",
+      de: "Verbraucher haben die Möglichkeit, Beschwerden an die Online Streitbeilegungsplattform der Europäischen Kommission unter"
+    },
+    para2End: {
+      en: "to address. The necessary contact details can be found above in our legal notice. However, we would like to point out that we are not willing or obliged to participate in dispute resolution proceedings before a consumer arbitration board.",
+      de: "zu richten. Die dafür notwendigen Kontaktdaten finden Sie oberhalb in unserem Impressum. Wir möchten Sie jedoch darauf hinweisen, dass wir nicht bereit oder verpflichtet sind, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen."
+    }
+  },
+  liability: {
+    title: {
+      en: "Liability for Content of this Website",
+      de: "Haftung für Inhalte dieser Website"
+    },
+    para1: {
+      en: "We are constantly developing the content of this website and strive to provide correct and up-to-date information. Unfortunately, we cannot accept liability for the correctness of all content, especially for content provided by third parties.",
+      de: "Wir entwickeln die Inhalte dieser Website ständig weiter und bemühen uns, korrekte und aktuelle Informationen bereitzustellen. Leider können wir keine Haftung für die Korrektheit aller Inhalte übernehmen, speziell für jene, die seitens Dritter bereitgestellt wurden."
+    },
+    para2: {
+      en: "Our obligations to remove or block information under general laws remain unaffected even in the event of lack of responsibility.",
+      de: "Unsere Verpflichtungen zur Entfernung oder Sperrung von Informationen nach den allgemeinen Gesetzen bleiben auch im Falle fehlender Verantwortlichkeit unberührt."
+    },
+    para3: {
+      en: "If you notice problematic or illegal content, please contact us immediately.",
+      de: "Sollten Ihnen problematische oder rechtswidrige Inhalte auffallen, kontaktieren Sie uns bitte umgehend."
+    }
+  },
+  copyright: {
+    title: {
+      en: "Copyright Notice",
+      de: "Urheberrechtshinweis"
+    },
+    para1: {
+      en: "All content on this website (images, photos, texts, videos) is subject to copyright. Please ask us before distributing or reusing this content.",
+      de: "Alle Inhalte dieser Website (Bilder, Fotos, Texte, Videos) unterliegen dem Urheberrecht. Bitte fragen Sie uns, bevor Sie diese Inhalte verbreiten oder weiterverwenden."
+    },
+    para2: {
+      en: "If you find content that violates copyright, please inform us.",
+      de: "Sollten Sie Inhalte finden, die das Urheberrecht verletzen, bitten wir Sie, uns zu informieren."
+    }
+  },
+  imageCredits: {
+    title: {
+      en: "Image Credits",
+      de: "Bildnachweis"
+    },
+    para1: {
+      en: "The photos, images and graphics on this website are protected by copyright.",
+      de: "Die Fotos, Bilder und Grafiken auf dieser Website sind urheberrechtlich geschützt."
+    },
+    para2: {
+      en: "The image rights belong to the following photographers and companies:",
+      de: "Die Bildrechte liegen bei den folgenden Fotografen und Unternehmen:"
+    },
+    para3: {
+      en: "All texts are protected by copyright.",
+      de: "Alle Texte sind urheberrechtlich geschützt."
+    }
+  }
+};
 
-const Impressum = () => {
-  const hospitalInfo = {
-    name: "Docline. Alle Rechte vorbehalten.",
-    legalForm: "Private Limited Hospital",
-    registrationNo: "REG-123456789",
-    address: "Medical Road, Sector-10,German",
-    phone: "+880-2-XXXX-XXXX",
-    email: "info@hospitalname.com",
-    website: "www.hospitalname.com",
-    chairperson: "Dr. A. B. C. Rahman",
-    medicalSuperintendent: "Dr. A. K. Azad",
-    dataProtectionOfficer: "Mr. Md. Karim",
-    ministryRegNo: "MOHFW-2023-4567",
-    district: "Dhaka",
-    medicalCouncilNo: "BMDC-7890",
-    vatNo: "VAT-567890123",
-    emergencyPhone: "+880-1711-XXXXXX"
-  };
+const Impressum: React.FC = () => {
+  const { i18n } = useTranslation();
+  const lang = i18n.language as 'en' | 'de';
+
+    useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
-    <>
-  <div className='pt-[100px]'>
+    <div className="container w-[93%] mx-auto mt-24  p-4 sm:p-6 lg:p-10  text-gray-800 leading-relaxed">
+
+      {/* --------------------------- IMPRESSUM --------------------------- */}
+      <section>
+  <h1 className="relative w-fit mx-auto text-2xl sm:text-3xl md:text-[44px] text-headingBlack font-semibold mb-5 text-center
+  after:content-[''] after:block after:w-20 after:h-0.5 after:bg-gray-300 after:mx-auto after:mt-5">
+  {impressumData.title[lang]}
+</h1>
 
 
-        <title>Impressum (Legal Information) | {hospitalInfo.name}</title>
-        <meta name="description" content="Legal information and contact details of the hospital" />
-   </div>
+        <p className="text-base sm:text-lg md:text-xl max-w-[900px] mx-auto font-normal text-subHeadingBlack leading-[140%] text-center mb-6">
+          {impressumData.subtitle[lang]}
+        </p>
+      
 
-      <div className="min-h-screen  py-8">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Header */}
-          <div className="text-center mb-10">
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
-              Impressum
-            </h1>
-            <p className="text-gray-600">
-              (Legal Disclosure – Mandatory according to German/European law)
-            </p>
-            <div className="w-24 h-1 bg-blue-600 mx-auto mt-4"></div>
-          </div>
+        {/* Company Information */}
+        <div className="mb-10">
+          <h2 className="text-2xl  leading-[120%] font-semibold text-headingBlack mb-3">Docline</h2>
 
-          {/* Content */}
-          <div className="">
-            <div className="space-y-8">
-              {/* Section 1 */}
-              <section>
-                <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
-                  <span className="bg-blue-100 text-blue-600 rounded-full w-8 h-8 flex items-center justify-center mr-3">
-                    1
-                  </span>
-                  About this Site
-                </h2>
-                <div className="ml-11">
-                  <p className="text-gray-700 mb-3">
-                    This website is operated as a doctor dashboard system by <strong>{hospitalInfo.name}</strong>.
-                  </p>
-                  <p className="text-gray-700">
-                    It is intended solely for registered doctors and medical staff. A separate portal exists for general patients.
-                  </p>
-                </div>
-              </section>
+          <p className="text-sm sm:text-base md:text-lg font-normal leading-7">Pfarrgasse 7/12</p>
+          <p className="text-sm sm:text-base md:text-lg font-normal leading-7">6460 Imst</p>
+          <p className="mb-4 text-sm sm:text-base md:text-lg  font-normal leading-7">
+            {lang === 'de' ? 'Österreich' : 'Austria'}
+          </p>
 
-              {/* Section 2 */}
-              <section>
-                <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
-                  <span className="bg-blue-100 text-blue-600 rounded-full w-8 h-8 flex items-center justify-center mr-3">
-                    2
-                  </span>
-                  Service Provider
-                </h2>
-                <div className="ml-11 bg-blue-50 p-5 rounded-lg">
-                  <ul className="space-y-3">
-                    <li className="flex">
-                      <span className="font-medium text-gray-800 w-40">Hospital Name:</span>
-                      <span className="text-gray-700">{hospitalInfo.name}</span>
-                    </li>
-                    <li className="flex">
-                      <span className="font-medium text-gray-800 w-40">Legal Form:</span>
-                      <span className="text-gray-700">{hospitalInfo.legalForm}</span>
-                    </li>
-                    <li className="flex">
-                      <span className="font-medium text-gray-800 w-40">Registration No:</span>
-                      <span className="text-gray-700">{hospitalInfo.registrationNo}</span>
-                    </li>
-                    <li className="flex">
-                      <span className="font-medium text-gray-800 w-40">Address:</span>
-                      <span className="text-gray-700">{hospitalInfo.address}</span>
-                    </li>
-                    <li className="flex">
-                      <span className="font-medium text-gray-800 w-40">Phone:</span>
-                      <span className="text-gray-700">{hospitalInfo.phone}</span>
-                    </li>
-                    <li className="flex">
-                      <span className="font-medium text-gray-800 w-40">Email:</span>
-                      <span className="text-gray-700">{hospitalInfo.email}</span>
-                    </li>
-                    <li className="flex">
-                      <span className="font-medium text-gray-800 w-40">Website:</span>
-                      <span className="text-gray-700">{hospitalInfo.website}</span>
-                    </li>
-                  </ul>
-                </div>
-              </section>
-
-              {/* Section 3 */}
-              <section>
-                <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
-                  <span className="bg-blue-100 text-blue-600 rounded-full w-8 h-8 flex items-center justify-center mr-3">
-                    3
-                  </span>
-                  Legal Representatives
-                </h2>
-                <div className="ml-11">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="bg-gray-50 p-5 rounded-lg">
-                      <h3 className="font-medium text-gray-800 mb-2">Chairperson / MD</h3>
-                      <p className="text-gray-700">{hospitalInfo.chairperson}</p>
-                    </div>
-                    <div className="bg-gray-50 p-5 rounded-lg">
-                      <h3 className="font-medium text-gray-800 mb-2">Medical Superintendent</h3>
-                      <p className="text-gray-700">{hospitalInfo.medicalSuperintendent}</p>
-                    </div>
-                    <div className="bg-gray-50 p-5 rounded-lg md:col-span-2">
-                      <h3 className="font-medium text-gray-800 mb-2">Data Protection Officer</h3>
-                      <p className="text-gray-700">{hospitalInfo.dataProtectionOfficer}</p>
-                      <p className="text-gray-600 text-sm mt-1">dpo@{hospitalInfo.website.replace('www.', '')}</p>
-                    </div>
-                  </div>
-                </div>
-              </section>
-
-              {/* Section 4 & 5 */}
-              <section>
-                <div className="grid md:grid-cols-2 gap-8">
-                  <div>
-                    <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
-                      <span className="bg-blue-100 text-blue-600 rounded-full w-8 h-8 flex items-center justify-center mr-3">
-                        4
-                      </span>
-                      Regulatory Authority
-                    </h2>
-                    <div className="ml-11">
-                      <ul className="space-y-2">
-                        <li className="text-gray-700">
-                          <span className="font-medium">Ministry Registration No:</span> {hospitalInfo.ministryRegNo}
-                        </li>
-                        <li className="text-gray-700">
-                          <span className="font-medium">District:</span> {hospitalInfo.district}
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-
-                  <div>
-                    <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
-                      <span className="bg-blue-100 text-blue-600 rounded-full w-8 h-8 flex items-center justify-center mr-3">
-                        5
-                      </span>
-                      Professional Oversight
-                    </h2>
-                    <div className="ml-11">
-                      <p className="text-gray-700 mb-2">
-                        Registered with Bangladesh Medical and Dental Council (BMDC)
-                      </p>
-                      <p className="text-gray-700">
-                        <span className="font-medium">Membership No:</span> {hospitalInfo.medicalCouncilNo}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </section>
-
-              {/* Section 6 */}
-              <section>
-                <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
-                  <span className="bg-blue-100 text-blue-600 rounded-full w-8 h-8 flex items-center justify-center mr-3">
-                    6
-                  </span>
-                  VAT Number
-                </h2>
-                <div className="ml-11">
-                  <div className="inline-block bg-green-50 border border-green-200 rounded-lg px-6 py-3">
-                    <p className="text-gray-800">
-                      <span className="font-medium">VAT/TIN Number:</span> {hospitalInfo.vatNo}
-                    </p>
-                  </div>
-                </div>
-              </section>
-
-              {/* Section 7 - Disclaimer */}
-              <section className="bg-red-50 border-l-4 border-red-500 p-5 rounded-r-lg">
-                <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
-                  <span className="bg-red-100 text-red-600 rounded-full w-8 h-8 flex items-center justify-center mr-3">
-                    ⚠
-                  </span>
-                  Important Notice
-                </h2>
-                <div className="ml-11">
-                  <p className="text-gray-700 mb-3">
-                    This portal is <strong>intended solely for professional use by doctors</strong>. It is not a platform to establish patient-doctor relationships.
-                  </p>
-                  <p className="text-gray-700 mb-4">
-                    In emergencies, please contact the hospital directly or call:
-                  </p>
-                  <div className="bg-white p-4 rounded-lg inline-block">
-                    <p className="text-red-600 font-bold text-xl">
-                      {hospitalInfo.emergencyPhone}
-                    </p>
-                  </div>
-                </div>
-              </section>
-
-              {/* Last Updated */}
-              <div className="pt-6 border-t border-gray-200">
-                <p className="text-gray-500 text-sm text-center">
-                  Last updated: {new Date().toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                  })}
-                </p>
-                <p className="text-gray-400 text-xs text-center mt-2">
-                  © {new Date().getFullYear()} {hospitalInfo.name}. All rights reserved.
-                </p>
-              </div>
+          <div className="space-y-2">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-0">
+              <strong className="font-semibold text-headingBlack text-sm sm:text-base md:text-lg leading-7 sm:w-60 md:w-80 shrink-0">
+                {impressumData.companyInfo.berufsbezeichnung.label[lang]}
+              </strong>
+              <p className="text-sm sm:text-base md:text-lg font-normal text-subHeadingBlack leading-[120%]">
+                {impressumData.companyInfo.berufsbezeichnung.value[lang]}
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-0">
+              <strong className="font-semibold text-headingBlack text-sm sm:text-base md:text-lg leading-7 sm:w-60 md:w-80 shrink-0">
+                {impressumData.companyInfo.uid.label[lang]}
+              </strong>
+              <p className="text-sm sm:text-base md:text-lg font-normal text-subHeadingBlack leading-[120%]">
+                {impressumData.companyInfo.uid.value[lang]}
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-0">
+              <strong className="font-semibold text-headingBlack text-sm sm:text-base md:text-lg leading-7 sm:w-60 md:w-80 shrink-0">
+                {impressumData.companyInfo.firmensitz.label[lang]}
+              </strong>
+              <p className="text-sm sm:text-base md:text-lg font-normal text-subHeadingBlack leading-[120%]">
+                {impressumData.companyInfo.firmensitz.value}
+              </p>
             </div>
           </div>
 
-          {/* Back Button */}
-          <div className="mt-8 text-center">
-            <button
-              onClick={() => window.history.back()}
-              className="inline-flex items-center px-5 py-2.5 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition"
-            >
-              ← Go Back
-            </button>
+          <div className="mt-4 space-y-2">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-0">
+              <strong className="font-semibold text-headingBlack text-sm sm:text-base md:text-lg leading-7 sm:w-60 md:w-80 shrink-0">
+                {impressumData.companyInfo.mail.label[lang]}
+              </strong>
+              <a 
+                href={`mailto:${impressumData.companyInfo.mail.value}`}
+                className="text-sm sm:text-base md:text-lg font-normal text-[#526FFF] underline hover:text-blue-600 leading-[120%]"
+              >
+                {impressumData.companyInfo.mail.value}
+              </a>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-0">
+              <strong className="font-semibold text-headingBlack text-sm sm:text-base md:text-lg leading-7 sm:w-60 md:w-80 shrink-0">
+                {impressumData.companyInfo.web.label}
+              </strong>
+              <a 
+                href={`https://${impressumData.companyInfo.web.value}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm sm:text-base md:text-lg font-normal text-[#526FFF] underline hover:text-blue-600 leading-[120%]"
+              >
+                {impressumData.companyInfo.web.value}
+              </a>
+            </div>
+          </div>
+
+          <div className="mt-4 space-y-2">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-0">
+              <strong className="font-semibold text-headingBlack text-sm sm:text-base md:text-lg leading-7 sm:w-60 md:w-80 shrink-0">
+                {impressumData.companyInfo.mitglied.label[lang]}
+              </strong>
+              <p className="text-sm sm:text-base md:text-lg font-normal text-subHeadingBlack leading-[120%]">
+                {impressumData.companyInfo.mitglied.value}
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-0">
+              <strong className="font-semibold text-headingBlack text-sm sm:text-base md:text-lg leading-7 sm:w-60 md:w-80 shrink-0">
+                {impressumData.companyInfo.berufsrecht.label[lang]}
+              </strong>
+              <p className="text-sm sm:text-base md:text-lg font-normal text-subHeadingBlack leading-[120%]">
+                {impressumData.companyInfo.berufsrecht.value[lang]}
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-0">
+              <strong className="font-semibold text-headingBlack text-sm sm:text-base md:text-lg leading-7 sm:w-60 md:w-80 shrink-0">
+                {impressumData.companyInfo.aufsicht.label[lang]}
+              </strong>
+              <p className="text-sm sm:text-base md:text-lg font-normal text-subHeadingBlack leading-[120%]">
+                {impressumData.companyInfo.aufsicht.value}
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-0">
+              <strong className="font-semibold text-headingBlack text-sm sm:text-base md:text-lg leading-7 sm:w-60 md:w-80 shrink-0">
+                {impressumData.companyInfo.unternehmens.label[lang]}
+              </strong>
+              <p className="text-sm sm:text-base md:text-lg font-normal text-subHeadingBlack leading-[120%]">
+                {impressumData.companyInfo.unternehmens.value[lang]}
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-0">
+              <strong className="font-semibold text-headingBlack text-sm sm:text-base md:text-lg leading-7 sm:w-60 md:w-80 shrink-0">
+                {impressumData.companyInfo.verleihung.label[lang]}
+              </strong>
+              <p className="text-sm sm:text-base md:text-lg font-normal text-subHeadingBlack leading-[120%]">
+                {impressumData.companyInfo.verleihung.value[lang]}
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-    </>
+
+        {/* --------------------------- EU DISPUTE RESOLUTION --------------------------- */}
+        <section className="mt-10 mb-10">
+          <h2 className="text-lg sm:text-xl md:text-2xl  leading-[140%] text-subHeadingBlack font-semibold mb-6">
+            {impressumData.euDispute.title[lang]}
+          </h2>
+
+          <p className="mb-6 text-sm sm:text-base md:text-lg text-subHeadingBlack font-normal leading-[140%]">
+            {impressumData.euDispute.para1[lang]}
+          </p>
+
+          <p className="text-sm sm:text-base md:text-lg text-subHeadingBlack font-normal leading-[140%]">
+            {impressumData.euDispute.para2[lang]}
+            <a
+              href="http://ec.europa.eu/odr/?tid=121890425"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#526FFF] underline hover:text-blue-600 ml-1"
+            >
+              http://ec.europa.eu/
+            </a>
+            {' '}{impressumData.euDispute.para2End[lang]}
+          </p>
+        </section>
+      </section>
+
+      {/* --------------------------- LIABILITY FOR CONTENT --------------------------- */}
+      <section className="my-12">
+        <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-subHeadingBlack leading-[140%] mb-6">
+          {impressumData.liability.title[lang]}
+        </h2>
+
+        <p className="mb-6 text-sm sm:text-base md:text-lg font-normal text-subHeadingBlack leading-[140%]">
+          {impressumData.liability.para1[lang]}
+        </p>
+
+        <p className="mb-6 text-sm sm:text-base md:text-lg font-normal text-subHeadingBlack leading-[140%]">
+          {impressumData.liability.para2[lang]}
+        </p>
+
+        <p className="text-sm sm:text-base md:text-lg font-normal text-subHeadingBlack leading-[140%]">
+          {impressumData.liability.para3[lang]}
+        </p>
+      </section>
+
+      {/* --------------------------- COPYRIGHT NOTICE --------------------------- */}
+      <section className="my-12">
+        <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-headingBlack leading-[140%] mb-6">
+          {impressumData.copyright.title[lang]}
+        </h2>
+
+        <p className="mb-6 text-sm sm:text-base md:text-lg text-subHeadingBlack font-normal leading-[140%]">
+          {impressumData.copyright.para1[lang]}
+        </p>
+
+        <p className="mb-6 text-sm sm:text-base md:text-lg text-subHeadingBlack font-normal leading-[140%]">
+          {impressumData.copyright.para2[lang]}
+        </p>
+      </section>
+
+      {/* --------------------------- IMAGE CREDITS --------------------------- */}
+      <section className="my-12">
+        <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-headingBlack leading-[140%] mb-6">
+          {impressumData.imageCredits.title[lang]}
+        </h2>
+
+        <p className="text-sm sm:text-base md:text-lg text-subHeadingBlack font-normal leading-[140%]">
+          {impressumData.imageCredits.para1[lang]}
+        </p>
+        <p className="text-sm sm:text-base md:text-lg text-subHeadingBlack font-normal leading-[140%] mb-6">
+          {impressumData.imageCredits.para2[lang]}
+        </p>
+
+        <ul  className="list-disc pl-5 text-xl space-y-2  mb-4">
+          <li className="text-sm sm:text-base md:text-lg font-semibold leading-[140%] text-subHeadingBlack">Docline </li>
+          <li className="text-sm sm:text-base md:text-lg font-semibold leading-[140%] text-subHeadingBlack">
+            <a
+              href="https://unsplash.com/de/@betoframe"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#526FFF] underline font-normal hover:text-blue-600"
+            >
+              @betoframe (Unsplash)
+            </a>
+          </li>
+          <li className="text-sm sm:text-base md:text-lg font-normal leading-[140%] text-subHeadingBlack">
+            <a
+              href="https://unsplash.com/de/@laurentyasiel"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#526FFF] underline hover:text-blue-600"
+            >
+              @laurentyasiel (Unsplash)
+            </a>
+          </li>
+          <li className="text-sm sm:text-base md:text-lg font-normal leading-[140%] text-subHeadingBlack">
+            <a
+              href="https://unsplash.com/de/@styligrande"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#526FFF] underline hover:text-blue-600"
+            >
+              @styligrande (Unsplash)  
+            </a>
+          </li>
+        </ul>
+
+        <p className="text-sm sm:text-base md:text-lg font-normal leading-[140%] text-subHeadingBlack">
+          {impressumData.imageCredits.para3[lang]}
+        </p>
+      </section>
+    </div>
   );
 };
 
 export default Impressum;
-

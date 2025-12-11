@@ -5,7 +5,7 @@ import CustomDropdown from '../Settings/Sidebar/CustomDropdown';
 import { useTranslation } from 'react-i18next';
 import { useAppSelector } from '@/store/hook';
 import { toast } from 'react-toastify';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 interface FormData {
   firstName: string;
@@ -30,11 +30,22 @@ interface FormErrors {
   [key: string]: string;
 }
 
+interface ApiErrorResponse {
+  message?: string;
+}
+
+interface ApiSuccessResponse {
+  message?: string;
+  data?: {
+    patients?: FormData[];
+  };
+}
+
 const AddPatientForm: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { accessToken } = useAppSelector((state) => state.auth)
-  const [allPatients, setAllPatients] = useState<FormData[]>([]); // store fetched patients
+  const { accessToken } = useAppSelector((state) => state.auth);
+  const [allPatients, setAllPatients] = useState<FormData[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
   const [formData, setFormData] = useState<FormData>({
@@ -55,7 +66,8 @@ const AddPatientForm: React.FC = () => {
     emergencyContactPhone: '',
     emergencyContactRelationship: '',
   });
-    const [errors, setErrors] = useState<FormErrors>({});
+  
+  const [errors, setErrors] = useState<FormErrors>({});
 
   const inputClass = "w-full px-4 py-2.5 bg-gray-50 border border-[#D0D5DD] rounded-[8px] text-sm text-[#111A2D] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#526FFF] focus:border-transparent";
   const labelClass = "block text-base font-medium text-[#171c35] mb-2";
@@ -64,68 +76,75 @@ const AddPatientForm: React.FC = () => {
   useEffect(() => {
     const getAllPatients = async () => {
       try {
-        const res = await axios.get(`${import.meta.env.VITE_API_URL}/doctor/patient/all`, {
-          headers: {
-            Authorization: accessToken ? `Bearer ${accessToken}` : '',
-          },
-        });
-      setAllPatients(res.data.data.patients || []);
-        return allPatients;
-      } catch (err: any) {
-              console.error("Failed to fetch patients:", err);
+        const res = await axios.get<ApiSuccessResponse>(
+          `${import.meta.env.VITE_API_URL}/doctor/patient/all`,
+          {
+            headers: {
+              Authorization: accessToken ? `Bearer ${accessToken}` : '',
+            },
+          }
+        );
+        setAllPatients(res.data.data?.patients || []);
+      } catch (err) {
+        if (axios.isAxiosError(err)) {
+          console.error("Failed to fetch patients:", err.message);
+        } else {
+          console.error("Failed to fetch patients:", err);
+        }
       }
     };
 
     getAllPatients();
-  }, []);
+  }, [accessToken]);
+
   // Validation function
   const validate = (): boolean => {
-  const newErrors: FormErrors = {};
-  const phoneRegex = /^\+?\d{7,15}$/;
+    const newErrors: FormErrors = {};
+    const phoneRegex = /^\+?\d{7,15}$/;
 
-  // Required validations
-  if (!formData.firstName.trim()) newErrors.firstName = "First name is required";
-  if (!formData.lastName.trim()) newErrors.lastName = "Last name is required";
-  if (!formData.dob) newErrors.dob = "Date of birth is required";
-  if (!formData.gender) newErrors.gender = "Gender is required";
-  if (!formData.bloodGroup) newErrors.bloodGroup = "Blood group is required";
-  if (!formData.maritalStatus) newErrors.maritalStatus = "Marital status is required";
-  if (!formData.city.trim()) newErrors.city = "City is required";
-  if (!formData.address.trim()) newErrors.address = "Address is required";
+    // Required validations
+    if (!formData.firstName.trim()) newErrors.firstName = "First name is required";
+    if (!formData.lastName.trim()) newErrors.lastName = "Last name is required";
+    if (!formData.dob) newErrors.dob = "Date of birth is required";
+    if (!formData.gender) newErrors.gender = "Gender is required";
+    if (!formData.bloodGroup) newErrors.bloodGroup = "Blood group is required";
+    if (!formData.maritalStatus) newErrors.maritalStatus = "Marital status is required";
+    if (!formData.city.trim()) newErrors.city = "City is required";
+    if (!formData.address.trim()) newErrors.address = "Address is required";
 
-  // Email validation + uniqueness
-  if (!formData.email.trim()) newErrors.email = "Email is required";
-  else if (!/^\S+@\S+\.\S+$/.test(formData.email)) newErrors.email = "Invalid email format";
-  else if (allPatients.some(p => p.email === formData.email))
-    newErrors.email = "This email is already used";
+    // Email validation + uniqueness
+    if (!formData.email.trim()) newErrors.email = "Email is required";
+    else if (!/^\S+@\S+\.\S+$/.test(formData.email)) newErrors.email = "Invalid email format";
+    else if (allPatients.some(p => p.email === formData.email))
+      newErrors.email = "This email is already used";
 
-  // Phone validation + uniqueness
-  if (!formData.phone.trim()) newErrors.phone = "Phone number is required";
-  else if (!phoneRegex.test(formData.phone)) newErrors.phone = "Invalid phone number";
-  else if (allPatients.some(p => p.phone === formData.phone))
-    newErrors.phone = "This phone number is already used";
+    // Phone validation + uniqueness
+    if (!formData.phone.trim()) newErrors.phone = "Phone number is required";
+    else if (!phoneRegex.test(formData.phone)) newErrors.phone = "Invalid phone number";
+    else if (allPatients.some(p => p.phone === formData.phone))
+      newErrors.phone = "This phone number is already used";
 
-  // Alternative phone uniqueness
-  if (formData.alternativePhone && !phoneRegex.test(formData.alternativePhone))
-    newErrors.alternativePhone = "Invalid alternative phone number";
-  else if (formData.alternativePhone && allPatients.some(p => p.alternativePhone === formData.alternativePhone))
-    newErrors.alternativePhone = "This alternative phone is already used";
+    // Alternative phone uniqueness
+    if (formData.alternativePhone && !phoneRegex.test(formData.alternativePhone))
+      newErrors.alternativePhone = "Invalid alternative phone number";
+    else if (formData.alternativePhone && allPatients.some(p => p.alternativePhone === formData.alternativePhone))
+      newErrors.alternativePhone = "This alternative phone is already used";
 
-  // Emergency contact uniqueness
-  if (formData.emergencyContactPhone && !phoneRegex.test(formData.emergencyContactPhone))
-    newErrors.emergencyContactPhone = "Invalid emergency contact phone";
-  else if (formData.emergencyContactPhone && allPatients.some(p => p.emergencyContactPhone === formData.emergencyContactPhone))
-    newErrors.emergencyContactPhone = "This emergency contact phone is already used";
+    // Emergency contact uniqueness
+    if (formData.emergencyContactPhone && !phoneRegex.test(formData.emergencyContactPhone))
+      newErrors.emergencyContactPhone = "Invalid emergency contact phone";
+    else if (formData.emergencyContactPhone && allPatients.some(p => p.emergencyContactPhone === formData.emergencyContactPhone))
+      newErrors.emergencyContactPhone = "This emergency contact phone is already used";
 
-  // Insurance ID uniqueness
-  if (formData.insuranceId && !/^[A-Z0-9-]+$/.test(formData.insuranceId))
-    newErrors.insuranceId = "Invalid insurance ID";
-  else if (formData.insuranceId && allPatients.some(p => p.insuranceId === formData.insuranceId))
-    newErrors.insuranceId = "This insurance ID is already used";
+    // Insurance ID uniqueness
+    if (formData.insuranceId && !/^[A-Z0-9-]+$/.test(formData.insuranceId))
+      newErrors.insuranceId = "Invalid insurance ID";
+    else if (formData.insuranceId && allPatients.some(p => p.insuranceId === formData.insuranceId))
+      newErrors.insuranceId = "This insurance ID is already used";
 
-  setErrors(newErrors);
-  return Object.keys(newErrors).length === 0;
-};
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -154,8 +173,8 @@ const AddPatientForm: React.FC = () => {
       } else {
         toast.error("An unexpected error occurred");
       }
-    } finally{
-      setLoading(false)
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -272,11 +291,12 @@ const AddPatientForm: React.FC = () => {
                 </label>
                 <CustomDropdown
                   value={formData.gender}
-                  onChange={(val) => handleDropdownChange("gender", val)} options={[
-                  { value: "MALE", label: "Male" },
-                  { value: "FEMALE", label: "Female" },
-                  { value: "OTHER", label: "Other" }
-                ]}
+                  onChange={(val) => handleDropdownChange("gender", val)} 
+                  options={[
+                    { value: "MALE", label: "Male" },
+                    { value: "FEMALE", label: "Female" },
+                    { value: "OTHER", label: "Other" }
+                  ]}
                   placeholder={t("dashboard.routes.patients.addPatient.fields.gender.placeholder")}
                 />
                 {errors.gender && <div className={errorClass}>{errors.gender}</div>}
@@ -289,16 +309,17 @@ const AddPatientForm: React.FC = () => {
                 </label>
                 <CustomDropdown
                   value={formData.bloodGroup}
-                  onChange={(val) => handleDropdownChange("bloodGroup", val)} options={[
-                  { value: 'A_POS', label: 'A+' },
-                  { value: 'A_NEG', label: 'A-' },
-                  { value: 'B_POS', label: 'B+' },
-                  { value: 'B_NEG', label: 'B-' },
-                  { value: 'O_POS', label: 'O+' },
-                  { value: 'O_NEG', label: 'O-' },
-                  { value: 'AB_POS', label: 'AB+' },
-                  { value: 'AB_NEG', label: 'AB-' },
-                ]}
+                  onChange={(val) => handleDropdownChange("bloodGroup", val)} 
+                  options={[
+                    { value: 'A_POS', label: 'A+' },
+                    { value: 'A_NEG', label: 'A-' },
+                    { value: 'B_POS', label: 'B+' },
+                    { value: 'B_NEG', label: 'B-' },
+                    { value: 'O_POS', label: 'O+' },
+                    { value: 'O_NEG', label: 'O-' },
+                    { value: 'AB_POS', label: 'AB+' },
+                    { value: 'AB_NEG', label: 'AB-' },
+                  ]}
                   placeholder={t("dashboard.routes.patients.addPatient.fields.bloodGroup.placeholder")}
                 />
                 {errors.bloodGroup && <div className={errorClass}>{errors.bloodGroup}</div>}
@@ -311,16 +332,16 @@ const AddPatientForm: React.FC = () => {
                 </label>
                 <CustomDropdown
                   value={formData.maritalStatus}
-                  onChange={(val) => handleDropdownChange("maritalStatus", val)} options={[
-                  { value: "UNMARRIED", label: "Single" },
-                  { value: "MARRIED", label: "Married" },
-                  { value: "DIVORCED", label: "Divorced" },
-                  { value: "WIDOWED", label: "Widowed" }
-                ]}
+                  onChange={(val) => handleDropdownChange("maritalStatus", val)} 
+                  options={[
+                    { value: "UNMARRIED", label: "Single" },
+                    { value: "MARRIED", label: "Married" },
+                    { value: "DIVORCED", label: "Divorced" },
+                    { value: "WIDOWED", label: "Widowed" }
+                  ]}
                   placeholder={t("dashboard.routes.patients.addPatient.fields.maritalStatus.placeholder")}
                 />
                 {errors.maritalStatus && <div className={errorClass}>{errors.maritalStatus}</div>}
-
               </div>
 
               {/* Insurance ID */}
@@ -360,8 +381,7 @@ const AddPatientForm: React.FC = () => {
                   placeholder={t("dashboard.routes.patients.addPatient.fields.email.placeholder")}
                   className={inputClass}
                 />
-                  {errors.email && <div className={errorClass}>{errors.email}</div>}
-
+                {errors.email && <div className={errorClass}>{errors.email}</div>}
               </div>
 
               {/* Phone */}
@@ -422,27 +442,53 @@ const AddPatientForm: React.FC = () => {
                   className={inputClass}
                 />
                 {errors.address && <div className={errorClass}>{errors.address}</div>}
-
               </div>
 
             </div>
           </div>
+
           {/* Emergency Contact */}
           <div className="mb-8 pb-4 border-b border-gray-100">
-            <h2 className="text-xl font-semibold text-[#171c35] mb-6">Emergency Contact</h2>
+            <h2 className="text-xl font-semibold text-[#171c35] mb-6">
+              {t("dashboard.routes.patients.addPatient.sections.emergencyContact")}
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <div className="relative">
-                <label className={labelClass}>Name</label>
-                <input name="emergencyContactName" value={formData.emergencyContactName} onChange={handleChange} className={inputClass} placeholder="Name" />
+                <label className={labelClass}>
+                  {t("dashboard.routes.patients.addPatient.fields.emergencyName.label")}
+                </label>
+                <input 
+                  name="emergencyContactName" 
+                  value={formData.emergencyContactName} 
+                  onChange={handleChange} 
+                  className={inputClass} 
+                  placeholder={t("dashboard.routes.patients.addPatient.fields.emergencyName.placeholder")} 
+                />
               </div>
               <div className="relative">
-                <label className={labelClass}>Phone</label>
-                <input name="emergencyContactPhone" value={formData.emergencyContactPhone} onChange={handleChange} className={inputClass} placeholder="Phone" />
+                <label className={labelClass}>
+                  {t("dashboard.routes.patients.addPatient.fields.emergencyPhone.label")}
+                </label>
+                <input 
+                  name="emergencyContactPhone" 
+                  value={formData.emergencyContactPhone} 
+                  onChange={handleChange} 
+                  className={inputClass} 
+                  placeholder={t("dashboard.routes.patients.addPatient.fields.emergencyPhone.placeholder")} 
+                />
                 {errors.emergencyContactPhone && <div className={errorClass}>{errors.emergencyContactPhone}</div>}
               </div>
               <div className="relative">
-                <label className={labelClass}>Relationship</label>
-                <input name="emergencyContactRelationship" value={formData.emergencyContactRelationship} onChange={handleChange} className={inputClass} placeholder="Relationship" />
+                <label className={labelClass}>
+                  {t("dashboard.routes.patients.addPatient.fields.emergencyRelationShip.label")}
+                </label>
+                <input 
+                  name="emergencyContactRelationship" 
+                  value={formData.emergencyContactRelationship} 
+                  onChange={handleChange} 
+                  className={inputClass} 
+                  placeholder={t("dashboard.routes.patients.addPatient.fields.emergencyRelationShip.placeholder")} 
+                />
               </div>
             </div>
           </div>
@@ -459,12 +505,12 @@ const AddPatientForm: React.FC = () => {
 
             <button
               type="submit"
-              className={`w-full px-6 py-3 rounded-lg bg-[#526FFF] text-whitetransition-colors cursor-pointer
-                    ${loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#526FFF] hover:bg-[#4159cc]'}
-                  `}
-                >
-                  {loading ? 'Adding Patient...' : t("dashboard.routes.patients.addPatient.buttons.submit")}
-              
+              disabled={loading}
+              className={`w-full px-6 py-3 rounded-lg text-white transition-colors
+                ${loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#526FFF] hover:bg-[#4159cc] cursor-pointer'}
+              `}
+            >
+              {loading ? 'Adding Patient...' : t("dashboard.routes.patients.addPatient.buttons.submit")}
             </button>
           </div>
 

@@ -8,7 +8,7 @@ import homeIcon from '../../../assets/svgIcon/homeIcon.svg';
 import chevronIcon from '../../../assets/svgIcon/chevronnRight.svg';
 import NewAppointmentModal from '../dashboard/NewAppointmentModal';
 import CalendarHeader from './CalendarHeader';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import { useAppSelector } from '@/store/hook';
@@ -59,6 +59,16 @@ const CalendarView: React.FC = () => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [appointments, setAppointments] = useState<Appointment[]>([]);
+
+  const location = useLocation();
+
+useEffect(() => {
+  const params = new URLSearchParams(location.search);
+  if (params.get("openModal") === "true") {
+    setIsModalOpen(true);
+  }
+}, [location]);
+
 
   const [open, setOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
