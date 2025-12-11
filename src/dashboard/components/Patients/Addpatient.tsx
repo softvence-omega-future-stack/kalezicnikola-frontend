@@ -159,18 +159,17 @@ const AddPatientForm: React.FC = () => {
     if (!validate()) return;
 
     try {
-      setLoading(true);
-      const response = await axios.post<ApiSuccessResponse>(
-        "https://1x5kkm9k-5000.asse.devtunnels.ms/api/v1/doctor/patient/add",
+      setLoading(true)
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/doctor/patient/add`,
         formData,
         { headers: { Authorization: `Bearer ${accessToken}` } }
       );
       toast.success(response.data.message || "Patient added successfully");
       navigate("/dashboard/patients");
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        const axiosError = error as AxiosError<ApiErrorResponse>;
-        toast.error(axiosError.response?.data?.message || "Server error");
+    } catch (error: any) {
+      if (axios.isAxiosError(error) && error.response) {
+        toast.error(error.response.data.message || "Server error");
       } else {
         toast.error("An unexpected error occurred");
       }

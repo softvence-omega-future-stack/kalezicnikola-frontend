@@ -107,11 +107,10 @@ useEffect(() => {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
-      })
-      console.log(response)
+      });
 
       const tasks: Task[] = response.data.data.tasks; 
-      console.log(tasks)
+
       setColumns(prevCols =>
         prevCols.map(col => ({
           ...col,
@@ -138,7 +137,7 @@ useEffect(() => {
 
   fetchTasks();
 }, []);
-console.log(columns)
+
   const getPriorityColor = (priority: Task['priority']) => {
   switch (priority) {
     case 'HIGH': return 'bg-[#FF3D3D] text-white';
@@ -339,6 +338,7 @@ const [selectedTaskIds, setSelectedTaskIds] = useState<string[]>([]);
 
 const onDrop = async (e: React.DragEvent<HTMLDivElement>, targetColumnId: string) => {
   e.preventDefault();
+  setLoading(true)
   const taskIdsStr = e.dataTransfer.getData('taskIds');
   const sourceColumnId = e.dataTransfer.getData('sourceColumnId');
   if (!taskIdsStr || !sourceColumnId) return;
@@ -347,7 +347,6 @@ const onDrop = async (e: React.DragEvent<HTMLDivElement>, targetColumnId: string
   let movedTasks: Task[] = [];
 
   // Show loader
-  setLoading(true);
 
   // Prepare tasks to move
   const sourceColumn = columns.find(col => col.id === sourceColumnId);

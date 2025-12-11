@@ -7,35 +7,92 @@ import DateRange from './DateRange';
 import PatientTranscriptPage from './TransscriptModal';
 
 import homeIcon from '../../../assets/svgIcon/homeIcon.svg';
+import axios from 'axios';
+import { useAppSelector } from '@/store/hook';
 
-interface CallLog {
-  id: number;
-  patientName: string;
-  timestamp: string;
-  phoneNumber: string;
-  status: 'Successful' | 'Unsuccessful' | 'Transferred' | 'Missed';
-  duration: string;
+interface Patient {
+  firstName: string;
+  lastName: string;
+  phone: string;
 }
+
+interface Appointment {
+  id: string;
+  appointmentDate: string;
+  status: string;
+}
+
+interface CallHistoryItem {
+  id: string;
+  doctorId: string;
+  patientId: string;
+  phoneNumber: string;
+  status?: 'Successful' | 'Unsuccessful' | 'Transferred' | 'Missed'; 
+  duration: string ;
+  transcription: string;
+  intent: string;
+  sentiment: string;
+  summary: string;
+  appointmentId: string | null;
+  patient: Patient;
+  insuranceId: string;
+  reasonForCalling: string;
+  transcript?: string; 
+  appointment: Appointment | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
 
 const CallLogsPage: React.FC = () => {
   const { t } = useTranslation();
-  const [currentCall, setCurrentCall] = useState<CallLog | null>(null);
+  const [currentCall, setCurrentCall] = useState<CallHistoryItem | null>(null);
   const navigate = useNavigate();
+const [callData, setCallData] = useState<CallHistoryItem[]>([]);
+  const { accessToken } = useAppSelector((state) => state.auth);
+  const [loading, setLoading] = useState(true);
+  const [, setError] = useState(null);
   const modalRef = useRef<HTMLDivElement>(null);
+  const statuses = ['Successful', 'Unsuccessful', 'Transferred', 'Missed'] as const;
 
-  const callLogs: CallLog[] = [
-    { id: 1, patientName: 'Floyd Miles', timestamp: '01-09-2025 at 10:32:15', phoneNumber: '+88123456', status: 'Successful', duration: '05:40 Sec' },
-    { id: 2, patientName: 'Floyd Miles', timestamp: '01-09-2025 at 10:32:15', phoneNumber: '+88123456', status: 'Unsuccessful', duration: '05:40 Sec' },
-    { id: 3, patientName: 'Floyd Miles', timestamp: '01-09-2025 at 10:32:15', phoneNumber: '+88123456', status: 'Successful', duration: '05:40 Sec' },
-    { id: 4, patientName: 'Floyd Miles', timestamp: '01-09-2025 at 10:32:15', phoneNumber: '+88123456', status: 'Transferred', duration: '05:40 Sec' },
-    { id: 5, patientName: 'Floyd Miles', timestamp: '01-09-2025 at 10:32:15', phoneNumber: '+88123456', status: 'Successful', duration: '05:40 Sec' },
-    { id: 6, patientName: 'Floyd Miles', timestamp: '01-09-2025 at 10:32:15', phoneNumber: '+88123456', status: 'Missed', duration: '05:40 Sec' },
-    { id: 7, patientName: 'Floyd Miles', timestamp: '01-09-2025 at 10:32:15', phoneNumber: '+88123456', status: 'Unsuccessful', duration: '05:40 Sec' },
-    { id: 8, patientName: 'Floyd Miles', timestamp: '01-09-2025 at 10:32:15', phoneNumber: '+88123456', status: 'Successful', duration: '05:40 Sec' },
-    { id: 9, patientName: 'Floyd Miles', timestamp: '01-09-2025 at 10:32:15', phoneNumber: '+88123456', status: 'Successful', duration: '05:40 Sec' },
-    { id: 10, patientName: 'Floyd Miles', timestamp: '01-09-2025 at 10:32:15', phoneNumber: '+88123456', status: 'Missed', duration: '05:40 Sec' },
-    { id: 11, patientName: 'Floyd Miles', timestamp: '01-09-2025 at 10:32:15', phoneNumber: '+88123456', status: 'Successful', duration: '05:40 Sec' },
-  ];
+
+const getRandomStatus = () => {
+  const randomIndex = Math.floor(Math.random() * statuses.length);
+  return statuses[randomIndex];
+};
+
+  useEffect(() => {
+    const fetchCallHistory = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/doctor/calls/history`,
+          {
+            headers: { Authorization: `Bearer ${accessToken}` },
+          }
+        );
+
+        if (response.data.success) {
+          // Add random status to each item
+          const callsWithStatus = response.data.data.data.map((call: CallHistoryItem) => ({
+            ...call,
+            status: getRandomStatus(),
+          }));
+
+          setCallData(callsWithStatus);
+          // when we have status
+          // setCallData(response.data.data.data); // your call data is nested here
+        } else {
+          setError(response.data.message);
+        }
+      } catch (err:any) {
+        setError(err.data.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCallHistory();
+  }, []);
 
   // Close modal on click outside
   useEffect(() => {
@@ -101,7 +158,11 @@ const CallLogsPage: React.FC = () => {
 
   return (
     <div className="min-h-screen md:mt-[30px]">
-
+      {loading && (
+          <div className="fixed inset-0 bg-black opacity-60 flex items-center justify-center z-[9999]">
+            <div className="loader border-4 border-blue-500 border-t-transparent rounded-full w-12 h-12 animate-spin"></div>
+          </div>
+      )}
       {/* Header Navigation */}
       <div className="">
         <div className="flex flex-wrap items-center gap-2 text-sm">
@@ -172,18 +233,18 @@ const CallLogsPage: React.FC = () => {
               </thead>
 
               <tbody className="divide-y divide-gray-100">
-                {callLogs.map((log) => (
+                {callData.map((log) => (
                   <tr key={log.id} className="hover:bg-gray-50">
                     <td className="px-2 sm:px-4 py-2 text-sm font-semibold text-[#111A2D] whitespace-nowrap">
-                      {log.patientName}
+                      {log.patient.firstName} {log.patient.lastName}
                     </td>
-                    <td className="px-2 sm:px-4 py-2 text-sm text-[#111A2D] whitespace-nowrap">{log.timestamp}</td>
+                    <td className="px-2 sm:px-4 py-2 text-sm text-[#111A2D] whitespace-nowrap">{log.createdAt}</td>
                     <td className="px-2 sm:px-4 py-2 text-sm text-[#111A2D] whitespace-nowrap">{log.phoneNumber}</td>
 
                     <td className="px-2 sm:px-4 py-2 whitespace-nowrap">
-                      <span className={`inline-flex w-[109px] justify-center items-center gap-1 px-2 py-1 rounded-full text-sm font-semibold ${getStatusStyle(log.status)}`}>
-                        <span className={`w-2 h-2 rounded-full ${getStatusDot(log.status)}`}></span>
-                        {getStatusTranslation(log.status)}
+                      <span className={`inline-flex w-[109px] justify-center items-center gap-1 px-2 py-1 rounded-full text-sm font-semibold ${getStatusStyle(log.status ?? "Missed")}`}>
+                        <span className={`w-2 h-2 rounded-full ${getStatusDot(log.status ?? "Missed")}`}></span>
+                        {getStatusTranslation(log.status ?? "Missed")}
                       </span>
                     </td>
 
@@ -238,7 +299,8 @@ const CallLogsPage: React.FC = () => {
             >
               <FiX size={20} />
             </button>
-            <PatientTranscriptPage />
+            <PatientTranscriptPage callData={currentCall} />
+
           </div>
         </div>
       )}

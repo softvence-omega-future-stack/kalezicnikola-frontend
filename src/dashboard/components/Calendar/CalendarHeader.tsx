@@ -3,9 +3,13 @@ import { createPortal } from "react-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
-export default function CalendarHeader() {
+interface CalendarHeaderProps {
+  selectedDate: Date;
+  onDateChange: (date: Date) => void;
+}
+export default function CalendarHeader({ selectedDate, onDateChange }: CalendarHeaderProps) {
   const { t } = useTranslation();
-  const [currentDate, setCurrentDate] = useState(new Date());
+  // const [currentDate, setCurrentDate] = useState(new Date());
   const [monthDropdownOpen, setMonthDropdownOpen] = useState(false);
   const [yearDropdownOpen, setYearDropdownOpen] = useState(false);
   const [monthPosition, setMonthPosition] = useState({ top: 0, left: 0, width: 0 });
@@ -31,24 +35,33 @@ export default function CalendarHeader() {
 
   const years = Array.from({ length: 31 }, (_, i) => 2000 + i); // 2000-2030
 
+  // Use selectedDate prop
+  // const currentMonth = selectedDate.getMonth();
+  // const currentYear = selectedDate.getFullYear();
+    const currentMonth = selectedDate ? selectedDate.getMonth() : new Date().getMonth();
+  const currentYear = selectedDate ? selectedDate.getFullYear() : new Date().getFullYear();
+
   const handlePrevMonth = () => {
-    setCurrentDate(prev => new Date(prev.getFullYear(), prev.getMonth() - 1, 1));
+    const newDate = new Date(currentYear, currentMonth - 1, 1);
+    onDateChange(newDate);
   };
 
   const handleNextMonth = () => {
-    setCurrentDate(prev => new Date(prev.getFullYear(), prev.getMonth() + 1, 1));
+    const newDate = new Date(currentYear, currentMonth + 1, 1);
+    onDateChange(newDate);
   };
 
   const handleMonthSelect = (monthIndex: number) => {
-    setCurrentDate(prev => new Date(prev.getFullYear(), monthIndex, 1));
+    const newDate = new Date(currentYear, monthIndex, 1);
+    onDateChange(newDate);
     setMonthDropdownOpen(false);
   };
 
   const handleYearSelect = (year: number) => {
-    setCurrentDate(prev => new Date(year, prev.getMonth(), 1));
+    const newDate = new Date(year, currentMonth, 1);
+    onDateChange(newDate);
     setYearDropdownOpen(false);
   };
-
   // Update month dropdown position
   useEffect(() => {
     if (monthDropdownOpen && monthRef.current) {
@@ -113,7 +126,8 @@ export default function CalendarHeader() {
           }}
           className="text-base sm:text-lg font-medium text-[#171C35] cursor-pointer px-2 py-1 rounded hover:bg-gray-100"
         >
-          {months[currentDate.getMonth()]}
+          {months[currentMonth]}
+          {/* {months[currentDate.getMonth()]} */}
         </div>
       </div>
 
@@ -152,7 +166,8 @@ export default function CalendarHeader() {
           }}
           className="text-base sm:text-lg font-medium text-[#171C35] cursor-pointer px-2 py-1 rounded hover:bg-gray-100"
         >
-          {currentDate.getFullYear()}
+          {currentYear}
+          {/* {currentDate.getFullYear()} */}
         </div>
       </div>
 

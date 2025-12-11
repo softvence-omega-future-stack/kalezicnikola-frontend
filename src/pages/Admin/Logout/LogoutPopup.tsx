@@ -42,13 +42,13 @@ const LogoutModal: React.FC<LogoutModalProps> = ({ onConfirm, onCancel }) => {
         <div className="flex flex-col sm:flex-row gap-3 mt-6 sm:mt-8">
           <button
             className="flex-1 py-3 px-6 bg-white border-2 border-gray-300 text-gray-700 rounded-xl font-medium hover:bg-gray-50 transition-colors cursor-pointer duration-200"
-            onClick={onCancel}
+            onClick={onConfirm}
           >
            {t("dashboard.routes.logoutModal.buttons.confirm")}
           </button>
           <button
             className="flex-1 py-3 px-6 bg-[#526FFF] text-white rounded-xl font-medium hover:bg-blue-700 transition-colors cursor-pointer duration-200"
-            onClick={onConfirm}
+            onClick={onCancel}
           >
             {t("dashboard.routes.logoutModal.buttons.cancel")}
           </button>

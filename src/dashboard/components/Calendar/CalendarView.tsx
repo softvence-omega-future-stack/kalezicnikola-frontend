@@ -10,12 +10,55 @@ import NewAppointmentModal from '../dashboard/NewAppointmentModal';
 import CalendarHeader from './CalendarHeader';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import axios from 'axios';
+import { useAppSelector } from '@/store/hook';
+import { toast } from 'react-toastify';
+
+export interface Appointment {
+  id: string;
+  patientId: string;
+  insuranceId: string;
+  doctorId: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  dob: string | null;
+  gender: string | null;
+  bloodGroup: string | null;
+  scheduleSlotId: string;
+  appointmentDate: string;
+  appointmentDetails: string;
+  address: string;
+  status: string;
+  type: string;
+  createdAt: string;
+  updatedAt: string;
+  deletedAt: string | null;
+  scheduleSlot: {
+    id: string;
+    startTime: string; // "09:00"
+    endTime: string;   // "10:00"
+  };
+  patient: {
+    id: string;
+    firstName: string;
+    lastName: string;
+    phone: string;
+    email: string;
+    insuranceId: string;
+    gender: string | null;
+    dob: string | null;
+  };
+}
 
 const CalendarView: React.FC = () => {
   const { t } = useTranslation();
+  const { accessToken } = useAppSelector((state) => state.auth);
   const [viewType, setViewType] = useState<'day' | 'week' | 'month'>('day');
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [appointments, setAppointments] = useState<Appointment[]>([]);
 
   const location = useLocation();
 
@@ -28,6 +71,8 @@ useEffect(() => {
 
 
   const [open, setOpen] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
   const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0, width: 0 });
   const dropdownRef = useRef<HTMLButtonElement>(null);
 
@@ -36,6 +81,57 @@ useEffect(() => {
     { label: t('dashboard.routes.calendar.views.week'), value: 'week' },
     { label: t('dashboard.routes.calendar.views.month'), value: 'month' },
   ];
+
+    useEffect(() => {
+      const fetchAppointments = async () => {
+        try {
+          const res = await axios.get(`${import.meta.env.VITE_API_URL}/appointment/all`,
+              {
+                headers: { Authorization: `Bearer ${accessToken}` },
+              });
+          setAppointments(res.data.data.appointments);
+        } catch (error:any) {
+          toast.error(error.response?.data?.message );
+        }
+      };
+
+      fetchAppointments();
+    }, [accessToken]);
+
+    const normalizeAppointments = appointments.map(a => ({
+      ...a,
+      date: new Date(a.appointmentDate)
+    }));
+
+    // Filter appointments by day
+    const filterByDay = (selectedDate: Date) => {
+      return normalizeAppointments.filter(a =>
+        a.date.toDateString() === selectedDate.toDateString()
+      );
+    };
+
+    // Filter appointments by week
+    const filterByWeek = (selectedDate: Date) => {
+      const startOfWeek = new Date(selectedDate);
+      startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay());
+
+      const endOfWeek = new Date(startOfWeek);
+      endOfWeek.setDate(startOfWeek.getDate() + 6);
+
+      return normalizeAppointments.filter(a =>
+        a.date >= startOfWeek && a.date <= endOfWeek
+      );
+    };
+
+    // Filter appointments by month
+    const filterByMonth = (selectedDate: Date) => {
+      const month = selectedDate.getMonth();
+      const year = selectedDate.getFullYear();
+
+      return normalizeAppointments.filter(a =>
+        a.date.getMonth() === month && a.date.getFullYear() === year
+      );
+    };
 
   const handleViewChange = (type: 'day' | 'week' | 'month') => {
     setViewType(type);
@@ -87,7 +183,11 @@ useEffect(() => {
         {/* Top Controls */}
         <div className="rounded-lg pt-6 mb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
-            <CalendarHeader />
+            <CalendarHeader
+              selectedDate={selectedDate}
+              onDateChange={(date: Date) => setSelectedDate(date)}
+            />
+
           </div>
 
           {/* Right Controls */}
@@ -122,9 +222,30 @@ useEffect(() => {
 
         {/* Calendar View */}
         <div className="overflow-x-auto rounded-3xl -mt-2">
-          {viewType === 'day' && <DayView />}
+          {/* {viewType === 'day' && <DayView />}
           {viewType === 'week' && <CalendarWeekView />}
-          {viewType === 'month' && <CalendarMonthView />}
+          {viewType === 'month' && <CalendarMonthView />} */}
+          {viewType === 'day' && (
+            <DayView
+              selectedDate={selectedDate}
+              appointments={filterByDay(selectedDate)}
+            />
+          )}
+
+          {viewType === 'week' && (
+            <CalendarWeekView
+              selectedDate={selectedDate}
+              appointments={filterByWeek(selectedDate)}
+            />
+          )}
+
+          {viewType === 'month' && (
+            <CalendarMonthView
+              selectedDate={selectedDate ?? new Date()} // fallback
+              appointments={filterByMonth(selectedDate ?? new Date())}
+            />
+          )}
+
         </div>
       </div>
 
