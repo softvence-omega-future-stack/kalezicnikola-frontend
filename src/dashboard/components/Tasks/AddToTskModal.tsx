@@ -105,7 +105,6 @@ export default function AddTaskModal({ onClose, onAddTask, initialTask }: AddTas
         );
 
         setPatient(response.data.data.patients);
-        // console.log(response.data.data.patients)
       } catch (error) {
         console.log(error);
       } finally{
@@ -186,6 +185,7 @@ const handleSubmit = async (e: React.FormEvent) => {
     
     // Update parent list
     onAddTask(response.data.data.task);
+    window.location.reload();
     onClose();
     // setLoading(true);
   } catch (error: any) {

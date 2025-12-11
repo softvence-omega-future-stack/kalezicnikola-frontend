@@ -12,6 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import { useAppSelector } from '@/store/hook';
+import { toast } from 'react-toastify';
 
 export interface Appointment {
   id: string;
@@ -79,9 +80,8 @@ const CalendarView: React.FC = () => {
                 headers: { Authorization: `Bearer ${accessToken}` },
               });
           setAppointments(res.data.data.appointments);
-          console.log(res.data.data.appointments);
-        } catch (error) {
-          console.log(error);
+        } catch (error:any) {
+          toast.error(error.response?.data?.message );
         }
       };
 
