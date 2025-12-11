@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 import SectionHeader from "./SectionHeader";
 import icon from "../assets/svgIcon/herologo.svg";
 import img1 from "../assets/svgIcon/taskSlider.svg";
-import img2 from "../assets/svgIcon/calllogsSlider.svg";
+import img2 from "../assets/img/callogsFalls.svg";
 import img3 from "../assets/svgIcon/slider3.svg";
 import img4 from "../assets/svgIcon/slider4.svg";
 

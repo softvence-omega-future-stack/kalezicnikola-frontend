@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useTranslation } from 'react-i18next';
 
 const impressumData = {
@@ -168,52 +168,58 @@ const Impressum: React.FC = () => {
   const { i18n } = useTranslation();
   const lang = i18n.language as 'en' | 'de';
 
+    useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <div className="container w-[93%] mx-auto mt-24 p-4 sm:p-6 lg:p-10 font-sans text-gray-800 leading-relaxed">
+    <div className="container w-[93%] mx-auto mt-24  p-4 sm:p-6 lg:p-10  text-gray-800 leading-relaxed">
 
       {/* --------------------------- IMPRESSUM --------------------------- */}
       <section>
-        <h1 className="text-3xl sm:text-4xl md:text-[64px] text-headingBlack font-semibold mb-5 text-center">
-          {impressumData.title[lang]}
-        </h1>
+  <h1 className="relative w-fit mx-auto text-2xl sm:text-3xl md:text-[44px] text-headingBlack font-semibold mb-5 text-center
+  after:content-[''] after:block after:w-20 after:h-0.5 after:bg-gray-300 after:mx-auto after:mt-5">
+  {impressumData.title[lang]}
+</h1>
 
-        <p className="text-base sm:text-lg md:text-2xl max-w-[900px] mx-auto font-normal text-subHeadingBlack leading-[140%] text-center mb-6">
+
+        <p className="text-base sm:text-lg md:text-xl max-w-[900px] mx-auto font-normal text-subHeadingBlack leading-[140%] text-center mb-6">
           {impressumData.subtitle[lang]}
         </p>
       
 
         {/* Company Information */}
         <div className="mb-10">
-          <h2 className="text-2xl sm:text-3xl md:text-[32px] leading-[120%] font-semibold text-headingBlack mb-3">Docline</h2>
+          <h2 className="text-2xl  leading-[120%] font-semibold text-headingBlack mb-3">Docline</h2>
 
-          <p className="text-lg sm:text-xl font-normal leading-7">Pfarrgasse 7/12</p>
-          <p className="text-lg sm:text-xl font-normal leading-7">6460 Imst</p>
-          <p className="mb-4 text-lg sm:text-xl font-normal leading-7">
+          <p className="text-sm sm:text-base md:text-lg font-normal leading-7">Pfarrgasse 7/12</p>
+          <p className="text-sm sm:text-base md:text-lg font-normal leading-7">6460 Imst</p>
+          <p className="mb-4 text-sm sm:text-base md:text-lg  font-normal leading-7">
             {lang === 'de' ? 'Österreich' : 'Austria'}
           </p>
 
           <div className="space-y-2">
             <div className="flex flex-col sm:flex-row gap-2 sm:gap-0">
-              <span className="font-semibold text-headingBlack text-lg sm:text-xl md:text-2xl leading-7 sm:w-60 md:w-80 shrink-0">
+              <strong className="font-semibold text-headingBlack text-sm sm:text-base md:text-lg leading-7 sm:w-60 md:w-80 shrink-0">
                 {impressumData.companyInfo.berufsbezeichnung.label[lang]}
-              </span>
-              <p className="text-base sm:text-lg md:text-xl font-normal text-subHeadingBlack leading-[120%]">
+              </strong>
+              <p className="text-sm sm:text-base md:text-lg font-normal text-subHeadingBlack leading-[120%]">
                 {impressumData.companyInfo.berufsbezeichnung.value[lang]}
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-2 sm:gap-0">
-              <span className="font-semibold text-headingBlack text-lg sm:text-xl md:text-2xl leading-7 sm:w-60 md:w-80 shrink-0">
+              <strong className="font-semibold text-headingBlack text-sm sm:text-base md:text-lg leading-7 sm:w-60 md:w-80 shrink-0">
                 {impressumData.companyInfo.uid.label[lang]}
-              </span>
-              <p className="text-base sm:text-lg md:text-xl font-normal text-subHeadingBlack leading-[120%]">
+              </strong>
+              <p className="text-sm sm:text-base md:text-lg font-normal text-subHeadingBlack leading-[120%]">
                 {impressumData.companyInfo.uid.value[lang]}
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-2 sm:gap-0">
-              <span className="font-semibold text-headingBlack text-lg sm:text-xl md:text-2xl leading-7 sm:w-60 md:w-80 shrink-0">
+              <strong className="font-semibold text-headingBlack text-sm sm:text-base md:text-lg leading-7 sm:w-60 md:w-80 shrink-0">
                 {impressumData.companyInfo.firmensitz.label[lang]}
-              </span>
-              <p className="text-base sm:text-lg md:text-xl font-normal text-subHeadingBlack leading-[120%]">
+              </strong>
+              <p className="text-sm sm:text-base md:text-lg font-normal text-subHeadingBlack leading-[120%]">
                 {impressumData.companyInfo.firmensitz.value}
               </p>
             </div>
@@ -221,25 +227,25 @@ const Impressum: React.FC = () => {
 
           <div className="mt-4 space-y-2">
             <div className="flex flex-col sm:flex-row gap-2 sm:gap-0">
-              <span className="font-semibold text-headingBlack text-lg sm:text-xl md:text-2xl leading-7 sm:w-60 md:w-80 shrink-0">
+              <strong className="font-semibold text-headingBlack text-sm sm:text-base md:text-lg leading-7 sm:w-60 md:w-80 shrink-0">
                 {impressumData.companyInfo.mail.label[lang]}
-              </span>
+              </strong>
               <a 
                 href={`mailto:${impressumData.companyInfo.mail.value}`}
-                className="text-base sm:text-lg md:text-xl font-normal text-blue-600 underline hover:text-blue-800 leading-[120%]"
+                className="text-sm sm:text-base md:text-lg font-normal text-[#526FFF] underline hover:text-blue-600 leading-[120%]"
               >
                 {impressumData.companyInfo.mail.value}
               </a>
             </div>
             <div className="flex flex-col sm:flex-row gap-2 sm:gap-0">
-              <span className="font-semibold text-headingBlack text-lg sm:text-xl md:text-2xl leading-7 sm:w-60 md:w-80 shrink-0">
+              <strong className="font-semibold text-headingBlack text-sm sm:text-base md:text-lg leading-7 sm:w-60 md:w-80 shrink-0">
                 {impressumData.companyInfo.web.label}
-              </span>
+              </strong>
               <a 
                 href={`https://${impressumData.companyInfo.web.value}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-base sm:text-lg md:text-xl font-normal text-blue-600 underline hover:text-blue-800 leading-[120%]"
+                className="text-sm sm:text-base md:text-lg font-normal text-[#526FFF] underline hover:text-blue-600 leading-[120%]"
               >
                 {impressumData.companyInfo.web.value}
               </a>
@@ -248,42 +254,42 @@ const Impressum: React.FC = () => {
 
           <div className="mt-4 space-y-2">
             <div className="flex flex-col sm:flex-row gap-2 sm:gap-0">
-              <span className="font-semibold text-headingBlack text-lg sm:text-xl md:text-2xl leading-7 sm:w-60 md:w-80 shrink-0">
+              <strong className="font-semibold text-headingBlack text-sm sm:text-base md:text-lg leading-7 sm:w-60 md:w-80 shrink-0">
                 {impressumData.companyInfo.mitglied.label[lang]}
-              </span>
-              <p className="text-base sm:text-lg md:text-xl font-normal text-subHeadingBlack leading-[120%]">
+              </strong>
+              <p className="text-sm sm:text-base md:text-lg font-normal text-subHeadingBlack leading-[120%]">
                 {impressumData.companyInfo.mitglied.value}
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-2 sm:gap-0">
-              <span className="font-semibold text-headingBlack text-lg sm:text-xl md:text-2xl leading-7 sm:w-60 md:w-80 shrink-0">
+              <strong className="font-semibold text-headingBlack text-sm sm:text-base md:text-lg leading-7 sm:w-60 md:w-80 shrink-0">
                 {impressumData.companyInfo.berufsrecht.label[lang]}
-              </span>
-              <p className="text-base sm:text-lg md:text-xl font-normal text-subHeadingBlack leading-[120%]">
+              </strong>
+              <p className="text-sm sm:text-base md:text-lg font-normal text-subHeadingBlack leading-[120%]">
                 {impressumData.companyInfo.berufsrecht.value[lang]}
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-2 sm:gap-0">
-              <span className="font-semibold text-headingBlack text-lg sm:text-xl md:text-2xl leading-7 sm:w-60 md:w-80 shrink-0">
+              <strong className="font-semibold text-headingBlack text-sm sm:text-base md:text-lg leading-7 sm:w-60 md:w-80 shrink-0">
                 {impressumData.companyInfo.aufsicht.label[lang]}
-              </span>
-              <p className="text-base sm:text-lg md:text-xl font-normal text-subHeadingBlack leading-[120%]">
+              </strong>
+              <p className="text-sm sm:text-base md:text-lg font-normal text-subHeadingBlack leading-[120%]">
                 {impressumData.companyInfo.aufsicht.value}
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-2 sm:gap-0">
-              <span className="font-semibold text-headingBlack text-lg sm:text-xl md:text-2xl leading-7 sm:w-60 md:w-80 shrink-0">
+              <strong className="font-semibold text-headingBlack text-sm sm:text-base md:text-lg leading-7 sm:w-60 md:w-80 shrink-0">
                 {impressumData.companyInfo.unternehmens.label[lang]}
-              </span>
-              <p className="text-base sm:text-lg md:text-xl font-normal text-subHeadingBlack leading-[120%]">
+              </strong>
+              <p className="text-sm sm:text-base md:text-lg font-normal text-subHeadingBlack leading-[120%]">
                 {impressumData.companyInfo.unternehmens.value[lang]}
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-2 sm:gap-0">
-              <span className="font-semibold text-headingBlack text-lg sm:text-xl md:text-2xl leading-7 sm:w-60 md:w-80 shrink-0">
+              <strong className="font-semibold text-headingBlack text-sm sm:text-base md:text-lg leading-7 sm:w-60 md:w-80 shrink-0">
                 {impressumData.companyInfo.verleihung.label[lang]}
-              </span>
-              <p className="text-base sm:text-lg md:text-xl font-normal text-subHeadingBlack leading-[120%]">
+              </strong>
+              <p className="text-sm sm:text-base md:text-lg font-normal text-subHeadingBlack leading-[120%]">
                 {impressumData.companyInfo.verleihung.value[lang]}
               </p>
             </div>
@@ -292,23 +298,23 @@ const Impressum: React.FC = () => {
 
         {/* --------------------------- EU DISPUTE RESOLUTION --------------------------- */}
         <section className="mt-10 mb-10">
-          <h2 className="text-2xl sm:text-3xl md:text-[32px] leading-[140%] text-subHeadingBlack font-semibold mb-6">
+          <h2 className="text-lg sm:text-xl md:text-2xl  leading-[140%] text-subHeadingBlack font-semibold mb-6">
             {impressumData.euDispute.title[lang]}
           </h2>
 
-          <p className="mb-6 text-base sm:text-lg md:text-xl text-subHeadingBlack font-normal leading-[140%]">
+          <p className="mb-6 text-sm sm:text-base md:text-lg text-subHeadingBlack font-normal leading-[140%]">
             {impressumData.euDispute.para1[lang]}
           </p>
 
-          <p className="text-base sm:text-lg md:text-xl text-subHeadingBlack font-normal leading-[140%]">
+          <p className="text-sm sm:text-base md:text-lg text-subHeadingBlack font-normal leading-[140%]">
             {impressumData.euDispute.para2[lang]}
             <a
               href="http://ec.europa.eu/odr/?tid=121890425"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-600 underline hover:text-blue-800 ml-1"
+              className="text-[#526FFF] underline hover:text-blue-600 ml-1"
             >
-              http://ec.europa.eu/odr/
+              http://ec.europa.eu/
             </a>
             {' '}{impressumData.euDispute.para2End[lang]}
           </p>
@@ -317,86 +323,86 @@ const Impressum: React.FC = () => {
 
       {/* --------------------------- LIABILITY FOR CONTENT --------------------------- */}
       <section className="my-12">
-        <h2 className="text-2xl sm:text-3xl md:text-[32px] font-semibold text-subHeadingBlack leading-[140%] mb-6">
+        <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-subHeadingBlack leading-[140%] mb-6">
           {impressumData.liability.title[lang]}
         </h2>
 
-        <p className="mb-6 text-base sm:text-lg md:text-xl font-normal text-subHeadingBlack leading-[140%]">
+        <p className="mb-6 text-sm sm:text-base md:text-lg font-normal text-subHeadingBlack leading-[140%]">
           {impressumData.liability.para1[lang]}
         </p>
 
-        <p className="mb-6 text-base sm:text-lg md:text-xl font-normal text-subHeadingBlack leading-[140%]">
+        <p className="mb-6 text-sm sm:text-base md:text-lg font-normal text-subHeadingBlack leading-[140%]">
           {impressumData.liability.para2[lang]}
         </p>
 
-        <p className="text-base sm:text-lg md:text-xl font-normal text-subHeadingBlack leading-[140%]">
+        <p className="text-sm sm:text-base md:text-lg font-normal text-subHeadingBlack leading-[140%]">
           {impressumData.liability.para3[lang]}
         </p>
       </section>
 
       {/* --------------------------- COPYRIGHT NOTICE --------------------------- */}
       <section className="my-12">
-        <h2 className="text-2xl sm:text-3xl md:text-[32px] font-semibold text-headingBlack leading-[140%] mb-6">
+        <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-headingBlack leading-[140%] mb-6">
           {impressumData.copyright.title[lang]}
         </h2>
 
-        <p className="mb-6 text-base sm:text-lg md:text-xl text-subHeadingBlack font-normal leading-[140%]">
+        <p className="mb-6 text-sm sm:text-base md:text-lg text-subHeadingBlack font-normal leading-[140%]">
           {impressumData.copyright.para1[lang]}
         </p>
 
-        <p className="mb-6 text-base sm:text-lg md:text-xl text-subHeadingBlack font-normal leading-[140%]">
+        <p className="mb-6 text-sm sm:text-base md:text-lg text-subHeadingBlack font-normal leading-[140%]">
           {impressumData.copyright.para2[lang]}
         </p>
       </section>
 
       {/* --------------------------- IMAGE CREDITS --------------------------- */}
       <section className="my-12">
-        <h2 className="text-2xl sm:text-3xl md:text-[32px] font-semibold text-headingBlack leading-[140%] mb-6">
+        <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-headingBlack leading-[140%] mb-6">
           {impressumData.imageCredits.title[lang]}
         </h2>
 
-        <p className="text-base sm:text-lg md:text-xl text-subHeadingBlack font-normal leading-[140%]">
+        <p className="text-sm sm:text-base md:text-lg text-subHeadingBlack font-normal leading-[140%]">
           {impressumData.imageCredits.para1[lang]}
         </p>
-        <p className="text-base sm:text-lg md:text-xl text-subHeadingBlack font-normal leading-[140%] mb-6">
+        <p className="text-sm sm:text-base md:text-lg text-subHeadingBlack font-normal leading-[140%] mb-6">
           {impressumData.imageCredits.para2[lang]}
         </p>
 
-        <ul className="list-disc pl-5 space-y-2 mb-4">
-          <li className="text-base sm:text-lg md:text-xl font-semibold leading-[140%] text-subHeadingBlack">Docline</li>
-          <li className="text-base sm:text-lg md:text-xl font-semibold leading-[140%] text-subHeadingBlack">
+        <ul  className="list-disc pl-5 text-xl space-y-2  mb-4">
+          <li className="text-sm sm:text-base md:text-lg font-semibold leading-[140%] text-subHeadingBlack">Docline </li>
+          <li className="text-sm sm:text-base md:text-lg font-semibold leading-[140%] text-subHeadingBlack">
             <a
               href="https://unsplash.com/de/@betoframe"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-600 underline hover:text-blue-800"
+              className="text-[#526FFF] underline font-normal hover:text-blue-600"
             >
               @betoframe (Unsplash)
             </a>
           </li>
-          <li className="text-base sm:text-lg md:text-xl font-semibold leading-[140%] text-subHeadingBlack">
+          <li className="text-sm sm:text-base md:text-lg font-normal leading-[140%] text-subHeadingBlack">
             <a
               href="https://unsplash.com/de/@laurentyasiel"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-600 underline hover:text-blue-800"
+              className="text-[#526FFF] underline hover:text-blue-600"
             >
               @laurentyasiel (Unsplash)
             </a>
           </li>
-          <li className="text-base sm:text-lg md:text-xl font-semibold leading-[140%] text-subHeadingBlack">
+          <li className="text-sm sm:text-base md:text-lg font-normal leading-[140%] text-subHeadingBlack">
             <a
               href="https://unsplash.com/de/@styligrande"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-600 underline hover:text-blue-800"
+              className="text-[#526FFF] underline hover:text-blue-600"
             >
-              @styligrande (Unsplash)
+              @styligrande (Unsplash)  
             </a>
           </li>
         </ul>
 
-        <p className="text-base sm:text-lg md:text-xl font-normal leading-[140%] text-subHeadingBlack">
+        <p className="text-sm sm:text-base md:text-lg font-normal leading-[140%] text-subHeadingBlack">
           {impressumData.imageCredits.para3[lang]}
         </p>
       </section>

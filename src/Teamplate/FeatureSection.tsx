@@ -128,7 +128,7 @@ const AvailabilityCard: React.FC = () => {
         backdropFilter: "blur(50px)",
       }}
     >
-      <p className="text-2xl sm:text-4xl md:text-6xl lg:text-[96px] mb-8 md:mb-20 font-extralight font-urbanist text-white">
+      <p className="text-2xl sm:text-4xl md:text-6xl lg:text-[96px] mb-8 md:mb-10 font-extralight font-urbanist text-white">
         {t("landingPage.features.availability.percent")}
       </p>
 

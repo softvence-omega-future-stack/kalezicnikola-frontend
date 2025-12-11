@@ -60,7 +60,7 @@ const DoclineHero: React.FC = () => {
                 fontFamily: "Urbanist, sans-serif",
                 color: "#171C35",
               }}
-              className="max-w-lg mx-auto md:mx-0 leading-[140%] text-base sm:text-lg md:text-xl text-center md:text-left"
+              className="max-w-[580px] mx-auto md:mx-0 leading-[140%] text-base sm:text-lg md:text-xl text-center md:text-left"
             >
               {renderTextWithBreaks(t("landingPage.hero.subText"))}
             </p>

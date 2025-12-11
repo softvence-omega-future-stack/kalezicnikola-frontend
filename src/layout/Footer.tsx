@@ -9,13 +9,12 @@ const Footer: React.FC = () => {
     const { t } = useTranslation();
     
     const navigationLinks = [
-        { label: t('landingPage.footer.navigation.home'), href: '#' },
-        { label: t('landingPage.footer.navigation.features'), href: '#' },
-        { label: t('landingPage.footer.navigation.howItWorks'), href: '#' },
-        { label: t('landingPage.footer.navigation.caseStudy'), href: '#' },
-        { label: t('landingPage.footer.navigation.pricing'), href: '#' },
-        { label: t('landingPage.footer.navigation.termsAndConditions'), href: '#' },
-        { label: t('landingPage.footer.navigation.privacyPolicy'), href: '#' }
+        { label: t('landingPage.footer.navigation.home'), id: 'home' },
+        { label: t('landingPage.footer.navigation.features'), id: 'features' },
+        { label: t('landingPage.footer.navigation.howItWorks'), id: 'examples' },
+        { label: t('landingPage.footer.navigation.caseStudy'), id: 'testimonials' },
+        { label: t('landingPage.footer.navigation.pricing'), id: 'pricing' },
+        { label: t('landingPage.footer.navigation.faq'), id: 'faq' }
     ];
 
     const legalLinks = [
@@ -53,6 +52,14 @@ const Footer: React.FC = () => {
         }
     ];
 
+    // 🔹 Smooth scroll function
+    const handleScroll = (id: string) => {
+        const section = document.getElementById(id);
+        if (section) {
+            section.scrollIntoView({ behavior: "smooth" });
+        }
+    }
+
     return (
         <footer
             style={{ fontFamily: 'Urbanist, sans-serif' }}
@@ -82,7 +89,12 @@ const Footer: React.FC = () => {
                         <ul className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-center">
                             {navigationLinks.map((link, index) => (
                                 <li key={index} className="whitespace-nowrap">
-                                    <a href={link.href} className="text-base text-[#171C35] hover:text-blue-600 transition-colors">{link.label}</a>
+                                    <button
+                                        onClick={() => handleScroll(link.id)}
+                                        className="text-base text-[#171C35] hover:text-blue-600 cursor-pointer transition-colors"
+                                    >
+                                        {link.label}
+                                    </button>
                                 </li>
                             ))}
                         </ul>
