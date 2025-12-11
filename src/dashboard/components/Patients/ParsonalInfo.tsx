@@ -1,8 +1,42 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-const ParsonalInfo: React.FC = () => {
+interface PersonalInfoProps {
+  phone: string;
+  email: string;
+  address: string | null;
+  dob: string | null;
+  bloodGroup: string | null;
+  conditionName: string | null;
+  severity: string | null;
+  emergencyContactName: string | null;
+  emergencyContactPhone: string | null;
+  emergencyContactRelationship: string | null;
+}
+const ParsonalInfo: React.FC<PersonalInfoProps> = ({
+  dob,
+  phone,
+  email,
+  address,
+  bloodGroup,
+  conditionName,
+  severity,
+  emergencyContactName,
+  emergencyContactRelationship,
+  emergencyContactPhone,
+}) => {
   const { t } = useTranslation();
+  const bloodGroups = [
+  { value: 'A_POS', label: 'A+' },
+  { value: 'A_NEG', label: 'A-' },
+  { value: 'B_POS', label: 'B+' },
+  { value: 'B_NEG', label: 'B-' },
+  { value: 'O_POS', label: 'O+' },
+  { value: 'O_NEG', label: 'O-' },
+  { value: 'AB_POS', label: 'AB+' },
+  { value: 'AB_NEG', label: 'AB-' },
+];
+  const bloodGroupLabel = bloodGroups.find(bg => bg.value === bloodGroup)?.label || bloodGroup ;
 
   return (
     <div>
@@ -17,26 +51,26 @@ const ParsonalInfo: React.FC = () => {
               <span className="text-base text-[#171C35] w-32">
                 {t("dashboard.routes.patients.patientProfile.tabsvalue.personalInfo.dateOfBirth")}
               </span>
-              <span className="text-base text-[#171C35]">1978-05-15</span>
+              <span className="text-base text-[#171C35]">{dob}</span>
             </div>
             <div className="flex">
               <span className="text-base text-[#171C35] w-32">
                 {t("dashboard.routes.patients.patientProfile.tabsvalue.personalInfo.phone")}
               </span>
-              <span className="text-base text-[#171C35]">+1 (555) 123-4567</span>
+              <span className="text-base text-[#171C35]">{phone}</span>
             </div>
             <div className="flex">
               <span className="text-base text-[#171C35] w-32">
                 {t("dashboard.routes.patients.patientProfile.tabsvalue.personalInfo.email")}
               </span>
-              <span className="text-base text-[#171C35]">username@gmail.com</span>
+              <span className="text-base text-[#171C35]">{email}</span>
             </div>
             <div className="flex">
               <span className="text-base text-[#171C35] w-32">
                 {t("dashboard.routes.patients.patientProfile.tabsvalue.personalInfo.address")}
               </span>
               <span className="text-base text-[#171C35]">
-                123 Main Street, Apt 48, New York, NY 10001
+                {address}
               </span>
             </div>
           </div>
@@ -52,20 +86,20 @@ const ParsonalInfo: React.FC = () => {
               <span className="text-sm text-[#171C35] w-32">
                 {t("dashboard.routes.patients.patientProfile.tabsvalue.personalInfo.bloodType")}
               </span>
-              <span className="text-sm text-[#171C35]">O+</span>
+              <span className="text-sm text-[#171C35]">{bloodGroupLabel}</span>
             </div>
             <div className="flex">
               <span className="text-sm text-[#171C35] w-32">
                 {t("dashboard.routes.patients.patientProfile.tabsvalue.personalInfo.allergies")}
               </span>
-              <span className="text-sm text-[#171C35]">Penicillin, Peanuts</span>
+              <span className="text-sm text-[#171C35]">{severity}</span>
             </div>
             <div className="flex">
               <span className="text-sm text-[#171C35] w-32">
                 {t("dashboard.routes.patients.patientProfile.tabsvalue.personalInfo.conditions")}
               </span>
               <span className="text-sm text-[#171C35]">
-                Hypertension, Type 2 Diabetes
+                {conditionName}
               </span>
             </div>
             <div className="flex">
@@ -87,19 +121,19 @@ const ParsonalInfo: React.FC = () => {
               <span className="text-sm text-[#171C35] w-32">
                 {t("dashboard.routes.patients.patientProfile.tabsvalue.personalInfo.emergencyName")}
               </span>
-              <span className="text-sm text-[#171C35]">Mary Smith</span>
+              <span className="text-sm text-[#171C35]">{emergencyContactName}</span>
             </div>
             <div className="flex">
               <span className="text-sm text-[#171C35] w-32">
                 {t("dashboard.routes.patients.patientProfile.tabsvalue.personalInfo.relationship")}
               </span>
-              <span className="text-sm text-[#171C35]">Wife</span>
+              <span className="text-sm text-[#171C35]">{emergencyContactRelationship}</span>
             </div>
             <div className="flex">
               <span className="text-sm text-[#171C35] w-32">
                 {t("dashboard.routes.patients.patientProfile.tabsvalue.personalInfo.emergencyPhone")}
               </span>
-              <span className="text-sm text-[#171C35]">+1 (555) 987-6543</span>
+              <span className="text-sm text-[#171C35]">{emergencyContactPhone}</span>
             </div>
           </div>
         </div>

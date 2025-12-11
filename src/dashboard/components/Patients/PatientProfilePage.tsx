@@ -4,13 +4,14 @@ import { useTranslation } from "react-i18next";
 
 import ParsonalInfo from "./ParsonalInfo";
 import PatientSummary from "./PatientSummery";
-import Appointment from "./Appointment";
 import PrescriptionsPage from "./Prescription";
 import LabResultsPage from "./LabResults";
 
 import homeIcon from "../../../assets/svgIcon/homeIcon.svg";
 import chevronIcon from "../../../assets/svgIcon/chevronnRight.svg";
 import axios from "axios";
+import { useAppSelector } from "@/store/hook";
+import Appointment from "./Appointment";
 
 interface Patient {
   id: string;
@@ -45,10 +46,19 @@ const PatientProfilePage: React.FC = () => {
   const data = useParams();
   const id = data.id;
   const { t } = useTranslation();
+  const accessToken = useAppSelector((state) => state.auth.accessToken);
   const navigate = useNavigate();
   const location = useLocation();
   const [patient, setPatient] = useState<Patient | null>(null);
 
+  const formattedDate = (dateString: string) => {
+    const options: Intl.DateTimeFormatOptions = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  }
 
   // Tab keys
   const tabKeys = [
@@ -72,16 +82,15 @@ const PatientProfilePage: React.FC = () => {
     const fetchPatient = async () => {
       try {
  
-        const token = localStorage.getItem("accessToken");
 
         const response = await axios.get(
           `${import.meta.env.VITE_API_URL}/doctor/patient/${id}`,
           {
-            headers: { Authorization: `Bearer ${token}` },
+            headers: { Authorization: `Bearer ${accessToken}` },
           }
         );
 
-        console.log(response.data.data.patient);
+        console.log(response.data);
         setPatient(response.data.data.patient);
       } catch (error) {
         console.log(error);
@@ -351,7 +360,20 @@ const PatientProfilePage: React.FC = () => {
 
           {/* Tab Content */}
           <div className="p-4 sm:p-6">
-            {activeTab === "personalInfo" && <ParsonalInfo />}
+            {activeTab === "personalInfo" && patient && (
+              <ParsonalInfo
+                dob={patient.dob ? formattedDate(patient.dob) : null}
+                phone={patient.phone ?? null}
+                email={patient.email ?? null}
+                address={patient.address ?? null}
+                conditionName={patient.conditionName ?? null}
+                severity={patient.severity ?? null}
+                bloodGroup={patient.bloodGroup ?? null}
+                emergencyContactName={patient.emergencyContactName ?? null}
+                emergencyContactRelationship={patient.emergencyContactRelationship ?? null}
+                emergencyContactPhone={patient.emergencyContactPhone ?? null}
+              />
+            )}
             {activeTab === "patientSummary" && <PatientSummary />}
             {activeTab === "appointment" && <Appointment />}
             {activeTab === "prescriptions" && <PrescriptionsPage />}
