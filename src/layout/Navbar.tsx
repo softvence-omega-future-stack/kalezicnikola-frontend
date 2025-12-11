@@ -61,6 +61,7 @@ const Navbar: React.FC = () => {
     { name: t("landingPage.navigation.examples"), id: "examples" },
     { name: t("landingPage.navigation.testimonials"), id: "testimonials" },
     { name: t("landingPage.navigation.pricing"), id: "pricing" },
+    
   ];
 
   return (

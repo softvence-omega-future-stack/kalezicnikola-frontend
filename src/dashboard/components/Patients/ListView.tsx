@@ -62,7 +62,7 @@ const ListView = ({ patients, loading, error }: ListViewProps) => {
                   </td>
 
                   {/* 3-dot dropdown */}
-                  <td className="px-6 py-4">
+                  <td className="px-6 py-4 cursor-pointer">
                     <PatientActions patientId={patient.id} />
                   </td>
                 </tr>

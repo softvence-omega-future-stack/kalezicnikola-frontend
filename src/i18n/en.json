@@ -376,8 +376,8 @@
       "howItWorks": "How it works",
       "caseStudy": "Case study",
       "pricing": "Pricing",
-      "termsAndConditions": "Terms and Condition",
-      "privacyPolicy": "Privacy Policy"
+      "faq": "FAQ"
+    
     },
 
     "legal": {
@@ -772,7 +772,8 @@
 
     "sections": {
       "personalInfo": "Personal Information",
-      "contactAddress": "Contact & Address"
+      "contactAddress": "Contact & Address",
+      "emergencyContact": "Emergency Contact"
     },
 
     "fields": {
@@ -833,6 +834,18 @@
       "address": {
         "label": "Address",
         "placeholder": "Full address..."
+      },
+      "emergencyName": {
+        "label": "Name",
+        "placeholder": "Enter Your Name"
+      },
+      "emergencyPhone": {
+        "label": "Phone",
+        "placeholder": "Enter your phone."
+      },
+      "emergencyRelationShip": {
+        "label": "Address",
+        "placeholder": "Enter your relationship"
       }
     },
 

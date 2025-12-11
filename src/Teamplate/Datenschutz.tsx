@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 const privacyData = {
@@ -84,6 +85,10 @@ const privacyData = {
 const Datenschutz = () => {
   const { i18n } = useTranslation();
   const lang = i18n.language === "de" ? "de" : "en";
+
+    useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="container w-[93%] mx-auto mt-24 mb-10 p-4 sm:p-6 lg:p-10 text-gray-800 leading-relaxed">

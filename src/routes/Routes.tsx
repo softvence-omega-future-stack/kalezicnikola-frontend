@@ -34,6 +34,7 @@ import AddPatientForm from "@/dashboard/components/Patients/Addpatient";
 import Impressum from "@/Teamplate/Impressum ";
 import Datenschutz from "@/Teamplate/Datenschutz";
 import GuestRoute from "./GuestRoute";
+import EditPatientForm from "@/dashboard/components/Patients/EditPatientForm";
 // import AddPatientForm from "@/dashboard/components/Patients/Addpatient";
 
 
@@ -106,6 +107,7 @@ const routes = createBrowserRouter([
       {path:"calendar", element:<Calendar />},
       { path: "patients", element: <Patients/> },
       { path: "add-patient", element: <AddPatientForm /> },
+     { path: "edit-patient/:id", element: <EditPatientForm /> },
       { path: "patients/:id", element: <PatientProfilePage /> },
       { path: "tasks", element: <Tasks /> },
       { path: "supports", element: <Supports/> },

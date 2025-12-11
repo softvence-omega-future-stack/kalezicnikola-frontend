@@ -374,8 +374,8 @@
       "howItWorks": "So funktioniert’s",
       "caseStudy": "Fallstudie",
       "pricing": "Preise",
-      "termsAndConditions": "AGB",
-      "privacyPolicy": "Datenschutzrichtlinie"
+      "faq": "FAQ"
+     
     },
 
     "legal": {
@@ -761,14 +761,17 @@
     "breadcrumbs": {
       "dashboard": "Instrumententafel",
       "patients": "Patienten",
-      "addPatient": "Patient hinzufügen"
+      "addPatient": "Patient hinzufügen",
+      "editPatient": "Patient hinzufügen"
     },
 
     "title": "Neuen Patienten hinzufügen",
 
     "sections": {
       "personalInfo": "Persönliche Informationen",
-      "contactAddress": "Kontakt & Adresse"
+      "contactAddress": "Kontakt & Adresse",
+      "emergencyContact": "Notfallkontakt"
+
     },
 
     "fields": {
@@ -829,7 +832,20 @@
       "address": {
         "label": "Adresse",
         "placeholder": "Vollständige Adresse eingeben..."
-      }
+      },
+      "emergencyName": {
+  "label": "Name",
+  "placeholder": "Geben Sie Ihren Namen ein"
+},
+"emergencyPhone": {
+  "label": "Telefon",
+  "placeholder": "Geben Sie Ihre Telefonnummer ein"
+},
+"emergencyRelationShip": {
+  "label": "Adresse",
+  "placeholder": "Geben Sie Ihre Beziehung ein"
+}
+
     },
 
     "buttons": {

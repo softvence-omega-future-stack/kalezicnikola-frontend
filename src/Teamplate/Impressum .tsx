@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useTranslation } from 'react-i18next';
 
 const impressumData = {
@@ -168,13 +168,17 @@ const Impressum: React.FC = () => {
   const { i18n } = useTranslation();
   const lang = i18n.language as 'en' | 'de';
 
+    useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="container w-[93%] mx-auto mt-24  p-4 sm:p-6 lg:p-10  text-gray-800 leading-relaxed">
 
       {/* --------------------------- IMPRESSUM --------------------------- */}
       <section>
   <h1 className="relative w-fit mx-auto text-2xl sm:text-3xl md:text-[44px] text-headingBlack font-semibold mb-5 text-center
-  after:content-[''] after:block after:w-20 after:h-[2px] after:bg-gray-300 after:mx-auto after:mt-5">
+  after:content-[''] after:block after:w-20 after:h-0.5 after:bg-gray-300 after:mx-auto after:mt-5">
   {impressumData.title[lang]}
 </h1>
 
@@ -310,7 +314,7 @@ const Impressum: React.FC = () => {
               rel="noopener noreferrer"
               className="text-[#526FFF] underline hover:text-blue-600 ml-1"
             >
-              http://ec.europa.eu/odr/
+              http://ec.europa.eu/
             </a>
             {' '}{impressumData.euDispute.para2End[lang]}
           </p>
