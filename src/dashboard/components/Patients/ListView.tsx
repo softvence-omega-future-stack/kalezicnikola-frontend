@@ -71,10 +71,10 @@ const ListView = ({ patients, loading, error }: ListViewProps) => {
                       className="flex items-center gap-1 text-lg font-medium text-indigo-600 hover:text-indigo-700"
                     >
                       {t('dashboard.routes.patients.listView.table.view')}
-                      <ArrowUpRight className="w-4 h-4" />
+                      <ArrowUpRight className="w-4 h-4 cursor-pointer" />
+                      {/* <EllipsisVertical className="w-4 h-4 cursor-pointer" /> */}
                     </button>
                   </td>
-
                 </tr>
               ))}
             </tbody>

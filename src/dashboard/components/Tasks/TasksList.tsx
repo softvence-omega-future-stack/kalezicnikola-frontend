@@ -339,6 +339,7 @@ const [selectedTaskIds, setSelectedTaskIds] = useState<string[]>([]);
 
 const onDrop = async (e: React.DragEvent<HTMLDivElement>, targetColumnId: string) => {
   e.preventDefault();
+  setLoading(true)
   const taskIdsStr = e.dataTransfer.getData('taskIds');
   const sourceColumnId = e.dataTransfer.getData('sourceColumnId');
   if (!taskIdsStr || !sourceColumnId) return;
@@ -347,7 +348,6 @@ const onDrop = async (e: React.DragEvent<HTMLDivElement>, targetColumnId: string
   let movedTasks: Task[] = [];
 
   // Show loader
-  setLoading(true);
 
   // Prepare tasks to move
   const sourceColumn = columns.find(col => col.id === sourceColumnId);

@@ -8,6 +8,8 @@ import profile from '../../../../assets/svgIcon/karen.svg';
 import support from '../../../../assets/svgIcon/supports.svg';
 import setting from '../../../../assets/svgIcon/settings.svg';
 import user from '../../../../assets/svgIcon/user.svg';
+import { useAppDispatch } from '@/store/hook';
+import { logout } from '@/store/features/auth/auth.slice';
 
 interface MenuItemProps {
   icon?: React.ComponentType<{ className?: string }> | string;
@@ -41,6 +43,8 @@ const UserDropdown: React.FC<UserDropdownProps> = ({ onClose }) => {
   const { t } = useTranslation();
   const dropdownRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -67,6 +71,7 @@ const UserDropdown: React.FC<UserDropdownProps> = ({ onClose }) => {
     onClose?.();
   };
   const handleLogout = () => {
+    dispatch(logout());
     navigate('/login');
     onClose?.();
   };
