@@ -62,7 +62,7 @@ const TestimonialSection: React.FC = () => {
       setActiveSlide((currentSlide) =>
         (currentSlide + 1) % testimonials.length
       );
-    }, 2000);
+    }, 4000);
 
     return () => clearInterval(interval);
   }, [testimonials.length, isDragging]);

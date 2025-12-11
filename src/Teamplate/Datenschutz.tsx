@@ -1,4 +1,3 @@
-
 import { useTranslation } from "react-i18next";
 
 const privacyData = {
@@ -87,59 +86,62 @@ const Datenschutz = () => {
   const lang = i18n.language === "de" ? "de" : "en";
 
   return (
-    <div className="container w-[93%] mx-auto mt-24 p-4 sm:p-6 lg:p-10  text-gray-800 leading-relaxed">
+    <div className="container w-[93%] mx-auto mt-24 mb-10 p-4 sm:p-6 lg:p-10 text-gray-800 leading-relaxed">
 
       {/* ===================== TITLE ===================== */}
-      <h1 className="text-3xl sm:text-4xl md:text-[64px] text-headingBlack font-semibold mb-5 text-center">
+      <h1
+        className="relative w-fit mx-auto text-2xl sm:text-3xl md:text-[44px] text-headingBlack font-semibold mb-8 text-center
+        after:content-[''] after:block after:w-20 after:h-[2px] after:bg-gray-300 after:mx-auto after:mt-5"
+      >
         {privacyData.title[lang]}
       </h1>
 
-      <p className="text-base sm:text-lg md:text-2xl max-w-[900px] mx-auto text-subHeadingBlack text-center mb-10 leading-[140%]">
+      <p className="text-sm sm:text-base md:text-lg max-w-[900px] mx-auto text-subHeadingBlack text-center mb-10 leading-[140%]">
         {privacyData.intro[lang]}
       </p>
 
       {/* ===================== CONTACT ===================== */}
       <section className="mb-12">
-        <h2 className="text-2xl sm:text-3xl md:text-[32px] font-semibold text-subHeadingBlack mb-4">
+        <h2 className="text-lg sm:text-xl md:text-2xl text-headingBlack font-semibold mb-6">
           {privacyData.contact.title[lang]}
         </h2>
 
-        <p className="text-base sm:text-lg md:text-xl text-subHeadingBlack leading-[140%]">
+        <p className="text-sm sm:text-base md:text-lg text-subHeadingBlack leading-[140%]">
           {privacyData.contact.text[lang]}
         </p>
       </section>
 
       {/* ===================== COOKIES ===================== */}
       <section className="mb-12">
-        <h2 className="text-2xl sm:text-3xl md:text-[32px] font-semibold text-subHeadingBlack mb-4">
+        <h2 className="text-lg sm:text-xl md:text-2xl text-headingBlack font-semibold mb-6">
           {privacyData.cookies.title[lang]}
         </h2>
 
-        <p className="text-base sm:text-lg md:text-xl text-subHeadingBlack leading-[140%]">
+        <p className="text-sm sm:text-base md:text-lg text-subHeadingBlack leading-[140%]">
           {privacyData.cookies.text[lang]}
         </p>
       </section>
 
       {/* ===================== ANALYTICS ===================== */}
       <section className="mb-12">
-        <h2 className="text-2xl sm:text-3xl md:text-[32px] font-semibold text-headingBlack mb-4">
+        <h2 className="text-lg sm:text-xl md:text-2xl text-headingBlack font-semibold mb-6">
           {privacyData.analytics.title[lang]}
         </h2>
 
-        <p className="text-base sm:text-lg md:text-xl text-subHeadingBlack leading-[140%]">
+        <p className="text-sm sm:text-base md:text-lg text-subHeadingBlack leading-[140%]">
           {privacyData.analytics.text[lang]}
         </p>
       </section>
 
       {/* ===================== USER RIGHTS ===================== */}
       <section className="mb-12">
-        <h2 className="text-2xl sm:text-3xl md:text-[32px] font-semibold text-headingBlack mb-4">
+        <h2 className="text-lg sm:text-xl md:text-2xl text-headingBlack font-semibold mb-6">
           {privacyData.rights.title[lang]}
         </h2>
 
         <ul className="list-disc pl-5 space-y-2">
           {privacyData.rights.list[lang].map((item, index) => (
-            <li key={index} className="text-base sm:text-lg md:text-xl text-subHeadingBlack">
+            <li key={index} className="text-sm sm:text-base md:text-lg text-subHeadingBlack">
               {item}
             </li>
           ))}
@@ -148,31 +150,31 @@ const Datenschutz = () => {
 
       {/* ===================== RESPONSIBLE ===================== */}
       <section className="mb-12">
-        <h2 className="text-2xl sm:text-3xl md:text-[32px] font-semibold text-headingBlack mb-4">
+        <h2 className="text-lg sm:text-xl md:text-2xl text-headingBlack font-semibold mb-6">
           {privacyData.contactDetails.title[lang]}
         </h2>
 
-        <p className="text-lg sm:text-xl leading-7">{privacyData.contactDetails.company}</p>
-        <p className="text-lg sm:text-xl leading-7">{privacyData.contactDetails.address1}</p>
-        <p className="text-lg sm:text-xl leading-7">{privacyData.contactDetails.address2}</p>
-        <p className="text-lg sm:text-xl leading-7 mb-4">
+        <p className="text-base sm:text-lg leading-7">{privacyData.contactDetails.company}</p>
+        <p className="text-base sm:text-lg leading-7">{privacyData.contactDetails.address1}</p>
+        <p className="text-base sm:text-lg leading-7">{privacyData.contactDetails.address2}</p>
+        <p className="text-base sm:text-lg leading-7 mb-4">
           {privacyData.contactDetails.country[lang]}
         </p>
 
-        <p className="text-lg sm:text-xl">
+        <p className="text-base sm:text-lg">
           <span className="font-semibold">Email:</span>{" "}
-          <a href={`mailto:${privacyData.contactDetails.email}`} className="text-blue-600 underline">
+          <a href={`mailto:${privacyData.contactDetails.email}`} className="text-[#526FFF] hover:text-blue-600 underline">
             {privacyData.contactDetails.email}
           </a>
         </p>
 
-        <p className="text-lg sm:text-xl">
+        <p className="text-base sm:text-lg">
           <span className="font-semibold">Web:</span>{" "}
           <a
             href={`https://${privacyData.contactDetails.web}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-600 underline"
+            className="text-[#526FFF] hover:text-blue-600 underline"
           >
             {privacyData.contactDetails.web}
           </a>
@@ -183,6 +185,7 @@ const Datenschutz = () => {
 };
 
 export default Datenschutz;
+
 
 
 
