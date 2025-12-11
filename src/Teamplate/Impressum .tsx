@@ -169,7 +169,7 @@ const Impressum: React.FC = () => {
   const lang = i18n.language as 'en' | 'de';
 
   return (
-    <div className="container w-[93%] mx-auto mt-24 p-4 sm:p-6 lg:p-10 font-sans text-gray-800 leading-relaxed">
+    <div className="container w-[93%] mx-auto mt-24 p-4 sm:p-6 lg:p-10  text-gray-800 leading-relaxed">
 
       {/* --------------------------- IMPRESSUM --------------------------- */}
       <section>
@@ -362,19 +362,19 @@ const Impressum: React.FC = () => {
           {impressumData.imageCredits.para2[lang]}
         </p>
 
-        <ul className="list-disc pl-5 text-xl space-y-2 mb-4">
-          <li className="text-base sm:text-lg md:text-xl font-semibold leading-[140%] text-subHeadingBlack">Docline</li>
+        <ul  className="list-disc pl-5 text-xl space-y-2  mb-4">
+          <li className="text-base sm:text-lg md:text-xl font-semibold leading-[140%] text-subHeadingBlack">Docline </li>
           <li className="text-base sm:text-lg md:text-xl font-semibold leading-[140%] text-subHeadingBlack">
             <a
               href="https://unsplash.com/de/@betoframe"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-600 underline hover:text-blue-800"
+              className="text-blue-600 underline font-normal hover:text-blue-800"
             >
               @betoframe (Unsplash)
             </a>
           </li>
-          <li className="text-base sm:text-lg md:text-xl font-semibold leading-[140%] text-subHeadingBlack">
+          <li className="text-base sm:text-lg md:text-xl font-normal leading-[140%] text-subHeadingBlack">
             <a
               href="https://unsplash.com/de/@laurentyasiel"
               target="_blank"
@@ -384,14 +384,14 @@ const Impressum: React.FC = () => {
               @laurentyasiel (Unsplash)
             </a>
           </li>
-          <li className="text-base sm:text-lg md:text-xl font-semibold leading-[140%] text-subHeadingBlack">
+          <li className="text-base sm:text-lg md:text-xl font-normal leading-[140%] text-subHeadingBlack">
             <a
               href="https://unsplash.com/de/@styligrande"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-600 underline hover:text-blue-800"
             >
-              @styligrande (Unsplash)
+              @styligrande (Unsplash)  
             </a>
           </li>
         </ul>

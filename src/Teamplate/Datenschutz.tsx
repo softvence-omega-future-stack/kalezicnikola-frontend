@@ -87,7 +87,7 @@ const Datenschutz = () => {
   const lang = i18n.language === "de" ? "de" : "en";
 
   return (
-    <div className="container w-[93%] mx-auto mt-24 p-4 sm:p-6 lg:p-10 font-sans text-gray-800 leading-relaxed">
+    <div className="container w-[93%] mx-auto mt-24 p-4 sm:p-6 lg:p-10  text-gray-800 leading-relaxed">
 
       {/* ===================== TITLE ===================== */}
       <h1 className="text-3xl sm:text-4xl md:text-[64px] text-headingBlack font-semibold mb-5 text-center">
