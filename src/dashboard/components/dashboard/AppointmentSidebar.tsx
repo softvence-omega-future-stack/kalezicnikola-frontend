@@ -165,9 +165,17 @@ console.log(formattedToday); // Wednesday, 10th
           {/* {t('dashboard.routes.dashboard.appointments.dateFormat')} */}
           {formattedToday}
         </h2>
-        <p className="text-lg font-semibold leading-4 text-[#171C35]">
-          {t('dashboard.routes.dashboard.appointments.patients', { count: appointments.length })}
-        </p>
+        {
+          activeAppointment && activeAppointment.details ? (
+            <p className="text-lg font-semibold leading-4 text-[#171C35]">
+              {t('dashboard.routes.dashboard.appointments.patients', { count: appointments.length - 1 })}
+            </p>
+          ) : (
+            <p className="text-lg font-semibold leading-4 text-[#171C35]">
+              No appointments today
+            </p>
+          )
+        }
       </div>
 
       <div className="space-y-2">

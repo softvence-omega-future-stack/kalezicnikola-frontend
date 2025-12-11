@@ -58,6 +58,7 @@ const DashboardLayout = () => {
     const toggleSidebar = (newState: boolean) => setIsSidebarCollapsed(newState);
 
     const handleLogoutClick = () => {
+        navigate("/dashboard"); // Ensure we are on dashboard before logout
         setShowLogoutModal(true);
         setMobileMenuOpen(false);
     };

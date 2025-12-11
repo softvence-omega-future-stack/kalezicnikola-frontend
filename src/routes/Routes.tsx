@@ -34,6 +34,7 @@ import AddPatientForm from "@/dashboard/components/Patients/Addpatient";
 import Impressum from "@/Teamplate/Impressum ";
 import Datenschutz from "@/Teamplate/Datenschutz";
 import GuestRoute from "./GuestRoute";
+import ProtectedRoute from "./ProtectedRoutes";
 // import AddPatientForm from "@/dashboard/components/Patients/Addpatient";
 
 
@@ -96,9 +97,9 @@ const routes = createBrowserRouter([
     {
     path: "/dashboard",
     element: (
-    // <ProtectedRoute role="doctor">
+    <ProtectedRoute role="doctor">
       <DashboardLayout />
-    // </ProtectedRoute>
+    </ProtectedRoute>
   ),
     children: [
       { index: true, element: <Dashboard /> },

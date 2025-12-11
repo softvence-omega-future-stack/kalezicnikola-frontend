@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import CalendarHeader from '../Calendar/CalendarHeader';
 import { useNavigate } from 'react-router-dom';
@@ -50,12 +50,14 @@ const DashboardTopSection: React.FC = () => {
   const { t } = useTranslation();
   const { firstName, lastName, todayIncomingCalls, successfulCalls, averageCallDuration } = mockDashboardData;
   const navigate = useNavigate();
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   return (
     <div className="md:mt-2 z-auto bg-[#F3F6F6]">
       {/* Date Navigation */}
       <div className="flex items-center justify-center -pl-1 md:justify-start text-[#111A2D] text-sm sm:text-base font-medium pt-6 gap-2">
-        <CalendarHeader />
+        {/* <CalendarHeader /> */}
+        <CalendarHeader selectedDate={selectedDate} onDateChange={setSelectedDate} />
       </div>
 
       {/* Welcome + Metrics */}

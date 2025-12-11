@@ -61,7 +61,7 @@ const AddPatientForm: React.FC = () => {
   const labelClass = "block text-base font-medium text-[#171c35] mb-2";
   const errorClass = "text-red-500 text-sm mt-1";
 
-     useEffect(() => {
+  useEffect(() => {
     const getAllPatients = async () => {
       try {
         const res = await axios.get(`${import.meta.env.VITE_API_URL}/doctor/patient/all`, {
@@ -142,7 +142,7 @@ const AddPatientForm: React.FC = () => {
     try {
       setLoading(true)
       const response = await axios.post(
-        "https://1x5kkm9k-5000.asse.devtunnels.ms/api/v1/doctor/patient/add",
+        `${import.meta.env.VITE_API_URL}/doctor/patient/add`,
         formData,
         { headers: { Authorization: `Bearer ${accessToken}` } }
       );
@@ -150,9 +150,9 @@ const AddPatientForm: React.FC = () => {
       navigate("/dashboard/patients");
     } catch (error: any) {
       if (axios.isAxiosError(error) && error.response) {
-        alert(error.response.data.message || "Server error");
+        toast.error(error.response.data.message || "Server error");
       } else {
-        alert("An unexpected error occurred");
+        toast.error("An unexpected error occurred");
       }
     } finally{
       setLoading(false)
