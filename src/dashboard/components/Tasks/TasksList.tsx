@@ -107,11 +107,10 @@ useEffect(() => {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
-      })
-      console.log(response)
+      });
 
       const tasks: Task[] = response.data.data.tasks; 
-      console.log(tasks)
+
       setColumns(prevCols =>
         prevCols.map(col => ({
           ...col,
@@ -138,7 +137,7 @@ useEffect(() => {
 
   fetchTasks();
 }, []);
-console.log(columns)
+
   const getPriorityColor = (priority: Task['priority']) => {
   switch (priority) {
     case 'HIGH': return 'bg-[#FF3D3D] text-white';

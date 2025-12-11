@@ -128,7 +128,6 @@ const AppointmentsList: React.FC = () => {
 
       const mapped: Appointment[] = appointmentsArray.map(transformApiAppointment);
       setAppointments(mapped);
-      console.log(mapped);
     } catch (err) {
       console.error(err);
     } finally {
@@ -150,8 +149,6 @@ const dayName = today.toLocaleDateString('en-US', { weekday: 'long' });
 const dateWithOrdinal = getOrdinal(today.getDate());
 
 const formattedToday = `${dayName}, ${dateWithOrdinal}`;
-
-console.log(formattedToday); // Wednesday, 10th
 
   if (loading) return <p>Loading appointments...</p>;
 
