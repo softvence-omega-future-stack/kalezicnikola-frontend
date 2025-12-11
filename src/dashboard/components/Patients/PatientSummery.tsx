@@ -1,6 +1,10 @@
 import { ArrowUpRight } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { useAppSelector } from "@/store/hook";
 
 interface SummaryCard {
   title: string;
@@ -14,7 +18,7 @@ interface SummaryCard {
   navigationType: "tab" | "route";
 }
 
-interface Appointment {
+export interface Appointment {
   type: string;
   date: string;
   time: string;
@@ -25,6 +29,9 @@ export default function PatientSummary() {
   const { t } = useTranslation();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const { accessToken } = useAppSelector((state) => state.auth);
+  const [appointments, setAppointments] = useState<Appointment[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   // Safe translation helper
   const safeT = (key: string) => t(key) || "";
@@ -65,10 +72,43 @@ export default function PatientSummary() {
   ];
 
   // Safe appointments
-  const appointments: Appointment[] = (() => {
-    const data = t("dashboard.routes.patients.patientProfile.tabsvalue.patientSummary.appointments.list", { returnObjects: true });
-    return Array.isArray(data) ? data : [];
-  })();
+  // const appointments: Appointment[] = (() => {
+  //   const data = t("dashboard.routes.patients.patientProfile.tabsvalue.patientSummary.appointments.list", { returnObjects: true });
+  //   return Array.isArray(data) ? data : [];
+  // })();
+  useEffect(() => {
+      const fetchAppointments = async () => {
+        try {
+          setLoading(true);
+          const res = await axios.get(`${import.meta.env.VITE_API_URL}/appointment/all`,
+              {
+                headers: { Authorization: `Bearer ${accessToken}` },
+              });
+          const allPatient = res.data.data.appointments;
+
+          const patientAppointments = allPatient.filter((apt: any) => apt.patientId === id);
+          console.log(patientAppointments);
+
+          const transformedAppointments: Appointment[] = patientAppointments.map((apt: any) => ({
+            type: apt.type,
+            date: new Date(apt.appointmentDate).toLocaleDateString(),
+            time: new Date(apt.appointmentDate).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+            status: new Date(apt.appointmentDate) > new Date() ? "Upcoming" : "Complete",
+          }));
+
+          setAppointments(transformedAppointments);
+-
+          console.log(res.data.data.appointments);
+        } catch (error:any) {
+          toast.error(error.response?.data?.message );
+        }
+        finally {
+          setLoading(false);
+        }
+      };
+
+      fetchAppointments();
+    }, [accessToken]);
 
   const handleCardClick = (card: SummaryCard) => {
     if (card.navigationType === "route" && card.route) {
@@ -136,6 +176,13 @@ export default function PatientSummary() {
 
       <div className="rounded-lg p-6">
         <h2 className="text-2xl font-semibold text-[#171C35] mb-4">{safeT("dashboard.routes.patients.patientProfile.tabsvalue.patientSummary.appointments.title")}</h2>
+        {
+          loading ? (
+            <p className="text-base text-[#111A2D] text-center">Loading...</p>
+          ) : appointments.length === 0 ? (
+            <p className="text-base text-[#111A2D]">{safeT("dashboard.routes.patients.patientProfile.tabsvalue.patientSummary.appointments.noAppointments")}</p>
+          ) : null
+        }
         <div className="space-y-3">
           {appointments.map((apt, index) => (
             <div key={index} className="py-3 bg-[#FAFAFA] border-b px-3 border-gray-100 last:border-0 rounded-2xl flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
