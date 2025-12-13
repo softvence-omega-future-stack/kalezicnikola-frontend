@@ -5,7 +5,7 @@ import CustomDropdown from '../Settings/Sidebar/CustomDropdown';
 import { useTranslation } from 'react-i18next';
 import { useAppSelector } from '@/store/hook';
 import { toast } from 'react-toastify';
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
 
 interface FormData {
   firstName: string;
@@ -30,9 +30,9 @@ interface FormErrors {
   [key: string]: string;
 }
 
-interface ApiErrorResponse {
-  message?: string;
-}
+// interface ApiErrorResponse {
+//   message?: string;
+// }
 
 interface ApiSuccessResponse {
   message?: string;

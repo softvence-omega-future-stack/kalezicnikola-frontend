@@ -2,7 +2,7 @@ import { useAppSelector } from "@/store/hook";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import type { Appointment } from "./PatientSummery";
+// import type { Appointment } from "./PatientSummery";
 import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
 

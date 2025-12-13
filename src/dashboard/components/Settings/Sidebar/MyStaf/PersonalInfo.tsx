@@ -3,6 +3,23 @@ import { createPortal } from "react-dom";
 import { ChevronDown, Upload } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
+export type Gender = "MALE" | "FEMALE" | "OTHERS";
+export interface StaffFormData {
+  firstName: string;
+  lastName: string;
+  dob: string;
+  gender: Gender | "";
+  email: string;
+  phone: string;
+  presentAddress: string;
+  state: string;
+  postalCode: string;
+  country: string;
+  nationality: string;
+  photo?: File;
+}
+
+
 // CustomDropdown Component with Portal
 function CustomDropdown({
   value,
@@ -98,35 +115,50 @@ function CustomDropdown({
   );
 }
 
-const PersonalInfo = () => {
-  const { t } = useTranslation();
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    dateOfBirth: "",
-    gender: "",
-    email: "",
-    phone: "",
-    address: "",
-    state: "",
-    postalCode: "",
-    country: "",
-  });
+function PersonalInfo({
+  data,
+  setData,
+  errors = {}
+}: {
+  data: StaffFormData;
+  setData: React.Dispatch<React.SetStateAction<StaffFormData>>;
+  errors?: Partial<Record<keyof StaffFormData, string>>; 
+}) {
 
-  const [photoPreview, setPhotoPreview] = useState<string | null>(null);
+  const { t } = useTranslation();
+  
+  const handleDropdownChange = (
+    field: keyof StaffFormData,
+    value: string
+  ) => {
+    setData(prev => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+
+    setData(prev => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
-  const handleDropdownChange = (field: keyof typeof formData, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
-  };
 
-  const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) setPhotoPreview(URL.createObjectURL(file));
-  };
+    const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const file = e.target.files?.[0];
+      if (file) {
+        setData(prev => ({
+          ...prev,
+          photo: file, 
+        }));
+      }
+    };
+
+
+
 
   const inputClass = {
     input:
@@ -143,11 +175,12 @@ const PersonalInfo = () => {
           onClick={() => document.getElementById("photoUpload")?.click()}
         >
           <div className="flex items-center justify-center mb-3 overflow-hidden">
-            {photoPreview ? (
+            {data?.photo ? (
               <img
-                src={photoPreview}
-                alt="Preview"
-                className="w-20 h-20 object-cover rounded-xl border border-gray-200"
+                src={URL.createObjectURL(data.photo)}
+                // src={data.photo}
+                alt="Staff Photo"
+                className="w-20 h-20 object-cover rounded-xl"
               />
             ) : (
               <div className="w-12 h-12 flex items-center justify-center bg-gray-50 rounded-xl">
@@ -167,7 +200,7 @@ const PersonalInfo = () => {
           accept="image/*"
           onChange={handlePhotoChange}
         />
-
+        
         <div className="flex flex-col space-y-1">
           <label className={inputClass.label}>
             {t("dashboard.routes.settings.settingsSidebar.tabs.myStaff.addNewStaff.stafTabs.personalInfo.firstName")}
@@ -178,10 +211,12 @@ const PersonalInfo = () => {
             placeholder={t(
               "dashboard.routes.settings.settingsSidebar.tabs.myStaff.addNewStaff.stafTabs.personalInfo.firstNamePlaceholder"
             )}
-            value={formData.firstName}
+            value={data.firstName}
             onChange={handleInputChange}
             className={inputClass.input}
           />
+          {errors.firstName && <span className="text-red-500 text-xs">{errors.firstName}</span>}
+
         </div>
 
         <div className="flex flex-col space-y-1">
@@ -194,10 +229,12 @@ const PersonalInfo = () => {
             placeholder={t(
               "dashboard.routes.settings.settingsSidebar.tabs.myStaff.addNewStaff.stafTabs.personalInfo.lastNamePlaceholder"
             )}
-            value={formData.lastName}
+            value={data.lastName}
             onChange={handleInputChange}
             className={inputClass.input}
           />
+          {errors.lastName && <span className="text-red-500 text-xs">{errors.lastName}</span>}
+
         </div>
       </div>
 
@@ -209,44 +246,30 @@ const PersonalInfo = () => {
           </label>
           <input
             type="date"
-            name="dateOfBirth"
-            value={formData.dateOfBirth}
+            name="dob"
+            value={data.dob}
             onChange={handleInputChange}
             className={inputClass.input}
           />
+          {errors.dob && <span className="text-red-500 text-xs">{errors.dob}</span>}
         </div>
 
         <div>
           <label className={inputClass.label}>
             {t("dashboard.routes.settings.settingsSidebar.tabs.myStaff.addNewStaff.stafTabs.personalInfo.gender")}
           </label>
-          <CustomDropdown
-            value={formData.gender}
+         <CustomDropdown
+            value={data.gender}
             onChange={(val) => handleDropdownChange("gender", val)}
             options={[
-              {
-                value: "male",
-                label: t(
-                  "dashboard.routes.settings.settingsSidebar.tabs.myStaff.addNewStaff.stafTabs.personalInfo.genderOptions.male"
-                ),
-              },
-              {
-                value: "female",
-                label: t(
-                  "dashboard.routes.settings.settingsSidebar.tabs.myStaff.addNewStaff.stafTabs.personalInfo.genderOptions.female"
-                ),
-              },
-              {
-                value: "other",
-                label: t(
-                  "dashboard.routes.settings.settingsSidebar.tabs.myStaff.addNewStaff.stafTabs.personalInfo.genderOptions.other"
-                ),
-              },
+              { value: "MALE", label: "Male" },
+              { value: "FEMALE", label: "Female" },
+              { value: "OTHERS", label: "Others" },
             ]}
-            placeholder={t(
-              "dashboard.routes.settings.settingsSidebar.tabs.myStaff.addNewStaff.stafTabs.personalInfo.selectGender"
-            )}
           />
+
+          {errors.gender && <span className="text-red-500 text-xs">{errors.gender}</span>}
+
         </div>
       </div>
 
@@ -262,10 +285,12 @@ const PersonalInfo = () => {
             placeholder={t(
               "dashboard.routes.settings.settingsSidebar.tabs.myStaff.addNewStaff.stafTabs.personalInfo.emailPlaceholder"
             )}
-            value={formData.email}
+            value={data.email}
             onChange={handleInputChange}
             className={inputClass.input}
           />
+          {errors.email && <span className="text-red-500 text-xs">{errors.email}</span>}
+
         </div>
 
         <div>
@@ -278,10 +303,12 @@ const PersonalInfo = () => {
             placeholder={t(
               "dashboard.routes.settings.settingsSidebar.tabs.myStaff.addNewStaff.stafTabs.personalInfo.phonePlaceholder"
             )}
-            value={formData.phone}
+            value={data.phone}
             onChange={handleInputChange}
             className={inputClass.input}
           />
+          {errors.phone && <span className="text-red-500 text-xs">{errors.phone}</span>}
+
         </div>
       </div>
 
@@ -293,14 +320,16 @@ const PersonalInfo = () => {
           </label>
           <input
             type="text"
-            name="address"
+            name="presentAddress"
             placeholder={t(
               "dashboard.routes.settings.settingsSidebar.tabs.myStaff.addNewStaff.stafTabs.personalInfo.addressPlaceholder"
             )}
-            value={formData.address}
+            value={data.presentAddress}
             onChange={handleInputChange}
             className={inputClass.input}
           />
+          {errors.presentAddress && <span className="text-red-500 text-xs">{errors.presentAddress}</span>}
+
         </div>
 
         <div>
@@ -313,10 +342,12 @@ const PersonalInfo = () => {
             placeholder={t(
               "dashboard.routes.settings.settingsSidebar.tabs.myStaff.addNewStaff.stafTabs.personalInfo.statePlaceholder"
             )}
-            value={formData.state}
+            value={data.state}
             onChange={handleInputChange}
             className={inputClass.input}
           />
+          {errors.state && <span className="text-red-500 text-xs">{errors.state}</span>}
+
         </div>
       </div>
 
@@ -332,10 +363,12 @@ const PersonalInfo = () => {
             placeholder={t(
               "dashboard.routes.settings.settingsSidebar.tabs.myStaff.addNewStaff.stafTabs.personalInfo.postalCodePlaceholder"
             )}
-            value={formData.postalCode}
+            value={data.postalCode}
             onChange={handleInputChange}
             className={inputClass.input}
           />
+          {errors.postalCode && <span className="text-red-500 text-xs">{errors.postalCode}</span>}
+
         </div>
 
         <div>
@@ -343,7 +376,7 @@ const PersonalInfo = () => {
             {t("dashboard.routes.settings.settingsSidebar.tabs.myStaff.addNewStaff.stafTabs.personalInfo.country")}
           </label>
           <CustomDropdown
-            value={formData.country}
+            value={data.country}
             onChange={(val) => handleDropdownChange("country", val)}
             options={[
               {
@@ -376,6 +409,50 @@ const PersonalInfo = () => {
             )}
           />
         </div>
+      </div>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div>
+            <label className={inputClass.label}>
+              {/* {t("dashboard.routes.settings.settingsSidebar.tabs.myStaff.addNewStaff.stafTabs.personalInfo.country")} */}
+              Nationality
+            </label>
+            <CustomDropdown
+              value={data.nationality}
+              onChange={(val) => handleDropdownChange("nationality", val)}
+              options={[
+                {
+                  value: "us",
+                  label: t(
+                    "dashboard.routes.settings.settingsSidebar.tabs.myStaff.addNewStaff.stafTabs.personalInfo.countryOptions.us"
+                  ),
+                },
+                {
+                  value: "uk",
+                  label: t(
+                    "dashboard.routes.settings.settingsSidebar.tabs.myStaff.addNewStaff.stafTabs.personalInfo.countryOptions.uk"
+                  ),
+                },
+                {
+                  value: "bd",
+                  label: t(
+                    "dashboard.routes.settings.settingsSidebar.tabs.myStaff.addNewStaff.stafTabs.personalInfo.countryOptions.bd"
+                  ),
+                },
+                {
+                  value: "in",
+                  label: t(
+                    "dashboard.routes.settings.settingsSidebar.tabs.myStaff.addNewStaff.stafTabs.personalInfo.countryOptions.in"
+                  ),
+                },
+              ]}
+              placeholder={t(
+                "dashboard.routes.settings.settingsSidebar.tabs.myStaff.addNewStaff.stafTabs.personalInfo.selectCountry"
+              )}
+            />
+            {errors.nationality && <span className="text-red-500 text-xs">{errors.nationality}</span>}
+
+          </div>
+
       </div>
     </div>
   );
