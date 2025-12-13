@@ -12,6 +12,7 @@ import chevronIcon from "../../../assets/svgIcon/chevronnRight.svg";
 import axios from "axios";
 import { useAppSelector } from "@/store/hook";
 import Appointment from "./Appointment";
+// import Appointment from "./Appointment";
 
 interface Patient {
   id: string;

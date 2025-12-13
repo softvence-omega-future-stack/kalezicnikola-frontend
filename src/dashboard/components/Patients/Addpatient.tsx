@@ -30,9 +30,9 @@ interface FormErrors {
   [key: string]: string;
 }
 
-interface ApiErrorResponse {
-  message?: string;
-}
+// interface ApiErrorResponse {
+//   message?: string;
+// }
 
 interface ApiSuccessResponse {
   message?: string;

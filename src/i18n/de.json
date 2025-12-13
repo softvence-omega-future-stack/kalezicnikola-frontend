@@ -1540,8 +1540,14 @@
   },
   "buttons": {
     "cancel": "Abbrechen",
+     "saving": "Speichert...",
     "saveChanges": "Änderungen speichern"
-  }
+  },
+  "messages": {
+  "saveSuccess": "Einstellungen erfolgreich gespeichert!",
+  "saveError": "Einstellungen konnten nicht gespeichert werden. Bitte versuchen Sie es erneut."
+}
+
 },
        "subscriptionOverview": {
               "title": "Abonnement Übersicht",
@@ -1759,6 +1765,7 @@
   },
   "buttons": {
     "cancel": "Abbrechen",
+         "saving": "Speichert...",
     "saveChanges": "Änderungen speichern"
   }
 }

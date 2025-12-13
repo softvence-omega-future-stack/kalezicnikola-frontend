@@ -49,7 +49,7 @@ const Appointment = () => {
           }));
 
           setAppointments(transformedAppointments);
--
+
           console.log(res.data.data.appointments);
         } catch (error:any) {
           toast.error(error.response?.data?.message );

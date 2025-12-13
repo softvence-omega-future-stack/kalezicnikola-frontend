@@ -25,11 +25,11 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem }) =
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Delete confirm handler
-  const handleConfirmDelete = (password: string) => {
-    console.log("Deleting account with password:", password);
-    setIsModalOpen(false);
-    // API call or delete logic goes here
-  };
+  // const handleConfirmDelete = (password: string) => {
+  //   console.log("Deleting account with password:", password);
+  //   setIsModalOpen(false);
+  //   // API call or delete logic goes here
+  // };
 
   return (
     <div className="lg:h-[820px] bg-white rounded-xl p-3 mt-2 flex flex-col justify-between">
@@ -61,7 +61,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem }) =
       <DeleteAccountModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        onConfirmDelete={handleConfirmDelete}
+       // onConfirmDelete={handleConfirmDelete}
       />
     </div>
   );

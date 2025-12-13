@@ -1,35 +1,76 @@
+import { useDeleteMyAccountMutation } from '@/store/features/doctorSettings/doctorProfileApi';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+
+import { useNavigate } from 'react-router-dom';
 
 interface DeleteAccountModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onConfirmDelete: (password: string) => void;
 }
 
-const DeleteAccountModal: React.FC<DeleteAccountModalProps> = ({ isOpen, onClose, onConfirmDelete }) => {
+const DeleteAccountModal: React.FC<DeleteAccountModalProps> = ({ isOpen, onClose }) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  
+  // ✅ RTK Query mutation hook
+  const [deleteAccount, { isLoading: isDeleting }] = useDeleteMyAccountMutation();
+  
   const [password, setPassword] = useState<string>('');
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [isDeleting, setIsDeleting] = useState<boolean>(false);
   const [showSuccessToast, setShowSuccessToast] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
-  const handleDelete = () => {
-    if (password.length > 0) {
-      setIsDeleting(true);
+  const handleDelete = async () => {
+    if (password.length === 0) {
+      setErrorMessage(t('dashboard.routes.settings.settingsSidebar.deleteAccount.modal.passwordRequired') || 'Password is required');
+      return;
+    }
+
+    try {
+      setErrorMessage('');
+      
+      // ✅ Call delete API
+      const response = await deleteAccount({ password }).unwrap();
+      
+      console.log('Delete response:', response);
+      
+      // ✅ Show success toast
+      setShowSuccessToast(true);
+
+      // ✅ Wait 2 seconds then logout and redirect
       setTimeout(() => {
-        onConfirmDelete(password);
-        setIsDeleting(false);
-        setShowSuccessToast(true);
+        setShowSuccessToast(false);
+        
+        // Clear auth data from localStorage/redux
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+        
+        // Redirect to login
+        navigate('/login');
+        
+        // Close modal
+        onClose();
+        setPassword('');
+      }, 2000);
+      
+    } catch (error: any) {
+      console.error('Delete account error:', error);
+      
+      // ✅ Handle error
+      const errorMsg = error?.data?.message || 
+                      t('dashboard.routes.settings.settingsSidebar.deleteAccount.modal.error') || 
+                      'Failed to delete account. Please check your password.';
+      
+      setErrorMessage(errorMsg);
+    }
+  };
 
-        setTimeout(() => {
-          setShowSuccessToast(false);
-          onClose();
-          setPassword('');
-        }, 2000);
-      }, 1000);
-    } else {
-      alert(t('dashboard.routes.settings.settingsSidebar.deleteAccount.modal.passwordLabel'));
+  const handleClose = () => {
+    if (!isDeleting) {
+      setPassword('');
+      setErrorMessage('');
+      onClose();
     }
   };
 
@@ -43,7 +84,11 @@ const DeleteAccountModal: React.FC<DeleteAccountModalProps> = ({ isOpen, onClose
             <h2 className="text-xl sm:text-3xl font-medium leading-8 text-red-600">
               {t('dashboard.routes.settings.settingsSidebar.deleteAccount.modal.title')}
             </h2>
-            <button onClick={onClose} className="text-gray-400 hover:text-gray-600 p-1 rounded-full">
+            <button 
+              onClick={handleClose} 
+              disabled={isDeleting}
+              className="text-gray-400 hover:text-gray-600 p-1 rounded-full disabled:opacity-50 disabled:cursor-not-allowed"
+            >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
               </svg>
@@ -54,7 +99,7 @@ const DeleteAccountModal: React.FC<DeleteAccountModalProps> = ({ isOpen, onClose
             {t('dashboard.routes.settings.settingsSidebar.deleteAccount.modal.message')}
           </p>
 
-          <div className="mb-8">
+          <div className="mb-6">
             <label htmlFor="password-confirm" className="block text-gray-700 font-medium mb-2 text-sm sm:text-base">
               {t('dashboard.routes.settings.settingsSidebar.deleteAccount.modal.passwordLabel')}
             </label>
@@ -63,19 +108,30 @@ const DeleteAccountModal: React.FC<DeleteAccountModalProps> = ({ isOpen, onClose
                 id="password-confirm"
                 type={showPassword ? 'text' : 'password'}
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-3.5 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 pr-12 text-base text-[#667085]"
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  setErrorMessage(''); // Clear error on input
+                }}
+                className="w-full px-4 py-3.5 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 pr-12 text-base text-[#667085] disabled:opacity-50 disabled:cursor-not-allowed"
                 placeholder="************"
                 disabled={isDeleting}
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600"
+                disabled={isDeleting}
+                className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 disabled:opacity-50"
               >
                 {showPassword ? 'Hide' : 'Show'}
               </button>
             </div>
+            
+            {/* ✅ Error message display */}
+            {errorMessage && (
+              <p className="mt-2 text-sm text-red-600 font-medium">
+                {errorMessage}
+              </p>
+            )}
           </div>
 
           <button
@@ -94,9 +150,13 @@ const DeleteAccountModal: React.FC<DeleteAccountModalProps> = ({ isOpen, onClose
         </div>
       </div>
 
+      {/* ✅ Success Toast */}
       {showSuccessToast && (
         <div className="fixed top-4 right-4 z-[9999] animate-slide-in">
           <div className="bg-green-500 text-white px-6 py-4 rounded-xl shadow-2xl flex items-center gap-3">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+            </svg>
             <p className="font-semibold">{t('dashboard.routes.settings.settingsSidebar.deleteAccount.modal.success')}</p>
           </div>
         </div>
