@@ -7,6 +7,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import { useAppSelector } from "@/store/hook";
+import { toast } from "react-toastify";
+import CustomDropdown from "../CustomDropdown";
 
 interface StaffData {
   id: string;
@@ -16,13 +18,16 @@ interface StaffData {
   presentAddress: string;
   permanentAddress: string;
   maritalStatus: string;
-  dob: string;
+  dob: Date | null;
   passportCountry: string;
   nationality: string;
   nationalId: string;
   email: string;
   phone: string;
 }
+type StaffFieldKey = keyof StaffData;
+
+
 
 export default function StaffProfile() {
   const [isEditing, setIsEditing] = useState(false);
@@ -31,23 +36,14 @@ export default function StaffProfile() {
   const id = useParams();
   const staffId = id.id;
   const {accessToken} = useAppSelector((state) => state.auth);
-
-  // const [staffData, setStaffData] = useState<StaffData>({
-  //   name: "Jonathon Sanders",
-  //   role: "Receptionist",
-  //   id: "555-0101",
-  //   gender: "Male",
-  //   presentAddress: "USA",
-  //   permanentAddress: "Germany",
-  //   maritalStatus: "Married",
-  //   dob: "07-10-1997",
-  //   passportCountry: "USA",
-  //   nationality: "USA",
-  //   nationalId: "N/A",
-  //   email: "username@gmail.com",
-  //   phone: "+880123456789",
-  // });
   const [staffData, setStaffData] = useState<StaffData | null>(null);
+
+//     const parseDate = (dateStr: string | null) => {
+//   if (!dateStr) return null;
+//   const [day, month, year] = dateStr.split("/").map(Number);
+//   const d = new Date(year, month - 1, day);
+//   return isNaN(d.getTime()) ? null : d;
+// };
 
 // Fetch staff data inside useEffect
 useEffect(() => {
@@ -68,8 +64,8 @@ useEffect(() => {
         presentAddress: staff.presentAddress || "",
         permanentAddress: staff.permanentAddress || "",
         maritalStatus: staff.maritalStatus || "",
-        dob: staff.dob ? new Date(staff.dob).toLocaleDateString() : "",
-        passportCountry: staff.passportCountry || "",
+        dob: staff.dob ? new Date(staff.dob) : null,
+        passportCountry: staff.country || "",
         nationality: staff.nationality || "",
         nationalId: staff.nationalIdNumber || "",
         email: staff.email,
@@ -83,10 +79,16 @@ useEffect(() => {
   if (staffId) fetchStaffData();
 }, [staffId]);
 console.log(staffData)
+if (!staffData) return <div className="text-center">Loading...</div>;
 
 // if (!staffData) return <div>Loading...</div>;
 
   const handleEditClick = () => setIsEditing(!isEditing);
+
+  const handleDropdownChange = (key: StaffFieldKey, value: string) => {
+    if (!staffData) return;
+    setStaffData({ ...staffData, [key]: value });
+  }
 
 const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
   if (!staffData) return;
@@ -95,10 +97,109 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 };
 
 
-  const handleSave = () => {
+  // const handleSave = () => {
+  //   setIsEditing(false);
+  //   toast.success(t("dashboard.routes.settings.settingsSidebar.tabs.myStaff.staffProfile.buttons.saveChanges") + "!");
+  // };
+
+
+
+//   const handleSave = async () => {
+//   if (!staffData || !staffId) return;
+
+//   try {
+//     const [firstName, ...lastNameArr] = staffData.name.split(" ");
+//     const lastName = lastNameArr.join(" ");
+
+//     const payload = {
+//       firstName,
+//       lastName,
+//       gender: staffData.gender,
+//       presentAddress: staffData.presentAddress,
+//       permanentAddress: staffData.permanentAddress,
+//       maritalStatus: staffData.maritalStatus,
+//       dob: staffData.dob ? staffData.dob.toISOString().split("T")[0] : null,
+//       country: staffData.passportCountry,
+//       nationality: staffData.nationality,
+//       nationalIdNumber: staffData.nationalId,
+//       phone: staffData.phone,
+//       email: staffData.email,
+//     };
+
+//     await axios.put(
+//       `${import.meta.env.VITE_API_URL}/doctor/staff/update/${staffId}`,
+//       payload,
+//       {
+//         headers: {
+//           Authorization: `Bearer ${accessToken}`,
+//         },
+//       }
+//     );
+
+//     toast.success(
+//       t(
+//         "dashboard.routes.settings.settingsSidebar.tabs.myStaff.staffProfile.buttons.saveChanges"
+//       )
+//     );
+
+//     setIsEditing(false);
+//   } catch (error) {
+//     console.error(error);
+//     toast.error("Failed to update staff profile");
+//   }
+// };
+const handleSave = async () => {
+  if (!staffData || !staffId) return;
+
+  try {
+    const [firstName, ...lastNameArr] = staffData.name.split(" ");
+    const lastName = lastNameArr.join(" ");
+
+
+      // Then use dobString in payload
+      const payload = {
+  firstName,
+  lastName,
+  gender: staffData.gender,
+  presentAddress: staffData.presentAddress,
+  permanentAddress: staffData.permanentAddress,
+  maritalStatus: staffData.maritalStatus,
+  dob: staffData.dob instanceof Date 
+       ? staffData.dob.toISOString().split("T")[0] 
+       : staffData.dob || null,
+  country: staffData.passportCountry,
+  nationality: staffData.nationality,
+  nationalIdNumber: staffData.nationalId,
+  phone: staffData.phone,
+  email: staffData.email,
+};
+
+
+
+    console.log(payload);
+
+    await axios.patch(
+      `${import.meta.env.VITE_API_URL}/doctor/staff/update/${staffId}`,
+      payload,
+      { 
+        headers: { 
+                    Authorization: `Bearer ${accessToken}` 
+                  } 
+      }
+    );
+
+    toast.success(
+      t("dashboard.routes.settings.settingsSidebar.tabs.myStaff.staffProfile.buttons.saveChanges")
+    );
+
     setIsEditing(false);
-    alert(t("dashboard.routes.settings.settingsSidebar.tabs.myStaff.staffProfile.buttons.saveChanges") + "!");
-  };
+  } catch (error) {
+    console.error(error);
+    toast.error("Failed to update staff profile");
+  }
+};
+
+
 
   // Helper function to translate dynamic values
   // const translateValue = (key: keyof StaffData, value: string): string => {
@@ -123,18 +224,20 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
   //   return value;
   // };
 
-  // History fields
-  const historyFields: { key: keyof StaffData; labelKey: string }[] = [
-    { key: "name", labelKey: "name" },
-    { key: "gender", labelKey: "gender" },
-    { key: "presentAddress", labelKey: "presentAddress" },
-    { key: "permanentAddress", labelKey: "permanentAddress" },
-    { key: "maritalStatus", labelKey: "maritalStatus" },
-    { key: "dob", labelKey: "dob" },
-    { key: "passportCountry", labelKey: "passportCountry" },
-    { key: "nationality", labelKey: "nationality" },
-    { key: "nationalId", labelKey: "nationalId" },
-  ];
+  const historyFields: {
+  label: string;
+  key: StaffFieldKey;
+}[] = [
+  { label: "Full Name", key: "name" },
+  { label: "Gender", key: "gender" },
+  { label: "Marital Status", key: "maritalStatus" },
+  { label: "Present Address", key: "presentAddress" },
+  { label: "Permanent Address", key: "permanentAddress" },
+  { label: "Date of Birth", key: "dob" },
+  { label: "Passport Country", key: "passportCountry" },
+  { label: "Nationality", key: "nationality" },
+  { label: "National ID", key: "nationalId" },
+];
 
   return (
     <div className="min-h-screen mt-6 p-6">
@@ -250,35 +353,85 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       <div className="bg-white rounded-3xl">
         <div className="rounded-2xl shadow-base p-6 md:p-8">
           <h3 className="text-2xl font-semibold text-[#171c35] mb-6">
-            {t("dashboard.routes.settings.settingsSidebar.tabs.myStaff.staffProfile.history.title", { name: staffData?.name })}
+            {/* {t("dashboard.routes.settings.settingsSidebar.tabs.myStaff.staffProfile.history.title", { name: staffData?.name })} */}
+            {staffData?.name}
           </h3>
+        
 
           <div className="grid grid-cols-1 gap-x-8 gap-y-4 bg-[#F3F6F6] p-4 rounded-2xl">
-            {historyFields.map(({ key, labelKey }) => (
-              <div
-                key={key}
-                className="flex flex-col sm:flex-row sm:items-center py-2 border-b border-gray-100 gap-1 sm:gap-4"
-              >
-                <span className="w-full sm:w-44 text-base text-[#111a2d]">
-                  {t(`dashboard.routes.settings.settingsSidebar.tabs.myStaff.staffProfile.history.fields.${labelKey}`)}:
-                </span>
-               {isEditing ? (
-                <input
-                  type="text"
-                  name={key}
-                  // value={staffData[key] ?? ""} // fallback to empty string
-                  onChange={handleChange}
-                  className="border border-gray-300 rounded-lg px-2 py-1 text-[#171c35] w-full sm:w-auto"
-                />
-              ) : (
-                <span className="text-base font-medium text-[#171c35]">
-                  {/* {translateValue(key, staffData[key] ?? "")} fallback to empty string */}
-                </span>
-              )}
+            {historyFields.map(({ label, key }) => (
+  <div
+    key={key}
+    className="flex flex-col sm:flex-row sm:items-center py-2 border-b border-gray-100 gap-2 sm:gap-4"
+  >
+    {/* Label */}
+    <span className="text-sm text-gray-500 w-full sm:w-36">{label}</span>
 
-              </div>
-            ))}
+    {/* Input / Dropdown / Display */}
+    <div className="sm:w-51">
+      {isEditing ? (
+        key === "gender" ? (
+          <CustomDropdown
+            value={staffData?.gender ?? ""}
+            onChange={(val) => handleDropdownChange("gender", val)}
+            options={[
+              { value: "MALE", label: "Male" },
+              { value: "FEMALE", label: "Female" },
+              { value: "OTHERS", label: "Others" },
+            ]}
+          />
+        ) : key === "maritalStatus" ? (
+          <CustomDropdown
+            value={staffData?.maritalStatus ?? ""}
+            onChange={(val) => handleDropdownChange("maritalStatus", val)}
+            options={[
+            { value: "SINGLE", label: "Single" },
+            { value: "MARRIED", label: "Married" },
+            { value: "DIVORCED", label: "Divorced" },
+          ]}
+
+          />
+        ) : (
+          <input
+            type="text"
+            value={
+              key === "dob"
+                ? staffData?.dob
+                  ? staffData.dob.toISOString().split("T")[0]
+                  : ""
+                : staffData?.[key] ?? ""
+            }
+            onChange={(e) =>
+              setStaffData((prev) =>
+                prev
+                  ? {
+                      ...prev,
+                      [key]:
+                        key === "dob"
+                          ? new Date(e.target.value)
+                          : e.target.value,
+                    }
+                  : prev
+              )
+            }
+            className="border border-gray-300 rounded-lg px-2 py-1 text-[#171c35] w-full sm:w-auto"
+          />
+        )
+      ) : (
+        <span className="text-base font-medium text-[#171c35] uppercase">
+          {key === "dob"
+            ? staffData?.dob
+              ? staffData.dob.toLocaleDateString()
+              : "N/A"
+            : staffData?.[key] || "N/A"}
+        </span>
+      )}
+    </div>
+  </div>
+))}
+
           </div>
+
 
           {/* Settings Section */}
           <div className="bg-[#F3F6F6] rounded-2xl p-4 mt-2.5">

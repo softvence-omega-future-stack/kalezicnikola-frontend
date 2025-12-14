@@ -1,5 +1,7 @@
-import React from "react";
+import { useAppSelector } from "@/store/hook";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
+
 
 interface PersonalInfoProps {
   phone: string;
@@ -12,6 +14,8 @@ interface PersonalInfoProps {
   emergencyContactName: string | null;
   emergencyContactPhone: string | null;
   emergencyContactRelationship: string | null;
+  loading?: boolean;
+
 }
 const ParsonalInfo: React.FC<PersonalInfoProps> = ({
   dob,
@@ -24,8 +28,10 @@ const ParsonalInfo: React.FC<PersonalInfoProps> = ({
   emergencyContactName,
   emergencyContactRelationship,
   emergencyContactPhone,
+  loading = false,
 }) => {
   const { t } = useTranslation();
+  const user = useAppSelector((state) => state.auth.user);
   const bloodGroups = [
   { value: 'A_POS', label: 'A+' },
   { value: 'A_NEG', label: 'A-' },
@@ -40,6 +46,10 @@ const ParsonalInfo: React.FC<PersonalInfoProps> = ({
 
   return (
     <div>
+      {
+        loading ? (
+          <p className="text-base text-[#111A2D] text-center">Loading...</p>
+        ) : (
       <div className="p-6 space-y-8">
         {/* Personal Information */}
         <div>
@@ -106,7 +116,7 @@ const ParsonalInfo: React.FC<PersonalInfoProps> = ({
               <span className="text-sm text-[#171C35] w-32">
                 {t("dashboard.routes.patients.patientProfile.tabsvalue.personalInfo.doctor")}
               </span>
-              <span className="text-sm text-[#171C35]">Dr. Sarah Johnson</span>
+              <span className="text-sm text-[#171C35]">{user?.firstName} {user?.lastName}</span>
             </div>
           </div>
         </div>
@@ -138,6 +148,8 @@ const ParsonalInfo: React.FC<PersonalInfoProps> = ({
           </div>
         </div>
       </div>
+        )
+      }
     </div>
   );
 };

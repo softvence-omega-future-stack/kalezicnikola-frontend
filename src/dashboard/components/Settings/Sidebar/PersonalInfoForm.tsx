@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Edit, PencilLine } from "lucide-react";
+import { Edit, Loader, LoaderCircle, PencilLine } from "lucide-react";
 import karen from '../../../../assets/svgIcon/karenNix.svg';
+import axios from "axios";
+import { useAppSelector } from "@/store/hook";
+import { toast } from "react-toastify";
 
 interface InputFieldProps {
   label: string;
@@ -45,7 +48,13 @@ const InputField: React.FC<InputFieldProps> = ({
 
 const PersonalInfoForm: React.FC = () => {
   const { t } = useTranslation();
+  const { user } = useAppSelector((state) => state.auth);
+  const userId = user?.id || "";
+  console.log("User ID:", userId);
+
   const [isEditing, setIsEditing] = useState(false);
+  const { accessToken } = useAppSelector((state) => state.auth);
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -57,16 +66,67 @@ const PersonalInfoForm: React.FC = () => {
     profilePic: karen,
   });
 
+  useEffect(() => {
+  const fetchUserData = async () => {
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/doctor/my-profile`, {
+      headers: { Authorization: `Bearer ${accessToken}` },
+    });
+    const profile = response.data.data.profile;
+
+    setFormData({
+      firstName: profile.firstName || "",
+      lastName: profile.lastName || "",
+      email: profile.email || "",
+      phoneNumber: profile.phone || "",
+      address: profile.address || "",
+      dob: profile.dob ? profile.dob.split("T")[0] : "", // Convert ISO -> YYYY-MM-DD
+      gender: profile.gender || "",
+      profilePic: profile.photo || karen,
+    });
+  };
+
+  fetchUserData();
+}, []);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleEdit = () => setIsEditing(true);
-  const handleSave = () => {
+  // const handleSave = () => {
+  //   setIsEditing(false);
+  //   alert(t("dashboard.routes.settings.settingsSidebar.tabs.personalInfo.profile.saveSuccess") || "Information saved successfully!");
+  // };
+  const handleSave = async () => {
+  try {
+    setIsLoading(true);
+    const payload = {
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      email: formData.email,
+      phone: formData.phoneNumber,
+      address: formData.address,
+      dob: formData.dob, // Already "YYYY-MM-DD"
+      gender: formData.gender,
+      // profilePic: formData.profilePic,
+    };
+
+    await axios.patch(`${import.meta.env.VITE_API_URL}/doctor/update-my-profile`, payload, {
+      headers: { Authorization: `Bearer ${accessToken}` },
+    });
+
+    toast.success("Profile saved successfully!");
     setIsEditing(false);
-    alert(t("dashboard.routes.settings.settingsSidebar.tabs.personalInfo.profile.saveSuccess") || "Information saved successfully!");
-  };
+  } catch (error) {
+    console.error(error);
+    toast.error("Failed to save profile");
+  }
+  // finally{
+  //   setIsLoading(false);
+  // }
+};
+
   const handleCancel = () => setIsEditing(false);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -126,8 +186,9 @@ const PersonalInfoForm: React.FC = () => {
           </div>
           <div className="min-w-0 flex-1">
             <h2 className="text-sm md:text-base font-semibold text-[#042435] truncate">
-              {formData.firstName || t("dashboard.routes.settings.settingsSidebar.tabs.personalInfo.profile.namePlaceholder")}{" "}
-              {formData.lastName}
+              {/* {formData.firstName || t("dashboard.routes.settings.settingsSidebar.tabs.personalInfo.profile.namePlaceholder")}{" "}
+              {formData.lastName} */}
+              {formData.firstName} {formData.lastName}
             </h2>
             <p className="text-xs md:text-sm text-[#111A2D] truncate">
               {t("dashboard.routes.settings.settingsSidebar.tabs.personalInfo.profile.role")}
@@ -231,9 +292,12 @@ const PersonalInfoForm: React.FC = () => {
             </button>
             <button
               onClick={handleSave}
-              className="w-full px-4 py-3 md:px-6 md:py-3 bg-[#526FFF] rounded-xl text-sm md:text-base font-semibold text-white hover:bg-[#425CE0] transition-colors cursor-pointer"
+              className="w-full px-4 py-3 md:px-6 md:py-3 bg-[#526FFF] rounded-xl text-sm md:text-base font-semibold text-white hover:bg-[#425CE0] transition-colors cursor-pointer flex items-center justify-center gap-2"
             >
-              {t("dashboard.routes.settings.settingsSidebar.tabs.personalInfo.profile.saveButton")}
+              {/* {t("dashboard.routes.settings.settingsSidebar.tabs.personalInfo.profile.saveButton")} */}
+              {isLoading ? "Saving..." : "Save"}
+              {/* {isLoading ? <LoaderCircle className="animate-spin" /> : "Save"} */}
+
             </button>
           </div>
         )}

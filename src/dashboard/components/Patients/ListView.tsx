@@ -26,6 +26,12 @@ const ListView = ({ patients, loading, error }: ListViewProps) => {
 
   return (
     <div>
+    {
+      patients.length === 0 ? (
+        <p className="p-4 text-center text-gray-600">
+          No patients found. Please add a patient.
+        </p>
+      ) : 
       <div className="bg-white rounded-2xl overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
@@ -71,6 +77,9 @@ const ListView = ({ patients, loading, error }: ListViewProps) => {
           </table>
         </div>
       </div>
+      
+
+    }
     </div>
   );
 };

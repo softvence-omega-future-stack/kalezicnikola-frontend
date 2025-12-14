@@ -165,7 +165,7 @@ const formattedToday = `${dayName}, ${dateWithOrdinal}`;
         {
           activeAppointment && activeAppointment.details ? (
             <p className="text-lg font-semibold leading-4 text-[#171C35]">
-              {t('dashboard.routes.dashboard.appointments.patients', { count: appointments.length - 1 })}
+              {t('dashboard.routes.dashboard.appointments.patients', { count: appointments.length })}
             </p>
           ) : (
             <p className="text-lg font-semibold leading-4 text-[#171C35]">

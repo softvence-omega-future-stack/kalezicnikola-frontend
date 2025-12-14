@@ -42,11 +42,13 @@ export default function PatientsView() {
             headers: { Authorization: `Bearer ${accessToken}` },
           }
         );
-
+        if(response.data.data.patients.length === 0){
+          setError("No patients found. Please add a patient.");
+        }
         setPatients(response.data.data.patients);
       } catch (error) {
         console.log(error);
-        setError("Failed to load patients");
+        setError('No User Found. Please try again later.');
       } finally {
         setLoading(false);
       }
@@ -141,6 +143,13 @@ export default function PatientsView() {
 
         {/* Content */}
         <div>
+          {
+            patients.length === 0 && !loading && !error ? (
+              <p className="p-4 text-center text-gray-600">
+                No patients found. Please add a patient.
+              </p>
+            ) : null
+          }
           {viewMode === 'list'
             ? <ListView patients={patients} loading={loading} error={error} />
             : <GridView patients={patients} loading={loading} error={error} />
