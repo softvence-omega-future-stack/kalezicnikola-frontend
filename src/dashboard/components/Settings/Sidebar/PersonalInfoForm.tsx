@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Edit, Loader, LoaderCircle, PencilLine } from "lucide-react";
+import { Edit, PencilLine } from "lucide-react";
 import karen from '../../../../assets/svgIcon/karenNix.svg';
 import axios from "axios";
 import { useAppSelector } from "@/store/hook";

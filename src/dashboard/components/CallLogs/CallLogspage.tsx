@@ -9,7 +9,6 @@ import PatientTranscriptPage from './TransscriptModal';
 import homeIcon from '../../../assets/svgIcon/homeIcon.svg';
 import axios from 'axios';
 import { useAppSelector } from '@/store/hook';
-import { set } from 'zod';
 
 interface Patient {
   firstName: string;

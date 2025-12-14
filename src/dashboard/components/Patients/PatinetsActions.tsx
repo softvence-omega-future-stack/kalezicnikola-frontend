@@ -106,7 +106,7 @@ const confirmDelete = async () => {
         isOpen={showModal}
         onClose={cancelDelete}
         onConfirm={confirmDelete}
-        isLoading={false}
+        isLoading={isLoading}
         message={{
           en: "Are you sure you want to remove this profile?",
           de: "Sind Sie sicher, dass Sie dieses Profil löschen möchten?",
