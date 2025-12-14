@@ -30,6 +30,8 @@ export default function PatientsView() {
   const [patients, setPatients] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+ 
+  const [totalPatients, setTotalPatients] = useState(0);
 
   useEffect(() => {
     const fetchPatients = async () => {
@@ -46,6 +48,7 @@ export default function PatientsView() {
           setError("No patients found. Please add a patient.");
         }
         setPatients(response.data.data.patients);
+        setTotalPatients(response.data.data.pagination.total);
       } catch (error) {
         console.log(error);
         setError('No User Found. Please try again later.');
@@ -88,6 +91,11 @@ export default function PatientsView() {
 
   return (
     <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="min-h-screen p-4 md:mt-[10px]">
+      {loading && (
+          <div className="fixed inset-0 bg-black opacity-60 flex items-center justify-center z-[9999]">
+            <div className="loader border-4 border-blue-500 border-t-transparent rounded-full w-12 h-12 animate-spin"></div>
+          </div>
+      )}
       {/* Breadcrumb */}
       <div className="">
         <div className='flex items-center gap-2 px-2 md:px-0 text-sm text-gray-600 mb-6'>
@@ -151,7 +159,7 @@ export default function PatientsView() {
             ) : null
           }
           {viewMode === 'list'
-            ? <ListView patients={patients} loading={loading} error={error} />
+            ? <ListView patients={patients} loading={loading} error={error} totalPatients={totalPatients} />
             : <GridView patients={patients} loading={loading} error={error} />
           }
         </div>

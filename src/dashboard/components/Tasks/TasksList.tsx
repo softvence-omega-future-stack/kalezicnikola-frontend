@@ -524,7 +524,7 @@ const onDrop = async (e: React.DragEvent<HTMLDivElement>, targetColumnId: string
                             <span>{task.time}</span>
                           </div>
                           <div className="flex items-center gap-1 mt-2">
-                            <span>{t("dashboard.routes.taskList.taskCard.due")}: {task.dueDate}</span>
+                            <span>{t("dashboard.routes.taskList.taskCard.due")}: {task.dueDate.split('T')[0]}</span>
                           </div>
                         </div>
                       </div>
@@ -535,6 +535,7 @@ const onDrop = async (e: React.DragEvent<HTMLDivElement>, targetColumnId: string
             </div>
           </div>
         ))}
+        
       </div>
 
       {/* Add Task Modal */}

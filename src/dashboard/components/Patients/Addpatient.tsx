@@ -137,8 +137,11 @@ const AddPatientForm: React.FC = () => {
       newErrors.emergencyContactPhone = "This emergency contact phone is already used";
 
     // Insurance ID uniqueness
-    if (formData.insuranceId && !/^[A-Z0-9-]+$/.test(formData.insuranceId))
-      newErrors.insuranceId = "Invalid insurance ID";
+    if (!formData.insuranceId) {
+      newErrors.insuranceId = "Insurance ID is required";
+    } else if (!/^\d{10}$/.test(formData.insuranceId)) {
+      newErrors.insuranceId = "Insurance ID must be exactly 10 digits";
+    }
     else if (formData.insuranceId && allPatients.some(p => p.insuranceId === formData.insuranceId))
       newErrors.insuranceId = "This insurance ID is already used";
 

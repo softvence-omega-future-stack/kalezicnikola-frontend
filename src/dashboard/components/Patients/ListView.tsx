@@ -1,6 +1,7 @@
 // ListView.tsx
 import { useTranslation } from 'react-i18next';
 import PatientActions from './PatinetsActions';
+import { useState } from 'react';
 
 
 interface Patient {
@@ -16,10 +17,12 @@ interface ListViewProps {
   patients: Patient[];
   loading: boolean;
   error: string | null;
+  totalPatients: number;
 }
 
-const ListView = ({ patients, loading, error }: ListViewProps) => {
+const ListView = ({ patients, loading, error, totalPatients }: ListViewProps) => {
   const { t } = useTranslation();
+   const [currentPage, setCurrentPage] = useState(1);
 
   if (loading) return <p className="p-4 text-center">Loading...</p>;
   if (error) return <p className="p-4 text-red-600">{error}</p>;
@@ -69,12 +72,34 @@ const ListView = ({ patients, loading, error }: ListViewProps) => {
 
                   {/* 3-dot dropdown */}
                   <td className="px-6 py-4 cursor-pointer">
-                    <PatientActions patientId={patient.id} />
+                    <PatientActions patientId={patient.id}  />
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
+        </div>
+         {/* Pagination */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-6">
+          <p className="text-sm font-medium text-[#000000]">
+            {`Showing ${1} to ${patients.length} of ${totalPatients} patients`}
+          </p>
+
+          <div className="flex gap-2">
+            <button
+              onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+              disabled={currentPage === 1}
+              className="px-4 py-2 text-base font-semibold text-[#111A2D] bg-[#F3F6F6] border border-gray-300 rounded-xl disabled:opacity-50 cursor-pointer"
+            >
+              {t('Previous')}
+            </button>
+            <button
+              onClick={() => setCurrentPage(currentPage + 1)}
+              className="px-4 py-2 text-base font-semibold text-[#1a1c21] bg-[#F3F6F6] border border-gray-300 rounded-xl cursor-pointer"
+            >
+              {t('Next')}
+            </button>
+          </div>
         </div>
       </div>
       
