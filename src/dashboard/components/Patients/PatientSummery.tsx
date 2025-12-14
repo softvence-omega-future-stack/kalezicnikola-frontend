@@ -180,7 +180,7 @@ export default function PatientSummary() {
           loading ? (
             <p className="text-base text-[#111A2D] text-center">Loading...</p>
           ) : appointments.length === 0 ? (
-            <p className="text-base text-[#111A2D]">{safeT("dashboard.routes.patients.patientProfile.tabsvalue.patientSummary.appointments.noAppointments")}</p>
+            <p className="text-base text-[#111A2D]">{safeT("No appointments found.")}</p>
           ) : null
         }
         <div className="space-y-3">

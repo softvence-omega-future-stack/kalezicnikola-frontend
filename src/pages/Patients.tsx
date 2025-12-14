@@ -1,6 +1,5 @@
-// import PatientProfilePage from "@/dashboard/components/Patients/PatientProfilePage"
-
 import PatientsView from "@/dashboard/components/Patients/PatientView"
+
 
 
 const Patients = () => {

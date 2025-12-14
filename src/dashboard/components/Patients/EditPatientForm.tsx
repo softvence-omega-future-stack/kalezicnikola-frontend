@@ -251,7 +251,9 @@ const EditPatientForm: React.FC = () => {
 
           {/* Buttons */}
           <div className="flex gap-4">
-            <button type="button" onClick={handleCancel} className="w-full px-6 py-3 border border-gray-300 rounded-lg bg-white hover:bg-gray-50 transition-colors">{formText.cancel[lang]}</button>
+            <button type="button" onClick={handleCancel} className="w-full px-6 py-3 border border-gray-300 rounded-lg bg-white hover:bg-gray-50 transition-colors">
+              {formText.cancel[lang]}
+            </button>
             <button type="submit" disabled={loading} className={`w-full px-6 py-3 rounded-lg text-white transition-colors ${loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#526FFF] hover:bg-[#4159cc] cursor-pointer'}`}>
               {loading ? formText.updating[lang] : formText.update[lang]}
             </button>

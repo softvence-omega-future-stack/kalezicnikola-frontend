@@ -49,6 +49,7 @@ const PatientProfilePage: React.FC = () => {
   const accessToken = useAppSelector((state) => state.auth.accessToken);
   const navigate = useNavigate();
   const location = useLocation();
+  const [loading, setLoading] = useState<boolean>(false);
   const [patient, setPatient] = useState<Patient | null>(null);
 
   const formattedDate = (dateString: string) => {
@@ -82,7 +83,7 @@ const PatientProfilePage: React.FC = () => {
     const fetchPatient = async () => {
       try {
  
-
+        setLoading(true);
         const response = await axios.get(
           `${import.meta.env.VITE_API_URL}/doctor/patient/${id}`,
           {
@@ -94,7 +95,9 @@ const PatientProfilePage: React.FC = () => {
         setPatient(response.data.data.patient);
       } catch (error) {
         console.log(error);
-      } 
+      } finally {
+        setLoading(false);
+      }
     };
 
     fetchPatient();
@@ -367,6 +370,7 @@ const PatientProfilePage: React.FC = () => {
           <div className="p-4 sm:p-6">
             {activeTab === "personalInfo" && patient && (
               <ParsonalInfo
+                loading={loading}
                 dob={patient.dob ? formattedDate(patient.dob) : null}
                 phone={patient.phone ?? null}
                 email={patient.email ?? null}
