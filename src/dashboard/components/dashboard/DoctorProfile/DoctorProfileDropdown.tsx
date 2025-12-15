@@ -7,8 +7,8 @@ import { useTranslation } from 'react-i18next';
 import profile from '../../../../assets/svgIcon/karen.svg';
 import support from '../../../../assets/svgIcon/supports.svg';
 import setting from '../../../../assets/svgIcon/settings.svg';
-import user from '../../../../assets/svgIcon/user.svg';
-import { useAppDispatch } from '@/store/hook';
+import userIcon from '../../../../assets/svgIcon/user.svg';
+import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { logout } from '@/store/features/auth/auth.slice';
 
 interface MenuItemProps {
@@ -41,6 +41,7 @@ interface UserDropdownProps {
 
 const UserDropdown: React.FC<UserDropdownProps> = ({ onClose }) => {
   const { t } = useTranslation();
+  const { user } = useAppSelector((state)=> state.auth);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -88,9 +89,13 @@ const UserDropdown: React.FC<UserDropdownProps> = ({ onClose }) => {
         </div>
         <div>
           <h2 className="text-lg font-semibold text-[#171C35]">
-            {/* {t('dashboard.mainHeader.userDropdown.name')} */} Keren Nix
+            {/* {t('dashboard.mainHeader.userDropdown.name')} */} 
+            {user?.firstName} {user?.lastName}
             </h2>
-          <p className="text-md text-[#171C35]">{t('dashboard.mainHeader.userDropdown.role')}</p>
+          <p className="text-md text-[#171C35] capitalize">
+            {/* {t('dashboard.mainHeader.userDropdown.role')} */}
+            {user?.role === "doctor" ? "D." : user?.role}
+          </p>
         </div>
       </div>
 
@@ -98,7 +103,7 @@ const UserDropdown: React.FC<UserDropdownProps> = ({ onClose }) => {
       <nav className="space-y-1">
         <div className="rounded-lg bg-gray-100">
           <MenuItem
-            icon={user}
+            icon={userIcon}
             text={t('dashboard.mainHeader.userDropdown.menu.profileSettings')}
             onClick={handleProfileSettings}
           />

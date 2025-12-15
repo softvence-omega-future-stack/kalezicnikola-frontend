@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { X } from 'lucide-react';
 import timeIon from '../../../assets/svgIcon/taskTimeIcon.svg';
 import { useTranslation } from 'react-i18next';
@@ -16,6 +16,18 @@ interface ModalProps {
 
 export const PatientRecordsModal: React.FC<ModalProps> = ({ task, onClose }) => {
   const { t } = useTranslation();
+
+  useEffect(() => {
+    const handleEsc = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleEsc);
+    return () => {
+      window.removeEventListener('keydown', handleEsc);
+    };
+  }, [onClose]);
 
   if (!task) return null;
 

@@ -6,11 +6,13 @@ interface Props {
   onClose: () => void;
   onConfirm: () => void;
   message?: { en: string; de: string };
+  isLoading?: boolean;
 }
 
-const PatientDeleteModal: React.FC<Props> = ({ isOpen, onClose, onConfirm, message }) => {
+const PatientDeleteModal: React.FC<Props> = ({ isOpen, onClose, onConfirm, message,isLoading }) => {
   const { i18n } = useTranslation();
   const lang = i18n.language === "de" ? "de" : "en";
+
 
   if (!isOpen) return null;
 
@@ -32,7 +34,10 @@ const PatientDeleteModal: React.FC<Props> = ({ isOpen, onClose, onConfirm, messa
             onClick={onConfirm}
             className="px-4 py-2 rounded-md bg-red-600 text-white hover:bg-red-700"
           >
-            {lang === "de" ? "Löschen" : "Delete"}
+            {
+              isLoading ? (lang === "de" ? "Löschen..." : "Deleting...") : "Delete"
+            }
+           
           </button>
         </div>
       </div>

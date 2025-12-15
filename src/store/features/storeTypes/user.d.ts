@@ -1,7 +1,7 @@
 export type TUser = {
-    _id: string;
-    firstname: string;
-    lastname: string;
+    id: string;
+    firstName: string;
+    lastName: string;
     email: string;
     role: string;
     isVerified: boolean;

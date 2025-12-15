@@ -78,6 +78,21 @@ const NewAppointmentModal: React.FC<NewAppointmentModalProps> = ({ onClose }) =>
     type: "CHECKUP",
   });
 
+  const bloodGroups = [
+  { value: 'A_POS', label: 'A+' },
+  { value: 'A_NEG', label: 'A-' },
+  { value: 'B_POS', label: 'B+' },
+  { value: 'B_NEG', label: 'B-' },
+  { value: 'O_POS', label: 'O+' },
+  { value: 'O_NEG', label: 'O-' },
+  { value: 'AB_POS', label: 'AB+' },
+  { value: 'AB_NEG', label: 'AB-' },
+];
+
+const getBloodGroupLabel = (value: string) =>
+  bloodGroups.find(bg => bg.value === value)?.label || value;
+
+
   // Fetch patients
   useEffect(() => {
     const fetchPatients = async () => {
@@ -129,7 +144,7 @@ const NewAppointmentModal: React.FC<NewAppointmentModalProps> = ({ onClose }) =>
         phone: matchedPatient.phone || "",
         dob: matchedPatient.dob ? matchedPatient.dob.split("T")[0] : "",
         gender: matchedPatient.gender || "",
-        bloodGroup: matchedPatient.bloodGroup || "",
+        bloodGroup: matchedPatient.bloodGroup  || "",
         address: matchedPatient.address || "",
         patientId: matchedPatient.id,
       }));
@@ -401,7 +416,7 @@ const NewAppointmentModal: React.FC<NewAppointmentModalProps> = ({ onClose }) =>
               <input
                 type="text"
                 name="bloodGroup"
-                value={formData.bloodGroup}
+                value={getBloodGroupLabel(formData.bloodGroup)}
                 disabled
                 className="w-full px-3 sm:px-4 py-3 sm:py-4 bg-white rounded-[8px] text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               />

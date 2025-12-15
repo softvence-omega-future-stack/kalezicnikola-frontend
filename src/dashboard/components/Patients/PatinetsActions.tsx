@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import PatientDeleteModal from "./PatientDeleteMOdal";
+import { useAppSelector } from "@/store/hook";
+import axios from "axios";
 
 interface Props {
   patientId: string;
@@ -12,11 +14,15 @@ interface Props {
 
 const PatientActions: React.FC<Props> = ({ patientId }) => {
   const navigate = useNavigate();
+  const { accessToken } = useAppSelector((state) => state.auth);
   const [open, setOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const [isLoading, setIsLoading] = useState(false);
+
   const { i18n } = useTranslation();
   const lang = i18n.language === "de" ? "de" : "en";
+
 
   const handleView = () => {
     navigate(`/dashboard/patients/${patientId}`);
@@ -25,18 +31,38 @@ const PatientActions: React.FC<Props> = ({ patientId }) => {
 
   const handleDelete = () => {
     setShowModal(true);
+    console.log(patientId)
     setOpen(false);
   };
 
-  const confirmDelete = () => {
-    // API call এখানে করতে পারো
+const confirmDelete = async () => {
+  try {
+    setIsLoading(true);
+    const response = await axios.delete(
+      `${import.meta.env.VITE_API_URL}/doctor/patient/delete/${patientId}`,
+      {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      }
+    );
+    console.log("Patient deleted:", response.data);
     setShowModal(false);
     toast.success(
       lang === "de"
         ? "Profil erfolgreich gelöscht!"
         : "Profile deleted successfully!"
     );
-  };
+  } catch (err: any) {
+    console.error("Delete failed:", err);
+    toast.error(
+      lang === "de"
+        ? "Löschen fehlgeschlagen!"
+        : "Failed to delete profile!"
+    );
+  }
+  finally {
+    setIsLoading(false);
+  }
+};
 
   const cancelDelete = () => setShowModal(false);
 
@@ -80,6 +106,7 @@ const PatientActions: React.FC<Props> = ({ patientId }) => {
         isOpen={showModal}
         onClose={cancelDelete}
         onConfirm={confirmDelete}
+        isLoading={isLoading}
         message={{
           en: "Are you sure you want to remove this profile?",
           de: "Sind Sie sicher, dass Sie dieses Profil löschen möchten?",

@@ -54,6 +54,9 @@ const [callData, setCallData] = useState<CallHistoryItem[]>([]);
   const [, setError] = useState(null);
   const modalRef = useRef<HTMLDivElement>(null);
   const statuses = ['Successful', 'Unsuccessful', 'Transferred', 'Missed'] as const;
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalCalls, setTotalCalls] = useState(0);
+
 
 
 const getRandomStatus = () => {
@@ -79,6 +82,7 @@ const getRandomStatus = () => {
           }));
 
           setCallData(callsWithStatus);
+          setTotalCalls(response.data.data.pagination.total);
           // when we have status
           // setCallData(response.data.data.data); // your call data is nested here
         } else {
@@ -283,6 +287,28 @@ const getRandomStatus = () => {
               </tbody>
             </table>
           </div>
+          {/* Pagination */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-6">
+          <p className="text-sm font-medium text-[#000000]">
+            {`Showing ${1} to ${callData.length} of ${totalCalls} calls`}
+          </p>
+
+          <div className="flex gap-2">
+            <button
+              onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+              disabled={currentPage === 1}
+              className="px-4 py-2 text-base font-semibold text-[#111A2D] bg-[#F3F6F6] border border-gray-300 rounded-xl disabled:opacity-50 cursor-pointer"
+            >
+              {t('Previous')}
+            </button>
+            <button
+              onClick={() => setCurrentPage(currentPage + 1)}
+              className="px-4 py-2 text-base font-semibold text-[#1a1c21] bg-[#F3F6F6] border border-gray-300 rounded-xl cursor-pointer"
+            >
+              {t('Next')}
+            </button>
+          </div>
+        </div>
         </div>
       </div>
 

@@ -2,7 +2,7 @@ import { useAppSelector } from "@/store/hook";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import type { Appointment } from "./PatientSummery";
+// import type { Appointment } from "./PatientSummery";
 import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
 
@@ -73,7 +73,7 @@ const Appointment = () => {
         loading ? (
           <p className="text-base text-[#111A2D] text-center">Loading...</p>
         ) : appointments.length === 0 ? (
-          <p className="text-base text-[#111A2D]">{t("dashboard.routes.patients.patientProfile.tabsvalue.patientSummary.appointments.noAppointments")}</p>
+          <p className="text-base text-[#111A2D]">No appointments found.</p>
         ) : null
       }
       <div className="space-y-3">

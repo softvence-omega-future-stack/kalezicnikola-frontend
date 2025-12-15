@@ -32,6 +32,7 @@ interface FormData {
   priority: Priority;
   dueDate: string;
   patientId: string;
+  insuranceId: string; 
 }
 
 interface TaskFormErrors {
@@ -40,7 +41,7 @@ interface TaskFormErrors {
   status?: string;
   priority?: string;
   dueDate?: string;
-  patientId?: string;
+  insuranceId?: string;  
 }
 
 type TaskOutput = FormData;
@@ -72,18 +73,19 @@ export default function AddTaskModal({ onClose, onAddTask, initialTask }: AddTas
 
 
   const initialData: FormData = {
-    title: isEditing ? (initialTask as Task).title : '',
-    description: isEditing ? (initialTask as Task).description : '',
-    patientId: isEditing ? initialTask.patient?.id || "" : "",
-    status: initialTask?.status ? normalizeStatus(initialTask.status) : "TODO",
+      title: isEditing ? (initialTask as Task).title : '',
+      description: isEditing ? (initialTask as Task).description : '',
+      patientId: '',
+      insuranceId: '',
+      status: initialTask?.status ? normalizeStatus(initialTask.status) : 'TODO',
+      priority: isEditing
+        ? ((initialTask as Task).priority.toUpperCase() as Priority)
+        : 'LOW',
+      dueDate: isEditing
+        ? new Date((initialTask as Task).dueDate).toISOString().split('T')[0]
+        : '',
+    };
 
-
-    priority: isEditing
-      ? ((initialTask as Task).priority.toUpperCase() as Priority)
-      : 'LOW',
-    dueDate: isEditing
-    ? new Date((initialTask as Task).dueDate).toISOString().split('T')[0]
-    : '',  };
 
   const [formData, setFormData] = useState<FormData>(initialData);
   const [errors, setErrors] = useState<TaskFormErrors>({});
@@ -93,27 +95,30 @@ export default function AddTaskModal({ onClose, onAddTask, initialTask }: AddTas
   }, [initialTask]);
 
   useEffect(() => {
-    const fetchPatients = async () => {
-      try {
-        setLoading(true);
-        const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/doctor/patient/all`,
-          {
-            headers: { Authorization: `Bearer ${accessToken}` },
-            withCredentials:true
-          }
-        );
+  const fetchPatients = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/doctor/patient/all`,
+        {
+          headers: { Authorization: `Bearer ${accessToken}` },
+          withCredentials: true,
+        }
+      );
 
-        setPatient(response.data.data.patients);
-      } catch (error) {
-        console.log(error);
-      } finally{
-        setLoading(false)
-      }
-    };
+      setPatient(response.data.data.patients); 
+      
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    fetchPatients();
-  }, []);
+  fetchPatients();
+}, []);
+
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -122,6 +127,7 @@ export default function AddTaskModal({ onClose, onAddTask, initialTask }: AddTas
       [name]: value,
     }));
   };
+
   
 const validateTask = (): boolean => {
   const newErrors: TaskFormErrors = {};
@@ -141,12 +147,42 @@ const validateTask = (): boolean => {
   // Due Date
   if (!formData.dueDate) newErrors.dueDate = "Due date is required";
 
-  // Patient
-  // if (!formData.patientId) newErrors.patientId = "Patient ID is required";
+  // 🔥 Insurance ID validation
+  if (!formData.insuranceId.trim()) {
+    newErrors.insuranceId = "Insurance ID is required";
+  } else if (!formData.patientId) {
+    newErrors.insuranceId = "No patient found with this Insurance ID";
+  }
 
   setErrors(newErrors);
   return Object.keys(newErrors).length === 0;
 };
+const handleInsuranceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const insuranceId = e.target.value;
+
+  setFormData(prev => ({
+    ...prev,
+    insuranceId,
+  }));
+
+  const matchedPatient = patient.find(
+    (p) => p.insuranceId === insuranceId
+  );
+
+  if (matchedPatient) {
+    setFormData(prev => ({
+      ...prev,
+      patientId: matchedPatient.id, 
+    }));
+    setErrors(prev => ({ ...prev, patientId: undefined }));
+  } else {
+    setFormData(prev => ({
+      ...prev,
+      patientId: '',
+    }));
+  }
+};
+
 const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
   if (!validateTask()) return;
@@ -158,6 +194,7 @@ const handleSubmit = async (e: React.FormEvent) => {
     priority: formData.priority,
     dueDate: formData.dueDate,
     patientId: formData.patientId,
+    insuranceId: formData.insuranceId,
   };
   console.log(payload)
 
@@ -276,26 +313,24 @@ const handleSubmit = async (e: React.FormEvent) => {
           {/* Patient Id */}
 
           <div>
-            <label className="block text-sm sm:text-base font-medium text-[#171c35] mb-1 sm:mb-2">Patient ID</label>
-            <div className="relative">
-              <select
-                name="patientId"
-                value={formData.patientId}
-                onChange={handleChange}
-                className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white border border-gray-300 rounded-xl text-sm sm:text-sm text-[#171c35] focus:outline-none focus:ring-2 focus:ring-[#526fff] focus:border-transparent appearance-none cursor-pointer"
-              >
-                <option value="">Select Patient ID</option>
+            <label className="block text-sm sm:text-base font-medium text-[#171c35] mb-1 sm:mb-2">
+              Insurance ID
+            </label>
 
-                {patient.map((p: any) => (
-                  <option key={p.id} value={p.id}>  
-                    {p.insuranceId} — {p.firstName} {p.lastName}
-                  </option>
-                ))}
+            <input
+              type="text"
+              name="insuranceId"
+              placeholder="Enter Insurance ID"
+              value={formData.insuranceId}
+              onChange={handleInsuranceChange}
+              className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white border border-gray-300 rounded-xl"
+            />
 
-              </select>
-              
-              <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
-            </div>
+            {errors.insuranceId && (
+              <p className="text-red-500 text-sm mt-1">
+                Patient not found for this Insurance ID
+              </p>
+            )}
           </div>
 
 

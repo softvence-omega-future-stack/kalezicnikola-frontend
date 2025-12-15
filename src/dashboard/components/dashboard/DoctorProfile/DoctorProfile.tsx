@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -10,11 +10,53 @@ import chevron from '../../../../assets/svgIcon/chevronnRight.svg';
 import edit from '../../../../assets/svgIcon/edit2.svg';
 import karen from '../../../../assets/svgIcon/karen.svg';
 import AppointmentsList from '../AppointmentSidebar';
+import axios from 'axios';
+import { useAppSelector } from '@/store/hook';
 
 export default function DoctorProfile() {
   const [activeTab, setActiveTab] = useState('allAppointments');
   const navigate = useNavigate();
   const { t } = useTranslation();
+   const { accessToken } = useAppSelector((state) => state.auth);
+  // const [isLoading, setIsLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneNumber: "",
+    address: "",
+    dob: "",
+    gender: "",
+    specialities: [] as string[],
+    experience: "",
+    profilePic: karen,
+  });
+
+  useEffect(() => {
+  const fetchUserData = async () => {
+
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/doctor/my-profile`, {
+      headers: { Authorization: `Bearer ${accessToken}` },
+    });
+    const profile = response.data.data.profile;
+    console.log("Profile Data:", profile);
+
+    setFormData({
+      firstName: profile.firstName || "",
+      lastName: profile.lastName || "",
+      email: profile.email || "N/A",
+      phoneNumber: profile.phone || "N/A",
+      address: profile.address || "N/A",
+      dob: profile.dob ? profile.dob.split("T")[0] : "N/A", // Convert ISO -> YYYY-MM-DD
+      gender: profile.gender || "",
+      specialities: profile.specialities || [],
+      experience: profile.experience ,
+      profilePic: profile.photo || karen,
+    });
+  };
+
+  fetchUserData();
+}, []);
 
   const tabs = [
     { key: 'allAppointments', label: t('dashboard.doctorProfile.tabs.allAppointments') },
@@ -63,10 +105,14 @@ export default function DoctorProfile() {
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
                   <div className="min-w-0">
                     <h2 className="text-xl sm:text-2xl font-semibold text-[#171C35] truncate">
-                      {t('dashboard.doctorProfile.profile.name')}
+                      {/* {t('dashboard.doctorProfile.profile.name')} */}
+                      {formData.firstName} {formData.lastName}
                     </h2>
                     <p className="text-sm font-medium text-[#171C35]">
-                      {t('dashboard.doctorProfile.profile.degree')}
+                      {/* {t('dashboard.doctorProfile.profile.degree')} */}
+                      {formData.specialities.length === 0 ? ' General Practitioner' : ` - ${formData.specialities.join(', ')}`}
+
+                      
                     </p>
                   </div>
                   <button className="flex items-center gap-2 px-4 py-2 text-sm border border-gray-50 text-black font-semibold cursor-pointer rounded-2xl hover:bg-white/50 transition-colors flex-shrink-0">
@@ -79,19 +125,23 @@ export default function DoctorProfile() {
                   <div className="min-w-0">
                     <p className="text-sm text-[#111a2d] mb-1">{t('dashboard.doctorProfile.profile.email')}</p>
                     <p className="text-sm sm:text-base font-semibold text-[#171c35] truncate">
-                      username@gmail.com
+                      {formData.email}
                     </p>
                   </div>
                   <div className="min-w-0">
                     <p className="text-sm text-[#111a2d] mb-1">{t('dashboard.doctorProfile.profile.phone')}</p>
                     <p className="text-sm sm:text-base font-semibold text-[#171c35]">
-                      +1 54564 45048
+                      {formData.phoneNumber}
                     </p>
                   </div>
                   <div className="min-w-0">
                     <p className="text-sm text-[#111A2D] mb-1">{t('dashboard.doctorProfile.profile.experience')}</p>
                     <p className="text-xl sm:text-2xl font-semibold text-[#171c35]">
-                      08 <span className="text-sm sm:text-base font-semibold">{t('dashboard.doctorProfile.profile.years')}</span>
+                        {formData.experience
+                        ? `${formData.experience} ${t('dashboard.doctorProfile.profile.years')}`
+                        : <div className='font-semibold text-[#171c35] text-base'>N/A</div>
+                        }
+
                     </p>
                   </div>
                 </div>
@@ -99,7 +149,8 @@ export default function DoctorProfile() {
                 <div className="mt-4 min-w-0">
                   <p className="text-sm text-[#111A2D] mb-1">{t('dashboard.doctorProfile.profile.address')}</p>
                   <p className="text-sm sm:text-base font-semibold text-[#171c35] break-words">
-                    123 Medical Center Blvd, Suite 456, New York, NY 10001
+                    {/* 123 Medical Center Blvd, Suite 456, New York, NY 10001 */}
+                    {formData.address}
                   </p>
                 </div>
               </div>
