@@ -133,7 +133,7 @@ useEffect(() => {
 
   return (
     <div className="p-6 bg-white min-h-screen rounded-3xl">
-      <h2 className="text-xl font-semibold text-[#171C35]">
+      <h2 className="text-xl font-semibold text-headingBlack">
         {t(
           "dashboard.routes.settings.settingsSidebar.tabs.notificationSettings.title"
         )}
@@ -166,7 +166,7 @@ useEffect(() => {
               className="flex flex-col sm:flex-row items-start sm:items-center justify-between py-3 border-b border-[#EAECF0] last:border-b-0"
             >
               <div className="flex-1 pr-0 sm:pr-4 mb-2 sm:mb-0">
-                <h3 className="text-sm font-semibold text-[#171C35]">
+                <h3 className="text-sm font-semibold text-headingBlack">
                   {item.label}
                 </h3>
                 <p className="text-sm text-[#111a2D] font-medium w-full sm:w-auto break-words">
@@ -282,7 +282,7 @@ useEffect(() => {
 
 //   return (
 //     <div className="p-6 bg-white min-h-screen rounded-3xl">
-//       <h2 className="text-xl font-semibold text-[#171C35]">
+//       <h2 className="text-xl font-semibold text-headingBlack">
 //         {t(
 //           "dashboard.routes.settings.settingsSidebar.tabs.notificationSettings.title"
 //         )}
@@ -306,7 +306,7 @@ useEffect(() => {
 //               className="flex flex-col sm:flex-row items-start sm:items-center justify-between py-3 border-b border-[#EAECF0] last:border-b-0"
 //             >
 //               <div className="flex-1 pr-0 sm:pr-4 mb-2 sm:mb-0">
-//                 <h3 className="text-sm font-semibold text-[#171C35]">
+//                 <h3 className="text-sm font-semibold text-headingBlack">
 //                   {item.label}
 //                 </h3>
 //                 <p className="text-sm text-[#111a2D] font-medium w-full sm:w-auto break-words">

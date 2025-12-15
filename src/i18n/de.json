@@ -462,13 +462,14 @@
 
   "dashboard": {
       "mainHeader":{
+        "searchPlaceholder":"Suche...",
     "userDropdown": {
     "role": "D.",
     "menu": {
       "profileSettings": "Profileinstellungen",
       "support": "Unterstützung",
       "settings": "Einstellungen",
-      "logout": "Abmelden"
+      "logout": "Ausloggen"
     }
   },
 
@@ -536,14 +537,14 @@
 
     "sidebar": {
       "navigation": {
-        "dashboard": "Instrumententafel",
+        "dashboard": "Dashboard",
         "callLogs": "Anrufprotokolle",
         "calendar": "Kalender",
         "patients": "Patienten",
         "tasks": "Aufgaben",
-        "supports": "Unterstützung",
+        "supports": "Support",
         "settings": "Einstellungen",
-        "logout": "Abmelden"
+        "logout": "Ausloggen"
       },
       "upgradeCard": {
         "upgradeTo": "Upgrade zu",
@@ -557,7 +558,7 @@
       "dashboard":{
       "topSection": {
   "welcome": "Willkommen, {{firstName}} {{lastName}}",
-  "todayIncomingCalls": "Heutige eingehende Anrufe",
+  "todayIncomingCalls": "Heute eingegangene Anrufe",
   "successfulCalls": "Erfolgreiche Anrufe",
   "averageCallDuration": "Durchschnittliche Anrufdauer",
   "subscriptionButtonLabel": "Abonnement anzeigen"
@@ -571,14 +572,14 @@
 },
 "cards": {
   "unreviewedCalls": {
-    "title": "Unüberprüfte Anrufe",
+    "title": "Ungeprüfte Anrufe",
     "description": "Erfordert Ihre Aufmerksamkeit"
   },
   "tasks": {
     "title": "Aufgaben"
   },
   "callBack": {
-    "title": "Benötigteinen Rückruf"
+    "title": "Benötigteinen Rückru"
   }
 }
 ,
@@ -632,7 +633,7 @@
       "callLogs": {
   "title": "Anrufprotokolle",
   "breadcrumb": {
-    "dashboard": "Instrumententafel",
+    "dashboard": "Dashboard",
     "callLogs": "Anrufprotokolle"
   },
   "header": "Anrufprotokolle",
@@ -683,7 +684,7 @@
 
 "calendar": {
   "breadcrumb": {
-    "dashboard": "Instrumententafel",
+    "dashboard": "Dashboard",
     "calendar": "Kalender"
   },
   "header": "Kalender",
@@ -725,7 +726,7 @@
 },
 "patients": {
   "breadcrumb": {
-    "dashboard": "Instrumententafel",
+    "dashboard": "Dashboard",
     "patients": "Patienten"
   },
   "buttons": {
@@ -1235,10 +1236,10 @@
   
    "supportChat": {
         "breadcrumb": {
-          "home": "Instrunmententafel",
-          "current": "Unterstützung"
+          "home": "Dashboard",
+          "current": "Support"
         },
-        "title": "Unterstützung",
+        "title": "Support",
         "searchPlaceholder": "suchen...",
         "backButton": "← Zurück",
         "chat": {
@@ -1250,7 +1251,7 @@
 
 "settings":{
   "breadcrumb": {
-    "dashboard": "Instrumententafel",
+    "dashboard": "Dashboard",
     "settings": "Einstellungen"
   },
   "header": {
@@ -1293,7 +1294,7 @@
       "addNewStaff": {
     "header": {
       "breadcrumb": {
-        "dashboard": "Instrumententafel",
+        "dashboard": "Dashboard",
         "settings": "Einstellungen",
         "myStaff": "Meine Mitarbeiter"
       },
@@ -1785,7 +1786,7 @@
   }
 },
   "logoutModal": {
-    "title": "Abmelden",
+    "title": "Ausloggen",
     "description": "Möchten Sie sich wirklich von Docline abmelden?",
     "buttons": {
       "confirm": "Ja",

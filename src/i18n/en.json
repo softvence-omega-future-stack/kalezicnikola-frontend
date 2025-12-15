@@ -466,6 +466,7 @@
 },
 "dashboard":{
   "mainHeader":{
+    "searchPlaceholder": "Search...",
       "userDropdown": {
     "role": "D.",
     "menu": {

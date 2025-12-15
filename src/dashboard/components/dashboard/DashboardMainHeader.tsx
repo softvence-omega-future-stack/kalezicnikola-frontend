@@ -7,6 +7,7 @@ import notification from '../../../assets/svgIcon/notification.svg';
 import { Menu } from 'lucide-react';
 import LanguageSelector from './LanguageSelector';
 import { useAppSelector } from '@/store/hook';
+import { useTranslation } from 'react-i18next';
 
 const userData = {
     // name: 'Keren nix',
@@ -22,6 +23,7 @@ const MainHeader: React.FC<MainHeaderProps> = ({ onMobileMenuOpen }) => {
     const [showNotification, setShowNotification] = useState(false);
     const [showUserDropdown, setShowUserDropdown] = useState(false);
     const { user } = useAppSelector((state)=>state.auth);
+    const {t} = useTranslation()
     
     const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -96,7 +98,7 @@ useEffect(() => {
                         <img src={search} alt="Search" className="w-4 h-4 shrink-0" />
                         <input
                             type="text"
-                            placeholder="Search something..."
+                            placeholder={t("dashboard.mainHeader.searchPlaceholder")}
                             className="w-full min-w-0 text-gray-700 placeholder-[#111A2D] focus:outline-none text-sm sm:text-base"
                         />
                     </div>

@@ -26,7 +26,7 @@ const InputField: React.FC<InputFieldProps> = ({
   onChange,
 }) => (
   <div className="flex flex-col space-y-2">
-    <label htmlFor={name} className="text-sm md:text-base font-medium text-[#171C35]">
+    <label htmlFor={name} className="text-sm md:text-base font-medium text-headingBlack">
       {label}
     </label>
     <input
@@ -37,7 +37,7 @@ const InputField: React.FC<InputFieldProps> = ({
       placeholder={placeholder}
       readOnly={!isEditing}
       onChange={onChange}
-      className={`px-3 py-3 md:px-4 md:py-4 text-xs md:text-sm text-[#171C35] rounded-lg transition-all outline-none placeholder-[#667085] ${
+      className={`px-3 py-3 md:px-4 md:py-4 text-xs md:text-sm text-headingBlack rounded-lg transition-all outline-none placeholder-[#667085] ${
         isEditing
           ? "border border-gray-300 bg-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           : "bg-gray-100 cursor-default"
@@ -142,7 +142,7 @@ const PersonalInfoForm: React.FC = () => {
       <div className="rounded-xl md:rounded-3xl p-4 md:p-6">
         {/* Header */}
         <header className="flex justify-between items-center mb-4 md:mb-6">
-          <h2 className="text-lg md:text-xl font-semibold text-[#171C35]">
+          <h2 className="text-lg md:text-xl font-semibold text-headingBlack">
             {t("dashboard.routes.settings.settingsSidebar.tabs.personalInfo.title")}
           </h2>
           {!isEditing && (
@@ -251,7 +251,7 @@ const PersonalInfoForm: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
             <div className="flex flex-col space-y-2">
-              <label htmlFor="dob" className="text-sm md:text-base font-medium text-[#171C35]">
+              <label htmlFor="dob" className="text-sm md:text-base font-medium text-headingBlack">
                 {t("dashboard.routes.settings.settingsSidebar.tabs.personalInfo.profile.dobLabel")}
               </label>
               <input
@@ -263,7 +263,7 @@ const PersonalInfoForm: React.FC = () => {
                 onChange={handleChange}
                 min="1900-01-01"
                 max={new Date().toISOString().split("T")[0]}
-                className={`px-3 py-3 md:px-4 md:py-4 text-xs md:text-sm text-[#171C35] rounded-lg transition-all outline-none ${
+                className={`px-3 py-3 md:px-4 md:py-4 text-xs md:text-sm text-headingBlack rounded-lg transition-all outline-none ${
                   isEditing
                     ? "border border-gray-300 bg-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     : "bg-gray-100 cursor-default"
@@ -286,7 +286,7 @@ const PersonalInfoForm: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 mt-6 md:mt-8">
             <button
               onClick={handleCancel}
-              className="w-full px-4 py-3 md:px-6 md:py-3 border border-gray-200 rounded-lg text-sm font-semibold text-[#171C35] hover:bg-gray-50 transition-colors cursor-pointer"
+              className="w-full px-4 py-3 md:px-6 md:py-3 border border-gray-200 rounded-lg text-sm font-semibold text-headingBlack hover:bg-gray-50 transition-colors cursor-pointer"
             >
               {t("dashboard.routes.settings.settingsSidebar.tabs.personalInfo.profile.cancelButton")}
             </button>

@@ -54,14 +54,29 @@ const DeleteAccountModal: React.FC<DeleteAccountModalProps> = ({ isOpen, onClose
         setPassword('');
       }, 2000);
       
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Delete account error:', error);
-      
+
       // ✅ Handle error
-      const errorMsg = error?.data?.message || 
-                      t('dashboard.routes.settings.settingsSidebar.deleteAccount.modal.error') || 
-                      'Failed to delete account. Please check your password.';
-      
+      let errorMsg: string;
+      if (
+        typeof error === 'object' &&
+        error !== null &&
+        'data' in error &&
+        typeof (error as { data?: { message?: string } }).data === 'object' &&
+        (error as { data?: { message?: string } }).data !== null &&
+        'message' in (error as { data?: { message?: string } }).data!
+      ) {
+        errorMsg =
+          ((error as { data?: { message?: string } }).data as { message?: string }).message ||
+          t('dashboard.routes.settings.settingsSidebar.deleteAccount.modal.error') ||
+          'Failed to delete account. Please check your password.';
+      } else {
+        errorMsg =
+          t('dashboard.routes.settings.settingsSidebar.deleteAccount.modal.error') ||
+          'Failed to delete account. Please check your password.';
+      }
+
       setErrorMessage(errorMsg);
     }
   };

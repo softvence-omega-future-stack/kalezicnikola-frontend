@@ -1,4 +1,4 @@
-// ==================== EditProfileModal.tsx (Updated) ====================
+
 import { useUpdateMyProfileMutation } from '@/store/features/doctorSettings/doctorProfileApi';
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -13,7 +13,7 @@ interface ProfileData {
   licenceNo: string | null;
   specialities: string[];
   experience: string;
-  dob: string;
+   dob: string | null;        
   photo: string;
   gender: "MALE" | "FEMALE" | "OTHER";
   address: string;
@@ -22,6 +22,7 @@ interface ProfileData {
   lastLoginAt: string;
   createdAt: string;
   updatedAt: string;
+  
 }
 
 interface EditProfileModalProps {
@@ -41,6 +42,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
   const [updateProfile, { isLoading: isSaving }] = useUpdateMyProfileMutation();
 
   const [formData, setFormData] = useState({
+       photo: null as File | string | null,
     firstName: '',
     lastName: '',
     phone: '',
@@ -66,12 +68,14 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
       };
 
       setFormData({
+        photo: profileData.photo || null,
         firstName: profileData.firstName || '',
         lastName: profileData.lastName || '',
         phone: profileData.phone || '',
         specialities: profileData.specialities || [],
         licenceNo: profileData.licenceNo || '',
-        dob: formatDate(profileData.dob) || '',
+       dob: formatDate(profileData.dob ?? '') || '',
+
         gender: profileData.gender || '',
         address: profileData.address || '',
         experience: profileData.experience || '',
@@ -100,7 +104,19 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
       setErrorMessage('');
       
       // ✅ Prepare data (remove empty gender)
-      const updateData: any = {
+      interface UpdateProfilePayload {
+        firstName: string;
+        lastName: string;
+        phone: string;
+        specialities: string[];
+        licenceNo: string | null;
+        dob: string;
+        address: string;
+        experience: string;
+        gender?: "MALE" | "FEMALE" | "OTHER";
+      }
+
+      const updateData: UpdateProfilePayload = {
         firstName: formData.firstName,
         lastName: formData.lastName,
         phone: formData.phone,
@@ -130,13 +146,29 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
         onSuccess();
       }, 1500);
       
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Update profile error:', error);
-      
-      const errorMsg = error?.data?.message || 
-                      'Failed to update profile. Please try again.';
-      
+
+      let errorMsg = 'Failed to update profile. Please try again.';
+      if (
+        typeof error === 'object' &&
+        error !== null &&
+        'data' in error &&
+        typeof (error as { data?: unknown }).data === 'object' &&
+        (error as { data?: unknown }).data !== null &&
+        'message' in (error as { data: { message?: unknown } }).data!
+      ) {
+        errorMsg = ((error as { data: { message: string } }).data).message;
+      }
+
       setErrorMessage(errorMsg);
+    }
+  };
+
+   // Handle photo change
+  const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setFormData(prev => ({ ...prev, photo: e.target.files![0] }));
     }
   };
 
@@ -155,7 +187,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
         <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto my-8">
           <div className="sticky top-0 bg-white border-b border-gray-200 p-6 z-10">
             <div className="flex justify-between items-center">
-              <h2 className="text-2xl font-semibold text-[#171C35]">
+              <h2 className="text-2xl font-semibold text-headingBlack">
                 {t('dashboard.doctorProfile.editModal.title') || 'Edit Profile'}
               </h2>
               <button 
@@ -177,10 +209,28 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
               </div>
             )}
 
+      {/* Photo Upload */}
+              <div className="md:col-span-2 flex flex-col items-start">
+                <label className="block text-sm font-medium text-headingBlack mb-2">Profile Photo</label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handlePhotoChange}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                  disabled={isSaving}
+                />
+                {formData.photo && typeof formData.photo !== 'string' && (
+                  <img
+                    src={URL.createObjectURL(formData.photo)}
+                    alt="Preview"
+                    className="mt-2 w-32 h-32 rounded-lg object-cover"
+                  />
+                )}
+              </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* First Name */}
               <div>
-                <label className="block text-sm font-medium text-[#171C35] mb-2">
+                <label className="block text-sm font-medium text-headingBlack mb-2">
                   First Name *
                 </label>
                 <input
@@ -196,7 +246,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
 
               {/* Last Name */}
               <div>
-                <label className="block text-sm font-medium text-[#171C35] mb-2">
+                <label className="block text-sm font-medium text-headingBlack mb-2">
                   Last Name *
                 </label>
                 <input
@@ -212,7 +262,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
 
               {/* Phone */}
               <div>
-                <label className="block text-sm font-medium text-[#171C35] mb-2">
+                <label className="block text-sm font-medium text-headingBlack mb-2">
                   Phone
                 </label>
                 <input
@@ -228,7 +278,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
 
               {/* Experience */}
               <div>
-                <label className="block text-sm font-medium text-[#171C35] mb-2">
+                <label className="block text-sm font-medium text-headingBlack mb-2">
                   Experience
                 </label>
                 <input
@@ -244,7 +294,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
 
               {/* Specialities */}
               <div className="md:col-span-2">
-                <label className="block text-sm font-medium text-[#171C35] mb-2">
+                <label className="block text-sm font-medium text-headingBlack mb-2">
                   Specialities (comma-separated)
                 </label>
                 <input
@@ -259,7 +309,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
 
               {/* License Number */}
               <div>
-                <label className="block text-sm font-medium text-[#171C35] mb-2">
+                <label className="block text-sm font-medium text-headingBlack mb-2">
                   License Number
                 </label>
                 <input
@@ -274,7 +324,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
 
               {/* Date of Birth */}
               <div>
-                <label className="block text-sm font-medium text-[#171C35] mb-2">
+                <label className="block text-sm font-medium text-headingBlack mb-2">
                   Date of Birth
                 </label>
                 <input
@@ -289,7 +339,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
 
               {/* Gender */}
               <div>
-                <label className="block text-sm font-medium text-[#171C35] mb-2">
+                <label className="block text-sm font-medium text-headingBlack mb-2">
                   Gender
                 </label>
                 <select
@@ -308,7 +358,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
 
               {/* Address - Full Width */}
               <div className="md:col-span-2">
-                <label className="block text-sm font-medium text-[#171C35] mb-2">
+                <label className="block text-sm font-medium text-headingBlack mb-2">
                   Address
                 </label>
                 <input

@@ -1,67 +1,87 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-
+import axios from 'axios';
 
 import AllApointment from './AllApointment';
 import Patient from './Patient';
+import AppointmentsList from '../AppointmentSidebar';
+
 import home from '../../../../assets/svgIcon/homeIcon.svg';
 import chevron from '../../../../assets/svgIcon/chevronnRight.svg';
 import edit from '../../../../assets/svgIcon/edit2.svg';
 import karen from '../../../../assets/svgIcon/karen.svg';
-import AppointmentsList from '../AppointmentSidebar';
-import axios from 'axios';
 import { useAppSelector } from '@/store/hook';
+import EditProfileModal from './EditProfileModal';
+
+interface DoctorProfileData {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string; // made required and always a string
+  experience?: string;
+  dob?: string;
+  gender?: string;
+  address?: string;
+  licenceNo?: string;
+  emailVerifiedAt?: string | null;
+  twoFactorEnabled?: boolean;
+  lastLoginAt?: string;
+  createdAt?: string;
+  updatedAt?: string;
+  photo?: string;
+  specialities: string[];
+}
 
 export default function DoctorProfile() {
   const [activeTab, setActiveTab] = useState('allAppointments');
   const navigate = useNavigate();
+  const [isEditOpen, setIsEditOpen] = useState(false);
   const { t } = useTranslation();
-   const { accessToken } = useAppSelector((state) => state.auth);
-  // const [isLoading, setIsLoading] = useState(false);
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phoneNumber: "",
-    address: "",
-    dob: "",
-    gender: "",
-    specialities: [] as string[],
-    experience: "",
-    profilePic: karen,
-  });
+  const { accessToken } = useAppSelector((state) => state.auth);
 
-  useEffect(() => {
-  const fetchUserData = async () => {
+  const openEditModal = () => setIsEditOpen(true);
+  const closeEditModal = () => setIsEditOpen(false);
 
-    const response = await axios.get(`${import.meta.env.VITE_API_URL}/doctor/my-profile`, {
-      headers: { Authorization: `Bearer ${accessToken}` },
-    });
-    const profile = response.data.data.profile;
-    console.log("Profile Data:", profile);
+  const [profileData, setProfileData] = useState<DoctorProfileData | null>(null);
+  const [loading, setLoading] = useState(true);
 
-    setFormData({
-      firstName: profile.firstName || "",
-      lastName: profile.lastName || "",
-      email: profile.email || "N/A",
-      phoneNumber: profile.phone || "N/A",
-      address: profile.address || "N/A",
-      dob: profile.dob ? profile.dob.split("T")[0] : "N/A", // Convert ISO -> YYYY-MM-DD
-      gender: profile.gender || "",
-      specialities: profile.specialities || [],
-      experience: profile.experience ,
-      profilePic: profile.photo || karen,
-    });
+  // ✅ GET API: Fetch doctor profile
+  const fetchProfile = async () => {
+    try {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/doctor/my-profile`, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
+      const profile = response.data.data.profile;
+      // Ensure id is a string
+      if (profile && typeof profile.id !== 'string') {
+        profile.id = String(profile.id);
+      }
+      // Ensure phone is always a string
+      if (!profile.phone) {
+        profile.phone = '';
+      }
+      console.log('Profile Data:', profile);
+      setProfileData(profile);
+    } catch (err) {
+      console.error('Failed to fetch profile:', err);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  fetchUserData();
-}, []);
+  useEffect(() => {
+    fetchProfile();
+  }, [accessToken]);
 
   const tabs = [
     { key: 'allAppointments', label: t('dashboard.doctorProfile.tabs.allAppointments') },
     { key: 'patients', label: t('dashboard.doctorProfile.tabs.patients') },
   ];
+
+  if (loading) return <p>Loading profile...</p>;
+  if (!profileData) return <p>No profile data found.</p>;
 
   return (
     <div className="min-h-screen mt-[30px] p-6">
@@ -95,9 +115,9 @@ export default function DoctorProfile() {
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
               <div className="flex-shrink-0 -mt-16 sm:-mt-20">
                 <img
-                  src={karen}
+                  src={profileData.photo || karen}
                   alt="Doctor"
-                  className="w-[180px] h-[220px] sm:w-[222px] sm:h-[270px] rounded-2xl object-cover bg-gray-200 mx-auto sm:mx-0"
+                  className="w-[180px] h-[220px] sm:w-[222px] sm:h-[370px] rounded-2xl object-cover bg-gray-200 mx-auto sm:mx-0"
                 />
               </div>
 
@@ -105,53 +125,97 @@ export default function DoctorProfile() {
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
                   <div className="min-w-0">
                     <h2 className="text-xl sm:text-2xl font-semibold text-[#171C35] truncate">
-                      {/* {t('dashboard.doctorProfile.profile.name')} */}
-                      {formData.firstName} {formData.lastName}
+                      {profileData.firstName} {profileData.lastName}
                     </h2>
                     <p className="text-sm font-medium text-[#171C35]">
-                      {/* {t('dashboard.doctorProfile.profile.degree')} */}
-                      {formData.specialities.length === 0 ? ' General Practitioner' : ` - ${formData.specialities.join(', ')}`}
-
-                      
+                      {profileData.specialities.length === 0
+                        ? ' General Practitioner'
+                        : ` - ${profileData.specialities.join(', ')}`}
                     </p>
                   </div>
-                  <button className="flex items-center gap-2 px-4 py-2 text-sm border border-gray-50 text-black font-semibold cursor-pointer rounded-2xl hover:bg-white/50 transition-colors flex-shrink-0">
+                  <button
+                    onClick={openEditModal}
+                    className="flex items-center gap-2 px-4 py-2 text-sm border border-gray-50 text-black font-semibold cursor-pointer rounded-2xl hover:bg-white/50 transition-colors flex-shrink-0"
+                  >
                     <img src={edit} alt="" className="w-4 h-4" />
                     <span>{t('dashboard.doctorProfile.profile.edit')}</span>
                   </button>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-                  <div className="min-w-0">
-                    <p className="text-sm text-[#111a2d] mb-1">{t('dashboard.doctorProfile.profile.email')}</p>
+                {/* Credentials Section */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                  <div>
+                    <p className="text-sm text-[#111a2d] mb-1">{t('Email')}</p>
                     <p className="text-sm sm:text-base font-semibold text-[#171c35] truncate">
-                      {formData.email}
+                      {profileData.email}
                     </p>
                   </div>
-                  <div className="min-w-0">
-                    <p className="text-sm text-[#111a2d] mb-1">{t('dashboard.doctorProfile.profile.phone')}</p>
+                  <div>
+                    <p className="text-sm text-[#111a2d] mb-1">{t('Phone')}</p>
                     <p className="text-sm sm:text-base font-semibold text-[#171c35]">
-                      {formData.phoneNumber}
+                      {profileData.phone || 'N/A'}
                     </p>
                   </div>
-                  <div className="min-w-0">
-                    <p className="text-sm text-[#111A2D] mb-1">{t('dashboard.doctorProfile.profile.experience')}</p>
-                    <p className="text-xl sm:text-2xl font-semibold text-[#171c35]">
-                        {formData.experience
-                        ? `${formData.experience} ${t('dashboard.doctorProfile.profile.years')}`
-                        : <div className='font-semibold text-[#171c35] text-base'>N/A</div>
-                        }
-
+                  <div>
+                    <p className="text-sm text-[#111a2d] mb-1">{t('Experience')}</p>
+                    <p className="text-sm sm:text-base font-semibold text-[#171c35]">
+                      {profileData.experience || 'N/A'}
                     </p>
                   </div>
-                </div>
-
-                <div className="mt-4 min-w-0">
-                  <p className="text-sm text-[#111A2D] mb-1">{t('dashboard.doctorProfile.profile.address')}</p>
-                  <p className="text-sm sm:text-base font-semibold text-[#171c35] break-words">
-                    {/* 123 Medical Center Blvd, Suite 456, New York, NY 10001 */}
-                    {formData.address}
-                  </p>
+                  <div>
+                    <p className="text-sm text-[#111a2d] mb-1">{t('DOB')}</p>
+                    <p className="text-sm sm:text-base font-semibold text-[#171c35]">
+                      {profileData.dob ? new Date(profileData.dob).toLocaleDateString() : 'N/A'}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-[#111a2d] mb-1">{t('Gender')}</p>
+                    <p className="text-sm sm:text-base font-semibold text-[#171c35]">
+                      {profileData.gender || 'N/A'}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-[#111a2d] mb-1">{t('Address')}</p>
+                    <p className="text-sm sm:text-base font-semibold text-[#171c35] break-words">
+                      {profileData.address || 'N/A'}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-[#111a2d] mb-1">{t('License Number')}</p>
+                    <p className="text-sm sm:text-base font-semibold text-[#171c35]">
+                      {profileData.licenceNo || 'N/A'}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-[#111a2d] mb-1">{t('Email Verified')}</p>
+                    <p className="text-sm sm:text-base font-semibold text-[#171c35]">
+                      {profileData.emailVerifiedAt ? 'Yes' : 'No'}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-[#111a2d] mb-1">{t('2FA Enabled')}</p>
+                    <p className="text-sm sm:text-base font-semibold text-[#171c35]">
+                      {profileData.twoFactorEnabled ? 'Yes' : 'No'}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-[#111a2d] mb-1">{t('Last Login')}</p>
+                    <p className="text-sm sm:text-base font-semibold text-[#171c35]">
+                      {profileData.lastLoginAt ? new Date(profileData.lastLoginAt).toLocaleString() : 'N/A'}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-[#111a2d] mb-1">{t('Account Created')}</p>
+                    <p className="text-sm sm:text-base font-semibold text-[#171c35]">
+                      {profileData.createdAt ? new Date(profileData.createdAt).toLocaleString() : 'N/A'}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-[#111a2d] mb-1">{t('Last Updated')}</p>
+                    <p className="text-sm sm:text-base font-semibold text-[#171c35]">
+                      {profileData.updatedAt ? new Date(profileData.updatedAt).toLocaleString() : 'N/A'}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -160,7 +224,7 @@ export default function DoctorProfile() {
           {/* Tabs Section */}
           <div className="p-4 sm:p-6 rounded-2xl bg-white">
             <div className="flex gap-2 sm:gap-4 bg-[#FAFAFA] p-2 rounded-2xl mb-6 overflow-x-auto">
-              {tabs.map(tab => (
+              {tabs.map((tab) => (
                 <button
                   key={tab.key}
                   onClick={() => setActiveTab(tab.key)}
@@ -180,17 +244,32 @@ export default function DoctorProfile() {
         </div>
 
         {/* Right Column */}
-        <div className="lg:col-span-1 ">
-         <AppointmentsList/>
+        <div className="lg:col-span-1">
+          <AppointmentsList />
         </div>
       </div>
+
+      {/* Edit Modal */}
+   {profileData && (
+  <EditProfileModal
+    isOpen={isEditOpen}
+    onClose={closeEditModal}
+    profileData={profileData as any}  // ✅ Quick fix with type casting
+    onSuccess={() => {
+      fetchProfile();
+      closeEditModal();
+    }}
+  />
+)}
     </div>
   );
 }
 
 
 
-// // ==================== DoctorProfile.tsx ====================
+
+
+// ==================== DoctorProfile.tsx ====================
 // import { useState } from 'react';
 // import { useNavigate } from 'react-router-dom';
 // import { useTranslation } from 'react-i18next';

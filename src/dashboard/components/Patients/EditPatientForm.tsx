@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Home, ChevronRight } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
-
 import { useAppSelector } from '@/store/hook';
 import { toast } from 'react-toastify';
 import axios from 'axios';
@@ -30,37 +29,29 @@ interface FormErrors {
   [key: string]: string;
 }
 
-// interface ApiErrorResponse {
-//   message?: string;
-// }
-
 interface ApiSuccessResponse {
   message?: string;
   data?: {
     patient?: FormData;
-    patients?: FormData[];
   };
 }
 
-// ================================
-// Text for multilingual support
-// ================================
 const formText = {
-  firstName: { en: "First Name", de: "Vorname", placeholder: { en: "Enter first name", de: "Vorname eingeben" }, error: { en: "First name is required", de: "Vorname ist erforderlich" } },
-  lastName: { en: "Last Name", de: "Nachname", placeholder: { en: "Enter last name", de: "Nachname eingeben" }, error: { en: "Last name is required", de: "Nachname ist erforderlich" } },
+  firstName: { en: "First Name", de: "Vorname", error: { en: "First name is required", de: "Vorname ist erforderlich" } },
+  lastName: { en: "Last Name", de: "Nachname", error: { en: "Last name is required", de: "Nachname ist erforderlich" } },
   dob: { en: "Date of Birth", de: "Geburtsdatum", error: { en: "Date of birth is required", de: "Geburtsdatum ist erforderlich" } },
-  gender: { en: "Gender", de: "Geschlecht", placeholder: { en: "Select gender", de: "Geschlecht auswählen" }, error: { en: "Gender is required", de: "Geschlecht ist erforderlich" } },
-  bloodGroup: { en: "Blood Group", de: "Blutgruppe", placeholder: { en: "Select blood group", de: "Blutgruppe auswählen" }, error: { en: "Blood group is required", de: "Blutgruppe ist erforderlich" } },
-  maritalStatus: { en: "Marital Status", de: "Familienstand", placeholder: { en: "Select marital status", de: "Familienstand auswählen" }, error: { en: "Marital status is required", de: "Familienstand ist erforderlich" } },
-  insuranceId: { en: "Insurance ID", de: "Versicherungs-ID", placeholder: { en: "Enter insurance ID", de: "Versicherungs-ID eingeben" }, error: { en: "Insurance ID is invalid", de: "Versicherungs-ID ist ungültig" } },
-  city: { en: "City", de: "Stadt", placeholder: { en: "Enter city", de: "Stadt eingeben" }, error: { en: "City is required", de: "Stadt ist erforderlich" } },
-  address: { en: "Address", de: "Adresse", placeholder: { en: "Enter address", de: "Adresse eingeben" }, error: { en: "Address is required", de: "Adresse ist erforderlich" } },
-  email: { en: "Email", de: "E-Mail", placeholder: { en: "Enter email", de: "E-Mail eingeben" }, error: { en: "Email is required", de: "E-Mail ist erforderlich" } },
-  phone: { en: "Phone Number", de: "Telefonnummer", placeholder: { en: "Enter phone number", de: "Telefonnummer eingeben" }, error: { en: "Phone number is required", de: "Telefonnummer ist erforderlich" } },
-  alternativePhone: { en: "Alternative Phone", de: "Alternative Telefonnummer", placeholder: { en: "Enter alternative phone", de: "Alternative Telefonnummer eingeben" }, error: { en: "Alternative phone is invalid", de: "Alternative Telefonnummer ist ungültig" } },
-  emergencyContactName: { en: "Contact Name", de: "Kontaktname", placeholder: { en: "Enter contact name", de: "Kontaktname eingeben" } },
-  emergencyContactPhone: { en: "Contact Phone", de: "Kontakttelefon", placeholder: { en: "Enter contact phone", de: "Kontakttelefon eingeben" }, error: { en: "Emergency contact phone is invalid", de: "Kontakttelefon ist ungültig" } },
-  emergencyContactRelationship: { en: "Relationship", de: "Beziehung", placeholder: { en: "Enter relationship", de: "Beziehung eingeben" } },
+  gender: { en: "Gender", de: "Geschlecht", error: { en: "Gender is required", de: "Geschlecht ist erforderlich" } },
+  bloodGroup: { en: "Blood Group", de: "Blutgruppe", error: { en: "Blood group is required", de: "Blutgruppe ist erforderlich" } },
+  maritalStatus: { en: "Marital Status", de: "Familienstand", error: { en: "Marital status is required", de: "Familienstand ist erforderlich" } },
+  insuranceId: { en: "Insurance ID", de: "Versicherungs-ID", error: { en: "Insurance ID is invalid", de: "Versicherungs-ID ist ungültig" } },
+  city: { en: "City", de: "Stadt", error: { en: "City is required", de: "Stadt ist erforderlich" } },
+  address: { en: "Address", de: "Adresse", error: { en: "Address is required", de: "Adresse ist erforderlich" } },
+  email: { en: "Email", de: "E-Mail", error: { en: "Email is required", de: "E-Mail ist erforderlich" } },
+  phone: { en: "Phone Number", de: "Telefonnummer", error: { en: "Phone number is required", de: "Telefonnummer ist erforderlich" } },
+  alternativePhone: { en: "Alternative Phone", de: "Alternative Telefonnummer", error: { en: "Alternative phone is invalid", de: "Alternative Telefonnummer ist ungültig" } },
+  emergencyContactName: { en: "Contact Name", de: "Kontaktname" },
+  emergencyContactPhone: { en: "Contact Phone", de: "Kontakttelefon", error: { en: "Emergency contact phone is invalid", de: "Kontakttelefon ist ungültig" } },
+  emergencyContactRelationship: { en: "Relationship", de: "Beziehung" },
   cancel: { en: "Cancel", de: "Abbrechen" },
   update: { en: "Update", de: "Aktualisieren" },
   updating: { en: "Updating...", de: "Wird aktualisiert..." },
@@ -75,30 +66,16 @@ const EditPatientForm: React.FC = () => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const { accessToken } = useAppSelector((state) => state.auth);
-  const [, setAllPatients] = useState<FormData[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [fetchingPatient, setFetchingPatient] = useState<boolean>(true);
 
   const [formData, setFormData] = useState<FormData>({
-    firstName: '',
-    lastName: '',
-    dob: '',
-    gender: '',
-    bloodGroup: '',
-    maritalStatus: '',
-    city: '',
-    insuranceId: '',
-    address: '',
-    email: '',
-    phone: '',
-    alternativePhone: '',
-    status: 'ACTIVE',
-    emergencyContactName: '',
-    emergencyContactPhone: '',
-    emergencyContactRelationship: '',
+    firstName: '', lastName: '', dob: '', gender: '', bloodGroup: '', maritalStatus: '',
+    city: '', insuranceId: '', address: '', email: '', phone: '', alternativePhone: '',
+    status: 'ACTIVE', emergencyContactName: '', emergencyContactPhone: '', emergencyContactRelationship: ''
   });
-  
   const [errors, setErrors] = useState<FormErrors>({});
+  const [loading, setLoading] = useState(false);
+  const [fetchingPatient, setFetchingPatient] = useState(true);
+
   const { i18n } = useTranslation();
   const lang = i18n.language as 'en' | 'de';
 
@@ -106,27 +83,10 @@ const EditPatientForm: React.FC = () => {
   const labelClass = "block text-base font-medium text-[#171c35] mb-2";
   const errorClass = "text-red-500 text-sm mt-1";
 
-  // Fetch all patients for validation
-  useEffect(() => {
-    const getAllPatients = async () => {
-      try {
-        const res = await axios.get<ApiSuccessResponse>(
-          `${import.meta.env.VITE_API_URL}/doctor/patient/all`,
-          { headers: { Authorization: accessToken ? `Bearer ${accessToken}` : '' } }
-        );
-        setAllPatients(res.data.data?.patients || []);
-      } catch (err) {
-        console.error("Failed to fetch patients:", err);
-      }
-    };
-    getAllPatients();
-  }, [accessToken]);
-
   // Fetch patient
   useEffect(() => {
-    const getPatientData = async () => {
-      if (!id) { toast.error(lang==='en' ? "No patient ID provided." : "Keine Patienten-ID angegeben."); navigate('/dashboard/patients'); return; }
-
+    const getPatient = async () => {
+      if (!id) return;
       try {
         setFetchingPatient(true);
         const res = await axios.get<ApiSuccessResponse>(
@@ -140,9 +100,10 @@ const EditPatientForm: React.FC = () => {
         navigate('/dashboard/patients');
       } finally { setFetchingPatient(false); }
     };
-    getPatientData();
+    getPatient();
   }, [id, accessToken, navigate, lang]);
 
+  // Validation
   const validate = (): boolean => {
     const newErrors: FormErrors = {};
     const phoneRegex = /^\+?\d{7,15}$/;
@@ -155,13 +116,10 @@ const EditPatientForm: React.FC = () => {
     if (!formData.maritalStatus) newErrors.maritalStatus = formText.maritalStatus.error[lang];
     if (!formData.city.trim()) newErrors.city = formText.city.error[lang];
     if (!formData.address.trim()) newErrors.address = formText.address.error[lang];
-
     if (!formData.email.trim()) newErrors.email = formText.email.error[lang];
     else if (!/^\S+@\S+\.\S+$/.test(formData.email)) newErrors.email = lang==='en' ? "Email is invalid" : "E-Mail ist ungültig";
-
     if (!formData.phone.trim()) newErrors.phone = formText.phone.error[lang];
     else if (!phoneRegex.test(formData.phone)) newErrors.phone = lang==='en' ? "Phone number is invalid" : "Telefonnummer ist ungültig";
-
     if (formData.alternativePhone && !phoneRegex.test(formData.alternativePhone)) newErrors.alternativePhone = formText.alternativePhone.error[lang];
     if (formData.emergencyContactPhone && !phoneRegex.test(formData.emergencyContactPhone)) newErrors.emergencyContactPhone = formText.emergencyContactPhone.error[lang];
     if (formData.insuranceId && !/^[A-Z0-9-]+$/.test(formData.insuranceId)) newErrors.insuranceId = formText.insuranceId.error[lang];
@@ -170,8 +128,8 @@ const EditPatientForm: React.FC = () => {
     return Object.keys(newErrors).length === 0;
   };
 
+  // Handlers
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, [e.target.name]: e.target.value });
-  //const handleDropdownChange = (field: keyof FormData, value: string) => setFormData(prev => ({ ...prev, [field]: value }));
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -179,16 +137,19 @@ const EditPatientForm: React.FC = () => {
 
     try {
       setLoading(true);
-      const response = await axios.put<ApiSuccessResponse>(
-        `${import.meta.env.VITE_API_URL}/doctor/patient/${id}`,
+      const res = await axios.patch<ApiSuccessResponse>(
+        `${import.meta.env.VITE_API_URL}/doctor/patient/update/${id}`,
         formData,
         { headers: { Authorization: `Bearer ${accessToken}` } }
       );
-      toast.success(response.data.message || (lang==='en' ? "Patient updated successfully." : "Patient erfolgreich aktualisiert."));
+      toast.success(res.data.message || (lang==='en' ? "Patient updated successfully." : "Patient erfolgreich aktualisiert."));
       navigate("/dashboard/patients");
-    } catch (error) {
-      if (axios.isAxiosError(error)) toast.error(error.response?.data?.message || (lang==='en' ? "Failed to update patient." : "Patient konnte nicht aktualisiert werden."));
-      else toast.error(lang==='en' ? "Unexpected error occurred." : "Unerwarteter Fehler.");
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        toast.error(error.response?.data?.message || (lang==='en' ? "Failed to update patient." : "Patient konnte nicht aktualisiert werden."));
+      } else {
+        toast.error(lang==='en' ? "Failed to update patient." : "Patient konnte nicht aktualisiert werden.");
+      }
     } finally { setLoading(false); }
   };
 
@@ -206,55 +167,46 @@ const EditPatientForm: React.FC = () => {
   return (
     <div className="min-h-screen mt-6 p-6">
       <div className="py-6">
-        {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-sm text-gray-600 mb-4">
           <Home className="w-4 h-4 text-gray-500" />
           <ChevronRight size={12} />
-          <span onClick={() => navigate('/dashboard')} className="cursor-pointer">{lang==='en' ? "Dashboard" : "Dashboard"}</span>
+          <span onClick={() => navigate('/dashboard')} className="cursor-pointer">Dashboard</span>
           <ChevronRight size={12} />
           <span onClick={() => navigate('/dashboard/patients')} className="cursor-pointer">{lang==='en' ? "Patients" : "Patienten"}</span>
           <ChevronRight size={12} />
           <span className="text-[#171c35] font-semibold">{formText.pageTitle[lang]}</span>
         </div>
 
-        {/* Page Title */}
         <h1 className="text-2xl font-bold text-[#171c35] mb-8">{formText.pageTitle[lang]}</h1>
 
-        {/* Form */}
-        <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-lg p-8">
-          {/* Sections */}
-          {/** Personal Info, Contact & Address, Emergency Contact **/}
+        <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-lg p-8 space-y-8">
           {[ 
             { title: formText.personalInfo[lang], fields: ["firstName","lastName","dob","gender","bloodGroup","maritalStatus","insuranceId","city","address"] },
-            { title: formText.contactAddress[lang], fields: ["email","phone","alternativePhone","city","address"] },
+            { title: formText.contactAddress[lang], fields: ["email","phone","alternativePhone"] },
             { title: formText.emergency[lang], fields: ["emergencyContactName","emergencyContactPhone","emergencyContactRelationship"] }
           ].map((section, idx) => (
-            <div key={idx} className="mb-8 pb-4 border-b border-gray-200">
-              <h2 className="text-xl font-semibold mb-6">{section.title}</h2>
+            <div key={idx} className="pb-6 border-b border-gray-200">
+              <h2 className="text-xl font-semibold mb-4">{section.title}</h2>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {section.fields.map((field) => (
                   <div key={field}>
-                    <label className={labelClass}>{formText[field as keyof typeof formText][lang]}</label>
-                    <input 
-                      name={field} 
-                      value={formData[field as keyof FormData] || ''} 
-                      onChange={handleChange} 
-                     // placeholder={formText[field as keyof typeof formText].placeholder?.[lang] || ''} 
-                      className={inputClass} 
+                    <label className={labelClass}>{formText[field as keyof typeof formText]?.[lang]}</label>
+                    <input
+                      name={field}
+                      value={formData[field as keyof FormData] || ''}
+                      onChange={handleChange}
+                      className={inputClass}
                     />
-                    {errors[field] && <div className={errorClass}>{errors[field]}</div>}
+                    {errors[field] && <p className={errorClass}>{errors[field]}</p>}
                   </div>
                 ))}
               </div>
             </div>
           ))}
 
-          {/* Buttons */}
-          <div className="flex gap-4">
-            <button type="button" onClick={handleCancel} className="w-full px-6 py-3 border border-gray-300 rounded-lg bg-white hover:bg-gray-50 transition-colors">
-              {formText.cancel[lang]}
-            </button>
-            <button type="submit" disabled={loading} className={`w-full px-6 py-3 rounded-lg text-white transition-colors ${loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#526FFF] hover:bg-[#4159cc] cursor-pointer'}`}>
+          <div className="flex flex-col lg:flex-row gap-4 mt-4">
+            <button type="button" onClick={handleCancel} className="w-full lg:w-1/2 px-6 py-3 border border-gray-300 rounded-lg bg-white hover:bg-gray-50">{formText.cancel[lang]}</button>
+            <button type="submit" disabled={loading} className={`w-full lg:w-1/2 px-6 py-3 rounded-lg text-white ${loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#526FFF] hover:bg-[#4159cc]'}`}>
               {loading ? formText.updating[lang] : formText.update[lang]}
             </button>
           </div>
