@@ -15,7 +15,10 @@ export const NotificationSettings: React.FC = () => {
   const { data, isLoading, isError, refetch } = useGetNotificationSettingsQuery(undefined, {
     // ✅ Refetch on mount to ensure fresh data
     refetchOnMountOrArgChange: true,
+
+
   });
+  console.log(data)
   
   const [updateSettings, { isLoading: isSaving, isSuccess, isError: isSaveError }] =
     useUpdateNotificationSettingsMutation();
@@ -116,6 +119,7 @@ useEffect(() => {
 
   // ✅ Better error state
   if (isError) {
+   console.log(isError)
     return (
       <div className="p-6 bg-white min-h-screen rounded-3xl">
         <div className="text-center py-12">

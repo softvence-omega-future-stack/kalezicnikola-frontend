@@ -325,47 +325,37 @@ import { useTranslation } from 'react-i18next';
 import { Home, ChevronRight, Search } from 'lucide-react';
 
 import kurmisadia from '../../../assets/svgIcon/kurmisadia.svg';
-import keren from '../../../assets/svgIcon/karen.svg';
-import dr1 from '../../../assets/svgIcon/drChat1.svg';
-import dr2 from '../../../assets/svgIcon/drChat3.svg';
-import dr3 from '../../../assets/svgIcon/drChat4.svg';
-import dr4 from '../../../assets/svgIcon/drChat2.svg';
-import SupportRight from './SupportRight';
+import AdminSupportRight from './SupportRight';
 
-
-interface Message {
-  id: number;
-  name: string;
-  avatar: string;
-  message: string;
-  time: string;
-  unread?: boolean;
-  online?: boolean;
-}
+// Import API hooks and types
+import { useGetAdminConversationsQuery } from '@/store/features/supportChat/chatApi';
+import type { Conversation } from '@/store/features/supportChat/chatApi';
 
 const AdminSupportLeft: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedFriend, setSelectedFriend] = useState<Message | null>(null);
+  const [selectedConversation, setSelectedConversation] = useState<Conversation | null>(null);
   const [showChat, setShowChat] = useState(false);
 
-  const messages: Message[] = [
-    { id: 1, name: 'Dr. Keren nix', avatar: keren, message: "I'll check the patient's records", time: '2 minutes ago', unread: true, online: true },
-    { id: 2, name: 'Dr. Floyd Miles', avatar: dr1, message: "I'll check the patient's records", time: 'Yesterday', online: true },
-    { id: 3, name: 'Dr. Jane Cooper', avatar: dr2, message: "I'll check the patient's records", time: 'Monday', unread: true, online: true },
-    { id: 4, name: 'Dr. Robert Fox', avatar: dr3, message: "I'll check the patient's records", time: 'Last week', online: true },
-    { id: 5, name: 'Dr. Arlene McCoy', avatar: dr1, message: "I'll check the patient's records", time: 'Last week', online: true },
-    { id: 6, name: 'Dr. Darlene Robertson', avatar: dr4, message: "I'll check the patient's records", time: 'Last week', online: true },
-    { id: 7, name: 'Dr. Ralph Edwards', avatar: dr2, message: "I'll check the patient's records", time: '02-12-2025', online: true },
-  ];
+  // API hook
+  const { data: conversationsData, isLoading: conversationsLoading } = useGetAdminConversationsQuery(undefined, {
+    pollingInterval: 3000, 
+  });
 
-  const filteredMessages = messages.filter(msg =>
-    msg.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  // Type cast to handle the 'message' potentially being undefined error
+  const conversations = (conversationsData as unknown as Conversation[]) || [];
 
-  const handleFriendClick = (friend: Message) => {
-    setSelectedFriend(friend);
+  // Filter conversations based on search
+  const filteredConversations = conversations.filter(conv => {
+    const doctor = conv.user?.doctor;
+    if (!doctor) return false;
+    const fullName = `${doctor.firstName} ${doctor.lastName}`.toLowerCase();
+    return fullName.includes(searchQuery.toLowerCase());
+  });
+
+  const handleConversationClick = (conversation: Conversation) => {
+    setSelectedConversation(conversation);
     setShowChat(true);
   };
 
@@ -373,9 +363,31 @@ const AdminSupportLeft: React.FC = () => {
     setShowChat(false);
   };
 
+  // Format timestamp
+  const formatTimestamp = (timestamp: string) => {
+    const date = new Date(timestamp);
+    const now = new Date();
+    const diffMs = now.getTime() - date.getTime();
+    const diffMins = Math.floor(diffMs / 60000);
+    
+    if (diffMins < 1) return 'Just now';
+    if (diffMins < 60) return `${diffMins} minutes ago`;
+    if (diffMins < 1440) return `${Math.floor(diffMins / 60)} hours ago`;
+    return date.toLocaleDateString();
+  };
+
+  // Get last message safely
+  const getLastMessage = (conversation: Conversation) => {
+    if (conversation.messages && conversation.messages.length > 0) {
+      const lastMsg = conversation.messages[conversation.messages.length - 1];
+      // TypeScript error solved here using optional chaining or empty string check
+      return lastMsg.message || 'Image';
+    }
+    return 'No messages yet';
+  };
+
   return (
     <div className="w-full mt-7 bg-[#F3F6F6] font-sans min-h-screen px-2 md:px-6">
-      {/* Header - Hidden on mobile when chat is open */}
       {!showChat && (
         <div className="pb-4 md:pb-6">
           <div className="flex items-center gap-2 text-sm text-gray-600 mb-2 md:mb-4">
@@ -392,18 +404,15 @@ const AdminSupportLeft: React.FC = () => {
               {t("adminDashboard.routes.support.breadcrumb.support")}
             </span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-semibold text-[#171C35]">
+          <h1 className="text-2xl sm:text-3xl font-semibold text-headingBlack">
             {t("adminDashboard.routes.support.title")}
           </h1>
         </div>
       )}
 
-      {/* Chat Section */}
       <div className="flex flex-col lg:flex-row gap-4 md:gap-6 h-[calc(100vh-180px)]">
-        {/* Left Sidebar - Hidden on mobile when chat is open */}
-        <div className={`w-full lg:w-1/3 flex-shrink-0 flex flex-col ${showChat ? 'hidden lg:flex' : 'flex'}`}>
+        <div className={`w-full lg:w-1/3 shrink-0 flex flex-col ${showChat ? 'hidden lg:flex' : 'flex'}`}>
           <div className="bg-white rounded-2xl overflow-hidden flex flex-col h-full">
-            {/* Admin Profile Header */}
             <div className="p-5 border-b border-gray-200">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
@@ -415,11 +424,10 @@ const AdminSupportLeft: React.FC = () => {
                     />
                     <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
                   </div>
-                  <h3 className="font-semibold text-base text-[#171C35]">Kurmisadia</h3>
+                  <h3 className="font-semibold text-base text-[#171C35]">Admin Support</h3>
                 </div>
               </div>
 
-              {/* Search */}
               <div className="relative bg-[#F3F6F6] rounded-xl p-2">
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                 <input
@@ -432,55 +440,62 @@ const AdminSupportLeft: React.FC = () => {
               </div>
             </div>
 
-            {/* Contacts List */}
             <div className="flex-1 overflow-y-auto">
-              {filteredMessages.map((msg) => (
-                <div
-                  key={msg.id}
-                  onClick={() => handleFriendClick(msg)}
-                  className={`flex items-center gap-3 p-4 hover:bg-gray-50 transition-colors cursor-pointer ${
-                    selectedFriend?.id === msg.id ? 'bg-blue-50 border-l-4 border-[#526FFF]' : ''
-                  } border-b border-gray-100`}
-                >
-                  <div className="relative flex-shrink-0">
-                    <img 
-                      src={msg.avatar} 
-                      alt={msg.name} 
-                      className="w-12 h-12 rounded-full object-cover" 
-                    />
-                    {msg.online && (
-                      <span className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-green-500 border-2 border-white rounded-full"></span>
-                    )}
-                  </div>
-
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-base font-semibold text-[#171C35] mb-0.5 truncate">
-                      {msg.name}
-                    </h3>
-                    <p className="text-xs text-[#111A2D] truncate">{msg.message}</p>
-                  </div>
-
-                  <div className="flex flex-col items-end gap-1 flex-shrink-0">
-                    <span className="text-xs text-[#111A2D]">{msg.time}</span>
-                    {msg.unread && (
-                      <span className="w-5 h-5 bg-gray-900 text-white text-xs rounded-full flex items-center justify-center font-medium">
-                        1
-                      </span>
-                    )}
-                  </div>
+              {conversationsLoading ? (
+                <div className="flex items-center justify-center h-32">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#526FFF]"></div>
                 </div>
-              ))}
+              ) : filteredConversations.length === 0 ? (
+                <div className="flex items-center justify-center h-32 text-gray-400">
+                  <p>No conversations found</p>
+                </div>
+              ) : (
+                filteredConversations.map((conv) => {
+                  const doctor = conv.user?.doctor;
+                  if (!doctor) return null;
+
+                  return (
+                    <div
+                      key={conv.id}
+                      onClick={() => handleConversationClick(conv)}
+                      className={`flex items-center gap-3 p-4 hover:bg-gray-50 transition-colors cursor-pointer ${
+                        selectedConversation?.id === conv.id ? 'bg-blue-50 border-l-4 border-[#526FFF]' : ''
+                      } border-b border-gray-100`}
+                    >
+                      <div className="relative flex-shrink-0">
+                        <img 
+                          src={doctor.photo || kurmisadia} 
+                          alt={`${doctor.firstName} ${doctor.lastName}`} 
+                          className="w-12 h-12 rounded-full object-cover" 
+                        />
+                        <span className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-green-500 border-2 border-white rounded-full"></span>
+                      </div>
+
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-base font-semibold text-[#171C35] mb-0.5 truncate">
+                          {doctor.firstName} {doctor.lastName}
+                        </h3>
+                        <p className="text-xs text-[#111A2D] truncate">{getLastMessage(conv)}</p>
+                      </div>
+
+                      <div className="flex flex-col items-end gap-1 flex-shrink-0">
+                        <span className="text-xs text-[#111A2D]">{formatTimestamp(conv.updatedAt)}</span>
+                        {conv.messages && conv.messages.length > 0 && (
+                          <span className="w-2 h-2 bg-[#526FFF] rounded-full"></span>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })
+              )}
             </div>
           </div>
         </div>
 
-        {/* Right Panel - Chat Window - Full screen on mobile, side by side on desktop */}
-        <div className={`w-full lg:w-2/3 flex-shrink-0 ${
-          showChat ? 'block' : 'hidden lg:block'
-        }`}>
-          {selectedFriend ? (
-            <SupportRight
-              selectedFriend={selectedFriend} 
+        <div className={`w-full lg:w-2/3 flex-shrink-0 ${showChat ? 'block' : 'hidden lg:block'}`}>
+          {selectedConversation ? (
+            <AdminSupportRight
+              selectedConversation={selectedConversation} 
               onBack={handleBackToContacts}
             />
           ) : (

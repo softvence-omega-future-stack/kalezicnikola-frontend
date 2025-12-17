@@ -1001,11 +1001,11 @@
     
   "taskList": {
     "breadcrumb": {
-      "dashboard": "Instrumententafel",
-      "task": "Aufgabe"
+      "dashboard": "Dashboard",
+      "task": "Aufgaben"
     },
     "header": {
-      "title": "Aufgabe",
+      "title": "Aufgaben",
       "totalTask": "Gesamtaufgaben",
       "addTask": "Aufgabe hinzufügen"
     },
@@ -1799,15 +1799,15 @@
   "adminDashboard":{
   "sidebar":{
     
-  "dashboard": "Instrumententafel",
+  "dashboard": "Dashboard",
   "customers": "Kunden",
   "billing_subscription": "Abrechnung & Abonnement",
   "ai_voicebot": "KI-Sprachassistent",
   "system_health": "Systemgesundheit",
   "security_audit": "Sicherheit & Prüfung",
-  "supports": "Unterstützung",
+  "supports": "Supports",
   "settings": "Einstellungen",
-  "logout": "Abmelden"
+  "logout": "Ausloggen"
 
 
   },
@@ -2176,8 +2176,8 @@
   },
   "support": {
   "breadcrumb": {
-    "dashboard": "Instrumententafel",
-    "support": "Unterstützung"
+    "dashboard": "Dashboard",
+    "support": "Supports"
   },
   "title": "Unterstützung",
   "searchPlaceholder": "Suchen...",

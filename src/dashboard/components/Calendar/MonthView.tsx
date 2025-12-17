@@ -72,8 +72,8 @@ const lastDayOfMonth = new Date(safeDate.getFullYear(), safeDate.getMonth() + 1,
     return {
       date: dayNumber,
       event: {
-        name: `${app.patient.firstName} ${app.patient.lastName}`,
-        time: `${app.scheduleSlot.startTime}-${app.scheduleSlot.endTime}`,
+        name: `${app?.patient?.firstName} ${app?.patient?.lastName}`,
+        time: `${app?.scheduleSlot?.startTime}-${app?.scheduleSlot?.endTime}`,
         colorIndex: i % eventColors.length,
       }
     };

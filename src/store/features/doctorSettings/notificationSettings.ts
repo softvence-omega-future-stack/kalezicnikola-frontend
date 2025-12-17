@@ -75,6 +75,8 @@ export const notificationSettingsApi = baseAPI.injectEndpoints({
       },
     }),
 
+
+
     updateNotificationSettings: builder.mutation<NotificationSettingsResponse, Partial<NotificationSettingsData>>({
       query: (body) => {
         // ✅ Destructure and use underscore for unused variables

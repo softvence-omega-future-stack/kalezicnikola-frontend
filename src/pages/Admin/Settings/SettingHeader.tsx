@@ -51,7 +51,7 @@ const SettingHeader = () => {
               Dashboard
             </span>
             <img src={chevron} alt="" />
-            <span onClick={() => navigate('/')} className="cursor-pointer">
+            <span onClick={() => navigate('/admin/settings')} className="cursor-pointer">
               Settings
             </span>
             <img src={chevron} alt="" />

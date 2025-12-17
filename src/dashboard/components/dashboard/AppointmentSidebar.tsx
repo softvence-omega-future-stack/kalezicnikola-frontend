@@ -102,8 +102,8 @@ const AppointmentsList: React.FC = () => {
   // Transform API appointment into Appointment type
   const transformApiAppointment = (apiAppt: ApiAppointment): Appointment => ({
     id: apiAppt.id,
-    name: apiAppt.firstName && apiAppt.lastName 
-      ? `${apiAppt.firstName} ${apiAppt.lastName}`
+    name: apiAppt?.firstName && apiAppt?.lastName 
+      ? `${apiAppt?.firstName} ${apiAppt?.lastName}`
       : 'Unknown Patient',
     timeRange: `${apiAppt.scheduleSlot.startTime} - ${apiAppt.scheduleSlot.endTime}`,
     details: apiAppt.phone
