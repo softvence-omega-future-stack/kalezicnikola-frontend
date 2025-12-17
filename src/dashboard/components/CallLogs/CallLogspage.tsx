@@ -11,7 +11,7 @@ import axios from 'axios';
 import { useAppSelector } from '@/store/hook';
 
 interface Patient {
-  firstName?: string;
+  firstName: string;
   lastName: string;
   phone: string;
 }
