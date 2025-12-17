@@ -11,7 +11,7 @@ import axios from 'axios';
 import { useAppSelector } from '@/store/hook';
 
 interface Patient {
-  firstName: string;
+  firstName?: string;
   lastName: string;
   phone: string;
 }
@@ -240,7 +240,7 @@ const getRandomStatus = () => {
                 {callData.map((log) => (
                   <tr key={log.id} className="hover:bg-gray-50">
                     <td className="px-2 sm:px-4 py-2 text-sm font-semibold text-[#111A2D] whitespace-nowrap">
-                      {log.patient.firstName} {log.patient.lastName}
+                      {log.patient?.firstName} {log.patient?.lastName}
                     </td>
                     <td className="px-2 sm:px-4 py-2 text-sm text-[#111A2D] whitespace-nowrap">{log.createdAt}</td>
                     <td className="px-2 sm:px-4 py-2 text-sm text-[#111A2D] whitespace-nowrap">{log.phoneNumber}</td>
