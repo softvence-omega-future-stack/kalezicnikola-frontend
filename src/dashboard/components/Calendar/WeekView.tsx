@@ -46,7 +46,7 @@ const CalendarWeekView: React.FC<WeekViewProps> = ({ selectedDate, appointments 
       dayIndex,
       startHour,
       endHour,
-      name: `${apt.patient.firstName} ${apt.patient.lastName}`,
+      name: `${apt.patient?.firstName} ${apt.patient?.lastName}`,
       color: ['bg-[#EDF9F5]', 'bg-[#F1ECFF]', 'bg-red-100', 'bg-purple-100'][idx % 4],
       borderColor: ['border-teal-500', 'border-purple-500', 'border-red-400', 'border-purple-500'][idx % 4],
     };
