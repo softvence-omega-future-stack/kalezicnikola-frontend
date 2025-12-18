@@ -441,10 +441,10 @@ const EmployeeDetailsForm: React.FC<EmployeeDetailsFormProps> = ({
 ];
 
 
-  const reportingToOptions = t(
-    "dashboard.routes.settings.settingsSidebar.tabs.myStaff.addNewStaff.stafTabs.employmentInfo.reportingTo.options",
-    { returnObjects: true }
-  ) as { value: string; label: string }[];
+  // const reportingToOptions = t(
+  //   "dashboard.routes.settings.settingsSidebar.tabs.myStaff.addNewStaff.stafTabs.employmentInfo.reportingTo.options",
+  //   { returnObjects: true }
+  // ) as { value: string; label: string }[];
 
   // const employmentTypeOptions = t(
   //   "dashboard.routes.settings.settingsSidebar.tabs.myStaff.addNewStaff.stafTabs.employmentInfo.employmentType.options",
@@ -460,10 +460,10 @@ const EmployeeDetailsForm: React.FC<EmployeeDetailsFormProps> = ({
 ];
 
 
-  const workScheduleOptions = t(
-    "dashboard.routes.settings.settingsSidebar.tabs.myStaff.addNewStaff.stafTabs.employmentInfo.workSchedule.options",
-    { returnObjects: true }
-  ) as { value: string; label: string }[];
+  // const workScheduleOptions = t(
+  //   "dashboard.routes.settings.settingsSidebar.tabs.myStaff.addNewStaff.stafTabs.employmentInfo.workSchedule.options",
+  //   { returnObjects: true }
+  // ) as { value: string; label: string }[];
 
   const workHoursOptions = t(
     "dashboard.routes.settings.settingsSidebar.tabs.myStaff.addNewStaff.stafTabs.employmentInfo.workHours.options",
@@ -505,15 +505,15 @@ const EmployeeDetailsForm: React.FC<EmployeeDetailsFormProps> = ({
         </div>
 
         {/* Reporting To */}
-        <div className="flex flex-col space-y-1">
+        {/* <div className="flex flex-col space-y-1">
           <label className="text-base font-medium text-[#171c35]">Reporting To</label>
           <CustomDropdown
             value={data.reportingTo}
             onChange={(val) => handleDropdownChange("reportingTo", val)}
             options={reportingToOptions}
           />
-          {/* {errors.reportingTo && <p className="text-red-500 text-sm">{errors.reportingTo}</p>} */}
-        </div>
+         
+        </div> */}
 
         {/* Employment Type */}
         <div className="flex flex-col space-y-1">
@@ -527,7 +527,7 @@ const EmployeeDetailsForm: React.FC<EmployeeDetailsFormProps> = ({
         </div>
 
         {/* Work Schedule */}
-        <div className="flex flex-col space-y-1">
+        {/* <div className="flex flex-col space-y-1">
           <label className="text-base font-medium text-[#171c35]">Work Schedule</label>
           <CustomDropdown
             value={data.workSchedule}
@@ -535,7 +535,7 @@ const EmployeeDetailsForm: React.FC<EmployeeDetailsFormProps> = ({
             options={workScheduleOptions}
           />
           {errors.workSchedule && <p className="text-red-500 text-sm">{errors.workSchedule}</p>}
-        </div>
+        </div> */}
 
         {/* Work Hours */}
         <div className="flex flex-col space-y-1">

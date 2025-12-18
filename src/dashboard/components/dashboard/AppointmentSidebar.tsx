@@ -36,6 +36,10 @@ interface ApiAppointment {
   };
 }
 
+interface AppointmentsListProps {
+  selectedDate: Date;
+}
+
 const AppointmentItem: React.FC<AppointmentItemProps> = ({ name, timeRange, isNew }) => {
   const { t } = useTranslation();
 
@@ -93,9 +97,9 @@ const ActiveAppointmentCard: React.FC<ActiveAppointmentProps> = ({ data }) => {
   );
 };
 
-const AppointmentsList: React.FC = () => {
+const AppointmentsList: React.FC<AppointmentsListProps> = ({ selectedDate }) => {
   const { t } = useTranslation();
-  const {accessToken} = useAppSelector((state)=> state.auth);
+  const { accessToken } = useAppSelector((state) => state.auth);
   const [appointments, setAppointments] = React.useState<Appointment[]>([]);
   const [loading, setLoading] = React.useState(true);
 
@@ -117,40 +121,69 @@ const AppointmentsList: React.FC = () => {
   });
 
   React.useEffect(() => {
-  const fetchAppointments = async () => {
-    try {
-      const res = await axios.get(`${import.meta.env.VITE_API_URL}/appointment/scheduled-today`, {
-        headers: { Authorization: `Bearer ${accessToken}` },
-      });
+    // Create an abort controller for cleanup
+    const abortController = new AbortController();
+    
+    const fetchAppointments = async () => {
+      if (!accessToken) {
+        setLoading(false);
+        return;
+      }
 
-      // Access the appointments correctly
-      const appointmentsArray = res.data.data?.appointments || [];
+      setLoading(true);
+      try {
+        const res = await axios.get(
+          `${import.meta.env.VITE_API_URL}/appointment/scheduled-today`,
+          {
+            headers: { Authorization: `Bearer ${accessToken}` },
+            signal: abortController.signal,
+          }
+        );
 
-      const mapped: Appointment[] = appointmentsArray.map(transformApiAppointment);
-      setAppointments(mapped);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
+        // Access the appointments correctly
+        const appointmentsArray = res.data.data?.appointments || [];
+        const mapped: Appointment[] = appointmentsArray.map(transformApiAppointment);
+        
+        // Filter appointments by selected date
+        // For now showing all from today's endpoint
+        setAppointments(mapped);
+      } catch (err: any) {
+        // Only log error if it's not an abort error
+        if (err.name !== 'CanceledError' && err.code !== 'ECONNABORTED') {
+          console.error('Error fetching appointments:', err);
+        }
+        setAppointments([]);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  fetchAppointments();
-}, []);
-// Helper to add ordinal suffix
-function getOrdinal(n: number) {
-  const s = ["th", "st", "nd", "rd"];
-  const v = n % 100;
-  return n + (s[(v - 20) % 10] || s[v] || s[0]);
-}
+    fetchAppointments();
 
-const today = new Date();
-const dayName = today.toLocaleDateString('en-US', { weekday: 'long' });
-const dateWithOrdinal = getOrdinal(today.getDate());
+    // Cleanup function to abort request on unmount or when dependencies change
+    return () => {
+      abortController.abort();
+    };
+  }, [selectedDate, accessToken]);
 
-const formattedToday = `${dayName}, ${dateWithOrdinal}`;
+  // Helper to add ordinal suffix
+  function getOrdinal(n: number) {
+    const s = ["th", "st", "nd", "rd"];
+    const v = n % 100;
+    return n + (s[(v - 20) % 10] || s[v] || s[0]);
+  }
 
-  if (loading) return <p>Loading appointments...</p>;
+  const dayName = selectedDate?.toLocaleDateString('en-US', { weekday: 'long' });
+  const dateWithOrdinal = getOrdinal(selectedDate?.getDate());
+  const formattedDate = `${dayName}, ${dateWithOrdinal}`;
+
+  if (loading) {
+    return (
+      <div className="bg-white px-3 py-4 w-full md:rounded-3xl">
+        <p className="text-center text-gray-500 py-8">Loading appointments...</p>
+      </div>
+    );
+  }
 
   const activeAppointment = appointments.find(a => a.details);
   const otherAppointments = appointments.filter(a => !a.details || a.id !== activeAppointment?.id);
@@ -159,20 +192,17 @@ const formattedToday = `${dayName}, ${dateWithOrdinal}`;
     <div className="bg-white px-3 py-4 w-full md:rounded-3xl">
       <div className="mb-6">
         <h2 className="text-sm leading-3.5 mb-1.5 text-[#111A2D] capitalize">
-          {/* {t('dashboard.routes.dashboard.appointments.dateFormat')} */}
-          {formattedToday}
+          {formattedDate}
         </h2>
-        {
-          activeAppointment && activeAppointment.details ? (
-            <p className="text-lg font-semibold leading-4 text-[#171C35]">
-              {t('dashboard.routes.dashboard.appointments.patients', { count: appointments.length })}
-            </p>
-          ) : (
-            <p className="text-lg font-semibold leading-4 text-[#171C35]">
-              No appointments today
-            </p>
-          )
-        }
+        {appointments.length > 0 ? (
+          <p className="text-lg font-semibold leading-4 text-[#171C35]">
+            {t('dashboard.routes.dashboard.appointments.patients', { count: appointments.length })}
+          </p>
+        ) : (
+          <p className="text-lg font-semibold leading-4 text-[#171C35]">
+            No appointments
+          </p>
+        )}
       </div>
 
       <div className="space-y-2">

@@ -245,7 +245,7 @@ export default function DoctorProfile() {
 
         {/* Right Column */}
         <div className="lg:col-span-1">
-          <AppointmentsList />
+          <AppointmentsList selectedDate={new Date()} />
         </div>
       </div>
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import CalendarHeader from '../Calendar/CalendarHeader';
 import { useNavigate } from 'react-router-dom';
@@ -7,7 +7,6 @@ import { useTranslation } from 'react-i18next';
 const mockDashboardData = {
   firstName: 'Keren',
   lastName: 'nix',
-  date: 'Monday 20-Aug-2025',
   todayIncomingCalls: 15,
   successfulCalls: 0,
   averageCallDuration: '02hr 30min',
@@ -21,8 +20,6 @@ interface MetricCardProps {
 const MetricCard: React.FC<MetricCardProps> = ({ label, value }) => (
   <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
     <p className="text-sm font-semibold text-[#111A2D] mb-1">{label}</p>
-
-    {/* Value */}
     {typeof value === 'string' && value.includes('hr') ? (
       <div className="flex items-center justify-center sm:justify-start gap-1">
         <span className="text-2xl sm:text-3xl md:text-[32px] font-medium text-[#171C35] leading-none">
@@ -46,30 +43,31 @@ const MetricCard: React.FC<MetricCardProps> = ({ label, value }) => (
   </div>
 );
 
-const DashboardTopSection: React.FC = () => {
+interface DashboardTopSectionProps {
+  selectedDate: Date;
+  onDateChange: (date: Date) => void;
+}
+
+const DashboardTopSection: React.FC<DashboardTopSectionProps> = ({ selectedDate, onDateChange }) => {
   const { t } = useTranslation();
   const { firstName, lastName, todayIncomingCalls, successfulCalls, averageCallDuration } = mockDashboardData;
   const navigate = useNavigate();
-  const [selectedDate, setSelectedDate] = useState(new Date());
 
   return (
     <div className="md:mt-2 z-auto bg-[#F3F6F6]">
       {/* Date Navigation */}
       <div className="flex items-center justify-center -pl-1 md:justify-start text-[#111A2D] text-sm sm:text-base font-medium pt-6 gap-2">
-        {/* <CalendarHeader /> */}
-        <CalendarHeader selectedDate={selectedDate} onDateChange={setSelectedDate} />
+        <CalendarHeader selectedDate={selectedDate} onDateChange={onDateChange} />
       </div>
 
       {/* Welcome + Metrics */}
       <div className="flex flex-col md:flex-row sm:justify-between sm:items-center gap-6 sm:gap-8">
-        {/* Welcome */}
         <div className="text-center sm:text-left">
           <h1 className="text-xl md:pl-2 sm:text-2xl md:text-[32px] font-semibold text-[#111A2D] leading-8">
             {t('dashboard.routes.dashboard.topSection.welcome', { firstName, lastName })}
           </h1>
         </div>
 
-        {/* Metrics */}
         <div className="flex flex-col mb-2 sm:flex-row items-center sm:items-end sm:space-x-6 space-y-4 sm:space-y-0">
           {[
             { label: t('dashboard.routes.dashboard.topSection.todayIncomingCalls'), value: todayIncomingCalls },

@@ -97,7 +97,7 @@ const PatientTranscriptPage: React.FC<PatientTranscriptPageProps> = ({ callData 
           <h3 className="text-lg md:text-xl font-semibold text-[#171C35]">{t('dashboard.routes.callLogs.modal.aiSummary')}</h3>
           <CopyButton text={callData.summary ?? ''} />
         </div>
-        <p className="text-[#171C35] text-base font-medium md:text-base leading-relaxed mb-3">
+        <p className="text-headingBlack text-base font-medium md:text-base leading-relaxed mb-3">
           {/* {showFullSummary ? AI_SUMMARY_TEXT : `${AI_SUMMARY_TEXT.substring(0, 300)}...`} */}
           {showFullSummary ? callData.summary : `${callData.summary?.substring(0, 300)}...`}
 
@@ -116,12 +116,12 @@ const PatientTranscriptPage: React.FC<PatientTranscriptPageProps> = ({ callData 
           <h3 className="text-lg md:text-xl font-semibold text-[#171C35]">{t('dashboard.routes.callLogs.modal.patientInfoTitle')}</h3>
           <CopyButton
             // text={`Name: ${PATIENT_INFO.name}\nInsurance ID: ${PATIENT_INFO.insuranceID}\nReason for calling: ${PATIENT_INFO.reason}`}
-              text={`Name: ${callData.patient.firstName} ${callData.patient.lastName}\nInsurance ID: ${callData.insuranceId}\nReason for calling: ${callData.reasonForCalling}`}
+              text={`Name: ${callData.patient?.firstName} ${callData.patient?.lastName}\nInsurance ID: ${callData.insuranceId}\nReason for calling: ${callData.reasonForCalling}`}
 
           />
         </div>
         <div className="space-y-2 text-[#171C35] text-base font-medium md:text-base">
-          <p><span className="font-normal text-[#111A2D]">{t('dashboard.routes.callLogs.modal.patientName')}:</span> {callData.patient.firstName} {callData.patient.lastName}</p>
+          <p><span className="font-normal text-[#111A2D]">{t('dashboard.routes.callLogs.modal.patientName')}:</span> {callData.patient?.firstName} {callData.patient?.lastName}</p>
           <p><span className="font-normal text-[#171C35]">{t('dashboard.routes.callLogs.modal.insuranceId')}:</span> {callData.insuranceId}</p>
           <p><span className="font-normal text-[#171C35]">{t('dashboard.routes.callLogs.modal.reason')}:</span> {callData.reasonForCalling}</p>
         </div>

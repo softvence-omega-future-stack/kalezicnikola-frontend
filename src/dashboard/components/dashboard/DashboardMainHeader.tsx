@@ -150,8 +150,8 @@ useEffect(() => {
                                 className="h-8 w-8 sm:h-10 sm:w-10 rounded-xl object-cover"
                             />
                             <div className="hidden md:block ml-2">
-                                <p className="text-lg font-semibold text-[#171C35]  leading-4.5">{user?.firstName} {user?.lastName}</p>
-                                <p className="text-lg font-semibold text-[#171C35] leading-none capitalize mt-1">{user?.role === "doctor" ? "D." : user?.role}</p>
+                                <p className="text-lg font-semibold text-[#171C35]  leading-4.5">{user?.firstName} <br /> {user?.lastName}</p>
+                                <p className="text-lg font-semibold text-[#171C35] leading-none capitalize mt-1">{user?.role === "doctor" ? "" : user?.role}</p>
                             </div>
                         </div>
                     </div>

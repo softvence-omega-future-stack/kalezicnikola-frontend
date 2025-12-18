@@ -304,14 +304,16 @@ export interface Appointment {
 
 interface DashboardCalendarProps {
   onHeightChange?: (height: number) => void;
+    selectedDate: Date;
+     onDateChange: (date: Date) => void;
 }
 
-const DashboardCalendar: React.FC<DashboardCalendarProps> = ({ onHeightChange }) => {
+const DashboardCalendar: React.FC<DashboardCalendarProps> = ({ onHeightChange,selectedDate,onDateChange }) => {
   const { t } = useTranslation();
   const { accessToken } = useAppSelector(state => state.auth);
 
   const [appointments, setAppointments] = useState<Appointment[]>([]);
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  //const [selectedDate, setSelectedDate] = useState(new Date());
   const [viewType, setViewType] = useState<'day' | 'week' | 'month'>('month');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(false); // NEW: loading state
@@ -418,7 +420,7 @@ const DashboardCalendar: React.FC<DashboardCalendarProps> = ({ onHeightChange })
 
       {/* Top Navigation */}
       <div className="flex items-center justify-between mb-4">
-        <CalendarHeader selectedDate={selectedDate} onDateChange={setSelectedDate} />
+        <CalendarHeader selectedDate={selectedDate} onDateChange={onDateChange} />
         <div className="relative w-full sm:w-auto">
           <select
             value={viewType}

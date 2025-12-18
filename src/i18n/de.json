@@ -467,7 +467,7 @@
     "role": "D.",
     "menu": {
       "profileSettings": "Profileinstellungen",
-      "support": "Unterstützung",
+      "support": "Supports",
       "settings": "Einstellungen",
       "logout": "Ausloggen"
     }
@@ -482,7 +482,7 @@
 
   "doctorProfile": {
   "breadcrumb": {
-    "dashboard": "Instrumententafel",
+    "dashboard": "Dashboard",
     "doctor": "Arzt",
     "profile": "Arztprofil"
   },
@@ -527,12 +527,25 @@
     "name": "Keren Nix",
     "degree": "MBBS, M.D. Kardiologie",
     "edit": "Bearbeiten",
+
     "email": "E-Mail",
     "phone": "Telefon",
     "experience": "Erfahrung",
     "years": "Jahre",
     "address": "Adresse"
-  }
+  },
+
+   "editModal": {
+    "title": "Edit Profile ",
+    "firstName" : "Vorname",
+    "lastName": "Nachname",
+    "phone":"Mobilnummer",
+    "address":"Adresse",
+    "experience":"Erfahrung (in Jahren)",
+    "saveButton":"Profil speichern",
+    "cancelButton":"Abbrechen",
+    "specialist":"Fachgebiet"
+   }
 },
 
     "sidebar": {
@@ -579,7 +592,7 @@
     "title": "Aufgaben"
   },
   "callBack": {
-    "title": "Benötigteinen Rückru"
+    "title": "Benötigteinen Rückruf"
   }
 }
 ,
@@ -760,7 +773,7 @@
     
   "addPatient": {
     "breadcrumbs": {
-      "dashboard": "Instrumententafel",
+      "dashboard": "Dashboard",
       "patients": "Patienten",
       "addPatient": "Patient hinzufügen",
       "editPatient": "Patient hinzufügen"
@@ -864,7 +877,7 @@
     
   "patientProfile": {
     "breadcrumb": {
-      "dashboard": "Instrumententafel",
+      "dashboard": "Dashboard",
       "patients": "Patienten",
       "profile": "Patientenprofil"
     },
@@ -1419,7 +1432,7 @@
 
     "staffProfile": {
   "breadcrumb": {
-    "dashboard": "Instrumententafel",
+    "dashboard": "Dashboard",
     "settings": "Einstellungen",
     "staffProfile": "Mitarbeiterprofil"
   },

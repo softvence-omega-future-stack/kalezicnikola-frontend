@@ -163,6 +163,7 @@ const AddPatientForm: React.FC = () => {
 
     try {
       setLoading(true)
+      console.log("Submitting form data:", formData);
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/doctor/patient/add`,
         formData,
