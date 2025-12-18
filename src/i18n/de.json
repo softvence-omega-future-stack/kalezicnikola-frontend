@@ -1,0 +1,2367 @@
+{
+  "landingPage":{
+  "navigation": {
+    "features": "Funktionen",
+    "examples": "Beispiele",
+    "testimonials": "Erfahrungen",
+    "pricing": "Preise",
+    "demo": "Demo buchen",
+    "login": "Anmelden"
+
+  },
+  "hero": {
+    "badge": "Nie wieder Telefonstress",
+    "heading": "24/7 Erreichbarkeit für Ihre Patienten.||| Null Telefonstress für Ihr Team.",
+    "subText": "Unser intelligenter KI-Assistent übernimmt alle Telefonate rund um die Uhr. Er vereinbart Termine, beantwortet Fragen, erstellt automatisiert Aufgaben und entlastet Ihr Team.",
+  "getStarted": "Jetzt starten",
+  "bookDemo": "Demo buchen"
+  },
+  "features": {
+    "badge": "Ruhe am Telefon",
+    "heading": "Die Entlastung, ||| die Ihr Team verdient" ,
+   "subText": "Der Docline KI-Assistent löst die größten\nHerausforderungen im Praxisalltag.",
+
+
+       "relief": {
+      "percent": "75%",
+      "title": "Entlastung",
+      "line1": "Der KI-Assistent bearbeitet im Schnitt 75% der Routine-Anrufe komplett selbstständig. ",
+      "line2": "Ihr Team gewinnt diese Zeit für mehr Patientenzuwendung zurück."
+    },
+    "conversation": {
+      "title": "Docline führt 20 Gespräche gleichzeitig",
+      "text": "Nie wieder Besetztzeichen oder Warteschleifen. Die KI beantwortet alle eingehenden Anrufe parallel, sodass jeder Patient sofort gehört wird."
+    },
+
+    "triage": {
+      "title": "Intelligente Triage & Rufweiterleitung",
+      "text1": "Die KI erkennt Notfälle. Komplexe Anfragen werden ",
+      "text2": "priorisiert und direkt an die zuständige MFA durchgestellt."
+    },
+
+    "availability": {
+      "percent": "24/7",
+      "title": "Erreichbarkeit",
+      "text": "Ihre Praxis ist 365 Tage im Jahr erreichbar. Die KI fängt alle Anrufe ab – unabhängig von Urlaub, Krankheit oder Fachkräftemangel."
+    },
+
+    "integration": {
+      "title": "Einfache Anbindung an Ihre Telefonanlage",
+      "text": "Kein Wechsel, kein IT-Stress. Die Anbindung an Ihre bestehende Telefon-Infrastruktur erfolgt unkompliziert und schnell durch unser Onboarding-Team."
+    },
+
+    "software": {
+      "title": "Keine zusätzliche Software oder Hardware notwendig",
+      "text": "Docline läuft vollständig in der Cloud. Sie sparen sich physische Geräte, IT-Wartung und können Ihre Abläufe flexibel gestalten."
+    },
+
+    "customization": {
+      "title": "Individuell auf Ihre Praxis zugeschnitten",
+      "text": "Stimme, Wortwahl und Regeln der KI werden exakt an den Stil Ihrer Praxis angepasst. Patienten bemerken oft nicht, dass sie mit einer KI sprechen."
+    }
+  },
+  "slider": {
+    "badge": "Intuitiv & modern",
+    "heading": "Der moderne Workflow, den ||| Ihr Team lieben wird",
+    "subText": "Der Schlüssel zu einer Praxis, die nicht nur entspannter, sondern auch intelligenter arbeitet",
+   "slides": [
+  {
+    "id": 1,
+                "cardBadge": "Dashboard",
+    "title": "Klare Übersicht. Mehr Effizienz",
+    "subtitle": "Das Dashboard, das Freude macht..",
+    "list": [
+      "Alle Kennzahlen, Patienten und Termine auf einen Blick.",
+      "Unbearbeitete Anrufe und Aufgaben, klar hervorgehoben.",
+      "Einfach zu navigieren. Schnell zu beherrschen.."
+    ],
+    "img": "slider4.svg",
+    "bgColor": "bg-[#DBECFF]"
+  },
+  {
+    "id": 2,
+  
+      "cardBadge": "Anrufprotokolle, Transkription & Audio",
+    "title": "Jeder Anruf, vollständig erfasst",
+    "subtitle": "Docline protokolliert jedes Gespräch. Es erstellt präzise Transkripte, liefert eine klare KI-gestützte Zusammenfassung und archiviert die Original-Audiospur.",
+    "list": [
+      "Präzise Transkription. Wort für Wort.",
+      "KI-Zusammenfassung. Der Kern des Anrufs, sofort erfasst.",
+      "Original-Audio. Für volle Nachvollziehbarkeit."
+    ],
+    "img": "Slider02.svg",
+
+    "bgColor": "bg-[#F5DFF1]"
+  },
+  {
+    "id": 3,
+          
+           "cardBadge": "Kalendar & Patientenkartei",
+    "title": "Intelligenter Kalender & Patienten-Kartei",
+    "subtitle": "Fehlerfreie Terminverwaltung durch KI-Eintragung.",
+    "list": [
+      "Der Kalender. Vom Voicebot automatisch aktualisiert.",
+      "Die Patientenakte. Jeder relevante Fakt. Sofort verfügbar."
+
+    ],
+    "img": "slider3.svg",
+
+    "bgColor": "bg-[#CACDFA]"
+  },
+  {
+    "id": 4,
+      "cardBadge": "Task",
+    "title": "Ihr Workflow. Optimiert",
+    "subtitle": "Verabschieden Sie sich von Zetteln und Unklarheit. Das integrierte Task-Management sorgt für eine transparente und effiziente Abarbeitung aller Praxis-Aufgaben.",
+    "list": [
+      "Unerledigte Anliegen werden sofort zur Aufgabe.",
+      "Unterteilen Sie Aufgaben in: Offen - In Arbeit - Erledigt.",
+      "Manuelle Task-Erstellung für die interne Administration"
+    ],
+    "img": "slider1.svg",
+    "bgColor": "bg-[#FADACA]"
+
+ 
+  }
+]
+
+  },
+ 
+ 
+  "exampleSection": {
+    "badge": "Echte Beispiele",
+    "heading": "So klingt Docline |||im Praxisalltag",
+    "subText": "Ihre Patienten werden den Unterschied kaum bemerken. Passen Sie die Stimme des KI-Assistenten nahtlos an den Stil Ihrer Praxis an. Wählen Sie ein souveränes männliches oder weibliches Sprachprofil. So sichern Sie einen gleichbleibend angenehmen und professionellen Empfang für jeden Anruf.",
+    "menuItems": [
+      {
+        "title": "Terminbuchung zur Blutabnahme",
+        "subtitle": "Hausarztpraxis Dr. Schmidt & Kollegen"
+      },
+      {
+        "title": "Vortriage & Weiterleitung",
+        "subtitle": "Orthopädie Dr. Gruber"
+      },
+      {
+        "title": "Terminverschiebung/-absage",
+        "subtitle": "Zahnarztpraxis Dr. Maier"
+      },
+      {
+        "title": "Versicherungsfragen",
+        "subtitle": "Physiotherapie Dr. Fuchs"
+      },
+      {
+        "title": "Buchung eines Vorsorgetermins",
+        "subtitle": "Hausarztpraxis Dr. Koca"
+      },
+      {
+        "title": "Anfrage nach Überweisungen",
+        "subtitle": "Dermatologie Dr. Wagner"
+      }
+    ]
+  },
+
+
+  "functions": {
+    "badge": "Unsere Kernfunktionen",
+    "heading": "Alles, was Sie zur Entlastung ||| Ihrer Praxis benötigen",
+    "feature1": {
+      "title": "Reduzierte Telefonlast",
+      "description": "Befreien Sie Ihr Personal von Routineanfragen. Unser KI-Agent übernimmt Terminbuchungen, Rezept- und Routinefragen 24/7, damit sich Ihr Team auf die Patienten konzentrieren kann."
+    },
+    "feature2": {
+      "title": "Menschliche KI-Kommunikation",
+      "description": "Docline ist die nächste Generation in der Patientenkommunikation. Er versteht Kontext, Sprachen und Dringlichkeit und verarbeitet Anliegen mit menschlicher Präzision."
+    },
+    "feature3": {
+      "title": "Multilingual",
+      "description": "Unser Voicebot kommuniziert fließend in über 25 Fremdsprachen.",
+      "buttonText": "25+ Sprachen"
+    },
+    "feature4": {
+      "title": "DSGVO-konform",
+      "description": "Ihre Sicherheit hat höchste Priorität."
+    }
+  },
+
+
+  "security": {
+    "badge": "Compliance & Sicherheit",
+    "heading": "Maximale Sicherheit ||| 100% DSGVO-konform",
+    "features": [
+      {
+        "title": "Server in der EU",
+        "description": "Wir garantieren die Speicherung all Ihrer Patientendaten ausschließlich in zertifizierten Hochsicherheits-Rechenzentren innerhalb der EU.",
+        "subDescription": "So sind Ihre Daten optimal geschützt, auch gegen Zugriffe Dritter."
+      },
+      {
+        "title": "Rechtssicherheit",
+        "description": "Der gesetzlich vorgeschriebene Auftragsverarbeitungsvertrag (AVV) ist fester und transparenter Bestandteil Ihres Docline-Vertrags. ",
+        "subDescription": "Dies regelt alle Verantwortlichkeiten rechtssicher und gibt Ihnen sofortige Compliance-Garantie, ohne dass Sie juristische Details selbst prüfen müssen."
+      },
+      {
+        "title": "Lückenlose Protokollierung",
+        "description": "Jeder Zugriff, jede Änderung und jeder administrative Vorgang innerhalb von Docline wird lückenlos und fälschungssicher protokolliert. ",
+        "subDescription": "Das Audit-Protokoll garantiert volle Transparenz und ermöglicht Ihnen jederzeit den Nachweis der Einhaltung der Vertraulichkeitsstandards.",
+        "highlight": true
+      },
+      {
+        "title": "Ende-zu-Ende-Verschlüsselung",
+        "description": "Alle über den Voicebot erfassten Daten sind Ende-zu-Ende verschlüsselt (sowohl aktiv als auch im Ruhezustand)..",
+        "subDescription": "Wir erfüllen die strengsten Anforderungen an die Vertraulichkeit Ihrer sensiblen Patientendaten."
+      }
+    ]
+  },
+
+
+ 
+  "testimonialSection": {
+    "badgeText": "Stimmen unserer NutzerInnen",
+    "heading": "Was PraxisinhaberInnen |||  über Docline sagen",
+    "testimonials": [
+      {
+       
+        "quote": "Seit Docline wissen wir, dass uns unsere Patienten  immer erreichen und unser Team trotzdem stressfrei arbeitet. Die Lösung hat nicht nur unsere telefonische Erreichbarkeit transformiert, sondern auch die Arbeitsmoral des Teams deutlich verbessert. Eine echte Entlastung im Praxisalltag.",
+        "name": "Barbara S.",
+        "title": "Allgemeinmedizinerin",
+        "stats": {
+          "timeSaved": "11h",
+          "timeSavedLabel": "Zeitersparniss pro Woche",
+          "acceptance": "88%",
+          "acceptanceLabel": "Anrufannahme"
+        }
+      },
+      {
+        
+        "quote": "Die Implementierung von Docline verlief reibungslos und die Ergebnisse übertrafen unsere Erwartungen. Unsere Patienten schätzen die ständige Erreichbarkeit.",
+        "name": "Alejandro H.",
+        "title": "Zahnarzt",
+        "stats": {
+          "timeSaved": "15h",
+          "timeSavedLabel": "Zeitersparniss pro Woche",
+          "acceptance": "92%",
+          "acceptanceLabel": "Anrufannahme"
+        }
+      },
+      {
+        
+        "quote": "Docline hat unsere Praxis revolutioniert. Das Team kann sich endlich auf wichtige Aufgaben konzentrieren, während die Patienten gut versorgt sind.",
+        "name": "Michael S.",
+        "title": "Radiologe",
+        "stats": {
+          "timeSaved": "13h",
+          "timeSavedLabel": "Zeitersparniss pro Woche",
+          "acceptance": "90%",
+          "acceptanceLabel": "Anrufannahme"
+        }
+      }
+    ]
+  },
+
+  "pricingSection": {
+  "badgeText": "Transparente Preisgestaltung",
+  "heading": "Wählen Sie den richtigen Plan\nfür Ihre Praxis",
+  "billingToggle": {
+    "monthly": "Monatlich",
+    "annually": "Jährlich",
+    "saveLabel": "Sparen Sie 15%"
+  },
+  "billingSuffix": {
+    "monthly": "/Monat",
+    "annually": "/Monat"
+  },
+  "commonButtonText": "Jetzt starten",
+  "plans": [
+    {
+      "name": "Standard",
+      "monthly": 399,
+      "yearly": 339,
+      "features": [
+        "KI-Agent-Erstellung & Setup",
+        "24/7 Erreichbarkeit & Anrufprotokollierung",
+        "Intelligente Triage & Aufgaben-Erstellung",
+        "2000 Anrufminuten / Monat inkludiert",
+        "0,35 € pro Überminute",
+        "E-Mail Support"
+      ],
+      "color": "#526FFF",
+      "isPremium": false,
+      "buttonText": "Jetzt starten"
+    },
+    {
+      "name": "Premium",
+      "monthly": 899,
+      "yearly": 765,
+      "features": [
+        "KI-Agent-Erstellung & Setup",
+        "24/7 Erreichbarkeit & Anrufprotokollierung",
+        "Intelligente Triage & Aufgaben-Erstellung",
+        "4000 Anrufminuten / Monat inkludiert",
+        "0,30 € pro Überminute",
+        "Mehrsprachig (25+ Sprachen)",
+        "Priorisierter E-Mail- und Live-Chat-Support"
+      ],
+      "color": "#171C35",
+      "isPremium": true,
+      "buttonText": "Jetzt starten"
+    },
+    {
+      "name": "Enterprise",
+      "monthly": 1299,
+      "yearly": 1105,
+      "features": [
+        "KI-Agent-Erstellung & Setup",
+        "24/7 Erreichbarkeit & Anrufprotokollierung",
+        "Intelligente Triage & Aufgaben-Erstellung",
+        "8000 Anrufminuten / Monat inkludiert",
+        "0,25 € pro Überminute",
+        "Mehrsprachig (25+ Sprachen)",
+        "24/7 Premium-Support"
+      ],
+      "color": "#526FFF",
+      "isPremium": false,
+      "buttonText": "Jetzt starten"
+    }
+  ]
+},
+
+
+  
+  "faqSection": {
+    "badgeText": "FAQ",
+    "heading": "Häufig gestellte Fragen",
+    "items": [
+      {
+        "question": "Was ist Docline?",
+        "answer": "Docline ist eine moderne, cloudbasierte Praxissoftware. Ihr Herzstück ist der KI-Voicebot, der eingehende Patientenanrufe automatisiert annimmt und Routineaufgaben (Termine, Rezepte) selbstständig erledigt."
+      },
+      {
+        "question": "Wie funktioniert Docline genau?",
+        "answer": "Der KI-Voicebot erkennt das Anliegen des Anrufers. Die Software wandelt diese Information automatisch in einen digitalen Task um und legt ihn im Docline-Dashboard zur finalen Bearbeitung ab. Kein Anliegen geht verloren, alles ist lückenlos protokolliert."
+      },
+      {
+        "question": "Trainiert Docline mit meinen Patientendaten?",
+        "answer": "Nein. Docline ist darauf ausgelegt, die Privatsphäre Ihrer Patienten zu schützen. Die KI-Sprachmodelle werden mit anonymisierten und synthetischen Daten trainiert. Ihre sensiblen Patientendaten bleiben bei Ihnen."
+      },
+      {
+        "question": "Was ist ein 'KI-Agent'? ",
+        "answer": "Der KI-Agent (Voicebot) ist die sprachgesteuerte Einheit von Docline. Er fungiert wie ein geschütztes, virtuelles MFA. Er versteht natürliche Sprache, führt Dialoge und trifft Entscheidungen basierend auf Ihren Praxisregeln."
+      },
+      {
+        "question": "Sind meine Daten bei Docline sicher?",
+        "answer": "Absolut. Docline ist 100% DSGVO-konform. Alle Daten sind Ende-zu-Ende verschlüsselt und werden ausschließlich in zertifizierten EU-Rechenzentren gespeichert (Schutz vor Cloud Act)."
+      },
+      {
+        "question": "Benötige ich neue Hardware für Docline?",
+        "answer": "Nein. Docline ist eine cloudbasierte Lösung und funktioniert in jedem modernen Browser. Es ist keine Installation auf lokalen Servern oder der Kauf neuer Telefone nötig. Sie starten sofort."
+      }
+    ]
+  },
+  
+  "ctaBanner": {
+    "heading": "Steigern Sie jetzt die Zufriedenheit & Produktivität Ihres Teams.",
+    "description": "Der Telefonstress bindet wertvolle Zeit und führt zu Überlastung. Befreien Sie Ihre MFAs und erleben Sie eine spürbare Entlastung ab der ersten Minute. Lassen Sie unsere KI Ihre Anrufe managen, während sich Ihr Team auf die Patientenbetreuung konzentriert.",
+    "buttonText": "Jetzt starten"
+  },
+  
+
+  "footer": {
+    "tagline": "Wir schaffen stressfreie Praxen",
+    "email": "info@docline.ai",
+
+    "navigation": {
+      "home": "Startseite",
+      "features": "Funktionen",
+      "howItWorks": "So funktioniert’s",
+      "caseStudy": "Fallstudie",
+      "pricing": "Preise",
+      "faq": "FAQ"
+     
+    },
+
+    "legal": {
+      "impressum": "Impressum",
+      "datenschutz": "Datenschutz"
+    },
+
+    "copyright": "© 2025 Docline. Alle Rechte vorbehalten.",
+
+    "social": {
+      "linkedin": "LinkedIn",
+      "facebook": "Facebook",
+      "instagram": "Instagram"
+    }
+  }
+},
+"auth":{
+"loginPage": {
+    "title": "Anmelden",
+    "welcomeMessage": "Willkommen! Melden Sie sich an, um auf Ihr Dashboard zuzugreifen",
+    "email": "E-Mail",
+    "emailPlaceholder": "Geben Sie Ihre E-Mail oder Telefonnummer ein",
+    "password": "Passwort",
+    "passwordPlaceholder": "············",
+    "rememberMe": "Angemeldet bleiben",
+    "forgotPassword": "Passwort vergessen?",
+    "signIn": "Anmelden",
+    "twoFA": "Geschützt durch Zwei-Faktor-Authentifizierung (2FA) für Ihre Datensicherheit",
+    "signupMessage": "Sie haben noch kein Konto?",
+    "signup": "Registrieren!"
+  },
+  "signupPage": {
+    "title": "Registrieren",
+    "subtitle": "Melden Sie sich an, um zu starten",
+    "firstName": "Vorname",
+    "firstNamePlaceholder": "z.B. John",
+    "lastName": "Nachname",
+    "lastNamePlaceholder": "z.B. Doe",
+    "email": "E-Mail",
+    "emailPlaceholder": "Geben Sie Ihre E-Mail ein",
+    "choosePassword": "Passwort wählen",
+    "confirmPassword": "Passwort bestätigen",
+    "passwordPlaceholder": "••••••••••••",
+    "agreeTerms": "Durch die Erstellung eines Kontos stimmen Sie den Nutzungsbedingungen und der Datenschutzrichtlinie von Docline zu.",
+    "signUpButton": "Registrieren",
+    "alreadyAccount": "Sie haben bereits ein Konto?",
+    "signIn": "Anmelden!"
+  },
+   "forgetPasswordPage": {
+    "title": "Passwort vergessen",
+    "subtitle": "Geben Sie Ihre registrierte E-Mail-Adresse oder Telefonnummer ein. Wir senden Ihnen einen Bestätigungscode, um Ihr Passwort zurückzusetzen.",
+    "email": "E-Mail",
+    "emailPlaceholder": "Geben Sie Ihre E-Mail oder Telefonnummer ein",
+    "sendVerification": "Bestätigungscode senden",
+    "login": "Anmelden"
+  },
+  "otpPage": {
+    "title": "Einmalpasswort (OTP)",
+    "subtitle": "Bitte geben Sie das sechsstellige Einmalpasswort ein, das wir an Ihre E-Mail gesendet haben.",
+    "otpLabel": "OTP",
+    "submitButton": "OTP senden",
+    "didNotReceive": "OTP nicht erhalten?",
+    "resendButton": "OTP erneut senden",
+    "successMessage": "OTP erfolgreich verifiziert!",
+    "errorMessage": "Ungültiges OTP. Bitte erneut versuchen.",
+    "login": "Anmelden"
+  },
+  "createNewPasswordPage": {
+    "title": "Neues Passwort erstellen",
+    "subtitle": "Bitte geben Sie den sechsstelligen Einmalpasscode ein, den wir an Ihre E-Mail gesendet haben, um Ihre Identität zu bestätigen.",
+    "passwordLabel": "Neues Passwort erstellen",
+    "confirmPasswordLabel": "Passwort bestätigen",
+    "saveButton": "Neues Passwort speichern",
+    "login": "Anmelden",
+    "placeholder": "••••••••••••"
+  },
+    "successfullNewPasswordPage": {
+    "title": "Passwort erfolgreich zurückgesetzt",
+    "subtitle": "Ihr Passwort wurde erfolgreich geändert. Sie können sich nun mit Ihren neuen Zugangsdaten anmelden.",
+    "backToLoginButton": "Zurück zur Anmeldung",
+    "login": "Anmelden"
+  }
+},
+
+  "dashboard": {
+      "mainHeader":{
+        "searchPlaceholder":"Suche...",
+    "userDropdown": {
+    "role": "D.",
+    "menu": {
+      "profileSettings": "Profileinstellungen",
+      "support": "Supports",
+      "settings": "Einstellungen",
+      "logout": "Ausloggen"
+    }
+  },
+
+  
+    "notificationModal":{
+    "title":"Benachrichtigungen",
+     "timeAgo": "{{time}} "
+  }
+  },
+
+  "doctorProfile": {
+  "breadcrumb": {
+    "dashboard": "Dashboard",
+    "doctor": "Arzt",
+    "profile": "Arztprofil"
+  },
+  "pageTitle": "Arztprofil",
+  "tabs": {
+    "allAppointments": "Alle Termine",
+    "allAppointment": {
+    "title": "Terminhistorie",
+    "types": {
+      "checkup": "Untersuchung",
+      "followup": "Nachkontrolle"
+    },
+    "status": {
+      "upcoming": "Bevorstehend",
+      "complete": "Abgeschlossen"
+    },
+    "labels": {
+      "type": "Art",
+      "date": "Datum",
+      "time": "Uhrzeit"
+    }
+  },
+    "patients": "Patienten",
+      "patientHistory": {
+    "title": "Patientenhistorie",
+    "addButton": "Patient hinzufügen",
+    "tableHeaders": {
+      "id": "Versicherungs-ID",
+      "name": "Name",
+      "phone": "Telefonnummer",
+      "date": "Datum",
+      "history": "Verlauf",
+      "aiSummary": "KI-Zusammenfassung"
+    },
+    "buttons": {
+      "viewHistory": "Verlauf anzeigen",
+      "view": "Ansehen"
+    }
+  }
+  },
+  "profile": {
+    "name": "Dr. {{firstName}} {{lastName}}",
+    "degree": "",
+    "edit": "Bearbeiten",
+    "2FAEnabled": "2FA aktiviert",
+    "emailVerified": "E-Mail verifiziert",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "experience": "Erfahrung",
+    "years": "Jahre",
+    "address": "Adresse",
+    "gender": "Geschlecht",
+    "licenseNumber":"Lizenznummer",
+     "dateofBirth":"Geburtsdatum",
+    "lastLogin": "Letzte Anmeldung",
+    "accountCreated": "Konto erstellt",
+    "lastUpdated": "Zuletzt aktualisiert"
+  },
+
+   "editModal": {
+    "title": "Edit Profile ",
+    "firstName" : "Vorname",
+    "lastName": "Nachname",
+    "phone":"Mobilnummer",
+    "address":"Adresse",
+    "experience":"Erfahrung (in Jahren)",
+    "saveButton":"Profil speichern",
+    "saveing":"Speichern...",
+    "cancelButton":"Abbrechen",
+    "specialist":"Fachgebiet (comma-separated)",
+     "licenseNumber":"Lizenznummer",
+     "dateofBirth":"Geburtsdatum",
+     "gender": "Geschlecht"
+   }
+},
+
+    "sidebar": {
+      "navigation": {
+        "dashboard": "Dashboard",
+        "callLogs": "Anrufprotokolle",
+        "calendar": "Kalender",
+        "patients": "Patienten",
+        "tasks": "Aufgaben",
+        "supports": "Support",
+        "settings": "Einstellungen",
+        "logout": "Ausloggen"
+      },
+      "upgradeCard": {
+        "upgradeTo": "Upgrade zu",
+        "proBadge": "PRO",
+        "currentPlan": "Basis",
+        "minutesUsed": "Verwendete Minuten",
+        "upgradeButton": "Upgrade"
+      }
+    },
+    "routes": {
+      "dashboard":{
+      "topSection": {
+  "welcome": "Willkommen, {{firstName}} {{lastName}}",
+  "todayIncomingCalls": "Heute eingegangene Anrufe",
+  "successfulCalls": "Erfolgreiche Anrufe",
+  "averageCallDuration": "Durchschnittliche Anrufdauer",
+  "subscriptionButtonLabel": "Abonnement anzeigen"
+},
+"appointments": {
+  "newBadge": "Neu",
+  "diagnosis": "Diagnose",
+  "time": "Zeit",
+  "patients": "{{count}} Patienten",
+  "dateFormat": "Sonntag, 11."
+},
+"cards": {
+  "unreviewedCalls": {
+    "title": "Ungeprüfte Anrufe",
+    "description": "Erfordert Ihre Aufmerksamkeit"
+  },
+  "tasks": {
+    "title": "Aufgaben"
+  },
+  "callBack": {
+    "title": "Benötigteinen Rückruf"
+  }
+}
+,
+"calendar": {
+  "months": {
+  "january": "Januar",
+  "february": "Februar",
+  "march": "März",
+  "april": "April",
+  "may": "Mai",
+  "june": "Juni",
+  "july": "Juli",
+  "august": "August",
+  "september": "September",
+  "october": "Oktober",
+  "november": "November",
+  "december": "Dezember"
+}
+,
+  "title": "Kalender",
+  "addAppointment": "Termin",
+  "viewTypes": {
+    "day": "Tag",
+    "week": "Woche",
+    "month": "Monat"
+  },
+  "weekDays": {
+    "sun": "SO",
+    "mon": "MO",
+    "tue": "DI",
+    "wed": "MI",
+    "thu": "DO",
+    "fri": "FR",
+    "sat": "SA"
+  },
+  "weekDaysFull": {
+    "monday": "Montag",
+    "tuesday": "Dienstag",
+    "wednesday": "Mittwoch",
+    "thursday": "Donnerstag",
+    "friday": "Freitag",
+    "saturday": "Samstag",
+    "sunday": "Sonntag"
+  },
+  "timeZone": "GMT+06"
+}
+
+
+
+      },
+      "callLogs": {
+  "title": "Anrufprotokolle",
+  "breadcrumb": {
+    "dashboard": "Dashboard",
+    "callLogs": "Anrufprotokolle"
+  },
+  "header": "Anrufprotokolle",
+"dateRangePicker": {
+  "selectDateRange": "Datumsbereich auswählen",
+  "title": "Datumsbereich auswählen",
+  "startDate": "Anfangsdatum",
+  "endDate": "Enddatum",
+  "cancel": "Abbrechen",
+  "apply": "Anwenden"
+},
+
+
+  "table": {
+    "patientName": "Patientenname",
+    "phoneNumber": "Telefonnummer",
+    "status": "Status"
+  },
+  "status": {
+    "successful": "Erfolgreich",
+    "missed": "Verpasst"
+  },
+  "actions": {
+    "play": "Abspielen",
+    "viewProfile": "Profil anzeigen"
+  },
+    "modal": {
+    "title": "Patienten-Transkript",
+    "aiSummary": "KI-Zusammenfassung",
+    "showMore": "Mehr anzeigen",
+    "hide": "Verbergen",
+    "patientInfoTitle": "Informationen werden zusammengefasst",
+    "patientName": "Name",
+    "insuranceId": "Versicherungs-ID",
+    "reason": "Grund des Anrufs",
+    "patientsTranscript": "Patienten-Transkript",
+    "copied": "Kopiert",
+
+      "transcriptChat": {
+    "title": "Transkript",
+    "copied": "Kopiert",
+    "allCopied": "Alle Nachrichten kopiert!",
+    "userLabel": "Benutzer",
+    "floydLabel": "Floyd Miles"
+  }
+  }
+},
+
+"calendar": {
+  "breadcrumb": {
+    "dashboard": "Dashboard",
+    "calendar": "Kalender"
+  },
+  "header": "Kalender",
+  "appointment": "Termin",
+  "views": {
+    "day": "Tag",
+    "week": "Woche",
+    "month": "Monat"
+  },
+
+  "appointmentModal": {
+  "title": "Neuen Termin hinzufügen",
+  "subtitle": "Vervollständigen Sie alle Informationen",
+  "insuranceId": "Versicherungs-ID",
+  "firstName": "Vorname",
+  "lastName": "Nachname",
+  "email": "E-Mail",
+  "phoneNumber": "Telefonnummer",
+  "dateOfBirth": "Geburtsdatum",
+  "gender": "Geschlecht",
+  "bloodGroup": "Blutgruppe",
+  "selectBloodGroup": "Blutgruppe auswählen",
+  "schedule": "Zeitplan",
+  "appointmentDetails": "Termin-Details",
+  "address": "Adresse",
+  "placeholder": {
+    "insuranceId": "Versicherungs-ID...",
+    "firstName": "Vorname eingeben...",
+    "lastName": "Nachname eingeben...",
+    "email": "E-Mail eingeben...",
+    "phoneNumber": "Telefonnummer eingeben...",
+    "gender": "Geschlecht eingeben...",
+    "appointmentDetails": "Details...",
+    "address": "Adresse"
+  },
+  "submit": "Absenden"
+}
+
+},
+"patients": {
+  "breadcrumb": {
+    "dashboard": "Dashboard",
+    "patients": "Patienten"
+  },
+  "buttons": {
+    "addPatient": "Patient hinzufügen",
+    "list": "Liste",
+    "grid": "Raster"
+  },
+  "totalPatients": "Insgesamt {{count}} Patienten",
+    "listView":{
+  
+         "table": {
+          "insuranceId": "Versicherungs-ID",
+          "name": "Name",
+          "phone": "Telefonnummer",
+          "date": "Datum",
+          "profile": "Profil",
+          "view": "Ansehen"
+        }
+      },
+          "gridView": {
+      "profileImageAlt": "Patientenprofilbild",
+      "name": "Name",
+      "insuranceId": "Versicherungs-ID",
+      "telephoneNumber": "Telefonnummer",
+      "email": "E-Mail",
+      "birthday": "Geburtstag",
+      "address": "Adresse",
+      "viewButton": "Ansehen"
+    },
+
+    
+  "addPatient": {
+    "breadcrumbs": {
+      "dashboard": "Dashboard",
+      "patients": "Patienten",
+      "addPatient": "Patient hinzufügen",
+      "editPatient": "Patient hinzufügen"
+    },
+
+    "title": "Neuen Patienten hinzufügen",
+
+    "sections": {
+      "personalInfo": "Persönliche Informationen",
+      "contactAddress": "Kontakt & Adresse",
+      "emergencyContact": "Notfallkontakt"
+
+    },
+
+    "fields": {
+      "firstName": {
+        "label": "Vorname",
+        "placeholder": "Vornamen eingeben..."
+      },
+      "lastName": {
+        "label": "Nachname",
+        "placeholder": "Nachnamen eingeben..."
+      },
+      "dateOfBirth": {
+        "label": "Geburtsdatum"
+      },
+      "gender": {
+        "label": "Geschlecht",
+        "placeholder": "Geschlecht auswählen",
+        "options": {
+          "male": "Männlich",
+          "female": "Weiblich",
+          "other": "Andere"
+        }
+      },
+      "bloodGroup": {
+        "label": "Blutgruppe",
+        "placeholder": "Blutgruppe auswählen"
+      },
+      "maritalStatus": {
+        "label": "Familienstand",
+        "placeholder": "Familienstand auswählen",
+        "options": {
+          "single": "Ledig",
+          "married": "Verheiratet",
+          "divorced": "Geschieden",
+          "widowed": "Verwitwet"
+        }
+      },
+      "insuranceId": {
+        "label": "Versicherungs-ID",
+        "placeholder": "Versicherungs-ID eingeben..."
+      },
+      "email": {
+        "label": "E-Mail",
+        "placeholder": "E-Mail eingeben..."
+      },
+      "phoneNumber": {
+        "label": "Telefonnummer",
+        "placeholder": "Primäre Telefonnummer eingeben..."
+      },
+      "alternativePhone": {
+        "label": "Alternative Telefonnummer",
+        "placeholder": "Alternative Telefonnummer eingeben..."
+      },
+      "city": {
+        "label": "Stadt",
+        "placeholder": "Stadt eingeben..."
+      },
+      "address": {
+        "label": "Adresse",
+        "placeholder": "Vollständige Adresse eingeben..."
+      },
+      "emergencyName": {
+  "label": "Name",
+  "placeholder": "Geben Sie Ihren Namen ein"
+},
+"emergencyPhone": {
+  "label": "Telefon",
+  "placeholder": "Geben Sie Ihre Telefonnummer ein"
+},
+"emergencyRelationShip": {
+  "label": "Adresse",
+  "placeholder": "Geben Sie Ihre Beziehung ein"
+}
+
+    },
+
+    "buttons": {
+      "cancel": "Abbrechen",
+      "submit": "Patient hinzufügen"
+    },
+
+    "messages": {
+      "submitSuccess": "Patientendaten wurden erfolgreich übermittelt!",
+      "formCleared": "Formular wurde zurückgesetzt."
+    }
+  },
+
+
+    
+  "patientProfile": {
+    "breadcrumb": {
+      "dashboard": "Dashboard",
+      "patients": "Patienten",
+      "profile": "Patientenprofil"
+    },
+
+    "title": "Zur Patientenakte",
+
+    "header": {
+  "treatmentPhase": "Behandlungsphase",
+  "treatmentPhaseValue": "Erste Untersuchung",
+  "diagnosis": "Diagnose",
+  "diagnosisValue": "Chronische Kopfschmerzen",
+  "bloodSugar": "Blutzucker",
+  "bloodSugarUnit": "mg/dl",
+  "lastVisited": "Zuletzt besucht",
+  "lastVisitedValue": "30. Apr 2025",
+  "phone": "Telefon",
+  "phoneValue": "+1 54546 45648",
+  "email": "E-Mail",
+  "emailValue": "username@gmail.com"
+},
+
+
+    "cards": {
+      "esr": "ESR",
+      "esrCritical": "(Kritisch)",
+      "inflammation": "Entzündung (25% Anstieg)",
+
+      "vitaminD": "Vitamin D",
+      "vitaminMinor": "(Geringfügig)",
+      "vitaminStable": "Stabil, aber abnehmend (15% Rückgang)",
+
+      "overallStatus": "Gesamtstatus",
+      "overallStable": "Alle Marker stabil",
+      "overallNoAlerts": "Derzeit keine Warnungen generiert"
+    },
+
+    "historyTitle": "{{name}}, Verlauf",
+
+    "tabs": {
+      "personalInfo": "Persönliche Informationen",
+      "patientSummary": "Patientenzusammenfassung",
+      "appointment": "Termin",
+      "prescriptions": "Rezepte",
+      "labResults": "Laborergebnisse"
+    },
+  "tabsvalue": {
+  "personalInfo": {
+    "personalInfoTitle": "Persönliche Informationen",
+    "dateOfBirth": "Geburtsdatum:",
+    "phone": "Telefon:",
+    "email": "E-Mail:",
+    "address": "Adresse:",
+    "medicalInfoTitle": "Medizinische Informationen",
+    "bloodType": "Blutgruppe:",
+    "allergies": "Allergien:",
+    "conditions": "Krankheiten:",
+    "doctor": "Arzt:",
+    "emergencyContactTitle": "Notfallkontakt",
+    "emergencyName": "Name:",
+    "relationship": "Beziehung:",
+    "emergencyPhone": "Telefon:"
+  },
+
+   "patientSummary": {
+    "title": "Patientenzusammenfassung",
+    "description": "Übersicht über den Gesundheitszustand und die jüngsten Aktivitäten des Patienten.",
+    
+    "summaryCards": {
+      "nextAppointment": {
+        "title": "Nächster Termin",
+        "detailTime": "1:30 PM - Check-up",
+        "date": "20. April 2024"
+      },
+      "activeMedications": {
+        "title": "Aktive Medikamente",
+        "count": "3 aktive Rezepte",
+        "lastUpdated": "Zuletzt aktualisiert: 3. Feb 2024"
+      },
+      "recentLabResults": {
+        "title": "Neueste Laborergebnisse",
+        "type": "Umfassendes metabolisches Panel",
+        "date": "20. Januar 2024"
+      },
+      "recentCall": {
+        "title": "Letzter Anruf",
+        "callType": "Anruftyp: Nachverfolgung",
+        "callDuration": "Dauer: 01h 45min"
+      }
+    },
+
+    "appointments": {
+      "title": "Termine",
+      "list": [
+        { "type": "UnteUntersuchung", "date": "27-09-2025", "time": "01:00 AM", "status": "Bevorstehend" },
+        { "type": "Nachverfolgen", "date": "27-09-2025", "time": "01:00 AM", "status": "Abgeschlossen" },
+        { "type": "Untersuchung", "date": "27-09-2025", "time": "01:00 AM", "status": "Abgeschlossen" },
+        { "type": "Untersuchung", "date": "27-09-2025", "time": "01:00 AM", "status": "Abgeschlossen" },
+        { "type": "Untersuchung", "date": "27-09-2025", "time": "01:00 AM", "status": "Abgeschlossen" }
+      ]
+    },
+
+          "prescriptions": {
+                "title": "Rezepte",
+                "addButton": "Rezept hinzufügen",
+                "viewButton": "Rezept ansehen",
+                "list": [
+                  { "id": 1, "date": "07-Okt-2025" },
+                  { "id": 2, "date": "06-Sep-2025" },
+                  { "id": 3, "date": "06-Sep-2025" },
+                  { "id": 4, "date": "06-Sep-2025" }
+                ]
+              },
+
+                     "labResults": {
+                "title": "Laborergebnisse",
+                "addButton": "Neuen Labortest hinzufügen",
+                "viewButton": "Laborauswertung ansehen",
+                "list": [
+                  { "id": 1, "testName": "Blutbild", "date": "14-Jul-2023" },
+                  { "id": 2, "testName": "Lipidprofil", "date": "14-Jul-2023" },
+                  { "id": 3, "testName": "Umfassendes Stoffwechselpanel", "date": "14-Jul-2023" }
+                ]
+              }
+  }
+}
+
+
+
+}
+
+
+    },
+
+    
+  "taskList": {
+    "breadcrumb": {
+      "dashboard": "Dashboard",
+      "task": "Aufgaben"
+    },
+    "header": {
+      "title": "Aufgaben",
+      "totalTask": "Gesamtaufgaben",
+      "addTask": "Aufgabe hinzufügen"
+    },
+    "status": {
+  "all": "Alle Status",
+  "todo": "Zu erledigen",
+  "inprogress": "In Bearbeitung",
+  "done": "Erledigt" 
+},
+"priority": {
+  "all": "Alle Priorität",
+  "high": "Hoch",
+  "medium": "Mittel",
+  "low": "Niedrig"
+},
+
+
+  "staticTasks": {
+    "todo": [
+      {
+        "title": "Patientenakten überprüfen",
+        "description": "Durchsuchen Sie die neuesten Patientenakten und aktualisieren Sie das System",
+        "priority": "High",
+        "time": "9:00 AM",
+        "dueDate": "Sep 30, 2025",
+        "completed": false
+      },
+      {
+        "title": "Folgetermine planen",
+        "description": "Kontaktieren Sie Patienten für ihre nächsten Termine.",
+        "priority": "Medium",
+        "time": "10:00 AM",
+        "dueDate": "Oct 01, 2025",
+        "completed": false
+      },
+      {
+        "title": "Entlassungsberichte vorbereiten",
+        "description": "Erstellen Sie Berichte für Patienten, die heute entlassen werden.",
+        "priority": "Low",
+        "time": "11:00 AM",
+        "dueDate": "Sep 30, 2025",
+        "completed": false
+      },
+      {
+        "title": "Materialbestellungen aufgeben",
+        "description": "Überprüfen Sie den Bestand und bestellen Sie notwendige medizinische Materialien.",
+        "priority": "High",
+        "time": "1:00 PM",
+        "dueDate": "Sep 29, 2025",
+        "completed": false
+      },
+      {
+        "title": "Internes Wiki aktualisieren",
+        "description": "Dokumentieren Sie neue Verfahren für die Patientenaufnahme.",
+        "priority": "Low",
+        "time": "2:00 PM",
+        "dueDate": "Oct 05, 2025",
+        "completed": false
+      }
+    ],
+    "inprogress": [
+      {
+        "title": "Q.A.-Überprüfung durchführen",
+        "description": "Überprüfen Sie die Datenrichtigkeit im neuen EHR-System.",
+        "priority": "High",
+        "time": "9:00 AM",
+        "dueDate": "Sep 30, 2025",
+        "completed": false
+      },
+      {
+        "title": "Systemwartung",
+        "description": "Die neuesten Sicherheitsupdates auf allen Servern anwenden.",
+        "priority": "Medium",
+        "time": "10:00 AM",
+        "dueDate": "Oct 02, 2025",
+        "completed": false
+      },
+      {
+        "title": "Mitarbeiterschulung",
+        "description": "Ein neues Modul zur Patientengeheimhaltung entwickeln.",
+        "priority": "Low",
+        "time": "11:00 AM",
+        "dueDate": "Oct 07, 2025",
+        "completed": false
+      },
+      {
+        "title": "Finanzprüfung vorbereiten",
+        "description": "Quartalsberichte und Rechnungen sammeln.",
+        "priority": "High",
+        "time": "1:00 PM",
+        "dueDate": "Sep 28, 2025",
+        "completed": false
+      },
+      {
+        "title": "Marketingflyer entwerfen",
+        "description": "Werbematerial für den neuen Klinikservice erstellen.",
+        "priority": "Low",
+        "time": "2:00 PM",
+        "dueDate": "Oct 10, 2025",
+        "completed": false
+      }
+    ],
+    "done": [
+      {
+        "title": "Server-Backup abgeschlossen",
+        "description": "Vollständige Sicherung aller kritischen Systeme durchgeführt.",
+        "priority": "High",
+        "time": "9:00 AM",
+        "dueDate": "Sep 27, 2025",
+        "completed": true
+      },
+      {
+        "title": "Notrufe bearbeitet",
+        "description": "5 hochprioritäre Supporttickets gelöst.",
+        "priority": "Medium",
+        "time": "10:00 AM",
+        "dueDate": "Sep 26, 2025",
+        "completed": true
+      },
+      {
+        "title": "Monatsbericht abgeschlossen",
+        "description": "Leistungsbericht an das Managementteam gesendet.",
+        "priority": "High",
+        "time": "11:00 AM",
+        "dueDate": "Sep 25, 2025",
+        "completed": true
+      },
+      {
+        "title": "Büroreinigungsplan",
+        "description": "Reinigungsrotation aktualisiert und verteilt.",
+        "priority": "Low",
+        "time": "1:00 PM",
+        "dueDate": "Sep 24, 2025",
+        "completed": true
+      },
+      {
+        "title": "Neuer Richtlinienentwurf",
+        "description": "Entwurf der neuen Homeoffice-Richtlinie erstellt.",
+        "priority": "Medium",
+        "time": "2:00 PM",
+        "dueDate": "Sep 23, 2025",
+        "completed": true
+      }
+    ]
+  },
+
+
+
+
+        "addTaskModal": {
+          "titleAdd": "Aufgabe hinzufügen",
+          "titleEdit": "Aufgabe bearbeiten",
+          "subtitleAdd": "Fügen Sie eine neue Aufgabe zu Ihrer Liste hinzu, füllen Sie die Details unten aus",
+          "subtitleEdit": "Ändern Sie die Aufgabendetails unten",
+          "labels": {
+            "title": "Titel",
+            "description": "Beschreibung",
+            "status": "Status",
+            "priority": "Priorität",
+            "dueDate": "Fälligkeitsdatum"
+          },
+          "placeholders": {
+            "title": "Aufgabentitel",
+            "description": "Details..."
+          },
+          "buttons": {
+            "cancel": "Abbrechen",
+            "submit": "Einreichen",
+            "saveChanges": "Änderungen speichern"
+          },
+          "statusOptions": {
+            "todo": "Zu erledigen",
+            "inProgress": "In Bearbeitung",
+            "done": "Erledigt"
+          },
+          "priorityOptions": {
+            "high": "Hoch",
+            "medium": "Mittel",
+            "low": "Niedrig"
+          }
+        },
+
+    "columns": {
+      "todo": "Zu erledigen",
+      "inprogress": "In Bearbeitung",
+      "done": "Erledigt"
+    },
+   
+    "actions": {
+      "addTaskTo": "Aufgabe hinzufügen zu",
+      "editTask": "Aufgabe bearbeiten",
+      "deleteTask": "Aufgabe löschen",
+      "deleteSelected": "Ausgewählte Aufgaben löschen"
+    },
+    "taskCard": {
+      "due": "Fällig"
+    },
+    "deleteModal": {
+      "title": "Sind Sie sicher?",
+      "messageSingle": "Möchten Sie diese Aufgabe wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
+      "messageMultiple": "Möchten Sie wirklich {{count}} Aufgaben löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
+      "no": "Nein",
+      "yes": "Ja"
+    },
+    "deleteSuccess": {
+      "single": "Aufgabe erfolgreich gelöscht!",
+      "multiple": "{{count}} Aufgaben erfolgreich gelöscht!"
+    },
+  
+   "patientRecordsModal": {
+          "title": "Patientenakten überprüfen",
+          "subtitle": "Fügen Sie eine neue Aufgabe zu Ihrer Liste hinzu. Füllen Sie die Details unten aus.",
+          "labels": {
+            "time": "Zeit",
+            "dueDate": "Fälligkeitsdatum",
+            "description": "Beschreibung"
+          },
+          "content": {
+            "paragraph1": "Ihre Patienten werden den Unterschied kaum bemerken. Passen Sie die Stimme des KI-Assistenten nahtlos an den Stil Ihrer Praxis an. Wählen Sie ein souveränes männliches oder weibliches Sprachprofil. So sichern Sie einen gleichbleibend angenehmen und professionellen Empfang für jeden Anruf.",
+            "paragraph2": "Ihre Patienten werden den Unterschied kaum bemerken. Passen Sie die Stimme des KI-Assistenten nahtlos an den Stil Ihrer Praxis an. Wählen Sie ein souveränes männliches oder weibliches Sprachprofil. So sichern Sie einen gleichbleibend angenehmen und professionellen Empfang für.",
+            "paragraph3": "Ihre Patienten werden den Unterschied kaum bemerken. Passen Sie die Stimme des KI-Assistenten nahtlos an den Stil Ihrer Praxis an. Wählen Sie ein souveränes männliches oder weibliches Sprachprofil."
+          },
+          "close": "Schließen"
+        }
+
+
+  },
+  
+   "supportChat": {
+        "breadcrumb": {
+          "home": "Dashboard",
+          "current": "Support"
+        },
+        "title": "Support",
+        "searchPlaceholder": "suchen...",
+        "backButton": "← Zurück",
+        "chat": {
+          "lastSeen": "Zuletzt gesehen vor {{time}}",
+          "typeMessage": "Nachricht eingeben...",
+          "sendButton": "SENDEN"
+        }
+      },
+
+"settings":{
+  "breadcrumb": {
+    "dashboard": "Dashboard",
+    "settings": "Einstellungen"
+  },
+  "header": {
+    "title": "Einstellungen"
+},
+
+"settingsSidebar": {
+    "navItems": {
+      "personalInfo": "Persönliche Informationen",
+      "myStaff": "Mein Personal",
+      "changePassword": "Passwort ändern",
+      "notification": "Benachrichtigungen",
+      "subscription": "Abonnement",
+      "preferences": "Einstellungen",
+      "security": "Sicherheit"
+    },
+      "tabs": {
+    "personalInfo": {
+      "title": "Persönliche Informationen",
+      "profile": {
+        "namePlaceholder": "Geben Sie Ihren Namen ein",
+        "role": "Anästhesie",
+        "firstNameLabel": "Vorname",
+        "lastNameLabel": "Nachname",
+        "emailLabel": "E-Mail",
+        "phoneLabel": "Telefonnummer",
+        "addressLabel": "Adresse",
+        "dobLabel": "Geburtsdatum",
+        "genderLabel": "Geschlecht",
+        "editButton": "Bearbeiten",
+        "saveButton": "Änderungen speichern",
+        "cancelButton": "Abbrechen"
+      
+      }
+    },
+
+      "myStaff": {
+    "title": "Mitarbeiterverwaltung",
+    "addButton": "Neuen Mitarbeiter hinzufügen",
+      "addNewStaff": {
+    "header": {
+      "breadcrumb": {
+        "dashboard": "Dashboard",
+        "settings": "Einstellungen",
+        "myStaff": "Meine Mitarbeiter"
+      },
+      "pageTitle": "Persönliche Informationen"
+    },
+    "card": {
+      "title": "Neuen Mitarbeiter hinzufügen",
+      "description": "Erstellen Sie ein neues Mitarbeiterprofil"
+    },
+    "stafTabs": {
+      "personal": "Persönliche Daten",
+      "personalInfo": {
+    "uploadPhoto": "Foto hochladen",
+    "firstName": "Vorname",
+    "firstNamePlaceholder": "Vorname eingeben...",
+    "lastName": "Nachname",
+    "lastNamePlaceholder": "Nachname eingeben...",
+    "dateOfBirth": "Geburtsdatum",
+    "gender": "Geschlecht",
+    "genderOptions": {
+      "male": "Männlich",
+      "female": "Weiblich",
+      "other": "Andere"
+    },
+    "selectGender": "Geschlecht auswählen",
+    "email": "E-Mail-Adresse",
+    "emailPlaceholder": "E-Mail eingeben...",
+    "phone": "Telefonnummer",
+    "phonePlaceholder": "Telefonnummer eingeben",
+    "address": "Adresse",
+    "addressPlaceholder": "Adresse eingeben...",
+    "state": "Bundesland/Provinz",
+    "statePlaceholder": "Bundesland eingeben...",
+    "postalCode": "Postleitzahl",
+    "postalCodePlaceholder": "Postleitzahl eingeben...",
+    "country": "Land",
+    "selectCountry": "Land auswählen",
+    "countryOptions": {
+      "us": "Vereinigte Staaten",
+      "uk": "Vereinigtes Königreich",
+      "bd": "Deutschland",
+      "in": "Japan"
+    }
+  },
+      "employment": "Beschäftigung",
+      "employmentInfo": {
+        "employeeId": {
+  "label": "Mitarbeiter-ID",
+  "placeholder": "Mitarbeiter-ID eingeben"
+},
+    "department": {
+      "label": "Abteilung",
+      "placeholder": "Abteilung auswählen",
+      "options": [
+        { "value": "sales", "label": "Vertrieb" },
+        { "value": "marketing", "label": "Marketing" },
+        { "value": "technology", "label": "Technologie" },
+        { "value": "hr", "label": "Personalwesen" },
+        { "value": "finance", "label": "Finanzen" }
+      ]
+    },
+    "reportingTo": {
+      "label": "Berichtet an",
+      "placeholder": "Manager auswählen",
+      "options": [
+        { "value": "managerA", "label": "Manager A" },
+        { "value": "managerB", "label": "Manager B" },
+        { "value": "managerC", "label": "Manager C" }
+      ]
+    },
+    "employmentType": {
+      "label": "Beschäftigungsart",
+      "placeholder": "Art auswählen",
+      "options": [
+        { "value": "full-time", "label": "Vollzeit" },
+        { "value": "part-time", "label": "Teilzeit" },
+        { "value": "contract", "label": "Vertrag" }
+      ]
+    },
+    "workSchedule": {
+      "label": "Arbeitszeitplan",
+      "placeholder": "Plan auswählen",
+      "options": [
+        { "value": "9-5", "label": "9:00 - 17:00 Uhr" },
+        { "value": "flexible", "label": "Flexibel" },
+        { "value": "shift", "label": "Schichtarbeit" }
+      ]
+    },
+    "workHours": {
+      "label": "Arbeitsstunden (wöchentlich)",
+      "placeholder": "Stunden auswählen",
+      "options": [
+        { "value": "40", "label": "40 Stunden" },
+        { "value": "30", "label": "30 Stunden" },
+        { "value": "20", "label": "20 Stunden" }
+      ]
+    }
+  }
+    },
+    "buttons": {
+      "cancel": "Abbrechen",
+      "next": "Weiter",
+      "save": "Speichern"
+    }
+  },
+    "table": {
+      "columns": {
+        "name": "Mitarbeitername",
+        "joined": "Beigetreten",
+        "role": "Rolle",
+        "contact": "Kontakt",
+        "status": "Status",
+        "profile": "Profil"
+      },
+      "status": {
+        "active": "Aktiv",
+        "inactive": "Inaktiv"
+      },
+      "viewProfile": "Profil anzeigen",
+      "showing": "Zeige {{start}}-{{end}} von {{total}} Mitarbeitern"
+    },
+
+    "staffProfile": {
+  "breadcrumb": {
+    "dashboard": "Dashboard",
+    "settings": "Einstellungen",
+    "staffProfile": "Mitarbeiterprofil"
+  },
+  "title": "Mitarbeiterprofil",
+  "status": {
+    "active": "Aktiv"
+  },
+  "buttons": {
+    "edit": "Bearbeiten",
+    "cancel": "Abbrechen",
+    "saveChanges": "Änderungen speichern",
+    "verifyEmail": "E-Mail verifizieren",
+    "changePassword": "Passwort ändern"
+  },
+  "bio": "{{name}} ist ein staatlich geprüfter Kardiologe mit über 12 Jahren Erfahrung in der Diagnose und Behandlung kardiovaskulärer Erkrankungen. Sie ist spezialisiert auf interventionelle Kardiologie und Echokardiographie mit Schwerpunkt auf Präventivmedizin. Dr. Johnson widmet sich der mitfühlenden Versorgung.",
+  "history": {
+    "title": "{{name}}s Geschichte",
+    "fields": {
+      "name": "Name",
+      "role": "Rolle",
+      "id": "ID",
+      "gender": "Geschlecht",
+      "presentAddress": "Aktuelle Adresse",
+      "permanentAddress": "Ständige Adresse",
+      "maritalStatus": "Familienstand",
+      "dob": "Geburtsdatum",
+      "passportCountry": "Passland",
+      "nationality": "Staatsangehörigkeit",
+      "nationalId": "Nationale ID"
+    }
+  },
+  "settingsSection": {
+    "title": "Einstellungen",
+    "description": "Verwalten Sie Ihre E-Mail-Adresse, Mobilnummer und Passwort",
+    "fields": {
+      "phone": "Mobilnummer",
+      "email": "E-Mail-ID",
+      "password": "Passwort"
+    },
+    "verified": "Verifiziert"
+  },
+  "values": {
+    "gender": {
+      "male": "Männlich",
+      "female": "Weiblich",
+      "other": "Sonstiges"
+    },
+    "maritalStatus": {
+      "married": "Verheiratet",
+      "single": "Ledig",
+      "divorced": "Geschieden",
+      "widowed": "Verwitwet"
+    },
+    "roles": {
+      "receptionist": "Rezeptionist",
+      "nurse": "Krankenschwester",
+      "doctor": "Arzt",
+      "admin": "Administrator"
+    }
+  }
+},
+    "pagination": {
+      "previous": "Zurück",
+      "next": "Weiter"
+    }
+  },
+  "changePasswordForm": {
+    "title": "Passwort ändern",
+    "fields": {
+      "current": "Aktuelles Passwort",
+      "newPass": "Neues Passwort",
+      "confirm": "Passwort bestätigen"
+    },
+    "placeholders": {
+      "current": "Geben Sie das aktuelle Passwort ein",
+      "newPass": "Geben Sie ein neues Passwort ein",
+      "confirm": "Bestätigen Sie das Passwort"
+    },
+    "errors": {
+      "required": "Bitte füllen Sie alle Pflichtfelder aus.",
+      "minLength": "Das neue Passwort muss mindestens 6 Zeichen lang sein.",
+      "mismatch": "Neues Passwort und Bestätigung stimmen nicht überein."
+    },
+    "success": "✅ Passwort erfolgreich geändert!",
+    "buttons": {
+      "cancel": "Abbrechen",
+      "saveChanges": "Änderungen speichern"
+    }
+  },
+
+  "notificationSettings": {
+  "title": "Benachrichtigungen",
+  "description": "Wir können Ihnen weiterhin wichtige Benachrichtigungen zu Ihrem Konto außerhalb Ihrer Benachrichtigungseinstellungen senden.",
+  "items": {
+    "appointmentReminders": {
+      "label": "Termin-Erinnerungen",
+      "desc": "Erhalten Sie Benachrichtigungen über bevorstehende Termine und Planänderungen."
+    },
+    "patientUpdates": {
+      "label": "Patienten-Updates",
+      "desc": "Erhalten Sie Benachrichtigungen, wenn neue Patienten hinzugefügt oder Patienteninformationen aktualisiert werden."
+    },
+    "callLogs": {
+      "label": "Anrufprotokolle",
+      "desc": "Erhalten Sie Benachrichtigungen über verpasste Anrufe und neue Einträge im Anrufprotokoll."
+    },
+    "taskDeadlines": {
+      "label": "Aufgabenfristen",
+      "desc": "Erhalten Sie Erinnerungen an bevorstehende Aufgabenfristen und überfällige Aufgaben."
+    },
+    "securityAlerts": {
+      "label": "Sicherheitswarnungen",
+      "desc": "Wichtige Sicherheitsbenachrichtigungen zu Ihrem Konto und Ihrer Anmeldeaktivität."
+    },
+    "emailNotifications": {
+      "label": "E-Mail-Benachrichtigungen",
+      "desc": "Erhalten Sie E-Mail-Updates zu Ihrem Konto."
+    }
+  },
+  "buttons": {
+    "cancel": "Abbrechen",
+     "saving": "Speichert...",
+    "saveChanges": "Änderungen speichern"
+  },
+  "messages": {
+  "saveSuccess": "Einstellungen erfolgreich gespeichert!",
+  "saveError": "Einstellungen konnten nicht gespeichert werden. Bitte versuchen Sie es erneut."
+}
+
+},
+       "subscriptionOverview": {
+              "title": "Abonnement Übersicht",
+              "subTabs": {
+                "currentPlan": "Aktueller Plan",
+                 "currentPlanTab": {
+      "title": "Aktueller Plan",
+      "badge": "Professionell",
+      "paymentMethod": "Zahlungsmethode",
+      "startedFrom": "Begonnen am",
+      "perMonth": "/Pro Monat",
+
+      "features": {
+        "voicebotSetup": "AI Voicebot Einrichtung & Konfiguration",
+        "availability": "24/7 Verfügbarkeit & Anrufbearbeitung",
+        "triage": "Intelligente Triage & Aufgabenerstellung",
+        "minutesIncluded": "4000 Gesprächsminuten / Monat enthalten",
+        "extraMinute": "€0.30 pro zusätzlicher Minute",
+        "multilingual": "Mehrsprachig (25+ Sprachen)",
+        "support": "Priorisierter E-Mail- und Live-Chat-Support"
+      },
+
+      "statusActive": "Aktiv",
+      "subscriptionEndDate": "Ablaufdatum des Abonnements:",
+      "minutesLeft": "{{count}} Minuten übrig",
+      "minutesUsed": "{{used}}/{{total}} Minuten verwendet",
+
+      "buttons": {
+        "cancelPlan": "Aktuellen Plan kündigen",
+        "upgradePlan": "Plan upgraden"
+      }
+    },
+                "manageSubscription": "Abonnement verwalten",
+                "manageSubscriptionTab": {
+  "billing": {
+    "monthly": "Monatlich",
+    "yearly": "Jährlich"
+   
+  },
+   "billingCycle": {
+         "save": "15% sparen",
+        "perMonth": "/monat",
+        "perYear": "/monat"
+      },
+  "plans": {
+    "standard": {
+      "name": "Standard",
+      "features": {
+        "setup": "Erstellung & Einrichtung des KI-Sprachbots",
+        "availability": "24/7 Verfügbarkeit & Anrufprotokollierung",
+        "triage": "Intelligentes Triage- und Aufgabenmanagement",
+        "minutes": "2000 Gesprächsminuten pro Monat inklusive",
+        "extra": "€0.35 pro zusätzlicher Minute",
+        "support": "E-Mail-Support"
+      }
+    },
+
+    "premium": {
+      "name": "Premium",
+      "features": {
+        "setup": "Erstellung & Einrichtung des KI-Sprachbots",
+        "availability": "24/7 Verfügbarkeit & Anrufprotokollierung",
+        "triage": "Intelligentes Triage- und Aufgabenmanagement",
+        "minutes": "4000 Gesprächsminuten pro Monat inklusive",
+        "extra": "€0.30 pro zusätzlicher Minute",
+        "multilingual": "Mehrsprachig (25+ Sprachen)",
+        "support": "Bevorzugter E-Mail- und Live-Chat-Support"
+      }
+    },
+
+    "enterprise": {
+      "name": "Enterprise",
+      "features": {
+        "setup": "Erstellung & Einrichtung des KI-Sprachbots",
+        "availability": "24/7 Verfügbarkeit & Anrufprotokollierung",
+        "triage": "Intelligentes Triage- und Aufgabenmanagement",
+        "minutes": "8000 Gesprächsminuten pro Monat inklusive",
+        "extra": "€0.25 pro zusätzlicher Minute",
+        "multilingual": "Mehrsprachig (25+ Sprachen)",
+        "support": "24/7 Premium-Support"
+      }
+    }
+  },
+
+  "buttons": {
+    "getStarted": "JETZT STARTEN"
+  }
+},
+
+                "invoices": "Rechnungen",
+                "invoicesTab": {
+  "title": "Transaktionsübersicht",
+  "table": {
+    "date": "Datum",
+    "name": "Name",
+    "transactionId": "Transaktions-ID",
+    "status": "Status",
+    "payAmount": "Betrag zahlen",
+    "action": "Aktion"
+  },
+  "buttons": {
+    "view": "Ansehen"
+  },
+  "status": {
+    "paid": "Bezahlt",
+    "pending": "Ausstehend"
+  }
+}
+
+              }
+            },
+
+            "performances": {
+  "regionalSettings": {
+    "title": "Regionale Einstellungen",
+    "description": "Zeit-, Datums- und Regionaleinstellungen konfigurieren",
+    "timezone": "Zeitzone",
+    "dateFormat": "Datumsformat",
+    "timeFormat": "Zeitformat",
+    "language": "Sprache",
+    "timezoneOptions": {
+      "pst": "Pacific Standard Time (PST) UTC-8",
+      "est": "Eastern Standard Time (EST) UTC-5",
+      "gmt": "Greenwich Mean Time (GMT) UTC+0",
+      "bd": "Bangladesch Standardzeit (BST) UTC+6"
+    },
+    "dateFormatOptions": {
+      "mdy": "MM/TT/JJJJ (US)",
+      "dmy": "TT/MM/JJJJ (EU)",
+      "ymd": "JJJJ-MM-TT (ISO)"
+    },
+    "timeFormatOptions": {
+      "12h": "12 Stunden (AM/PM)",
+      "24h": "24 Stunden (Militärzeit)"
+    },
+    "languageOptions": {
+      "en": "Englisch",
+      "es": "Spanisch",
+      "fr": "Französisch",
+      "bn": "বাংলা (Bengalisch)"
+    }
+  },
+  "calendarPreferences": {
+    "title": "Kalender-Einstellungen",
+    "calendarView": "Standard-Kalenderansicht",
+    "appointmentDuration": "Standardtermin-Dauer",
+    "calendarViewOptions": {
+      "Day": "Tag",
+      "Week": "Woche",
+      "Month": "Monat",
+      "Agenda": "Agenda (Liste)"
+    },
+    "appointmentDurationOptions": {
+      "15 min..": "15 Minuten",
+      "30 min..": "30 Minuten (Standard)",
+      "45 min..": "45 Minuten",
+      "60 min..": "Stündlich"
+    }
+  },
+  "onlineBookingReminders": {
+    "title": "Online-Buchung & Erinnerungen",
+    "allowOnlineBooking": "Patienten erlauben, Termine online zu buchen",
+    "requireApproval": "Manuelle Genehmigung für Online-Buchungen erforderlich",
+    "sendReminders": "Automatische Terminerinnerungen senden",
+    "reminderTime": "Erinnerungszeit",
+    "bufferTime": "Pufferzeit zwischen Terminen",
+    "reminderTimeOptions": {
+      "1 hour before": "1 Stunde vorher",
+      "4 hours before": "4 Stunden vorher",
+      "24 hours before": "24 Stunden vorher (Empfohlen)",
+      "48 hours before": "48 Stunden vorher"
+    },
+    "bufferTimeOptions": {
+      "5 minutes": "5 Minuten",
+      "10 minutes": "10 Minuten",
+      "15 minutes": "15 Minuten (Standardbereinigung)",
+      "30 minutes": "30 Minuten"
+    }
+  },
+  "buttons": {
+    "cancel": "Abbrechen",
+    "saveChanges": "Änderungen speichern"
+  },
+  "toast": {
+    "settingsSaved": "Einstellungen erfolgreich gespeichert!"
+  }
+},
+
+"security": {
+  "title": "Sicherheitseinstellungen",
+  "description": "Sicherheits- und Datenschutzeinstellungen für Ihre Klinik konfigurieren",
+  "sections": {
+    "passwordPolicy": {
+      "title": "Passwortrichtlinie",
+      "enablePolicy": "Passwortrichtlinie aktivieren",
+      "passwordExpiry": "Passwortablauf",
+      "minPasswordLength": "Minimale Passwortlänge",
+      "requireUpperLower": "Groß- & Kleinbuchstaben erforderlich (Standard)",
+      "requireNumbers": "Zahlen erforderlich (Standard)",
+      "requireSpecialChars": "Sonderzeichen erforderlich (Standard)"
+    },
+    "loginSecurity": {
+      "title": "Login-Sicherheit",
+      "enableLoginSecurity": "Login-Sicherheit aktivieren",
+      "twoFactorAuth": "Zwei-Faktor-Authentifizierung erzwingen (Standard)",
+      "sessionTimeout": "Sitzungszeitüberschreitung",
+      "maxLoginAttempts": "Maximale Anmeldeversuche"
+    },
+    "dataProtection": {
+      "title": "Datenschutz",
+      "enableDataProtection": "Datenschutz aktivieren",
+      "encryptData": "Sensible Daten verschlüsseln (Standard)",
+      "auditLogs": "Audit-Logs aktivieren (Standard)"
+    }
+  },
+  "buttons": {
+    "cancel": "Abbrechen",
+         "saving": "Speichert...",
+    "saveChanges": "Änderungen speichern"
+  }
+}
+
+
+    },
+    "deleteAccount": {
+      "button": "Konto löschen",
+      "modal": {
+        "title": "Konto löschen",
+        "message": "Sind Sie sicher, dass Sie Ihr Konto löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.",
+        "passwordLabel": "Geben Sie Ihr Passwort zur Bestätigung ein",
+        "cancel": "Abbrechen",
+        "confirm": "Konto löschen"
+      }
+    }
+  }
+},
+  "logoutModal": {
+    "title": "Ausloggen",
+    "description": "Möchten Sie sich wirklich von Docline abmelden?",
+    "buttons": {
+      "confirm": "Ja",
+      "cancel": "Nein"
+    }
+  }
+}
+  },
+
+  "adminDashboard":{
+  "sidebar":{
+    
+  "dashboard": "Dashboard",
+  "customers": "Kunden",
+  "billing_subscription": "Abrechnung & Abonnement",
+  "ai_voicebot": "KI-Sprachassistent",
+  "system_health": "Systemgesundheit",
+  "security_audit": "Sicherheit & Prüfung",
+  "supports": "Supports",
+  "settings": "Einstellungen",
+  "logout": "Ausloggen"
+
+
+  },
+   "routes":{
+    "dashboard":{
+      "topSection":{
+  "hello": "Hallo,",
+  "welcome_back": "Willkommen zurück,",
+  "todays_summary": "Hier ist, was heute passiert"
+      },
+   "cardSection": {
+        "stats": {
+          "totalMRR": {
+            "title": "Gesamtes MRR",
+            "value": "284 $",
+            "change": "+12,5 %"
+          },
+          "newMRR": {
+            "title": "Neues MRR",
+            "value": "184 $",
+            "change": "+12,5 %"
+          },
+          "churnMRR": {
+            "title": "Churn MRR",
+            "value": "54 $",
+            "change": "+12,5 %"
+          },
+          "netExpansionMRR": {
+            "title": "Nettoerweiterung MRR",
+            "value": "284 $",
+            "change": "+12,5 %"
+          },
+          "customerChurnRate": {
+            "title": "Kunden-Churn-Rate",
+            "value": "28 $",
+            "change": "+12,5 %"
+          }
+        },
+        "lastMonth": "Letzten Monat"
+      },
+          "revenueChart": {
+          "title": "Gesamtumsatz",
+          "totalAmount": "25k",
+          "description": "Gesamtumsatz im letzten Monat"
+        },
+         "customerSection": {
+          "title": "Kundengewinnung vs Abwanderung",
+          "churn": {
+            "percentage": "50%",
+            "label": "Abwanderung"
+          },
+          "acquisition": {
+            "percentage": "90%",
+            "label": "Gewinnung"
+          },
+          "legend": {
+            "churn": "50% Abwanderung",
+            "acquisition": "90% Gewinnung"
+          }
+        },
+          "callVolumeSection": {
+          "title": "KI-Voicebot Anrufvolumen",
+          "description": "Täglicher Anrufvolumen-Trend (letzte 7 Tage)"
+        },
+        "recentDoctorsSection": {
+          "title": "Kürzlich hinzugefügter Arzt",
+          "description": "In den letzten 7 Tagen haben Sie {{count}} neue Ärzte hinzugefügt",
+          "table": {
+            "specialist": "Fachgebiet",
+            "joiningDate": "Eintrittsdatum",
+            "doctorId": "Arzt-ID"
+          }
+        }
+  },
+      "customers":{
+        "topSection":{
+            "title": "Kundenverwaltung",
+             "desc": "Verwalten Sie Arztabonnements und Kundenbeziehungen"
+
+        },
+            "customerCards": {
+      "totalCustomers": "Gesamte Kunden",
+      "active": "Aktiv",
+      "trial": "Probe",
+      "activeMRR": "Aktives MRR",
+
+      "manageDoctorSubscription": "Arztabonnement verwalten"
+    },
+
+    "doctorDatabase": {
+  "title": "Ärztedatenbank",
+  "allStatus": "Alle Status",
+  "search": "Suchen...",
+  "noData": "Keine Ärzte gefunden.",
+  "status": {
+    "active": "Aktiv",
+    "trial": "Testphase",
+    "suspended": "Gesperrt"
+  },
+  "payment": {
+    "paid": "Bezahlt",
+    "pending": "Ausstehend",
+    "overdue": "Überfällig"
+  },
+  "table": {
+    "name": "Name des Arztes",
+    "id": "Arzt-ID",
+    "plan": "Plan",
+    "status": "Status",
+    "payment": "Zahlung",
+    "mrr": "MRR",
+    "actions": "Aktionen",
+    "view": "Ansehen"
+  }
+}
+
+    },
+    "bellingSubs": {
+  "topSection": {
+    "title": "Abrechnung & Abonnements",
+    "desc": "Verwalten Sie Abonnementpläne, Rechnungen und Zahlungsabwicklung"
+  },
+
+                 "bellingCards": {
+
+   "statsCards": [
+      {
+        "title": "Gesamtumsatz",
+        "value": "$1,847,320",
+        "lastMonth": "Letzten Monat +18,4%"
+      },
+      {
+        "title": "Monatlich wiederkehrender Umsatz",
+        "value": "$1,457,320",
+        "lastMonth": "Letzten Monat +18,4%"
+      },
+      {
+        "title": "Aktive Abonnements",
+        "value": "$1,455,320",
+        "lastMonth": "Letzten Monat +18,4%"
+      },
+      {
+        "title": "Ausstehende Rechnungen",
+        "value": "51",
+        "lastMonth": "Letzten Monat -12,5%"
+      }
+    ]
+  
+    },
+
+     "subscriptionPlans": [
+    {
+      "name": "Basisplan",
+      "price": "$147",
+      "billing": "/Monat",
+      "billingNote": "Jährlich abgerechnet",
+      "features": [
+        "Durchschnittlich 2-5 leicht zu befolgende Handelssignale",
+        "Durchschnittlich 2-5 leicht zu befolgende Handelssignale pro Woche",
+        "Durchschnittlich 2-5 leicht zu befolgende",
+        "Durchschnittlich 2-5 leicht zu befolgende Handelssignale"
+      ],
+      "button": "Aktive Nutzer 89",
+      "bgColor": "#F5F6FF",
+      "textColor": "#526FFF",
+      "buttonBg": "white",
+      "buttonTextColor": "#526FFF"
+    },
+    {
+      "name": "Professionell",
+      "price": "$899",
+      "billing": "/Monat",
+      "billingNote": "Vollpreis",
+      "features": [
+        "Durchschnittlich 2-5 leicht zu befolgende Handelssignale",
+        "Durchschnittlich 2-5 leicht zu befolgende Handelsaktionen",
+        "Durchschnittlich 2-5 leicht zu befolgende Handelssignale pro Woche",
+        "Durchschnittlich 2-5 leicht zu befolgende",
+        "Durchschnittlich 2-5 leicht zu befolgende Handelssignale",
+        "Durchschnittlich 2-5 leicht zu befolgende"
+      ],
+      "button": "Aktive Nutzer 102",
+      "bgColor": "#1F1F29",
+      "textColor": "white",
+      "buttonBg": "#526FFF",
+      "buttonTextColor": "white"
+    },
+    {
+      "name": "Unternehmen",
+      "price": "$1299",
+      "billing": "/Monat",
+      "billingNote": "Vollpreis",
+      "features": [
+        "Durchschnittlich 2-5 leicht zu befolgende Handelssignale",
+        "Durchschnittlich 2-5 leicht zu befolgende Handelssignale",
+        "Durchschnittlich 2-5 leicht zu befolgende",
+        "Durchschnittlich 2-5 leicht zu befolgende Handelssignale",
+        "Durchschnittlich 2-5 leicht zu befolgende Handelssignale",
+        "Durchschnittlich 2-5 leicht zu befolgende Handelssignale pro Woche"
+      ],
+      "button": "Aktive Nutzer 89",
+      "bgColor": "#F5F6FF",
+      "textColor": "#171c35",
+      "buttonBg": "white",
+      "buttonTextColor": "#526FFF"
+    }
+  ]
+},
+
+    "aiVoice":{
+      "topSection":{
+         "title": "Leistung des KI-Sprachbots",
+"desc": "Überwachen Sie die Anrufmetriken und Erfolgsraten des KI-Sprachbots"
+
+        },
+         "aiVoiceCard": {
+        "statsCards": [
+          {
+            "title": "Gesamt bearbeitete Anrufe",
+            "value": "3847",
+            "lastMonth": "Letzten Monat +18,4%"
+          },
+          {
+            "title": "Termin-Erfolgsquote",
+            "value": "47,3%",
+            "lastMonth": "Letzten Monat +18,4%"
+          },
+          {
+            "title": "Durchschnittliche Gesprächsdauer",
+            "value": "2,8m",
+            "lastMonth": "Letzten Monat +18,4%"
+          },
+          {
+            "title": "Eskaltionsrate",
+            "value": "8,4%",
+            "lastMonth": "Letzten Monat -12,5%"
+          }
+        ]
+      },
+      "callVolume": {
+  "title": "Anrufvolumen des KI-Sprachbots",
+  "description": "Täglicher Anrufvolumentrend (letzte 7 Tage)"
+},
+"recentBotInteractions": {
+          "title": "Neueste Bot-Interaktionen",
+          "tableHeaders": {
+            "timestamp": "Zeitstempel",
+            "doctorID": "Arzt-ID",
+            "outcome": "Ergebnis",
+            "duration": "Dauer",
+            "sentiment": "Stimmung"
+          },
+          "outcomes": {
+            "appointmentbook": "Termin gebucht",
+            "escalated": "Eskaliert",
+            "error": "Fehler",
+            "other": "Andere"
+          },
+          "sentiments": {
+            "positive": "Positiv",
+            "negative": "Negativ",
+            "neutral": "Neutral"
+          }
+        }
+
+    },
+    "systemHealth":{
+      "topSection":{
+        "title": "Systemzustand",
+"desc": "Überwachen Sie die Infrastruktur- und Service-Status"
+
+        }
+    },
+    
+    "securityAudit":{
+    "securityCard": {
+     "statsCards": [
+      {
+        "title": "Gesamtaktionen (24 Std.)",
+        "lastMonth": "Alle protokollierten Aktionen"
+      },
+      {
+        "title": "2FA aktiviert",
+        "lastMonth": "Alle Benutzer"
+      },
+      {
+        "title": "DSGVO-Anfragen",
+        "lastMonth": "Alle verarbeitet"
+      },
+      {
+        "title": "Fehlgeschlagene Logins",
+        "lastMonth": "Letzte 24 Stunden"
+      }
+    ]
+  },
+   "userManagement": {
+          "title": "Benutzerverwaltung",
+          "table": {
+            "user": "Benutzer",
+            "role": "Rolle",
+            "status": "Status",
+            "twoFA": "2FA",
+            "lastLogin": "Letzte Anmeldung",
+            "actions": "Aktionen"
+          },
+          "status": {
+            "active": "Aktiv",
+            "inactive": "Inaktiv"
+          },
+          "twoFA": {
+            "enable": "Aktivieren",
+            "disable": "Deaktivieren"
+          },
+          "editModal": {
+            "title": "Benutzer bearbeiten",
+            "name": "Name",
+            "role": "Rolle",
+            "status": "Status",
+            "twoFA": "2FA",
+            "saveButton": "Änderungen speichern"
+          },
+          "deleteModal": {
+            "title": "Benutzer löschen",
+            "message": "Sind Sie sicher, dass Sie diesen Benutzer löschen möchten?",
+            "warning": "Diese Aktion kann nicht rückgängig gemacht werden.",
+            "confirmButton": "Ja, löschen",
+            "cancelButton": "Nein, abbrechen"
+          },
+          "toast": {
+            "deleteSuccess": "Benutzer erfolgreich gelöscht!",
+            "updateSuccess": "Benutzer erfolgreich aktualisiert!"
+          },
+          "tooltips": {
+            "edit": "Benutzer bearbeiten",
+            "delete": "Benutzer löschen"
+          }
+        },
+
+        "authenticationSector": {
+    "title": "Zwei-Faktor-Authentifizierung",
+    "enableTitle": "Aktiviere 2FA für dein Konto",
+    "description": "Füge deinem Admin-Konto eine zusätzliche Sicherheitsebene hinzu",
+    "ariaEnabled": "Zwei-Faktor-Authentifizierung ist aktiviert",
+    "ariaDisabled": "Zwei-Faktor-Authentifizierung ist deaktiviert"
+  },
+
+  "botInteractions": {
+    "title": "Kürzliche Bot-Interaktionen",
+    "table": {
+      "timestamp": "Zeitstempel",
+      "user": "Benutzer",
+      "action": "Aktion",
+      "details": "Details",
+      "severity": "Schwere"
+    },
+    "mobile": {
+      "actionLabel": "Aktion",
+      "detailsLabel": "Details",
+      "showMore": "Weitere Interaktionen anzeigen"
+    },
+    "severity": {
+      "high": "Hoch",
+      "medium": "Mittel"
+    }
+  }
+  },
+  "support": {
+  "breadcrumb": {
+    "dashboard": "Dashboard",
+    "support": "Supports"
+  },
+  "title": "Unterstützung",
+  "searchPlaceholder": "Suchen...",
+  "selectFriend": "Wählen Sie einen Freund, um den Chat zu starten",
+  "chat": {
+    "online": "Online",
+    "lastSeen": "Zuletzt gesehen vor {{time}}",
+    "localTime": "Ortszeit:",
+    "typeMessage": "Geben Sie eine Nachricht ein...",
+    "sendButton": "SENDEN"
+  }
+},
+
+
+    "settings":{
+    "tabs":{
+  "personalInfo": {
+    "title": "Persönliche Informationen",
+    "edit": "Bearbeiten",
+    "firstName": "Vorname",
+    "firstNamePlaceholder": "Vornamen eingeben...",
+    "lastName": "Nachname",
+    "lastNamePlaceholder": "Nachnamen eingeben...",
+    "email": "E-Mail",
+    "emailPlaceholder": "Geben Sie Ihre E-Mail ein...",
+    "phoneNumber": "Telefonnummer",
+    "phoneNumberPlaceholder": "Telefonnummer eingeben...",
+    "address": "Adresse",
+    "addressPlaceholder": "Geben Sie Ihre Adresse ein...",
+    "dateOfBirth": "Geburtsdatum",
+    "gender": "Geschlecht",
+    "genderPlaceholder": "Geben Sie Ihr Geschlecht ein...",
+    "cancel": "Abbrechen",
+    "saveChanges": "Änderungen speichern",
+    "defaultName": "Karen",
+    "defaultSpeciality": "Anästhesie",
+    "saveSuccess": "Änderungen erfolgreich gespeichert!"
+  },
+   "notifications": {
+      "header": "Benachrichtigungen",
+      "title": "Benachrichtigungseinstellungen",
+      "description": "Fügen Sie Ihrem Admin-Konto eine zusätzliche Sicherheitsebene hinzu.",
+      "emailNotifications": {
+        "label": "E-Mail-Benachrichtigungen",
+        "desc": "Erhalten Sie E-Mail-Updates zu Ihrem Konto"
+      },
+      "callLogs": {
+        "label": "Sicherheitswarnungen",
+        "desc": "Werden Sie über Sicherheitsereignisse benachrichtigt"
+      },
+      "taskDeadlines": {
+        "label": "Systemupdates",
+        "desc": "Benachrichtigungen über Systemwartungen"
+      },
+      "securityAlerts": {
+        "label": "Marketing-E-Mails",
+        "desc": "Erhalten Sie Produktaktualisierungen und Tipps"
+      }
+    },
+        "security": {
+      "changePassword": {
+        "title": "Passwort ändern",
+        "description": "Aktualisieren Sie Ihr Passwort, um Ihr Konto zu sichern",
+        "currentPassword": {
+          "label": "Aktuelles Passwort",
+          "placeholder": "Geben Sie das aktuelle Passwort ein"
+        },
+        "newPassword": {
+          "label": "Neues Passwort",
+          "placeholder": "Geben Sie ein neues Passwort ein..."
+        },
+        "confirmPassword": {
+          "label": "Neues Passwort bestätigen",
+          "placeholder": "Neues Passwort bestätigen..."
+        },
+        "updateButton": "Passwort aktualisieren",
+        "mismatchAlert": "Neue Passwörter stimmen nicht überein!",
+        "successAlert": "Passwort erfolgreich aktualisiert!"
+      },
+      "twoFA": {
+        "title": "Zwei-Faktor-Authentifizierung",
+        "enable2FA": {
+          "label": "2FA für Ihr Konto aktivieren",
+          "description": "Fügen Sie Ihrem Admin-Konto eine zusätzliche Sicherheitsebene hinzu"
+        }
+      }
+    },
+
+     "billing": {
+      "title": "Plattform-Abrechnungskonfiguration",
+      "description": "Verwalten Sie Zahlungs-Gateway- und Abrechnungseinstellungen",
+      "paymentGateway": {
+        "title": "Zahlungs-Gateway",
+        "stripe": {
+          "name": "Stripe",
+          "status": "Verbunden und aktiv",
+          "configureButton": "Konfigurieren",
+          "activeBadge": "Aktiv"
+        }
+      },
+      "invoiceSettings": {
+        "title": "Rechnungseinstellungen",
+        "autoGenerate": {
+          "label": "Rechnungen automatisch erstellen",
+          "description": "Rechnungen für Abonnements automatisch erstellen"
+        },
+        "sendEmails": {
+          "label": "Rechnungen per E-Mail senden",
+          "description": "Rechnungen automatisch an Kunden senden"
+        }
+      },
+      "supportEmail": {
+        "title": "E-Mail für Abrechnungsunterstützung",
+        "placeholder": "billing@saas.com",
+        "description": "Rechnungen automatisch per E-Mail an Kunden senden"
+      },
+      "saveButton": "Abrechnungseinstellungen speichern",
+
+         "revenueCollection": {
+      "title": "Einnahmensammlung",
+      "description": "Konfigurieren Sie, wie Zahlungen von Kunden eingezogen werden",
+      "retryFailedPayments": {
+        "label": "Fehlgeschlagene Zahlungen erneut versuchen",
+        "description": "Automatisch fehlgeschlagene Abonnementzahlungen erneut versuchen"
+      },
+      "gracePeriod": {
+        "label": "Kulanzzeit",
+        "description": "Erlauben Sie 3 Tage, bevor der Service ausgesetzt wird"
+      },
+      "proration": {
+        "label": "Anteilsberechnung",
+        "description": "Berechnen Sie anteilige Gebühren, wenn Kunden ein Upgrade oder Downgrade durchführen"
+      }
+    }
+    },
+    "checkout": {
+    "title": "Anfrage",
+    "description": "Insgesamt 6 Checkout-Anfragen",
+    "tableHeaders": {
+      "name": "Name",
+      "doctorId": "Arzt-ID",
+      "plan": "Plan",
+      "request": "Anfrage",
+      "actions": "Aktionen"
+    },
+    "status": {
+      "accept": "Akzeptieren",
+      "pending": "Ausstehend",
+      "reject": "Ablehnen",
+      "acceptedButton": "Akzeptiert",
+      "approveButton": "Genehmigen",
+      "rejectButton": "Ablehnen"
+    },
+    "planLabel": "Plan",
+    "requestLabel": "Anfrage"
+  }
+
+}
+  }
+}
+}
+}
+

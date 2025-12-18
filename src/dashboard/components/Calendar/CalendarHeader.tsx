@@ -1,40 +1,84 @@
 import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
-export default function CalendarHeader() {
-  const [currentDate, setCurrentDate] = useState(new Date());
+interface CalendarHeaderProps {
+  selectedDate: Date;
+  onDateChange: (date: Date) => void;
+}
+
+export default function CalendarHeader({ selectedDate, onDateChange }: CalendarHeaderProps) {
+  const { t } = useTranslation();
   const [monthDropdownOpen, setMonthDropdownOpen] = useState(false);
   const [yearDropdownOpen, setYearDropdownOpen] = useState(false);
+  const [dateDropdownOpen, setDateDropdownOpen] = useState(false);
   const [monthPosition, setMonthPosition] = useState({ top: 0, left: 0, width: 0 });
   const [yearPosition, setYearPosition] = useState({ top: 0, left: 0, width: 0 });
+  const [datePosition, setDatePosition] = useState({ top: 0, left: 0, width: 0 });
 
   const monthRef = useRef<HTMLDivElement>(null);
   const yearRef = useRef<HTMLDivElement>(null);
+  const dateRef = useRef<HTMLDivElement>(null);
 
   const months = [
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
+    t('dashboard.routes.dashboard.calendar.months.january'),
+    t('dashboard.routes.dashboard.calendar.months.february'),
+    t('dashboard.routes.dashboard.calendar.months.march'),
+    t('dashboard.routes.dashboard.calendar.months.april'),
+    t('dashboard.routes.dashboard.calendar.months.may'),
+    t('dashboard.routes.dashboard.calendar.months.june'),
+    t('dashboard.routes.dashboard.calendar.months.july'),
+    t('dashboard.routes.dashboard.calendar.months.august'),
+    t('dashboard.routes.dashboard.calendar.months.september'),
+    t('dashboard.routes.dashboard.calendar.months.october'),
+    t('dashboard.routes.dashboard.calendar.months.november'),
+    t('dashboard.routes.dashboard.calendar.months.december')
   ];
 
-  const years = Array.from({ length: 31 }, (_, i) => 2000 + i); // 2000-2030
+  const years = Array.from({ length: 31 }, (_, i) => 2000 + i);
+  
+  // Ensure selectedDate is always valid
+  const safeSelectedDate = selectedDate || new Date();
+  
+  const currentMonth = safeSelectedDate.getMonth();
+  const currentYear = safeSelectedDate.getFullYear();
+  const currentDate = safeSelectedDate.getDate();
+
+  // Get days in current month
+  const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+  const dates = Array.from({ length: daysInMonth }, (_, i) => i + 1);
+
+  // Get day name
+  const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const currentDayName = dayNames[safeSelectedDate.getDay()];
 
   const handlePrevMonth = () => {
-    setCurrentDate(prev => new Date(prev.getFullYear(), prev.getMonth() - 1, 1));
+    const newDate = new Date(currentYear, currentMonth - 1, 1);
+    onDateChange(newDate);
   };
 
   const handleNextMonth = () => {
-    setCurrentDate(prev => new Date(prev.getFullYear(), prev.getMonth() + 1, 1));
+    const newDate = new Date(currentYear, currentMonth + 1, 1);
+    onDateChange(newDate);
   };
 
   const handleMonthSelect = (monthIndex: number) => {
-    setCurrentDate(prev => new Date(prev.getFullYear(), monthIndex, 1));
+    const newDate = new Date(currentYear, monthIndex, currentDate);
+    onDateChange(newDate);
     setMonthDropdownOpen(false);
   };
 
   const handleYearSelect = (year: number) => {
-    setCurrentDate(prev => new Date(year, prev.getMonth(), 1));
+    const newDate = new Date(year, currentMonth, currentDate);
+    onDateChange(newDate);
     setYearDropdownOpen(false);
+  };
+
+  const handleDateSelect = (date: number) => {
+    const newDate = new Date(currentYear, currentMonth, date);
+    onDateChange(newDate);
+    setDateDropdownOpen(false);
   };
 
   // Update month dropdown position
@@ -61,23 +105,37 @@ export default function CalendarHeader() {
     }
   }, [yearDropdownOpen]);
 
+  // Update date dropdown position
+  useEffect(() => {
+    if (dateDropdownOpen && dateRef.current) {
+      const rect = dateRef.current.getBoundingClientRect();
+      setDatePosition({
+        top: rect.bottom + window.scrollY + 4,
+        left: rect.left + window.scrollX,
+        width: rect.width,
+      });
+    }
+  }, [dateDropdownOpen]);
+
   // Close dropdown on outside click
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (
-        monthRef.current && !monthRef.current.contains(event.target as Node)
-      ) {
+      if (monthRef.current && !monthRef.current.contains(event.target as Node)) {
         const monthDropdown = document.getElementById('month-dropdown-portal');
         if (monthDropdown && !monthDropdown.contains(event.target as Node)) {
           setMonthDropdownOpen(false);
         }
       }
-      if (
-        yearRef.current && !yearRef.current.contains(event.target as Node)
-      ) {
+      if (yearRef.current && !yearRef.current.contains(event.target as Node)) {
         const yearDropdown = document.getElementById('year-dropdown-portal');
         if (yearDropdown && !yearDropdown.contains(event.target as Node)) {
           setYearDropdownOpen(false);
+        }
+      }
+      if (dateRef.current && !dateRef.current.contains(event.target as Node)) {
+        const dateDropdown = document.getElementById('date-dropdown-portal');
+        if (dateDropdown && !dateDropdown.contains(event.target as Node)) {
+          setDateDropdownOpen(false);
         }
       }
     };
@@ -85,8 +143,15 @@ export default function CalendarHeader() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // Helper to add ordinal suffix
+  function getOrdinal(n: number) {
+    const s = ["th", "st", "nd", "rd"];
+    const v = n % 100;
+    return n + (s[(v - 20) % 10] || s[v] || s[0]);
+  }
+
   return (
-    <div className="flex items-center  w-full sm:w-auto relative">
+    <div className="flex items-center w-full sm:w-auto relative">
       {/* Prev Month */}
       <button onClick={handlePrevMonth} className="p-1 hover:bg-gray-100 rounded">
         <ChevronLeft size={20} className="text-gray-600 cursor-pointer" />
@@ -98,10 +163,11 @@ export default function CalendarHeader() {
           onClick={() => {
             setMonthDropdownOpen(!monthDropdownOpen);
             setYearDropdownOpen(false);
+            setDateDropdownOpen(false);
           }}
           className="text-base sm:text-lg font-medium text-[#171C35] cursor-pointer px-2 py-1 rounded hover:bg-gray-100"
         >
-          {months[currentDate.getMonth()]}
+          {months[currentMonth]}
         </div>
       </div>
 
@@ -131,16 +197,63 @@ export default function CalendarHeader() {
         document.body
       )}
 
+      {/* Date Dropdown - NEW */}
+      <div ref={dateRef} className="relative">
+        <div
+          onClick={() => {
+            setDateDropdownOpen(!dateDropdownOpen);
+            setMonthDropdownOpen(false);
+            setYearDropdownOpen(false);
+          }}
+          className="text-base sm:text-lg font-medium text-[#171C35] cursor-pointer px-2 py-1 rounded hover:bg-gray-100"
+        >
+          {currentDayName}, {getOrdinal(currentDate)}
+        </div>
+      </div>
+
+      {/* Date Dropdown Portal - NEW */}
+      {dateDropdownOpen && createPortal(
+        <div
+          id="date-dropdown-portal"
+          style={{
+            position: 'absolute',
+            top: `${datePosition.top}px`,
+            left: `${datePosition.left}px`,
+            minWidth: `${datePosition.width}px`,
+            zIndex: 99999,
+          }}
+          className="bg-white border border-gray-200 shadow-lg rounded-lg max-h-64 overflow-y-auto w-40 sm:w-48"
+        >
+          {dates.map((date) => {
+            const tempDate = new Date(currentYear, currentMonth, date);
+            const dayName = dayNames[tempDate.getDay()];
+            return (
+              <div
+                key={date}
+                onClick={() => handleDateSelect(date)}
+                className={`px-3 py-2 cursor-pointer hover:bg-gray-50 text-sm sm:text-base ${
+                  date === currentDate ? 'bg-indigo-50 font-semibold' : ''
+                }`}
+              >
+                {dayName}, {getOrdinal(date)}
+              </div>
+            );
+          })}
+        </div>,
+        document.body
+      )}
+
       {/* Year Dropdown */}
       <div ref={yearRef} className="relative">
         <div
           onClick={() => {
             setYearDropdownOpen(!yearDropdownOpen);
             setMonthDropdownOpen(false);
+            setDateDropdownOpen(false);
           }}
           className="text-base sm:text-lg font-medium text-[#171C35] cursor-pointer px-2 py-1 rounded hover:bg-gray-100"
         >
-          {currentDate.getFullYear()}
+          {currentYear}
         </div>
       </div>
 
@@ -171,7 +284,7 @@ export default function CalendarHeader() {
       )}
 
       {/* Next Month */}
-      <button onClick={handleNextMonth} className=" hover:bg-gray-100 rounded">
+      <button onClick={handleNextMonth} className="hover:bg-gray-100 rounded">
         <ChevronRight size={20} className="text-gray-600 cursor-pointer" />
       </button>
     </div>

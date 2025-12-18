@@ -171,197 +171,162 @@
 
 
 
-
+import React, { useState, memo } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import icon from '../assets/svgIcon/herologo.svg';
 import tricjcircle from '../assets/svgIcon/tickcircle.svg';
 import tricjcirclewhite from '../assets/svgIcon/tick-circle-white.svg';
-import { useState, memo } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './buttom.css';
+
 import SectionHeader from './SectionHeader';
 
-// ------------------
-//  PLANS STATIC (NO RERENDER)
-// ------------------
+// -------------------- Types --------------------
+
+interface PlanData {
+  name: string;
+  monthly: number;
+  yearly: number;
+  features: string[];
+  color: string;
+  isPremium: boolean;
+  buttonText: string;
+}
 
 interface PricingCardProps {
-  plan: {
-    name: string;
-    monthly: number;
-    yearly: number;
-    features: string[];
-    color: string;
-    isPremium: boolean;
-  };
+  plan: PlanData;
   billingCycle: string;
   navigate: (path: string) => void;
 }
 
-
-const plans = [
-  {
-    name: 'Standard',
-    monthly: 399,
-    yearly: 339,
-    features: [
-      'KI-Voicebot-Erstellung & Setup',
-      '24/7 Erreichbarkeit & Anrufprotokollierung',
-      'Intelligente Triage & Aufgaben-Erstellung',
-      '2000 Anrufminuten / Monat inkludiert',
-      '0,35 € pro Überminute',
-      'E-Mail Support',
-    ],
-    color: '#526FFF',
-    isPremium: false,
-  },
-  {
-    name: 'Premium',
-    monthly: 899,
-    yearly: 765,
-    features: [
-      'KI-Voicebot-Erstellung & Setup',
-      '24/7 Erreichbarkeit & Anrufprotokollierung',
-      'Intelligente Triage & Aufgaben-Erstellung',
-      '4000 Anrufminuten / Monat inkludiert',
-      '0,30 € pro Überminute',
-      'Multilingual (25+ languages)',
-      'Prioritized email and live chat support',
-    ],
-    color: '#171C35',
-    isPremium: true,
-  },
-  {
-    name: 'Enterprise',
-    monthly: 1299,
-    yearly: 1105,
-    features: [
-       'KI-Voicebot-Erstellung & Setup',
-      '24/7 Erreichbarkeit & Anrufprotokollierung',
-      'Intelligente Triage & Aufgaben-Erstellung',
-      '8000 Anrufminuten / Monat inkludiert',
-      '0,25 € pro Überminute',
-      'Multilingual (25+ languages)',
-      '24/7 Premium-Support',
-    ],
-    color: '#526FFF',
-    isPremium: false,
-  },
-];
-
+// -------------------- PricingCard --------------------
 
 const PricingCard = memo(({ plan, billingCycle, navigate }: PricingCardProps) => {
+  const { t } = useTranslation();
+  const saveLabel = t('landingPage.pricingSection.billingToggle.saveLabel');
+  
+  // Dynamic billing suffix based on cycle
+  const billingSuffix = billingCycle === 'monthly' 
+    ? t('landingPage.pricingSection.billingSuffix.monthly')
+    : t('landingPage.pricingSection.billingSuffix.annually');
 
   return (
     <div
       className={`${
         plan.isPremium ? 'bg-[#171C35] border-[#3C4263]' : 'bg-white border-gray-100'
-      } rounded-3xl p-8 border flex flex-col justify-between`}
+      } rounded-3xl p-8 border flex flex-col justify-between `}
     >
+      {/* Plan Name & Price */}
       <div>
         <h2
-          className={`text-2xl font-semibold mb-2 md:mb-8 ${
+          className={`text-2xl font-semibold mb-4 md:mb-8 ${
             plan.isPremium ? 'text-white' : 'text-[#526FFF]'
           }`}
         >
           {plan.name}
         </h2>
 
-        <div className="mb-4 md:mb-8">
+        <div className="mb-4 md:mb-6">
           <div className="flex items-baseline gap-1 mb-1">
             <span
-              className={ ` text-3xl md:text-[48px] font-medium ${
-                plan.isPremium ? 'text-white' : `text-[${plan.color}]`
+              className={`text-3xl md:text-[48px] font-medium ${
+                plan.isPremium ? 'text-white' : plan.color
               }`}
             >
               {billingCycle === 'monthly' ? plan.monthly : plan.yearly}€
             </span>
-
-            <span
-              className={`text-sm ${
-                plan.isPremium ? 'text-gray-300' : 'text-[#526FFF]'
-              }`}
-            >
-              /month
+            <span className={`text-base font-normal ${plan.isPremium ? 'text-white' : 'text-[#526FFF]'}`}>
+              {billingSuffix}
             </span>
 
             {billingCycle === 'annually' && (
               <span
-              
-                className={`ml-2 text-xs font-semibold px-2 py-0.5 rounded-full ${
-                  plan.isPremium
-                    ? 'bg-white text-[#171C35]'
-                    : 'bg-blue-100 text-[#526FFF]'
+                className={`ml-2 text-sm font-semibold px-2 py-0.5 rounded-full ${
+                  plan.isPremium ? 'bg-white text-[#171C35]' : 'bg-blue-100 text-[#526FFF]'
                 }`}
               >
-                Save 15%
+                {saveLabel}
               </span>
             )}
           </div>
         </div>
       </div>
 
-      <div className="space-y-4 mb-8 flex-1">
-        {plan.features.map((text: string, i: number) => (
-          <div key={i} className="flex items-start gap-3">
+      {/* Features List */}
+      <div className="space-y-4 mb-6 flex-1">
+        {plan.features.map((text, idx) => (
+          <div key={idx} className="flex items-start gap-3">
             <img src={plan.isPremium ? tricjcirclewhite : tricjcircle} alt="" />
-            <span
-              className={
-                plan.isPremium ? 'text-white text-sm' : 'text-[#171c35] text-sm'
-              }
-            >
+            <span className={`${plan.isPremium ? 'text-white' : 'text-[#171c35]'} text-sm font-normal`}>
               {text}
             </span>
           </div>
         ))}
       </div>
 
+      {/* Action Button */}
       <button
         onClick={() => navigate('/signup')}
-        className={`w-full py-3 text-base font-medium rounded-full transition-colors shadow-lg border-2 cursor-pointer ${
+        className={`w-full py-3 text-base font-semibold leading-6 rounded-full transition-colors shadow-lg border-2 cursor-pointer ${
           plan.isPremium
-            ? 'text-white bg-[#526FFF] border-[#526FFF]'
-            : `text-[${plan.color}] bg-white border-[${plan.color}]`
+            ? 'text-white bg-[#526FFF] hover:bg-[#536dec] border-[#526FFF]'
+            : `text-[${plan.color}] bg-white hover:bg-blue-50 border-[${plan.color}]`
         }`}
       >
-        GET STARTED
+        {plan.buttonText}
       </button>
     </div>
   );
 });
 
-// ------------------
-//  Main Component
-// ------------------
+// -------------------- UpgradPlan --------------------
+
 const UpgradPlan = () => {
+  const { t } = useTranslation();
   const [billingCycle, setBillingCycle] = useState('monthly');
   const navigate = useNavigate();
 
+  // Load plans from i18n JSON
+  const plans = t('landingPage.pricingSection.plans', { returnObjects: true }) as PlanData[];
+
+  const badgeText = t('landingPage.pricingSection.badgeText');
+  const headingText = t('landingPage.pricingSection.heading');
+  const monthlyLabel = t('landingPage.pricingSection.billingToggle.monthly');
+  const annuallyLabel = t('landingPage.pricingSection.billingToggle.annually');
+
   return (
-    <div
-      className="relative mt-12 md:mt-[120px]  rounded-2xl md:rounded-[30px] overflow-hidden"
-      style={{
-        boxShadow: '0 20px 50px rgba(0, 0, 0, 0.05)',
-        fontFamily: 'Urbanist, sans-serif',
-      }}
-    >
-      {/* Background blur fixed (no lag) */}
+    <div className="relative mt-12 md:mt-[120px] rounded-2xl overflow-hidden bg-white ">
+      {/* Background Blurs */}
       <div
-        className="absolute -top-32 -left-64 z-0 opacity-70 blur-[150px] bg-[#2b8eff4d] w-[680px] h-[400px] rounded-full"
+        className="absolute -left-[25%] w-[60%] rounded-full blur-[200px]"
+        style={{
+          top: '150px',
+          height: 'calc(100% - 300px)',
+          background: 'linear-gradient(90deg, rgba(43,142,255,0.6) 0%, rgba(43,142,255,0.35) 35%, rgba(43,142,255,0.15) 60%, rgba(43,142,255,0) 100%)',
+        }}
+      ></div>
+      <div
+        className="absolute -right-[25%] w-[60%] rounded-full blur-[200px]"
+        style={{
+          top: '150px',
+          height: 'calc(100% - 300px)',
+          background: 'rgba(71,43,255,0.2)',
+        }}
       ></div>
 
-      <div
-        className="absolute top-32 right-[-80px] z-0 opacity-50 blur-[150px] bg-[#472bff33] w-[654px] h-[400px] rounded-full"
-      ></div>
-
-      <div className="relative z-10 p-4 mt-5 md:mt-0 px-[10px] py-6 md:py-[47px]">
+      <div className="relative z-10 px-4 py-6 md:py-[47px]">
+        {/* Section Header */}
         <SectionHeader
           badgeIcon={icon}
-          badgeText=" Transparent pricing"
+          badgeText={badgeText}
           heading={
-            <div className='max-[767px]:mt-2'>
-              Choose the right plan
-              <br /> for your practice
+            <div className="max-[767px]:mt-2">
+              {headingText.split('\n').map((line, idx) => (
+                <React.Fragment key={idx}>
+                  {line}
+                  <br />
+                </React.Fragment>
+              ))}
             </div>
           }
           align="center"
@@ -369,43 +334,30 @@ const UpgradPlan = () => {
 
         {/* Billing Toggle */}
         <div className="flex justify-center mb-8 md:mb-12">
-          <div className="inline-flex bg-white rounded-full p-1 w-fit border border-[#EAECF0] shadow-lg">
+          <div className="inline-flex bg-white rounded-full p-1 border border-[#EAECF0] shadow-lg">
             <button
               onClick={() => setBillingCycle('monthly')}
-              className={`px-6 py-2.5 text-sm font-normal w-[131px] rounded-full transition-all duration-300 cursor-pointer ${
-                billingCycle === 'monthly'
-                  ? 'bg-[#526FFF] text-white font-medium shadow-md'
-                  : 'text-[#171c35] hover:bg-gray-50'
+              className={`px-6 py-2.5 w-[131px] rounded-full text-sm transition-all duration-300 cursor-pointer ${
+                billingCycle === 'monthly' ? 'bg-[#526FFF] text-white font-medium shadow-md' : 'text-[#171c35] hover:bg-gray-50'
               }`}
             >
-              Monthly
+              {monthlyLabel}
             </button>
-
             <button
               onClick={() => setBillingCycle('annually')}
-              className={`px-6 py-2.5 text-sm font-normal w-[131px] rounded-full transition-all duration-300 cursor-pointer ${
-                billingCycle === 'annually'
-                  ? 'bg-[#526FFF] text-white font-medium shadow-md'
-                  : 'text-[#171c35] hover:bg-gray-50'
+              className={`px-6 py-2.5 w-[131px] rounded-full text-sm transition-all duration-300 cursor-pointer ${
+                billingCycle === 'annually' ? 'bg-[#526FFF] text-white font-medium shadow-md' : 'text-[#171c35] hover:bg-gray-50'
               }`}
             >
-              Yearly
+              {annuallyLabel}
             </button>
           </div>
         </div>
 
-        {/* Pricing Cards */}
-        <div
-          style={{ fontFamily: 'Urbanist, sans-serif' }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          {plans.map((plan, i) => (
-            <PricingCard
-              key={i}
-              plan={plan}
-              billingCycle={billingCycle}
-              navigate={navigate}
-            />
+        {/* Pricing Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 xl:px-[60px]">
+          {plans.map((plan, idx) => (
+            <PricingCard key={idx} plan={plan} billingCycle={billingCycle} navigate={navigate} />
           ))}
         </div>
       </div>

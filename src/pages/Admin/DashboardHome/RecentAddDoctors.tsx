@@ -1,6 +1,9 @@
 import docprofile from '../../../assets/svgIcon/recentDoctor.svg';
+import { useTranslation } from 'react-i18next';
 
 const RecentAddDoctors = () => {
+  const { t } = useTranslation();
+
   interface Doctor {
     id: string;
     name: string;
@@ -15,15 +18,13 @@ const RecentAddDoctors = () => {
 
   return (
     <div className="flex justify-center">
-      <div
-        className="bg-white p-4 mt-4 rounded-3xl w-full max-w-md sm:max-w-lg md:w-[388px]"
-      >
+      <div className="bg-white p-4 mt-4 rounded-3xl w-full max-w-md sm:max-w-lg md:w-[388px]">
         <div className="mb-4 mt-3">
           <h2 className="text-xl font-semibold text-[#171C35] mb-0 text-center md:text-left">
-            Recent Add Doctor
+            {t("adminDashboard.routes.dashboard.recentDoctorsSection.title")}
           </h2>
           <p className="text-sm text-[#111A2D] text-center md:text-left">
-            Last 7 days you have join 02 New Doctor.
+            {t("adminDashboard.routes.dashboard.recentDoctorsSection.description", { count: recentDoctors.length })}
           </p>
         </div>
 
@@ -39,12 +40,16 @@ const RecentAddDoctors = () => {
                     {doctor.name}
                   </h3>
                   <p className="text-xs text-[#667085] font-semibold mb-2 sm:text-left">
-                    Doctor ID: {doctor.id}
+                    {t("adminDashboard.routes.dashboard.recentDoctorsSection.table.doctorId")}: {doctor.id}
                   </p>
                   <div className="space-y-1">
                     <div className="flex flex-col sm:flex-row justify-between text-sm">
-                      <span className="text-[#111A2D]">Specialist</span>
-                      <span className="text-[#667085] mt-1 sm:mt-0">Joining Date</span>
+                      <span className="text-[#111A2D]">
+                        {t("adminDashboard.routes.dashboard.recentDoctorsSection.table.specialist")}
+                      </span>
+                      <span className="text-[#667085] mt-1 sm:mt-0">
+                        {t("adminDashboard.routes.dashboard.recentDoctorsSection.table.joiningDate")}
+                      </span>
                     </div>
                     <div className="flex flex-col sm:flex-row justify-between text-sm">
                       <span className="font-semibold text-[#171c35]">{doctor.specialist}</span>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Plus, Edit, Trash2 } from 'lucide-react';
 import AddTaskModal from './AddToTskModal';
 import homeIcon from '../../../assets/svgIcon/homeIcon.svg';
@@ -8,16 +8,28 @@ import StatusDropdown from './Status';
 import PriorityDropdown from './Prioritys';
 import { useNavigate } from 'react-router-dom';
 import { PatientRecordsModal } from './PatientRecordModal';
+import { DeleteConfirmModal, DeleteSuccessMessage } from './DeleteModal';
+import { useTranslation } from 'react-i18next';
+import { useAppSelector } from '@/store/hook';
+import axios from 'axios';
 
 interface Task {
-  id: number;
+  id: string | any;
   title: string;
   description: string;
-  priority: 'High' | 'Medium' | 'Low';
-  time: string;
+  priority: 'HIGH' | 'MEDIUM' | 'LOW';
+  time: string | null;
   dueDate: string;
-  completed: boolean;
+  completed?: boolean; 
+  status: 'TODO' | 'IN_PROGRESS' | 'DONE';
+  patient?: {
+    id: string;
+    firstName: string;
+    lastName: string;
+    photo: string | null;
+  } | null;
 }
+
 
 interface Column {
   id: string;
@@ -26,102 +38,214 @@ interface Column {
   tasks: Task[];
 }
 
+
 export default function TaskList() {
+  const { t } = useTranslation();
+  const { accessToken } = useAppSelector((state) => state.auth);
   const navigate = useNavigate();
-  const [columns, setColumns] = useState<Column[]>([
-    {
-      id: 'todo',
-      title: 'To Do',
-      count: 5,
-      tasks: [
-        { id: 1, title: 'Review patient records', description: 'Go through the latest patient records and update the system', priority: 'High', time: '9:00 AM', dueDate: 'Sep 30, 2025', completed: false },
-        { id: 2, title: 'Schedule follow-ups', description: 'Contact patients for their next appointments.', priority: 'Medium', time: '10:00 AM', dueDate: 'Oct 01, 2025', completed: false },
-        { id: 3, title: 'Prepare discharge summaries', description: 'Draft summaries for patients leaving today.', priority: 'Low', time: '11:00 AM', dueDate: 'Sep 30, 2025', completed: false },
-        { id: 4, title: 'Order supplies', description: 'Check inventory and order necessary medical supplies.', priority: 'High', time: '1:00 PM', dueDate: 'Sep 29, 2025', completed: false },
-        { id: 5, title: 'Update internal wiki', description: 'Document new procedures for patient admission.', priority: 'Low', time: '2:00 PM', dueDate: 'Oct 05, 2025', completed: false },
-      ],
-    },
-    {
-      id: 'inprogress',
-      title: 'In Progress',
-      count: 5,
-      tasks: [
-        { id: 6, title: 'Conduct Q.A. check', description: 'Verify data entry accuracy in the new EHR system.', priority: 'High', time: '9:00 AM', dueDate: 'Sep 30, 2025', completed: false },
-        { id: 7, title: 'System maintenance', description: 'Applying the latest security patches to all servers.', priority: 'Medium', time: '10:00 AM', dueDate: 'Oct 02, 2025', completed: false },
-        { id: 8, title: 'Staff training module', description: 'Developing a new module on patient confidentiality.', priority: 'Low', time: '11:00 AM', dueDate: 'Oct 07, 2025', completed: false },
-        { id: 9, title: 'Financial audit preparation', description: 'Gathering quarterly financial reports and invoices.', priority: 'High', time: '1:00 PM', dueDate: 'Sep 28, 2025', completed: false },
-        { id: 10, title: 'Design marketing flyers', description: 'Creating promotional material for the new clinic service.', priority: 'Low', time: '2:00 PM', dueDate: 'Oct 10, 2025', completed: false },
-      ],
-    },
-    {
-      id: 'done',
-      title: 'Done',
-      count: 5,
-      tasks: [
-        { id: 11, title: 'Completed server backup', description: 'Full backup of all critical systems performed.', priority: 'High', time: '9:00 AM', dueDate: 'Sep 27, 2025', completed: true },
-        { id: 12, title: 'Handled emergency calls', description: 'Resolved 5 high-priority support tickets.', priority: 'Medium', time: '10:00 AM', dueDate: 'Sep 26, 2025', completed: true },
-        { id: 13, title: 'Monthly report finalized', description: 'Sent the performance report to the management team.', priority: 'High', time: '11:00 AM', dueDate: 'Sep 25, 2025', completed: true },
-        { id: 14, title: 'Office cleanup schedule', description: 'Updated and distributed the cleaning rotation schedule.', priority: 'Low', time: '1:00 PM', dueDate: 'Sep 24, 2025', completed: true },
-        { id: 15, title: 'New policy draft', description: 'Drafted the new remote work policy.', priority: 'Medium', time: '2:00 PM', dueDate: 'Sep 23, 2025', completed: true },
-      ],
-    },
-  ]);
+  const [loading, setLoading] = useState(false);
+  
+  
+  // Interface for translated task
+  interface TranslatedTask {
+    title: string;
+    description: string;
+    priority: string;
+    time: string;
+    dueDate: string;
+    completed: boolean;
+  }
+
+  // Get translated static tasks from i18n
+  const getInitialTasks = useMemo(() => {
+    const todoTasks = t("dashboard.routes.taskList.staticTasks.todo", { returnObjects: true }) as TranslatedTask[];
+    const inprogressTasks = t("dashboard.routes.taskList.staticTasks.inprogress", { returnObjects: true }) as TranslatedTask[];
+    const doneTasks = t("dashboard.routes.taskList.staticTasks.done", { returnObjects: true }) as TranslatedTask[];
+
+    return {
+      todo: todoTasks.map((task, index) => ({
+        id: index + 1,
+        title: task.title,
+        description: task.description,
+        priority: task.priority as 'High' | 'Medium' | 'Low',
+        time: task.time,
+        dueDate: task.dueDate,
+        completed: task.completed
+      })),
+      inprogress: inprogressTasks.map((task, index) => ({
+        id: index + 6,
+        title: task.title,
+        description: task.description,
+        priority: task.priority as 'High' | 'Medium' | 'Low',
+        time: task.time,
+        dueDate: task.dueDate,
+        completed: task.completed
+      })),
+      done: doneTasks.map((task, index) => ({
+        id: index + 11,
+        title: task.title,
+        description: task.description,
+        priority: task.priority as 'High' | 'Medium' | 'Low',
+        time: task.time,
+        dueDate: task.dueDate,
+        completed: task.completed
+      }))
+    };
+  }, [t]);
+    const [columns, setColumns] = useState<Column[]>([
+  { id: 'todo', title: 'To Do', count: 0, tasks: [] },
+  { id: 'inprogress', title: 'In Progress', count: 0, tasks: [] },
+  { id: 'done', title: 'Done', count: 0, tasks: [] },
+]);
+useEffect(() => {
+  const fetchTasks = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.get(
+      'https://1x5kkm9k-5000.asse.devtunnels.ms/api/v1/doctor/task/all?page=1&limit=100',
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+
+      const tasks: Task[] = response.data.data.tasks; 
+
+      setColumns(prevCols =>
+        prevCols.map(col => ({
+          ...col,
+          tasks: tasks.filter(task => {
+            if (col.id === 'todo') return task.status === 'TODO';
+            if (col.id === 'inprogress') return task.status === 'IN_PROGRESS';
+            if (col.id === 'done') return task.status === 'DONE';
+            return false;
+          }),
+          count: tasks.filter(task => {
+            if (col.id === 'todo') return task.status === 'TODO';
+            if (col.id === 'inprogress') return task.status === 'IN_PROGRESS';
+            if (col.id === 'done') return task.status === 'DONE';
+            return false;
+          }).length
+        }))
+      );
+    } catch (error) {
+      console.error('Error fetching tasks:', error);
+    }finally{
+      setLoading(false);
+    }
+  };
+
+  fetchTasks();
+}, []);
 
   const getPriorityColor = (priority: Task['priority']) => {
-    switch (priority) {
-      case 'High': return 'bg-[#FF3D3D] text-white';
-      case 'Medium': return 'bg-[#FF883D] text-white';
-      case 'Low': return 'bg-[#88BFFF] text-white';
-      default: return 'bg-gray-400 text-white';
-    }
+  switch (priority) {
+    case 'HIGH': return 'bg-[#FF3D3D] text-white';
+    case 'MEDIUM': return 'bg-[#FF883D] text-white';
+    case 'LOW': return 'bg-[#88BFFF] text-white';
+    default: return 'bg-gray-400 text-white';
+  }
+};
+
+
+
+  // Update columns when language changes
+  useEffect(() => {
+    setColumns(prev => prev.map(col => ({
+      ...col,
+      title: t(`dashboard.routes.taskList.columns.${col.id}`),
+      tasks: col.tasks.map(task => {
+        // Find the corresponding translated task
+        const initialTasks = getInitialTasks[col.id as keyof typeof getInitialTasks];
+        const translatedTask = initialTasks?.find(t => t.id === task.id);
+        
+        // If found in initial tasks, use translated version, otherwise keep user-added task as is
+        if (translatedTask) {
+          return {
+            ...task,
+            title: translatedTask.title,
+            description: translatedTask.description
+          };
+        }
+        return task;
+      })
+    })));
+  }, [t, getInitialTasks]);
+
+
+  // Translate priority
+  const translatePriority = (priority: Task['priority']) => {
+    const priorityMap: Record<string, string> = {
+      'HIGH': t("dashboard.routes.taskList.priority.high"),
+      'MEDIUM': t("dashboard.routes.taskList.priority.medium"),
+      'LOW': t("dashboard.routes.taskList.priority.low"),
+    };
+    return priorityMap[priority] || priority;
   };
 
   const [showAddModal, setShowAddModal] = useState(false);
   const [editingTask, setEditingTask] = useState<Task | null>(null);
   const [currentColumnId, setCurrentColumnId] = useState<string>('todo');
-  
-  // Multi-select state
-  const [selectedTaskIds, setSelectedTaskIds] = useState<number[]>([]);
-  
+const [selectedTaskIds, setSelectedTaskIds] = useState<string[]>([]);
   const [showRecordModal, setShowRecordModal] = useState(false);
   const [modalTask, setModalTask] = useState<{ task: Task, columnId: string } | null>(null);
-
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [showDeleteSuccess, setShowDeleteSuccess] = useState(false);
 
+    const getStatusFromColumnId = (columnId: string): Task['status'] => {
+  switch (columnId) {
+    case 'todo':
+      return 'TODO';
+    case 'inprogress':
+      return 'IN_PROGRESS';
+    case 'done':
+      return 'DONE';
+    default:
+      throw new Error('Invalid column id');
+  }
+};
+
   const handleAddTask = (task: Omit<Task, 'id' | 'completed' | 'time'> & { status: string }) => {
-    const columnId = task.status.toLowerCase().replace(/\s/g, '');
-    const targetColumn = columns.find(col => col.id === columnId);
-    if (!targetColumn) return;
+  const columnId = task.status.toLowerCase().replace(/\s/g, '');
+  const targetColumn = columns.find(col => col.id === columnId);
+  if (!targetColumn) return;
 
-    if (editingTask) {
-      setColumns(prev =>
-        prev.map(col => {
-          const isTarget = col.id === targetColumn.id;
-          let updatedTasks = col.tasks.filter(t => t.id !== editingTask.id);
-          if (isTarget) updatedTasks = [{ ...editingTask, ...task, priority: task.priority }, ...updatedTasks];
-          return { ...col, tasks: updatedTasks, count: updatedTasks.length };
-        })
-      );
-    } else {
-      const newTask: Task = {
-        id: Date.now(),
-        completed: false,
-        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        title: task.title,
-        description: task.description,
-        priority: task.priority as Task['priority'],
-        dueDate: task.dueDate,
-      };
-      setColumns(prev =>
-        prev.map(col => col.id === targetColumn.id ? { ...col, tasks: [newTask, ...col.tasks], count: col.tasks.length + 1 } : col)
-      );
-    }
+  if (editingTask) {
+    // Editing existing task
+    setColumns(prev =>
+      prev.map(col => {
+        const isTarget = col.id === targetColumn.id;
+        let updatedTasks = col.tasks.filter(t => t.id !== editingTask.id);
+        if (isTarget) updatedTasks = [{ ...editingTask, ...task, priority: task.priority, status: getStatusFromColumnId(columnId) }, ...updatedTasks];
+        return { ...col, tasks: updatedTasks, count: updatedTasks.length };
+      })
+    );
+  } else {
+    // Adding new task
+    const newTask: Task = {
+      id: Date.now().toString(), // better: uuid
+      completed: false,
+      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      title: task.title,
+      description: task.description,
+      status: getStatusFromColumnId(columnId), // ✅ correct
+      priority: task.priority as Task['priority'],
+      dueDate: task.dueDate,
+    };
 
-    setEditingTask(null);
-    setShowAddModal(false);
-    setSelectedTaskIds([]);
-  };
+    setColumns(prev =>
+      prev.map(col =>
+        col.id === targetColumn.id
+          ? { ...col, tasks: [newTask, ...col.tasks], count: [newTask, ...col.tasks].length }
+          : col
+      )
+    );
+  }
+
+  setEditingTask(null);
+  setShowAddModal(false);
+  setSelectedTaskIds([]);
+};
 
   const openAddModal = (columnId: string) => {
     setEditingTask(null);
@@ -158,7 +282,23 @@ export default function TaskList() {
     setShowDeleteConfirm(true);
   };
 
-  const confirmDeleteTasks = () => {
+  const confirmDeleteTasks = async () => {
+  if (selectedTaskIds.length === 0) return;
+
+  try {
+    setLoading(true);
+
+    // Send delete requests for each selected task
+    await Promise.all(
+      selectedTaskIds.map(taskId =>
+        axios.delete(
+          `${import.meta.env.VITE_API_URL}/doctor/task/delete/${taskId}`,
+          { headers: { Authorization: `Bearer ${accessToken}` } }
+        )
+      )
+    );
+
+    // Update frontend after successful delete
     setColumns(prevColumns =>
       prevColumns.map(col => {
         const updatedTasks = col.tasks.filter(task => !selectedTaskIds.includes(task.id));
@@ -170,104 +310,120 @@ export default function TaskList() {
     setShowDeleteSuccess(true);
     setTimeout(() => setShowDeleteSuccess(false), 2000);
     setSelectedTaskIds([]);
-  };
+  } catch (error) {
+    console.error('Failed to delete tasks', error);
+    alert('Failed to delete task(s). Please try again.');
+  } finally {
+    setLoading(false);
+  }
+};
 
   const cancelDeleteTask = () => {
     setShowDeleteConfirm(false);
   };
 
-  const toggleTaskSelection = (taskId: number) => {
-    setSelectedTaskIds(prev => {
-      if (prev.includes(taskId)) {
-        return prev.filter(id => id !== taskId);
-      } else {
-        return [...prev, taskId];
-      }
-    });
-  };
+  const toggleTaskSelection = (taskId: string) => {
+  setSelectedTaskIds(prev =>
+    prev.includes(taskId) ? prev.filter(id => id !== taskId) : [...prev, taskId]
+  );
+};
 
-  const onDragStart = (e: React.DragEvent<HTMLDivElement>, taskId: number, sourceColumnId: string) => {
-    if (selectedTaskIds.includes(taskId) && selectedTaskIds.length > 1) {
-      e.dataTransfer.setData('taskIds', JSON.stringify(selectedTaskIds));
-    } else {
-      e.dataTransfer.setData('taskIds', JSON.stringify([taskId]));
-    }
-    e.dataTransfer.setData('sourceColumnId', sourceColumnId);
-  };
+  const onDragStart = (e: React.DragEvent<HTMLDivElement>, taskId: string, sourceColumnId: string) => {
+  const taskIdsToDrag = selectedTaskIds.includes(taskId) ? selectedTaskIds : [taskId];
+  e.dataTransfer.setData('taskIds', JSON.stringify(taskIdsToDrag));
+  e.dataTransfer.setData('sourceColumnId', sourceColumnId);
+};
 
   const onDragOver = (e: React.DragEvent<HTMLDivElement>) => e.preventDefault();
 
-  const onDrop = (e: React.DragEvent<HTMLDivElement>, targetColumnId: string) => {
-    const taskIdsStr = e.dataTransfer.getData('taskIds');
-    const sourceColumnId = e.dataTransfer.getData('sourceColumnId');
-    
-    if (!taskIdsStr || !sourceColumnId) return;
-    
-    const taskIds: number[] = JSON.parse(taskIdsStr);
+const onDrop = async (e: React.DragEvent<HTMLDivElement>, targetColumnId: string) => {
+  e.preventDefault();
+  setLoading(true)
+  const taskIdsStr = e.dataTransfer.getData('taskIds');
+  const sourceColumnId = e.dataTransfer.getData('sourceColumnId');
+  if (!taskIdsStr || !sourceColumnId) return;
 
-    setColumns(prevColumns => {
-      const movedTasks: Task[] = [];
-      
-      const newColumns = prevColumns.map(col => {
-        if (col.id === sourceColumnId) {
-          const remainingTasks = col.tasks.filter(task => {
-            if (taskIds.includes(task.id)) {
-              movedTasks.push(task);
-              return false;
-            }
-            return true;
-          });
-          return { ...col, tasks: remainingTasks, count: remainingTasks.length };
-        }
-        return col;
-      });
+  const taskIds: string[] = JSON.parse(taskIdsStr);
+  let movedTasks: Task[] = [];
 
-      return newColumns.map(col => {
-        if (col.id === targetColumnId && movedTasks.length > 0) {
-          return { ...col, tasks: [...movedTasks, ...col.tasks], count: col.tasks.length + movedTasks.length };
-        }
-        return col;
-      });
-    });
-    
+  // Show loader
+
+  // Prepare tasks to move
+  const sourceColumn = columns.find(col => col.id === sourceColumnId);
+  if (!sourceColumn) return;
+  movedTasks = sourceColumn.tasks.filter(task => taskIds.includes(task.id));
+
+  // API call first
+  try {
+    await Promise.all(
+      movedTasks.map(task =>
+        axios.patch(
+          `${import.meta.env.VITE_API_URL}/doctor/task/update/${task.id}`,
+          { status: getStatusFromColumnId(targetColumnId) },
+          { headers: { Authorization: `Bearer ${accessToken}` } }
+        )
+      )
+    );
+
+    // Only update frontend after successful backend update
+    setColumns(prevColumns => prevColumns.map(col => {
+      if (col.id === sourceColumnId) {
+        const remainingTasks = col.tasks.filter(task => !taskIds.includes(task.id));
+        return { ...col, tasks: remainingTasks, count: remainingTasks.length };
+      }
+      if (col.id === targetColumnId) {
+        return { ...col, tasks: [...movedTasks, ...col.tasks], count: col.tasks.length + movedTasks.length };
+      }
+      return col;
+    }));
+
     setSelectedTaskIds([]);
-  };
-
+  } catch (err) {
+    console.error('Failed to update tasks', err);
+    alert('Failed to move task. Please try again.');
+  } finally {
+    setLoading(false);
+  }
+};
   const hasSelectedTasks = selectedTaskIds.length > 0;
   const hasMultipleSelected = selectedTaskIds.length > 1;
 
   return (
     <div className="mt-2.5 md:mt-[30px]" onClick={() => setSelectedTaskIds([])}>
+      {loading && (
+          <div className="fixed inset-0 bg-black opacity-60 flex items-center justify-center z-[9999]">
+            <div className="loader border-4 border-blue-500 border-t-transparent rounded-full w-12 h-12 animate-spin"></div>
+          </div>
+      )}
+
       {/* Header */}
       <div className="pb-4">
-        {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-sm text-gray-600 mb-4">
           <div className="flex items-center gap-2">
             <img src={homeIcon} alt="Home" className="w-4 h-4" />
             <img src={chevronIcon} alt=">" />
-            <span
-              onClick={() => navigate('/dashboard')}
-              className="text-gray-600 font-medium cursor-pointer"
-            >
-              Dashboard
+            <span onClick={() => navigate('/dashboard')} className="text-gray-600 font-medium cursor-pointer">
+              {t("dashboard.routes.taskList.breadcrumb.dashboard")}
             </span>
             <img src={chevronIcon} alt=">" />
-            <span className="text-[#042435] text-sm font-semibold">Task</span>
+            <span className="text-[#042435] text-sm font-semibold">
+              {t("dashboard.routes.taskList.breadcrumb.task")}
+            </span>
           </div>
         </div>
 
-        {/* Header + Buttons */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h1 className="text-xl md:text-2xl font-semibold text-[#171c35]">Task</h1>
+            <h1 className="text-xl md:text-2xl font-semibold text-[#171c35]">
+              {t("dashboard.routes.taskList.header.title")}
+            </h1>
             <p className="text-base font-medium text-[#111A2D] mt-1">
-              {columns.reduce((acc, col) => acc + col.tasks.length, 0)} Total task
+              {columns.reduce((acc, col) => acc + col.tasks.length, 0)} {t("dashboard.routes.taskList.header.totalTask")}
             </p>
           </div>
 
-          {/* Dropdowns with isolation */}
-          <div className="flex flex-col sm:flex-row w-full sm:w-auto items-center gap-3 relative z-10" >
-            <div className="w-full sm:w-auto relative z-20" >
+          <div className="flex flex-col sm:flex-row w-full sm:w-auto items-center gap-3 relative z-10">
+            <div className="w-full sm:w-auto relative z-20">
               <StatusDropdown />
             </div>
             <div className="w-full sm:w-auto relative z-30" style={{ zIndex: 11 }}>
@@ -277,61 +433,50 @@ export default function TaskList() {
               onClick={() => openAddModal(columns[0]?.id || 'todo')}
               className="w-full sm:w-auto px-4 py-2 bg-[#DCE2FF] text-black rounded-[8px] text-sm font-medium flex items-center justify-center cursor-pointer gap-2"
             >
-              <Plus className="w-4 h-4" /> Add Task
+              <Plus className="w-4 h-4" /> {t("dashboard.routes.taskList.header.addTask")}
             </button>
           </div>
         </div>
       </div>
 
       {/* Columns */}
-      <div  style={{ zIndex: 16 }} className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+      <div style={{ zIndex: 16 }} className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
         {columns.map(column => (
           <div key={column.id} className="bg-white rounded-2xl" onDragOver={onDragOver} onDrop={(e) => onDrop(e, column.id)}>
             <div className="flex items-center justify-between px-4 py-3">
               <div className="flex items-center gap-2">
-                <h2 className="text-sm sm:text-xl font-medium sm:font-semibold text-[#171c35]">{column.title}</h2>
+                <h2 className="text-sm sm:text-xl font-medium sm:font-semibold text-[#171c35]">
+                  {t(`dashboard.routes.taskList.columns.${column.id}`)}
+                </h2>
                 <span className="text-sm text-gray-500">({column.count})</span>
               </div>
               
-              {/* Action Buttons */}
               <div className="flex items-center gap-1">
-                {/* Show + icon only if no tasks selected */}
                 {!hasSelectedTasks && (
                   <button 
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      openAddModal(column.id);
-                    }} 
+                    onClick={(e) => { e.stopPropagation(); openAddModal(column.id); }} 
                     className="p-1 hover:bg-gray-100 rounded cursor-pointer" 
-                    title={`Add Task to ${column.title}`}
+                    title={`${t("dashboard.routes.taskList.actions.addTaskTo")} ${column.title}`}
                   >
                     <Plus className="w-4 h-4 text-[#111A2D]" />
                   </button>
                 )}
                 
-                {/* Show Edit only if single task selected */}
                 {hasSelectedTasks && !hasMultipleSelected && (
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      openEditModal();
-                    }}
-                    className="p-1 hover:bg-gray-100 rounded cursor-pointer"
-                    title="Edit Task"
+                  <button 
+                    onClick={(e) => { e.stopPropagation(); openEditModal(); }} 
+                    className="p-1 hover:bg-gray-100 rounded cursor-pointer" 
+                    title={t("dashboard.routes.taskList.actions.editTask")}
                   >
                     <Edit className="w-4 h-4 text-[#111A2D]" />
                   </button>
                 )}
                 
-                {/* Show Delete if any task selected */}
                 {hasSelectedTasks && (
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      triggerDeleteTasks();
-                    }}
-                    className="p-1 hover:bg-gray-100 rounded cursor-pointer"
-                    title={hasMultipleSelected ? "Delete Selected Tasks" : "Delete Task"}
+                  <button 
+                    onClick={(e) => { e.stopPropagation(); triggerDeleteTasks(); }} 
+                    className="p-1 hover:bg-gray-100 rounded cursor-pointer" 
+                    title={hasMultipleSelected ? t("dashboard.routes.taskList.actions.deleteSelected") : t("dashboard.routes.taskList.actions.deleteTask")}
                   >
                     <Trash2 className="w-4 h-4 text-[#111A2D]" />
                   </button>
@@ -339,7 +484,6 @@ export default function TaskList() {
               </div>
             </div>
 
-            {/* Tasks */}
             <div className="p-3 space-y-3 overflow-y-auto">
               {column.tasks.map(task => {
                 const isSelected = selectedTaskIds.includes(task.id);
@@ -352,49 +496,35 @@ export default function TaskList() {
                     className={`rounded-2xl p-3 ${isSelected ? "bg-[#DDE2FF]" : "bg-[#F3F6F6] hover:bg-[#E8ECFF]"}`}
                   >
                     <div className="flex items-start gap-3">
-                      {/* Checkbox */}
                       <input
                         type="checkbox"
                         className="w-4 h-4 mt-1 cursor-pointer accent-[#526fff]"
                         checked={isSelected}
                         onClick={(e) => e.stopPropagation()}
-                        onChange={(e) => {
-                          e.stopPropagation();
-                          toggleTaskSelection(task.id);
-                        }}
+                        onChange={(e) => { e.stopPropagation(); toggleTaskSelection(task.id); }}
                       />
 
-                      {/* Task Content */}
-                      <div
-                        className="flex-1 min-w-0 cursor-pointer"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setModalTask({ task, columnId: column.id });
-                          setShowRecordModal(true);
-                        }}
-                      >
+                      <div className="flex-1 min-w-0 cursor-pointer" onClick={(e) => { e.stopPropagation(); setModalTask({ task, columnId: column.id }); setShowRecordModal(true); }}>
                         <div className="flex items-start gap-3 mb-2">
                           <div className="flex-1">
                             <h3 className="text-sm sm:text-xl font-semibold text-[#171C35]">{task.title}</h3>
                             <p className="text-xs sm:text-base text-[#111A2D] mb-2 leading-relaxed">{task.description}</p>
                           </div>
 
-                          {/* Priority badge */}
                           <div className="flex items-center gap-2 pr-2">
                             <span className={`px-2 py-0.5 rounded-full text-xs font-medium whitespace-nowrap ${getPriorityColor(task.priority)}`}>
-                              {task.priority}
+                              {translatePriority(task.priority)}
                             </span>
                           </div>
                         </div>
 
-                        {/* Task time & due date */}
                         <div className="flex items-center gap-4 text-sm font-medium text-[#171C35]">
                           <div className="flex items-center gap-1 mt-2">
                             <img src={timeIon} alt="" />
                             <span>{task.time}</span>
                           </div>
                           <div className="flex items-center gap-1 mt-2">
-                            <span>Due: {task.dueDate}</span>
+                            <span>{t("dashboard.routes.taskList.taskCard.due")}: {task.dueDate.split('T')[0]}</span>
                           </div>
                         </div>
                       </div>
@@ -405,94 +535,48 @@ export default function TaskList() {
             </div>
           </div>
         ))}
+        
       </div>
 
-      {/* Add Task Modal - FIXED for mobile */}
-{/* Add Task Modal - FIXED for all devices */}
-{showAddModal && (
-  <div 
-    className="fixed inset-0 bg-black/40 flex items-center justify-center z-[9999] p-2 sm:p-4 overflow-auto"
-    onClick={() => {
-      setShowAddModal(false);
-      setEditingTask(null);
-      setSelectedTaskIds([]);
-    }}
-  >
-    <div 
-      className="w-full max-w-[95%] sm:max-w-[672px] bg-gray-200 rounded-2xl shadow-2xl overflow-auto max-h-[95vh]"
-      onClick={(e) => e.stopPropagation()}
-    >
-      <AddTaskModal
-        onClose={() => {
-          setShowAddModal(false);
-          setEditingTask(null);
-          setSelectedTaskIds([]);
-        }}
-        onAddTask={handleAddTask}
-        initialTask={
-          editingTask
-            ? { ...editingTask, status: columns.find(c => c.id === currentColumnId)?.title || 'To Do' }
-            : { status: columns.find(c => c.id === currentColumnId)?.title || 'To Do' }
-        }
-      />
-    </div>
-  </div>
-)}
-
-
-
-      {/* Patient Records Modal */}
-      {showRecordModal && modalTask && (
+      {/* Add Task Modal */}
+      {showAddModal && (
         <div 
-          className="fixed inset-0 bg-black/40 flex items-center justify-center z-[9999] p-4 overflow-y-auto"
-          onClick={() => setShowRecordModal(false)}
+          className="fixed inset-0 bg-black/40 flex items-center justify-center z-[9999] p-2 sm:p-4 overflow-auto"
+          onClick={() => { setShowAddModal(false); setEditingTask(null); setSelectedTaskIds([]); }}
         >
-          <div 
-            className="my-auto max-h-[90vh] overflow-y-auto"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <PatientRecordsModal 
-              task={modalTask.task} 
-              onClose={() => setShowRecordModal(false)} 
+          <div className="w-full max-w-[95%] sm:max-w-[672px] bg-gray-200 rounded-2xl shadow-2xl overflow-auto max-h-[95vh]" onClick={(e) => e.stopPropagation()}>
+            <AddTaskModal
+              onClose={() => { setShowAddModal(false); setEditingTask(null); setSelectedTaskIds([]); }}
+              onAddTask={handleAddTask}
+              initialTask={editingTask ? { ...editingTask, status: columns.find(c => c.id === currentColumnId)?.title || t("dashboard.routes.taskList.columns.todo") } : { status: columns.find(c => c.id === currentColumnId)?.title || t("dashboard.routes.taskList.columns.todo") }}
             />
           </div>
         </div>
       )}
 
-      {/* Delete Confirmation */}
-      {showDeleteConfirm && (
-        <div 
-          className="fixed inset-0 bg-black/40 flex items-center justify-center z-[9999] p-4"
-          onClick={cancelDeleteTask}
-        >
-          <div 
-            className="bg-white p-6 rounded-2xl w-[320px] sm:w-[400px] text-center"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <h3 className="text-lg font-semibold text-[#171C35] mb-4">Are you sure?</h3>
-            <p className="text-sm text-gray-600 mb-6">
-              {hasMultipleSelected 
-                ? `Do you really want to delete ${selectedTaskIds.length} tasks? This action cannot be undone.`
-                : 'Do you really want to delete this task? This action cannot be undone.'}
-            </p>
-            <div className="flex justify-center gap-4">
-              <button onClick={cancelDeleteTask} className="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 cursor-pointer">
-                No
-              </button>
-              <button onClick={confirmDeleteTasks} className="px-4 py-2 rounded-lg bg-[#FF3D3D] text-white hover:bg-red-600 cursor-pointer">
-                Yes
-              </button>
-            </div>
+      {/* Patient Records Modal */}
+      {showRecordModal && modalTask && (
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-[9999] p-4 overflow-y-auto" onClick={() => setShowRecordModal(false)}>
+          <div className="my-auto max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+            <PatientRecordsModal task={modalTask.task} onClose={() => setShowRecordModal(false)} />
           </div>
         </div>
       )}
 
-      {/* Delete Success Message */}
-      {showDeleteSuccess && (
-        <div className="fixed top-5 right-5 bg-green-500 text-white px-4 py-3 rounded-lg shadow-lg z-[9999]">
-          {hasMultipleSelected ? `${selectedTaskIds.length} tasks` : 'Task'} deleted successfully!
-        </div>
-      )}
+      {/* Delete Modals */}
+      <DeleteConfirmModal 
+        isOpen={showDeleteConfirm}
+        onClose={cancelDeleteTask}
+        onConfirm={confirmDeleteTasks}
+        taskCount={selectedTaskIds.length}
+        isMultiple={hasMultipleSelected}
+      />
+
+      <DeleteSuccessMessage 
+        isOpen={showDeleteSuccess}
+        taskCount={selectedTaskIds.length}
+        isMultiple={hasMultipleSelected}
+      />
     </div>
   );
 }

@@ -6,10 +6,12 @@ import search from '../../../assets/svgIcon/search.svg';
 import notification from '../../../assets/svgIcon/notification.svg';
 import { Menu } from 'lucide-react';
 import LanguageSelector from './LanguageSelector';
+import { useAppSelector } from '@/store/hook';
+import { useTranslation } from 'react-i18next';
 
 const userData = {
-    name: 'Keren nix',
-    role: 'D.',
+    // name: 'Keren nix',
+    // role: 'D.',
     avatarUrl: karennix,
 };
 
@@ -20,6 +22,8 @@ interface MainHeaderProps {
 const MainHeader: React.FC<MainHeaderProps> = ({ onMobileMenuOpen }) => {
     const [showNotification, setShowNotification] = useState(false);
     const [showUserDropdown, setShowUserDropdown] = useState(false);
+    const { user } = useAppSelector((state)=>state.auth);
+    const {t} = useTranslation()
     
     const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -94,7 +98,7 @@ useEffect(() => {
                         <img src={search} alt="Search" className="w-4 h-4 shrink-0" />
                         <input
                             type="text"
-                            placeholder="Search something..."
+                            placeholder={t("dashboard.mainHeader.searchPlaceholder")}
                             className="w-full min-w-0 text-gray-700 placeholder-[#111A2D] focus:outline-none text-sm sm:text-base"
                         />
                     </div>
@@ -142,30 +146,30 @@ useEffect(() => {
                         >
                             <img
                                 src={userData.avatarUrl}
-                                alt={userData.name}
+                                alt={user?.firstName}
                                 className="h-8 w-8 sm:h-10 sm:w-10 rounded-xl object-cover"
                             />
                             <div className="hidden md:block ml-2">
-                                <p className="text-lg font-semibold text-[#171C35]  leading-4.5">{userData.name}</p>
-                                <p className="text-lg font-semibold text-[#171C35] leading-none mt-1">{userData.role}</p>
+                                <p className="text-lg font-semibold text-[#171C35]  leading-4.5">{user?.firstName} <br /> {user?.lastName}</p>
+                                <p className="text-lg font-semibold text-[#171C35] leading-none capitalize mt-1">{user?.role === "doctor" ? "" : user?.role}</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </header>
 
-            {/* UserDropdown - Portal style with backdrop */}
+        {/* UserDropdown - Portal style with backdrop */}
         {showUserDropdown && (
-  <div className="fixed inset-0 z-[9999]">
-    <div 
-      className="absolute inset-0 bg-black/20 md:bg-transparent"
-      onClick={() => setShowUserDropdown(false)}
-    />
-    <div  className="absolute top-16 sm:top-20 right-3 sm:right-6">
-      <UserDropdown onClose={() => setShowUserDropdown(false)} />
-    </div>
-  </div>
-)}
+        <div className="fixed inset-0 z-[9999]">
+            <div 
+            className="absolute inset-0 bg-black/20 md:bg-transparent"
+            onClick={() => setShowUserDropdown(false)}
+            />
+            <div  className="absolute top-16 sm:top-20 right-3 sm:right-6">
+            <UserDropdown onClose={() => setShowUserDropdown(false)} />
+            </div>
+        </div>
+        )}
 
 
             {/* Notifications Drawer - Portal style */}

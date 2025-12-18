@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import eye from "../../../../assets/svgIcon/Eye.svg";
 import eyeOff from "../../../../assets/svgIcon/EyeOff.svg";
-
+import { useTranslation } from "react-i18next";
 
 interface PasswordInputProps {
   label: string;
   name: string;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  placeholder?: string;
 }
 
 const PasswordInput: React.FC<PasswordInputProps> = ({
@@ -15,6 +16,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
   name,
   value,
   onChange,
+  placeholder
 }) => {
   const [visible, setVisible] = useState(false);
 
@@ -29,7 +31,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
           name={name}
           value={value}
           onChange={onChange}
-          placeholder={`Enter ${label.toLowerCase()}`}
+          placeholder={placeholder}
           className="w-full p-3 pr-10 bg-gray-50 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#526FFF] focus:outline-none placeholder-[#667085] text-sm font-medium"
         />
         <button
@@ -49,6 +51,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
 };
 
 const ChangePasswordForm: React.FC = () => {
+  const { t } = useTranslation();
   const [form, setForm] = useState({
     current: "",
     newPass: "",
@@ -67,81 +70,70 @@ const ChangePasswordForm: React.FC = () => {
     e.preventDefault();
 
     if (!form.current || !form.newPass || !form.confirm) {
-      setError("Please fill in all required fields.");
+      setError(t("dashboard.routes.settings.settingsSidebar.tabs.changePasswordForm.errors.required"));
       return;
     }
 
     if (form.newPass.length < 6) {
-      setError("New password must be at least 6 characters long.");
+      setError(t("dashboard.routes.settings.settingsSidebar.tabs.changePasswordForm.errors.minLength"));
       return;
     }
 
     if (form.newPass !== form.confirm) {
-      setError("New password and confirmation do not match.");
+      setError(t("dashboard.routes.settings.settingsSidebar.tabs.changePasswordForm.errors.mismatch"));
       return;
     }
 
- 
     console.log("Password changed successfully:", form);
-
-    setSuccess("✅ Password changed successfully!");
+    setSuccess(t("dashboard.routes.settings.settingsSidebar.tabs.changePasswordForm.success"));
     setForm({ current: "", newPass: "", confirm: "" });
   };
 
   return (
-    <div className="p-6 min-h-screen bg-white rounded-xl  border border-gray-100">
-      <h2 className="text-xl font-semibold text-[#171C35]  mb-6 pb-4 border-b">
-        Change Password
+    <div className="p-6 min-h-screen bg-white rounded-xl border border-gray-100">
+      <h2 className="text-xl font-semibold text-[#171C35] mb-6 pb-4 border-b">
+        {t("dashboard.routes.settings.settingsSidebar.tabs.changePasswordForm.title")}
       </h2>
 
       <form onSubmit={handleSubmit}>
         <PasswordInput
-          label="Current Password"
+          label={t("dashboard.routes.settings.settingsSidebar.tabs.changePasswordForm.fields.current")}
           name="current"
           value={form.current}
           onChange={handleChange}
+          placeholder={t("dashboard.routes.settings.settingsSidebar.tabs.changePasswordForm.placeholders.current")}
         />
         <PasswordInput
-          label="New Password"
+          label={t("dashboard.routes.settings.settingsSidebar.tabs.changePasswordForm.fields.newPass")}
           name="newPass"
           value={form.newPass}
           onChange={handleChange}
+          placeholder={t("dashboard.routes.settings.settingsSidebar.tabs.changePasswordForm.placeholders.newPass")}
         />
         <PasswordInput
-          label="Confirm Password"
+          label={t("dashboard.routes.settings.settingsSidebar.tabs.changePasswordForm.fields.confirm")}
           name="confirm"
           value={form.confirm}
           onChange={handleChange}
+          placeholder={t("dashboard.routes.settings.settingsSidebar.tabs.changePasswordForm.placeholders.confirm")}
         />
 
-        {error && (
-          <p className="text-red-500 text-sm mt-2 font-medium">{error}</p>
-        )}
-        {success && (
-          <p className="text-green-600 text-sm mt-2 font-medium">{success}</p>
-        )}
+        {error && <p className="text-red-500 text-sm mt-2 font-medium">{error}</p>}
+        {success && <p className="text-green-600 text-sm mt-2 font-medium">{success}</p>}
 
         <div className="flex flex-col md:flex-row gap-2 w-full md:space-x-4 mt-6">
           <button
             type="button"
-
             onClick={() => setForm({ current: "", newPass: "", confirm: "" })}
-            // className="flex-1 py-3 text-[#171C35] border border-gray-300 rounded-[8px] hover:bg-gray-50 transition"
-
-            className="flex-1 py-3  text-[#171C35] border border-gray-200 rounded-xl cursor-pointer"
-
+            className="flex-1 py-3 text-[#171C35] border border-gray-200 rounded-xl cursor-pointer"
           >
-            Cancel
+            {t("dashboard.routes.settings.settingsSidebar.tabs.changePasswordForm.buttons.cancel")}
           </button>
           <button
             type="submit"
-
-            // className="flex-1 py-3 text-white bg-[#526FFF] rounded-[8px] hover:bg-[#4059FF] transition"
-
             className="flex-1 py-3 text-white bg-[#526FFF] rounded-xl cursor-pointer"
-
           >
-            Save Changes
+            {t("dashboard.routes.settings.settingsSidebar.tabs.changePasswordForm.buttons.saveChanges")}
           </button>
         </div>
       </form>

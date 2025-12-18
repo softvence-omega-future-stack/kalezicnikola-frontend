@@ -5,18 +5,35 @@ import { useNavigate } from "react-router-dom";
 import logo from "../assets/svgIcon/logo.svg";
 import logoText from "../assets/svgIcon/textLogo.svg";
 import ShadowBox from "@/Teamplate/ShadowBox";
+import { useTranslation } from "react-i18next";
 
 const Navbar: React.FC = () => {
+  const { t } = useTranslation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
-  const [activeItem, setActiveItem] = useState("Preise"); 
+  const [activeItem, setActiveItem] = useState("Preise");
   const headerRef = useRef<HTMLDivElement>(null);
 
+  // 🔥 FIXED VERSION (no design change)
   const handleScroll = (sectionId: string, itemName: string) => {
-    const section = document.getElementById(sectionId);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
+    // If NOT on Home → Go to Home first
+    if (window.location.pathname !== "/") {
+      navigate("/");
+
+      setTimeout(() => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 300);
+    } else {
+      // Already on Home → scroll normally
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      }
     }
+
     setMobileMenuOpen(false);
     setActiveItem(itemName);
   };
@@ -40,14 +57,15 @@ const Navbar: React.FC = () => {
   }, [mobileMenuOpen]);
 
   const menuItems = [
-    { name: "Funktionen", id: "features" },
-    { name: "Beispiele", id: "examples" },
-    { name: "Testimonials", id: "testimonials" },
-    { name: "Preise", id: "pricing" },
+    { name: t("landingPage.navigation.features"), id: "features" },
+    { name: t("landingPage.navigation.examples"), id: "examples" },
+    { name: t("landingPage.navigation.testimonials"), id: "testimonials" },
+    { name: t("landingPage.navigation.pricing"), id: "pricing" },
+    
   ];
 
   return (
-    <header ref={headerRef} className="w-full fixed top-5 left-0 right-0 z-[9999] px-2 sm:px-4">
+    <header ref={headerRef} className="w-full fixed top-5 left-0 right-0 z-[9999] ">
       <div className="relative">
         <div
           style={{
@@ -88,8 +106,8 @@ const Navbar: React.FC = () => {
                   onClick={() => handleScroll(item.id, item.name)}
                   className={`transition-colors whitespace-nowrap py-1 cursor-pointer ${
                     item.name === activeItem
-                      ? ' text-[#171C35]'
-                      : 'text-[#171C35] hover:text-blue-600'
+                      ? " text-[#171C35]"
+                      : "text-[#171C35] hover:text-blue-600"
                   }`}
                 >
                   {item.name}
@@ -97,24 +115,29 @@ const Navbar: React.FC = () => {
               ))}
             </nav>
 
-            <div className="flex items-center gap-3 ml-2">
+            <div className="flex items-center gap-3 ml-12">
               <LanguageSelector />
-              <div className="flex items-center gap-3">
-                <button className="px-5 py-3.5 rounded-full text-base font-medium text-[#171C35] border border-[#171C35] transition whitespace-nowrap">
-                  Demo buchen
+              <div className="flex items-center gap-3 ">
+                <button
+                  onClick={() =>
+                    navigate("/dashboard/calendar?openModal=true")
+                  }
+                  className="px-5 py-3.5 rounded-full leading-4 text-base font-medium text-[#171C35] border border-[#171C35] transition whitespace-nowrap"
+                >
+                  {t("landingPage.navigation.demo")}
                 </button>
                 <button
                   onClick={() => navigate("/login")}
-                  className="px-5 py-3.5 text-base font-medium text-[#171C35] bg-white rounded-full transition cursor-pointer whitespace-nowrap shadow-md"
+                  className="px-5 py-3.5 text-base font-medium leading-4 text-[#171C35] bg-white rounded-full transition cursor-pointer whitespace-nowrap "
                 >
-                  Login
+                  {t("landingPage.navigation.login")}
                 </button>
               </div>
             </div>
           </div>
 
           {/* Mobile Menu Toggle */}
-          <div className="flex items-center gap-2 lg:hidden"> 
+          <div className="flex items-center gap-2 lg:hidden">
             <LanguageSelector />
             <button
               className="p-2 rounded-lg hover:bg-white/50 transition cursor-pointer"
@@ -129,7 +152,7 @@ const Navbar: React.FC = () => {
           </div>
         </div>
 
-        {/* Mobile Menu Dropdown */}
+        {/* Mobile Menu */}
         {mobileMenuOpen && (
           <div className="lg:hidden absolute top-[calc(100%+8px)] left-0 right-0 z-[9999] px-6">
             <div className="bg-white backdrop-blur-md rounded-3xl p-6 shadow-2xl mx-auto w-[93%]">
@@ -145,16 +168,20 @@ const Navbar: React.FC = () => {
                 ))}
               </nav>
 
-              {/* Move Login + Demo buttons below the slider */}
               <div className="pt-4 border-t border-gray-200 flex flex-col gap-3 mt-4">
-                <button className="px-5 py-2 rounded-full text-base font-medium text-[#171C35] border border-[#171C35] transition cursor-pointer">
-                  Demo buchen
+                <button
+                  onClick={() =>
+                    navigate("/dashboard/calendar?openModal=true")
+                  }
+                  className="px-5 py-2 rounded-full text-base font-medium text-[#171C35] border border-[#171C35] transition cursor-pointer"
+                >
+                  {t("landingPage.navigation.demo")}
                 </button>
                 <button
                   onClick={() => navigate("/login")}
                   className="px-5 py-2 rounded-full text-base font-medium text-white bg-[#171C35] transition cursor-pointer"
                 >
-                  Login
+                  {t("landingPage.navigation.login")}
                 </button>
               </div>
             </div>
@@ -162,7 +189,7 @@ const Navbar: React.FC = () => {
         )}
       </div>
 
-      {/* ShadowBox Elements */}
+      {/* ShadowBoxes */}
       <ShadowBox
         width="321px"
         height="232px"
@@ -200,6 +227,7 @@ const Navbar: React.FC = () => {
 };
 
 export default Navbar;
+
 
 
 

@@ -1,15 +1,17 @@
+import { useTranslation } from "react-i18next";
 
 
 const TopSection = () => {
+  const {t} = useTranslation()
   return (
     <div>
       <div className=" flex items-center gap-12">
         <div className="flex flex-col gap-3">
           <h1 className="text-xl sm:text-2xl md:text-3xl font-semibold text-headingBlack">
-            Customer Management
+           {t("adminDashboard.routes.customers.topSection.title")}
           </h1>
           <p className='text-sm sm:text-base text-subHeadingBlack'>
-            Manage Doctor subscriptions and customer relationships
+              {t("adminDashboard.routes.customers.topSection.desc")}
           </p>
         </div>
       </div>

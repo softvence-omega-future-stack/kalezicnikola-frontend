@@ -1,22 +1,47 @@
 import { useState, useEffect } from 'react';
 import { X, ChevronDown } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { useAppSelector } from '@/store/hook';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 interface Task {
-  id: number;
+  id: string;
   title: string;
   description: string;
+  patient: {
+    id: string;
+    insuranceId: string;
+    firstName: string;
+    lastName: string;
+    photo?: string | null;
+  } | null;
   priority: 'High' | 'Medium' | 'Low';
   time: string;
   dueDate: string;
   completed: boolean;
 }
 
+type Status = 'TODO' | 'IN_PROGRESS' | 'DONE';
+type Priority = 'LOW' | 'MEDIUM' | 'HIGH';
+
 interface FormData {
   title: string;
   description: string;
-  status: string;
-  priority: 'High' | 'Medium' | 'Low';
+  status: Status;
+  priority: Priority;
   dueDate: string;
+  patientId: string;
+  insuranceId: string; 
+}
+
+interface TaskFormErrors {
+  title?: string;
+  description?: string;
+  status?: string;
+  priority?: string;
+  dueDate?: string;
+  insuranceId?: string;  
 }
 
 type TaskOutput = FormData;
@@ -27,22 +52,73 @@ interface AddTaskModalProps {
   initialTask?: (Task & { status: string }) | { status: string }; 
 }
 
+
 export default function AddTaskModal({ onClose, onAddTask, initialTask }: AddTaskModalProps) {
-  
+  const { t } = useTranslation();
+  const { accessToken } = useAppSelector((state) => state.auth);
+  const [patient, setPatient] = useState<any[]>([]);
+  const [loading,setLoading] = useState<boolean>(false)
   const isEditing = initialTask && 'id' in initialTask;
+
+  const normalizeStatus = (status: string): Status => {
+  const cleaned = status.replace(/\s/g, "").toUpperCase();
+
+  if (cleaned === "TODO") return "TODO";
+  if (cleaned === "INPROGRESS") return "IN_PROGRESS";
+  if (cleaned === "DONE") return "DONE";
+
+  return "TODO"; // fallback
+};
+
+
+
   const initialData: FormData = {
-    title: isEditing ? (initialTask as Task).title : '',
-    description: isEditing ? (initialTask as Task).description : '',
-    status: initialTask?.status || 'To Do',
-    priority: isEditing ? (initialTask as Task).priority : 'Medium',
-    dueDate: isEditing ? (initialTask as Task).dueDate : '',
-  };
+      title: isEditing ? (initialTask as Task).title : '',
+      description: isEditing ? (initialTask as Task).description : '',
+      patientId: '',
+      insuranceId: '',
+      status: initialTask?.status ? normalizeStatus(initialTask.status) : 'TODO',
+      priority: isEditing
+        ? ((initialTask as Task).priority.toUpperCase() as Priority)
+        : 'LOW',
+      dueDate: isEditing
+        ? new Date((initialTask as Task).dueDate).toISOString().split('T')[0]
+        : '',
+    };
+
 
   const [formData, setFormData] = useState<FormData>(initialData);
+  const [errors, setErrors] = useState<TaskFormErrors>({});
 
   useEffect(() => {
     setFormData(initialData);
-  }, [initialTask]); 
+  }, [initialTask]);
+
+  useEffect(() => {
+  const fetchPatients = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/doctor/patient/all`,
+        {
+          headers: { Authorization: `Bearer ${accessToken}` },
+          withCredentials: true,
+        }
+      );
+
+      setPatient(response.data.data.patients); 
+      
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchPatients();
+}, []);
+
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -52,10 +128,114 @@ export default function AddTaskModal({ onClose, onAddTask, initialTask }: AddTas
     }));
   };
 
-  const handleSubmit = () => {
-    onAddTask(formData); 
-    onClose(); 
+  
+const validateTask = (): boolean => {
+  const newErrors: TaskFormErrors = {};
+
+  // Title
+  if (!formData.title.trim()) newErrors.title = "Title is required";
+
+  // Description
+  if (!formData.description.trim()) newErrors.description = "Description is required";
+
+  // Status
+  if (!formData.status) newErrors.status = "Status is required";
+
+  // Priority
+  if (!formData.priority) newErrors.priority = "Priority is required";
+
+  // Due Date
+  if (!formData.dueDate) newErrors.dueDate = "Due date is required";
+
+  // 🔥 Insurance ID validation
+  if (!formData.insuranceId.trim()) {
+    newErrors.insuranceId = "Insurance ID is required";
+  } else if (!formData.patientId) {
+    newErrors.insuranceId = "No patient found with this Insurance ID";
+  }
+
+  setErrors(newErrors);
+  return Object.keys(newErrors).length === 0;
+};
+const handleInsuranceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const insuranceId = e.target.value;
+
+  setFormData(prev => ({
+    ...prev,
+    insuranceId,
+  }));
+
+  const matchedPatient = patient.find(
+    (p) => p.insuranceId === insuranceId
+  );
+
+  if (matchedPatient) {
+    setFormData(prev => ({
+      ...prev,
+      patientId: matchedPatient.id, 
+    }));
+    setErrors(prev => ({ ...prev, patientId: undefined }));
+  } else {
+    setFormData(prev => ({
+      ...prev,
+      patientId: '',
+    }));
+  }
+};
+
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  if (!validateTask()) return;
+
+  const payload = {
+    title: formData.title,
+    description: formData.description,
+    status: formData.status,
+    priority: formData.priority,
+    dueDate: formData.dueDate,
+    patientId: formData.patientId,
+    insuranceId: formData.insuranceId,
   };
+  console.log(payload)
+
+  try {
+    setLoading(true)
+    let response;
+
+    if (isEditing && initialTask?.id) {
+      // PATCH = Update Task
+      response = await axios.patch(
+        `${import.meta.env.VITE_API_URL}/doctor/task/update/${initialTask.id}`,
+        payload,
+        { headers: { Authorization: `Bearer ${accessToken}` } }
+      );
+    } else {
+      // POST = Create Task
+      response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/doctor/task/create`,
+        payload,
+        { headers: { Authorization: `Bearer ${accessToken}` } }
+      );
+    }
+    
+    toast.success(response.data.message || "Task saved successfully");
+    
+    // Update parent list
+    onAddTask(response.data.data.task);
+    window.location.reload();
+    onClose();
+    // setLoading(true);
+  } catch (error: any) {
+    if (axios.isAxiosError(error) && error.response) {
+      toast.error(error.response.data.message || "Server error");
+    } else {
+      toast.error("An unexpected error occurred");
+    }
+  }finally{
+    setLoading(false)
+  }
+};
+
 
   // const labelClass = "block text-base font-medium text-[#171c35] mb-2";
 
@@ -73,10 +253,14 @@ export default function AddTaskModal({ onClose, onAddTask, initialTask }: AddTas
         <div className="bg-gray-200 px-3 sm:px-6 py-3 sm:py-4 flex items-center justify-between border-b border-gray-300 flex-shrink-0">
           <div className="flex-1 min-w-0 pr-2 sm:pr-4">
             <h2 className="text-base sm:text-lg font-semibold text-[#171C35] truncate">
-              {isEditing ? 'Edit Task' : 'Add Task'}
+              {isEditing 
+                ? t('dashboard.routes.taskList.addTaskModal.titleEdit') 
+                : t('dashboard.routes.taskList.addTaskModal.titleAdd')}
             </h2>
             <p className="text-xs sm:text-sm text-[#667085] mt-0.5">
-              {isEditing ? 'Modify the task details below' : 'Add a new task to your list, fill in the details below'}
+              {isEditing 
+                ? t('dashboard.routes.taskList.addTaskModal.subtitleEdit') 
+                : t('dashboard.routes.taskList.addTaskModal.subtitleAdd')}
             </p>
           </div>
           <button
@@ -91,68 +275,119 @@ export default function AddTaskModal({ onClose, onAddTask, initialTask }: AddTas
         <div className="p-3 sm:p-6 space-y-4 overflow-y-auto flex-1 min-h-[200px]">
           {/* Title */}
           <div>
-            <label className="block text-sm sm:text-base font-medium text-[#171C35] mb-1 sm:mb-2">Title</label>
+            <label className="block text-sm sm:text-base font-medium text-[#171C35] mb-1 sm:mb-2">
+              {t('dashboard.routes.taskList.addTaskModal.labels.title')}
+            </label>
             <input
               type="text"
               name="title"
-              placeholder="Task title"
+              placeholder={t('dashboard.routes.taskList.addTaskModal.placeholders.title')}
               value={formData.title}
               onChange={handleChange}
               className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white border border-gray-300 rounded-xl text-sm sm:text-sm text-[#171c35] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#526fff] focus:border-transparent"
             />
+            {errors.title && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.title}
+                </p>
+            )}
           </div>
 
           {/* Description */}
           <div>
-            <label className="block text-sm sm:text-base font-medium text-[#171C35] mb-1 sm:mb-2">Description</label>
+            <label className="block text-sm sm:text-base font-medium text-[#171C35] mb-1 sm:mb-2">
+              {t('dashboard.routes.taskList.addTaskModal.labels.description')}
+            </label>
             <textarea
               name="description"
-              placeholder="Details..."
+              placeholder={t('dashboard.routes.taskList.addTaskModal.placeholders.description')}
               value={formData.description}
               onChange={handleChange}
               rows={4}
               className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white border border-gray-300 rounded-xl text-sm sm:text-sm text-[#171c35] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#526fff] focus:border-transparent resize-none"
             />
+            {errors.description && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.description}
+                </p>
+            )}
           </div>
+
+          {/* Patient Id */}
+
+          <div>
+            <label className="block text-sm sm:text-base font-medium text-[#171c35] mb-1 sm:mb-2">
+              Insurance ID
+            </label>
+
+            <input
+              type="text"
+              name="insuranceId"
+              placeholder="Enter Insurance ID"
+              value={formData.insuranceId}
+              onChange={handleInsuranceChange}
+              className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white border border-gray-300 rounded-xl"
+            />
+
+            {errors.insuranceId && (
+              <p className="text-red-500 text-sm mt-1">
+                Patient not found for this Insurance ID
+              </p>
+            )}
+          </div>
+
 
           {/* Status and Priority */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <div>
-              <label className="block text-sm sm:text-base font-medium text-[#171c35] mb-1 sm:mb-2">Status</label>
+              <label className="block text-sm sm:text-base font-medium text-[#171c35] mb-1 sm:mb-2">
+                {t('dashboard.routes.taskList.addTaskModal.labels.status')}
+              </label>
               <div className="relative">
                 <select
                   name="status"
                   value={formData.status}
-                  onChange={handleChange}
+                  onChange={e => setFormData({ ...formData, status: e.target.value as Status })}
                   className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white border border-gray-300 rounded-xl text-sm sm:text-sm text-[#171c35] focus:outline-none focus:ring-2 focus:ring-[#526fff] focus:border-transparent appearance-none cursor-pointer"
                 >
-                  <option>To Do</option>
-                  <option>In Progress</option>
-                  <option>Done</option>
+                  <option value="TODO">{t('dashboard.routes.taskList.addTaskModal.statusOptions.todo')}</option>
+                  <option value="IN_PROGRESS">{t('dashboard.routes.taskList.addTaskModal.statusOptions.inProgress')}</option>
+                  <option value="DONE">{t('dashboard.routes.taskList.addTaskModal.statusOptions.done')}</option>
                 </select>
+                {errors.status && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.status}
+                </p>
+            )}
                 <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm sm:text-base font-medium text-[#171c35] mb-1 sm:mb-2">Priority</label>
+              <label className="block text-sm sm:text-base font-medium text-[#171c35] mb-1 sm:mb-2">
+                {t('dashboard.routes.taskList.addTaskModal.labels.priority')}
+              </label>
               <div className="relative">
                 <select
                   name="priority"
                   value={formData.priority}
-                  onChange={(e) =>
-                    setFormData({ ...formData, priority: e.target.value as 'High' | 'Medium' | 'Low' })
-                  }
+                  onChange={e => setFormData({ ...formData, priority: e.target.value as Priority })}
                   className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white border border-gray-300 rounded-xl text-sm sm:text-sm text-[#171c35] focus:outline-none focus:ring-2 focus:ring-[#526fff] focus:border-transparent appearance-none cursor-pointer"
                 >
-                  <option value="Low">Low</option>
-                  <option value="Medium">Medium</option>
-                  <option value="High">High</option>
+                  <option value="LOW">{t('dashboard.routes.taskList.addTaskModal.priorityOptions.low')}</option>
+                  <option value="MEDIUM">{t('dashboard.routes.taskList.addTaskModal.priorityOptions.medium')}</option>
+                  <option value="HIGH">{t('dashboard.routes.taskList.addTaskModal.priorityOptions.high')}</option>
                 </select>
+                {errors.priority && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.priority}
+                </p>
+            )}
                 <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
               </div>
             </div>
           </div>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             {/* Patient ID */}
             
@@ -167,6 +402,9 @@ export default function AddTaskModal({ onClose, onAddTask, initialTask }: AddTas
                 className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white border border-gray-300 rounded-xl text-sm sm:text-sm text-[#171c35] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#526fff] focus:border-transparent"
               />
             </div>
+
+
+       
           </div>
 
           {/* Buttons */}
@@ -176,14 +414,17 @@ export default function AddTaskModal({ onClose, onAddTask, initialTask }: AddTas
               onClick={onClose}
               className="w-full sm:flex-1 px-4 py-2.5 bg-white border border-gray-300 text-[#111a2d] rounded-xl text-sm font-medium hover:bg-gray-50 transition-colors cursor-pointer"
             >
-              Cancel
+              {t('dashboard.routes.taskList.addTaskModal.buttons.cancel')}
             </button>
             <button
               type="button"
               onClick={handleSubmit}
               className="w-full sm:flex-1 px-4 py-2.5 bg-[#526FFF] text-white rounded-xl text-sm font-medium hover:bg-[#4159CC] transition-colors cursor-pointer"
             >
-              {isEditing ? 'Save Changes' : 'Submit'}
+              {loading ? 'Submitting...' :
+                isEditing 
+                  ? t('dashboard.routes.taskList.addTaskModal.buttons.saveChanges') 
+                  : t('dashboard.routes.taskList.addTaskModal.buttons.submit')}
             </button>
           </div>
         </div>
@@ -191,7 +432,6 @@ export default function AddTaskModal({ onClose, onAddTask, initialTask }: AddTas
     </div>
   );
 }
-
 
 
 

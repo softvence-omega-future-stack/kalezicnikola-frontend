@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import RevenueCollection from './RevenueCollection';
 
 interface BillingSettings {
@@ -7,7 +8,9 @@ interface BillingSettings {
   supportEmail: string;
 }
 
-const BellingSetting: React.FC = () => {
+const BillingSetting: React.FC = () => {
+  const { t } = useTranslation();
+
   const [settings, setSettings] = useState<BillingSettings>({
     autoGenerateInvoices: false,
     sendInvoiceEmails: false,
@@ -30,7 +33,7 @@ const BellingSetting: React.FC = () => {
 
   const handleSave = () => {
     console.log('Saving billing settings:', settings);
-    alert('Billing settings saved successfully!');
+    alert(t('adminDashboard.routes.settings.tabs.billing.saveButton'));
   };
 
   return (
@@ -41,10 +44,10 @@ const BellingSetting: React.FC = () => {
         {/* Header */}
         <div className="mb-6">
           <h1 className="text-lg sm:text-xl font-semibold text-headingBlack">
-            Platform Billing Configuration
+            {t('adminDashboard.routes.settings.tabs.billing.title')}
           </h1>
           <p className="text-sm sm:text-base text-subHeadingBlack">
-            Manage payment gateway and billing settings
+            {t('adminDashboard.routes.settings.tabs.billing.description')}
           </p>
         </div>
 
@@ -53,25 +56,25 @@ const BellingSetting: React.FC = () => {
           {/* Payment Gateway */}
           <div>
             <h2 className="text-base font-medium text-headingBlack mb-2">
-              Payment Gateway
+              {t('adminDashboard.routes.settings.tabs.billing.paymentGateway.title')}
             </h2>
             <div className="bg-white rounded-lg border border-[#E8E8E8] p-4 sm:p-6">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div>
                   <h3 className="text-base sm:text-lg font-semibold text-headingBlack mb-1">
-                    Stripe
+                    {t('adminDashboard.routes.settings.tabs.billing.paymentGateway.stripe.name')}
                   </h3>
                   <p className="text-sm sm:text-base text-subHeadingBlack">
-                    Connected and active
+                    {t('adminDashboard.routes.settings.tabs.billing.paymentGateway.stripe.status')}
                   </p>
                 </div>
 
                 <div className="flex items-center gap-2 sm:gap-3">
                   <button className="px-4 py-2 border border-gray-200 rounded-full text-xs sm:text-sm font-medium text-subHeadingBlack hover:bg-gray-50">
-                    Configure
+                    {t('adminDashboard.routes.settings.tabs.billing.paymentGateway.stripe.configureButton')}
                   </button>
                   <span className="px-4 sm:px-6 py-2 bg-[#526FFF1A] text-[#526FFF] rounded-full text-xs sm:text-sm font-semibold">
-                    Active
+                    {t('adminDashboard.routes.settings.tabs.billing.paymentGateway.stripe.activeBadge')}
                   </span>
                 </div>
               </div>
@@ -81,7 +84,7 @@ const BellingSetting: React.FC = () => {
           {/* Invoice Setting */}
           <div>
             <h2 className="text-base font-medium text-headingBlack mb-2">
-              Invoice Setting
+              {t('adminDashboard.routes.settings.tabs.billing.invoiceSettings.title')}
             </h2>
 
             <div className="bg-white rounded-lg border border-[#E8E8E8] divide-y">
@@ -90,10 +93,10 @@ const BellingSetting: React.FC = () => {
               <div className="p-4 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                 <div>
                   <h3 className="text-sm sm:text-lg font-semibold text-headingBlack mb-1">
-                    Auto-generate invoices
+                    {t('adminDashboard.routes.settings.tabs.billing.invoiceSettings.autoGenerate.label')}
                   </h3>
                   <p className="text-sm sm:text-base text-subHeadingBlack">
-                    Automatically create invoices for subscriptions
+                    {t('adminDashboard.routes.settings.tabs.billing.invoiceSettings.autoGenerate.description')}
                   </p>
                 </div>
 
@@ -115,10 +118,10 @@ const BellingSetting: React.FC = () => {
               <div className="p-4 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                 <div>
                   <h3 className="text-sm sm:text-lg font-semibold text-headingBlack mb-1">
-                    Send invoice emails
+                    {t('adminDashboard.routes.settings.tabs.billing.invoiceSettings.sendEmails.label')}
                   </h3>
                   <p className="text-sm sm:text-base text-subHeadingBlack">
-                    Email invoices to customers automatically
+                    {t('adminDashboard.routes.settings.tabs.billing.invoiceSettings.sendEmails.description')}
                   </p>
                 </div>
 
@@ -141,21 +144,21 @@ const BellingSetting: React.FC = () => {
           {/* Billing Support Email */}
           <div>
             <h2 className="text-base font-medium text-headingBlack mb-2">
-              Billing Support Email
+              {t('adminDashboard.routes.settings.tabs.billing.supportEmail.title')}
             </h2>
 
             <input
               type="email"
               value={settings.supportEmail}
               onChange={handleEmailChange}
-              placeholder="billing@saas.com"
+              placeholder={t('adminDashboard.routes.settings.tabs.billing.supportEmail.placeholder')}
               className="w-full px-4 py-3 bg-white border border-[#E8E8E8] rounded-lg text-sm text-gray-900 placeholder-[#667085] focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
           {/* Description */}
           <p className="text-sm sm:text-base text-subHeadingBlack">
-            Email invoices to customers automatically
+            {t('adminDashboard.routes.settings.tabs.billing.supportEmail.description')}
           </p>
 
           {/* Save button */}
@@ -163,7 +166,7 @@ const BellingSetting: React.FC = () => {
             onClick={handleSave}
             className="px-5 sm:px-6 py-3 bg-[#526FFF] rounded-lg text-sm sm:text-base font-semibold text-white w-full sm:w-auto cursor-pointer"
           >
-            Save Billing Setting
+            {t('adminDashboard.routes.settings.tabs.billing.saveButton')}
           </button>
         </div>
       </div>
@@ -176,4 +179,4 @@ const BellingSetting: React.FC = () => {
   );
 };
 
-export default BellingSetting;
+export default BillingSetting;

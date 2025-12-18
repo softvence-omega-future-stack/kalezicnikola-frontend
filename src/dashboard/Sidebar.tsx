@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate, useLocation, Link } from "react-router-dom";
 import { X } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 import icon from "../assets/svgIcon/logo.svg";
 import logo from "../assets/svgIcon/textLogo.svg";
@@ -66,7 +67,7 @@ interface NavItemProps {
     closeMobileMenu?: () => void;
     badge?: number;
     className?: string; 
-    customActive?: (pathname: string) => boolean; // new prop for custom active logic
+    customActive?: (pathname: string) => boolean;
 }
 
 const NavItem: React.FC<NavItemProps> = ({ to, label, iconSrc, onClick, collapsed, closeMobileMenu, badge, className, customActive }) => {
@@ -134,9 +135,9 @@ interface UpgradeCardProps {
 }
 
 const UpgradeCard: React.FC<UpgradeCardProps> = ({ collapsed }) => {
+    const { t } = useTranslation();
     const subscriptionTotalMinutes = 1535;
     const [usedMinutes, setUsedMinutes] = useState(1035);
-    //const remainingMinutes = subscriptionTotalMinutes - usedMinutes;
     const percentage = (usedMinutes / subscriptionTotalMinutes) * 100;
     const navigate = useNavigate();
 
@@ -147,15 +148,15 @@ const UpgradeCard: React.FC<UpgradeCardProps> = ({ collapsed }) => {
             <div className="bg-gray-200 p-3 rounded-lg">
                 <div className="mb-1">
                     <div className="flex justify-start gap-2 sm:gap-4 items-center flex-wrap">
-                        <span className="text-[#171C35] font-semibold text-base">Upgrade to</span>
+                        <span className="text-[#171C35] font-semibold text-base">{t('dashboard.sidebar.upgradeCard.upgradeTo')}</span>
                         <span className="text-sm font-medium px-2 py-0.5 rounded-full bg-subHeadingBlack text-white whitespace-nowrap">
-                            PRO
+                            {t('dashboard.sidebar.upgradeCard.proBadge')}
                         </span>
                     </div>
-                    <span className="text-xl sm:text-2xl font-semibold text-[#171C35] block mt-1">Basic</span>
+                    <span className="text-xl sm:text-2xl font-semibold text-[#171C35] block mt-1">{t('dashboard.sidebar.upgradeCard.currentPlan')}</span>
                 </div>
                 <p className="text-xs sm:text-sm font-medium text-gray-800 mb-2">
-                    {usedMinutes} / {subscriptionTotalMinutes} Minutes Used
+                    {usedMinutes} / {subscriptionTotalMinutes} {t('dashboard.sidebar.upgradeCard.minutesUsed')}
                 </p>
                 <div
                     className="w-full bg-gray-300 rounded-full h-1.5 mb-3 cursor-pointer"
@@ -172,15 +173,12 @@ const UpgradeCard: React.FC<UpgradeCardProps> = ({ collapsed }) => {
                         style={{ width: `${percentage}%` }}
                     />
                 </div>
-                <button
-                    className="w-full bg-subHeadingBlack text-white text-xs font-semibold py-2 sm:py-2 rounded-lg cursor-pointer hover:bg-gray-900 transition-colors mt-2"
-    //    onClick={() =>
-    //     navigate('/dashboard/settings?tab=Subscription', { state: { subscriptionTab: 'manage' } })
-    // }
-    onClick={() => navigate('/dashboard/settings?tab=Subscription&subtab=manage')}
-                >
-                    {/* {remainingMinutes}  */} Upgrade
-                </button>
+              <button
+    className="w-full bg-subHeadingBlack text-white text-xs font-semibold py-2 sm:py-2 rounded-lg cursor-pointer hover:bg-gray-900 transition-colors mt-2"
+    onClick={() => navigate('/dashboard/settings?tab=subscription&subtab=manage')}
+>
+    {t('dashboard.sidebar.upgradeCard.upgradeButton')}
+</button>
             </div>
         </div>
     );
@@ -194,6 +192,7 @@ interface UserSidebarProps {
 }
 
 const Sidebar: React.FC<UserSidebarProps> = ({ onLogoutClick, collapsed, onToggle, closeMobileMenu }) => {
+    const { t } = useTranslation();
     const sidebarWidth = collapsed ? "w-[80px]" : "w-[280px]";
 
     return (
@@ -204,36 +203,36 @@ const Sidebar: React.FC<UserSidebarProps> = ({ onLogoutClick, collapsed, onToggl
             <div>
                 <Logo collapsed={collapsed} onToggle={onToggle} closeMobileMenu={closeMobileMenu} />
                 <nav className="flex flex-col mt-2 gap-2">
-                    <NavItem to="/dashboard" iconSrc={dashbord} label="Dashboard" collapsed={collapsed} closeMobileMenu={closeMobileMenu} />
+                    <NavItem to="/dashboard" iconSrc={dashbord} label={t('dashboard.sidebar.navigation.dashboard')} collapsed={collapsed} closeMobileMenu={closeMobileMenu} />
                     <NavItem 
                         to="/dashboard/call_logs" 
                         iconSrc={callLogs} 
-                        label="Call Logs" 
+                        label={t('dashboard.sidebar.navigation.callLogs')} 
                         collapsed={collapsed} 
                         closeMobileMenu={closeMobileMenu} 
                         badge={5} 
                     />
-                    <NavItem to="/dashboard/calendar" iconSrc={calendar} label="Calendar" collapsed={collapsed} closeMobileMenu={closeMobileMenu} />
+                    <NavItem to="/dashboard/calendar" iconSrc={calendar} label={t('dashboard.sidebar.navigation.calendar')} collapsed={collapsed} closeMobileMenu={closeMobileMenu} />
                     <NavItem 
                         to="/dashboard/patients" 
                         iconSrc={patients} 
-                        label="Patients" 
+                        label={t('dashboard.sidebar.navigation.patients')} 
                         collapsed={collapsed} 
                         closeMobileMenu={closeMobileMenu}
                         customActive={(pathname) => pathname.startsWith("/dashboard/patients")} 
                     />
-                    <NavItem to="/dashboard/tasks" iconSrc={tasks} label="Tasks" collapsed={collapsed} closeMobileMenu={closeMobileMenu} />
-                    <NavItem to="/dashboard/supports" iconSrc={supports} label="Supports" collapsed={collapsed} closeMobileMenu={closeMobileMenu} />
+                    <NavItem to="/dashboard/tasks" iconSrc={tasks} label={t('dashboard.sidebar.navigation.tasks')} collapsed={collapsed} closeMobileMenu={closeMobileMenu} />
+                    <NavItem to="/dashboard/supports" iconSrc={supports} label={t('dashboard.sidebar.navigation.supports')} collapsed={collapsed} closeMobileMenu={closeMobileMenu} />
                 </nav>
             </div>
 
             <div className="flex flex-col">
                 <UpgradeCard collapsed={collapsed} />
                 <div className="flex flex-col p-4 space-y-4">
-                    <NavItem to="/dashboard/settings" iconSrc={settings} label="Settings" collapsed={collapsed} closeMobileMenu={closeMobileMenu} />
+                    <NavItem to="/dashboard/settings" iconSrc={settings} label={t('dashboard.sidebar.navigation.settings')} collapsed={collapsed} closeMobileMenu={closeMobileMenu} />
                     <NavItem
                         iconSrc={logout}
-                        label="Logout"
+                        label={t('dashboard.sidebar.navigation.logout')}
                         onClick={onLogoutClick}
                         collapsed={collapsed}
                         closeMobileMenu={closeMobileMenu}
@@ -246,7 +245,6 @@ const Sidebar: React.FC<UserSidebarProps> = ({ onLogoutClick, collapsed, onToggl
 };
 
 export default Sidebar;
-
 
 
 

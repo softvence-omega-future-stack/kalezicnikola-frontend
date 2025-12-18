@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { ChevronDown, Check } from "lucide-react";
 import Toggle from "@/common/Toggle";
+import { useTranslation } from "react-i18next";
 
 interface DropdownOption {
   value: string;
@@ -22,10 +23,14 @@ interface Settings {
   bufferTime: string;
 }
 
-// Only boolean fields for Toggle
 type BooleanField = "allowOnlineBooking" | "requireApproval" | "sendReminders";
 
-function CustomDropdown({ value, onChange, options, placeholder = "Select" }: {
+function CustomDropdown({
+  value,
+  onChange,
+  options,
+  placeholder = "Select",
+}: {
   value: string;
   onChange: (val: string) => void;
   options: DropdownOption[];
@@ -72,7 +77,9 @@ function CustomDropdown({ value, onChange, options, placeholder = "Select" }: {
           {selectedLabel || placeholder}
         </span>
         <ChevronDown
-          className={`w-5 h-5 text-gray-500 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+          className={`w-5 h-5 text-gray-500 transition-transform duration-200 ${
+            open ? "rotate-180" : ""
+          }`}
         />
       </div>
 
@@ -97,7 +104,9 @@ function CustomDropdown({ value, onChange, options, placeholder = "Select" }: {
                   setOpen(false);
                 }}
                 className={`px-4 py-2.5 text-sm cursor-pointer transition-colors flex items-center justify-between ${
-                  opt.value === value ? "bg-blue-50 text-[#526FFF] font-medium" : "text-[#111a2d] hover:bg-gray-100"
+                  opt.value === value
+                    ? "bg-blue-50 text-[#526FFF] font-medium"
+                    : "text-[#111a2d] hover:bg-gray-100"
                 }`}
               >
                 {opt.label}
@@ -112,6 +121,7 @@ function CustomDropdown({ value, onChange, options, placeholder = "Select" }: {
 }
 
 export default function Performances() {
+  const { t } = useTranslation();
   const [settings, setSettings] = useState<Settings>({
     timezone: "",
     dateFormat: "",
@@ -134,11 +144,10 @@ export default function Performances() {
 
   const handleSaveChanges = () => {
     console.log("Saving Settings:", settings);
-    setToastMessage("Settings saved successfully!");
+    setToastMessage(t("dashboard.routes.settings.settingsSidebar.tabs.performances.toast.settingsSaved"));
     setTimeout(() => setToastMessage(null), 3000);
   };
 
-  // ✅ Reusable ToggleSwitch for boolean fields
   const ToggleSwitch: React.FC<{ field: BooleanField; label: string }> = ({ field, label }) => (
     <div className="flex items-center">
       <Toggle enabled={settings[field]} onToggle={() => handleToggle(field)} />
@@ -156,156 +165,156 @@ export default function Performances() {
       <div className="rounded-3xl p-6 md:p-8 lg:pb-10">
         {/* Regional Settings */}
         <div className="mb-8">
-          <h1 className="text-xl font-semibold text-[#171C35] mb-1">Regional Settings</h1>
-          <p className="text-sm font-medium text-gray-600">Configure time, date, and regional preferences</p>
+          <h1 className="text-xl font-semibold text-[#171C35] mb-1">
+            {t("dashboard.routes.settings.settingsSidebar.tabs.performances.regionalSettings.title")}
+          </h1>
+          <p className="text-sm font-medium text-gray-600">
+            {t("dashboard.routes.settings.settingsSidebar.tabs.performances.regionalSettings.description")}
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          <div>
-            <label className="block text-base font-medium text-[#111A2D] mb-2">Timezone</label>
-            <CustomDropdown
-              value={settings.timezone}
-              onChange={(val) => setSettings({ ...settings, timezone: val })}
-              placeholder="Select your timezone"
-              options={[
-                { value: "pst", label: "Pacific Standard Time (PST) UTC-8" },
-                { value: "est", label: "Eastern Standard Time (EST) UTC-5" },
-                { value: "gmt", label: "Greenwich Mean Time (GMT) UTC+0" },
-                { value: "bd", label: "Bangladesh Standard Time (BST) UTC+6" },
-              ]}
-            />
-          </div>
-
-          <div>
-            <label className="block text-base font-medium text-[#111A2D] mb-2">Date Format</label>
-            <CustomDropdown
-              value={settings.dateFormat}
-              onChange={(val) => setSettings({ ...settings, dateFormat: val })}
-              placeholder="Select your date format"
-              options={[
-                { value: "mdy", label: "MM/DD/YYYY (US)" },
-                { value: "dmy", label: "DD/MM/YYYY (EU)" },
-                { value: "ymd", label: "YYYY-MM-DD (ISO)" },
-              ]}
-            />
-          </div>
-
-          <div>
-            <label className="block text-base font-medium text-[#111A2D] mb-2">Time Format</label>
-            <CustomDropdown
-              value={settings.timeFormat}
-              onChange={(val) => setSettings({ ...settings, timeFormat: val })}
-              placeholder="Select your time format"
-              options={[
-                { value: "12h", label: "12 Hour (AM/PM)" },
-                { value: "24h", label: "24 Hour (Military)" },
-              ]}
-            />
-          </div>
-
-          <div>
-            <label className="block text-base font-medium text-[#111A2D] mb-2">Language</label>
-            <CustomDropdown
-              value={settings.language}
-              onChange={(val) => setSettings({ ...settings, language: val })}
-              placeholder="Select Language"
-              options={[
-                { value: "en", label: "English" },
-                { value: "es", label: "Spanish" },
-                { value: "fr", label: "French" },
-                { value: "bn", label: "বাংলা (Bengali)" },
-              ]}
-            />
-          </div>
+          {[
+            { key: "timezone", optionsKey: "timezoneOptions" },
+            { key: "dateFormat", optionsKey: "dateFormatOptions" },
+            { key: "timeFormat", optionsKey: "timeFormatOptions" },
+            { key: "language", optionsKey: "languageOptions" },
+          ].map((item) => (
+            <div key={item.key}>
+              <label className="block text-base font-medium text-[#111A2D] mb-2">
+                {t(
+                  `dashboard.routes.settings.settingsSidebar.tabs.performances.regionalSettings.${item.key}`
+                )}
+              </label>
+              <CustomDropdown
+                value={settings[item.key as keyof Settings] as string}
+                onChange={(val) =>
+                  setSettings({ ...settings, [item.key]: val })
+                }
+                placeholder={t(
+                  `dashboard.routes.settings.settingsSidebar.tabs.performances.regionalSettings.${item.key}`
+                )}
+                options={Object.entries(
+                  t(
+                    `dashboard.routes.settings.settingsSidebar.tabs.performances.regionalSettings.${item.optionsKey}`,
+                    { returnObjects: true }
+                  )
+                ).map(([value, label]) => ({ value, label }))}
+              />
+            </div>
+          ))}
         </div>
 
         {/* Calendar Preferences */}
         <div className="mb-8 border-t pt-6 border-gray-100">
-          <h2 className="text-lg font-semibold text-[#171C35] mb-6">Calendar Preferences</h2>
+          <h2 className="text-lg font-semibold text-[#171C35] mb-6">
+            {t(
+              "dashboard.routes.settings.settingsSidebar.tabs.performances.calendarPreferences.title"
+            )}
+          </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label className="block text-base font-medium text-[#171C35] mb-2">Default Calendar View</label>
+          {[
+            { key: "calendarView", optionsKey: "calendarViewOptions" },
+            { key: "appointmentDuration", optionsKey: "appointmentDurationOptions" },
+          ].map((item) => (
+            <div className="mb-4" key={item.key}>
+              <label className="block text-base font-medium text-[#171C35] mb-2">
+                {t(
+                  `dashboard.routes.settings.settingsSidebar.tabs.performances.calendarPreferences.${item.key}`
+                )}
+              </label>
               <CustomDropdown
-                value={settings.calendarView}
-                onChange={(val) => setSettings({ ...settings, calendarView: val })}
-                options={[
-                  { value: "Day", label: "Day" },
-                  { value: "Week", label: "Week" },
-                  { value: "Month", label: "Month" },
-                  { value: "Agenda", label: "Agenda (List)" },
-                ]}
+                value={settings[item.key as keyof Settings] as string}
+                onChange={(val) =>
+                  setSettings({ ...settings, [item.key]: val })
+                }
+                options={Object.entries(
+                  t(
+                    `dashboard.routes.settings.settingsSidebar.tabs.performances.calendarPreferences.${item.optionsKey}`,
+                    { returnObjects: true }
+                  )
+                ).map(([value, label]) => ({ value, label }))}
               />
             </div>
-
-            <div>
-              <label className="block text-base font-medium text-[#171C35] mb-2">Default Appointment Duration</label>
-              <CustomDropdown
-                value={settings.appointmentDuration}
-                onChange={(val) => setSettings({ ...settings, appointmentDuration: val })}
-                options={[
-                  { value: "15 min..", label: "15 minutes" },
-                  { value: "30 min..", label: "30 minutes (Standard)" },
-                  { value: "45 min..", label: "45 minutes" },
-                  { value: "60 min..", label: "Hourly" },
-                ]}
-              />
-            </div>
-          </div>
+          ))}
         </div>
 
         {/* Online Booking & Reminders */}
         <div className="mb-8 border-t pt-6 border-gray-100">
-          <h2 className="text-lg font-semibold text-[#171C35] mb-6">Online Booking & Reminders</h2>
+          <h2 className="text-lg font-semibold text-[#171C35] mb-6">
+            {t(
+              "dashboard.routes.settings.settingsSidebar.tabs.performances.onlineBookingReminders.title"
+            )}
+          </h2>
 
           <div className="space-y-4 mb-6">
-            <ToggleSwitch field="allowOnlineBooking" label="Allow patients to book appointments online" />
-            <ToggleSwitch field="requireApproval" label="Require manual approval for online bookings" />
-            <ToggleSwitch field="sendReminders" label="Send automatic appointment reminders" />
+            <ToggleSwitch
+              field="allowOnlineBooking"
+              label={t(
+                "dashboard.routes.settings.settingsSidebar.tabs.performances.onlineBookingReminders.allowOnlineBooking"
+              )}
+            />
+            <ToggleSwitch
+              field="requireApproval"
+              label={t(
+                "dashboard.routes.settings.settingsSidebar.tabs.performances.onlineBookingReminders.requireApproval"
+              )}
+            />
+            <ToggleSwitch
+              field="sendReminders"
+              label={t(
+                "dashboard.routes.settings.settingsSidebar.tabs.performances.onlineBookingReminders.sendReminders"
+              )}
+            />
           </div>
 
-          <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 transition-opacity duration-300 ${settings.sendReminders ? "opacity-100" : "opacity-50 pointer-events-none"}`}>
-            <div>
-              <label className="block text-sm font-medium text-[#111a2d] mb-2">Reminder Time</label>
-              <CustomDropdown
-                value={settings.reminderTime}
-                onChange={(val) => setSettings({ ...settings, reminderTime: val })}
-                options={[
-                  { value: "1 hour before", label: "1 hour before" },
-                  { value: "4 hours before", label: "4 hours before" },
-                  { value: "24 hours before", label: "24 hours before (Recommended)" },
-                  { value: "48 hours before", label: "48 hours before" },
-                ]}
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-[#111a2d] mb-2">Buffer Time Between Appointments</label>
-              <CustomDropdown
-                value={settings.bufferTime}
-                onChange={(val) => setSettings({ ...settings, bufferTime: val })}
-                options={[
-                  { value: "5 minutes", label: "5 minutes" },
-                  { value: "10 minutes", label: "10 minutes" },
-                  { value: "15 minutes", label: "15 minutes (Standard Cleanup)" },
-                  { value: "30 minutes", label: "30 minutes" },
-                ]}
-              />
-            </div>
+          <div
+            className={`grid grid-cols-1 md:grid-cols-2 gap-6 transition-opacity duration-300 ${
+              settings.sendReminders ? "opacity-100" : "opacity-50 pointer-events-none"
+            }`}
+          >
+            {[
+              { key: "reminderTime", optionsKey: "reminderTimeOptions" },
+              { key: "bufferTime", optionsKey: "bufferTimeOptions" },
+            ].map((item) => (
+              <div key={item.key}>
+                <label className="block text-sm font-medium text-[#111a2d] mb-2">
+                  {t(
+                    `dashboard.routes.settings.settingsSidebar.tabs.performances.onlineBookingReminders.${item.key}`
+                  )}
+                </label>
+                <CustomDropdown
+                  value={settings[item.key as keyof Settings] as string}
+                  onChange={(val) =>
+                    setSettings({ ...settings, [item.key]: val })
+                  }
+                  options={Object.entries(
+                    t(
+                      `dashboard.routes.settings.settingsSidebar.tabs.performances.onlineBookingReminders.${item.optionsKey}`,
+                      { returnObjects: true }
+                    )
+                  ).map(([value, label]) => ({ value, label }))}
+                />
+              </div>
+            ))}
           </div>
         </div>
 
         {/* Buttons */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-6 border-t border-gray-200">
           <button className="w-full h-12 text-base font-medium text-[#111a2d] bg-white border cursor-pointer border-gray-300 rounded-xl hover:bg-gray-50 transition-colors">
-            Cancel
+            {t(
+              "dashboard.routes.settings.settingsSidebar.tabs.performances.buttons.cancel"
+            )}
           </button>
 
           <button
             onClick={handleSaveChanges}
             className="w-full h-12 text-base font-medium text-white bg-[#526FFF] cursor-pointer rounded-xl hover:bg-[#4158D9] transition-colors"
           >
-            Save Changes
+            {t(
+              "dashboard.routes.settings.settingsSidebar.tabs.performances.buttons.saveChanges"
+            )}
           </button>
         </div>
       </div>

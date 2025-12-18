@@ -107,7 +107,7 @@
 //     <CommonSpace className="">
 //       <div className="">
 //         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-//           {statsCards.map((card, index) => (
+//           {adminDashboard.routes.bellingSubs.bellingCards.statsCards.map((card, index) => (
 //             <StatsCard key={index} card={card} maskId={`statsMask${index}`} />
 //           ))}
 //         </div>
@@ -118,7 +118,9 @@
 
 // export default BellingCard;
 
+import React from 'react';
 import arrow from '../../../assets/svgIcon/arrowRight.svg';
+import { useTranslation } from 'react-i18next';
 
 // CommonSpace Component
 const CommonSpace = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
@@ -129,40 +131,20 @@ const CommonSpace = ({ children, className = "" }: { children: React.ReactNode; 
   );
 };
 
-const statsCards = [
-  {
-    title: "Total Revenue",
-    value: "$1,847,320",
-    lastMonth: "Last month +18.4%",
-    bgColor: "#E1DCF4",
-  },
-  {
-    title: "Monthly Recurring Revenue",
-    value: "$1,457,320",
-    lastMonth: "Last month +18.4%",
-    bgColor: "#D0E1F5",
-  },
-  {
-    title: "Active Subscriptions",
-    value: "$1,455,320",
-    lastMonth: "Last month +18.4%",
-    bgColor: "#FADACA",
-  },
-  {
-    title: "Pending Invoices",
-    value: "51",
-    lastMonth: "Last month -12.5%",
-    bgColor: "#CACDFA",
-  },
-];
-
 // FIXED cutout dimensions
 const cutoutWidth = 42;
 const cutoutHeight = 46;
 const curveRadius = 20;
 const smallCurveRadius = 20;
 
-const StatsCard = ({ card }: { card: (typeof statsCards)[0] }) => {
+interface StatsCardProps {
+  title: string;
+  value: string;
+  lastMonth: string;
+  bgColor: string;
+}
+
+const StatsCard = ({ card }: { card: StatsCardProps }) => {
   return (
     <div className="relative w-full" style={{ height: '150px' }}>
       {/* Background with fixed cutout */}
@@ -170,7 +152,6 @@ const StatsCard = ({ card }: { card: (typeof statsCards)[0] }) => {
         className="absolute inset-0 rounded-[16px]"
         style={{ backgroundColor: card.bgColor }}
       >
-        {/* Fixed size cutout container */}
         <div 
           className="absolute bottom-0 right-0"
           style={{
@@ -178,7 +159,6 @@ const StatsCard = ({ card }: { card: (typeof statsCards)[0] }) => {
             height: cutoutHeight + curveRadius,
           }}
         >
-          {/* Main cutout */}
           <div 
             className="absolute bottom-0 right-0 bg-[#F3F6F6]"
             style={{
@@ -187,8 +167,6 @@ const StatsCard = ({ card }: { card: (typeof statsCards)[0] }) => {
               borderTopLeftRadius: curveRadius,
             }}
           />
-          
-          {/* Top curve connector */}
           <div 
             className="absolute right-0 bg-[#F3F6F6]"
             style={{
@@ -207,8 +185,6 @@ const StatsCard = ({ card }: { card: (typeof statsCards)[0] }) => {
               borderBottomRightRadius: smallCurveRadius,
             }}
           />
-          
-          {/* Left curve connector */}
           <div 
             className="absolute bottom-0 bg-[#F3F6F6]"
             style={{
@@ -233,36 +209,18 @@ const StatsCard = ({ card }: { card: (typeof statsCards)[0] }) => {
       {/* Content overlay */}
       <div className="relative w-full h-full p-4 flex flex-col justify-between">
         <div>
-
-
-          {/* Title */}
           <h3 className="text-lg font-semibold text-headingBlack mb-1">{card.title}</h3>
-  </div>
-<div>
-
-        {/* Subtitle */}
-         
- <span className="text-3xl font-medium text-headingBlack">{card.value}</span>
-             <p className="text-sm text-subHeadingBlack opacity-70 ">{card.lastMonth}</p>
         </div>
-       
-        
-        
-
-       
+        <div>
+          <span className="text-3xl font-medium text-headingBlack">{card.value}</span>
+          <p className="text-sm text-subHeadingBlack opacity-70">{card.lastMonth}</p>
+        </div>
 
         {/* FIXED position arrow button */}
-        <div
-          className="absolute"
-          style={{
-            bottom: 5,
-            right: 5,
-          }}
-        >
+        <div className="absolute" style={{ bottom: 5, right: 5 }}>
           <div className="h-8 w-8 bg-gray-900 rounded-full flex items-center justify-center">
-            <img src={arrow} alt="" />
+            <img src={arrow} alt="arrow" />
           </div>
-
         </div>
       </div>
     </div>
@@ -270,14 +228,42 @@ const StatsCard = ({ card }: { card: (typeof statsCards)[0] }) => {
 };
 
 const BillingCard = () => {
+  const { t } = useTranslation('');
+
+  // Map JSON statsCards dynamically from i18n
+  const statsCards: StatsCardProps[] = [
+    {
+      title: t('adminDashboard.routes.bellingSubs.bellingCards.statsCards.0.title'),
+      value: t('adminDashboard.routes.bellingSubs.bellingCards.statsCards.0.value'),
+      lastMonth: t('adminDashboard.routes.bellingSubs.bellingCards.statsCards.0.lastMonth'),
+      bgColor: '#E1DCF4',
+    },
+    {
+      title: t('adminDashboard.routes.bellingSubs.bellingCards.statsCards.1.title'),
+      value: t('adminDashboard.routes.bellingSubs.bellingCards.statsCards.1.value'),
+      lastMonth: t('adminDashboard.routes.bellingSubs.bellingCards.statsCards.1.lastMonth'),
+      bgColor: '#D0E1F5',
+    },
+    {
+      title: t('adminDashboard.routes.bellingSubs.bellingCards.statsCards.2.title'),
+      value: t('adminDashboard.routes.bellingSubs.bellingCards.statsCards.2.value'),
+      lastMonth: t('adminDashboard.routes.bellingSubs.bellingCards.statsCards.2.lastMonth'),
+      bgColor: '#FADACA',
+    },
+    {
+      title: t('adminDashboard.routes.bellingSubs.bellingCards.statsCards.3.title'),
+      value: t('adminDashboard.routes.bellingSubs.bellingCards.statsCards.3.value'),
+      lastMonth: t('adminDashboard.routes.bellingSubs.bellingCards.statsCards.3.lastMonth'),
+      bgColor: '#CACDFA',
+    },
+  ];
+
   return (
-    <CommonSpace className="">
-      <div className="">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-          {statsCards.map((card, index) => (
-            <StatsCard key={index} card={card} />
-          ))}
-        </div>
+    <CommonSpace>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        {statsCards.map((card, index) => (
+          <StatsCard key={index} card={card} />
+        ))}
       </div>
     </CommonSpace>
   );

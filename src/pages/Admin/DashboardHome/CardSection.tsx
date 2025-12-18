@@ -85,14 +85,7 @@
 
 
 import { ArrowUpRight } from "lucide-react";
-
-const statsCards = [
-  { title: "Total MRR", value: "$284", change: "+12.5%", color: "#D0E1F5" },
-  { title: "New MRR", value: "$184", change: "+12.5%", color: "#FADACA" },
-  { title: "Churn MRR", value: "$54", change: "+12.5%", color: "#F5DFF1" },
-  { title: "Net Expansion MRR", value: "$284", change: "+12.5%", color: "#CACDFA" },
-  { title: "Customer Churn Rate", value: "$28", change: "+12.5%", color: "#D0E1F5" },
-];
+import { useTranslation } from "react-i18next";
 
 // FIXED cutout dimensions
 const cutoutWidth = 48;
@@ -100,13 +93,25 @@ const cutoutHeight = 52;
 const curveRadius = 20;
 const smallCurveRadius = 20;
 
-const StatCard = ({ stat }: { stat: typeof statsCards[0] }) => {
+interface StatCardData {
+  key: string;
+  color: string;
+}
+
+const StatCard = ({ statKey, color }: { statKey: string; color: string }) => {
+  const { t } = useTranslation();
+  
+  const title = t(`adminDashboard.routes.dashboard.cardSection.stats.${statKey}.title`);
+  const value = t(`adminDashboard.routes.dashboard.cardSection.stats.${statKey}.value`);
+  const change = t(`adminDashboard.routes.dashboard.cardSection.stats.${statKey}.change`);
+  const lastMonth = t("adminDashboard.routes.dashboard.cardSection.lastMonth");
+
   return (
     <div className="relative w-full h-[180px]">
       {/* Background with fixed cutout using CSS */}
       <div 
         className="absolute inset-0 rounded-[24px]"
-        style={{ backgroundColor: stat.color }}
+        style={{ backgroundColor: color }}
       >
         {/* Fixed size cutout container - positioned from BOTTOM-RIGHT */}
         <div 
@@ -141,7 +146,7 @@ const StatCard = ({ stat }: { stat: typeof statsCards[0] }) => {
               width: smallCurveRadius,
               height: smallCurveRadius,
               bottom: cutoutHeight,
-              backgroundColor: stat.color,
+              backgroundColor: color,
               borderBottomRightRadius: smallCurveRadius,
             }}
           />
@@ -161,7 +166,7 @@ const StatCard = ({ stat }: { stat: typeof statsCards[0] }) => {
               width: smallCurveRadius,
               height: smallCurveRadius,
               right: cutoutWidth,
-              backgroundColor: stat.color,
+              backgroundColor: color,
               borderBottomRightRadius: smallCurveRadius,
             }}
           />
@@ -172,15 +177,15 @@ const StatCard = ({ stat }: { stat: typeof statsCards[0] }) => {
       <div className="relative w-full h-full p-5 flex flex-col justify-between">
         {/* Title at top */}
         <p className="text-base font-semibold text-[#171C35]">
-          {stat.title}
+          {title}
         </p>
 
         {/* Amount and Last month at bottom */}
         <div className="pb-2">
           <p className="text-[32px] font-medium text-[#171C35] leading-none mb-1">
-            {stat.value}
+            {value}
           </p>
-          <p className="text-sm text-[#111A2D]">Last month {stat.change}</p>
+          <p className="text-sm text-[#111A2D]">{lastMonth} {change}</p>
         </div>
 
         {/* FIXED position arrow button */}
@@ -201,11 +206,19 @@ const StatCard = ({ stat }: { stat: typeof statsCards[0] }) => {
 };
 
 const CardSection = () => {
+  const statsCards: StatCardData[] = [
+    { key: "totalMRR", color: "#D0E1F5" },
+    { key: "newMRR", color: "#FADACA" },
+    { key: "churnMRR", color: "#F5DFF1" },
+    { key: "netExpansionMRR", color: "#CACDFA" },
+    { key: "customerChurnRate", color: "#D0E1F5" },
+  ];
+
   return (
     <div className="py-4">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 md:gap-5">
         {statsCards.map((stat, index) => (
-          <StatCard key={index} stat={stat} />
+          <StatCard key={index} statKey={stat.key} color={stat.color} />
         ))}
       </div>
     </div>

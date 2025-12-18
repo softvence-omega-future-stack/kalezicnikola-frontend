@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import tricjcircle from "../../../../../assets/svgIcon/tickcircle.svg";
 import type { TabType } from "./SubscriptionOverview";
 
@@ -23,9 +24,10 @@ const usagePercentage =
 
 export default function CurrentPlan({ setActiveTab }: ManageSubscriptionProps) {
   const plan = CURRENT_PLAN_DATA;
+  const { t } = useTranslation();
 
   const handleCancel = () => {
-    alert("Cancel Current Plan button clicked!");
+    alert(t("dashboard.routes.settings.settingsSidebar.tabs.subscriptionOverview.subTabs.currentPlanTab.buttons.cancelPlan") + " clicked!");
   };
 
   return (
@@ -35,16 +37,16 @@ export default function CurrentPlan({ setActiveTab }: ManageSubscriptionProps) {
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8 gap-4">
           <div className="flex items-center gap-3">
             <h2 className="text-xl font-semibold text-[#171c35]">
-              Current Plan
+              {t("dashboard.routes.settings.settingsSidebar.tabs.subscriptionOverview.subTabs.currentPlanTab.title")}
             </h2>
             <span className="px-4 py-1.5 text-base text-[#526FFF] border border-[#526FFF] rounded-full bg-[#DCE2FF]">
-              Professional
+              {t("dashboard.routes.settings.settingsSidebar.tabs.subscriptionOverview.subTabs.currentPlanTab.badge")}
             </span>
           </div>
 
           <div className="flex items-center gap-3">
             <span className="text-base font-semibold text-[#171c35]">
-              Payment method
+              {t("dashboard.routes.settings.settingsSidebar.tabs.subscriptionOverview.subTabs.currentPlanTab.paymentMethod")}
             </span>
             <button>
               <img
@@ -59,9 +61,13 @@ export default function CurrentPlan({ setActiveTab }: ManageSubscriptionProps) {
         {/* Price Section */}
         <div className="mb-6">
           <div className="flex flex-col md:flex-row items-baseline gap-2 text-[#171C35] text-base">
-            <span className="text-sm text-[#171c35]">Started From</span>
-            <span className="text-4xl font-semibold text-[#171c35]">899€</span>
-            <span className="text-sm text-gray-600">/Per Month</span>
+            <span className="text-sm text-[#171c35]">
+              {t("dashboard.routes.settings.settingsSidebar.tabs.subscriptionOverview.subTabs.currentPlanTab.startedFrom")}
+            </span>
+            <span className="text-4xl font-semibold text-[#171c35]">{plan.price}€</span>
+            <span className="text-sm text-gray-600">
+              {t("dashboard.routes.settings.settingsSidebar.tabs.subscriptionOverview.subTabs.currentPlanTab.perMonth")}
+            </span>
           </div>
         </div>
 
@@ -70,64 +76,57 @@ export default function CurrentPlan({ setActiveTab }: ManageSubscriptionProps) {
           <div className="flex items-center gap-3">
             <img src={tricjcircle} alt="" />
             <span className="text-base text-[#111A2D]">
-             
-             AI Voicebot setup & configuration
-        
-      
-       
-       
-        
-        
+              {t("dashboard.routes.settings.settingsSidebar.tabs.subscriptionOverview.subTabs.currentPlanTab.features.voicebotSetup")}
             </span>
           </div>
           <div className="flex items-center gap-3">
             <img src={tricjcircle} alt="" />
             <span className="text-base text-[#171c35]">
-              24/7 availability & call handling
+              {t("dashboard.routes.settings.settingsSidebar.tabs.subscriptionOverview.subTabs.currentPlanTab.features.availability")}
             </span>
           </div>
           <div className="flex items-center gap-3">
             <img src={tricjcircle} alt="" />
             <span className="text-base text-[#171c35]">
-               Intelligent triage & task creation
+              {t("dashboard.routes.settings.settingsSidebar.tabs.subscriptionOverview.subTabs.currentPlanTab.features.triage")}
             </span>
           </div>
           <div className="flex items-center gap-3">
             <img src={tricjcircle} alt="" />
             <span className="text-base text-[#171c35]">
-               4000 call minutes / month included
+              {t("dashboard.routes.settings.settingsSidebar.tabs.subscriptionOverview.subTabs.currentPlanTab.features.minutesIncluded")}
             </span>
           </div>
           <div className="flex items-center gap-3">
             <img src={tricjcircle} alt="" />
             <span className="text-base text-[#171c35]">
-                €0.30 per extra minute
+              {t("dashboard.routes.settings.settingsSidebar.tabs.subscriptionOverview.subTabs.currentPlanTab.features.extraMinute")}
             </span>
           </div>
           <div className="flex items-center gap-3">
             <img src={tricjcircle} alt="" />
             <span className="text-base text-[#171c35]">
-               Multilingual (25+ languages)
+              {t("dashboard.routes.settings.settingsSidebar.tabs.subscriptionOverview.subTabs.currentPlanTab.features.multilingual")}
             </span>
           </div>
           <div className="flex items-center gap-3">
             <img src={tricjcircle} alt="" />
             <span className="text-base text-[#171c35]">
-               Prioritized email and live chat support
+              {t("dashboard.routes.settings.settingsSidebar.tabs.subscriptionOverview.subTabs.currentPlanTab.features.support")}
             </span>
           </div>
         </div>
 
         {/* Credits Card */}
         <div className="border border-[#E8E8E8] rounded-2xl p-6 mb-6">
-          <div className="flex  flex-col md:flex-row justify-between items-center mb-6">
+          <div className="flex flex-col md:flex-row justify-between items-center mb-6">
             <span className="px-4 py-1.5 text-base text-[#008933] bg-[#0089331A] rounded-full font-medium">
-              Active
+              {t("dashboard.routes.settings.settingsSidebar.tabs.subscriptionOverview.subTabs.currentPlanTab.statusActive")}
             </span>
 
             <div className="text-right flex flex-col md:flex-row py-3 md:py-0 items-center gap-2">
               <p className="text-sm text-[#171c35] mb-1">
-                Subscription end date:
+                {t("dashboard.routes.settings.settingsSidebar.tabs.subscriptionOverview.subTabs.currentPlanTab.subscriptionEndDate")}
               </p>
               <p className="text-sm font-medium text-[#A052FF] bg-[#A052FF1A] px-4 py-2 rounded-[8px]">
                 {plan.subscriptionEnd}
@@ -169,15 +168,18 @@ export default function CurrentPlan({ setActiveTab }: ManageSubscriptionProps) {
 
               <div>
                 <h3 className="text-xl md:text-2xl font-semibold text-[#171c35] mb-1">
-                  {minutesRemaining} minutes left
+                  {t("dashboard.routes.settings.settingsSidebar.tabs.subscriptionOverview.subTabs.currentPlanTab.minutesLeft", { count: minutesRemaining })}
                 </h3>
                 <p className="text-base text-[#171C35]">
-                  {plan.minutesUsed}/{plan.totalMinutes} minutes used
+                  {t("dashboard.routes.settings.settingsSidebar.tabs.subscriptionOverview.subTabs.currentPlanTab.minutesUsed", { 
+                    used: plan.minutesUsed, 
+                    total: plan.totalMinutes 
+                  })}
                 </p>
               </div>
             </div>
 
-            <div className="text-2xl  font-semibold text-[#171c35]">0.00€</div>
+            <div className="text-2xl font-semibold text-[#171c35]">0.00€</div>
           </div>
         </div>
 
@@ -187,14 +189,14 @@ export default function CurrentPlan({ setActiveTab }: ManageSubscriptionProps) {
             onClick={handleCancel}
             className="w-full px-6 py-3 text-sm font-medium text-[#171c35] bg-white border border-gray-300 rounded-[8px] cursor-pointer"
           >
-            Cancel Current Plan
+            {t("dashboard.routes.settings.settingsSidebar.tabs.subscriptionOverview.subTabs.currentPlanTab.buttons.cancelPlan")}
           </button>
 
           <button
             onClick={() => setActiveTab("manage")}
             className="w-full px-6 py-3 text-sm font-medium text-white bg-[#526FFF] rounded-[8px] cursor-pointer"
           >
-            Upgrade Plan
+            {t("dashboard.routes.settings.settingsSidebar.tabs.subscriptionOverview.subTabs.currentPlanTab.buttons.upgradePlan")}
           </button>
         </div>
       </div>

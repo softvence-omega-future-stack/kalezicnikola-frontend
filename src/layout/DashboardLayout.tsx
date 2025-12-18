@@ -1,8 +1,10 @@
 import UserMainHeader from "@/dashboard/components/dashboard/DashboardMainHeader";
 import UserSidebar from "@/dashboard/Sidebar";
 import LogoutModal from "@/pages/Admin/Logout/LogoutPopup";
+
 import { logout } from "@/store/features/auth/auth.slice";
 import { useAppDispatch } from "@/store/hook";
+
 import { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 
@@ -13,13 +15,16 @@ const DashboardLayout = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
+
+
     const toggleSidebar = (newState: boolean) => setIsSidebarCollapsed(newState);
 
     const handleLogoutClick = () => {
-        navigate("/dashboard");
+        navigate("/dashboard"); // Ensure we are on dashboard before logout
         setShowLogoutModal(true);
         setMobileMenuOpen(false);
     };
+
 
     return (
         <div className="flex h-screen bg-[#F3F6F6] overflow-hidden" style={{ fontFamily: "Urbanist, sans-serif" }}>
@@ -70,7 +75,10 @@ const DashboardLayout = () => {
                         onConfirm={() => {
                             dispatch(logout());
                             setShowLogoutModal(false);
+
                             navigate("/login");
+
+                          
                         }}
                         onCancel={() => setShowLogoutModal(false)}
                     />

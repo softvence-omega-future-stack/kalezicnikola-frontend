@@ -137,9 +137,6 @@ body {
   }
 }
 
-
-
-
 .swiper-pagination {
   bottom: 0px !important;
   display: flex;
@@ -162,4 +159,17 @@ body {
   height: 8px;
   background: #3b82f6; /* blue like your theme */
   border-radius: 9999px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.loader {
+  border-width: 4px;
+  border-style: solid;
+  border-color: blue transparent blue transparent;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  animation: spin 1s linear infinite;
 }

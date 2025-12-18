@@ -3,6 +3,7 @@ import CurrentPaln from "./CurrentPaln";
 import ManageSubscription from "./ManageSubscription";
 import Invoices from "./Invoices";
 import { useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export type TabType = "current-plan" | "manage" | "invoices";
 
@@ -13,19 +14,16 @@ interface Props {
 export default function SubscriptionOverview({
   initialTab = "current-plan",
 }: Props) {
-  // const [activeTab, setActiveTab] = useState<TabType>("manage");
-  // const location = useLocation();
-  // console.log(location.search)
-
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState<TabType>("manage");
   const location = useLocation();
+
   useEffect(() => {
     setActiveTab(initialTab);
   }, [initialTab]);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
-
     const tab = urlParams.get("tab") as TabType;
     const subtab = urlParams.get("subtab") as TabType;
 
@@ -34,23 +32,21 @@ export default function SubscriptionOverview({
     }
   }, [location.search]);
 
-  console.log(initialTab, location.search);
-
   return (
-    <div className="min-h-screen bg-white rounded-2xl p-4 ">
+    <div className="min-h-screen bg-white rounded-2xl p-4">
       <h1 className="text-lg font-semibold text-[#171c35] mb-6">
-        Subscription Overview
+        {t("dashboard.routes.settings.settingsSidebar.tabs.subscriptionOverview.title")}
       </h1>
 
       {/* Tabs */}
-      <div className="flex flex-wrap gap-2 mb-2 bg-[#FAFAFA] rounded-2xl py-3 px-4 ">
+      <div className="flex flex-wrap gap-2 mb-2 bg-[#FAFAFA] rounded-2xl py-3 px-4">
         <button
           onClick={() => setActiveTab("current-plan")}
           className={`px-6 py-3 text-md font-normal rounded-[12px] transition-colors cursor-pointer ${
             activeTab === "current-plan" ? "bg-[#DCE2FF] text-[#171c35]" : ""
           }`}
         >
-          Current Plan
+          {t("dashboard.routes.settings.settingsSidebar.tabs.subscriptionOverview.subTabs.currentPlan")}
         </button>
 
         <button
@@ -59,7 +55,7 @@ export default function SubscriptionOverview({
             activeTab === "manage" ? "bg-[#DCE2FF] text-[#171c35]" : ""
           }`}
         >
-          Manage Subscription
+          {t("dashboard.routes.settings.settingsSidebar.tabs.subscriptionOverview.subTabs.manageSubscription")}
         </button>
 
         <button
@@ -68,12 +64,12 @@ export default function SubscriptionOverview({
             activeTab === "invoices" ? "bg-[#DCE2FF] text-[#171c35]" : ""
           }`}
         >
-          Invoices
+          {t("dashboard.routes.settings.settingsSidebar.tabs.subscriptionOverview.subTabs.invoices")}
         </button>
       </div>
 
       {/* Tab Content */}
-      <div className="bg-white rounded-2xl p-3 md:p-2 cursor-pointer ">
+      <div className="bg-white rounded-2xl p-3 md:p-2 cursor-pointer">
         {activeTab === "current-plan" && (
           <CurrentPaln setActiveTab={setActiveTab} />
         )}
@@ -85,6 +81,7 @@ export default function SubscriptionOverview({
     </div>
   );
 }
+
 
 // import { useState } from 'react';
 // import CurrentPaln from './CurrentPaln';

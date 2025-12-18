@@ -7,8 +7,9 @@ import { useNavigate } from 'react-router-dom';
 import homeIcon from '../../../assets/svgIcon/homeIcon.svg';
 import chevronIcon from '../../../assets/svgIcon/chevronnRight.svg';
 import listIcon from '../../../assets/svgIcon/listIcon.svg';
-import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 import { useAppSelector } from '@/store/hook';
+import axios from 'axios';
 
 type ViewMode = 'list' | 'grid';
 
@@ -19,14 +20,18 @@ export default function PatientsView() {
   const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0, width: 0 });
   const dropdownButtonRef = useRef<HTMLButtonElement>(null);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const views: { type: ViewMode; label: string; icon: React.ReactNode }[] = [
-    { type: 'list', label: 'List', icon: <List className="w-5 h-5" /> },
-    { type: 'grid', label: 'Grid', icon: <Grid className="w-5 h-5" /> },
+    { type: 'list', label: t('dashboard.routes.patients.buttons.list'), icon: <List className="w-5 h-5" /> },
+    { type: 'grid', label: t('dashboard.routes.patients.buttons.grid'), icon: <Grid className="w-5 h-5" /> },
   ];
+
   const [patients, setPatients] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+ 
+  const [totalPatients, setTotalPatients] = useState(0);
 
   useEffect(() => {
     const fetchPatients = async () => {
@@ -39,11 +44,14 @@ export default function PatientsView() {
             headers: { Authorization: `Bearer ${accessToken}` },
           }
         );
-
+        if(response.data.data.patients.length === 0){
+          setError("No patients found. Please add a patient.");
+        }
         setPatients(response.data.data.patients);
+        setTotalPatients(response.data.data.pagination.total);
       } catch (error) {
         console.log(error);
-        setError("Failed to load patients");
+        setError('No User Found. Please try again later.');
       } finally {
         setLoading(false);
       }
@@ -51,7 +59,6 @@ export default function PatientsView() {
 
     fetchPatients();
   }, []);
-
 
   // Update dropdown position when opened
   useEffect(() => {
@@ -84,14 +91,23 @@ export default function PatientsView() {
 
   return (
     <div style={{ fontFamily: 'Urbanist, sans-serif' }} className="min-h-screen p-4 md:mt-[10px]">
+      {loading && (
+          <div className="fixed inset-0 bg-black opacity-60 flex items-center justify-center z-[9999]">
+            <div className="loader border-4 border-blue-500 border-t-transparent rounded-full w-12 h-12 animate-spin"></div>
+          </div>
+      )}
       {/* Breadcrumb */}
       <div className="">
         <div className='flex items-center gap-2 px-2 md:px-0 text-sm text-gray-600 mb-6'>
           <img src={homeIcon} alt="" className="w-4 h-4" />
           <img src={chevronIcon} alt="" />
-          <span onClick={() => navigate('/dashboard')} className='cursor-pointer'>Dashboard</span>
+          <span onClick={() => navigate('/dashboard')} className='cursor-pointer'>
+            {t('dashboard.routes.patients.breadcrumb.dashboard')}
+          </span>
           <img src={chevronIcon} alt="" />
-          <span className="font-semibold text-sm text-[#171C35]">Patients</span>
+          <span className="font-semibold text-sm text-[#171C35]">
+            {t('dashboard.routes.patients.breadcrumb.patients')}
+          </span>
         </div>
       </div>
 
@@ -100,7 +116,9 @@ export default function PatientsView() {
         <div className="p-6 mb-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 w-full">
             {/* Title */}
-            <h1 className="text-xl font-semibold text-[#171C35]">Total 60 Patients</h1>
+            <h1 className="text-xl font-semibold text-[#171C35]">
+              {t('dashboard.routes.patients.totalPatients', { count: patients.length })}
+            </h1>
 
             {/* Button Group */}
             <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
@@ -110,9 +128,9 @@ export default function PatientsView() {
                 className="w-full sm:w-auto flex items-center gap-2 px-4 py-2.5 bg-[#DCE2FF] text-[#171C35] rounded-[8px] font-medium transition-colors cursor-pointer justify-center"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <path d="M6.66634 0.833008V12.4997M0.833008 6.66634H12.4997" stroke="#171C35" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M6.66634 0.833008V12.4997M0.833008 6.66634H12.4997" stroke="#171C35" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
-                <span>Add Patient</span>
+                <span>{t('dashboard.routes.patients.buttons.addPatient')}</span>
               </button>
 
               {/* List/Grid Dropdown */}
@@ -123,7 +141,7 @@ export default function PatientsView() {
                   className="w-full sm:w-auto flex items-center gap-2 px-4 py-2.5 bg-white border border-[#D0D5DD] rounded-[8px] text-gray-700 font-medium hover:bg-gray-50 transition-colors cursor-pointer justify-center"
                 >
                   {viewMode === 'list' ? <img src={listIcon} alt="" className="cursor-pointer" /> : <Grid />}
-                  <span>{viewMode === 'list' ? 'List' : 'Grid'}</span>
+                  <span>{viewMode === 'list' ? t('dashboard.routes.patients.buttons.list') : t('dashboard.routes.patients.buttons.grid')}</span>
                   <ChevronDown className="w-4 h-4" />
                 </button>
               </div>
@@ -133,8 +151,15 @@ export default function PatientsView() {
 
         {/* Content */}
         <div>
+          {
+            patients.length === 0 && !loading && !error ? (
+              <p className="p-4 text-center text-gray-600">
+                No patients found. Please add a patient.
+              </p>
+            ) : null
+          }
           {viewMode === 'list'
-            ? <ListView patients={patients} loading={loading} error={error} />
+            ? <ListView patients={patients} loading={loading} error={error} totalPatients={totalPatients} />
             : <GridView patients={patients} loading={loading} error={error} />
           }
         </div>
@@ -161,8 +186,9 @@ export default function PatientsView() {
                 setViewMode(v.type);
                 setDropdownOpen(false);
               }}
-              className={`w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center justify-between cursor-pointer ${viewMode === v.type ? 'font-semibold' : ''
-                }`}
+              className={`w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center justify-between cursor-pointer ${
+                viewMode === v.type ? 'font-semibold' : ''
+              }`}
             >
               <div className="flex items-center gap-2">
                 {v.icon}

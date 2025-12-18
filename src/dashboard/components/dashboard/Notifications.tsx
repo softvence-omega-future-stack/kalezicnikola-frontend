@@ -1,5 +1,6 @@
 import React from 'react';
 import { X } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 interface Notification {
   id: string;
@@ -26,23 +27,23 @@ const notifications: Notification[] = [
 ];
 
 const NotificationsModal: React.FC<NotificationsModalProps> = ({ onClose }) => {
+  const { t } = useTranslation();
+
   return (
     <div
-      style={{ 
-        fontFamily: 'Urbanist, sans-serif',
-        position: 'fixed',
-        zIndex: 9999 
-      }}
+      style={{ fontFamily: 'Urbanist, sans-serif', position: 'fixed', zIndex: 9999 }}
       className="fixed inset-0 flex items-start justify-end bg-black/30 p-4 pt-20 sm:pt-24"
       onClick={onClose}
     >
-      <div 
+      <div
         className="bg-white rounded-xl w-full max-w-md overflow-hidden relative shadow-xl"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
         <div className="flex justify-between items-center px-6 py-4 border-b border-gray-200">
-          <h2 className="text-2xl font-semibold text-[#171C35]">Notifications</h2>
+          <h2 className="text-2xl font-semibold text-[#171C35]">
+            {t("dashboard.mainHeader.notificationModal.title")}
+          </h2>
           <button 
             onClick={onClose} 
             className="p-2 hover:bg-gray-100 rounded-lg text-gray-600 transition cursor-pointer"
@@ -70,7 +71,7 @@ const NotificationsModal: React.FC<NotificationsModalProps> = ({ onClose }) => {
                 </div>
               </div>
               <div className="text-right">
-                <p className="text-sm font-medium text-[#171C35]">{n.timeAgo}</p>
+                <p className="text-sm font-medium text-[#171C35]">{t(`dashboard.mainHeader.notificationModal.timeAgo`, { time: n.timeAgo })}</p>
                 <p className="text-sm font-medium text-[#111A2D]">{n.date}</p>
               </div>
             </div>

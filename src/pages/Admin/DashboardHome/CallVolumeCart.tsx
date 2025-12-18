@@ -1,4 +1,5 @@
 import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { useTranslation } from "react-i18next";
 
 interface CallData {
   day: string;
@@ -12,20 +13,22 @@ const callVolumeData: CallData[] = [
   { day: 'MON', calls: 80 },
   { day: 'TUE', calls: 75, date: '12-Jan-2025 • Friday', highlighted: true },
   { day: 'WED', calls: 45 },
-  { day: 'THU', calls: 58  },
+  { day: 'THU', calls: 58 },
   { day: 'FRI', calls: 65 },
   { day: 'SAT', calls: 78 },
 ];
 
 const CallvolumeChart = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="rounded-3xl p-4 mt-4 bg-white w-full">
       {/* Header */}
       <h3 className="text-xl font-semibold text-headingBlack">
-        AI Voicebot Call Volume
+        {t("adminDashboard.routes.dashboard.callVolumeSection.title")}
       </h3>
       <p className="text-[#667085] font-medium text-sm mb-4">
-        Daily call volume trend (last 7 days)
+        {t("adminDashboard.routes.dashboard.callVolumeSection.description")}
       </p>
 
       {/* Chart */}
@@ -42,7 +45,6 @@ const CallvolumeChart = () => {
               </linearGradient>
             </defs>
 
-            {/* Only horizontal border */}
             <CartesianGrid vertical={false} stroke="#E6EDEE" />
 
             <XAxis
@@ -68,7 +70,6 @@ const CallvolumeChart = () => {
               formatter={(value) => `${value}%`}
             />
 
-            
             <Area
               type="monotone"
               dataKey="calls"
