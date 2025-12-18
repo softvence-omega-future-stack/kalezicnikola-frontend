@@ -524,16 +524,41 @@
     }
   }
     },
-    "profile": {
-      "name": "Keren nix",
-      "degree": "MBBS, M.D. Cardiology",
-      "edit": "Edit",
-      "email": "Email",
-      "phone": "Phone",
-      "experience": "Experience",
-      "years": "years",
-      "address": "Address"
-    }
+"profile": {
+  "name": "Dr. {{firstName}} {{lastName}}",
+  "degree": "",
+  "edit": "Edit",
+  "2FAEnabled": "2FA Enabled",
+  "emailVerified": "Email Verified",
+  "email": "Email",
+  "phone": "Phone",
+  "experience": "Experience",
+  "years": "Years",
+  "address": "Address",
+  "gender": "Gender",
+  "licenseNumber": "License Number",
+  "dateofBirth": "Date of Birth",
+  "lastLogin": "Last Login",
+  "accountCreated": "Account Created",
+  "lastUpdated": "Last Updated"
+},
+
+    "editModal": {
+  "title": "Edit Profile",
+  "firstName": "First Name",
+  "lastName": "Last Name",
+  "phone": "Mobile Number",
+  "address": "Address",
+  "experience": "Experience (in years)",
+  "saveButton": "Save Profile",
+  "saveing": "Saving...",
+  "cancelButton": "Cancel",
+  "specialist": "Specialty (comma-separated)",
+  "licenseNumber": "License Number",
+  "dateofBirth": "Date of Birth",
+  "gender": "Gender"
+}
+
   },
  "sidebar": {
     "navigation": {

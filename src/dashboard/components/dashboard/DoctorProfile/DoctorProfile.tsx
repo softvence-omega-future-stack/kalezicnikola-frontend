@@ -145,19 +145,19 @@ export default function DoctorProfile() {
                 {/* Credentials Section */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                   <div>
-                    <p className="text-sm text-[#111a2d] mb-1">{t('Email')}</p>
+                    <p className="text-sm text-[#111a2d] mb-1">{t('dashboard.doctorProfile.profile.email')}</p>
                     <p className="text-sm sm:text-base font-semibold text-[#171c35] truncate">
                       {profileData.email}
                     </p>
                   </div>
                   <div>
-                    <p className="text-sm text-[#111a2d] mb-1">{t('Phone')}</p>
+                    <p className="text-sm text-[#111a2d] mb-1">{t('dashboard.doctorProfile.profile.phone')}</p>
                     <p className="text-sm sm:text-base font-semibold text-[#171c35]">
                       {profileData.phone || 'N/A'}
                     </p>
                   </div>
                   <div>
-                    <p className="text-sm text-[#111a2d] mb-1">{t('Experience')}</p>
+                    <p className="text-sm text-[#111a2d] mb-1">{t('dashboard.doctorProfile.profile.experience')}</p>
                     <p className="text-sm sm:text-base font-semibold text-[#171c35]">
                       {profileData.experience || 'N/A'}
                     </p>
@@ -169,49 +169,49 @@ export default function DoctorProfile() {
                     </p>
                   </div>
                   <div>
-                    <p className="text-sm text-[#111a2d] mb-1">{t('Gender')}</p>
+                    <p className="text-sm text-[#111a2d] mb-1">{t('dashboard.doctorProfile.profile.gender')}</p>
                     <p className="text-sm sm:text-base font-semibold text-[#171c35]">
                       {profileData.gender || 'N/A'}
                     </p>
                   </div>
                   <div>
-                    <p className="text-sm text-[#111a2d] mb-1">{t('Address')}</p>
+                    <p className="text-sm text-[#111a2d] mb-1">{t('dashboard.doctorProfile.profile.address')}</p>
                     <p className="text-sm sm:text-base font-semibold text-[#171c35] break-words">
                       {profileData.address || 'N/A'}
                     </p>
                   </div>
                   <div>
-                    <p className="text-sm text-[#111a2d] mb-1">{t('License Number')}</p>
+                    <p className="text-sm text-[#111a2d] mb-1">{t('dashboard.doctorProfile.profile.licenseNumber')}</p>
                     <p className="text-sm sm:text-base font-semibold text-[#171c35]">
                       {profileData.licenceNo || 'N/A'}
                     </p>
                   </div>
                   <div>
-                    <p className="text-sm text-[#111a2d] mb-1">{t('Email Verified')}</p>
+                    <p className="text-sm text-[#111a2d] mb-1">{t('dashboard.doctorProfile.profile.emailVerified')}</p>
                     <p className="text-sm sm:text-base font-semibold text-[#171c35]">
                       {profileData.emailVerifiedAt ? 'Yes' : 'No'}
                     </p>
                   </div>
                   <div>
-                    <p className="text-sm text-[#111a2d] mb-1">{t('2FA Enabled')}</p>
+                    <p className="text-sm text-[#111a2d] mb-1">{t('dashboard.doctorProfile.profile.2FAEnabled')}</p>
                     <p className="text-sm sm:text-base font-semibold text-[#171c35]">
                       {profileData.twoFactorEnabled ? 'Yes' : 'No'}
                     </p>
                   </div>
                   <div>
-                    <p className="text-sm text-[#111a2d] mb-1">{t('Last Login')}</p>
+                    <p className="text-sm text-[#111a2d] mb-1">{t('dashboard.doctorProfile.profile.lastLogin')}</p>
                     <p className="text-sm sm:text-base font-semibold text-[#171c35]">
                       {profileData.lastLoginAt ? new Date(profileData.lastLoginAt).toLocaleString() : 'N/A'}
                     </p>
                   </div>
                   <div>
-                    <p className="text-sm text-[#111a2d] mb-1">{t('Account Created')}</p>
+                    <p className="text-sm text-[#111a2d] mb-1">{t('dashboard.doctorProfile.profile.accountCreated')}</p>
                     <p className="text-sm sm:text-base font-semibold text-[#171c35]">
                       {profileData.createdAt ? new Date(profileData.createdAt).toLocaleString() : 'N/A'}
                     </p>
                   </div>
                   <div>
-                    <p className="text-sm text-[#111a2d] mb-1">{t('Last Updated')}</p>
+                    <p className="text-sm text-[#111a2d] mb-1">{t('dashboard.doctorProfile.profile.lastUpdated')}</p>
                     <p className="text-sm sm:text-base font-semibold text-[#171c35]">
                       {profileData.updatedAt ? new Date(profileData.updatedAt).toLocaleString() : 'N/A'}
                     </p>

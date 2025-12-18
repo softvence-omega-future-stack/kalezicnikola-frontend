@@ -227,11 +227,11 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
                   />
                 )}
               </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
               {/* First Name */}
               <div>
                 <label className="block text-sm font-medium text-headingBlack mb-2">
-                  First Name *
+                  {t('dashboard.doctorProfile.editModal.firstName') }
                 </label>
                 <input
                   type="text"
@@ -247,7 +247,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
               {/* Last Name */}
               <div>
                 <label className="block text-sm font-medium text-headingBlack mb-2">
-                  Last Name *
+                  {t('dashboard.doctorProfile.editModal.lastName') }
                 </label>
                 <input
                   type="text"
@@ -263,7 +263,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
               {/* Phone */}
               <div>
                 <label className="block text-sm font-medium text-headingBlack mb-2">
-                  Phone
+                 {t('dashboard.doctorProfile.editModal.phone') }
                 </label>
                 <input
                   type="tel"
@@ -279,7 +279,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
               {/* Experience */}
               <div>
                 <label className="block text-sm font-medium text-headingBlack mb-2">
-                  Experience
+                  {t('dashboard.doctorProfile.editModal.experience') }
                 </label>
                 <input
                   type="text"
@@ -295,7 +295,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
               {/* Specialities */}
               <div className="md:col-span-2">
                 <label className="block text-sm font-medium text-headingBlack mb-2">
-                  Specialities (comma-separated)
+                 {t('dashboard.doctorProfile.editModal.specialist') }
                 </label>
                 <input
                   type="text"
@@ -310,7 +310,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
               {/* License Number */}
               <div>
                 <label className="block text-sm font-medium text-headingBlack mb-2">
-                  License Number
+                  {t('dashboard.doctorProfile.editModal.licenseNumber') }
                 </label>
                 <input
                   type="text"
@@ -325,7 +325,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
               {/* Date of Birth */}
               <div>
                 <label className="block text-sm font-medium text-headingBlack mb-2">
-                  Date of Birth
+                  {t('dashboard.doctorProfile.editModal.dateofBirth') }
                 </label>
                 <input
                   type="date"
@@ -340,7 +340,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
               {/* Gender */}
               <div>
                 <label className="block text-sm font-medium text-headingBlack mb-2">
-                  Gender
+                  {t('dashboard.doctorProfile.editModal.gender') }
                 </label>
                 <select
                   name="gender"
@@ -359,7 +359,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
               {/* Address - Full Width */}
               <div className="md:col-span-2">
                 <label className="block text-sm font-medium text-headingBlack mb-2">
-                  Address
+                  {t('dashboard.doctorProfile.editModal.address') }
                 </label>
                 <input
                   type="text"
@@ -381,15 +381,18 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
                 disabled={isSaving}
                 className="flex-1 px-6 py-3 border border-gray-300 text-[#111C35] rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Cancel
+               {t('dashboard.doctorProfile.editModal.cancelButton') }
               </button>
-              <button
-                type="submit"
-                disabled={isSaving}
-                className="flex-1 px-6 py-3 bg-[#526FFF] text-white rounded-lg hover:bg-[#4158D9] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isSaving ? 'Saving...' : 'Save Changes'}
-              </button>
+       <button
+  type="submit"
+  disabled={isSaving}
+  className="flex-1 px-6 py-3 bg-[#526FFF] text-white rounded-lg hover:bg-[#4158D9] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+>
+  {isSaving
+    ? t('common.saving') 
+    : t('dashboard.doctorProfile.editModal.saveButton')}
+</button>
+
             </div>
           </form>
         </div>

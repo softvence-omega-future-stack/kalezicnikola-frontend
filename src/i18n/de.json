@@ -524,15 +524,22 @@
   }
   },
   "profile": {
-    "name": "Keren Nix",
-    "degree": "MBBS, M.D. Kardiologie",
+    "name": "Dr. {{firstName}} {{lastName}}",
+    "degree": "",
     "edit": "Bearbeiten",
-
+    "2FAEnabled": "2FA aktiviert",
+    "emailVerified": "E-Mail verifiziert",
     "email": "E-Mail",
     "phone": "Telefon",
     "experience": "Erfahrung",
     "years": "Jahre",
-    "address": "Adresse"
+    "address": "Adresse",
+    "gender": "Geschlecht",
+    "licenseNumber":"Lizenznummer",
+     "dateofBirth":"Geburtsdatum",
+    "lastLogin": "Letzte Anmeldung",
+    "accountCreated": "Konto erstellt",
+    "lastUpdated": "Zuletzt aktualisiert"
   },
 
    "editModal": {
@@ -543,8 +550,12 @@
     "address":"Adresse",
     "experience":"Erfahrung (in Jahren)",
     "saveButton":"Profil speichern",
+    "saveing":"Speichern...",
     "cancelButton":"Abbrechen",
-    "specialist":"Fachgebiet"
+    "specialist":"Fachgebiet (comma-separated)",
+     "licenseNumber":"Lizenznummer",
+     "dateofBirth":"Geburtsdatum",
+     "gender": "Geschlecht"
    }
 },
 
