@@ -181,7 +181,7 @@ useEffect(() => {
         <h1 className="text-xl md:text-xl font-semibold text-[#171C35] mb-4 sm:mb-6">{t('dashboard.routes.calendar.header')}</h1>
 
         {/* Top Controls */}
-        <div className="rounded-lg pt-6 mb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div className="rounded-lg pt-6 mb-4 flex flex-col md:flex-row justify-between items-start sm:items-center gap-4">
           <div>
             <CalendarHeader
               selectedDate={selectedDate}

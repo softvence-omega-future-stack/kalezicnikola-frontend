@@ -3,6 +3,7 @@ import { ArrowUpRight } from 'lucide-react';
 import CalendarHeader from '../Calendar/CalendarHeader';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useAppSelector } from '@/store/hook';
 
 const mockDashboardData = {
   firstName: 'Keren',
@@ -19,7 +20,7 @@ interface MetricCardProps {
 
 const MetricCard: React.FC<MetricCardProps> = ({ label, value }) => (
   <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
-    <p className="text-sm font-semibold text-[#111A2D] mb-1">{label}</p>
+    <p className="text-sm font-semibold text-subHeadingBlack mb-1">{label}</p>
     {typeof value === 'string' && value.includes('hr') ? (
       <div className="flex items-center justify-center sm:justify-start gap-1">
         <span className="text-2xl sm:text-3xl md:text-[32px] font-medium text-[#171C35] leading-none">
@@ -36,7 +37,7 @@ const MetricCard: React.FC<MetricCardProps> = ({ label, value }) => (
         </span>
       </div>
     ) : (
-      <p className="text-2xl sm:text-3xl md:text-[32px] font-medium text-[#111A2D] leading-none">
+      <p className="text-2xl sm:text-3xl md:text-[32px] font-medium text-subHeadingBlack leading-none">
         {value}
       </p>
     )}
@@ -50,22 +51,39 @@ interface DashboardTopSectionProps {
 
 const DashboardTopSection: React.FC<DashboardTopSectionProps> = ({ selectedDate, onDateChange }) => {
   const { t } = useTranslation();
-  const { firstName, lastName, todayIncomingCalls, successfulCalls, averageCallDuration } = mockDashboardData;
+  const { todayIncomingCalls, successfulCalls, averageCallDuration } = mockDashboardData;
   const navigate = useNavigate();
+
+
+const { user } = useAppSelector((state) => state.auth);
+  // const firstName = user?.firstName || '';
+  // const lastName = user?.lastName || '';
 
   return (
     <div className="md:mt-2 z-auto bg-[#F3F6F6]">
       {/* Date Navigation */}
-      <div className="flex items-center justify-center -pl-1 md:justify-start text-[#111A2D] text-sm sm:text-base font-medium pt-6 gap-2">
+      <div className="flex items-center justify-center -pl-1 md:justify-start text-subHeadingBlack text-sm sm:text-base font-medium pt-6 gap-2">
         <CalendarHeader selectedDate={selectedDate} onDateChange={onDateChange} />
       </div>
 
       {/* Welcome + Metrics */}
       <div className="flex flex-col md:flex-row sm:justify-between sm:items-center gap-6 sm:gap-8">
         <div className="text-center sm:text-left">
-          <h1 className="text-xl md:pl-2 sm:text-2xl md:text-[32px] font-semibold text-[#111A2D] leading-8">
-            {t('dashboard.routes.dashboard.topSection.welcome', { firstName, lastName })}
-          </h1>
+<h1 className="text-xl md:pl-2 sm:text-2xl md:text-[32px] font-semibold text-subHeadingBlack leading-tight">
+  {/* 1st row: Welcome + First Name */}
+  <span className="block">
+    {t('dashboard.routes.dashboard.topSection.welcome', {
+      firstName: user?.firstName,
+    })}
+  </span>
+
+  {/* 2nd row: Last Name */}
+  <span className="block">
+    {user?.lastName}
+  </span>
+</h1>
+
+
         </div>
 
         <div className="flex flex-col mb-2 sm:flex-row items-center sm:items-end sm:space-x-6 space-y-4 sm:space-y-0">
@@ -83,7 +101,7 @@ const DashboardTopSection: React.FC<DashboardTopSectionProps> = ({ selectedDate,
           ))}
 
           <button
-            onClick={() => navigate('/dashboard/settings?tab=Subscription')}
+           onClick={() => navigate('/dashboard/settings?tab=subscription&subtab=current-plan')}
             className="flex items-center justify-center h-12 w-12 sm:h-14 sm:w-14 bg-[#526FFF] text-white rounded-xl shadow-lg transition-colors shrink-0 cursor-pointer"
             aria-label={t('dashboard.routes.dashboard.topSection.subscriptionButtonLabel')}
           >

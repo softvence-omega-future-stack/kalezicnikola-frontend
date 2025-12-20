@@ -259,7 +259,8 @@ const getBloodGroupLabel = (value: string) =>
         headers: { Authorization: `Bearer ${accessToken}` }
         }
       );
-      toast.success(response.data.message || "Appointment created successfully");
+      toast.success(response?.data?.message || "Appointment created successfully");
+       // toast.success("Appointment successfully created"); 
       console.log("Appointment created:", payload);
       window.location.reload();
       onClose();

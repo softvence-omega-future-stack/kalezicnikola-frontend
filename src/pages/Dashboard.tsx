@@ -83,7 +83,7 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import DashboardTopSection from "@/dashboard/components/dashboard/DashboardTopSection";
-import AppointmentsList from "@/dashboard/components/dashboard/AppointmentSidebar";
+import AppointmentsList from "@/dashboard/components/dashboard/AppointmentList";
 import DashboardCalender from "@/dashboard/components/dashboard/DashboardCalender";
 import DashboardCard from "@/dashboard/components/dashboard/DashboardCard";
 

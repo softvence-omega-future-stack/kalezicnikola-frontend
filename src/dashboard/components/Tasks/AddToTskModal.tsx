@@ -421,10 +421,12 @@ const handleSubmit = async (e: React.FormEvent) => {
               onClick={handleSubmit}
               className="w-full sm:flex-1 px-4 py-2.5 bg-[#526FFF] text-white rounded-xl text-sm font-medium hover:bg-[#4159CC] transition-colors cursor-pointer"
             >
-              {loading ? 'Submitting...' :
-                isEditing 
-                  ? t('dashboard.routes.taskList.addTaskModal.buttons.saveChanges') 
-                  : t('dashboard.routes.taskList.addTaskModal.buttons.submit')}
+           {loading
+  ? t('dashboard.routes.taskList.addTaskModal.buttons.submitting')
+  : isEditing
+    ? t('dashboard.routes.taskList.addTaskModal.buttons.saveChanges')
+    : t('dashboard.routes.taskList.addTaskModal.buttons.submit')}
+
             </button>
           </div>
         </div>
