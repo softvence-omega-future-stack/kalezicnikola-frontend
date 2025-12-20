@@ -581,7 +581,7 @@
     "routes": {
       "dashboard":{
       "topSection": {
-  "welcome": "Willkommen, {{firstName}} {{lastName}}",
+  "welcome": "Willkommen, {{firstName}} ",
   "todayIncomingCalls": "Heute eingegangene Anrufe",
   "successfulCalls": "Erfolgreiche Anrufe",
   "averageCallDuration": "Durchschnittliche Anrufdauer",
@@ -592,7 +592,8 @@
   "diagnosis": "Diagnose",
   "time": "Zeit",
   "patients": "{{count}} Patienten",
-  "dateFormat": "Sonntag, 11."
+  "dateFormat": "Sonntag, 11.",
+  "noAppointments": "Keine Termine "
 },
 "cards": {
   "unreviewedCalls": {
@@ -678,6 +679,8 @@
   },
   "status": {
     "successful": "Erfolgreich",
+    "unsuccessful": "Nicht erfolgreich",
+    "transferred": "Weitergeleitet",
     "missed": "Verpasst"
   },
   "actions": {
@@ -718,7 +721,10 @@
     "week": "Woche",
     "month": "Monat"
   },
-
+ "day": {
+    "appointments": "Termine",
+    "todayAppointments": "Termine heute"
+ },
   "appointmentModal": {
   "title": "Neuen Termin hinzufügen",
   "subtitle": "Vervollständigen Sie alle Informationen",
@@ -867,7 +873,7 @@
   "placeholder": "Geben Sie Ihre Telefonnummer ein"
 },
 "emergencyRelationShip": {
-  "label": "Adresse",
+  "label": "Beziehung",
   "placeholder": "Geben Sie Ihre Beziehung ein"
 }
 
@@ -1198,7 +1204,8 @@
           "buttons": {
             "cancel": "Abbrechen",
             "submit": "Einreichen",
-            "saveChanges": "Änderungen speichern"
+            "saveChanges": "Änderungen speichern",
+            "submitting": "Wird übermittelt..."
           },
           "statusOptions": {
             "todo": "Zu erledigen",
@@ -1297,7 +1304,7 @@
       "title": "Persönliche Informationen",
       "profile": {
         "namePlaceholder": "Geben Sie Ihren Namen ein",
-        "role": "Anästhesie",
+        "role": "D.",
         "firstNameLabel": "Vorname",
         "lastNameLabel": "Nachname",
         "emailLabel": "E-Mail",

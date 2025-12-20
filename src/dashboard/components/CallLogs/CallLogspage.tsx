@@ -28,7 +28,7 @@ interface CallHistoryItem {
   patientId: string;
   phoneNumber: string;
   status?: 'Successful' | 'Unsuccessful' | 'Transferred' | 'Missed'; 
-  duration: string ;
+  duration: string;
   transcription: string;
   intent: string;
   sentiment: string;
@@ -43,12 +43,11 @@ interface CallHistoryItem {
   updatedAt: string;
 }
 
-
 const CallLogsPage: React.FC = () => {
   const { t } = useTranslation();
   const [currentCall, setCurrentCall] = useState<CallHistoryItem | null>(null);
   const navigate = useNavigate();
-const [callData, setCallData] = useState<CallHistoryItem[]>([]);
+  const [callData, setCallData] = useState<CallHistoryItem[]>([]);
   const { accessToken } = useAppSelector((state) => state.auth);
   const [loading, setLoading] = useState(true);
   const [, setError] = useState(null);
@@ -57,12 +56,22 @@ const [callData, setCallData] = useState<CallHistoryItem[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalCalls, setTotalCalls] = useState(0);
 
+  // ✅ Duration formatter function
+  const formatDuration = (seconds: string | number): string => {
+    const totalSeconds = typeof seconds === 'string' ? parseInt(seconds) : seconds;
+    
+    if (isNaN(totalSeconds)) return '0m 0s';
+    
+    const minutes = Math.floor(totalSeconds / 60);
+    const remainingSeconds = totalSeconds % 60;
+    
+    return `${minutes}m ${remainingSeconds}s`;
+  };
 
-
-const getRandomStatus = () => {
-  const randomIndex = Math.floor(Math.random() * statuses.length);
-  return statuses[randomIndex];
-};
+  const getRandomStatus = () => {
+    const randomIndex = Math.floor(Math.random() * statuses.length);
+    return statuses[randomIndex];
+  };
 
   useEffect(() => {
     const fetchCallHistory = async () => {
@@ -83,12 +92,10 @@ const getRandomStatus = () => {
 
           setCallData(callsWithStatus);
           setTotalCalls(response.data.data.pagination.total);
-          // when we have status
-          // setCallData(response.data.data.data); // your call data is nested here
         } else {
           setError(response.data.message);
         }
-      } catch (err:any) {
+      } catch (err: any) {
         setError(err.data.message);
       } finally {
         setLoading(false);
@@ -163,9 +170,9 @@ const getRandomStatus = () => {
   return (
     <div className="min-h-screen md:mt-[30px]">
       {loading && (
-          <div className="fixed inset-0 bg-black opacity-60 flex items-center justify-center z-[9999]">
-            <div className="loader border-4 border-blue-500 border-t-transparent rounded-full w-12 h-12 animate-spin"></div>
-          </div>
+        <div className="fixed inset-0 bg-black opacity-60 flex items-center justify-center z-[9999]">
+          <div className="loader border-4 border-blue-500 border-t-transparent rounded-full w-12 h-12 animate-spin"></div>
+        </div>
       )}
       {/* Header Navigation */}
       <div className="">
@@ -252,7 +259,10 @@ const getRandomStatus = () => {
                       </span>
                     </td>
 
-                    <td className="px-2 sm:px-4 py-2 text-sm text-[#111A2D] whitespace-nowrap">{log.duration}</td>
+                    {/* ✅ Duration formatted as minutes and seconds */}
+                    <td className="px-2 sm:px-4 py-2 text-sm text-[#111A2D] whitespace-nowrap">
+                      {formatDuration(log.duration)}
+                    </td>
 
                     <td className="px-2 sm:px-4 py-2 whitespace-nowrap">
                       <button
@@ -288,27 +298,27 @@ const getRandomStatus = () => {
             </table>
           </div>
           {/* Pagination */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-6">
-          <p className="text-sm font-medium text-[#000000]">
-            {`Showing ${1} to ${callData.length} of ${totalCalls} calls`}
-          </p>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-6">
+            <p className="text-sm font-medium text-[#000000]">
+              {`Showing ${1} to ${callData.length} of ${totalCalls} calls`}
+            </p>
 
-          <div className="flex gap-2">
-            <button
-              onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-              disabled={currentPage === 1}
-              className="px-4 py-2 text-base font-semibold text-[#111A2D] bg-[#F3F6F6] border border-gray-300 rounded-xl disabled:opacity-50 cursor-pointer"
-            >
-              {t('Previous')}
-            </button>
-            <button
-              onClick={() => setCurrentPage(currentPage + 1)}
-              className="px-4 py-2 text-base font-semibold text-[#1a1c21] bg-[#F3F6F6] border border-gray-300 rounded-xl cursor-pointer"
-            >
-              {t('Next')}
-            </button>
+            <div className="flex gap-2">
+              <button
+                onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                disabled={currentPage === 1}
+                className="px-4 py-2 text-base font-semibold text-[#111A2D] bg-[#F3F6F6] border border-gray-300 rounded-xl disabled:opacity-50 cursor-pointer"
+              >
+                {t('Previous')}
+              </button>
+              <button
+                onClick={() => setCurrentPage(currentPage + 1)}
+                className="px-4 py-2 text-base font-semibold text-[#1a1c21] bg-[#F3F6F6] border border-gray-300 rounded-xl cursor-pointer"
+              >
+                {t('Next')}
+              </button>
+            </div>
           </div>
-        </div>
         </div>
       </div>
 

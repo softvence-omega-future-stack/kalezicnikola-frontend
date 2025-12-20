@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 // Local SVG Icons
-import profile from '../../../../assets/svgIcon/karen.svg';
+import profile from '../../../../assets/img/dummyImage.svg';
 import support from '../../../../assets/svgIcon/supports.svg';
 import setting from '../../../../assets/svgIcon/settings.svg';
 import userIcon from '../../../../assets/svgIcon/user.svg';
@@ -94,7 +94,7 @@ const UserDropdown: React.FC<UserDropdownProps> = ({ onClose }) => {
             </h2>
           <p className="text-md text-[#171C35] capitalize">
             {/* {t('dashboard.mainHeader.userDropdown.role')} */}
-            {user?.role === "doctor" ? "D." : user?.role}
+            {user?.role === "doctor" ? "" : user?.role}
           </p>
         </div>
       </div>

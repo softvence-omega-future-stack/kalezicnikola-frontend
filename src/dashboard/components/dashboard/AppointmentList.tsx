@@ -2,6 +2,8 @@ import { useAppSelector } from '@/store/hook';
 import axios from 'axios';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import dummyImage from '../../../assets/img/dummyImage.svg';
+import i18n from '@/i18n/i18n';
 
 interface AppointmentItemProps {
   name: string;
@@ -53,7 +55,7 @@ const AppointmentItem: React.FC<AppointmentItemProps> = ({ name, timeRange, isNe
           </span>
         )}
       </div>
-      <p className="text-sm text-[#111A2D]">{timeRange}</p>
+      <p className="text-sm text-subHeadingBlack">{timeRange}</p>
     </div>
   );
 };
@@ -69,25 +71,25 @@ const ActiveAppointmentCard: React.FC<ActiveAppointmentProps> = ({ data }) => {
     <div className="p-4 mb-4 bg-[#F5F6FF] rounded-xl border border-gray-100">
       <div className="flex items-start mb-4">
         <img
-          src={data.avatarUrl}
+          src={dummyImage}
           alt={data.name}
-          className="h-14 w-14 rounded-full object-cover mr-4"
+          className="h-14 w-14 bg-gray-300 rounded-full object-cover mr-4"
         />
         <div>
           <p className="text-lg font-semibold text-[#171C35] leading-snug">{data.name}</p>
-          <p className="text-sm text-[#111A2D]">{data.phone}</p>
+          <p className="text-sm text-subHeadingBlack">{data.phone}</p>
         </div>
       </div>
 
       <div className="grid grid-cols-2 gap-2">
         <div>
-          <p className="text-sm text-[#111A2D] tracking-wider mb-1">
+          <p className="text-sm text-subHeadingBlack tracking-wider mb-1">
             {t('dashboard.routes.dashboard.appointments.diagnosis')}
           </p>
-          <p className="text-base font-semibold text-[#111A2D]">{data.diagnosis}</p>
+          <p className="text-base font-semibold text-subHeadingBlack">{data.diagnosis}</p>
         </div>
         <div className="text-right">
-          <p className="text-sm text-[#111A2D] tracking-wider mb-1">
+          <p className="text-sm text-subHeadingBlack tracking-wider mb-1">
             {t('dashboard.routes.dashboard.appointments.time')}
           </p>
           <p className="text-base font-semibold text-[#171C35]">{data.time}</p>
@@ -173,7 +175,16 @@ const AppointmentsList: React.FC<AppointmentsListProps> = ({ selectedDate }) => 
     return n + (s[(v - 20) % 10] || s[v] || s[0]);
   }
 
-  const dayName = selectedDate?.toLocaleDateString('en-US', { weekday: 'long' });
+  const localeMap: Record<string, string> = {
+  en: 'en-US',
+  de: 'de-DE',
+};
+
+const locale = localeMap[i18n.language] || 'en-US';
+
+
+ const dayName = selectedDate.toLocaleDateString(locale, { weekday: 'long' });
+
   const dateWithOrdinal = getOrdinal(selectedDate?.getDate());
   const formattedDate = `${dayName}, ${dateWithOrdinal}`;
 
@@ -191,7 +202,7 @@ const AppointmentsList: React.FC<AppointmentsListProps> = ({ selectedDate }) => 
   return (
     <div className="bg-white px-3 py-4 w-full md:rounded-3xl">
       <div className="mb-6">
-        <h2 className="text-sm leading-3.5 mb-1.5 text-[#111A2D] capitalize">
+        <h2 className="text-sm leading-3.5 mb-1.5 text-subHeadingBlack capitalize">
           {formattedDate}
         </h2>
         {appointments.length > 0 ? (
@@ -200,7 +211,7 @@ const AppointmentsList: React.FC<AppointmentsListProps> = ({ selectedDate }) => 
           </p>
         ) : (
           <p className="text-lg font-semibold leading-4 text-[#171C35]">
-            No appointments
+            {t('dashboard.routes.dashboard.appointments.noAppointments')}
           </p>
         )}
       </div>
@@ -278,7 +289,7 @@ export default AppointmentsList;
 //           </span>
 //         )}
 //       </div>
-//       <p className="text-sm text-[#111A2D]">{timeRange}</p>
+//       <p className="text-sm text-subHeadingBlack">{timeRange}</p>
 //     </div>
 //   );
 // };
@@ -303,20 +314,20 @@ export default AppointmentsList;
 //         />
 //         <div>
 //           <p className="text-lg font-semibold text-[#171C35] leading-snug">{data.name}</p>
-//           <p className="text-sm text-[#111A2D]">{data.phone}</p>
+//           <p className="text-sm text-subHeadingBlack">{data.phone}</p>
 //         </div>
 //       </div>
       
 //       {/* Bottom Row: Diagnosis and Time */}
 //       <div className="grid grid-cols-2 gap-2">
 //         <div>
-//           <p className="text-sm text-[#111A2D] tracking-wider mb-1">
+//           <p className="text-sm text-subHeadingBlack tracking-wider mb-1">
 //             {t('dashboard.routes.dashboard.appointments.diagnosis')}
 //           </p>
-//           <p className="text-base font-semibold text-[#111A2D]">{data.diagnosis}</p>
+//           <p className="text-base font-semibold text-subHeadingBlack">{data.diagnosis}</p>
 //         </div>
 //         <div className="text-right">
-//           <p className="text-sm text-[#111A2D] tracking-wider mb-1">
+//           <p className="text-sm text-subHeadingBlack tracking-wider mb-1">
 //             {t('dashboard.routes.dashboard.appointments.time')}
 //           </p>
 //           <p className="text-base font-semibold text-[#171C35]">{data.time}</p>
@@ -336,7 +347,7 @@ export default AppointmentsList;
       
 //       {/* List Header */}
 //       <div className="mb-6">
-//         <h2 className="text-sm leading-3.5 mb-1.5 text-[#111A2D]">
+//         <h2 className="text-sm leading-3.5 mb-1.5 text-subHeadingBlack">
 //           {t('dashboard.routes.dashboard.appointments.dateFormat')}
 //         </h2>
 //         <p className="text-lg font-semibold leading-4 text-[#171C35]">

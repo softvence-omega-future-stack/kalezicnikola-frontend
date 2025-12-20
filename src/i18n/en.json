@@ -582,7 +582,7 @@
   "routes":{
     "dashboard":{
      "topSection": {
-          "welcome": "Welcome, {{firstName}} {{lastName}}",
+          "welcome": "Welcome, {{firstName}} ",
           "todayIncomingCalls": "Today Incoming Calls",
           "successfulCalls": "Successful Calls",
           "averageCallDuration": "Average Call Duration",
@@ -593,7 +593,8 @@
           "diagnosis": "Diagnosis",
           "time": "Time",
           "patients": "{{count}} patients",
-          "dateFormat": "Sunday, 11th"
+          "dateFormat": "Sunday, 11th",
+          "noAppointments": "No Appointments "
         },
         "cards": {
   "unreviewedCalls": {
@@ -722,6 +723,10 @@
     "week": "Week",
     "month": "Month"
   },
+   "day": {
+    "appointments": "Termine",
+    "todayAppointments": "Appointments Today"
+ },
   "appointmentModal": {
   "title": "Add New Appointment",
   "subtitle": "Complete all information",
@@ -870,7 +875,7 @@
         "placeholder": "Enter your phone."
       },
       "emergencyRelationShip": {
-        "label": "Address",
+        "label": "RelationShip",
         "placeholder": "Enter your relationship"
       }
     },
@@ -1203,7 +1208,8 @@
   "buttons": {
     "cancel": "Cancel",
     "submit": "Submit",
-    "saveChanges": "Save Changes"
+    "saveChanges": "Save Changes",
+    "submitting": "Submiting..."
   },
   "statusOptions": {
     "todo": "To Do",
@@ -1305,7 +1311,7 @@
               "title": "Personal Info",
               "profile": {
                 "namePlaceholder": "Enter your name",
-                "role": "Anaesthesia",
+                "role": "D.",
                 "firstNameLabel": "First Name",
                 "lastNameLabel": "Last Name",
                 "emailLabel": "Email",

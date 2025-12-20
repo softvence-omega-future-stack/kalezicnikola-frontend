@@ -4,9 +4,9 @@ import { useTranslation } from "react-i18next";
 import CommonSpace from "@/common/space/CommonSpace";
 
 import arrowRight from "../../../assets/svgIcon/arrowRight.svg";
-import unredview1 from "../../../assets/svgIcon/unredviewcard1.svg";
-import unredview2 from "../../../assets/svgIcon/unredviewcard2.svg";
-import unredview3 from "../../../assets/svgIcon/unredviewcard3.svg";
+import unredview1 from "../../../assets/img/dummyImage.svg";
+// import unredview2 from "../../../assets/svgIcon/unredviewcard2.svg";
+// import unredview3 from "../../../assets/svgIcon/unredviewcard3.svg";
 
 interface Category {
   titleKey: string;
@@ -129,7 +129,7 @@ const Card = ({
                 {category.avatars.map((avatar, idx) => (
                   <img
                     key={idx}
-                    className="h-10 w-10 rounded-full border-2 border-white object-cover"
+                    className="h-10 w-10 rounded-full border bg-gray-300 border-[#E8E8E8] object-cover"
                     src={avatar}
                     alt=""
                   />
@@ -181,8 +181,8 @@ const DashboardCard = () => {
       titleKey: "dashboard.routes.dashboard.cards.unreviewedCalls.title",
       descriptionKey: "dashboard.routes.dashboard.cards.unreviewedCalls.description",
       bgColor: "#E5DFF5",
-      avatars: [unredview1, unredview2, unredview3],
-      extraCount: "6+",
+      avatars: [unredview1,unredview1,unredview1],
+      extraCount: "5+",
       path: "/dashboard/call_logs",
     },
     {

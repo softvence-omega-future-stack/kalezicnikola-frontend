@@ -190,7 +190,7 @@ const PersonalInfoForm: React.FC = () => {
               {formData.lastName} */}
               {formData.firstName} {formData.lastName}
             </h2>
-            <p className="text-xs md:text-sm text-[#111A2D] truncate">
+            <p className="text-xs md:text-sm text-subHeadingBlack truncate">
               {t("dashboard.routes.settings.settingsSidebar.tabs.personalInfo.profile.role")}
             </p>
           </div>

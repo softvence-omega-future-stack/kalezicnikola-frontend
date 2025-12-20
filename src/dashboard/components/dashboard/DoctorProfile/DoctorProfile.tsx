@@ -5,12 +5,12 @@ import axios from 'axios';
 
 import AllApointment from './AllApointment';
 import Patient from './Patient';
-import AppointmentsList from '../AppointmentSidebar';
+import AppointmentsList from '../AppointmentList';
 
 import home from '../../../../assets/svgIcon/homeIcon.svg';
 import chevron from '../../../../assets/svgIcon/chevronnRight.svg';
 import edit from '../../../../assets/svgIcon/edit2.svg';
-import karen from '../../../../assets/svgIcon/karen.svg';
+import karen from '../../../../assets/img/dummyImage.svg';
 import { useAppSelector } from '@/store/hook';
 import EditProfileModal from './EditProfileModal';
 
@@ -96,7 +96,7 @@ export default function DoctorProfile() {
           <img src={chevron} alt="" className="w-3 h-3" />
           <span>{t('dashboard.doctorProfile.breadcrumb.doctor')}</span>
           <img src={chevron} alt="" className="w-3 h-3" />
-          <span className="text-[#111a2d] text-sm font-semibold">
+          <span className="text-subHeadingBlack text-sm font-semibold">
             {t('dashboard.doctorProfile.breadcrumb.profile')}
           </span>
         </div>
@@ -113,11 +113,11 @@ export default function DoctorProfile() {
           {/* Profile Card */}
           <div className="bg-[#E5E9FF] rounded-2xl shadow-sm p-4 sm:p-6 mt-10 lg:mt-0">
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
-              <div className="flex-shrink-0 -mt-16 sm:-mt-20">
+              <div className="shrink-0 -mt-16 sm:-mt-20">
                 <img
                   src={profileData.photo || karen}
                   alt="Doctor"
-                  className="w-[180px] h-[220px] sm:w-[222px] sm:h-[370px] rounded-2xl object-cover bg-gray-200 mx-auto sm:mx-0"
+                  className="w-[180px] h-[220px] sm:w-[222px] sm:h-[370px] rounded-2xl object-cover bg-gray-300 mx-auto sm:mx-0"
                 />
               </div>
 
@@ -145,73 +145,73 @@ export default function DoctorProfile() {
                 {/* Credentials Section */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                   <div>
-                    <p className="text-sm text-[#111a2d] mb-1">{t('dashboard.doctorProfile.profile.email')}</p>
+                    <p className="text-sm text-subHeadingBlack mb-1">{t('dashboard.doctorProfile.profile.email')}</p>
                     <p className="text-sm sm:text-base font-semibold text-[#171c35] truncate">
                       {profileData.email}
                     </p>
                   </div>
                   <div>
-                    <p className="text-sm text-[#111a2d] mb-1">{t('dashboard.doctorProfile.profile.phone')}</p>
+                    <p className="text-sm text-subHeadingBlack mb-1">{t('dashboard.doctorProfile.profile.phone')}</p>
                     <p className="text-sm sm:text-base font-semibold text-[#171c35]">
                       {profileData.phone || 'N/A'}
                     </p>
                   </div>
                   <div>
-                    <p className="text-sm text-[#111a2d] mb-1">{t('dashboard.doctorProfile.profile.experience')}</p>
+                    <p className="text-sm text-subHeadingBlack mb-1">{t('dashboard.doctorProfile.profile.experience')}</p>
                     <p className="text-sm sm:text-base font-semibold text-[#171c35]">
                       {profileData.experience || 'N/A'}
                     </p>
                   </div>
                   <div>
-                    <p className="text-sm text-[#111a2d] mb-1">{t('DOB')}</p>
+                    <p className="text-sm text-subHeadingBlack mb-1">{t('DOB')}</p>
                     <p className="text-sm sm:text-base font-semibold text-[#171c35]">
                       {profileData.dob ? new Date(profileData.dob).toLocaleDateString() : 'N/A'}
                     </p>
                   </div>
                   <div>
-                    <p className="text-sm text-[#111a2d] mb-1">{t('dashboard.doctorProfile.profile.gender')}</p>
+                    <p className="text-sm text-subHeadingBlack mb-1">{t('dashboard.doctorProfile.profile.gender')}</p>
                     <p className="text-sm sm:text-base font-semibold text-[#171c35]">
                       {profileData.gender || 'N/A'}
                     </p>
                   </div>
                   <div>
-                    <p className="text-sm text-[#111a2d] mb-1">{t('dashboard.doctorProfile.profile.address')}</p>
+                    <p className="text-sm text-subHeadingBlack mb-1">{t('dashboard.doctorProfile.profile.address')}</p>
                     <p className="text-sm sm:text-base font-semibold text-[#171c35] break-words">
                       {profileData.address || 'N/A'}
                     </p>
                   </div>
                   <div>
-                    <p className="text-sm text-[#111a2d] mb-1">{t('dashboard.doctorProfile.profile.licenseNumber')}</p>
+                    <p className="text-sm text-subHeadingBlack mb-1">{t('dashboard.doctorProfile.profile.licenseNumber')}</p>
                     <p className="text-sm sm:text-base font-semibold text-[#171c35]">
                       {profileData.licenceNo || 'N/A'}
                     </p>
                   </div>
                   <div>
-                    <p className="text-sm text-[#111a2d] mb-1">{t('dashboard.doctorProfile.profile.emailVerified')}</p>
+                    <p className="text-sm text-subHeadingBlack mb-1">{t('dashboard.doctorProfile.profile.emailVerified')}</p>
                     <p className="text-sm sm:text-base font-semibold text-[#171c35]">
                       {profileData.emailVerifiedAt ? 'Yes' : 'No'}
                     </p>
                   </div>
                   <div>
-                    <p className="text-sm text-[#111a2d] mb-1">{t('dashboard.doctorProfile.profile.2FAEnabled')}</p>
+                    <p className="text-sm text-subHeadingBlack mb-1">{t('dashboard.doctorProfile.profile.2FAEnabled')}</p>
                     <p className="text-sm sm:text-base font-semibold text-[#171c35]">
                       {profileData.twoFactorEnabled ? 'Yes' : 'No'}
                     </p>
                   </div>
                   <div>
-                    <p className="text-sm text-[#111a2d] mb-1">{t('dashboard.doctorProfile.profile.lastLogin')}</p>
+                    <p className="text-sm text-subHeadingBlack mb-1">{t('dashboard.doctorProfile.profile.lastLogin')}</p>
                     <p className="text-sm sm:text-base font-semibold text-[#171c35]">
                       {profileData.lastLoginAt ? new Date(profileData.lastLoginAt).toLocaleString() : 'N/A'}
                     </p>
                   </div>
                   <div>
-                    <p className="text-sm text-[#111a2d] mb-1">{t('dashboard.doctorProfile.profile.accountCreated')}</p>
+                    <p className="text-sm text-subHeadingBlack mb-1">{t('dashboard.doctorProfile.profile.accountCreated')}</p>
                     <p className="text-sm sm:text-base font-semibold text-[#171c35]">
                       {profileData.createdAt ? new Date(profileData.createdAt).toLocaleString() : 'N/A'}
                     </p>
                   </div>
                   <div>
-                    <p className="text-sm text-[#111a2d] mb-1">{t('dashboard.doctorProfile.profile.lastUpdated')}</p>
+                    <p className="text-sm text-subHeadingBlack mb-1">{t('dashboard.doctorProfile.profile.lastUpdated')}</p>
                     <p className="text-sm sm:text-base font-semibold text-[#171c35]">
                       {profileData.updatedAt ? new Date(profileData.updatedAt).toLocaleString() : 'N/A'}
                     </p>
@@ -314,7 +314,7 @@ export default function DoctorProfile() {
 //       <div className="min-h-screen mt-[30px] p-6 flex items-center justify-center">
 //         <div className="text-center">
 //           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#526FFF] mx-auto mb-4"></div>
-//           <p className="text-[#111A2D]">Loading profile...</p>
+//           <p className="text-subHeadingBlack">Loading profile...</p>
 //         </div>
 //       </div>
 //     );
@@ -350,7 +350,7 @@ export default function DoctorProfile() {
 //           <img src={chevron} alt="" className="w-3 h-3" />
 //           <span>{t('dashboard.doctorProfile.breadcrumb.doctor')}</span>
 //           <img src={chevron} alt="" className="w-3 h-3" />
-//           <span className="text-[#111a2d] text-sm font-semibold">
+//           <span className="text-subHeadingBlack text-sm font-semibold">
 //             {t('dashboard.doctorProfile.breadcrumb.profile')}
 //           </span>
 //         </div>
@@ -396,19 +396,19 @@ export default function DoctorProfile() {
 
 //                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
 //                   <div className="min-w-0">
-//                     <p className="text-sm text-[#111a2d] mb-1">{t('dashboard.doctorProfile.profile.email')}</p>
+//                     <p className="text-sm text-subHeadingBlack mb-1">{t('dashboard.doctorProfile.profile.email')}</p>
 //                     <p className="text-sm sm:text-base font-semibold text-[#171c35] truncate">
 //                       {profile?.email}
 //                     </p>
 //                   </div>
 //                   <div className="min-w-0">
-//                     <p className="text-sm text-[#111a2d] mb-1">{t('dashboard.doctorProfile.profile.phone')}</p>
+//                     <p className="text-sm text-subHeadingBlack mb-1">{t('dashboard.doctorProfile.profile.phone')}</p>
 //                     <p className="text-sm sm:text-base font-semibold text-[#171c35]">
 //                       {profile?.phone || 'N/A'}
 //                     </p>
 //                   </div>
 //                   <div className="min-w-0">
-//                     <p className="text-sm text-[#111A2D] mb-1">{t('dashboard.doctorProfile.profile.experience')}</p>
+//                     <p className="text-sm text-subHeadingBlack mb-1">{t('dashboard.doctorProfile.profile.experience')}</p>
 //                     <p className="text-xl sm:text-2xl font-semibold text-[#171c35]">
 //                       {calculateExperience(profile?.createdAt || '')} <span className="text-sm sm:text-base font-semibold">{t('dashboard.doctorProfile.profile.years')}</span>
 //                     </p>
@@ -416,7 +416,7 @@ export default function DoctorProfile() {
 //                 </div>
 
 //                 <div className="mt-4 min-w-0">
-//                   <p className="text-sm text-[#111A2D] mb-1">{t('dashboard.doctorProfile.profile.address')}</p>
+//                   <p className="text-sm text-subHeadingBlack mb-1">{t('dashboard.doctorProfile.profile.address')}</p>
 //                   <p className="text-sm sm:text-base font-semibold text-[#171c35] break-words">
 //                     {profile?.address 
 //                       ? `${profile.address}${profile.city ? `, ${profile.city}` : ''}${profile.state ? `, ${profile.state}` : ''}${profile.zipCode ? ` ${profile.zipCode}` : ''}`
