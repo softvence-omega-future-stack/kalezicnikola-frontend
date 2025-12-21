@@ -113,11 +113,11 @@ export default function CalendarHeader({ selectedDate, onDateChange }: CalendarH
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  function getOrdinal(n: number) {
-    const s = ["th", "st", "nd", "rd"];
-    const v = n % 100;
-    return n + (s[(v - 20) % 10] || s[v] || s[0]);
-  }
+  // function getOrdinal(n: number) {
+  //   const s = ["th", "st", "nd", "rd"];
+  //   const v = n % 100;
+  //   return n + (s[(v - 20) % 10] || s[v] || s[0]);
+  // }
 
   return (
     <div className="flex items-center w-full sm:w-auto space-x-1">
@@ -136,7 +136,8 @@ export default function CalendarHeader({ selectedDate, onDateChange }: CalendarH
           
           <span className="sm:hidden">{currentDayName.substring(0, 3)}, </span>
           <span className="hidden sm:inline">{currentDayName}, </span>
-          {getOrdinal(currentDate)}
+          {currentDate}
+
         </div>
       </div>
 
@@ -148,7 +149,8 @@ export default function CalendarHeader({ selectedDate, onDateChange }: CalendarH
             const dName = dayNames[tempDate.getDay()];
             return (
               <div key={date} onClick={() => handleDateSelect(date)} className={`px-4 py-2.5 cursor-pointer hover:bg-indigo-50 text-sm ${date === currentDate ? 'bg-indigo-50 text-indigo-700 font-bold' : 'text-gray-700'}`}>
-                {dName.substring(0, 3)}, {getOrdinal(date)}
+                {dName.substring(0, 3)}, {date}
+
               </div>
             );
           })}

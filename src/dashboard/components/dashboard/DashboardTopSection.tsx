@@ -1,18 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import CalendarHeader from '../Calendar/CalendarHeader';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAppSelector } from '@/store/hook';
 
-const mockDashboardData = {
-  firstName: 'Keren',
-  lastName: 'nix',
-  todayIncomingCalls: 15,
-  successfulCalls: 0,
-  averageCallDuration: '02hr 30min',
-};
-
+// MetricCard
 interface MetricCardProps {
   label: string;
   value: string | number;
@@ -24,16 +17,16 @@ const MetricCard: React.FC<MetricCardProps> = ({ label, value }) => (
     {typeof value === 'string' && value.includes('hr') ? (
       <div className="flex items-center justify-center sm:justify-start gap-1">
         <span className="text-2xl sm:text-3xl md:text-[32px] font-medium text-[#171C35] leading-none">
-          {value.substring(0, 2)}
+          {value.split('hr')[0].trim().padStart(2, '0')}
         </span>
         <span className="text-xs sm:text-sm text-gray-700 leading-none">
-          {value.substring(2, 4)}
+          hr
         </span>
         <span className="text-2xl sm:text-3xl md:text-[32px] font-medium text-[#171C35] leading-none">
-          {value.substring(4, 6)}
+          {value.split('hr')[1].split('min')[0].trim().padStart(2, '0')}
         </span>
         <span className="text-xs sm:text-sm text-gray-700 leading-none">
-          {value.substring(6)}
+          min
         </span>
       </div>
     ) : (
@@ -44,6 +37,13 @@ const MetricCard: React.FC<MetricCardProps> = ({ label, value }) => (
   </div>
 );
 
+// Format minutes to "01hr 20min"
+const formatDuration = (totalMinutes: number) => {
+  const hours = Math.floor(totalMinutes / 60);
+  const minutes = totalMinutes % 60;
+  return `${hours}hr ${minutes}min`;
+};
+
 interface DashboardTopSectionProps {
   selectedDate: Date;
   onDateChange: (date: Date) => void;
@@ -51,13 +51,48 @@ interface DashboardTopSectionProps {
 
 const DashboardTopSection: React.FC<DashboardTopSectionProps> = ({ selectedDate, onDateChange }) => {
   const { t } = useTranslation();
-  const { todayIncomingCalls, successfulCalls, averageCallDuration } = mockDashboardData;
   const navigate = useNavigate();
+  const { user, accessToken } = useAppSelector((state) => state.auth);
 
+  const [stats, setStats] = useState({
+    todayIncomingCalls: 0,
+    successfulCalls: 0,
+    averageCallDuration: '0hr 0min',
+  });
 
-const { user } = useAppSelector((state) => state.auth);
-  // const firstName = user?.firstName || '';
-  // const lastName = user?.lastName || '';
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/doctor/dashboard-stats`, {
+          headers: { 
+            Authorization: `Bearer ${accessToken}`,
+            'Content-Type': 'application/json'
+          },
+        });
+         console.log('Fetching dashboard stats with token:', accessToken);
+        if (!response.ok) {
+          throw new Error('Failed to fetch stats');
+        }
+        
+        const result = await response.json();
+        console.log('Dashboard Stats API Response:', result);
+        
+        if (result.success && result.data) {
+          setStats({
+            todayIncomingCalls: result.data.todayIncomingCalls || 0,
+            successfulCalls: result.data.successfulCalls || 0,
+            averageCallDuration: formatDuration(result.data.averageCallDuration || 0),
+          });
+        }
+      } catch (error) {
+        console.error('Error fetching dashboard stats:', error);
+      }
+    };
+    
+    if (accessToken) {
+      fetchStats();
+    }
+  }, [accessToken]);
 
   return (
     <div className="md:mt-2 z-auto bg-[#F3F6F6]">
@@ -69,28 +104,17 @@ const { user } = useAppSelector((state) => state.auth);
       {/* Welcome + Metrics */}
       <div className="flex flex-col md:flex-row sm:justify-between sm:items-center gap-6 sm:gap-8">
         <div className="text-center sm:text-left">
-<h1 className="text-xl md:pl-2 sm:text-2xl md:text-[32px] font-semibold text-subHeadingBlack leading-tight">
-  {/* 1st row: Welcome + First Name */}
-  <span className="block">
-    {t('dashboard.routes.dashboard.topSection.welcome', {
-      firstName: user?.firstName,
-    })}
-  </span>
-
-  {/* 2nd row: Last Name */}
-  <span className="block">
-    {user?.lastName}
-  </span>
-</h1>
-
-
+          <h1 className="text-xl md:pl-2 sm:text-2xl md:text-[32px] font-semibold text-subHeadingBlack leading-tight">
+            <span className="block">{t('dashboard.routes.dashboard.topSection.welcome')} </span>
+            <span className="block ">{user?.firstName}</span>
+          </h1>
         </div>
 
         <div className="flex flex-col mb-2 sm:flex-row items-center sm:items-end sm:space-x-6 space-y-4 sm:space-y-0">
           {[
-            { label: t('dashboard.routes.dashboard.topSection.todayIncomingCalls'), value: todayIncomingCalls },
-            { label: t('dashboard.routes.dashboard.topSection.successfulCalls'), value: successfulCalls },
-            { label: t('dashboard.routes.dashboard.topSection.averageCallDuration'), value: averageCallDuration },
+            { label: t('dashboard.routes.dashboard.topSection.todayIncomingCalls'), value: stats.todayIncomingCalls },
+            { label: t('dashboard.routes.dashboard.topSection.successfulCalls'), value: stats.successfulCalls },
+            { label: t('dashboard.routes.dashboard.topSection.averageCallDuration'), value: stats.averageCallDuration },
           ].map((item, index, array) => (
             <div
               key={index}
@@ -101,9 +125,8 @@ const { user } = useAppSelector((state) => state.auth);
           ))}
 
           <button
-           onClick={() => navigate('/dashboard/settings?tab=subscription&subtab=current-plan')}
+            onClick={() => navigate('/dashboard/settings?tab=subscription&subtab=current-plan')}
             className="flex items-center justify-center h-12 w-12 sm:h-14 sm:w-14 bg-[#526FFF] text-white rounded-xl shadow-lg transition-colors shrink-0 cursor-pointer"
-            aria-label={t('dashboard.routes.dashboard.topSection.subscriptionButtonLabel')}
           >
             <ArrowUpRight className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>

@@ -582,7 +582,7 @@
   "routes":{
     "dashboard":{
      "topSection": {
-          "welcome": "Welcome, {{firstName}} ",
+          "welcome": "Welcome back,  ",
           "todayIncomingCalls": "Today Incoming Calls",
           "successfulCalls": "Successful Calls",
           "averageCallDuration": "Average Call Duration",
@@ -725,7 +725,8 @@
   },
    "day": {
     "appointments": "Termine",
-    "todayAppointments": "Appointments Today"
+    "todayAppointments": "Appointments Today",
+    "unassigned": "Unassigned"
  },
   "appointmentModal": {
   "title": "Add New Appointment",
@@ -1272,6 +1273,8 @@
   "patientRecordsModal": {
   "title": "Review Patient Records",
   "subtitle": "Add a new task to your list. Fill in the details below.",
+  "name": "Patient Name",
+  "phone": "Phone Number",
   "labels": {
     "time": "Time",
     "dueDate": "Due Date",

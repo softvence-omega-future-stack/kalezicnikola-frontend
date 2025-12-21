@@ -456,7 +456,7 @@ const DashboardCalendar: React.FC<DashboardCalendarProps> = ({ onHeightChange,se
           <div className="text-gray-500 text-lg">Loading...</div> // You can replace with spinner component
         ) : (
           <>
-            {viewType === 'day' && <DayView selectedDate={selectedDate} appointments={filterByDay} />}
+            {viewType === 'day' && <DayView selectedDate={selectedDate} appointments={filterByDay} onDateChange={onDateChange}/>}
             {viewType === 'week' && <CalendarWeekView selectedDate={selectedDate} appointments={filterByWeek} />}
             {viewType === 'month' && <CalendarMonthView selectedDate={selectedDate} appointments={filterByMonth} />}
           </>

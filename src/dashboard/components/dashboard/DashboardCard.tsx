@@ -1,12 +1,12 @@
-import { useRef } from "react";
+
+import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useAppSelector } from '@/store/hook';
 import CommonSpace from "@/common/space/CommonSpace";
 
 import arrowRight from "../../../assets/svgIcon/arrowRight.svg";
 import unredview1 from "../../../assets/img/dummyImage.svg";
-// import unredview2 from "../../../assets/svgIcon/unredviewcard2.svg";
-// import unredview3 from "../../../assets/svgIcon/unredviewcard3.svg";
 
 interface Category {
   titleKey: string;
@@ -44,14 +44,12 @@ const Card = ({
       className={`relative w-full ${className}`}
       style={{ height: defaultHeight }}
     >
-      {/* Background with fixed cutout using CSS */}
       <div 
         className="absolute inset-0 rounded-[20px]"
         style={{ 
           backgroundColor: category.bgColor,
         }}
       >
-        {/* Fixed size cutout container - positioned from bottom-right */}
         <div 
           className="absolute bottom-0 right-0"
           style={{
@@ -59,7 +57,6 @@ const Card = ({
             height: cutoutHeight + curveRadius,
           }}
         >
-          {/* Main cutout - background color to "cut" the card */}
           <div 
             className="absolute bottom-0 right-0 bg-[#F3F6F6]"
             style={{
@@ -69,7 +66,6 @@ const Card = ({
             }}
           />
           
-          {/* Top curve connector */}
           <div 
             className="absolute right-0 bg-[#F3F6F6]"
             style={{
@@ -89,7 +85,6 @@ const Card = ({
             }}
           />
           
-          {/* Left curve connector */}
           <div 
             className="absolute bottom-0 bg-[#F3F6F6]"
             style={{
@@ -111,20 +106,16 @@ const Card = ({
         </div>
       </div>
 
-      {/* Content */}
       <div className="absolute top-0 left-0 w-full h-full p-5 flex flex-col justify-between">
-        {/* Title - Top e thakbe */}
         <div>
           <h3 className="text-base font-medium text-[#171C35]">
             {t(category.titleKey)}
           </h3>
         </div>
 
-        {/* Content - Bottom e thakbe with proper spacing */}
         <div className="pb-2">
           {category.avatars ? (
             <div className="flex items-center gap-3 pr-12">
-              {/* Avatar section */}
               <div className="flex -space-x-3 items-center shrink-0">
                 {category.avatars.map((avatar, idx) => (
                   <img
@@ -141,7 +132,6 @@ const Card = ({
                 )}
               </div>
 
-              {/* Description */}
               {category.descriptionKey && (
                 <p className="text-[#171C35] text-sm font-medium leading-snug min-w-[80px]">
                   {t(category.descriptionKey)}
@@ -150,7 +140,7 @@ const Card = ({
             </div>
           ) : (
             <div className="pr-12">
-              {category.mainNumber && (
+              {category.mainNumber !== undefined && (
                 <span className="text-5xl font-medium text-[#171C35]">
                   {category.mainNumber}
                 </span>
@@ -159,7 +149,6 @@ const Card = ({
           )}
         </div>
 
-        {/* Arrow button - Bottom-right corner e */}
         <div className="absolute bottom-0 right-0">
           <div 
             onClick={() => navigate(category.path)}
@@ -175,27 +164,79 @@ const Card = ({
 
 const DashboardCard = () => {
   const firstCardRef = useRef<HTMLDivElement>(null);
+  const { accessToken } = useAppSelector((state) => state.auth);
+  const [stats, setStats] = useState({
+    tasks: 0,
+    requiresCallback: 0,
+    unreviewedCallsCount: 0,
+  });
+
+  const fetchStats = async () => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/doctor/dashboard-stats`, {
+        headers: { 
+          Authorization: `Bearer ${accessToken}`,
+          'Content-Type': 'application/json'
+        },
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to fetch stats');
+      }
+      
+      const result = await response.json();
+      console.log('Dashboard Card Stats API Response:', result);
+      
+      if (result.success && result.data) {
+        setStats({
+          tasks: result.data.tasks || 0,
+          requiresCallback: result.data.requiresCallback || 0,
+          unreviewedCallsCount: result.data.unreviewedCallsCount || 0,
+        });
+      }
+    } catch (error) {
+      console.error('Error fetching dashboard card stats:', error);
+    }
+  };
+
+  useEffect(() => {
+    if (accessToken) {
+      fetchStats();
+    }
+
+    // Listen for refresh events from CallLogs
+    const handleRefresh = () => {
+      console.log('Refreshing dashboard stats...');
+      fetchStats();
+    };
+
+    window.addEventListener('refreshDashboardStats', handleRefresh);
+
+    return () => {
+      window.removeEventListener('refreshDashboardStats', handleRefresh);
+    };
+  }, [accessToken]);
 
   const categories: Category[] = [
     {
       titleKey: "dashboard.routes.dashboard.cards.unreviewedCalls.title",
       descriptionKey: "dashboard.routes.dashboard.cards.unreviewedCalls.description",
       bgColor: "#E5DFF5",
-      avatars: [unredview1,unredview1,unredview1],
-      extraCount: "5+",
+      avatars: [unredview1, unredview1, unredview1],
+      extraCount: stats.unreviewedCallsCount > 3 ? `${stats.unreviewedCallsCount - 3}+` : undefined,
       path: "/dashboard/call_logs",
     },
     {
       titleKey: "dashboard.routes.dashboard.cards.tasks.title",
       bgColor: "#D0E1F5",
-      mainNumber: 12,
+      mainNumber: stats.tasks,
       path: "/dashboard/tasks",  
     },
     {
       titleKey: "dashboard.routes.dashboard.cards.callBack.title",
       bgColor: "#FADACA",
-      mainNumber: 7,
-      path: "/dashboard/tasks",    
+      mainNumber: stats.requiresCallback,
+      path: "/dashboard/call_logs",    
     },
   ];
 
@@ -225,7 +266,6 @@ const DashboardCard = () => {
 };
 
 export default DashboardCard;
-
 
 // import { useRef } from "react";
 // import CommonSpace from "@/common/space/CommonSpace";

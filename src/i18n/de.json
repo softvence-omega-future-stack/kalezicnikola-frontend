@@ -581,7 +581,7 @@
     "routes": {
       "dashboard":{
       "topSection": {
-  "welcome": "Willkommen, {{firstName}} ",
+  "welcome": "Willkommen zurück ,",
   "todayIncomingCalls": "Heute eingegangene Anrufe",
   "successfulCalls": "Erfolgreiche Anrufe",
   "averageCallDuration": "Durchschnittliche Anrufdauer",
@@ -723,7 +723,8 @@
   },
  "day": {
     "appointments": "Termine",
-    "todayAppointments": "Termine heute"
+    "todayAppointments": "Termine heute",
+    "unassigned": "Nicht zugewiesen"
  },
   "appointmentModal": {
   "title": "Neuen Termin hinzufügen",
@@ -1249,6 +1250,8 @@
    "patientRecordsModal": {
           "title": "Patientenakten überprüfen",
           "subtitle": "Fügen Sie eine neue Aufgabe zu Ihrer Liste hinzu. Füllen Sie die Details unten aus.",
+          "name": "Patientenname",
+          "phone": "Telefonnummer",
           "labels": {
             "time": "Zeit",
             "dueDate": "Fälligkeitsdatum",

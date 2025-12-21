@@ -23,6 +23,7 @@ const authSlice = createSlice({
       state.accessToken = null;
       state.user = null;
     },
+    
   },
 });
 

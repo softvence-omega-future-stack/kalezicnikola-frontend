@@ -9,6 +9,7 @@ export type TUser = {
     lastName: string;
 >>>>>>> romicha
     email: string;
+    doctorId: string;
     role: string;
     isVerified: boolean;
     profile_type: string;
