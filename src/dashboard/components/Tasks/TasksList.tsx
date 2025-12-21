@@ -549,14 +549,17 @@ export default function TaskList() {
                           </div>
 
                           <div className="flex items-center gap-4 text-sm font-medium text-[#171C35]">
-                            <div className="flex items-center gap-1 mt-2">
-                              <img src={timeIon} alt="" />
-                              <span>{task.time}</span>
-                            </div>
-                            <div className="flex items-center gap-1 mt-2">
-                              <span>{t("dashboard.routes.taskList.taskCard.due")}: {task.dueDate.split('T')[0]}</span>
-                            </div>
-                          </div>
+  <div className="flex items-center gap-1 mt-2">
+    <img src={timeIon} alt="" />
+    <span>{task.time ?? '-'}</span>
+  </div>
+  <div className="flex items-center gap-1 mt-2">
+    <span>
+      {t("dashboard.routes.taskList.taskCard.due")}: {task.dueDate ? task.dueDate.split('T')[0] : 'N/A'}
+    </span>
+  </div>
+</div>
+
                         </div>
                       </div>
                     </div>

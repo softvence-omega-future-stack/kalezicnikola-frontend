@@ -15,7 +15,9 @@ interface Appointment {
   id: string;
   name: string;
   timeRange: string;
+  appointmentDate: string;
   isNew?: boolean;
+  isActive?: boolean;
   details?: {
     phone: string;
     diagnosis: string;
@@ -25,16 +27,25 @@ interface Appointment {
 }
 
 interface ApiAppointment {
-  id: string;
+  id: number;
   patientId: string;
+  doctorId: string; // এটা important
   firstName: string | null;
   lastName: string | null;
   phone: string | null;
   appointmentDetails: string | null;
+  appointmentDate: string;
   scheduleSlot: {
     id: string;
     startTime: string;
     endTime: string;
+  };
+  patient: {
+    id: string;
+    firstName: string;
+    lastName: string;
+    phone: string;
+    email: string;
   };
 }
 
@@ -101,56 +112,131 @@ const ActiveAppointmentCard: React.FC<ActiveAppointmentProps> = ({ data }) => {
 
 const AppointmentsList: React.FC<AppointmentsListProps> = ({ selectedDate }) => {
   const { t } = useTranslation();
-  const { accessToken } = useAppSelector((state) => state.auth);
+  const { accessToken, user } = useAppSelector((state) => state.auth);
   const [appointments, setAppointments] = React.useState<Appointment[]>([]);
   const [loading, setLoading] = React.useState(true);
 
-  // Transform API appointment into Appointment type
-  const transformApiAppointment = (apiAppt: ApiAppointment): Appointment => ({
-    id: apiAppt.id,
-    name: apiAppt?.firstName && apiAppt?.lastName 
-      ? `${apiAppt?.firstName} ${apiAppt?.lastName}`
-      : 'Unknown Patient',
-    timeRange: `${apiAppt.scheduleSlot.startTime} - ${apiAppt.scheduleSlot.endTime}`,
-    details: apiAppt.phone
-      ? {
-          phone: apiAppt.phone,
-          diagnosis: apiAppt.appointmentDetails || 'N/A',
-          time: `${apiAppt.scheduleSlot.startTime} - ${apiAppt.scheduleSlot.endTime}`,
-          avatarUrl: 'https://via.placeholder.com/150',
-        }
-      : undefined,
-  });
+  // Current doctor ID - Redux state থেকে নিন
+  const currentDoctorId = user?.id || user?.doctorId; // আপনার structure অনুযায়ী adjust করুন
+
+  // Format date to YYYY-MM-DD
+  const formatDateToString = (date: Date | string): string => {
+    const d = typeof date === 'string' ? new Date(date) : date;
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
+  // Check if selected date is today
+  const isToday = (date: Date): boolean => {
+    const today = new Date();
+    return formatDateToString(date) === formatDateToString(today);
+  };
 
   React.useEffect(() => {
-    // Create an abort controller for cleanup
     const abortController = new AbortController();
     
     const fetchAppointments = async () => {
-      if (!accessToken) {
+      if (!accessToken || !currentDoctorId) {
         setLoading(false);
         return;
       }
 
       setLoading(true);
+      
       try {
-        const res = await axios.get(
-          `${import.meta.env.VITE_API_URL}/appointment/scheduled-today`,
+        const selectedDateString = formatDateToString(selectedDate);
+        let allAppointments: Appointment[] = [];
+
+        // If today, fetch scheduled-today for active appointment
+        if (isToday(selectedDate)) {
+          try {
+            const todayRes = await axios.get(
+              `${import.meta.env.VITE_API_URL}/appointment/scheduled-today`,
+              {
+                headers: { Authorization: `Bearer ${accessToken}` },
+                signal: abortController.signal,
+              }
+            );
+
+            const todayAppointments = todayRes.data.data?.appointments || [];
+            
+            // Filter only current doctor's appointments
+            const filteredTodayAppointments = todayAppointments.filter(
+              (appt: ApiAppointment) => appt.doctorId === currentDoctorId
+            );
+            
+            // Transform today's appointments with active flag and full details
+            const transformedToday = filteredTodayAppointments.map((appt: ApiAppointment) => ({
+              id: String(appt.id),
+              name: appt?.patient?.firstName && appt?.patient?.lastName 
+                ? `${appt.patient.firstName} ${appt.patient.lastName}`
+                : appt?.firstName && appt?.lastName
+                ? `${appt.firstName} ${appt.lastName}`
+                : 'Unknown Patient',
+              timeRange: `${appt.scheduleSlot.startTime} - ${appt.scheduleSlot.endTime}`,
+              appointmentDate: formatDateToString(appt.appointmentDate),
+              isActive: true,
+              details: {
+                phone: appt?.patient?.phone || appt.phone || 'N/A',
+                diagnosis: appt.appointmentDetails || 'N/A',
+                time: `${appt.scheduleSlot.startTime} - ${appt.scheduleSlot.endTime}`,
+                avatarUrl: dummyImage,
+              },
+            }));
+            
+            allAppointments = [...transformedToday];
+          } catch (todayErr) {
+            console.error('Error fetching today scheduled:', todayErr);
+          }
+        }
+
+        // Fetch all appointments
+        const allRes = await axios.get(
+          `${import.meta.env.VITE_API_URL}/appointment/all?page=1&limit=1000`,
           {
             headers: { Authorization: `Bearer ${accessToken}` },
             signal: abortController.signal,
           }
         );
 
-        // Access the appointments correctly
-        const appointmentsArray = res.data.data?.appointments || [];
-        const mapped: Appointment[] = appointmentsArray.map(transformApiAppointment);
+        const allAppointmentsRaw = allRes.data.data?.appointments || [];
         
-        // Filter appointments by selected date
-        // For now showing all from today's endpoint
-        setAppointments(mapped);
+        // Filter and transform all appointments - শুধু current doctor এর
+        const transformedAll = allAppointmentsRaw
+          .filter((appt: ApiAppointment) => appt.doctorId === currentDoctorId) // এই line add করা হয়েছে
+          .map((appt: ApiAppointment) => ({
+            id: String(appt.id),
+            name: appt?.patient?.firstName && appt?.patient?.lastName 
+              ? `${appt.patient.firstName} ${appt.patient.lastName}`
+              : appt?.firstName && appt?.lastName
+              ? `${appt.firstName} ${appt.lastName}`
+              : 'Unknown Patient',
+            timeRange: `${appt.scheduleSlot.startTime} - ${appt.scheduleSlot.endTime}`,
+            appointmentDate: formatDateToString(appt.appointmentDate),
+            isActive: false,
+            details: (appt?.patient?.phone || appt.phone) ? {
+              phone: appt?.patient?.phone || appt.phone || 'N/A',
+              diagnosis: appt.appointmentDetails || 'N/A',
+              time: `${appt.scheduleSlot.startTime} - ${appt.scheduleSlot.endTime}`,
+              avatarUrl: dummyImage,
+            } : undefined,
+          }));
+
+        // Filter by selected date
+        const filteredAll = transformedAll.filter((appt: Appointment) => 
+          appt.appointmentDate === selectedDateString
+        );
+
+        // Merge: Remove duplicates (prefer scheduled-today version with active flag)
+        const todayIds = new Set(allAppointments.map(a => a.id));
+        const uniqueFromAll = filteredAll.filter((appt: Appointment) => !todayIds.has(appt.id));
+
+        allAppointments = [...allAppointments, ...uniqueFromAll];
+
+        setAppointments(allAppointments);
       } catch (err: any) {
-        // Only log error if it's not an abort error
         if (err.name !== 'CanceledError' && err.code !== 'ECONNABORTED') {
           console.error('Error fetching appointments:', err);
         }
@@ -162,30 +248,19 @@ const AppointmentsList: React.FC<AppointmentsListProps> = ({ selectedDate }) => 
 
     fetchAppointments();
 
-    // Cleanup function to abort request on unmount or when dependencies change
     return () => {
       abortController.abort();
     };
-  }, [selectedDate, accessToken]);
-
-  // Helper to add ordinal suffix
-  function getOrdinal(n: number) {
-    const s = ["th", "st", "nd", "rd"];
-    const v = n % 100;
-    return n + (s[(v - 20) % 10] || s[v] || s[0]);
-  }
+  }, [selectedDate, accessToken, currentDoctorId]); // currentDoctorId dependency add করা হয়েছে
 
   const localeMap: Record<string, string> = {
-  en: 'en-US',
-  de: 'de-DE',
-};
+    en: 'en-US',
+    de: 'de-DE',
+  };
 
-const locale = localeMap[i18n.language] || 'en-US';
-
-
- const dayName = selectedDate.toLocaleDateString(locale, { weekday: 'long' });
-
-  const dateWithOrdinal = getOrdinal(selectedDate?.getDate());
+  const locale = localeMap[i18n.language] || 'en-US';
+  const dayName = selectedDate.toLocaleDateString(locale, { weekday: 'long' });
+  const dateWithOrdinal = selectedDate?.getDate();
   const formattedDate = `${dayName}, ${dateWithOrdinal}`;
 
   if (loading) {
@@ -196,8 +271,13 @@ const locale = localeMap[i18n.language] || 'en-US';
     );
   }
 
-  const activeAppointment = appointments.find(a => a.details);
-  const otherAppointments = appointments.filter(a => !a.details || a.id !== activeAppointment?.id);
+  // Find active appointment (first one with isActive flag and details)
+  const activeAppointment = appointments.find(a => a.isActive && a.details);
+  
+  // Other appointments (exclude the active one)
+  const otherAppointments = appointments.filter(a => 
+    !a.isActive || a.id !== activeAppointment?.id
+  );
 
   return (
     <div className="bg-white px-3 py-4 w-full md:rounded-3xl">
@@ -217,12 +297,24 @@ const locale = localeMap[i18n.language] || 'en-US';
       </div>
 
       <div className="space-y-2">
+        {/* Active appointment card with special styling - only on today */}
         {activeAppointment && activeAppointment.details && (
-          <ActiveAppointmentCard data={{ ...activeAppointment.details, name: activeAppointment.name }} />
+          <ActiveAppointmentCard 
+            data={{ 
+              ...activeAppointment.details, 
+              name: activeAppointment.name 
+            }} 
+          />
         )}
 
+        {/* Other appointments - normal cards */}
         {otherAppointments.map(a => (
-          <AppointmentItem key={a.id} name={a.name} timeRange={a.timeRange} isNew={a.isNew} />
+          <AppointmentItem 
+            key={a.id} 
+            name={a.name} 
+            timeRange={a.timeRange} 
+            isNew={a.isNew} 
+          />
         ))}
       </div>
     </div>

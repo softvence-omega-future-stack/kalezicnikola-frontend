@@ -1,22 +1,41 @@
-import { useState, useMemo } from "react";
-import { useTranslation } from 'react-i18next';
-import type { Appointment } from "./CalendarView";
+import { useState, useMemo, useEffect } from "react";
+import { useTranslation } from "react-i18next";
+
+interface Appointment {
+  appointmentDate: string;
+  patient: {
+    firstName: string;
+    lastName: string;
+  };
+  scheduleSlot: {
+    startTime: string;
+  };
+}
 
 interface DayViewProps {
   selectedDate: Date;
   appointments: Appointment[];
+  onDateChange?: (date: Date) => void; // NEW: callback for parent
 }
 
-const DayView: React.FC<DayViewProps> = ({ selectedDate, appointments }) => {
-  const { t } = useTranslation();
-  
+const DayView: React.FC<DayViewProps> = ({ selectedDate, appointments, onDateChange }) => {
+  const {t, i18n } = useTranslation();
+
+  // Use selectedDate from props directly
   const [currentDate, setCurrentDate] = useState(selectedDate ?? new Date());
 
+  // Sync with parent when selectedDate changes
+  useEffect(() => {
+    if (selectedDate) {
+      setCurrentDate(selectedDate);
+    }
+  }, [selectedDate]);
 
+  // ===== Week Days =====
   const weekDays = useMemo(() => {
     const startOfWeek = new Date(currentDate);
     const day = startOfWeek.getDay();
-    const diff = startOfWeek.getDate() - day + (day === 0 ? -6 : 1); 
+    const diff = startOfWeek.getDate() - day + (day === 0 ? -6 : 1);
     startOfWeek.setDate(diff);
 
     return Array.from({ length: 7 }, (_, i) => {
@@ -26,35 +45,63 @@ const DayView: React.FC<DayViewProps> = ({ selectedDate, appointments }) => {
     });
   }, [currentDate]);
 
- 
+  // ===== Time Slots =====
   const timeSlots = Array.from({ length: 24 }, (_, i) => {
     const hour = i % 12 || 12;
-    const ampm = i < 12 ? 'AM' : 'PM';
+    const ampm = i < 12 ? "AM" : "PM";
     return `${hour} ${ampm}`;
   });
 
-  const dayAppointments = appointments.filter(a =>
-    new Date(a.appointmentDate).toDateString() === currentDate.toDateString()
+  // ===== Day Appointments =====
+  const dayAppointments = appointments.filter(
+    (a) =>
+      new Date(a.appointmentDate).toDateString() ===
+      currentDate.toDateString()
   );
 
+  // Handle date selection
+  const handleDateSelect = (date: Date) => {
+    setCurrentDate(date);
+    // Notify parent component
+    if (onDateChange) {
+      onDateChange(date);
+    }
+  };
+
   return (
-    <div className="bg-white rounded-[32px] py-6 shadow-sm border border-gray-100">
-   
+    <div className="bg-white rounded-4xl py-6 shadow-sm border border-gray-100">
+      {/* ===== Week Header ===== */}
       <div className="flex justify-between px-10 border-b border-gray-100 pb-6">
         {weekDays.map((date, index) => {
-          const isSelected = date.toDateString() === currentDate.toDateString();
+          const isSelected =
+            date.toDateString() === currentDate.toDateString();
+
           return (
             <button
               key={index}
-              onClick={() => setCurrentDate(date)} 
+              onClick={() => handleDateSelect(date)}
               className="flex flex-col items-center group cursor-pointer"
             >
-              <span className={`text-xs font-medium mb-2 ${isSelected ? 'text-[#526FFF]' : 'text-headingBlack]'}`}>
-                {date.toLocaleDateString('en-US', { weekday: 'short' }).toUpperCase()}
+              <span
+                className={`text-xs md:text-base font-medium mb-2 ${
+                  isSelected ? "text-[#526FFF]" : "text-headingBlack"
+                }`}
+              >
+                {date
+                  .toLocaleDateString(
+                    i18n.language === "de" ? "de-DE" : "en-US",
+                    { weekday: "short" }
+                  )
+                  .toUpperCase()}
               </span>
-              <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${
-                isSelected ? 'bg-[#526FFF] text-white' : 'hover:bg-gray-100 bg-gray-50 text-gray-700'
-              }`}>
+
+              <div
+                className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${
+                  isSelected
+                    ? "bg-[#526FFF] text-white"
+                    : "hover:bg-gray-100 bg-gray-50 text-gray-700"
+                }`}
+              >
                 <span className="font-semibold">{date.getDate()}</span>
               </div>
             </button>
@@ -62,37 +109,60 @@ const DayView: React.FC<DayViewProps> = ({ selectedDate, appointments }) => {
         })}
       </div>
 
-      
+      {/* ===== Time Slots ===== */}
       <div className="overflow-y-auto max-h-[600px] relative custom-scrollbar">
         {/* Timezone Row */}
-        <div className="flex border-b border-gray-50" style={{ height: '50px' }}>
-          <div className="w-20 flex-shrink-0 px-4 py-2 text-right border-r border-gray-50">
-            <span className="text-xs md:text-base text-headingBlack font-medium uppercase">{t('GMT+06')}</span>
+        <div className="flex border-b border-gray-50 h-[50px]">
+          <div className="w-20 shrink-0 px-4 py-2 text-right border-r border-gray-50">
+            <span className="text-xs md:text-base text-headingBlack font-medium uppercase">
+              GMT+06
+            </span>
           </div>
+
           <div className="flex-1 p-1 bg-blue-50">
-             {dayAppointments.length > 0 ? (
-                <div className="bg-indigo-50 text-[#526FFF] rounded-lg px-3 py-1 text-xs md:text-base font-medium inline-block">
-                  {dayAppointments.length} {t("dashboard.routes.calendar.day.todayAppointments")}
-                </div>
-             ) : (
-                <span className="text-sm md:text-base text-gray-700  ml-2 italic">Unassigned</span>
-             )}
+            {dayAppointments.length > 0 ? (
+              <div className="bg-indigo-50 text-[#526FFF] rounded-lg px-3 py-1 text-xs md:text-base font-medium inline-block">
+                {dayAppointments.length} {t("dashboard.routes.calendar.day.todayAppointments")}
+              </div>
+            ) : (
+              <span className="text-sm md:text-base text-gray-700 ml-2 italic">
+                {t("dashboard.routes.calendar.day.unassigned")}
+              </span>
+            )}
           </div>
         </div>
 
-        {/* Time Slots Mapping */}
+        {/* Time Grid */}
         <div className="relative">
           {timeSlots.map((time, index) => (
-            <div key={index} className="flex border-b border-gray-50" style={{ height: '60px' }}>
+            <div
+              key={index}
+              className="flex border-b border-gray-50 h-[60px]"
+            >
               <div className="w-20 shrink-0 px-4 py-2 text-right border-r border-gray-50">
-                <span className="text-xs md:text-base text-headingBlack">{time}</span>
+                <span className="text-xs md:text-base text-headingBlack">
+                  {time}
+                </span>
               </div>
+
               <div className="flex-1 relative">
                 {dayAppointments
-                  .filter(a => {
-                    const slotHour = parseInt(a.scheduleSlot.startTime.split(':')[0]);
-                    const isPM = a.scheduleSlot.startTime.toLowerCase().includes('pm');
-                    const normalizedHour = isPM && slotHour !== 12 ? slotHour + 12 : (!isPM && slotHour === 12 ? 0 : slotHour);
+                  .filter((a) => {
+                    const slotHour = parseInt(
+                      a.scheduleSlot.startTime.split(":")[0]
+                    );
+                    const isPM =
+                      a.scheduleSlot.startTime
+                        .toLowerCase()
+                        .includes("pm");
+
+                    const normalizedHour =
+                      isPM && slotHour !== 12
+                        ? slotHour + 12
+                        : !isPM && slotHour === 12
+                        ? 0
+                        : slotHour;
+
                     return normalizedHour === index;
                   })
                   .map((a, i) => (
@@ -100,27 +170,31 @@ const DayView: React.FC<DayViewProps> = ({ selectedDate, appointments }) => {
                       key={i}
                       className="absolute inset-x-2 top-1 bottom-1 bg-[#526FFF] text-white rounded-xl px-4 py-2 text-xs shadow-md z-10"
                     >
-                      <p className="font-bold">{a.patient.firstName} {a.patient.lastName}</p>
-                      <p className="opacity-80">{a.scheduleSlot.startTime}</p>
+                      <p className="font-bold">
+                        {a.patient.firstName} {a.patient.lastName}
+                      </p>
+                      <p className="opacity-80">
+                        {a.scheduleSlot.startTime}
+                      </p>
                     </div>
                   ))}
               </div>
             </div>
           ))}
 
-          {/* Current Time Indicator */}
+          {/* ===== Current Time Indicator ===== */}
           {currentDate.toDateString() === new Date().toDateString() && (
-         <div
-            className="absolute left-20 right-0 pointer-events-none z-20"
-            style={{
-              top: `${43 + (new Date().getHours() - 7) * 43}px` 
-            }}
-          >
-            <div className="flex items-center">
-              <div className="w-2.5 h-2.5 rounded-full bg-indigo-600 -ml-1.5"></div>
-              <div className="flex-1 h-px bg-indigo-600"></div>
+            <div
+              className="absolute left-20 right-0 pointer-events-none z-20"
+              style={{
+                top: `${43 + (new Date().getHours() - 7) * 43}px`,
+              }}
+            >
+              <div className="flex items-center">
+                <div className="w-2.5 h-2.5 rounded-full bg-indigo-600 -ml-1.5"></div>
+                <div className="flex-1 h-px bg-indigo-600"></div>
+              </div>
             </div>
-          </div>
           )}
         </div>
       </div>

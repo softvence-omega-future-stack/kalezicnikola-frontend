@@ -4,13 +4,24 @@ import timeIon from '../../../assets/svgIcon/taskTimeIcon.svg';
 import { useTranslation } from 'react-i18next';
 
 interface Task {
-  id: number;
+  id: string | any;
   title: string;
-  description?: string;
+  description: string;
+  priority: 'HIGH' | 'MEDIUM' | 'LOW';
+  time: string | null;
+  dueDate: string;
+  completed?: boolean; 
+  status: 'TODO' | 'IN_PROGRESS' | 'DONE';
+  patient?: {
+    id: string;
+    firstName: string;
+    lastName: string;
+    photo: string | null;
+  } | null;
 }
 
 interface ModalProps {
-  task: Task | null;
+  task: Task;
   onClose: () => void;
 }
 
@@ -54,19 +65,37 @@ export const PatientRecordsModal: React.FC<ModalProps> = ({ task, onClose }) => 
 
         {/* Content */}
         <div className="overflow-auto max-h-[calc(90vh-120px)]">
+
+          {/* Patient Name & Photo */}
+          {task.patient && (
+            <div className="mb-6">
+              <div className="flex items-center gap-4 mb-2">
+                {task.patient.photo && (
+                  <img 
+                    src={task.patient.photo} 
+                    alt={`${task.patient.firstName} ${task.patient.lastName}`}
+                    className="w-12 h-12 rounded-full object-cover"
+                  />
+                )}
+                <h3 className="font-semibold text-lg text-subHeadingBlack">
+                  {t('dashboard.routes.taskList.patientRecordsModal.name')}: {task.patient.firstName} {task.patient.lastName}
+                </h3>
+              </div>
+            </div>
+          )}
+
           {/* Date and Time */}
           <div className="flex items-center gap-3 mb-8 text-gray-700">
             <img src={timeIon} alt="" />
-            <span className="text-base sm:text-lg md:text-xl text-[#171C35] font-medium leading-4 ">
-              9:00 AM <span className="ml-4">{t('dashboard.routes.taskList.patientRecordsModal.labels.dueDate')}: Sep 30, 2025</span>
+            <span className="text-base sm:text-lg md:text-xl text-[#171C35] font-medium leading-4">
+              {task.time || '9:00 AM'} <span className="ml-4">{t('dashboard.routes.taskList.patientRecordsModal.labels.dueDate')}: {task.dueDate ? task.dueDate.split('T')[0] : 'Sep 30, 2025'}</span>
             </span>
           </div>
 
-          {/* Description Text */}
-          <div className="space-y-8 text-gray-700 text-sm sm:text-base leading-relaxed">
-            <p>{t('dashboard.routes.taskList.patientRecordsModal.content.paragraph1')}</p>
-            <p>{t('dashboard.routes.taskList.patientRecordsModal.content.paragraph2')}</p>
-            <p>{t('dashboard.routes.taskList.patientRecordsModal.content.paragraph3')}</p>
+          {/* Description */}
+          <div className="space-y-4 text-gray-700 text-sm sm:text-base leading-relaxed">
+            <p className="font-semibold text-lg">{task.title}</p>
+            <p>{task.description}</p>
           </div>
         </div>
       </div>
