@@ -13,21 +13,27 @@ interface MetricCardProps {
 
 const MetricCard: React.FC<MetricCardProps> = ({ label, value }) => (
   <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
-    <p className="text-sm font-semibold text-subHeadingBlack mb-1">{label}</p>
-    {typeof value === 'string' && value.includes('hr') ? (
+    <p className="text-sm font-semibold text-subHeadingBlack mb-1">
+      {label}
+    </p>
+
+    {typeof value === "string" && value.includes("min") ? (
       <div className="flex items-center justify-center sm:justify-start gap-1">
+        {/* MIN */}
         <span className="text-2xl sm:text-3xl md:text-[32px] font-medium text-[#171C35] leading-none">
-          {value.split('hr')[0].trim().padStart(2, '0')}
+          {value.split("min")[0].trim().padStart(2, "0")}
         </span>
-        <span className="text-xs sm:text-sm text-gray-700 leading-none">
-          hr
-        </span>
+        <span className="text-xs sm:text-sm text-gray-700">min</span>
+
+        {/* SEC */}
         <span className="text-2xl sm:text-3xl md:text-[32px] font-medium text-[#171C35] leading-none">
-          {value.split('hr')[1].split('min')[0].trim().padStart(2, '0')}
+          {value
+            .split("min")[1]
+            .replace("sec", "")
+            .trim()
+            .padStart(2, "0")}
         </span>
-        <span className="text-xs sm:text-sm text-gray-700 leading-none">
-          min
-        </span>
+        <span className="text-xs sm:text-sm text-gray-700">sec</span>
       </div>
     ) : (
       <p className="text-2xl sm:text-3xl md:text-[32px] font-medium text-subHeadingBlack leading-none">
@@ -37,12 +43,15 @@ const MetricCard: React.FC<MetricCardProps> = ({ label, value }) => (
   </div>
 );
 
-// Format minutes to "01hr 20min"
-const formatDuration = (totalMinutes: number) => {
-  const hours = Math.floor(totalMinutes / 60);
-  const minutes = totalMinutes % 60;
-  return `${hours}hr ${minutes}min`;
+
+const formatDuration = (totalSeconds: number) => {
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+  return `${minutes}min ${seconds}sec`;
 };
+
+
+
 
 interface DashboardTopSectionProps {
   selectedDate: Date;
@@ -57,7 +66,7 @@ const DashboardTopSection: React.FC<DashboardTopSectionProps> = ({ selectedDate,
   const [stats, setStats] = useState({
     todayIncomingCalls: 0,
     successfulCalls: 0,
-    averageCallDuration: '0hr 0min',
+    averageCallDuration: '0min 0sec',
   });
 
   useEffect(() => {
