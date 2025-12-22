@@ -17,15 +17,11 @@ const baseQueryApI = fetchBaseQuery({
 export const baseAPI = createApi({
     reducerPath:"baseAPI",
     baseQuery:baseQueryApI,
-<<<<<<< HEAD
-    tagTypes: ["Doctor","Admin","User"],
-    endpoints: () =>({})
-})
-=======
+
     tagTypes: ["Doctor","Admin","User","NotificationSettings","SecuritySettings","DoctorProfile", "Conversation", "Message"],
     endpoints: () =>({})
 });
->>>>>>> romicha
+
 
 // const baseQueryWithToasts : typeof baseQueryApI = async (
 //     args,

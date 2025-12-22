@@ -31,51 +31,30 @@ import SettingPage from "@/pages/Admin/Settings/Settingpage";
 import SupportPage from "@/pages/Admin/Supports/SupportPage";
 import Home from "@/pages/Home";
 import AddPatientForm from "@/dashboard/components/Patients/Addpatient";
-<<<<<<< HEAD
+
 // import ProtectedRoute from "./ProtectedRoutes";
 import GuestRoute from "./GuestRoute";
-=======
-import Impressum from "@/Teamplate/Impressum ";
-import Datenschutz from "@/Teamplate/Datenschutz";
-import GuestRoute from "./GuestRoute";
-import EditPatientForm from "@/dashboard/components/Patients/EditPatientForm";
-import ProtectedRoute from "./ProtectedRoutes";
->>>>>>> romicha
+
 // import AddPatientForm from "@/dashboard/components/Patients/Addpatient";
 
 
 const routes = createBrowserRouter([
   {
     path: "/",
-<<<<<<< HEAD
+
     element:(<GuestRoute><App /></GuestRoute> ),
-=======
-     element:(<GuestRoute><App /></GuestRoute> ),
->>>>>>> romicha
+
     children: [
            {
         index: true,
         element: <Home />
       },
         {
-<<<<<<< HEAD
+
             path: "/",
             element: <Home />
       },
-=======
-    path: "/",
-    element: <Home />, 
-  },
-       {
-        path: "/impressum",
-        element: <Impressum />
-      },
-      {
-        path: "/datenschutz",
-        element: <Datenschutz />
-      },
-   
->>>>>>> romicha
+
      {
         path:'/login',
         element: <LoginPage />
@@ -108,7 +87,7 @@ const routes = createBrowserRouter([
     ],
   },
     {
-<<<<<<< HEAD
+
   path: "/dashboard",
   element: (
     // <ProtectedRoute role="doctor">
@@ -130,34 +109,7 @@ const routes = createBrowserRouter([
     { path: "doctor-profile", element: <DoctorProfile /> },
   ],
 },
-=======
-    path: "/dashboard",
-    element: (
-    <ProtectedRoute role="doctor">
-      <DashboardLayout />
-    </ProtectedRoute>
-  ),
-    children: [
-      { index: true, element: <Dashboard /> },
-      { path: "call_logs", element: <CallLogs /> },
-      {path:"calendar", element:<Calendar />},
-      { path: "patients", element: <Patients/> },
-      { path: "add-patient", element: <AddPatientForm /> },
-     { path: "edit-patient/:id", element: <EditPatientForm /> },
-      { path: "patients/:id", element: <PatientProfilePage /> },
-      { path: "tasks", element: <Tasks /> },
-      { path: "supports", element: <Supports/> },
-      { path: "settings", element: <Settings /> },
-      
-      { path: "settings/staff/add", element: <AddNewStaff /> },
-      { path: "settings/staff/profile/:id", element: <StaffProfile /> },
-      { path: "doctor-profile", element: <DoctorProfile /> },
 
-   //  { path: "*", element: <NotFound /> },
-    ],
-
-  },
->>>>>>> romicha
 
   {
     path: "/admin",

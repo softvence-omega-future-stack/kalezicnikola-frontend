@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 // import { z } from "zod";
 // import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -385,7 +385,7 @@ export default function SignupPage() {
                     {...register("firstName")}
                     className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
                   />
-                  {errors.firstName && <p className="text-red-500 text-xs mt-1">{errors.firstName.message}</p>}
+                  {errors.firstName && <p className="text-red-500 text-xs mt-1">{errors.firstName?.message}</p>}
 
                 </div>
                 <div>
@@ -396,7 +396,7 @@ export default function SignupPage() {
                     {...register("lastName")}
                     className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
                   />
-                  {errors.lastName && <p className="text-red-500 text-xs mt-1">{errors.lastName.message}</p>}
+                  {errors.lastName && <p className="text-red-500 text-xs mt-1">{errors.lastName?.message}</p>}
                 </div>
               </div>
 
