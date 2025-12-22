@@ -171,7 +171,7 @@ const DayView: React.FC<DayViewProps> = ({ selectedDate, appointments, onDateCha
                       className="absolute inset-x-2 top-1 bottom-1 bg-[#526FFF] text-white rounded-xl px-4 py-2 text-xs shadow-md z-10"
                     >
                       <p className="font-bold">
-                        {a.patient.firstName} {a.patient.lastName}
+                        {a.patient?.firstName} {a.patient?.lastName}
                       </p>
                       <p className="opacity-80">
                         {a.scheduleSlot.startTime}

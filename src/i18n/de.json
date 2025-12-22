@@ -694,6 +694,7 @@
     "hide": "Verbergen",
     "patientInfoTitle": "Informationen werden zusammengefasst",
     "patientName": "Name",
+    " noAudio": "Keine Audioaufnahme verfügbar",
     "insuranceId": "Versicherungs-ID",
     "reason": "Grund des Anrufs",
     "patientsTranscript": "Patienten-Transkript",

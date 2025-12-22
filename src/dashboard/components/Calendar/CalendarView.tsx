@@ -308,23 +308,7 @@ const CalendarView: React.FC = () => {
           </div>
         )}
 
-        {/* Debug info - remove in production */}
-        {process.env.NODE_ENV === 'development' && (
-          <div className="mt-4 p-4 bg-gray-100 rounded text-xs">
-            <p>Total appointments: {appointments.length}</p>
-            <p>Normalized: {normalizeAppointments.length}</p>
-            <p>Selected date: {selectedDate.toDateString()}</p>
-            {viewType === 'day' && (
-              <p>Day filtered: {filterByDay(selectedDate).length}</p>
-            )}
-            {viewType === 'week' && (
-              <p>Week filtered: {filterByWeek(selectedDate).length}</p>
-            )}
-            {viewType === 'month' && (
-              <p>Month filtered: {filterByMonth(selectedDate).length}</p>
-            )}
-          </div>
-        )}
+        
       </div>
 
       {/* Dropdown Portal */}

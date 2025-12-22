@@ -346,12 +346,6 @@
 
 // export default CallLogsPage;
 
-
-
-// ===========================
-// 1. CallLogsPage.tsx - Updated with Review Functionality
-// ===========================
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Play } from 'lucide-react';
 import { FiX } from 'react-icons/fi';
@@ -362,7 +356,6 @@ import PatientTranscriptPage from './TransscriptModal';
 import homeIcon from '../../../assets/svgIcon/homeIcon.svg';
 import axios from 'axios';
 import { useAppSelector } from '@/store/hook';
-import { toast } from 'react-toastify';
 
 interface Patient {
   firstName: string;
@@ -379,23 +372,22 @@ interface Appointment {
 interface CallHistoryItem {
   id: string;
   doctorId: string;
-  patientId: string;
-  phoneNumber: string;
-  status?: 'Successful' | 'Unsuccessful' | 'Transferred' | 'Missed';
-  duration: string;
+  patientId: string | null;
+  phoneNumber: string ;
+  audioUrl: string | null;
+  callStatus: 'SUCCESSFUL' | 'MISSED' | 'TRANSFERRED' | 'FAILED';
+  duration: number;
   transcription: string;
   intent: string;
   sentiment: string;
-  summary: string;
+  summary: string | null;
   appointmentId: string | null;
-  patient: Patient;
-  insuranceId: string;
-  reasonForCalling: string;
-  transcript?: string;
+  patient: Patient | null;
+  insuranceId: string | null;
+  reasonForCalling: string | null;
   appointment: Appointment | null;
   createdAt: string;
   updatedAt: string;
-  isReviewed?: boolean; // NEW: Track review status
 }
 
 const CallLogsPage: React.FC = () => {
@@ -405,23 +397,19 @@ const CallLogsPage: React.FC = () => {
   const [callData, setCallData] = useState<CallHistoryItem[]>([]);
   const { accessToken } = useAppSelector((state) => state.auth);
   const [loading, setLoading] = useState(true);
-  const [, setError] = useState(null);
+  const [, setError] = useState<string | null>(null);
   const modalRef = useRef<HTMLDivElement>(null);
-  const statuses = ['Successful', 'Unsuccessful', 'Transferred', 'Missed'] as const;
   const [currentPage, setCurrentPage] = useState(1);
   const [totalCalls, setTotalCalls] = useState(0);
+  const [isFiltered, setIsFiltered] = useState(false);
+  const [filterDateRange, setFilterDateRange] = useState<{start: string, end: string} | null>(null);
 
   const formatDuration = (seconds: string | number): string => {
     const totalSeconds = typeof seconds === 'string' ? parseInt(seconds) : seconds;
-    if (isNaN(totalSeconds)) return '0m 0s';
+    if (isNaN(totalSeconds) || totalSeconds === 0) return '0m 0s';
     const minutes = Math.floor(totalSeconds / 60);
     const remainingSeconds = totalSeconds % 60;
     return `${minutes}m ${remainingSeconds}s`;
-  };
-
-  const getRandomStatus = () => {
-    const randomIndex = Math.floor(Math.random() * statuses.length);
-    return statuses[randomIndex];
   };
 
   // Fetch call history
@@ -435,20 +423,20 @@ const CallLogsPage: React.FC = () => {
       );
 
       if (response.data.success) {
-        const callsWithStatus = response.data.data.data.map((call: CallHistoryItem) => ({
-          ...call,
-          status: getRandomStatus(),
-          // Backend থেকে isReviewed field আসবে, না থাকলে false
-          isReviewed: call.isReviewed ?? false,
-        }));
-
-        setCallData(callsWithStatus);
+        const calls = response.data.data.data;
+        setCallData(calls);
         setTotalCalls(response.data.data.pagination.total);
+        
+        setTimeout(() => {
+          const unreviewedCount = calls.filter((call: CallHistoryItem) => call.callStatus === 'MISSED').length;
+          window.dispatchEvent(new CustomEvent('updateUnreviewedCount', { detail: unreviewedCount }));
+        }, 0);
       } else {
         setError(response.data.message);
       }
-    } catch (err: any) {
-      setError(err.data?.message);
+    } catch (err) {
+      const errorMessage = axios.isAxiosError(err) ? err.response?.data?.message || err.message : 'Unknown error';
+      setError(errorMessage);
       console.error('Error fetching call history:', err);
     } finally {
       setLoading(false);
@@ -457,50 +445,57 @@ const CallLogsPage: React.FC = () => {
 
   useEffect(() => {
     fetchCallHistory();
+
+    const handleFilterEvent = (event: CustomEvent) => {
+      const { data, startDate, endDate, total } = event.detail;
+      setCallData(data);
+      setTotalCalls(total);
+      setIsFiltered(true);
+      setFilterDateRange({ start: startDate, end: endDate });
+      
+      setTimeout(() => {
+        const unreviewedCount = data.filter((call: CallHistoryItem) => call.callStatus === 'MISSED').length;
+        window.dispatchEvent(new CustomEvent('updateUnreviewedCount', { detail: unreviewedCount }));
+      }, 0);
+    };
+
+    const handleClearFilterEvent = () => {
+      setIsFiltered(false);
+      setFilterDateRange(null);
+      fetchCallHistory();
+    };
+
+    window.addEventListener('callsFiltered', handleFilterEvent as EventListener);
+    window.addEventListener('callsFilterCleared', handleClearFilterEvent);
+
+    return () => {
+      window.removeEventListener('callsFiltered', handleFilterEvent as EventListener);
+      window.removeEventListener('callsFilterCleared', handleClearFilterEvent);
+    };
   }, [accessToken]);
 
-  // Mark call as reviewed
-  const markAsReviewed = async (callId: string) => {
-    try {
-      // Backend API call to mark as reviewed
-      await axios.patch(
-        `${import.meta.env.VITE_API_URL}/doctor/calls/${callId}/review`,
-        {},
-        {
-          headers: { Authorization: `Bearer ${accessToken}` },
-        }
+  const markAsReviewed = (callId: string) => {
+    setCallData(prevData => {
+      const updatedData = prevData.map(call =>
+        call.id === callId && call.callStatus === 'MISSED' 
+          ? { ...call, callStatus: 'SUCCESSFUL' as const } 
+          : call
       );
-
-      // Update local state
-      setCallData(prevData =>
-        prevData.map(call =>
-          call.id === callId ? { ...call, isReviewed: true } : call
-        )
-      );
-
-      // Show success message
-      toast.success('Call marked as reviewed');
-      
-      // Refresh dashboard stats (this will update sidebar and dashboard card)
-      window.dispatchEvent(new Event('refreshDashboardStats'));
-      
-    } catch (error) {
-      console.error('Error marking call as reviewed:', error);
-      toast.error('Failed to mark call as reviewed');
-    }
+      setTimeout(() => {
+        const unreviewedCount = updatedData.filter(call => call.callStatus === 'MISSED').length;
+        window.dispatchEvent(new CustomEvent('updateUnreviewedCount', { detail: unreviewedCount }));
+      }, 0);
+      return updatedData;
+    });
   };
 
-  // Handle play button click
   const handlePlayClick = (call: CallHistoryItem) => {
     setCurrentCall(call);
-    
-    // If not reviewed, mark as reviewed
-    if (!call.isReviewed) {
-      markAsReviewed(call.id);
+    if (call.callStatus === 'MISSED') {
+      setTimeout(() => markAsReviewed(call.id), 0);
     }
   };
 
-  // Close modal on click outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
@@ -519,46 +514,31 @@ const CallLogsPage: React.FC = () => {
 
   const getStatusStyle = (status: string) => {
     switch (status) {
-      case 'Successful':
-        return 'bg-teal-50 text-teal-600';
-      case 'Unsuccessful':
-        return 'bg-yellow-50 text-yellow-600';
-      case 'Transferred':
-        return 'bg-purple-50 text-purple-600';
-      case 'Missed':
-        return 'bg-red-50 text-red-600';
-      default:
-        return 'bg-gray-50 text-gray-600';
+      case 'SUCCESSFUL': return 'bg-teal-50 text-teal-600';
+      case 'FAILED': return 'bg-yellow-50 text-yellow-600';
+      case 'TRANSFERRED': return 'bg-purple-50 text-purple-600';
+      case 'MISSED': return 'bg-red-50 text-red-600';
+      default: return 'bg-gray-50 text-gray-600';
     }
   };
 
   const getStatusDot = (status: string) => {
     switch (status) {
-      case 'Successful':
-        return 'bg-teal-500';
-      case 'Unsuccessful':
-        return 'bg-yellow-500';
-      case 'Transferred':
-        return 'bg-purple-500';
-      case 'Missed':
-        return 'bg-red-500';
-      default:
-        return 'bg-gray-500';
+      case 'SUCCESSFUL': return 'bg-teal-500';
+      case 'FAILED': return 'bg-yellow-500';
+      case 'TRANSFERRED': return 'bg-purple-500';
+      case 'MISSED': return 'bg-red-500';
+      default: return 'bg-gray-500';
     }
   };
 
   const getStatusTranslation = (status: string) => {
     switch (status) {
-      case 'Successful':
-        return t('dashboard.routes.callLogs.status.successful');
-      case 'Unsuccessful':
-        return t('dashboard.routes.callLogs.status.unsuccessful');
-      case 'Transferred':
-        return t('dashboard.routes.callLogs.status.transferred');
-      case 'Missed':
-        return t('dashboard.routes.callLogs.status.missed');
-      default:
-        return status;
+      case 'SUCCESSFUL': return t('dashboard.routes.callLogs.status.successful');
+      case 'FAILED': return t('dashboard.routes.callLogs.status.unsuccessful');
+      case 'TRANSFERRED': return t('dashboard.routes.callLogs.status.transferred');
+      case 'MISSED': return t('dashboard.routes.callLogs.status.missed');
+      default: return status;
     }
   };
 
@@ -570,7 +550,6 @@ const CallLogsPage: React.FC = () => {
         </div>
       )}
 
-      {/* Header Navigation */}
       <div className="">
         <div className="flex flex-wrap items-center gap-2 text-sm">
           <img src={homeIcon} alt="home" className="w-4 h-4" />
@@ -589,23 +568,26 @@ const CallLogsPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="mt-4">
         <h1 className="text-xl md:text-2xl font-semibold text-[#171C35] mb-6">
           {t('dashboard.routes.callLogs.title')}
         </h1>
 
-        {/* Table Container */}
         <div className="rounded-2xl bg-white p-6 relative z-10">
-          {/* Header */}
           <div className="flex flex-wrap justify-between gap-4 items-center p-4 relative z-20">
-            <h2 className="text-base font-semibold text-[#171C35]">
-              {t('dashboard.routes.callLogs.header')}
-            </h2>
+            <div>
+              <h2 className="text-base font-semibold text-[#171C35]">
+                {t('dashboard.routes.callLogs.header')}
+              </h2>
+              {isFiltered && filterDateRange && (
+                <p className="text-xs text-gray-500 mt-1">
+                  Filtered: {new Date(filterDateRange.start).toLocaleDateString()} - {new Date(filterDateRange.end).toLocaleDateString()}
+                </p>
+              )}
+            </div>
             <DateRange />
           </div>
 
-          {/* Table */}
           <div className="relative z-0 overflow-x-auto">
             <table className="min-w-full divide-gray-200 table-fixed">
               <thead>
@@ -639,14 +621,21 @@ const CallLogsPage: React.FC = () => {
               </thead>
 
               <tbody className="divide-y divide-gray-100">
-                {callData.map((log) => (
+                {callData.length === 0 ? (
+                  <tr>
+                    <td colSpan={7} className="px-4 py-8 text-center text-gray-500">
+                      {isFiltered ? 'No calls found in selected date range' : 'No call history available'}
+                    </td>
+                  </tr>
+                ) : (
+                  callData.map((log) => (
                   <tr 
                     key={log.id} 
-                    className={`hover:bg-gray-50 ${!log.isReviewed ? 'bg-blue-50/30' : ''}`}
+                    className={`hover:bg-gray-50 ${log.callStatus === 'MISSED' ? 'bg-blue-50/30' : ''}`}
                   >
                     <td className="px-2 sm:px-4 py-2 text-sm font-semibold text-[#111A2D] whitespace-nowrap">
                       <div className="flex items-center gap-2">
-                        {!log.isReviewed && (
+                        {log.callStatus === 'MISSED' && (
                           <span className="w-2 h-2 bg-blue-600 rounded-full animate-pulse"></span>
                         )}
                         {log.patient?.firstName} {log.patient?.lastName}
@@ -656,12 +645,13 @@ const CallLogsPage: React.FC = () => {
                       {log.createdAt}
                     </td>
                     <td className="px-2 sm:px-4 py-2 text-sm text-[#111A2D] whitespace-nowrap">
-                      {log.phoneNumber}
+                      {/* ✅ Updated condition: show patient.phone or phoneNumber */}
+                      {log.patient?.phone ?? log.phoneNumber ?? 'N/A'}
                     </td>
                     <td className="px-2 sm:px-4 py-2 whitespace-nowrap">
-                      <span className={`inline-flex w-[109px] justify-center items-center gap-1 px-2 py-1 rounded-full text-sm font-semibold ${getStatusStyle(log.status ?? "Missed")}`}>
-                        <span className={`w-2 h-2 rounded-full ${getStatusDot(log.status ?? "Missed")}`}></span>
-                        {getStatusTranslation(log.status ?? "Missed")}
+                      <span className={`inline-flex w-[109px] justify-center items-center gap-1 px-2 py-1 rounded-full text-sm font-semibold ${getStatusStyle(log.callStatus)}`}>
+                        <span className={`w-2 h-2 rounded-full ${getStatusDot(log.callStatus)}`}></span>
+                        {getStatusTranslation(log.callStatus)}
                       </span>
                     </td>
                     <td className="px-2 sm:px-4 py-2 text-sm text-[#111A2D] whitespace-nowrap">
@@ -694,12 +684,12 @@ const CallLogsPage: React.FC = () => {
                       </button>
                     </td>
                   </tr>
-                ))}
+                ))
+                )}
               </tbody>
             </table>
           </div>
 
-          {/* Pagination */}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-6">
             <p className="text-sm font-medium text-[#000000]">
               {`Showing ${1} to ${callData.length} of ${totalCalls} calls`}
@@ -723,7 +713,6 @@ const CallLogsPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Transcript Modal */}
       {currentCall && (
         <div className="fixed inset-0 bg-black/50 flex justify-center items-start p-4 sm:p-6 z-[100] overflow-y-auto">
           <div

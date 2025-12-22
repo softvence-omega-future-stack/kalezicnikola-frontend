@@ -1,12 +1,7 @@
-// 1. SIDEBAR.TSX - Updated with Dynamic Badge
-// ===========================
-
 import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate, useLocation, Link } from "react-router-dom";
 import { X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { useAppSelector } from '@/store/hook';
-import axios from 'axios';
 
 import icon from "../assets/svgIcon/logo.svg";
 import logo from "../assets/svgIcon/textLogo.svg";
@@ -196,51 +191,26 @@ interface UserSidebarProps {
 
 const Sidebar: React.FC<UserSidebarProps> = ({ onLogoutClick, collapsed, onToggle, closeMobileMenu }) => {
     const { t } = useTranslation();
-    const { accessToken } = useAppSelector((state) => state.auth);
-    const [unreviewedCallsCount, setUnreviewedCallsCount] = useState(0);
-    const sidebarWidth = collapsed ? "w-[80px]" : "w-[280px]";
-
-    // Fetch unreviewed calls count
-    const fetchUnreviewedCount = async () => {
-        try {
-            const response = await axios.get(
-                `${import.meta.env.VITE_API_URL}/doctor/dashboard-stats`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${accessToken}`,
-                        'Content-Type': 'application/json'
-                    },
-                }
-            );
-
-            if (response.data.success && response.data.data) {
-                setUnreviewedCallsCount(response.data.data.unreviewedCallsCount || 0);
-            }
-        } catch (error) {
-            console.error('Error fetching unreviewed calls count:', error);
-        }
-    };
+    const [unreviewedCallsCount, setUnreviewedCallsCount] = useState<number>(0);
 
     useEffect(() => {
-        if (accessToken) {
-            fetchUnreviewedCount();
-        }
-
-        // Listen for refresh events from CallLogs
-        const handleRefresh = () => {
-            fetchUnreviewedCount();
+        // Listen for custom event from CallLogs only
+        const handleUpdateCount = (event: Event) => {
+            const customEvent = event as CustomEvent<number>;
+            console.log('Sidebar received unreviewed count:', customEvent.detail);
+            setUnreviewedCallsCount(customEvent.detail);
         };
 
-        window.addEventListener('refreshDashboardStats', handleRefresh);
+        window.addEventListener('updateUnreviewedCount', handleUpdateCount);
 
         return () => {
-            window.removeEventListener('refreshDashboardStats', handleRefresh);
+            window.removeEventListener('updateUnreviewedCount', handleUpdateCount);
         };
-    }, [accessToken]);
+    }, []);
 
     return (
         <div
-            className={`flex flex-col justify-between h-screen overflow-y-auto ${sidebarWidth} bg-[#F3F6F6] transition-all duration-300 shrink-0`}
+            className={`flex flex-col justify-between h-screen overflow-y-auto  bg-[#F3F6F6] transition-all duration-300 shrink-0`}
             style={{ fontFamily: "Urbanist, sans-serif" }}
         >
             <div>
