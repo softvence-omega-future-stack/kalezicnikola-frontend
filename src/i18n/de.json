@@ -675,7 +675,10 @@
   "table": {
     "patientName": "Patientenname",
     "phoneNumber": "Telefonnummer",
-    "status": "Status"
+    "status": "Status",
+     "duration":"Dauer",
+     "profile":"Profil",
+     "transcript":"Transkript"
   },
   "status": {
     "successful": "Erfolgreich",

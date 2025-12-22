@@ -13,45 +13,33 @@ interface MetricCardProps {
 
 const MetricCard: React.FC<MetricCardProps> = ({ label, value }) => (
   <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
-    <p className="text-sm font-semibold text-subHeadingBlack mb-1">
-      {label}
-    </p>
+    <p className="text-sm font-semibold text-subHeadingBlack mb-1">{label}</p>
 
-    {typeof value === "string" && value.includes("min") ? (
+    {typeof value === 'string' && value.includes('min') ? (
       <div className="flex items-center justify-center sm:justify-start gap-1">
         {/* MIN */}
         <span className="text-2xl sm:text-3xl md:text-[32px] font-medium text-[#171C35] leading-none">
-          {value.split("min")[0].trim().padStart(2, "0")}
+          {value.split('min')[0].trim().padStart(2, '0')}
         </span>
         <span className="text-xs sm:text-sm text-gray-700">min</span>
 
         {/* SEC */}
         <span className="text-2xl sm:text-3xl md:text-[32px] font-medium text-[#171C35] leading-none">
-          {value
-            .split("min")[1]
-            .replace("sec", "")
-            .trim()
-            .padStart(2, "0")}
+          {value.split('min')[1].replace('sec', '').trim().padStart(2, '0')}
         </span>
         <span className="text-xs sm:text-sm text-gray-700">sec</span>
       </div>
     ) : (
-      <p className="text-2xl sm:text-3xl md:text-[32px] font-medium text-subHeadingBlack leading-none">
-        {value}
-      </p>
+      <p className="text-2xl sm:text-3xl md:text-[32px] font-medium text-subHeadingBlack leading-none">{value}</p>
     )}
   </div>
 );
-
 
 const formatDuration = (totalSeconds: number) => {
   const minutes = Math.floor(totalSeconds / 60);
   const seconds = totalSeconds % 60;
   return `${minutes}min ${seconds}sec`;
 };
-
-
-
 
 interface DashboardTopSectionProps {
   selectedDate: Date;
@@ -71,42 +59,41 @@ const DashboardTopSection: React.FC<DashboardTopSectionProps> = ({ selectedDate,
 
   useEffect(() => {
     const fetchStats = async () => {
+      if (!accessToken) return;
+
       try {
         const response = await fetch(`${import.meta.env.VITE_API_URL}/doctor/dashboard-stats`, {
-          headers: { 
+          headers: {
             Authorization: `Bearer ${accessToken}`,
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
           },
         });
-         console.log('Fetching dashboard stats with token:', accessToken);
-        if (!response.ok) {
-          throw new Error('Failed to fetch stats');
-        }
-        
+
+        if (!response.ok) throw new Error('Failed to fetch stats');
+
         const result = await response.json();
         console.log('Dashboard Stats API Response:', result);
-        
-        if (result.success && result.data) {
+
+        if (result.success && result.data?.today) {
+          const today = result.data.today;
           setStats({
-            todayIncomingCalls: result.data.todayIncomingCalls || 0,
-            successfulCalls: result.data.successfulCalls || 0,
-            averageCallDuration: formatDuration(result.data.averageCallDuration || 0),
+            todayIncomingCalls: today.incomingCalls || 0,
+            successfulCalls: today.successfulCalls || 0,
+            averageCallDuration: formatDuration(today.averageCallDuration || 0),
           });
         }
       } catch (error) {
         console.error('Error fetching dashboard stats:', error);
       }
     };
-    
-    if (accessToken) {
-      fetchStats();
-    }
+
+    fetchStats();
   }, [accessToken]);
 
   return (
     <div className="md:mt-2 z-auto bg-[#F3F6F6]">
       {/* Date Navigation */}
-      <div className="flex items-center justify-center -pl-1 md:justify-start text-subHeadingBlack text-sm sm:text-base font-medium pt-6 gap-2">
+      <div className="flex items-center justify-center md:justify-start text-subHeadingBlack text-sm sm:text-base font-medium pt-6 gap-2">
         <CalendarHeader selectedDate={selectedDate} onDateChange={onDateChange} />
       </div>
 
@@ -114,8 +101,8 @@ const DashboardTopSection: React.FC<DashboardTopSectionProps> = ({ selectedDate,
       <div className="flex flex-col md:flex-row sm:justify-between sm:items-center gap-6 sm:gap-8">
         <div className="text-center sm:text-left">
           <h1 className="text-xl md:pl-2 sm:text-2xl md:text-[32px] font-semibold text-subHeadingBlack leading-tight">
-            <span className="block">{t('dashboard.routes.dashboard.topSection.welcome')} </span>
-            <span className="block ">{user?.firstName}</span>
+            <span className="block">{t('dashboard.routes.dashboard.topSection.welcome')}</span>
+            <span className="block">{user?.firstName}</span>
           </h1>
         </div>
 
@@ -125,10 +112,7 @@ const DashboardTopSection: React.FC<DashboardTopSectionProps> = ({ selectedDate,
             { label: t('dashboard.routes.dashboard.topSection.successfulCalls'), value: stats.successfulCalls },
             { label: t('dashboard.routes.dashboard.topSection.averageCallDuration'), value: stats.averageCallDuration },
           ].map((item, index, array) => (
-            <div
-              key={index}
-              className={`pr-4 sm:pr-6 ${index !== array.length - 1 ? 'border-r border-gray-300' : ''}`}
-            >
+            <div key={index} className={`pr-4 sm:pr-6 ${index !== array.length - 1 ? 'border-r border-gray-300' : ''}`}>
               <MetricCard label={item.label} value={item.value} />
             </div>
           ))}
