@@ -3,6 +3,7 @@ export type TUser = {
     firstName: string;
     lastName: string;
     email: string;
+    doctorId: string;
     role: string;
     isVerified: boolean;
     profile_type: string;

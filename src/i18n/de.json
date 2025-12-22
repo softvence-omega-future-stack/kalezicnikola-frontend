@@ -462,13 +462,14 @@
 
   "dashboard": {
       "mainHeader":{
+        "searchPlaceholder":"Suche...",
     "userDropdown": {
     "role": "D.",
     "menu": {
       "profileSettings": "Profileinstellungen",
-      "support": "Unterstützung",
+      "support": "Supports",
       "settings": "Einstellungen",
-      "logout": "Abmelden"
+      "logout": "Ausloggen"
     }
   },
 
@@ -481,7 +482,7 @@
 
   "doctorProfile": {
   "breadcrumb": {
-    "dashboard": "Instrumententafel",
+    "dashboard": "Dashboard",
     "doctor": "Arzt",
     "profile": "Arztprofil"
   },
@@ -523,27 +524,51 @@
   }
   },
   "profile": {
-    "name": "Keren Nix",
-    "degree": "MBBS, M.D. Kardiologie",
+    "name": "Dr. {{firstName}} {{lastName}}",
+    "degree": "",
     "edit": "Bearbeiten",
+    "2FAEnabled": "2FA aktiviert",
+    "emailVerified": "E-Mail verifiziert",
     "email": "E-Mail",
     "phone": "Telefon",
     "experience": "Erfahrung",
     "years": "Jahre",
-    "address": "Adresse"
-  }
+    "address": "Adresse",
+    "gender": "Geschlecht",
+    "licenseNumber":"Lizenznummer",
+     "dateofBirth":"Geburtsdatum",
+    "lastLogin": "Letzte Anmeldung",
+    "accountCreated": "Konto erstellt",
+    "lastUpdated": "Zuletzt aktualisiert"
+  },
+
+   "editModal": {
+    "title": "Edit Profile ",
+    "firstName" : "Vorname",
+    "lastName": "Nachname",
+    "phone":"Mobilnummer",
+    "address":"Adresse",
+    "experience":"Erfahrung (in Jahren)",
+    "saveButton":"Profil speichern",
+    "saveing":"Speichern...",
+    "cancelButton":"Abbrechen",
+    "specialist":"Fachgebiet (comma-separated)",
+     "licenseNumber":"Lizenznummer",
+     "dateofBirth":"Geburtsdatum",
+     "gender": "Geschlecht"
+   }
 },
 
     "sidebar": {
       "navigation": {
-        "dashboard": "Instrumententafel",
+        "dashboard": "Dashboard",
         "callLogs": "Anrufprotokolle",
         "calendar": "Kalender",
         "patients": "Patienten",
         "tasks": "Aufgaben",
-        "supports": "Unterstützung",
+        "supports": "Support",
         "settings": "Einstellungen",
-        "logout": "Abmelden"
+        "logout": "Ausloggen"
       },
       "upgradeCard": {
         "upgradeTo": "Upgrade zu",
@@ -556,8 +581,8 @@
     "routes": {
       "dashboard":{
       "topSection": {
-  "welcome": "Willkommen, {{firstName}} {{lastName}}",
-  "todayIncomingCalls": "Heutige eingehende Anrufe",
+  "welcome": "Willkommen zurück ,",
+  "todayIncomingCalls": "Heute eingegangene Anrufe",
   "successfulCalls": "Erfolgreiche Anrufe",
   "averageCallDuration": "Durchschnittliche Anrufdauer",
   "subscriptionButtonLabel": "Abonnement anzeigen"
@@ -567,11 +592,12 @@
   "diagnosis": "Diagnose",
   "time": "Zeit",
   "patients": "{{count}} Patienten",
-  "dateFormat": "Sonntag, 11."
+  "dateFormat": "Sonntag, 11.",
+  "noAppointments": "Keine Termine "
 },
 "cards": {
   "unreviewedCalls": {
-    "title": "Unüberprüfte Anrufe",
+    "title": "Ungeprüfte Anrufe",
     "description": "Erfordert Ihre Aufmerksamkeit"
   },
   "tasks": {
@@ -632,7 +658,7 @@
       "callLogs": {
   "title": "Anrufprotokolle",
   "breadcrumb": {
-    "dashboard": "Instrumententafel",
+    "dashboard": "Dashboard",
     "callLogs": "Anrufprotokolle"
   },
   "header": "Anrufprotokolle",
@@ -649,10 +675,15 @@
   "table": {
     "patientName": "Patientenname",
     "phoneNumber": "Telefonnummer",
-    "status": "Status"
+    "status": "Status",
+     "duration":"Dauer",
+     "profile":"Profil",
+     "transcript":"Transkript"
   },
   "status": {
     "successful": "Erfolgreich",
+    "unsuccessful": "Nicht erfolgreich",
+    "transferred": "Weitergeleitet",
     "missed": "Verpasst"
   },
   "actions": {
@@ -666,6 +697,7 @@
     "hide": "Verbergen",
     "patientInfoTitle": "Informationen werden zusammengefasst",
     "patientName": "Name",
+    " noAudio": "Keine Audioaufnahme verfügbar",
     "insuranceId": "Versicherungs-ID",
     "reason": "Grund des Anrufs",
     "patientsTranscript": "Patienten-Transkript",
@@ -683,7 +715,7 @@
 
 "calendar": {
   "breadcrumb": {
-    "dashboard": "Instrumententafel",
+    "dashboard": "Dashboard",
     "calendar": "Kalender"
   },
   "header": "Kalender",
@@ -693,7 +725,11 @@
     "week": "Woche",
     "month": "Monat"
   },
-
+ "day": {
+    "appointments": "Termine",
+    "todayAppointments": "Termine heute",
+    "unassigned": "Nicht zugewiesen"
+ },
   "appointmentModal": {
   "title": "Neuen Termin hinzufügen",
   "subtitle": "Vervollständigen Sie alle Informationen",
@@ -725,7 +761,7 @@
 },
 "patients": {
   "breadcrumb": {
-    "dashboard": "Instrumententafel",
+    "dashboard": "Dashboard",
     "patients": "Patienten"
   },
   "buttons": {
@@ -759,7 +795,7 @@
     
   "addPatient": {
     "breadcrumbs": {
-      "dashboard": "Instrumententafel",
+      "dashboard": "Dashboard",
       "patients": "Patienten",
       "addPatient": "Patient hinzufügen",
       "editPatient": "Patient hinzufügen"
@@ -842,7 +878,7 @@
   "placeholder": "Geben Sie Ihre Telefonnummer ein"
 },
 "emergencyRelationShip": {
-  "label": "Adresse",
+  "label": "Beziehung",
   "placeholder": "Geben Sie Ihre Beziehung ein"
 }
 
@@ -863,7 +899,7 @@
     
   "patientProfile": {
     "breadcrumb": {
-      "dashboard": "Instrumententafel",
+      "dashboard": "Dashboard",
       "patients": "Patienten",
       "profile": "Patientenprofil"
     },
@@ -1000,11 +1036,11 @@
     
   "taskList": {
     "breadcrumb": {
-      "dashboard": "Instrumententafel",
-      "task": "Aufgabe"
+      "dashboard": "Dashboard",
+      "task": "Aufgaben"
     },
     "header": {
-      "title": "Aufgabe",
+      "title": "Aufgaben",
       "totalTask": "Gesamtaufgaben",
       "addTask": "Aufgabe hinzufügen"
     },
@@ -1173,7 +1209,8 @@
           "buttons": {
             "cancel": "Abbrechen",
             "submit": "Einreichen",
-            "saveChanges": "Änderungen speichern"
+            "saveChanges": "Änderungen speichern",
+            "submitting": "Wird übermittelt..."
           },
           "statusOptions": {
             "todo": "Zu erledigen",
@@ -1217,6 +1254,8 @@
    "patientRecordsModal": {
           "title": "Patientenakten überprüfen",
           "subtitle": "Fügen Sie eine neue Aufgabe zu Ihrer Liste hinzu. Füllen Sie die Details unten aus.",
+          "name": "Patientenname",
+          "phone": "Telefonnummer",
           "labels": {
             "time": "Zeit",
             "dueDate": "Fälligkeitsdatum",
@@ -1235,10 +1274,10 @@
   
    "supportChat": {
         "breadcrumb": {
-          "home": "Instrunmententafel",
-          "current": "Unterstützung"
+          "home": "Dashboard",
+          "current": "Support"
         },
-        "title": "Unterstützung",
+        "title": "Support",
         "searchPlaceholder": "suchen...",
         "backButton": "← Zurück",
         "chat": {
@@ -1250,7 +1289,7 @@
 
 "settings":{
   "breadcrumb": {
-    "dashboard": "Instrumententafel",
+    "dashboard": "Dashboard",
     "settings": "Einstellungen"
   },
   "header": {
@@ -1272,7 +1311,7 @@
       "title": "Persönliche Informationen",
       "profile": {
         "namePlaceholder": "Geben Sie Ihren Namen ein",
-        "role": "Anästhesie",
+        "role": "D.",
         "firstNameLabel": "Vorname",
         "lastNameLabel": "Nachname",
         "emailLabel": "E-Mail",
@@ -1293,7 +1332,7 @@
       "addNewStaff": {
     "header": {
       "breadcrumb": {
-        "dashboard": "Instrumententafel",
+        "dashboard": "Dashboard",
         "settings": "Einstellungen",
         "myStaff": "Meine Mitarbeiter"
       },
@@ -1418,7 +1457,7 @@
 
     "staffProfile": {
   "breadcrumb": {
-    "dashboard": "Instrumententafel",
+    "dashboard": "Dashboard",
     "settings": "Einstellungen",
     "staffProfile": "Mitarbeiterprofil"
   },
@@ -1540,8 +1579,14 @@
   },
   "buttons": {
     "cancel": "Abbrechen",
+     "saving": "Speichert...",
     "saveChanges": "Änderungen speichern"
-  }
+  },
+  "messages": {
+  "saveSuccess": "Einstellungen erfolgreich gespeichert!",
+  "saveError": "Einstellungen konnten nicht gespeichert werden. Bitte versuchen Sie es erneut."
+}
+
 },
        "subscriptionOverview": {
               "title": "Abonnement Übersicht",
@@ -1759,6 +1804,7 @@
   },
   "buttons": {
     "cancel": "Abbrechen",
+         "saving": "Speichert...",
     "saveChanges": "Änderungen speichern"
   }
 }
@@ -1778,7 +1824,7 @@
   }
 },
   "logoutModal": {
-    "title": "Abmelden",
+    "title": "Ausloggen",
     "description": "Möchten Sie sich wirklich von Docline abmelden?",
     "buttons": {
       "confirm": "Ja",
@@ -1791,15 +1837,15 @@
   "adminDashboard":{
   "sidebar":{
     
-  "dashboard": "Instrumententafel",
+  "dashboard": "Dashboard",
   "customers": "Kunden",
   "billing_subscription": "Abrechnung & Abonnement",
   "ai_voicebot": "KI-Sprachassistent",
   "system_health": "Systemgesundheit",
   "security_audit": "Sicherheit & Prüfung",
-  "supports": "Unterstützung",
+  "supports": "Supports",
   "settings": "Einstellungen",
-  "logout": "Abmelden"
+  "logout": "Ausloggen"
 
 
   },
@@ -2168,8 +2214,8 @@
   },
   "support": {
   "breadcrumb": {
-    "dashboard": "Instrumententafel",
-    "support": "Unterstützung"
+    "dashboard": "Dashboard",
+    "support": "Supports"
   },
   "title": "Unterstützung",
   "searchPlaceholder": "Suchen...",

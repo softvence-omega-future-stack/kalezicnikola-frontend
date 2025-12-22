@@ -466,6 +466,7 @@
 },
 "dashboard":{
   "mainHeader":{
+    "searchPlaceholder": "Search...",
       "userDropdown": {
     "role": "D.",
     "menu": {
@@ -523,16 +524,41 @@
     }
   }
     },
-    "profile": {
-      "name": "Keren nix",
-      "degree": "MBBS, M.D. Cardiology",
-      "edit": "Edit",
-      "email": "Email",
-      "phone": "Phone",
-      "experience": "Experience",
-      "years": "years",
-      "address": "Address"
-    }
+"profile": {
+  "name": "Dr. {{firstName}} {{lastName}}",
+  "degree": "",
+  "edit": "Edit",
+  "2FAEnabled": "2FA Enabled",
+  "emailVerified": "Email Verified",
+  "email": "Email",
+  "phone": "Phone",
+  "experience": "Experience",
+  "years": "Years",
+  "address": "Address",
+  "gender": "Gender",
+  "licenseNumber": "License Number",
+  "dateofBirth": "Date of Birth",
+  "lastLogin": "Last Login",
+  "accountCreated": "Account Created",
+  "lastUpdated": "Last Updated"
+},
+
+    "editModal": {
+  "title": "Edit Profile",
+  "firstName": "First Name",
+  "lastName": "Last Name",
+  "phone": "Mobile Number",
+  "address": "Address",
+  "experience": "Experience (in years)",
+  "saveButton": "Save Profile",
+  "saveing": "Saving...",
+  "cancelButton": "Cancel",
+  "specialist": "Specialty (comma-separated)",
+  "licenseNumber": "License Number",
+  "dateofBirth": "Date of Birth",
+  "gender": "Gender"
+}
+
   },
  "sidebar": {
     "navigation": {
@@ -556,7 +582,7 @@
   "routes":{
     "dashboard":{
      "topSection": {
-          "welcome": "Welcome, {{firstName}} {{lastName}}",
+          "welcome": "Welcome back,  ",
           "todayIncomingCalls": "Today Incoming Calls",
           "successfulCalls": "Successful Calls",
           "averageCallDuration": "Average Call Duration",
@@ -567,7 +593,8 @@
           "diagnosis": "Diagnosis",
           "time": "Time",
           "patients": "{{count}} patients",
-          "dateFormat": "Sunday, 11th"
+          "dateFormat": "Sunday, 11th",
+          "noAppointments": "No Appointments "
         },
         "cards": {
   "unreviewedCalls": {
@@ -667,6 +694,7 @@
     "showMore": "Show more",
     "hide": "Hide",
     "patientInfoTitle": "Information is Summarized",
+   " noAudio": "No audio available",
     "patientName": "Name",
     "insuranceId": "Insurance ID",
     "reason": "Reason for calling",
@@ -696,6 +724,11 @@
     "week": "Week",
     "month": "Month"
   },
+   "day": {
+    "appointments": "Termine",
+    "todayAppointments": "Appointments Today",
+    "unassigned": "Unassigned"
+ },
   "appointmentModal": {
   "title": "Add New Appointment",
   "subtitle": "Complete all information",
@@ -844,7 +877,7 @@
         "placeholder": "Enter your phone."
       },
       "emergencyRelationShip": {
-        "label": "Address",
+        "label": "RelationShip",
         "placeholder": "Enter your relationship"
       }
     },
@@ -1177,7 +1210,8 @@
   "buttons": {
     "cancel": "Cancel",
     "submit": "Submit",
-    "saveChanges": "Save Changes"
+    "saveChanges": "Save Changes",
+    "submitting": "Submiting..."
   },
   "statusOptions": {
     "todo": "To Do",
@@ -1240,6 +1274,8 @@
   "patientRecordsModal": {
   "title": "Review Patient Records",
   "subtitle": "Add a new task to your list. Fill in the details below.",
+  "name": "Patient Name",
+  "phone": "Phone Number",
   "labels": {
     "time": "Time",
     "dueDate": "Due Date",
@@ -1279,7 +1315,7 @@
               "title": "Personal Info",
               "profile": {
                 "namePlaceholder": "Enter your name",
-                "role": "Anaesthesia",
+                "role": "D.",
                 "firstNameLabel": "First Name",
                 "lastNameLabel": "Last Name",
                 "emailLabel": "Email",
@@ -1551,7 +1587,12 @@
   },
   "buttons": {
     "cancel": "Cancel",
+    "saving": "Saving...",
     "saveChanges": "Save Changes"
+  },
+  "messages":{
+    "saveSuccess":  "Settings saved successfully!",
+    "saveError":"Failed to save settings. Please try again."
   }
 },
 "subscriptionOverview": {
@@ -1768,6 +1809,7 @@
               },
               "buttons": {
                 "cancel": "Cancel",
+                "saving":"Saving..",
                 "saveChanges": "Save Changes"
               }
             }

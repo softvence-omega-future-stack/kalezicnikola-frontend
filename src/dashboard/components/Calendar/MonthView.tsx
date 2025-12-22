@@ -33,63 +33,42 @@ const CalendarMonthView: React.FC<MonthViewProps> = ({ selectedDate, appointment
     t('dashboard.routes.dashboard.calendar.weekDaysFull.sunday')
   ];
 
-  // Get first and last day of the month
   const safeDate = selectedDate ?? new Date();
   const safeAppointments = appointments ?? [];
 
-const firstDayOfMonth = new Date(safeDate.getFullYear(), safeDate.getMonth(), 1);
-const lastDayOfMonth = new Date(safeDate.getFullYear(), safeDate.getMonth() + 1, 0);
+  const firstDayOfMonth = new Date(safeDate.getFullYear(), safeDate.getMonth(), 1);
+  const lastDayOfMonth = new Date(safeDate.getFullYear(), safeDate.getMonth() + 1, 0);
 
-  // const firstDayOfMonth = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), 1);
-  // const lastDayOfMonth = new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1, 0);
-
-  // Map appointments for current month
-  // const monthAppointments: CalendarDay[] = Array.from({ length: lastDayOfMonth.getDate() }, (_, i) => {
-  //   const dayNumber = i + 1;
-  //   const app = appointments.find(app => new Date(app.appointmentDate).getDate() === dayNumber);
-  //   if (app) {
-  //     return {
-  //       date: dayNumber,
-  //       event: {
-  //         name: `${app.patient.firstName} ${app.patient.lastName}`,
-  //         time: `${app.scheduleSlot.startTime}-${app.scheduleSlot.endTime}`,
-  //         colorIndex: i % eventColors.length,
-  //       }
-  //     };
-  //   }
-  //   return { date: dayNumber };
-  // });
   const monthAppointments: CalendarDay[] = Array.from({ length: lastDayOfMonth.getDate() }, (_, i) => {
-  const dayNumber = i + 1;
-  const app = safeAppointments.find(app => {
-    const appDate = new Date(app.appointmentDate);
-    return appDate.getDate() === dayNumber &&
-           appDate.getMonth() === safeDate.getMonth() &&
-           appDate.getFullYear() === safeDate.getFullYear();
+    const dayNumber = i + 1;
+    const app = safeAppointments.find(app => {
+      const appDate = new Date(app.appointmentDate);
+      return appDate.getDate() === dayNumber &&
+             appDate.getMonth() === safeDate.getMonth() &&
+             appDate.getFullYear() === safeDate.getFullYear();
+    });
+
+    if (app) {
+      return {
+        date: dayNumber,
+        event: {
+          name: `${app?.patient?.firstName} ${app?.patient?.lastName}`,
+          time: `${app?.scheduleSlot?.startTime}-${app?.scheduleSlot?.endTime}`,
+          colorIndex: i % eventColors.length,
+        }
+      };
+    }
+    return { date: dayNumber };
   });
 
-  if (app) {
-    return {
-      date: dayNumber,
-      event: {
-        name: `${app.patient.firstName} ${app.patient.lastName}`,
-        time: `${app.scheduleSlot.startTime}-${app.scheduleSlot.endTime}`,
-        colorIndex: i % eventColors.length,
-      }
-    };
-  }
-  return { date: dayNumber };
-});
-
-
-  // Optional: add previous and next month padding for calendar view
-  const prevMonthDaysCount = firstDayOfMonth.getDay(); // Sunday=0
+  // Monday start logic fix (getDay: Sun=0, Mon=1...Sat=6)
+  const prevMonthDaysCount = firstDayOfMonth.getDay() === 0 ? 6 : firstDayOfMonth.getDay() - 1;
   const prevMonthDays: CalendarDay[] = Array.from({ length: prevMonthDaysCount }, (_, i) => ({
-    date: lastDayOfMonth.getDate() - prevMonthDaysCount + i + 1,
+    date: new Date(safeDate.getFullYear(), safeDate.getMonth(), 0).getDate() - prevMonthDaysCount + i + 1,
     month: 'prev'
   }));
 
-  const totalCells = 42; // 6 weeks
+  const totalCells = 42; 
   const nextMonthDaysCount = totalCells - (prevMonthDays.length + monthAppointments.length);
   const nextMonthDays: CalendarDay[] = Array.from({ length: nextMonthDaysCount }, (_, i) => ({
     date: i + 1,
@@ -100,19 +79,24 @@ const lastDayOfMonth = new Date(safeDate.getFullYear(), safeDate.getMonth() + 1,
 
   return (
     <div className="rounded-2xl p-2 md:p-4 bg-white overflow-x-auto"> 
-      <div className="min-w-[400px] md:min-w-full">
+    
+      <div className="min-w-[500px] md:min-w-full">
         <div className="border border-[#E8E8E8] rounded-2xl overflow-hidden">
           <div className="grid grid-cols-7">
             {/* Day Headers */}
             {weekDays.map((day, index) => (
               <div
-                key={day}
+                key={index}
                 className={`bg-white py-2 px-1 text-xs font-medium text-[#667085] text-center md:py-3 md:px-4 md:text-base border-b border-[#E8E8E8] ${
                   index !== 6 ? 'border-r border-[#E8E8E8]' : ''
                 }`}
               >
-                <span className="hidden sm:inline">{day}</span>
-                <span className="sm:hidden">{day.charAt(0)}</span>
+              
+                <span className="hidden 2xl:inline">{day}</span>
+               
+                <span className="hidden sm:inline 2xl:hidden">{day.substring(0, 3)}</span>
+                
+                <span className="sm:hidden">{day.substring(0, 3)}</span>
               </div>
             ))}
 
@@ -130,7 +114,7 @@ const lastDayOfMonth = new Date(safeDate.getFullYear(), safeDate.getMonth() + 1,
               return (
                 <div
                   key={idx}
-                  className={`p-1 h-[80px] md:p-3 md:h-[100px] ${bgColor} ${
+                  className={`p-1 h-[80px] md:p-3 md:h-[120px] ${bgColor} ${
                     day.month ? "text-gray-400" : "text-[#667085]"
                   } flex flex-col ${!isLastColumn ? 'border-r border-[#E8E8E8]' : ''} ${!isLastRow ? 'border-b border-[#E8E8E8]' : ''}`}
                 >
@@ -138,8 +122,10 @@ const lastDayOfMonth = new Date(safeDate.getFullYear(), safeDate.getMonth() + 1,
 
                   {day.event && (
                     <div className="flex-1 overflow-hidden">
-                      <div className="text-xs font-medium truncate md:text-sm">{day.event.name}</div>
-                      <div className="text-[10px] text-gray-700 flex items-center gap-1 md:text-xs">
+                      <div className="text-[10px] font-medium truncate md:text-sm text-[#101828]">
+                        {day.event.name}
+                      </div>
+                      <div className="text-[9px] text-gray-600 flex items-center gap-1 md:text-xs">
                         {day.event.time}
                       </div>
                     </div>

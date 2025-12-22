@@ -9,9 +9,11 @@ import LabResultsPage from "./LabResults";
 
 import homeIcon from "../../../assets/svgIcon/homeIcon.svg";
 import chevronIcon from "../../../assets/svgIcon/chevronnRight.svg";
+import dummyImg from "../../../assets/img/dummyImage.svg";
 import axios from "axios";
 import { useAppSelector } from "@/store/hook";
 import Appointment from "./Appointment";
+// import Appointment from "./Appointment";
 
 interface Patient {
   id: string;
@@ -108,6 +110,24 @@ const PatientProfilePage: React.FC = () => {
     const tab = params.get("tab");
     if (tab && tabKeys.includes(tab)) setActiveTab(tab);
   }, [location.search]);
+
+   // === Loading UI Wrapper ===
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-gray-500 text-lg">Loading patient data...</p>
+      </div>
+    );
+  }
+
+  // === If no patient found ===
+  if (!patient) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-gray-500 text-lg">Patient not found.</p>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen p-6 mt-[30px] w-full">
@@ -257,10 +277,11 @@ const PatientProfilePage: React.FC = () => {
             {/* Right Image */}
             <div className="w-full sm:w-[200px] md:w-[222px] h-[220px] sm:h-[260px] xl:h-[290px] xl:-mt-15 rounded-[28px] overflow-hidden bg-white self-center xl:self-auto">
               <img
-                src="https://i.ibb.co.com/d0ZCyRCP/patient-Profile-Icon.png"
+                src={dummyImg}
                 className="w-full h-full object-contain md:object-cover"
                 alt=""
               />
+   
             </div>
           </div>
 

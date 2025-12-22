@@ -1,7 +1,12 @@
-import React, { useState } from "react";
+// 1. SIDEBAR.TSX - Updated with Dynamic Badge
+// ===========================
+
+import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate, useLocation, Link } from "react-router-dom";
 import { X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { useAppSelector } from '@/store/hook';
+import axios from 'axios';
 
 import icon from "../assets/svgIcon/logo.svg";
 import logo from "../assets/svgIcon/textLogo.svg";
@@ -34,9 +39,7 @@ const Logo: React.FC<LogoProps> = ({ collapsed, onToggle, closeMobileMenu }) => 
             ) : (
                 <>
                     <Link to="/" className="flex items-center gap-">
-                     
                         <img src={icon} alt="Logo" className="h-8 w-8" />
-                      
                         <img src={logo} alt="Docline" className="hidden md:block" />
                     </Link>
                     <div className="flex items-center gap-2">
@@ -173,12 +176,12 @@ const UpgradeCard: React.FC<UpgradeCardProps> = ({ collapsed }) => {
                         style={{ width: `${percentage}%` }}
                     />
                 </div>
-              <button
-    className="w-full bg-subHeadingBlack text-white text-xs font-semibold py-2 sm:py-2 rounded-lg cursor-pointer hover:bg-gray-900 transition-colors mt-2"
-    onClick={() => navigate('/dashboard/settings?tab=subscription&subtab=manage')}
->
-    {t('dashboard.sidebar.upgradeCard.upgradeButton')}
-</button>
+                <button
+                    className="w-full bg-subHeadingBlack text-white text-xs font-semibold py-2 sm:py-2 rounded-lg cursor-pointer hover:bg-gray-900 transition-colors mt-2"
+                    onClick={() => navigate('/dashboard/settings?tab=subscription&subtab=manage')}
+                >
+                    {t('dashboard.sidebar.upgradeCard.upgradeButton')}
+                </button>
             </div>
         </div>
     );
@@ -193,7 +196,47 @@ interface UserSidebarProps {
 
 const Sidebar: React.FC<UserSidebarProps> = ({ onLogoutClick, collapsed, onToggle, closeMobileMenu }) => {
     const { t } = useTranslation();
+    const { accessToken } = useAppSelector((state) => state.auth);
+    const [unreviewedCallsCount, setUnreviewedCallsCount] = useState(0);
     const sidebarWidth = collapsed ? "w-[80px]" : "w-[280px]";
+
+    // Fetch unreviewed calls count
+    const fetchUnreviewedCount = async () => {
+        try {
+            const response = await axios.get(
+                `${import.meta.env.VITE_API_URL}/doctor/dashboard-stats`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${accessToken}`,
+                        'Content-Type': 'application/json'
+                    },
+                }
+            );
+
+            if (response.data.success && response.data.data) {
+                setUnreviewedCallsCount(response.data.data.unreviewedCallsCount || 0);
+            }
+        } catch (error) {
+            console.error('Error fetching unreviewed calls count:', error);
+        }
+    };
+
+    useEffect(() => {
+        if (accessToken) {
+            fetchUnreviewedCount();
+        }
+
+        // Listen for refresh events from CallLogs
+        const handleRefresh = () => {
+            fetchUnreviewedCount();
+        };
+
+        window.addEventListener('refreshDashboardStats', handleRefresh);
+
+        return () => {
+            window.removeEventListener('refreshDashboardStats', handleRefresh);
+        };
+    }, [accessToken]);
 
     return (
         <div
@@ -210,7 +253,7 @@ const Sidebar: React.FC<UserSidebarProps> = ({ onLogoutClick, collapsed, onToggl
                         label={t('dashboard.sidebar.navigation.callLogs')} 
                         collapsed={collapsed} 
                         closeMobileMenu={closeMobileMenu} 
-                        badge={5} 
+                        badge={unreviewedCallsCount} 
                     />
                     <NavItem to="/dashboard/calendar" iconSrc={calendar} label={t('dashboard.sidebar.navigation.calendar')} collapsed={collapsed} closeMobileMenu={closeMobileMenu} />
                     <NavItem 
@@ -245,7 +288,6 @@ const Sidebar: React.FC<UserSidebarProps> = ({ onLogoutClick, collapsed, onToggl
 };
 
 export default Sidebar;
-
 
 
 

@@ -1,17 +1,19 @@
 import { useState, useRef, useEffect } from 'react';
 import NotificationsDrawer from './Notifications';
 import UserDropdown from './DoctorProfile/DoctorProfileDropdown';
-import karennix from '../../../assets/svgIcon/karen.svg';
+//import karennix from '../../../assets/svgIcon/karen.svg';
+import profileImg from '../../../assets/img/dummyImage.svg';
 import search from '../../../assets/svgIcon/search.svg';
 import notification from '../../../assets/svgIcon/notification.svg';
 import { Menu } from 'lucide-react';
 import LanguageSelector from './LanguageSelector';
 import { useAppSelector } from '@/store/hook';
+import { useTranslation } from 'react-i18next';
 
 const userData = {
     // name: 'Keren nix',
     // role: 'D.',
-    avatarUrl: karennix,
+    avatarUrl:profileImg,
 };
 
 interface MainHeaderProps {
@@ -22,6 +24,7 @@ const MainHeader: React.FC<MainHeaderProps> = ({ onMobileMenuOpen }) => {
     const [showNotification, setShowNotification] = useState(false);
     const [showUserDropdown, setShowUserDropdown] = useState(false);
     const { user } = useAppSelector((state)=>state.auth);
+    const {t} = useTranslation()
     
     const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -96,7 +99,7 @@ useEffect(() => {
                         <img src={search} alt="Search" className="w-4 h-4 shrink-0" />
                         <input
                             type="text"
-                            placeholder="Search something..."
+                            placeholder={t("dashboard.mainHeader.searchPlaceholder")}
                             className="w-full min-w-0 text-gray-700 placeholder-[#111A2D] focus:outline-none text-sm sm:text-base"
                         />
                     </div>
@@ -114,7 +117,7 @@ useEffect(() => {
                     <div className="hidden sm:flex items-center border-l px-3 border-r border-gray-200 h-10">
                         <button
                             onClick={() => setShowNotification(true)}
-                            className="relative p-2 text-[#111A2D] focus:outline-none"
+                            className="relative p-2 text-subHeadingBlack focus:outline-none"
                         >
                             <img src={notification} alt="Notification" className="w-5 h-5 cursor-pointer" />
                             <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white">
@@ -127,7 +130,7 @@ useEffect(() => {
                     <div className="sm:hidden">
                         <button
                             onClick={() => setShowNotification(true)}
-                            className="relative p-1.5 text-[#111A2D] focus:outline-none"
+                            className="relative p-1.5 text-subHeadingBlack focus:outline-none"
                         >
                             <img src={notification} alt="Notification" className="w-5 h-5" />
                             <span className="absolute -top-0.5 -right-0.5 flex h-3 w-3 items-center justify-center rounded-full bg-red-500 text-xs text-white">
@@ -145,11 +148,11 @@ useEffect(() => {
                             <img
                                 src={userData.avatarUrl}
                                 alt={user?.firstName}
-                                className="h-8 w-8 sm:h-10 sm:w-10 rounded-xl object-cover"
+                                className="h-8 w-8 sm:h-10 sm:w-10 bg-gray-300 rounded-full object-cover"
                             />
                             <div className="hidden md:block ml-2">
-                                <p className="text-lg font-semibold text-[#171C35]  leading-4.5">{user?.firstName} {user?.lastName}</p>
-                                <p className="text-lg font-semibold text-[#171C35] leading-none capitalize mt-1">{user?.role === "doctor" ? "D." : user?.role}</p>
+                                <p className="text-lg font-semibold text-headingBlack  leading-4.5">{user?.firstName} <br /> {user?.lastName}</p>
+                                <p className="text-lg font-semibold text-headingBlack leading-none capitalize mt-1">{user?.role === "doctor" ? "" : user?.role}</p>
                             </div>
                         </div>
                     </div>
@@ -173,7 +176,7 @@ useEffect(() => {
             {/* Notifications Drawer - Portal style */}
             {showNotification && (
                 <div 
-                    className="fixed inset-0 z-[9999]"
+                    className="fixed inset-0 z-9999"
                     style={{ position: 'fixed', zIndex: 9999 }}
                 >
                     <NotificationsDrawer onClose={() => setShowNotification(false)} />
@@ -260,7 +263,7 @@ export default MainHeader;
 //           <div className="flex items-center border-r border-gray-200 pr-3 h-10 flex-shrink-0">
 //             <button
 //               onClick={() => setShowNotification(true)}
-//               className="relative p-2 text-[#111A2D] transition-colors focus:outline-none flex-shrink-0"
+//               className="relative p-2 text-subHeadingBlack transition-colors focus:outline-none flex-shrink-0"
 //             >
 //               <img src={notification} alt="Notification" />
 //             </button>
@@ -278,10 +281,10 @@ export default MainHeader;
 //                   className="h-10 w-10 rounded-xl object-cover mr-2 sm:mr-3"
 //                 />
 //                 <div className="hidden sm:block">
-//                   <p className="text-lg font-semibold text-[#171C35] leading-none">
+//                   <p className="text-lg font-semibold text-headingBlack leading-none">
 //                     {userData.name}
 //                   </p>
-//                   <p className="text-sm text-[#171C35] leading-none mt-1">
+//                   <p className="text-sm text-headingBlack leading-none mt-1">
 //                     {userData.role}
 //                   </p>
 
@@ -339,7 +342,7 @@ interface MainHeaderProps {
             //         <div className="hidden sm:flex items-center border-r border-gray-200 pr-3 h-10">
             //             <button
             //                 onClick={() => setShowNotification(true)}
-            //                 className="relative p-2 text-[#111A2D] focus:outline-none"
+            //                 className="relative p-2 text-subHeadingBlack focus:outline-none"
             //             >
             //                 <img src={notification} alt="Notification" className="w-5 h-5 sm:w-6 sm:h-6" />
                       
@@ -353,7 +356,7 @@ interface MainHeaderProps {
             //         <div className="sm:hidden">
             //             <button
             //                 onClick={() => setShowNotification(true)}
-            //                 className="relative p-1.5 text-[#111A2D] focus:outline-none"
+            //                 className="relative p-1.5 text-subHeadingBlack focus:outline-none"
             //             >
             //                 <img src={notification} alt="Notification" className="w-5 h-5" />
             //                 <span className="absolute -top-0.5 -right-0.5 flex h-3 w-3 items-center justify-center rounded-full bg-red-500 text-xs text-white">
@@ -374,8 +377,8 @@ interface MainHeaderProps {
             //                     className="h-8 w-8 sm:h-10 sm:w-10 rounded-xl object-cover"
             //                 />
             //                 <div className="hidden md:block ml-2">
-            //                     <p className="text-lg font-semibold text-[#171C35] leading-none">{userData.name}</p>
-            //                     <p className="text-sm text-[#171C35] leading-none mt-1">{userData.role}</p>
+            //                     <p className="text-lg font-semibold text-headingBlack leading-none">{userData.name}</p>
+            //                     <p className="text-sm text-headingBlack leading-none mt-1">{userData.role}</p>
             //                 </div>
             //             </div>
             //             {showUserDropdown && (
@@ -487,12 +490,12 @@ interface MainHeaderProps {
 //           <div className="flex items-center border-r border-gray-200 pr-3 h-10 flex-shrink-0">
 //             <button
 //               onClick={() => setShowNotification(true)}
-//               className="relative p-2 text-[#111A2D] transition-colors focus:outline-none flex-shrink-0"
+//               className="relative p-2 text-subHeadingBlack transition-colors focus:outline-none flex-shrink-0"
 
 //           <div className="flex items-center border-r border-gray-200 pr-3 h-10 shrink-0">
 //             <button
 //               onClick={() => setShowNotification(true)}
-//               className="relative p-2 text-[#111A2D] transition-colors focus:outline-none shrink-0"
+//               className="relative p-2 text-subHeadingBlack transition-colors focus:outline-none shrink-0"
 
 //             >
 //               <img src={notification} alt="Notification" />
@@ -516,10 +519,10 @@ interface MainHeaderProps {
 //                   className="h-10 w-10 rounded-xl object-cover mr-2 sm:mr-3"
 //                 />
 //                 <div className="hidden sm:block">
-//                   <p className="text-lg font-semibold text-[#171C35] leading-none">
+//                   <p className="text-lg font-semibold text-headingBlack leading-none">
 //                     {userData.name}
 //                   </p>
-//                   <p className="text-sm text-[#171C35] leading-none mt-1">
+//                   <p className="text-sm text-headingBlack leading-none mt-1">
 //                     {userData.role}
 //                   </p>
 //                 </div>

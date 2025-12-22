@@ -46,7 +46,7 @@ const CalendarWeekView: React.FC<WeekViewProps> = ({ selectedDate, appointments 
       dayIndex,
       startHour,
       endHour,
-      name: `${apt.patient.firstName} ${apt.patient.lastName}`,
+      name: `${apt.patient?.firstName} ${apt.patient?.lastName}`,
       color: ['bg-[#EDF9F5]', 'bg-[#F1ECFF]', 'bg-red-100', 'bg-purple-100'][idx % 4],
       borderColor: ['border-teal-500', 'border-purple-500', 'border-red-400', 'border-purple-500'][idx % 4],
     };
@@ -55,7 +55,7 @@ const CalendarWeekView: React.FC<WeekViewProps> = ({ selectedDate, appointments 
   const timeSlots = ['Time', '9 AM', '10 AM', '11 AM', '12 PM', '1 PM', '2 PM', '3 PM', '4 PM', '5 PM'];
 
   return (
-    <div className="bg-white rounded-2xl p-2 sm:p-4 md:p-6 overflow-x-auto">
+    <div className="bg-white rounded-2xl p-2 sm:p-4 md:p-6 overflow-x-auto verflow-y-auto h-[600px] md:h-[700px]">
       <div className="min-w-[600px] md:min-w-full">
         {/* Header */}
         <div className="grid gap-0" style={{ gridTemplateColumns: '80px repeat(7, 1fr)' }}>

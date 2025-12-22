@@ -1,13 +1,13 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useAppSelector } from '@/store/hook';
 import CommonSpace from "@/common/space/CommonSpace";
 
 import arrowRight from "../../../assets/svgIcon/arrowRight.svg";
-import unredview1 from "../../../assets/svgIcon/unredviewcard1.svg";
-import unredview2 from "../../../assets/svgIcon/unredviewcard2.svg";
-import unredview3 from "../../../assets/svgIcon/unredviewcard3.svg";
+import unredview1 from "../../../assets/img/dummyImage.svg";
 
+// ---------------- Card Component ----------------
 interface Category {
   titleKey: string;
   descriptionKey?: string;
@@ -21,7 +21,7 @@ interface Category {
 const Card = ({
   category,
   className,
-  index,
+
   height,
 }: {
   category: Category;
@@ -33,138 +33,58 @@ const Card = ({
   const { t } = useTranslation();
   const navigate = useNavigate();
   const defaultHeight = height || 150;
-  
-  const cutoutWidth = index === 0 ? 40 : 40;
-  const cutoutHeight = index === 0 ? 40 : 40;
-  const curveRadius = index === 0 ? 20 : 20;
-  const smallCurveRadius = index === 0 ? 20 : 20;
+
+  const cutoutWidth = 40;
+  const cutoutHeight = 40;
+  const curveRadius = 20;
+  const smallCurveRadius = 20;
 
   return (
-    <div
-      className={`relative w-full ${className}`}
-      style={{ height: defaultHeight }}
-    >
-      {/* Background with fixed cutout using CSS */}
-      <div 
-        className="absolute inset-0 rounded-[20px]"
-        style={{ 
-          backgroundColor: category.bgColor,
-        }}
-      >
-        {/* Fixed size cutout container - positioned from bottom-right */}
-        <div 
-          className="absolute bottom-0 right-0"
-          style={{
-            width: cutoutWidth + curveRadius,
-            height: cutoutHeight + curveRadius,
-          }}
-        >
-          {/* Main cutout - background color to "cut" the card */}
-          <div 
-            className="absolute bottom-0 right-0 bg-[#F3F6F6]"
-            style={{
-              width: cutoutWidth,
-              height: cutoutHeight,
-              borderTopLeftRadius: curveRadius,
-            }}
-          />
-          
-          {/* Top curve connector */}
-          <div 
-            className="absolute right-0 bg-[#F3F6F6]"
-            style={{
-              width: smallCurveRadius,
-              height: smallCurveRadius,
-              bottom: cutoutHeight,
-            }}
-          />
-          <div 
-            className="absolute right-0"
-            style={{
-              width: smallCurveRadius,
-              height: smallCurveRadius,
-              bottom: cutoutHeight,
-              backgroundColor: category.bgColor,
-              borderBottomRightRadius: smallCurveRadius,
-            }}
-          />
-          
-          {/* Left curve connector */}
-          <div 
-            className="absolute bottom-0 bg-[#F3F6F6]"
-            style={{
-              width: smallCurveRadius,
-              height: smallCurveRadius,
-              right: cutoutWidth,
-            }}
-          />
-          <div 
-            className="absolute bottom-0"
-            style={{
-              width: smallCurveRadius,
-              height: smallCurveRadius,
-              right: cutoutWidth,
-              backgroundColor: category.bgColor,
-              borderBottomRightRadius: smallCurveRadius,
-            }}
-          />
+    <div className={`relative w-full ${className}`} style={{ height: defaultHeight }}>
+      {/* Background with Cutout Styling */}
+      <div className="absolute inset-0 rounded-[20px]" style={{ backgroundColor: category.bgColor }}>
+        <div className="absolute bottom-0 right-0" style={{ width: cutoutWidth + curveRadius, height: cutoutHeight + curveRadius }}>
+          <div className="absolute bottom-0 right-0 bg-[#F3F6F6]" style={{ width: cutoutWidth, height: cutoutHeight, borderTopLeftRadius: curveRadius }} />
+          <div className="absolute right-0 bg-[#F3F6F6]" style={{ width: smallCurveRadius, height: smallCurveRadius, bottom: cutoutHeight }} />
+          <div className="absolute right-0" style={{ width: smallCurveRadius, height: smallCurveRadius, bottom: cutoutHeight, backgroundColor: category.bgColor, borderBottomRightRadius: smallCurveRadius }} />
+          <div className="absolute bottom-0 bg-[#F3F6F6]" style={{ width: smallCurveRadius, height: smallCurveRadius, right: cutoutWidth }} />
+          <div className="absolute bottom-0" style={{ width: smallCurveRadius, height: smallCurveRadius, right: cutoutWidth, backgroundColor: category.bgColor, borderBottomRightRadius: smallCurveRadius }} />
         </div>
       </div>
 
-      {/* Content */}
       <div className="absolute top-0 left-0 w-full h-full p-5 flex flex-col justify-between">
-        {/* Title - Top e thakbe */}
         <div>
-          <h3 className="text-base font-medium text-[#171C35]">
-            {t(category.titleKey)}
-          </h3>
+          <h3 className="text-base font-medium text-[#171C35]">{t(category.titleKey)}</h3>
         </div>
 
-        {/* Content - Bottom e thakbe with proper spacing */}
         <div className="pb-2">
           {category.avatars ? (
             <div className="flex items-center gap-3 pr-12">
-              {/* Avatar section */}
               <div className="flex -space-x-3 items-center shrink-0">
                 {category.avatars.map((avatar, idx) => (
-                  <img
-                    key={idx}
-                    className="h-10 w-10 rounded-full border-2 border-white object-cover"
-                    src={avatar}
-                    alt=""
-                  />
+                  <img key={idx} className="h-10 w-10 rounded-full border-2 border-white bg-gray-300 object-cover" src={avatar} alt="" />
                 ))}
                 {category.extraCount && (
-                  <div className="h-10 w-10 bg-gray-900 text-white rounded-full border-2 border-white flex items-center justify-center text-sm font-medium">
+                  <div className="h-10 w-10 bg-[#171C35] text-white rounded-full border-2 border-white flex items-center justify-center text-sm font-medium z-10">
                     {category.extraCount}
                   </div>
                 )}
               </div>
-
-              {/* Description */}
               {category.descriptionKey && (
-                <p className="text-[#171C35] text-sm font-medium leading-snug min-w-[80px]">
-                  {t(category.descriptionKey)}
-                </p>
+                <p className="text-[#171C35] text-sm font-medium leading-snug">{t(category.descriptionKey)}</p>
               )}
             </div>
           ) : (
             <div className="pr-12">
-              {category.mainNumber && (
-                <span className="text-5xl font-medium text-[#171C35]">
-                  {category.mainNumber}
-                </span>
+              {category.mainNumber !== undefined && (
+                <span className="text-5xl font-medium text-[#171C35]">{category.mainNumber}</span>
               )}
             </div>
           )}
         </div>
 
-        {/* Arrow button - Bottom-right corner e */}
         <div className="absolute bottom-0 right-0">
-          <div 
-            onClick={() => navigate(category.path)}
-            className="h-8 w-8 bg-gray-900 rounded-full flex items-center justify-center cursor-pointer"
-          >
+          <div onClick={() => navigate(category.path)} className="h-8 w-8 bg-[#171C35] rounded-full flex items-center justify-center cursor-pointer mb-1 mr-1 hover:scale-110 transition-transform">
             <img src={arrowRight} alt="" />
           </div>
         </div>
@@ -173,29 +93,79 @@ const Card = ({
   );
 };
 
+// ---------------- DashboardCard Component ----------------
 const DashboardCard = () => {
   const firstCardRef = useRef<HTMLDivElement>(null);
+  const { accessToken } = useAppSelector((state) => state.auth);
+  const [stats, setStats] = useState({
+    tasks: 0,
+    requiresCallback: 0,
+    unreviewedCallsCount: 0,
+  });
+
+  const fetchStats = async () => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/doctor/dashboard-stats`, {
+        headers: { 
+          Authorization: `Bearer ${accessToken}`,
+          'Content-Type': 'application/json'
+        },
+      });
+      const result = await response.json();
+      console.log('📊 Dashboard stats fetched:', result.data);
+
+      if (result.success && result.data?.today) {
+        const today = result.data.today;
+        setStats({
+          tasks: today.tasks || 0,
+          requiresCallback: today.requiresCallback || 0,
+          unreviewedCallsCount: today.unreviewedCallsCount || 0, // যদি API থেকে আসে
+        });
+      }
+    } catch (error) {
+      console.error('Error fetching stats:', error);
+    }
+  };
+
+  useEffect(() => {
+    if (accessToken) fetchStats();
+
+    // Sidebar বা অন্য component থেকে count update হলে
+    const handleUpdateCount = (event: Event) => {
+      const customEvent = event as CustomEvent<number>;
+      console.log('📢 Dashboard received unreviewed count update:', customEvent.detail);
+      setStats(prev => ({ ...prev, unreviewedCallsCount: customEvent.detail }));
+    };
+
+    window.addEventListener('updateUnreviewedCount', handleUpdateCount);
+    window.addEventListener('refreshDashboardStats', fetchStats);
+
+    return () => {
+      window.removeEventListener('updateUnreviewedCount', handleUpdateCount);
+      window.removeEventListener('refreshDashboardStats', fetchStats);
+    };
+  }, [accessToken]);
 
   const categories: Category[] = [
     {
       titleKey: "dashboard.routes.dashboard.cards.unreviewedCalls.title",
       descriptionKey: "dashboard.routes.dashboard.cards.unreviewedCalls.description",
       bgColor: "#E5DFF5",
-      avatars: [unredview1, unredview2, unredview3],
-      extraCount: "6+",
+      avatars: [unredview1, unredview1, unredview1],
+      extraCount: stats.unreviewedCallsCount > 3 ? `+${stats.unreviewedCallsCount - 3}` : undefined,
       path: "/dashboard/call_logs",
     },
     {
       titleKey: "dashboard.routes.dashboard.cards.tasks.title",
       bgColor: "#D0E1F5",
-      mainNumber: 12,
-      path: "/dashboard/tasks",  
+      mainNumber: stats.tasks,
+      path: "/dashboard/tasks",
     },
     {
       titleKey: "dashboard.routes.dashboard.cards.callBack.title",
       bgColor: "#FADACA",
-      mainNumber: 7,
-      path: "/dashboard/tasks",    
+      mainNumber: stats.requiresCallback,
+      path: "/dashboard/call_logs",
     },
   ];
 

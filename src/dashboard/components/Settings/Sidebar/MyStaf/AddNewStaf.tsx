@@ -603,9 +603,9 @@ const getPhotoPath = (file: File | undefined) => {
           country: personalInfo.country,
           employmentId: employmentInfo.employmentId,
           department: employmentInfo.department || null,
-          reportingTo: employmentInfo.reportingTo || null,
+          // reportingTo: employmentInfo.reportingTo || null,
           employmentType: employmentInfo.employmentType || null,
-          workSchedule: employmentInfo.workSchedule || null,
+          // workSchedule: employmentInfo.workSchedule || null,
           weeklyHours: employmentInfo.weeklyHours || null,
           photo: getPhotoPath(personalInfo.photo) ,
         };
