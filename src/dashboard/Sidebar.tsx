@@ -1,6 +1,3 @@
-// 1. SIDEBAR.TSX - Updated with Dynamic Badge
-// ===========================
-
 import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate, useLocation, Link } from "react-router-dom";
 import { X } from 'lucide-react';
@@ -72,6 +69,12 @@ interface NavItemProps {
     className?: string; 
     customActive?: (pathname: string) => boolean;
 }
+
+interface CallHistoryItem {
+  id: string;
+  isReviewed: boolean;
+}
+
 
 const NavItem: React.FC<NavItemProps> = ({ to, label, iconSrc, onClick, collapsed, closeMobileMenu, badge, className, customActive }) => {
     const location = useLocation();
@@ -200,40 +203,55 @@ const Sidebar: React.FC<UserSidebarProps> = ({ onLogoutClick, collapsed, onToggl
     const [unreviewedCallsCount, setUnreviewedCallsCount] = useState(0);
     const sidebarWidth = collapsed ? "w-[80px]" : "w-[280px]";
 
-    // Fetch unreviewed calls count
-    const fetchUnreviewedCount = async () => {
-        try {
-            const response = await axios.get(
-                `${import.meta.env.VITE_API_URL}/doctor/dashboard-stats`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${accessToken}`,
-                        'Content-Type': 'application/json'
-                    },
-                }
-            );
+    // ✅ Fetch unreviewed calls count from call history
+ const fetchUnreviewedCount = async () => {
+  try {
+    console.log('📡 Fetching unreviewed calls from backend...');
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/doctor/calls/history`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        'Content-Type': 'application/json'
+      },
+    });
 
-            if (response.data.success && response.data.data) {
-                setUnreviewedCallsCount(response.data.data.unreviewedCallsCount || 0);
-            }
-        } catch (error) {
-            console.error('Error fetching unreviewed calls count:', error);
-        }
-    };
+    if (response.data.success && response.data.data) {
+      const calls: CallHistoryItem[] = response.data.data.data;
+
+      // ✅ Backend এর isReviewed ফিল্ড অনুযায়ী count
+      const unreviewedCount = calls.filter(call => !call.isReviewed).length;
+
+      console.log('📊 Total calls:', calls.length);
+      console.log('📊 Unreviewed calls (backend only):', unreviewedCount);
+
+      setUnreviewedCallsCount(unreviewedCount);
+    }
+  } catch (error) {
+    console.error('❌ Error fetching unreviewed calls count:', error);
+  }
+};
+
 
     useEffect(() => {
         if (accessToken) {
             fetchUnreviewedCount();
         }
 
-        // Listen for refresh events from CallLogs
+        // ✅ Listen for count updates from CallLogsPage
+        const handleUpdateCount = (event: CustomEvent) => {
+            console.log(' Received count update:', event.detail);
+            setUnreviewedCallsCount(event.detail);
+        };
+
         const handleRefresh = () => {
+            console.log(' Refreshing dashboard stats...');
             fetchUnreviewedCount();
         };
 
+        window.addEventListener('updateUnreviewedCount', handleUpdateCount as EventListener);
         window.addEventListener('refreshDashboardStats', handleRefresh);
 
         return () => {
+            window.removeEventListener('updateUnreviewedCount', handleUpdateCount as EventListener);
             window.removeEventListener('refreshDashboardStats', handleRefresh);
         };
     }, [accessToken]);
@@ -253,7 +271,7 @@ const Sidebar: React.FC<UserSidebarProps> = ({ onLogoutClick, collapsed, onToggl
                         label={t('dashboard.sidebar.navigation.callLogs')} 
                         collapsed={collapsed} 
                         closeMobileMenu={closeMobileMenu} 
-                        badge={unreviewedCallsCount} 
+                        badge={unreviewedCallsCount}
                     />
                     <NavItem to="/dashboard/calendar" iconSrc={calendar} label={t('dashboard.sidebar.navigation.calendar')} collapsed={collapsed} closeMobileMenu={closeMobileMenu} />
                     <NavItem 
@@ -288,8 +306,6 @@ const Sidebar: React.FC<UserSidebarProps> = ({ onLogoutClick, collapsed, onToggl
 };
 
 export default Sidebar;
-
-
 
 // import React, { useState, useEffect } from "react";
 // import { NavLink } from "react-router-dom";

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useAppSelector } from '@/store/hook';
 import CommonSpace from "@/common/space/CommonSpace";
+import axios from 'axios';
 
 import arrowRight from "../../../assets/svgIcon/arrowRight.svg";
 import unredview1 from "../../../assets/img/dummyImage.svg";
@@ -16,12 +17,17 @@ interface Category {
   extraCount?: string;
   mainNumber?: number;
   path: string;
+  unreviewedCount?: number; // ✅ Added for unreviewed calls
 }
+interface CallHistoryItem {
+  id: string;
+  isReviewed: boolean;
+}
+
 
 const Card = ({
   category,
   className,
-
   height,
 }: {
   category: Category;
@@ -61,12 +67,19 @@ const Card = ({
           {category.avatars ? (
             <div className="flex items-center gap-3 pr-12">
               <div className="flex -space-x-3 items-center shrink-0">
-                {category.avatars.map((avatar, idx) => (
-                  <img key={idx} className="h-10 w-10 rounded-full border-2 border-white bg-gray-300 object-cover" src={avatar} alt="" />
+                {/* ✅ Show first 3 avatars */}
+                {category.avatars.slice(0, 3).map((avatar, idx) => (
+                  <img 
+                    key={idx} 
+                    className="h-10 w-10 rounded-full border-2 border-white bg-gray-300 object-cover" 
+                    src={avatar} 
+                    alt="" 
+                  />
                 ))}
-                {category.extraCount && (
-                  <div className="h-10 w-10 bg-[#171C35] text-white rounded-full border-2 border-white flex items-center justify-center text-sm font-medium z-10">
-                    {category.extraCount}
+                {/* ✅ Show dark badge with unreviewed count */}
+                {category.unreviewedCount !== undefined && category.unreviewedCount > 0 && (
+                  <div className="h-10 w-10 bg-[#2E3A4B] text-white rounded-full border-2 border-white flex items-center justify-center text-base font-semibold z-10">
+                    {category.unreviewedCount}+
                   </div>
                 )}
               </div>
@@ -84,7 +97,10 @@ const Card = ({
         </div>
 
         <div className="absolute bottom-0 right-0">
-          <div onClick={() => navigate(category.path)} className="h-8 w-8 bg-[#171C35] rounded-full flex items-center justify-center cursor-pointer mb-1 mr-1 hover:scale-110 transition-transform">
+          <div 
+            onClick={() => navigate(category.path)} 
+            className="h-8 w-8 bg-[#171C35] rounded-full flex items-center justify-center cursor-pointer mb-1 mr-1 hover:scale-110 transition-transform"
+          >
             <img src={arrowRight} alt="" />
           </div>
         </div>
@@ -92,6 +108,7 @@ const Card = ({
     </div>
   );
 };
+
 
 // ---------------- DashboardCard Component ----------------
 const DashboardCard = () => {
@@ -103,6 +120,42 @@ const DashboardCard = () => {
     unreviewedCallsCount: 0,
   });
 
+  // ✅ Fetch unreviewed calls count from backend only
+  const fetchUnreviewedCount = async () => {
+    try {
+      console.log('🔄 Dashboard: Fetching unreviewed calls count from backend...');
+      
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/doctor/calls/history`,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            'Content-Type': 'application/json'
+          },
+        }
+      );
+
+      if (response.data.success && response.data.data) {
+        const calls: CallHistoryItem[] = response.data.data.data;
+
+        // ✅ Count only calls that are not reviewed
+        const unreviewedCount = calls.filter(call => !call.isReviewed).length;
+
+        console.log('📊 Dashboard: Total calls:', calls.length);
+        console.log('📊 Dashboard: Unreviewed calls (backend only):', unreviewedCount);
+
+        setStats(prev => ({
+          ...prev,
+          unreviewedCallsCount: unreviewedCount
+        }));
+      }
+    } catch (error) {
+      console.error('❌ Dashboard: Error fetching unreviewed calls count:', error);
+      setStats(prev => ({ ...prev, unreviewedCallsCount: 0 }));
+    }
+  };
+
+  // ✅ Fetch other stats from dashboard-stats API
   const fetchStats = async () => {
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/doctor/dashboard-stats`, {
@@ -116,33 +169,54 @@ const DashboardCard = () => {
 
       if (result.success && result.data?.today) {
         const today = result.data.today;
-        setStats({
+        setStats(prev => ({
+          ...prev,
           tasks: today.tasks || 0,
           requiresCallback: today.requiresCallback || 0,
-          unreviewedCallsCount: today.unreviewedCallsCount || 0, // যদি API থেকে আসে
-        });
+        }));
       }
     } catch (error) {
-      console.error('Error fetching stats:', error);
+      console.error('❌ Error fetching dashboard stats:', error);
     }
   };
 
   useEffect(() => {
-    if (accessToken) fetchStats();
+    if (accessToken) {
+      fetchStats();
+      fetchUnreviewedCount(); // ✅ Fetch unreviewed count from backend
+    }
 
-    // Sidebar বা অন্য component থেকে count update হলে
+    // ✅ Listen for count updates from CallLogsPage
     const handleUpdateCount = (event: Event) => {
       const customEvent = event as CustomEvent<number>;
       console.log('📢 Dashboard received unreviewed count update:', customEvent.detail);
-      setStats(prev => ({ ...prev, unreviewedCallsCount: customEvent.detail }));
+      setStats(prev => ({ 
+        ...prev, 
+        unreviewedCallsCount: customEvent.detail 
+      }));
+    };
+
+    const handleRefreshStats = () => {
+      console.log('🔄 Dashboard: Refreshing all stats...');
+      fetchStats();
+      fetchUnreviewedCount();
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        console.log('👁️ Dashboard visible, refreshing counts...');
+        fetchUnreviewedCount();
+      }
     };
 
     window.addEventListener('updateUnreviewedCount', handleUpdateCount);
-    window.addEventListener('refreshDashboardStats', fetchStats);
+    window.addEventListener('refreshDashboardStats', handleRefreshStats);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
 
     return () => {
       window.removeEventListener('updateUnreviewedCount', handleUpdateCount);
-      window.removeEventListener('refreshDashboardStats', fetchStats);
+      window.removeEventListener('refreshDashboardStats', handleRefreshStats);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
   }, [accessToken]);
 
@@ -152,7 +226,7 @@ const DashboardCard = () => {
       descriptionKey: "dashboard.routes.dashboard.cards.unreviewedCalls.description",
       bgColor: "#E5DFF5",
       avatars: [unredview1, unredview1, unredview1],
-      extraCount: stats.unreviewedCallsCount > 3 ? `+${stats.unreviewedCallsCount - 3}` : undefined,
+      unreviewedCount: stats.unreviewedCallsCount,
       path: "/dashboard/call_logs",
     },
     {
@@ -195,6 +269,7 @@ const DashboardCard = () => {
 };
 
 export default DashboardCard;
+
 
 
 // import { useRef } from "react";

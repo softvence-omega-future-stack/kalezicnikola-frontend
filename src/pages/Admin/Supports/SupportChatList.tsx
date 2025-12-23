@@ -316,7 +316,7 @@
 
 
 
-// SupportLeft.tsx - Friend List Component
+
 
 
 import React, { useState } from 'react';
@@ -325,7 +325,7 @@ import { useTranslation } from 'react-i18next';
 import { Home, ChevronRight, Search } from 'lucide-react';
 
 import kurmisadia from '../../../assets/svgIcon/kurmisadia.svg';
-import AdminSupportRight from './SupportRight';
+import AdminSupportRight from './SupportChatDetails';
 
 // Import API hooks and types
 import { useGetAdminConversationsQuery } from '@/store/features/supportChat/chatApi';
@@ -344,7 +344,9 @@ const AdminSupportLeft: React.FC = () => {
   });
 
   // Type cast to handle the 'message' potentially being undefined error
-  const conversations = (conversationsData as unknown as Conversation[]) || [];
+ // Ensure conversations is always an array
+const conversations: Conversation[] = Array.isArray(conversationsData) ? conversationsData : [];
+
 
   // Filter conversations based on search
   const filteredConversations = conversations.filter(conv => {

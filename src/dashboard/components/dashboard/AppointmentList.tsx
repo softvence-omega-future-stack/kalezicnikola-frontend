@@ -171,17 +171,17 @@ const AppointmentsList: React.FC<AppointmentsListProps> = ({ selectedDate }) => 
             const transformedToday = filteredTodayAppointments.map((appt: ApiAppointment) => ({
               id: String(appt.id),
               name: appt?.patient?.firstName && appt?.patient?.lastName 
-                ? `${appt.patient.firstName} ${appt.patient.lastName}`
+                ? `${appt?.patient?.firstName} ${appt?.patient?.lastName}`
                 : appt?.firstName && appt?.lastName
                 ? `${appt.firstName} ${appt.lastName}`
                 : 'Unknown Patient',
-              timeRange: `${appt.scheduleSlot.startTime} - ${appt.scheduleSlot.endTime}`,
+              timeRange: `${appt?.scheduleSlot.startTime} - ${appt?.scheduleSlot.endTime}`,
               appointmentDate: formatDateToString(appt.appointmentDate),
               isActive: true,
               details: {
                 phone: appt?.patient?.phone || appt.phone || 'N/A',
-                diagnosis: appt.appointmentDetails || 'N/A',
-                time: `${appt.scheduleSlot.startTime} - ${appt.scheduleSlot.endTime}`,
+                diagnosis: appt?.appointmentDetails || 'N/A',
+                time: `${appt?.scheduleSlot.startTime} - ${appt?.scheduleSlot.endTime}`,
                 avatarUrl: dummyImage,
               },
             }));

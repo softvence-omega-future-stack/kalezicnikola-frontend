@@ -1,4 +1,4 @@
-import SupportLeft from "./SupportLeft"
+import SupportLeft from "./SupportChatList"
 
 
 
