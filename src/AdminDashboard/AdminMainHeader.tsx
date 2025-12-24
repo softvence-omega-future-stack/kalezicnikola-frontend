@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState,  useEffect } from "react";
 import { createPortal } from "react-dom";
-import karennix from "../assets/svgIcon/karen.svg";
+import karennix from "../assets/img/dummyImage.svg";
 import search from "../assets/svgIcon/search.svg";
 import notification from "../assets/svgIcon/notification.svg";
 import { Menu } from "lucide-react";
 
 import LanguageSelector from "@/dashboard/components/dashboard/LanguageSelector";
 import NotificationsModal from "@/dashboard/components/dashboard/Notifications";
+import { useAppSelector } from "@/store/hook";
 
 interface HeaderProps {
   onMobileMenuOpen: () => void;
@@ -20,11 +21,25 @@ const userData = {
 
 const AdminMainHeader: React.FC<HeaderProps> = ({ onMobileMenuOpen }) => {
   const [showNotification, setShowNotification] = useState(false);
+  const { user } = useAppSelector((state) => state.auth);
+
+  // Body scroll lock
+  useEffect(() => {
+    if (showNotification) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [showNotification]);
 
   return (
-    <div className="flex flex-col w-full">
+    <>
       <header className="w-full h-16 sm:h-20 flex justify-between items-center gap-2 px-3 sm:px-6 md:px-8 lg:px-10
-        bg-[#F3F6F6] top-0 left-0 border-b border-[#D0D5DD]">
+        bg-[#F3F6F6] top-0 left-0 border-b border-[#D0D5DD] z-40 relative">
 
         {/* Mobile Menu */}
         <button onClick={onMobileMenuOpen} className="md:hidden p-1.5 rounded-md border border-gray-300 mr-2">
@@ -34,7 +49,7 @@ const AdminMainHeader: React.FC<HeaderProps> = ({ onMobileMenuOpen }) => {
         {/* Search Bar */}
         <div className="flex items-center flex-1 min-w-0 max-w-xs sm:max-w-md md:max-w-lg">
           <div className="flex items-center gap-2 sm:gap-3 w-full rounded-lg py-2 sm:py-3 px-2 sm:px-4 border border-gray-200 focus-within:border-indigo-300 transition-colors">
-            <img src={search} alt="" className="w-4 h-4 shrink-0" />
+            <img src={search} alt="Search" className="w-4 h-4 shrink-0" />
             <input
               type="text"
               placeholder="Search..."
@@ -52,26 +67,33 @@ const AdminMainHeader: React.FC<HeaderProps> = ({ onMobileMenuOpen }) => {
           </div>
 
           {/* Notification Desktop */}
-          <div className="hidden sm:flex items-center border-l border-r border-gray-200 p-3 h-10">
+          <div className="hidden sm:flex items-center border-l border-r border-gray-200 px-3 h-10">
             <button onClick={() => setShowNotification(true)} className="relative p-2 text-[#111A2D] focus:outline-none cursor-pointer">
-              <img src={notification} alt="" className="w-5 h-5 sm:w-6 sm:h-6" />
+              <img src={notification} alt="Notification" className="w-5 h-5 sm:w-6 sm:h-6" />
+              <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white">
+                3
+              </span>
             </button>
           </div>
 
           {/* Notification Mobile */}
           <div className="sm:hidden">
             <button onClick={() => setShowNotification(true)} className="relative p-1.5 text-[#111A2D] focus:outline-none">
-              <img src={notification} alt="" className="w-5 h-5" />
+              <img src={notification} alt="Notification" className="w-5 h-5" />
+              <span className="absolute -top-0.5 -right-0.5 flex h-3 w-3 items-center justify-center rounded-full bg-red-500 text-xs text-white">
+                3
+              </span>
             </button>
           </div>
 
           {/* User */}
           <div className="relative shrink-0">
             <div className="flex items-center cursor-pointer rounded-full">
-              <img src={userData.avatarUrl} alt={userData.name} className="h-8 w-8 sm:h-10 sm:w-10 rounded-xl object-cover" />
+              <img src={userData.avatarUrl} alt={user?.firstName} className="h-8 w-8 sm:h-10 sm:w-10 rounded-xl object-cover" />
               <div className="hidden md:block ml-2">
-                <p className="text-lg font-semibold text-[#171C35] leading-none">{userData.name}</p>
-                <p className="text-sm text-[#171C35] leading-none mt-1">{userData.role}</p>
+                <p className="text-lg font-semibold text-[#171C35] leading-4.5">{user?.firstName}  </p>
+                <p className="text-lg font-semibold text-[#171C35] leading-4.5"> {user?.lastName}</p>
+                {/* <p className="text-lg font-semibold text-[#171C35] leading-none capitalize mt-1">{user?.role === "admin" ? "Admin" : user?.role}</p> */}
               </div>
             </div>
           </div>
@@ -79,19 +101,21 @@ const AdminMainHeader: React.FC<HeaderProps> = ({ onMobileMenuOpen }) => {
         </div>
       </header>
 
-      {/* Notification Modal Portal */}
+      {/* Notification Modal - Portal style */}
       {showNotification && createPortal(
-        <div style={{ zIndex: 99999 }}>
+        <div 
+          className="fixed inset-0 z-[9999]"
+          style={{ position: 'fixed', zIndex: 9999 }}
+        >
           <NotificationsModal onClose={() => setShowNotification(false)} />
         </div>,
         document.body
       )}
-    </div>
+    </>
   );
 };
 
 export default AdminMainHeader;
-
 
 
 

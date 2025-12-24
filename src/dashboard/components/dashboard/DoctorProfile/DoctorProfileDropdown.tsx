@@ -45,6 +45,8 @@ const UserDropdown: React.FC<UserDropdownProps> = ({ onClose }) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const baseUrl = import.meta.env.VITE_API_URL.replace('/api/v1', '');
+  const userProfilePic = user?.photo ? `${baseUrl}${user.photo}` : profile;
 
 
   // Close dropdown when clicking outside
@@ -85,7 +87,11 @@ const UserDropdown: React.FC<UserDropdownProps> = ({ onClose }) => {
       {/* User Info */}
       <div className="flex items-center space-x-4 mb-6">
         <div className="w-16 h-16 rounded-full bg-gray-200 overflow-hidden flex-shrink-0">
-          <img src={profile} alt={t('dashboard.mainHeader.userDropdown.name')} className="w-full h-full object-cover" />
+         <img 
+            src={userProfilePic} 
+            alt={user?.firstName} 
+            className="w-full h-full object-cover" 
+          />
         </div>
         <div>
           <h2 className="text-lg font-semibold text-[#171C35]">

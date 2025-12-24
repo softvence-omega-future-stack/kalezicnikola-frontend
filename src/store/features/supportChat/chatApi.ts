@@ -42,6 +42,7 @@ export interface Conversation {
   createdAt: string;
   updatedAt: string;
   user: User;
+  data: Conversation[];
   admin?: User;
   messages: Message[];
 }

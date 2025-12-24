@@ -10,7 +10,7 @@ import AppointmentsList from '../AppointmentList';
 import home from '../../../../assets/svgIcon/homeIcon.svg';
 import chevron from '../../../../assets/svgIcon/chevronnRight.svg';
 import edit from '../../../../assets/svgIcon/edit2.svg';
-import karen from '../../../../assets/img/dummyImage.svg';
+import profile from '../../../../assets/img/dummyImage.svg';
 import { useAppSelector } from '@/store/hook';
 import EditProfileModal from './EditProfileModal';
 
@@ -40,12 +40,14 @@ export default function DoctorProfile() {
   const [isEditOpen, setIsEditOpen] = useState(false);
   const { t } = useTranslation();
   const { accessToken } = useAppSelector((state) => state.auth);
-
+const { user } = useAppSelector((state) => state.auth);
   const openEditModal = () => setIsEditOpen(true);
   const closeEditModal = () => setIsEditOpen(false);
-
+  
   const [profileData, setProfileData] = useState<DoctorProfileData | null>(null);
   const [loading, setLoading] = useState(true);
+  const baseUrl = import.meta.env.VITE_API_URL.replace('/api/v1', '');
+  const userProfilePic = user?.photo ? `${baseUrl}${user.photo}` : profile;
 
   // ✅ GET API: Fetch doctor profile
   const fetchProfile = async () => {
@@ -115,8 +117,8 @@ export default function DoctorProfile() {
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
               <div className="shrink-0 -mt-16 sm:-mt-20">
                 <img
-                  src={profileData.photo || karen}
-                  alt="Doctor"
+                  src={userProfilePic}
+                  alt={user?.firstName}
                   className="w-[180px] h-[220px] sm:w-[222px] sm:h-[370px] rounded-2xl object-cover bg-gray-300 mx-auto sm:mx-0"
                 />
               </div>

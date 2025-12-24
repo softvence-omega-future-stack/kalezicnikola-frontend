@@ -33,7 +33,7 @@ import Home from "@/pages/Home";
 import AddPatientForm from "@/dashboard/components/Patients/Addpatient";
 import Impressum from "@/Teamplate/Impressum ";
 import Datenschutz from "@/Teamplate/Datenschutz";
-import GuestRoute from "./GuestRoute";
+//import GuestRoute from "./GuestRoute";
 import EditPatientForm from "@/dashboard/components/Patients/EditPatientForm";
 import ProtectedRoute from "./ProtectedRoutes";
 // import AddPatientForm from "@/dashboard/components/Patients/Addpatient";
@@ -45,7 +45,7 @@ import ProtectedRoute from "./ProtectedRoutes";
 const routes = createBrowserRouter([
   {
     path: "/",
-     element:(<GuestRoute><App /></GuestRoute> ),
+     element:(<App />),
     children: [
            {
         index: true,

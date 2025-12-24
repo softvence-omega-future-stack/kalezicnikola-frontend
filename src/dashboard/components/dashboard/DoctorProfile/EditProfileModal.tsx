@@ -166,11 +166,11 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
   };
 
    // Handle photo change
-  const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setFormData(prev => ({ ...prev, photo: e.target.files![0] }));
-    }
-  };
+  // const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   if (e.target.files && e.target.files[0]) {
+  //     setFormData(prev => ({ ...prev, photo: e.target.files![0] }));
+  //   }
+  // };
 
   const handleClose = () => {
     if (!isSaving) {
@@ -210,7 +210,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
             )}
 
       {/* Photo Upload */}
-              <div className="md:col-span-2 flex flex-col items-start">
+              {/* <div className="md:col-span-2 flex flex-col items-start">
                 <label className="block text-sm font-medium text-headingBlack mb-2">Profile Photo</label>
                 <input
                   type="file"
@@ -226,7 +226,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
                     className="mt-2 w-32 h-32 rounded-lg object-cover"
                   />
                 )}
-              </div>
+              </div> */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
               {/* First Name */}
               <div>
