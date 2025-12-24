@@ -2,6 +2,7 @@ export type TUser = {
     id: string;
     firstName: string;
     lastName: string;
+    photo: string | null;
     email: string;
     doctorId: string;
     role: string;

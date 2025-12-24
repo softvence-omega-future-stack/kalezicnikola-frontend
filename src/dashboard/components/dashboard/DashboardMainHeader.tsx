@@ -10,11 +10,11 @@ import LanguageSelector from './LanguageSelector';
 import { useAppSelector } from '@/store/hook';
 import { useTranslation } from 'react-i18next';
 
-const userData = {
-    // name: 'Keren nix',
-    // role: 'D.',
-    avatarUrl:profileImg,
-};
+// const userData = {
+//     // name: 'Keren nix',
+//     // role: 'D.',
+//     avatarUrl:profileImg,
+// };
 
 interface MainHeaderProps {
     onMobileMenuOpen: () => void;
@@ -24,6 +24,8 @@ const MainHeader: React.FC<MainHeaderProps> = ({ onMobileMenuOpen }) => {
     const [showNotification, setShowNotification] = useState(false);
     const [showUserDropdown, setShowUserDropdown] = useState(false);
     const { user } = useAppSelector((state)=>state.auth);
+    const baseUrl = import.meta.env.VITE_API_URL.replace('/api/v1', '');
+    const userImage = user?.photo ? `${baseUrl}${user.photo}` : profileImg;  
     const {t} = useTranslation()
     
     const dropdownRef = useRef<HTMLDivElement>(null);
@@ -145,11 +147,11 @@ useEffect(() => {
                             className="flex items-center cursor-pointer rounded-full"
                             onClick={() => setShowUserDropdown(!showUserDropdown)}
                         >
-                            <img
-                                src={userData.avatarUrl}
-                                alt={user?.firstName}
-                                className="h-8 w-8 sm:h-10 sm:w-10 bg-gray-300 rounded-full object-cover"
-                            />
+                           <img
+    src={userImage}
+    alt={user?.firstName}
+    className="h-8 w-8 sm:h-10 sm:w-10 bg-gray-300 rounded-full object-cover"
+/>
                             <div className="hidden md:block ml-2">
                                 <p className="text-lg font-semibold text-headingBlack  leading-4.5">{user?.firstName} <br /> {user?.lastName}</p>
                                 <p className="text-lg font-semibold text-headingBlack leading-none capitalize mt-1">{user?.role === "doctor" ? "" : user?.role}</p>

@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 
 import { socket } from "@/store/socketIo/socketClient";
 
-import karennix from '../../../assets/svgIcon/karenNix.svg';
+import profile from '../../../assets/img/dummyImage.svg';
 import kurmisadia from '../../../assets/svgIcon/kurmisadia.svg';
 import search from '../../../assets/svgIcon/search.svg';
 import home from '../../../assets/svgIcon/homeIcon.svg';
@@ -21,8 +21,10 @@ import {
   useGetMessagesQuery,
   useSendMessageMutation,
   useUploadChatFileMutation,
+  useCreateConversationMutation,
 } from '@/store/features/supportChat/chatApi';
 import type { RootState } from '@/store/store';
+import { useAppSelector } from '@/store/hook';
 
 // Interface definitions to solve 'data' property errors
 interface Message {
@@ -108,6 +110,25 @@ const SupportChat: React.FC = () => {
   // Casting data to handle potential undefined or nested structures
   const conversations: Conversation[] = (conversationsData as unknown as ConversationsResponse)?.data || [];
   const activeMessages: Message[] = (messagesData as unknown as MessagesResponse)?.data?.messages || [];
+
+  const [createConversation] = useCreateConversationMutation();
+
+useEffect(() => {
+  if (conversations.length === 0 && currentUserId) {
+    // Create default conversation with Admin Support
+    createConversation({ subject: 'Admin Support' })
+      .unwrap()
+      .then((conv) => {
+        setSelectedConversation(conv.id);
+        setShowChat(true);
+      })
+      .catch((err) => console.error(err));
+  } else if (conversations.length > 0) {
+    // Select first conversation if already exists
+    setSelectedConversation(conversations[0].id);
+    setShowChat(true);
+  }
+}, [conversations, currentUserId]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -217,6 +238,9 @@ const SupportChat: React.FC = () => {
   };
 
   const getCurrentUserId = () => conversations[0]?.userId || '';
+    const { user } = useAppSelector((state)=>state.auth);
+    const baseUrl = import.meta.env.VITE_API_URL.replace('/api/v1', '');
+    const userImage = user?.photo ? `${baseUrl}${user.photo}` : profile;  
 
   return (
     <div className="bg-[#F3F6F6] md:mt-[30px]">
@@ -241,10 +265,11 @@ const SupportChat: React.FC = () => {
             <div className="p-5 border-b flex-shrink-0">
               <div className="flex items-center gap-3 mb-4">
                 <div className="relative">
-                  <img src="https://i.ibb.co.com/tM6Sb5kF/KarenNix.png" className="w-12 h-12 rounded-full" alt="Profile" />
+                  <img src={userImage}
+    alt={user?.firstName} className="w-12 h-12 rounded-full"  />
                   <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
                 </div>
-                <h3 className="font-semibold text-base text-[#171C35]">Support Chat</h3>
+                <h3 className="font-semibold text-base text-[#171C35]">{user?.firstName} {user?.lastName} </h3>
               </div>
               <div className="flex gap-2 bg-[#F3F6F6] rounded-[12px] p-2">
                 <div className="relative w-full">
@@ -267,26 +292,27 @@ const SupportChat: React.FC = () => {
                   <p>{searchText ? 'No conversations found' : 'No conversations yet'}</p>
                 </div>
               ) : (
-                filteredConversations.map((conversation) => (
-                  <button
-                    key={conversation.id}
-                    onClick={() => { setSelectedConversation(conversation.id); setShowChat(true); }}
-                    className={`w-full p-4 flex items-center gap-3 text-left hover:bg-gray-50 transition-colors ${selectedConversation === conversation.id ? 'bg-blue-50' : ''}`}
-                  >
-                    <div className="relative shrink-0">
-                      <img src={getAvatar(conversation.admin?.admin)} className="w-12 h-12 rounded-full object-cover" alt="" />
-                      <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex justify-between items-center">
-                        <h4 className="font-semibold text-[#526FFF] text-sm truncate">{getDisplayName(conversation.admin?.admin)}</h4>
-                        <span className="text-xs text-gray-400 ml-2">{formatTimestamp(conversation.updatedAt)}</span>
-                      </div>
-                      <p className="text-sm text-[#111A2D] truncate">{getLastMessage(conversation)}</p>
-                    </div>
-                    {conversation.status === 'OPEN' && conversation.messages.length > 0 && <div className="w-2 h-2 bg-[#526FFF] shrink-0 rounded-full ml-2"></div>}
-                  </button>
-                ))
+           filteredConversations.map((conversation) => (
+  <button
+    key={conversation.id}
+    onClick={() => { setSelectedConversation(conversation.id); setShowChat(true); }}
+    className={`w-full p-4 flex items-center gap-3 text-left hover:bg-gray-50 transition-colors ${selectedConversation === conversation.id ? 'bg-blue-50' : ''}`}
+  >
+    <div className="relative shrink-0">
+      <img src={getAvatar(conversation.admin?.admin)} className="w-12 h-12 rounded-full object-cover" alt="" />
+      <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
+    </div>
+    <div className="flex-1 min-w-0">
+      <div className="flex justify-between items-center">
+        <h4 className="font-semibold text-[#526FFF] text-sm truncate">{getDisplayName(conversation.admin?.admin)}</h4>
+        <span className="text-xs text-gray-400 ml-2">{formatTimestamp(conversation.updatedAt)}</span>
+      </div>
+      <p className="text-sm text-[#111A2D] truncate">{getLastMessage(conversation)}</p>
+    </div>
+    {conversation.status === 'OPEN' && conversation.messages.length > 0 && <div className="w-2 h-2 bg-[#526FFF] shrink-0 rounded-full ml-2"></div>}
+  </button>
+))
+
               )}
             </div>
           </div>
@@ -305,7 +331,7 @@ const SupportChat: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-xl text-[#171C35]">{getDisplayName(adminInfo)}</h3>
-                    <span className="text-sm text-gray-500">Support Staff - Online</span>
+                    <span className="text-sm text-gray-500">Support Admin - Online</span>
                   </div>
                 </div>
               </div>
@@ -327,7 +353,8 @@ const SupportChat: React.FC = () => {
                                 {message.imageUrl ? <img src={message.imageUrl} alt="Attachment" className="max-w-xs rounded-lg" /> : message.message}
                               </div>
                             </div>
-                            {isCurrentUser && <img src={karennix} className="w-10 h-10 rounded-full object-cover" alt="You" />}
+                            {isCurrentUser && <img src={userImage}
+    alt={user?.firstName}className="w-10 h-10 rounded-full object-cover"  />}
                           </div>
                         );
                       })
