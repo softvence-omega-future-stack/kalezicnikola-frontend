@@ -1,11 +1,12 @@
-import SupportLeft from "./SupportChatList"
+import AdminSupportChatList from "./SupportChatList"
+
 
 
 
 const SupportPage = () => {
   return (
     <div >
-      <SupportLeft />
+      <AdminSupportChatList />
     </div>
   )
 }

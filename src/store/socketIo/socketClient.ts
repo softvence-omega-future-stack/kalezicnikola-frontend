@@ -14,6 +14,12 @@ export const socket = io(SOCKET_URL, {
   withCredentials: true, // If backend requires credentials
 });
 
+// User login korle ei function call korben
+// export const connectSocket = (userId) => {
+//   socket.auth = { userId }; // Backend-ke userId pathano
+//   socket.connect();
+// };
+
 // Debug logging
 socket.on('connect', () => {
   console.log('✅ Socket connected:', socket.id);
