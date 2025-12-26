@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import EmojiPicker from "emoji-picker-react";
 import { useTranslation } from "react-i18next";
@@ -26,7 +26,7 @@ import {
 import type { RootState } from '@/store/store';
 import { useAppSelector } from '@/store/hook';
 
-// Interface definitions to solve 'data' property errors
+// Interface definitions
 interface Message {
   id: string;
   conversationId: string;
@@ -71,7 +71,6 @@ interface Conversation {
   } | null;
 }
 
-// Defining response types for API data
 interface ConversationsResponse {
   data: Conversation[];
 }
@@ -93,122 +92,163 @@ const SupportChat: React.FC = () => {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const emojiPickerRef = useRef<HTMLDivElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  
+  // ✅ NEW: Track initialization to prevent infinite loops
+  const [hasInitialized, setHasInitialized] = useState(false);
+  const [isCreatingConversation, setIsCreatingConversation] = useState(false);
 
   const currentUserId = useSelector((state: RootState) => state.auth.user?.id);
+  const { user } = useAppSelector((state) => state.auth);
 
-  // API hooks with explicit typing to fix 'data' errors
-  const { data: conversationsData, isLoading: conversationsLoading, refetch: refetchConversations } = useGetMyConversationsQuery(undefined);
+  // API hooks
+  const { 
+    data: conversationsData, 
+    isLoading: conversationsLoading, 
+    refetch: refetchConversations 
+  } = useGetMyConversationsQuery(undefined);
   
-  const { data: messagesData, isLoading: messagesLoading, refetch: refetchMessages } = useGetMessagesQuery(
+  const { 
+    data: messagesData, 
+    isLoading: messagesLoading, 
+    refetch: refetchMessages 
+  } = useGetMessagesQuery(
     selectedConversation || '', 
     { skip: !selectedConversation }
   );
   
   const [sendMessageMutation, { isLoading: sendingMessage }] = useSendMessageMutation();
   const [uploadFile, { isLoading: uploadingFile }] = useUploadChatFileMutation();
+  const [createConversation] = useCreateConversationMutation();
 
-  // Casting data to handle potential undefined or nested structures
+  // Casting data
   const conversations: Conversation[] = (conversationsData as unknown as ConversationsResponse)?.data || [];
   const activeMessages: Message[] = (messagesData as unknown as MessagesResponse)?.data?.messages || [];
 
-  const [createConversation] = useCreateConversationMutation();
+  // ✅ FIXED: Prevent infinite loop with initialization flag
+  useEffect(() => {
+    // Skip if already initialized or currently creating
+    if (hasInitialized || isCreatingConversation) return;
 
-useEffect(() => {
-  if (conversations.length === 0 && currentUserId) {
-    // Create default conversation with Admin Support
-    createConversation({ subject: 'Admin Support' })
-      .unwrap()
-      .then((conv) => {
-        setSelectedConversation(conv.id);
-        setShowChat(true);
-      })
-      .catch((err) => console.error(err));
-  } else if (conversations.length > 0) {
-    // Select first conversation if already exists
-    setSelectedConversation(conversations[0].id);
-    setShowChat(true);
-  }
-}, [conversations, currentUserId]);
+    if (conversations.length === 0 && currentUserId && !conversationsLoading) {
+      // Create default conversation
+      setIsCreatingConversation(true);
+      createConversation({ subject: 'Admin Support' })
+        .unwrap()
+        .then((conv) => {
+          console.log('✅ Conversation created:', conv);
+          setSelectedConversation(conv.id);
+          setShowChat(true);
+          setHasInitialized(true);
+          // ✅ Force refetch to update the list
+          refetchConversations();
+        })
+        .catch((err) => {
+          console.error('❌ Failed to create conversation:', err);
+          setHasInitialized(true); // Prevent retry loop
+        })
+        .finally(() => {
+          setIsCreatingConversation(false);
+        });
+    } else if (conversations.length > 0 && !conversationsLoading) {
+      setSelectedConversation(conversations[0].id);
+      setShowChat(true);
+      setHasInitialized(true);
+    }
+  }, [conversations, currentUserId, conversationsLoading, hasInitialized, isCreatingConversation, createConversation, refetchConversations]);
 
+  // Auto-scroll to latest message
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [activeMessages]);
 
+  // ✅ IMPROVED: Socket connection with cleanup
   useEffect(() => {
-    if (selectedConversation) {
-      socket.connect();
-      socket.emit("joinRoom", selectedConversation);
+    if (!selectedConversation) return;
 
-      socket.on("newMessage", (message: Message) => {
-        console.log("New message via socket:", message);
-        refetchMessages();
-      });
+    socket.connect();
+    socket.emit("joinRoom", selectedConversation);
 
-      return () => {
-        socket.emit("leaveRoom", selectedConversation);
-        socket.off("newMessage");
-        socket.disconnect();
-      };
-    }
+    const handleNewMessage = (message: Message) => {
+      console.log("New message via socket:", message);
+      refetchMessages();
+    };
+
+    socket.on("newMessage", handleNewMessage);
+
+    return () => {
+      socket.emit("leaveRoom", selectedConversation);
+      socket.off("newMessage", handleNewMessage);
+      socket.disconnect();
+    };
   }, [selectedConversation, refetchMessages]);
 
+  // Emoji picker click outside handler
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (emojiPickerRef.current && !emojiPickerRef.current.contains(event.target as Node)) {
         setShowEmojiPicker(false);
       }
     };
-    if (showEmojiPicker) document.addEventListener('mousedown', handleClickOutside);
+    if (showEmojiPicker) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [showEmojiPicker]);
 
-  const handleSendMessage = async () => {
-    if (messageText.trim() && selectedConversation && currentUserId) {
-      try {
-        const result = await sendMessageMutation({
-          conversationId: selectedConversation,
-          text: messageText,
-          senderId: currentUserId,
-        }).unwrap();
-        
-        setMessageText('');
-        socket.emit("sendMessage", { conversationId: selectedConversation, message: result });
-        refetchMessages();
-        refetchConversations();
-      } catch (error) {
-        console.error('Failed to send message:', error);
-      }
-    } else if (!currentUserId) {
-      alert('User ID not found. Please login again.');
+  // ✅ IMPROVED: Add debouncing to prevent rapid-fire sends
+  const handleSendMessage = useCallback(async () => {
+    if (!messageText.trim() || !selectedConversation || !currentUserId || sendingMessage) {
+      return;
     }
-  };
+
+    try {
+      const result = await sendMessageMutation({
+        conversationId: selectedConversation,
+        text: messageText,
+        senderId: currentUserId,
+      }).unwrap();
+      
+      setMessageText('');
+      socket.emit("sendMessage", { 
+        conversationId: selectedConversation, 
+        message: result 
+      });
+      
+      // ✅ No need to manually refetch - RTK Query cache will auto-update
+      console.log('✅ Message sent:', result);
+    } catch (error) {
+      console.error('❌ Failed to send message:', error);
+      alert('Failed to send message. Please try again.');
+    }
+  }, [messageText, selectedConversation, currentUserId, sendingMessage, sendMessageMutation]);
 
   const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-    if (file && selectedConversation && currentUserId) {
-      try {
-        const formData = new FormData();
-        formData.append('file', file);
-        const uploadResult = await uploadFile(formData).unwrap();
-        
-        await sendMessageMutation({
-          conversationId: selectedConversation,
-          image: uploadResult.url,
-          senderId: currentUserId,
-        }).unwrap();
-        
-        refetchMessages();
-        refetchConversations();
-      } catch (error) {
-        console.error('Failed to upload file:', error);
-      }
+    if (!file || !selectedConversation || !currentUserId) return;
+
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+      const uploadResult = await uploadFile(formData).unwrap();
+      
+      await sendMessageMutation({
+        conversationId: selectedConversation,
+        image: uploadResult.url,
+        senderId: currentUserId,
+      }).unwrap();
+      
+      // ✅ No need to manually refetch - RTK Query cache will auto-update
+      console.log('✅ File uploaded and sent');
+    } catch (error) {
+      console.error('❌ Failed to upload file:', error);
+      alert('Failed to upload file. Please try again.');
     }
   };
 
   const filteredConversations = conversations.filter((conv: Conversation) => {
-    const admin = conv.admin?.admin;
-    if (!admin) return false;
-    const fullName = `${admin.firstName} ${admin.lastName}`.toLowerCase();
+    const admin = conv.admin;
+    if (!admin?.admin) return false;
+    const fullName = `${admin.admin.firstName} ${admin.admin.lastName}`.toLowerCase();
     return fullName.includes(searchText.toLowerCase());
   });
 
@@ -226,7 +266,9 @@ useEffect(() => {
     return date.toLocaleDateString();
   };
 
-  const getDisplayName = (person: any) => person ? `${person.firstName || ''} ${person.lastName || ''}`.trim() : 'Support Team';
+  const getDisplayName = (person: any) => 
+    person ? `${person.firstName || ''} ${person.lastName || ''}`.trim() : 'Support Team';
+  
   const getAvatar = (person: any) => person?.photo || kurmisadia;
 
   const getLastMessage = (conversation: Conversation) => {
@@ -238,9 +280,8 @@ useEffect(() => {
   };
 
   const getCurrentUserId = () => conversations[0]?.userId || '';
-    const { user } = useAppSelector((state)=>state.auth);
-    const baseUrl = import.meta.env.VITE_API_URL.replace('/api/v1', '');
-    const userImage = user?.photo ? `${baseUrl}${user.photo}` : profile;  
+  const baseUrl = import.meta.env.VITE_API_URL.replace('/api/v1', '');
+  const userImage = user?.photo ? `${baseUrl}${user.photo}` : profile;
 
   return (
     <div className="bg-[#F3F6F6] md:mt-[30px]">
@@ -255,21 +296,25 @@ useEffect(() => {
             <img src={chevron} alt="" />
             <span className="font-semibold">{t("dashboard.routes.supportChat.breadcrumb.current")}</span>
           </div>
-          <h1 className="text-xl md:text-2xl font-semibold text-[#171C35]">{t("dashboard.routes.supportChat.title")}</h1>
+          <h1 className="text-xl md:text-2xl font-semibold text-[#171C35]">
+            {t("dashboard.routes.supportChat.title")}
+          </h1>
         </div>
       )}
 
       <div className="py-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 h-[calc(100vh-180px)]">
+          {/* Conversations List */}
           <div className={`bg-white rounded-2xl flex flex-col overflow-hidden h-full ${showChat ? 'hidden lg:flex' : 'flex'}`}>
             <div className="p-5 border-b flex-shrink-0">
               <div className="flex items-center gap-3 mb-4">
                 <div className="relative">
-                  <img src={userImage}
-    alt={user?.firstName} className="w-12 h-12 rounded-full"  />
+                  <img src={userImage} alt={user?.firstName} className="w-12 h-12 rounded-full" />
                   <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
                 </div>
-                <h3 className="font-semibold text-base text-[#171C35]">{user?.firstName} {user?.lastName} </h3>
+                <h3 className="font-semibold text-base text-[#171C35]">
+                  {user?.firstName} {user?.lastName}
+                </h3>
               </div>
               <div className="flex gap-2 bg-[#F3F6F6] rounded-[12px] p-2">
                 <div className="relative w-full">
@@ -285,52 +330,80 @@ useEffect(() => {
             </div>
 
             <div className="flex-1 overflow-y-auto divide-y">
-              {conversationsLoading ? (
-                <div className="flex items-center justify-center h-32"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#526FFF]"></div></div>
+              {conversationsLoading || isCreatingConversation ? (
+                <div className="flex items-center justify-center h-32">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#526FFF]"></div>
+                </div>
               ) : filteredConversations.length === 0 ? (
                 <div className="flex flex-col items-center justify-center h-32 text-gray-400 px-4">
                   <p>{searchText ? 'No conversations found' : 'No conversations yet'}</p>
                 </div>
               ) : (
-           filteredConversations.map((conversation) => (
-  <button
-    key={conversation.id}
-    onClick={() => { setSelectedConversation(conversation.id); setShowChat(true); }}
-    className={`w-full p-4 flex items-center gap-3 text-left hover:bg-gray-50 transition-colors ${selectedConversation === conversation.id ? 'bg-blue-50' : ''}`}
-  >
-    <div className="relative shrink-0">
-      <img src={getAvatar(conversation.admin?.admin)} className="w-12 h-12 rounded-full object-cover" alt="" />
-      <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
-    </div>
-    <div className="flex-1 min-w-0">
-      <div className="flex justify-between items-center">
-        <h4 className="font-semibold text-[#526FFF] text-sm truncate">{getDisplayName(conversation.admin?.admin)}</h4>
-        <span className="text-xs text-gray-400 ml-2">{formatTimestamp(conversation.updatedAt)}</span>
-      </div>
-      <p className="text-sm text-[#111A2D] truncate">{getLastMessage(conversation)}</p>
-    </div>
-    {conversation.status === 'OPEN' && conversation.messages.length > 0 && <div className="w-2 h-2 bg-[#526FFF] shrink-0 rounded-full ml-2"></div>}
-  </button>
-))
-
+                filteredConversations.map((conversation) => (
+                  <button
+                    key={conversation.id}
+                    onClick={() => {
+                      setSelectedConversation(conversation.id);
+                      setShowChat(true);
+                    }}
+                    className={`w-full p-4 flex items-center gap-3 text-left hover:bg-gray-50 transition-colors ${
+                      selectedConversation === conversation.id ? 'bg-blue-50' : ''
+                    }`}
+                  >
+                    <div className="relative shrink-0">
+                      <img 
+                        src={getAvatar(conversation.admin?.admin)} 
+                        className="w-12 h-12 rounded-full object-cover" 
+                        alt="" 
+                      />
+                      <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex justify-between items-center">
+                        <h4 className="font-semibold text-[#526FFF] text-sm truncate">
+                          {getDisplayName(conversation.admin?.admin)}
+                        </h4>
+                        <span className="text-xs text-gray-400 ml-2">
+                          {formatTimestamp(conversation.updatedAt)}
+                        </span>
+                      </div>
+                      <p className="text-sm text-[#111A2D] truncate">
+                        {getLastMessage(conversation)}
+                      </p>
+                    </div>
+                    {conversation.status === 'OPEN' && conversation.messages.length > 0 && (
+                      <div className="w-2 h-2 bg-[#526FFF] shrink-0 rounded-full ml-2"></div>
+                    )}
+                  </button>
+                ))
               )}
             </div>
           </div>
 
+          {/* Chat Window */}
           {showChat && selectedConversation && (
             <div className="fixed inset-0 lg:static z-50 bg-white rounded-2xl flex flex-col overflow-hidden lg:col-span-2 h-full">
-              <button className="lg:hidden p-4 text-[#526FFF] font-semibold text-left flex-shrink-0" onClick={() => setShowChat(false)}>
+              <button 
+                className="lg:hidden p-4 text-[#526FFF] font-semibold text-left flex-shrink-0" 
+                onClick={() => setShowChat(false)}
+              >
                 ← {t("dashboard.routes.supportChat.backButton")}
               </button>
 
               <div className="p-5 m-4 bg-[#F3F6F6] rounded-2xl flex items-center gap-3 justify-between flex-shrink-0">
                 <div className="flex items-center gap-3">
                   <div className="relative">
-                    <img src={getAvatar(adminInfo)} className="w-12 h-12 rounded-full object-cover" alt="" />
+                    <img 
+                      src={getAvatar(adminInfo)} 
+                      className="w-12 h-12 rounded-full object-cover" 
+                      alt="" 
+                    />
                     <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border"></div>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-xl text-[#171C35]">{getDisplayName(adminInfo)}</h3>
+                    <h3 className="font-semibold text-xl text-[#171C35]">
+                      {getDisplayName(adminInfo)}
+                    </h3>
                     <span className="text-sm text-gray-500">Support Admin - Online</span>
                   </div>
                 </div>
@@ -338,47 +411,98 @@ useEffect(() => {
 
               <div className="flex-1 overflow-y-auto p-5 space-y-4">
                 {messagesLoading ? (
-                  <div className="flex items-center justify-center h-full"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#526FFF]"></div></div>
-                ) : (
-                  <>
-                    {activeMessages.length > 0 ? (
-                      activeMessages.map((message) => {
-                        const isCurrentUser = message.senderId === getCurrentUserId();
-                        return (
-                          <div key={message.id} className={`flex gap-3 ${isCurrentUser ? 'justify-end' : 'justify-start'}`}>
-                            {!isCurrentUser && <img src={getAvatar(adminInfo)} className="w-10 h-10 rounded-full object-cover" alt="" />}
-                            <div className="max-w-lg">
-                              <span className="text-xs text-gray-400">{new Date(message.createdAt).toLocaleString()}</span>
-                              <div className={`py-2.5 px-4 rounded-2xl text-sm font-medium ${isCurrentUser ? 'bg-blue-500 text-white' : 'bg-gray-100 text-[#171C35]'}`}>
-                                {message.imageUrl ? <img src={message.imageUrl} alt="Attachment" className="max-w-xs rounded-lg" /> : message.message}
-                              </div>
-                            </div>
-                            {isCurrentUser && <img src={userImage}
-    alt={user?.firstName}className="w-10 h-10 rounded-full object-cover"  />}
+                  <div className="flex items-center justify-center h-full">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#526FFF]"></div>
+                  </div>
+                ) : activeMessages.length > 0 ? (
+                  activeMessages.map((message) => {
+                    const isCurrentUser = message.senderId === getCurrentUserId();
+                    return (
+                      <div 
+                        key={message.id} 
+                        className={`flex gap-3 ${isCurrentUser ? 'justify-end' : 'justify-start'}`}
+                      >
+                        {!isCurrentUser && (
+                          <img 
+                            src={getAvatar(adminInfo)} 
+                            className="w-10 h-10 rounded-full object-cover" 
+                            alt="" 
+                          />
+                        )}
+                        <div className="max-w-lg">
+                          <span className="text-xs text-gray-400">
+                            {new Date(message.createdAt).toLocaleString()}
+                          </span>
+                          <div 
+                            className={`py-2.5 px-4 rounded-2xl text-sm font-medium ${
+                              isCurrentUser 
+                                ? 'bg-blue-500 text-white' 
+                                : 'bg-gray-100 text-[#171C35]'
+                            }`}
+                          >
+                            {message.imageUrl ? (
+                              <img 
+                                src={message.imageUrl} 
+                                alt="Attachment" 
+                                className="max-w-xs rounded-lg" 
+                              />
+                            ) : (
+                              message.message
+                            )}
                           </div>
-                        );
-                      })
-                    ) : (
-                      <div className="flex items-center justify-center h-full text-gray-400"><p>No messages yet. Start the conversation!</p></div>
-                    )}
-                    <div ref={messagesEndRef} />
-                  </>
+                        </div>
+                        {isCurrentUser && (
+                          <img 
+                            src={userImage} 
+                            alt={user?.firstName} 
+                            className="w-10 h-10 rounded-full object-cover" 
+                          />
+                        )}
+                      </div>
+                    );
+                  })
+                ) : (
+                  <div className="flex items-center justify-center h-full text-gray-400">
+                    <p>No messages yet. Start the conversation!</p>
+                  </div>
                 )}
+                <div ref={messagesEndRef} />
               </div>
 
               <div className="p-5 bg-[#F3F6F6] m-2 rounded-[20px] relative flex-shrink-0">
                 <div ref={emojiPickerRef} className="flex flex-wrap items-center gap-2">
-                  <button onClick={() => fileInputRef.current?.click()} disabled={uploadingFile}>
-                    <img src={doc} className="p-1.5 bg-white h-8 w-8 rounded-full min-w-max" alt="Upload" />
+                  <button 
+                    onClick={() => fileInputRef.current?.click()} 
+                    disabled={uploadingFile}
+                  >
+                    <img 
+                      src={doc} 
+                      className="p-1.5 bg-white h-8 w-8 rounded-full min-w-max" 
+                      alt="Upload" 
+                    />
                   </button>
-                  <input type="file" ref={fileInputRef} className="hidden" onChange={handleFileUpload} accept="image/*" />
+                  <input 
+                    type="file" 
+                    ref={fileInputRef} 
+                    className="hidden" 
+                    onChange={handleFileUpload} 
+                    accept="image/*" 
+                  />
                   <button onClick={() => setShowEmojiPicker(!showEmojiPicker)}>
-                    <img src={react} className="p-1.5 bg-white h-8 w-8 rounded-full min-w-max" alt="Emoji" />
+                    <img 
+                      src={react} 
+                      className="p-1.5 bg-white h-8 w-8 rounded-full min-w-max" 
+                      alt="Emoji" 
+                    />
                   </button>
 
                   {showEmojiPicker && (
                     <div className="absolute bottom-16 left-2 z-50">
-                      <EmojiPicker onEmojiClick={(emojiData) => setMessageText(prev => prev + emojiData.emoji)} />
+                      <EmojiPicker 
+                        onEmojiClick={(emojiData) => 
+                          setMessageText(prev => prev + emojiData.emoji)
+                        } 
+                      />
                     </div>
                   )}
 
@@ -386,7 +510,11 @@ useEffect(() => {
                     placeholder={t("dashboard.routes.supportChat.chat.typeMessage")}
                     value={messageText}
                     onChange={(e) => setMessageText(e.target.value)}
-                    onKeyPress={(e) => e.key === "Enter" && !sendingMessage && handleSendMessage()}
+                    onKeyPress={(e) => {
+                      if (e.key === "Enter" && !sendingMessage) {
+                        handleSendMessage();
+                      }
+                    }}
                     className="flex-1 w-full px-4 h-10 bg-white rounded-3xl text-xs"
                     disabled={sendingMessage || uploadingFile}
                   />

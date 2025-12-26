@@ -47,6 +47,25 @@ export interface Conversation {
   messages: Message[];
 }
 
+export interface DoctorChatList {
+  doctorId: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  photo: string | null;
+  conversationId: string;
+  lastMessage: string | null;
+  updatedAt: string;
+}
+interface ApiResponse<T> {
+  statusCode: number;
+  success: boolean;
+  message: string;
+  data: T;
+}
+
+
+
 
 export const chatApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
@@ -58,10 +77,22 @@ export const chatApi = baseAPI.injectEndpoints({
     }),
 
     //  Get Admin Conversations
-    getAdminConversations: builder.query<Conversation[], void>({
-      query: () => "/chat/conversations",
-      providesTags: ["Conversation"],
-    }),
+getAdminConversations: builder.query<Conversation[], void>({
+  query: () => "/chat/conversations",
+  transformResponse: (response: ApiResponse<Conversation[]>) => {
+    return response.data;
+  },
+  providesTags: ["Conversation"],
+}),
+
+
+
+  //  Get All Doctors Chat List (Admin)
+getAdminDoctorChatList: builder.query<DoctorChatList[], void>({
+  query: () => "/admin/doctors",
+  providesTags: ["Conversation"],
+}),
+
 
     // 3️ Create Conversation
     createConversation: builder.mutation<Conversation, { subject: string }>({
@@ -124,5 +155,6 @@ export const {
   useCreateConversationMutation,
   useGetMessagesQuery,
   useSendMessageMutation,
+  useGetAdminDoctorChatListQuery,
   useUploadChatFileMutation,
 } = chatApi;
